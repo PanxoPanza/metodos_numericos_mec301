@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: MEC301 - Metodos Numéricos
+title: MEC301 - Métodos Numéricos
 author: Francisco V. Ramirez-Cuevas
 
 # Force re-execution of notebooks on each build.
