@@ -1,0 +1,27 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Unidad 1.1 Aspectos generales de programación y algoritmos}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Complejidad de algoritmos}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}¿Qué es un algoritmo?}{3}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Notación \sphinxstyleemphasis {Big\sphinxhyphen {}O}}{4}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Serie de Fibonacci y complejidad exponencial}{4}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Notación \sphinxstyleemphasis {Big\sphinxhyphen {}O} y tiempo de computación}{5}{subsection.1.1.4}
+\contentsline {section}{\numberline {1.2}Representación binaria y errores de reondeo}{6}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Redondeo en variables tipo \sphinxstyleliteralintitle {\sphinxupquote {float}}}{6}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Errores de redondeo en variables tipo \sphinxstyleliteralintitle {\sphinxupquote {float}}}{7}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Acumulacion de errores de reondeo}{8}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}Identificación de errores y debugging}{8}{section.1.3}
+\contentsline {section}{\numberline {1.4}Referencias}{11}{section.1.4}
+\contentsline {chapter}{\numberline {2}1.2 Algebra lineal y sistemas de ecuaciones lineales}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introducción a los sistemas de ecuaciones lineales}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Definición general}{15}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Representación matricial}{16}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Repaso de matrices}{17}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Representación en python}{18}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.5}Caracterización de sistemas de ecuaciones lineales}{19}{subsection.2.1.5}
+\contentsline {section}{\numberline {2.2}Métodos de solución directos}{22}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Eliminación de Gauss}{22}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Factorización LU}{23}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Métodos iterativos}{25}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Gauss\sphinxhyphen {}Seidel}{26}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}Solución de sistemas de ecuaciones lineales con python}{28}{section.2.4}
+\contentsline {section}{\numberline {2.5}Referencias}{29}{section.2.5}

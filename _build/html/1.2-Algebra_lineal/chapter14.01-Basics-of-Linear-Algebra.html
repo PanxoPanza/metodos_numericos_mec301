@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Basics of Linear Algebra &#8212; MEC301 - Metodos Numéricos</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MEC301 - Metodos Numéricos</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
+   Unidad 1.1
+   <br/>
+   Aspectos generales de programación y algoritmos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="1.2-Algebra_lineal.html">
+   1.2 Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/1.2-Algebra_lineal/chapter14.01-Basics-of-Linear-Algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/1.2-Algebra_lineal/chapter14.01-Basics-of-Linear-Algebra.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sets">
+   Sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectors">
+   Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices">
+   Matrices
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Basics of Linear Algebra</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sets">
+   Sets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectors">
+   Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices">
+   Matrices
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <!--BOOK_INFORMATION-->
+<a class="reference internal image-reference" href="1.2-Algebra_lineal/images/book_cover.jpg"><img alt="1.2-Algebra_lineal/images/book_cover.jpg" class="align-left" src="1.2-Algebra_lineal/images/book_cover.jpg" style="width: 120px;" /></a>
+<p><em>This notebook contains an excerpt from the <a class="reference external" href="https://www.elsevier.com/books/python-programming-and-numerical-methods/kong/978-0-12-819549-9">Python Programming and Numerical Methods - A Guide for Engineers and Scientists</a>, the content is also available at <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Berkeley Python Numerical Methods</a>.</em></p>
+<p><em>The copyright of the book belongs to Elsevier. We also have this interactive book online for a better learning experience. The code is released under the <a class="reference external" href="https://opensource.org/licenses/MIT">MIT license</a>. If you find this content useful, please consider supporting the work on <a class="reference external" href="https://www.elsevier.com/books/python-programming-and-numerical-methods/kong/978-0-12-819549-9">Elsevier</a> or <a class="reference external" href="https://www.amazon.com/Python-Programming-Numerical-Methods-Scientists/dp/0128195495/ref=sr_1_1?dchild=1&amp;keywords=Python+Programming+and+Numerical+Methods+-+A+Guide+for+Engineers+and+Scientists&amp;qid=1604761352&amp;sr=8-1">Amazon</a>!</em></p>
+<!--NAVIGATION-->
+<p>&lt; <span class="xref myst">CHAPTER 14.  Linear Algebra and Systems of Linear Equations</span> | <span class="xref myst">Contents</span> | <span class="xref myst">14.2 Linear Transformations</span> &gt;</p>
+<section class="tex2jax_ignore mathjax_ignore" id="basics-of-linear-algebra">
+<h1>Basics of Linear Algebra<a class="headerlink" href="#basics-of-linear-algebra" title="Permalink to this headline">#</a></h1>
+<p>Before we introduce the systems of linear equations, let’s first introduce some basics of linear algebra, which will be used to describe and solve the linear equations. We will just cover the very basics of it in this chapter, and you can explore more by reading a linear algebra book.</p>
+<section id="sets">
+<h2>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">#</a></h2>
+<p>We discussed the data structure - sets in chapter 2 before, here we will take a look of it from mathematics point of view using the mathematical languages. In mathematics, a <strong>set</strong> is a collection of objects. As we shown before, sets are usually denoted by braces {}. For example, <span class="math notranslate nohighlight">\(S = {orange, apple, banana}\)</span> means “S is the set containing ‘orange’, ‘apple’, and ‘banana’”.</p>
+<p>The <strong>empty set</strong> is the set containing no objects and is typically denoted by empty braces such as <span class="math notranslate nohighlight">\(\{\}\)</span> or by <span class="math notranslate nohighlight">\(\emptyset\)</span>. Given two sets, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, the <strong>union</strong> of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is denoted by <span class="math notranslate nohighlight">\(A \cup B\)</span> and equal to the set containing all the elements of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. The <strong>intersect</strong> of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is denoted by <span class="math notranslate nohighlight">\(A \cap B\)</span> and equal to the set containing all the elements that belong to both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. In set notation, a colon is used to mean <strong>“such that”</strong>. The usage of these terms will become apparent shortly. The symbol <strong><span class="math notranslate nohighlight">\(\in\)</span></strong> is used to denote that an object is contained in a set. For example <span class="math notranslate nohighlight">\(a \in A\)</span> means “<span class="math notranslate nohighlight">\(a\)</span> is a member of <span class="math notranslate nohighlight">\(A\)</span>” or “<span class="math notranslate nohighlight">\(a\)</span> is in <span class="math notranslate nohighlight">\(A\)</span>.” A backslash, <span class="math notranslate nohighlight">\(\backslash\)</span>, in set notation means <strong>set minus</strong>. So if <span class="math notranslate nohighlight">\(a\in A\)</span> then <span class="math notranslate nohighlight">\(A\backslash a\)</span> means “<span class="math notranslate nohighlight">\(A\)</span> minus the element, <span class="math notranslate nohighlight">\(a\)</span>.”</p>
+<p>There are several standard sets related to numbers, for example <strong>natural numbers</strong>, <strong>whole numbers</strong>, <strong>integers</strong>, <strong>rational numbers</strong>, <strong>irrational numbers</strong>, <strong>real numbers</strong>, and <strong>complex numbers</strong>. A description of each set and the symbol used to denote them is shown in the following table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Set Name</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Naturals</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{N}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{N}} = \{1, 2, 3, 4, \cdots\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Wholes</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{W}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{W}} = \mathbb{N} \cup \{0\}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Integers</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{Z}} = \mathbb{W} \cup \{-1, -2, -3, \cdots\}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Rationals</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{Q}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{Q}} = \{\frac{p}{q} : p\in {\mathbb{Z}}, q\in {\mathbb{Z}} \backslash \{0\}\}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Irrationals</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{I}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{I}}\)</span> is the set of real numbers not expressible as a fraction of integers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reals</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{R}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{R}} = \mathbb{Q} \cup \mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Complex Numbers</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\({\mathbb{C}} = \{a + bi : a,b\in {\mathbb{R}}, i = \sqrt{-1}\}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>TRY IT!</strong> Let <span class="math notranslate nohighlight">\(S\)</span> be the set of all real <span class="math notranslate nohighlight">\((x,y)\)</span> pairs such that <span class="math notranslate nohighlight">\(x^2 + y^2 = 1\)</span>. Write <span class="math notranslate nohighlight">\(S\)</span> using set notation.</p>
+<p><span class="math notranslate nohighlight">\(S = \{(x,y) : x,y \in {\mathbb{R}}, x^2 + y^2 = 1\}\)</span></p>
+</section>
+<section id="vectors">
+<h2>Vectors<a class="headerlink" href="#vectors" title="Permalink to this headline">#</a></h2>
+<p>The set <span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span> is the set of all <span class="math notranslate nohighlight">\(n\)</span>-tuples of real numbers. In set notation this is <span class="math notranslate nohighlight">\({\mathbb{R}}^n = \{(x_1, x_2, x_3, \cdots, x_n): x_1, x_2, x_3, \cdots, x_n \in {\mathbb{R}}\}\)</span>. For example, the set <span class="math notranslate nohighlight">\({\mathbb{R}}^3\)</span> represents the set of real triples, <span class="math notranslate nohighlight">\((x,y,z)\)</span> coordinates, in three-dimensional space.</p>
+<p>A <strong>vector</strong> in <span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-tuple, or point, in <span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>. Vectors can be written horizontally (i.e., with the elements of the vector next to each other) in a <strong>row vector</strong>, or vertically (i.e., with the elements of the vector on top of each other) in a <strong>column vector</strong>. If the context of a vector is ambiguous, it usually means the vector is a column vector. The <span class="math notranslate nohighlight">\(i\)</span>-th element of a vector, <span class="math notranslate nohighlight">\(v\)</span>, is denoted by <span class="math notranslate nohighlight">\(v_i\)</span>. The transpose of a column vector is a row vector of the same length, and the transpose of a row vector is a column vector. In mathematics, the transpose is denoted by a superscript <span class="math notranslate nohighlight">\(T\)</span>, or <span class="math notranslate nohighlight">\(v^T\)</span>. The <strong>zero vector</strong> is the vector in <span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span> containing all zeros.</p>
+<p>The <strong>norm</strong> of a vector is a measure of its length. There are many ways of defining the length of a vector depending on the metric used (i.e., the distance formula chosen). The most common is called the <span class="math notranslate nohighlight">\(L_2\)</span> norm, which is computed according to the distance formula you are probably familiar with from grade school. The <strong><span class="math notranslate nohighlight">\(L_2\)</span> norm</strong> of a vector <span class="math notranslate nohighlight">\(v\)</span> is denoted by <span class="math notranslate nohighlight">\(\Vert v \Vert_{2}\)</span> and <span class="math notranslate nohighlight">\(\Vert v \Vert_{2} = \sqrt{\sum_i v_i^2}\)</span>. This is sometimes also called Euclidian length and refers to the “physical” length of a vector in one-, two-, or three-dimensional space. The <span class="math notranslate nohighlight">\(L_1\)</span> norm, or “Manhattan Distance,” is computed as <span class="math notranslate nohighlight">\(\Vert v \Vert_{1} = \sum_i |v_i|\)</span>, and is named after the grid-like road structure in New York City. In general, the <strong>p-norm</strong>, <span class="math notranslate nohighlight">\(L_p\)</span>, of a vector is <span class="math notranslate nohighlight">\(\Vert v \Vert_{p} = \sqrt[p]{(\sum_i v_i^p)}\)</span>. The <strong><span class="math notranslate nohighlight">\(L_\infty\)</span> norm</strong> is the <span class="math notranslate nohighlight">\(p\)</span>-norm, where <span class="math notranslate nohighlight">\(p = \infty\)</span>. The <span class="math notranslate nohighlight">\(L_\infty\)</span> norm is written as <span class="math notranslate nohighlight">\(||v||_\infty\)</span> and it is equal to the maximum absolute value in <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<p><strong>TRY IT!</strong> Create a row vector and column vector, and show the shape of the vectors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">vector_row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="n">vector_column</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">2</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">3</span><span class="p">],</span> 
+                          <span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector_row</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vector_column</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 5)
+(4, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note!</strong> In Python, the row vector and column vector are a little bit tricky. You can see from the above in order to get the 1 row and 4 columns or 4 rows and 1 column vectors, we have to use list of list to specify it. You can define np.array([1,2,3,4]), but you will soon notice that it doesn’t contain information about row or column.</p>
+<p><strong>TRY IT!</strong> Transpose the row vector we defined above into a column vector and calculate the <span class="math notranslate nohighlight">\(L_1\)</span>, <span class="math notranslate nohighlight">\(L_2\)</span>, and <span class="math notranslate nohighlight">\(L_\infty\)</span> norm of it. Verify that the <span class="math notranslate nohighlight">\(L_\infty\)</span> norm of a vector is equivalent to the maximum value of the elements in the vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">new_vector</span> <span class="o">=</span> <span class="n">vector_row</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_vector</span><span class="p">)</span>
+<span class="n">norm_1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">norm_2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">norm_inf</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">new_vector</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_1 is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_1</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_2 is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_2</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L_inf is: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">norm_inf</span>)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1]
+ [-5]
+ [ 3]
+ [ 2]
+ [ 4]]
+L_1 is: 15.0
+L_2 is: 7.4
+L_inf is: 5.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Vector addition</strong> is defined as the pairwise addition of each of the elements of the added vectors. For example, if <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> are vectors in <span class="math notranslate nohighlight">\({\mathbb{R}}^n\)</span>, then <span class="math notranslate nohighlight">\(u = v + w\)</span> is defined as <span class="math notranslate nohighlight">\(u_i = v_i + w_i\)</span>.</p>
+<p><strong>Vector multiplication</strong> can be defined in several ways depending on the context. <strong>Scalar multiplication</strong> of a vector is the product of a vector and a <strong>scalar</strong> (i.e., a number in <span class="math notranslate nohighlight">\({\mathbb{R}}\)</span>). Scalar multiplication is defined as the product of each element of the vector by the scalar. More specifically, if <span class="math notranslate nohighlight">\(\alpha\)</span> is a scalar and <span class="math notranslate nohighlight">\(v\)</span> is a vector, then <span class="math notranslate nohighlight">\(u = \alpha v\)</span> is defined as <span class="math notranslate nohighlight">\(u_i = \alpha v_i\)</span>. Note that this is exactly how Python implements scalar multiplication with a vector.</p>
+<p><strong>TRY IT!</strong> Show that <span class="math notranslate nohighlight">\(a(v + w) = av + aw\)</span> (i.e., scalar multiplication of a vector distributes across vector addition).</p>
+<p>By vector addition, <span class="math notranslate nohighlight">\(u = v + w\)</span> is the vector with <span class="math notranslate nohighlight">\(u_i = v_i + w_i\)</span>. By scalar multiplication of a vector, <span class="math notranslate nohighlight">\(x = \alpha u\)</span> is the vector with <span class="math notranslate nohighlight">\(x_i = \alpha(v_i + w_i)\)</span>. Since <span class="math notranslate nohighlight">\(\alpha, v_i\)</span>, and <span class="math notranslate nohighlight">\(w_i\)</span> are scalars, multiplication distributes and <span class="math notranslate nohighlight">\(x_i = \alpha v_i + \alpha w_i\)</span>. Therefore, <span class="math notranslate nohighlight">\(a(v + w) = av + aw\)</span>.</p>
+<p>The <strong>dot product</strong> of two vectors is the sum of the product of the respective elements in each vector and is denoted by <span class="math notranslate nohighlight">\(\cdot\)</span>, and <span class="math notranslate nohighlight">\(v \cdot w\)</span> is read “v dot w.” Therefore for <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> <span class="math notranslate nohighlight">\(\in {\mathbb{R}}^n, d = v\cdot w\)</span> is defined as <span class="math notranslate nohighlight">\(d = \sum_{i = 1}^{n} v_iw_i\)</span>. The <strong>angle between two vectors</strong>, <span class="math notranslate nohighlight">\(\theta\)</span>, is defined by the formula:</p>
+<div class="math notranslate nohighlight">
+\[
+v \cdot w = \Vert v \Vert_{2} \Vert w \Vert_{2} \cos{\theta}
+\]</div>
+<p>The dot product is a measure of how similarly directed the two vectors are. For example, the vectors (1,1) and (2,2) are parallel. If you compute the angle between them using the dot product, you will find that <span class="math notranslate nohighlight">\(\theta = 0\)</span>. If the angle between the vectors, <span class="math notranslate nohighlight">\(\theta = \pi/2\)</span>, then the vectors are said to be perpendicular or <strong>orthogonal</strong>, and the dot product is 0.</p>
+<p><strong>TRY IT!</strong> Compute the angle between the vectors <span class="math notranslate nohighlight">\(v = [10, 9, 3]\)</span> and <span class="math notranslate nohighlight">\(w = [2, 5, 12]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">dot</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+<span class="n">theta</span> <span class="o">=</span> \
+    <span class="n">arccos</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.97992471]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, the <strong>cross product</strong> between two vectors, <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>, is written <span class="math notranslate nohighlight">\(v \times w\)</span>. It is defined by <span class="math notranslate nohighlight">\(v \times w = \Vert v \Vert_{2}\Vert w \Vert_{2}\sin{(\theta)} \textit{n}\)</span>, where <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between the <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> (which can be computed from the dot product) and <strong><span class="math notranslate nohighlight">\(n\)</span></strong> is a vector perpendicular to both <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> with unit length (i.e., the length is one). The geometric interpretation of the cross product is a vector perpendicular to both <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> with length equal to the area enclosed by the parallelogram created by the two vectors.</p>
+<p><strong>TRY IT!</strong> Given the vectors <span class="math notranslate nohighlight">\(v = [0, 2, 0]\)</span> and <span class="math notranslate nohighlight">\(w = [3, 0, 0]\)</span>, use the Numpy function cross to compute the cross product of v and w.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0  0 -6]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assuming that <span class="math notranslate nohighlight">\(S\)</span> is a set in which addition and scalar multiplication are defined, a <strong>linear combination</strong> of <span class="math notranslate nohighlight">\(S\)</span> is defined as
+$<span class="math notranslate nohighlight">\(
+\sum \alpha_i s_i,
+\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha_i\)</span> is any real number and <span class="math notranslate nohighlight">\(s_i\)</span> is the <span class="math notranslate nohighlight">\(i^{\text{th}}\)</span> object in <span class="math notranslate nohighlight">\(S\)</span>. Sometimes the <span class="math notranslate nohighlight">\(\alpha_i\)</span> values are called the <strong>coefficients</strong> of <span class="math notranslate nohighlight">\(s_i\)</span>. Linear combinations can be used to describe numerous things. For example, a grocery bill can be written <span class="math notranslate nohighlight">\(\displaystyle{\sum c_i n_i}\)</span>, where <span class="math notranslate nohighlight">\(c_i\)</span> is the cost of item <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(n_i\)</span> is the number of item <span class="math notranslate nohighlight">\(i\)</span> purchased. Thus, the total cost is a linear combination of the items purchased.</p>
+<p>A set is called <strong>linearly independent</strong> if no object in the set can be written as a linear combination of the other objects in the set. For the purposes of this book, we will only consider the linear independence of a set of vectors. A set of vectors that is not linearly independent is <strong>linearly dependent</strong>.</p>
+<p><strong>TRY IT!</strong> Given the row vectors <span class="math notranslate nohighlight">\(v = [0, 3, 2]\)</span>, <span class="math notranslate nohighlight">\(w = [4, 1, 1]\)</span>, and <span class="math notranslate nohighlight">\(u = [0, -2, 0]\)</span>, write the vector <span class="math notranslate nohighlight">\(x = [-8, -1, 4]\)</span> as a linear combination of <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(w\)</span>, and <span class="math notranslate nohighlight">\(u\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">v</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">w</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">u</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-8 -1  4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>TRY IT!</strong> Determine by inspection whether the following set of vectors is linearly independent: <span class="math notranslate nohighlight">\(v = [1, 1, 0]\)</span>, <span class="math notranslate nohighlight">\(w = [1, 0, 0]\)</span>, <span class="math notranslate nohighlight">\(u = [0, 0, 1]\)</span>.</p>
+<p>Clearly <span class="math notranslate nohighlight">\(u\)</span> is linearly independent from <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> because only <span class="math notranslate nohighlight">\(u\)</span> has a nonzero third element. The vectors <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> are also linearly independent because only <span class="math notranslate nohighlight">\(v\)</span> has a nonzero second element. Therefore, <span class="math notranslate nohighlight">\(v, w\)</span>, and <span class="math notranslate nohighlight">\(u\)</span> are linearly independent.</p>
+</section>
+<section id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline">#</a></h2>
+<p>An <span class="math notranslate nohighlight">\({m} \times {n}\)</span> <strong>matrix</strong> is a rectangular table of numbers consisting of <span class="math notranslate nohighlight">\(m\)</span> rows and <span class="math notranslate nohighlight">\(n\)</span> columns. The norm of a matrix can be considered as a particular kind of vector norm, if we treat the <span class="math notranslate nohighlight">\({m} \times {n}\)</span> elements of <span class="math notranslate nohighlight">\(M\)</span> are the elements of an <span class="math notranslate nohighlight">\(mn\)</span> dimensional vector, then the p-norm of this vector can be write as:</p>
+<div class="math notranslate nohighlight">
+\[\Vert M \Vert_{p} = \sqrt[p]{(\sum_i^m \sum_j^n |a_{ij}|^p)}\]</div>
+<p>You can calculate the matrix norm using the same <code class="docutils literal notranslate"><span class="pre">norm</span></code> function in <code class="docutils literal notranslate"><span class="pre">Numpy</span></code> as that for vector.</p>
+<p>Matrix addition and scalar multiplication for matrices work the same way as for vectors. However, <strong>matrix multiplication</strong> between two matrices, <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>, is defined when <span class="math notranslate nohighlight">\(P\)</span> is an <span class="math notranslate nohighlight">\({m} \times {p}\)</span> matrix and <span class="math notranslate nohighlight">\(Q\)</span> is a <span class="math notranslate nohighlight">\({p} \times {n}\)</span> matrix. The result of <span class="math notranslate nohighlight">\(M = PQ\)</span> is a matrix <span class="math notranslate nohighlight">\(M\)</span> that is <span class="math notranslate nohighlight">\(m \times n\)</span>. The dimension with size <span class="math notranslate nohighlight">\(p\)</span> is called the <strong>inner matrix dimension</strong>, and the inner matrix dimensions must match (i.e., the number of columns in <span class="math notranslate nohighlight">\(P\)</span> and the number of rows in <span class="math notranslate nohighlight">\(Q\)</span> must be the same) for matrix multiplication to be defined. The dimensions <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are called the <strong>outer matrix dimensions</strong>. Formally, if <span class="math notranslate nohighlight">\(P\)</span> is <span class="math notranslate nohighlight">\({m} \times {p}\)</span> and Q is <span class="math notranslate nohighlight">\({p} \times {n}\)</span>, then <span class="math notranslate nohighlight">\(M = PQ\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+M_{ij} = \sum_{k=1}^p P_{ik}Q_{kj}
+\]</div>
+<p>The product of two matrices <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> in Python is achieved by using the <strong>dot</strong> method in Numpy. The <strong>transpose</strong> of a matrix is a reversal of its rows with its columns. The transpose is denoted by a superscript, <span class="math notranslate nohighlight">\(T\)</span>, such as <span class="math notranslate nohighlight">\(M^T\)</span> is the transpose of matrix <span class="math notranslate nohighlight">\(M\)</span>. In Python, the method <strong>T</strong> for an Numpy array is used to get the transpose. For example, if <span class="math notranslate nohighlight">\(M\)</span> is a matrix, then <span class="math notranslate nohighlight">\(M.T\)</span> is its transpose.</p>
+<p><strong>TRY IT!</strong> Let the Python matrices <span class="math notranslate nohighlight">\(P = [[1, 7], [2, 3], [5, 0]]\)</span> and <span class="math notranslate nohighlight">\(Q = [[2, 6, 3, 1], [1, 2, 3, 4]]\)</span>. Compute the matrix product of <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>. Show that the product of <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(P\)</span> will produce an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 7]
+ [2 3]
+ [5 0]]
+[[2 6 3 1]
+ [1 2 3 4]]
+[[ 9 20 24 29]
+ [ 7 18 15 14]
+ [10 30 15  5]]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_729</span><span class="o">/</span><span class="mf">3577237600.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Q</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+
+<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="ne">ValueError</span>: shapes (2,4) and (3,2) not aligned: 4 (dim 1) != 3 (dim 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <strong>square matrix</strong> is an <span class="math notranslate nohighlight">\({n} \times {n}\)</span> matrix; that is, it has the same number of rows as columns. The <strong>determinant</strong> is an important property of square matrices. The determinant is denoted by <span class="math notranslate nohighlight">\(det(M)\)</span>, both in mathematics and in Numpy’s <code class="docutils literal notranslate"><span class="pre">linalg</span></code> package, sometimes it is also denoted as <span class="math notranslate nohighlight">\(|M|\)</span>. Some examples in the uses of a determinant will be described later.</p>
+<p>In the case of a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix, the determinant is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|M| = \begin{bmatrix}
+a &amp; b \\
+c &amp; d\\
+\end{bmatrix} = ad - bc\end{split}\]</div>
+<p>Similarly, in the case of a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix, the determinant is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray*}
+|M| = \begin{bmatrix}
+a &amp; b &amp; c \\
+d &amp; e &amp; f \\
+g &amp; h &amp; i \\
+\end{bmatrix} &amp; = &amp; a\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+\Box &amp; e &amp; f \\
+\Box &amp; h &amp; i \\
+\end{bmatrix} - b\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+d &amp; \Box &amp; f \\
+g &amp; \Box &amp; i \\
+\end{bmatrix}+c\begin{bmatrix}
+\Box &amp;\Box  &amp;\Box  \\
+d &amp; e &amp; \Box \\
+g &amp; h &amp; \Box \\
+\end{bmatrix} \\
+&amp;&amp;\\
+&amp; = &amp; a\begin{bmatrix}
+e &amp; f \\
+h &amp; i \\
+\end{bmatrix} - b\begin{bmatrix}
+d &amp; f \\
+g &amp; i \\
+\end{bmatrix}+c\begin{bmatrix}
+d &amp; e \\
+g &amp; h \\
+\end{bmatrix} \\ 
+&amp;&amp;\\
+&amp; = &amp; aei + bfg + cdh - ceg - bdi - afh
+\end{eqnarray*}\end{split}\]</div>
+<p>We can use similar approach to calculate the determinant for higher the dimension of the matrix, but it is much easier to calculate using Python. We will see an example below how to calculate the determinant in Python.</p>
+<p>The <strong>identity matrix</strong> is a square matrix with ones on the diagonal and zeros elsewhere. The identity matrix is usually denoted by <span class="math notranslate nohighlight">\(I\)</span>, and is analagous to the real number identity, 1. That is, multiplying any matrix by <span class="math notranslate nohighlight">\(I\)</span> (of compatible size) will produce the same matrix.</p>
+<p><strong>TRY IT!</strong> Use Python to find the determinant of the matrix <span class="math notranslate nohighlight">\(M = [[0, 2, 1, 3], [3, 2, 8, 1], [1, 0, 0, 3], [0, 3, 2, 1]]\)</span>. Use the <em>np.eye</em> function to produce a <span class="math notranslate nohighlight">\({4} \times {4}\)</span> identity matrix, <span class="math notranslate nohighlight">\(I\)</span>. Multiply <span class="math notranslate nohighlight">\(M\)</span> by <span class="math notranslate nohighlight">\(I\)</span> to show that the result is <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">det</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> 
+             <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> 
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Determinant: </span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">det</span>(M))
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M*I:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">I</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M:
+ [[0 2 1 3]
+ [3 2 8 1]
+ [1 0 0 3]
+ [0 3 2 1]]
+Determinant: -38.0
+I:
+ [[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+M*I:
+ [[0. 2. 1. 3.]
+ [3. 2. 8. 1.]
+ [1. 0. 0. 3.]
+ [0. 3. 2. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>inverse</strong> of a square matrix <span class="math notranslate nohighlight">\(M\)</span> is a matrix of the same size, <span class="math notranslate nohighlight">\(N\)</span>, such that <span class="math notranslate nohighlight">\(M \cdot N = I\)</span>. The inverse of a matrix is analagous to the inverse of real numbers. For example, the inverse of 3 is <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> because <span class="math notranslate nohighlight">\((3)(\frac{1}{3}) = 1\)</span>. A matrix is said to be <strong>invertible</strong> if it has an inverse. The inverse of a matrix is unique; that is, for an invertible matrix, there is only one inverse for that matrix. If <span class="math notranslate nohighlight">\(M\)</span> is a square matrix, its inverse is denoted by <span class="math notranslate nohighlight">\(M^{-1}\)</span> in mathematics, and it can be computed in Python using the function <em>inv</em> from Numpy’s <em>linalg</em> package.</p>
+<p>For a <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix, the analytic solution of the matrix inverse is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M^{-1} = \begin{bmatrix}
+a &amp; b \\
+c &amp; d\\
+\end{bmatrix}^{-1} = \frac{1}{|M|}\begin{bmatrix}
+d &amp; -b \\
+-c &amp; a\\
+\end{bmatrix}\end{split}\]</div>
+<p>The calculation of the matrix inverse for the analytic solution becomes complicated with increasing matrix dimension, there are many other methods can make things easier, such as Gaussian elimination, Newton’s method, Eigendecomposition and so on. We will introduce some of these methods after we learn how to solve a system of linear equations, because the process is essentially the same.</p>
+<p>Recall that 0 has no inverse for multiplication in the real-numbers setting. Similarly, there are matrices that do not have inverses. These matrices are called <strong>singular</strong>. Matrices that do have an inverse are called <strong>nonsingular</strong>.</p>
+<p>One way to determine if a matrix is singular is by computing its determinant. If the determinant is 0, then the matrix is singular; if not, the matrix is nonsingular.</p>
+<p><strong>TRY IT!</strong> The matrix <span class="math notranslate nohighlight">\(M\)</span> (in the previous example) has a nonzero determinant. Compute the inverse of <span class="math notranslate nohighlight">\(M\)</span>. Show that the matrix <span class="math notranslate nohighlight">\(P = [[0, 1, 0], [0, 0, 0], [1, 0, 1]]\)</span> has a determinant value of 0 and therefore has no inverse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inv M:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det(p):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inv M:
+ [[-1.57894737 -0.07894737  1.23684211  1.10526316]
+ [-0.63157895 -0.13157895  0.39473684  0.84210526]
+ [ 0.68421053  0.18421053 -0.55263158 -0.57894737]
+ [ 0.52631579  0.02631579 -0.07894737 -0.36842105]]
+det(p):
+ 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>A matrix that is close to being singular (i.e., the determinant is close to 0) is called <strong>ill-conditioned</strong>. Although ill-conditioned matrices have inverses, they are problematic numerically in the same way that dividing a number by a very, very small number is problematic. That is, it can result in computations that result in overflow, underflow, or numbers small enough to result in significant round-off errors (If you forget these concepts, refresh yourself with materials in chapter 9). The <strong>condition number</strong> is a measure of how ill-conditioned a matrix is, and it can be computed using Numpy’s function <em>cond</em> from <em>linalg</em>. The higher the condition number, the closer the matrix is to being singular.</p>
+<p>The <strong>rank</strong>. of an <span class="math notranslate nohighlight">\({m} \times {n}\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> is the number of linearly independent columns or rows of <span class="math notranslate nohighlight">\(A\)</span>, and is denoted by rank(<span class="math notranslate nohighlight">\(A\)</span>). It can be shown that the number of linearly independent rows is always equal to the number of linearly independent columns
+for any matrix. A matrix is called <strong>full rank</strong>. if rank <span class="math notranslate nohighlight">\((A)=\min(m,n)\)</span>. The matrix, <span class="math notranslate nohighlight">\(A\)</span>, is also full rank if all of its columns are linearly independent. An <strong>augmented matrix</strong>. is a matrix, <span class="math notranslate nohighlight">\(A\)</span>, concatenated with a vector, <span class="math notranslate nohighlight">\(y\)</span>, and is written <span class="math notranslate nohighlight">\([A,y]\)</span>. This is commonly read “<span class="math notranslate nohighlight">\(A\)</span> augmented with <span class="math notranslate nohighlight">\(y\)</span>.” You can use <em>np.concatenate</em> to concatenate the them. If <span class="math notranslate nohighlight">\(rank([A,y]) = {rank}(A) + 1\)</span>, then the vector, <span class="math notranslate nohighlight">\(y\)</span>, is “new” information. That is, it cannot be created as a linear combination of the columns in <span class="math notranslate nohighlight">\(A\)</span>. The rank is an important property of matrices because of its relationship to solutions of linear equations, which is discussed in the last section of this chapter.</p>
+<p><strong>TRY IT!</strong> Matrix <span class="math notranslate nohighlight">\(A = [[1, 1, 0], [0, 1, 0], [1, 0, 1]]\)</span>, compute the condition number and rank for this matrix. If <span class="math notranslate nohighlight">\(y = [[1], [2], [1]]\)</span>, get the augmented matrix [A, y].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> \
+             <span class="n">cond</span><span class="p">,</span> <span class="n">matrix_rank</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Condition number:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rank:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">A_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Augmented matrix:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">A_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Condition number:
+ 4.048917339522305
+Rank:
+ 3
+Augmented matrix:
+ [[1 1 0 1]
+ [0 1 0 2]
+ [1 0 1 1]]
+</pre></div>
+</div>
+</div>
+</div>
+<!--NAVIGATION-->
+<p>&lt; <span class="xref myst">CHAPTER 14.  Linear Algebra and Systems of Linear Equations</span> | <span class="xref myst">Contents</span> | <span class="xref myst">14.2 Linear Transformations</span> &gt;</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./1.2-Algebra_lineal"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Francisco V. Ramirez-Cuevas<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
