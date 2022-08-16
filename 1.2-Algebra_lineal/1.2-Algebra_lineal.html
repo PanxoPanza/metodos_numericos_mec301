@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Unidad 1.1 Aspectos generales de programación y algoritmos" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html" />
+    <link rel="prev" title="1.1 Aspectos generales de programación y algoritmos" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,16 +105,14 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                    Bienvenidos al curso
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
-   Unidad 1.1
-   <br/>
-   Aspectos generales de programación y algoritmos
+   1.1 Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -861,24 +859,20 @@ Número de incognitas, n = 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1001</span><span class="o">/</span><span class="mf">453559162.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span>     <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:552,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">552</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
 <span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> 
-<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_nonposdef</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 
 <span class="ne">LinAlgError</span>: Singular matrix
 </pre></div>
@@ -1089,8 +1083,9 @@ x_1 &amp;= \frac{-3 - 8x_2 + 0x_3}{8} = 2.208
 -2x_1 - 4x_2 + 5x_3 &amp;=&amp; 5 \\
 8x_1 + 8x_2  &amp;=&amp; -3 \\
 \end{eqnarray*}\]</div>
-<p>Tenemos:
-$<span class="math notranslate nohighlight">\(
+<p>Tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 L  = \begin{bmatrix}
 1 &amp; 0 &amp; 0 \\
 -0.25 &amp; 1 &amp; 0 \\
@@ -1105,7 +1100,7 @@ P  = \begin{bmatrix}
 0 &amp; 0 &amp; 1 \\
 0 &amp; 1 &amp; 0 \\
 1 &amp; 0 &amp; 0 \\
-\end{bmatrix}\)</span>$</p>
+\end{bmatrix}\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span>
@@ -1156,23 +1151,28 @@ L*U =
 <h2>Métodos iterativos<a class="headerlink" href="#metodos-iterativos" title="Permalink to this headline">#</a></h2>
 <p>Los métodos iterativos están basados en una serie repetitiva de operaciones, comenzando por un valor inicial. A diferencia de los métodos directos, el número de operaciones está condicionado por la convergencia y el valor inicial escogido.</p>
 <p>Las ventajas de los métodos iterativos es que tienen un orden de complejidad menor que los métodos directos, y no requieren gran capacidad de memoria (recordemos que factorización LU requiere almacenar las matrices L, U y P)</p>
-<p>La gran desventaja radica en la convergencia de los algoritmos. Una condición suficiente, pero no necesaria es que la matriz <span class="math notranslate nohighlight">\(A\)</span> debe ser <strong>diagonal dominante</strong>, es decir, los elementos de la diagonal, <span class="math notranslate nohighlight">\(a_{i,i}\)</span>, deben satisfacer:
-$<span class="math notranslate nohighlight">\(|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|\)</span>$</p>
+<p>La gran desventaja radica en la convergencia de los algoritmos. Una condición suficiente, pero no necesaria es que la matriz <span class="math notranslate nohighlight">\(A\)</span> debe ser <strong>diagonal dominante</strong>, es decir, los elementos de la diagonal, <span class="math notranslate nohighlight">\(a_{i,i}\)</span>, deben satisfacer:</p>
+<div class="math notranslate nohighlight">
+\[|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|\]</div>
 <p>Estos métodos se utilizan, generalmente, en simulaciones con elementos finitos (FEM), o volúmenes finitos (VEM).</p>
 <section id="gauss-seidel">
 <h3>Gauss-Seidel<a class="headerlink" href="#gauss-seidel" title="Permalink to this headline">#</a></h3>
 <p>El algoritmo se puede resumir en los siguientes pasos:</p>
 <ol class="simple">
 <li><p>Asumimos un valor inicial para <span class="math notranslate nohighlight">\(x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_1^{(0)}\)</span>).</p></li>
-<li><p>Calculamos un nuevo valor para <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> mediante:
-$<span class="math notranslate nohighlight">\(
-x_1^{(1)} = \frac{1}{a_{1,1}}\Big[y_1 - \sum_{j \ne 1}^{n}{a_{1,j}x_j^{(0)}} \Big]
-\)</span>$</p></li>
-<li><p>Utilizando el nuevo valor <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> y el resto de <span class="math notranslate nohighlight">\(x^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_2^{(0)}\)</span>), determinamos <span class="math notranslate nohighlight">\(x_2^{(1)}\)</span>.
-$<span class="math notranslate nohighlight">\(
-x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  - {a_{2,1}x_1^{(1)}}\Big]
-\)</span>$</p></li>
+<li><p>Calculamos un nuevo valor para <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> mediante:</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[
+x_1^{(1)} = \frac{1}{a_{1,1}}\Big[y_1 - \sum_{j \ne 1}^{n}{a_{1,j}x_j^{(0)}} \Big]
+\]</div>
+<ol class="simple">
+<li><p>Utilizando el nuevo valor <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> y el resto de <span class="math notranslate nohighlight">\(x^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_2^{(0)}\)</span>), determinamos <span class="math notranslate nohighlight">\(x_2^{(1)}\)</span>.</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  - {a_{2,1}x_1^{(1)}}\Big]
+\]</div>
 <ol class="simple">
 <li><p>Repetimos el paso 3 hasta completar todos los elementos del vector <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
 <li><p>Continuamos con la iteración hasta que el valor de <span class="math notranslate nohighlight">\(x\)</span> converge dentro de una tolerancia <span class="math notranslate nohighlight">\(\varepsilon\)</span>, definida por:</p></li>
@@ -1445,7 +1445,7 @@ LU:
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Unidad 1.1 <br>Aspectos generales de programación y algoritmos</p>
+            <p class="prev-next-title">1.1 Aspectos generales de programación y algoritmos</p>
         </div>
     </a>
 </div>
