@@ -557,6 +557,7 @@ print('det(A) = ', det(A))
 # \end{eqnarray*}
 # 
 # Tenemos:
+# 
 # $$
 # L  = \begin{bmatrix}
 # 1 & 0 & 0 \\
@@ -608,6 +609,7 @@ print('L*U =\n',np.dot(L,U))
 # Las ventajas de los métodos iterativos es que tienen un orden de complejidad menor que los métodos directos, y no requieren gran capacidad de memoria (recordemos que factorización LU requiere almacenar las matrices L, U y P)
 # 
 # La gran desventaja radica en la convergencia de los algoritmos. Una condición suficiente, pero no necesaria es que la matriz $A$ debe ser **diagonal dominante**, es decir, los elementos de la diagonal, $a_{i,i}$, deben satisfacer:
+# 
 # $$|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|$$
 # 
 # Estos métodos se utilizan, generalmente, en simulaciones con elementos finitos (FEM), o volúmenes finitos (VEM).
@@ -618,11 +620,13 @@ print('L*U =\n',np.dot(L,U))
 # 1. Asumimos un valor inicial para $x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}$ (con excepción de $x_1^{(0)}$).
 # 
 # 2. Calculamos un nuevo valor para $x_1^{(1)}$ mediante:
+# 
 # $$
 # x_1^{(1)} = \frac{1}{a_{1,1}}\Big[y_1 - \sum_{j \ne 1}^{n}{a_{1,j}x_j^{(0)}} \Big]
 # $$
 # 
 # 3. Utilizando el nuevo valor $x_1^{(1)}$ y el resto de $x^{(0)}$ (con excepción de $x_2^{(0)}$), determinamos $x_2^{(1)}$.
+# 
 # $$
 # x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  - {a_{2,1}x_1^{(1)}}\Big]
 # $$
