@@ -1,0 +1,22 @@
+1. Intro: partir con ajuste de curva lineal
+          explicar coeficiente de determinación (r2) y coeficiente de correlación (r): numpy.corrcoef(actual,predict)
+          linealización de funciónes no lineales
+
+2. Regresión por minimos cuadrados (Forma general) 
+          otros ejemplos de regresión
+          	regresión polinomial
+          	linear multivariable
+          formato general
+
+3. Derivación de formula general de mínimos cuadrados
+          Solución mediante método directo
+
+4. mínimos cuadrados en python
+          Pseudo-inversa
+          linalg.lstsq (para sistemas lineales multivariable)
+	  numpy.polyfit (para ajuste polinomial univariable)b
+	  scipy.optimize.curve_fit (mínimos cuadrados no lineal)
+
+
+# ayudantia
+- explicar las diferencias entre arrange y linspace
