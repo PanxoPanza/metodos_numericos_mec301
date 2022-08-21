@@ -110,7 +110,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 1. Introducción a los métodos numéricos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1.1 Aspectos generales de programación y algoritmos
@@ -119,6 +124,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
    1.2 Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
+   1.3 Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
 </ul>
@@ -552,9 +562,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <section id="serie-de-fibonacci-y-complejidad-exponencial">
 <h3>Serie de Fibonacci y complejidad exponencial<a class="headerlink" href="#serie-de-fibonacci-y-complejidad-exponencial" title="Permalink to this headline">#</a></h3>
 <p>Una operación matemática puede ser ejecutada mediante algoritmos con diferente complejidad. Por ejemplo, consideremos la serie de Fibonacci.</p>
-<div>
-<img src="./imagenes/Fibonacci.jpg" width="500">
-</div><p>Esta operación puede ejecutarse de dos maneras: (1) de forma iterativa, (2) de forma recursiva</p>
+<a class="reference internal image-reference" href="../_images/Fibonacci.jpg"><img alt="../_images/Fibonacci.jpg" class="align-center" src="../_images/Fibonacci.jpg" style="width: 350px;" /></a>
+<p>Esta operación puede ejecutarse de dos maneras: (1) de forma iterativa, (2) de forma recursiva</p>
 <p><strong>(1) Forma iterativa.</strong> complejidad <span class="math notranslate nohighlight">\(O(N)\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -616,9 +625,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <section id="notacion-big-o-y-tiempo-de-computacion">
 <h3>Notación <em>Big-O</em> y tiempo de computación<a class="headerlink" href="#notacion-big-o-y-tiempo-de-computacion" title="Permalink to this headline">#</a></h3>
 <p>La complejidad en la notación <em>Big-O</em> nos entrega una referencia del tiempo computacional dedicado para un determinado algoritmo.</p>
-<div>
-<img src="./imagenes/08.02.01-complexity.png" width="500">
-</div><p>Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz <em>(<span class="math notranslate nohighlight">\(\approx\)</span> 5 billones de operaciones por segundo)</em>:</p>
+<a class="reference internal image-reference" href="../_images/08.02.01-complexity.png"><img alt="../_images/08.02.01-complexity.png" class="align-center" src="../_images/08.02.01-complexity.png" style="width: 300px;" /></a>
+<p>Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz <em>(<span class="math notranslate nohighlight">\(\approx\)</span> 5 billones de operaciones por segundo)</em>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">my_fib_iter(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 0.2 nanosegundos
 <br></p></li>
@@ -632,8 +640,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
-Wall time: 7.15 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 11 µs, sys: 3 µs, total: 14 µs
+Wall time: 16.7 µs
 </pre></div>
 </div>
 </div>
@@ -645,8 +653,8 @@ Wall time: 7.15 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 125 ms, sys: 0 ns, total: 125 ms
-Wall time: 126 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 223 ms, sys: 0 ns, total: 223 ms
+Wall time: 221 ms
 </pre></div>
 </div>
 </div>
@@ -661,10 +669,10 @@ Wall time: 126 ms
 <p>En un computador, la información es almacenada en formato binario. Un <strong>bit</strong> puede tener dos valores: 0 o 1.
 El computador es capaz de interpretar número utilizando códigos binarios.</p>
 <p>Por ejemplo, el código de 8 bits <span class="math notranslate nohighlight">\(001000101\)</span> es equivalente a:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee707b26-1de3-4507-adf9-6be3fa0dbec5">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ee707b26-1de3-4507-adf9-6be3fa0dbec5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
  0\cdot2^7 + 0\cdot2^6 + 1\cdot2^5 + 0\cdot2^4 + 0\cdot2^3 + 1\cdot2^2 + 0\cdot2^1 + 1\cdot2^0 = 37
-\end{equation}\]</div>
+\end{equation*}\]</div>
 <p>Cada variable tiene una cantidad de bits asociada.</p>
 <table class="colwidths-auto table">
 <thead>
@@ -922,13 +930,14 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [26],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3392</span><span class="o">/</span><span class="mf">2602675188.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">square_number</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
 
-<span class="nn">Input In [25],</span> in <span class="ni">square_number</span><span class="nt">(x)</span>
+<span class="nn">/tmp/ipykernel_3392/2802720476.py</span> in <span class="ni">square_number</span><span class="nt">(x)</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">square_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">sq</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">sq</span> <span class="o">+=</span> <span class="n">x</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
 <span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">return</span> <span class="n">sq</span>
 
 <span class="ne">TypeError</span>: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;int&#39;
