@@ -89,9 +89,8 @@ def my_divide_by_two(n):
 # ### Serie de Fibonacci y complejidad exponencial
 # 
 # Una operación matemática puede ser ejecutada mediante algoritmos con diferente complejidad. Por ejemplo, consideremos la serie de Fibonacci.
-# <div>
-# <img src="./imagenes/Fibonacci.jpg" width="500">
-# </div>
+# 
+# <img src="./imagenes/Fibonacci.jpg" width="350" align= center>
 
 # Esta operación puede ejecutarse de dos maneras: (1) de forma iterativa, (2) de forma recursiva
 
@@ -142,9 +141,7 @@ my_fib_rec(5)
 # ### Notación *Big-O* y tiempo de computación
 # La complejidad en la notación *Big-O* nos entrega una referencia del tiempo computacional dedicado para un determinado algoritmo.
 
-# <div>
-# <img src="./imagenes/08.02.01-complexity.png" width="500">
-# </div>
+# <img src="./imagenes/08.02.01-complexity.png" width="300" align= center>
 
 # Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz *($\approx$ 5 billones de operaciones por segundo)*:
 # - ```my_fib_iter(100)``` <br>tomaría $\approx$ 0.2 nanosegundos
@@ -172,9 +169,10 @@ get_ipython().run_line_magic('time', 'a = my_fib_rec(30) #Nota. No probar N>30')
 # El computador es capaz de interpretar número utilizando códigos binarios.
 # 
 # Por ejemplo, el código de 8 bits $001000101$ es equivalente a:
-# \begin{equation}
+# 
+# \begin{equation*}
 #  0\cdot2^7 + 0\cdot2^6 + 1\cdot2^5 + 0\cdot2^4 + 0\cdot2^3 + 1\cdot2^2 + 0\cdot2^1 + 1\cdot2^0 = 37
-# \end{equation}
+# \end{equation*}
 
 # Cada variable tiene una cantidad de bits asociada.
 # 

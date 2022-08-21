@@ -20,3 +20,4 @@
 
 # ayudantia
 - explicar las diferencias entre arrange y linspace
+- revisar shape y reshape
