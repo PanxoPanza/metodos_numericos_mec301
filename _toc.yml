@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Parte 1. Introducción a los métodos numéricos
+  - caption: Introducción a los métodos numéricos
     chapters:
     - file: 1.1-Aspectos_generales/1.1-Aspectos_generales
     - file: 1.2-Algebra_lineal/1.2-Algebra_lineal

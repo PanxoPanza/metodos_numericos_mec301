@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Parte 1. Introducción a los métodos numéricos
+  Introducción a los métodos numéricos
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -522,8 +522,7 @@ title="Print to PDF"
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 22 de Agosto 2022</p>
-<h1>Contenidos<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Introducción" data-toc-modified-id="Introducción-0">Introducción</a></span><ul class="toc-item"><li><span><a href="#Regresión-lineal-unidimensional" data-toc-modified-id="Regresión-lineal-unidimensional-0.1">Regresión lineal unidimensional</a></span></li><li><span><a href="#Ajuste-por-mínimos-cuadrados-paso-a-paso" data-toc-modified-id="Ajuste-por-mínimos-cuadrados-paso-a-paso-0.2">Ajuste por mínimos cuadrados paso a paso</a></span></li><li><span><a href="#Cuantificación-del-error" data-toc-modified-id="Cuantificación-del-error-0.3">Cuantificación del error</a></span></li><li><span><a href="#Linealización-de-funciones-no-lineales" data-toc-modified-id="Linealización-de-funciones-no-lineales-0.4">Linealización de funciones no lineales</a></span></li></ul></li><li><span><a href="#Otros-modelos-lineales" data-toc-modified-id="Otros-modelos-lineales-1">Otros modelos lineales</a></span><ul class="toc-item"><li><span><a href="#Regresión-polinomial" data-toc-modified-id="Regresión-polinomial-1.1">Regresión polinomial</a></span></li><li><span><a href="#Regresión-lineal-multidimensional" data-toc-modified-id="Regresión-lineal-multidimensional-1.2">Regresión lineal multidimensional</a></span></li></ul></li><li><span><a href="#Regresión-por-mínimos-cuadrados-generalizado" data-toc-modified-id="Regresión-por-mínimos-cuadrados-generalizado-2">Regresión por mínimos cuadrados generalizado</a></span><ul class="toc-item"><li><span><a href="#Modelo-lineal-generalizado" data-toc-modified-id="Modelo-lineal-generalizado-2.1">Modelo lineal generalizado</a></span></li><li><span><a href="#Regresión-por-mínimos-cuadrados" data-toc-modified-id="Regresión-por-mínimos-cuadrados-2.2">Regresión por mínimos cuadrados</a></span></li></ul></li><li><span><a href="#Mínimos-cuadrados-en-python" data-toc-modified-id="Mínimos-cuadrados-en-python-3">Mínimos cuadrados en python</a></span><ul class="toc-item"><li><span><a href="#numpy.linalg.pinv-(matriz-pseudo-inversa)" data-toc-modified-id="numpy.linalg.pinv-(matriz-pseudo-inversa)-3.1">numpy.linalg.pinv (matriz pseudo inversa)</a></span></li><li><span><a href="#numpy.linalg.lstsq-(solución-de-sistemas-lineales-por-mínimos-cuadrados)" data-toc-modified-id="numpy.linalg.lstsq-(solución-de-sistemas-lineales-por-mínimos-cuadrados)-3.2">numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)</a></span></li><li><span><a href="#numpy.polyfit-(sistemas-polinomiales-de-unidimencionales)" data-toc-modified-id="numpy.polyfit-(sistemas-polinomiales-de-unidimencionales)-3.3">numpy.polyfit (sistemas polinomiales de unidimencionales)</a></span></li><li><span><a href="#scipy.optimize.curve_fit-(regresión-no-lineal)" data-toc-modified-id="scipy.optimize.curve_fit-(regresión-no-lineal)-3.4">scipy.optimize.curve_fit (regresión no-lineal)</a></span></li><li><span><a href="#Regresión-lineal-vs-no-lineal" data-toc-modified-id="Regresión-lineal-vs-no-lineal-3.5">Regresión lineal vs no-lineal</a></span></li></ul></li><li><span><a href="#Referencias" data-toc-modified-id="Referencias-4">Referencias</a></span></li></ul></div><section id="introduccion">
+<section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos.</p>
 <p>Por ejemplo, en mecánica de fluidos decimos que la fuerza de arrastre, <span class="math notranslate nohighlight">\(F_D\)</span> sobre un cuerpo es proporcional al cuadrado de la velocidad del flujo alrededor el cuerpo, <span class="math notranslate nohighlight">\(V\)</span>.</p>
@@ -544,10 +543,10 @@ y = a_0 + a_1x,
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span> son coeficientes representando el intercepto y la pendiente, respectivamente.</p>
 <p><strong>¿Cómo determinamos los coeficientes?</strong> Se puede demostrar que la mejor forma de determinar los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span> es minimizando el error cuadrático:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e4bc7c52-6ab3-4800-aa4b-58af4ff3eefe">
-<span class="eqno">(1)<a class="headerlink" href="#equation-e4bc7c52-6ab3-4800-aa4b-58af4ff3eefe" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
 S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
-\end{equation}\]</div>
+\end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(i = 1,...,m\)</span> son los datos de la muestra considerando un total de <span class="math notranslate nohighlight">\(m\)</span> datos.</p>
 <p>Este criterio se denomina <strong>ajuste por mínimos cuadrados,</strong> y tiene un número de ventajas, como por ejemplo, entregar una solución única para un set de datos.</p>
 </section>
@@ -629,15 +628,15 @@ m &amp; \sum x_i \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_11_0.png" src="../_images/1.3-Ajuste_de_curvas_11_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_12_0.png" src="../_images/1.3-Ajuste_de_curvas_12_0.png" />
 </div>
 </div>
 </section>
 <section id="cuantificacion-del-error">
 <h3>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizamos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8e5d3bd-ea22-4b4a-903e-84ef859878d5">
-<span class="eqno">(2)<a class="headerlink" href="#equation-f8e5d3bd-ea22-4b4a-903e-84ef859878d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4960d50c-c5fe-4961-92ef-94ca74001c53">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4960d50c-c5fe-4961-92ef-94ca74001c53" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S_r\)</span> es el error del modelo lineal, y <span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
@@ -686,7 +685,7 @@ y = \alpha e^{\beta x} \Rightarrow \ln(y) = \ln(\alpha) + \beta x
 y = \alpha x^{\beta} \Rightarrow \log(y) = \log(\alpha) + \beta \log (x)
 \end{equation*}\]</div>
 <ul class="simple">
-<li><p><strong>modelo de tasa de cresimiento de saturación</strong></p></li>
+<li><p><strong>modelo de tasa de crecimiento de saturación</strong></p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -787,7 +786,7 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_27_0.png" src="../_images/1.3-Ajuste_de_curvas_27_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_28_0.png" src="../_images/1.3-Ajuste_de_curvas_28_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -807,7 +806,7 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_28_0.png" src="../_images/1.3-Ajuste_de_curvas_28_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_29_0.png" src="../_images/1.3-Ajuste_de_curvas_29_0.png" />
 </div>
 </div>
 <p>Analizamos la calidad del modelo</p>
@@ -850,8 +849,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2770f1a-cc06-4f15-9c76-c90aba235034">
-<span class="eqno">(3)<a class="headerlink" href="#equation-c2770f1a-cc06-4f15-9c76-c90aba235034" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-98cff75e-5c56-4781-98cf-fa2cc43d2ad6">
+<span class="eqno">(2)<a class="headerlink" href="#equation-98cff75e-5c56-4781-98cf-fa2cc43d2ad6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -938,7 +937,7 @@ r2 = 0.8818
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_39_0.png" src="../_images/1.3-Ajuste_de_curvas_39_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_40_0.png" src="../_images/1.3-Ajuste_de_curvas_40_0.png" />
 </div>
 </div>
 <p>Al incluir término <span class="math notranslate nohighlight">\(a_2x^2\)</span> en nuestro modelo lineal, <span class="math notranslate nohighlight">\(a_0 + a_1x\)</span>, esperabamos un mejor ajsute con el modelo físico <span class="math notranslate nohighlight">\(F_D = C_D V^2\)</span>.</p>
@@ -947,9 +946,9 @@ r2 = 0.8818
 <section id="regresion-lineal-multidimensional">
 <h3>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5be52c91-cc9d-42ea-ada4-3265975adb73">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5be52c91-cc9d-42ea-ada4-3265975adb73" title="Permalink to this equation">#</a></span>\[\begin{equation}
-y = a_0 + a_1x + a_2x_2+a_3x_3+... a_n x_n 
+<div class="amsmath math notranslate nohighlight" id="equation-72d93969-bc85-45af-b20f-e9e249898e37">
+<span class="eqno">(3)<a class="headerlink" href="#equation-72d93969-bc85-45af-b20f-e9e249898e37" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, para dos dimensiones tenemos:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -982,8 +981,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 <section id="modelo-lineal-generalizado">
 <h3>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
 <p>Todos los modelos revisados anteriormente pertenecen a un modelo lineal general con la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d67450c8-b1dc-4da4-8d20-bed98cc9ac47">
-<span class="eqno">(5)<a class="headerlink" href="#equation-d67450c8-b1dc-4da4-8d20-bed98cc9ac47" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0fc769c6-a181-4cad-9944-7538ea816983">
+<span class="eqno">(4)<a class="headerlink" href="#equation-0fc769c6-a181-4cad-9944-7538ea816983" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(z_0, z_1,..., z_n\)</span> son funciones base.</p>
@@ -1017,20 +1016,20 @@ y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
 <p>El término “<em>lineal</em>” hace referencia al tipo de dependencia entre las funciones base. Tal como sucede con el modelo polinomial, las funciones base <span class="math notranslate nohighlight">\(z_i\)</span> pueden ser no-lineales. Por ejemplo, sinusoides:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + + a_3 \cos\left(2x\right) + a_4 \sin\left(2x\right) ...,
+y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\right) + a_4 \sin\left(2x\right) ...,
 \end{equation*}\]</div>
 </section>
 <section id="regresion-por-minimos-cuadrados">
 <h3>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>En general, se busca minimizar el error:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-394f8a29-e9be-4f12-a5b5-65f22c6e5c96">
-<span class="eqno">(6)<a class="headerlink" href="#equation-394f8a29-e9be-4f12-a5b5-65f22c6e5c96" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2774149e-a00d-43e4-a93e-fae308de867b">
+<span class="eqno">(5)<a class="headerlink" href="#equation-2774149e-a00d-43e4-a93e-fae308de867b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 S_r = \sum_{i=1}^m (y(x_i) - y_i)^2 = \sum_{i=1}^m \left[\sum_{j=1}^n a_j z_j(x_i) - y_i\right]^2.
 \end{equation}\]</div>
 <p>Se puede demostrar que la minimización de este error está dado por la solución del sistema:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0109d51-0a33-41e1-80e9-303e3a680189">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b0109d51-0a33-41e1-80e9-303e3a680189" title="Permalink to this equation">#</a></span>\[\begin{equation}
-A^T A \alpha = A^T Y
+<div class="amsmath math notranslate nohighlight" id="equation-21873477-743f-479a-8f4e-52ef6ebdab4b">
+<span class="eqno">(6)<a class="headerlink" href="#equation-21873477-743f-479a-8f4e-52ef6ebdab4b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Z^T Z \alpha = Z^T Y
 \end{equation}\]</div>
 <p>donde:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1176,7 +1175,7 @@ y = -178.482 + 16.122*x + 0.037*x^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_63_0.png" src="../_images/1.3-Ajuste_de_curvas_63_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_64_0.png" src="../_images/1.3-Ajuste_de_curvas_64_0.png" />
 </div>
 </div>
 </section>
@@ -1227,13 +1226,13 @@ y = 2.538*x^1.436
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.3-Ajuste_de_curvas_67_0.png" src="../_images/1.3-Ajuste_de_curvas_67_0.png" />
+<img alt="../_images/1.3-Ajuste_de_curvas_68_0.png" src="../_images/1.3-Ajuste_de_curvas_68_0.png" />
 </div>
 </div>
 <p>Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-y = 0.274x^{1.436}\quad\left(r^2=80.88\%\right)
+y = 0.274x^{1.984}\quad\left(r^2=80.88\%\right)
 \end{equation*}\]</div>
 <p>Esto es debido a que la regresión no-lineal busca minimizar el error</p>
 <div class="amsmath math notranslate nohighlight">

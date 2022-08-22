@@ -7,9 +7,6 @@
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 22 de Agosto 2022
 
-# <h1>Contenidos<span class="tocSkip"></span></h1>
-# <div class="toc"><ul class="toc-item"><li><span><a href="#Introducción" data-toc-modified-id="Introducción-0">Introducción</a></span><ul class="toc-item"><li><span><a href="#Regresión-lineal-unidimensional" data-toc-modified-id="Regresión-lineal-unidimensional-0.1">Regresión lineal unidimensional</a></span></li><li><span><a href="#Ajuste-por-mínimos-cuadrados-paso-a-paso" data-toc-modified-id="Ajuste-por-mínimos-cuadrados-paso-a-paso-0.2">Ajuste por mínimos cuadrados paso a paso</a></span></li><li><span><a href="#Cuantificación-del-error" data-toc-modified-id="Cuantificación-del-error-0.3">Cuantificación del error</a></span></li><li><span><a href="#Linealización-de-funciones-no-lineales" data-toc-modified-id="Linealización-de-funciones-no-lineales-0.4">Linealización de funciones no lineales</a></span></li></ul></li><li><span><a href="#Otros-modelos-lineales" data-toc-modified-id="Otros-modelos-lineales-1">Otros modelos lineales</a></span><ul class="toc-item"><li><span><a href="#Regresión-polinomial" data-toc-modified-id="Regresión-polinomial-1.1">Regresión polinomial</a></span></li><li><span><a href="#Regresión-lineal-multidimensional" data-toc-modified-id="Regresión-lineal-multidimensional-1.2">Regresión lineal multidimensional</a></span></li></ul></li><li><span><a href="#Regresión-por-mínimos-cuadrados-generalizado" data-toc-modified-id="Regresión-por-mínimos-cuadrados-generalizado-2">Regresión por mínimos cuadrados generalizado</a></span><ul class="toc-item"><li><span><a href="#Modelo-lineal-generalizado" data-toc-modified-id="Modelo-lineal-generalizado-2.1">Modelo lineal generalizado</a></span></li><li><span><a href="#Regresión-por-mínimos-cuadrados" data-toc-modified-id="Regresión-por-mínimos-cuadrados-2.2">Regresión por mínimos cuadrados</a></span></li></ul></li><li><span><a href="#Mínimos-cuadrados-en-python" data-toc-modified-id="Mínimos-cuadrados-en-python-3">Mínimos cuadrados en python</a></span><ul class="toc-item"><li><span><a href="#numpy.linalg.pinv-(matriz-pseudo-inversa)" data-toc-modified-id="numpy.linalg.pinv-(matriz-pseudo-inversa)-3.1">numpy.linalg.pinv (matriz pseudo inversa)</a></span></li><li><span><a href="#numpy.linalg.lstsq-(solución-de-sistemas-lineales-por-mínimos-cuadrados)" data-toc-modified-id="numpy.linalg.lstsq-(solución-de-sistemas-lineales-por-mínimos-cuadrados)-3.2">numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)</a></span></li><li><span><a href="#numpy.polyfit-(sistemas-polinomiales-de-unidimencionales)" data-toc-modified-id="numpy.polyfit-(sistemas-polinomiales-de-unidimencionales)-3.3">numpy.polyfit (sistemas polinomiales de unidimencionales)</a></span></li><li><span><a href="#scipy.optimize.curve_fit-(regresión-no-lineal)" data-toc-modified-id="scipy.optimize.curve_fit-(regresión-no-lineal)-3.4">scipy.optimize.curve_fit (regresión no-lineal)</a></span></li><li><span><a href="#Regresión-lineal-vs-no-lineal" data-toc-modified-id="Regresión-lineal-vs-no-lineal-3.5">Regresión lineal vs no-lineal</a></span></li></ul></li><li><span><a href="#Referencias" data-toc-modified-id="Referencias-4">Referencias</a></span></li></ul></div>
-
 # ## Introducción
 # 
 # La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos. 
@@ -36,15 +33,15 @@
 # \end{equation*}
 # 
 # donde $a_0$ y $a_1$ son coeficientes representando el intercepto y la pendiente, respectivamente.
-# 
+
 # **¿Cómo determinamos los coeficientes?** Se puede demostrar que la mejor forma de determinar los coeficientes $a_0$ y $a_1$ es minimizando el error cuadrático:
 # 
-# \begin{equation}
+# \begin{equation*}
 # S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
-# \end{equation}
+# \end{equation*}
 # 
 # donde $i = 1,...,m$ son los datos de la muestra considerando un total de $m$ datos.
-# 
+
 # Este criterio se denomina **ajuste por mínimos cuadrados,** y tiene un número de ventajas, como por ejemplo, entregar una solución única para un set de datos.
 
 # ### Ajuste por mínimos cuadrados paso a paso
@@ -164,7 +161,7 @@ print('r2 = %.4f' % r2_score(yi,y(xi)))
 # y = \alpha x^{\beta} \Rightarrow \log(y) = \log(\alpha) + \beta \log (x)
 # \end{equation*}
 # 
-# - **modelo de tasa de cresimiento de saturación**
+# - **modelo de tasa de crecimiento de saturación**
 # 
 # \begin{equation*}
 # y = \alpha \frac{x}{\beta + x} \Rightarrow 
@@ -382,7 +379,7 @@ plt.show()
 # Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:
 # 
 # \begin{equation}
-# y = a_0 + a_1x + a_2x_2+a_3x_3+... a_n x_n 
+# y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 # \end{equation}
 
 # Por ejemplo, para dos dimensiones tenemos:
@@ -436,7 +433,7 @@ plt.show()
 # El término "*lineal*" hace referencia al tipo de dependencia entre las funciones base. Tal como sucede con el modelo polinomial, las funciones base $z_i$ pueden ser no-lineales. Por ejemplo, sinusoides:
 # 
 # \begin{equation*}
-# y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + + a_3 \cos\left(2x\right) + a_4 \sin\left(2x\right) ...,
+# y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\right) + a_4 \sin\left(2x\right) ...,
 # \end{equation*}
 # 
 
@@ -449,7 +446,7 @@ plt.show()
 # Se puede demostrar que la minimización de este error está dado por la solución del sistema:
 # 
 # \begin{equation}
-# A^T A \alpha = A^T Y
+# Z^T Z \alpha = Z^T Y
 # \end{equation}
 # 
 # donde:
@@ -620,7 +617,7 @@ plt.show()
 # Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.
 # 
 # \begin{equation*}
-# y = 0.274x^{1.436}\quad\left(r^2=80.88\%\right)
+# y = 0.274x^{1.984}\quad\left(r^2=80.88\%\right)
 # \end{equation*}
 
 # Esto es debido a que la regresión no-lineal busca minimizar el error
