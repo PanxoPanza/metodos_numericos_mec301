@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Parte 1. Introducción a los métodos numéricos
+  Introducción a los métodos numéricos
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -469,8 +469,7 @@ title="Print to PDF"
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 8 de Agosto 2022</p>
-<h1>Contenidos<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Introducción-a-los-sistemas-de-ecuaciones-lineales" data-toc-modified-id="Introducción-a-los-sistemas-de-ecuaciones-lineales-0">Introducción a los sistemas de ecuaciones lineales</a></span><ul class="toc-item"><li><span><a href="#Definición-general" data-toc-modified-id="Definición-general-0.1">Definición general</a></span></li><li><span><a href="#Representación-matricial" data-toc-modified-id="Representación-matricial-0.2">Representación matricial</a></span></li><li><span><a href="#Repaso-de-matrices" data-toc-modified-id="Repaso-de-matrices-0.3">Repaso de matrices</a></span></li><li><span><a href="#Representación-en-python" data-toc-modified-id="Representación-en-python-0.4">Representación en python</a></span></li><li><span><a href="#Caracterización-de-sistemas-de-ecuaciones-lineales" data-toc-modified-id="Caracterización-de-sistemas-de-ecuaciones-lineales-0.5">Caracterización de sistemas de ecuaciones lineales</a></span></li></ul></li><li><span><a href="#Métodos-de-solución-directos" data-toc-modified-id="Métodos-de-solución-directos-1">Métodos de solución directos</a></span><ul class="toc-item"><li><span><a href="#Eliminación-de-Gauss" data-toc-modified-id="Eliminación-de-Gauss-1.1">Eliminación de Gauss</a></span></li><li><span><a href="#Factorización-LU" data-toc-modified-id="Factorización-LU-1.2">Factorización LU</a></span></li></ul></li><li><span><a href="#Métodos-iterativos" data-toc-modified-id="Métodos-iterativos-2">Métodos iterativos</a></span><ul class="toc-item"><li><span><a href="#Gauss-Seidel" data-toc-modified-id="Gauss-Seidel-2.1">Gauss-Seidel</a></span></li></ul></li><li><span><a href="#Solución-de-sistemas-de-ecuaciones-lineales-con-python" data-toc-modified-id="Solución-de-sistemas-de-ecuaciones-lineales-con-python-3">Solución de sistemas de ecuaciones lineales con python</a></span></li><li><span><a href="#Referencias" data-toc-modified-id="Referencias-4">Referencias</a></span></li></ul></div><section id="introduccion-a-los-sistemas-de-ecuaciones-lineales">
+<section id="introduccion-a-los-sistemas-de-ecuaciones-lineales">
 <h2>Introducción a los sistemas de ecuaciones lineales<a class="headerlink" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h2>
 <p>Consideremos el caso de tres personas conectada por cuerdas elásticas.</p>
 <a class="reference internal image-reference" href="../_images/bungee_man.png"><img alt="../_images/bungee_man.png" class="align-center" src="../_images/bungee_man.png" style="width: 300px;" /></a>
@@ -870,24 +869,20 @@ Número de incognitas, n = 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3338</span><span class="o">/</span><span class="mf">453559162.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span>     <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:552,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">552</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
 <span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> 
-<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_nonposdef</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 
 <span class="ne">LinAlgError</span>: Singular matrix
 </pre></div>
