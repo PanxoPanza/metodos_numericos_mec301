@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.4 Métodos de Interpolación" href="../1.4-Interpolacion/1.4-Interpolacion.html" />
     <link rel="prev" title="1.2 Algebra lineal y sistemas de ecuaciones lineales" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -111,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Introducción a los métodos numéricos
+  Parte 1. Introducción a los métodos numéricos
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -128,6 +129,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1.3 Ajuste de curvas por mínimos cuadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.4-Interpolacion/1.4-Interpolacion.html">
+   1.4 Métodos de Interpolación
   </a>
  </li>
 </ul>
@@ -635,8 +641,8 @@ m &amp; \sum x_i \\
 <section id="cuantificacion-del-error">
 <h3>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizamos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4960d50c-c5fe-4961-92ef-94ca74001c53">
-<span class="eqno">(1)<a class="headerlink" href="#equation-4960d50c-c5fe-4961-92ef-94ca74001c53" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd6897c8-3cdb-4718-8562-96683df7898c">
+<span class="eqno">(1)<a class="headerlink" href="#equation-fd6897c8-3cdb-4718-8562-96683df7898c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S_r\)</span> es el error del modelo lineal, y <span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
@@ -849,8 +855,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98cff75e-5c56-4781-98cf-fa2cc43d2ad6">
-<span class="eqno">(2)<a class="headerlink" href="#equation-98cff75e-5c56-4781-98cf-fa2cc43d2ad6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b7ff72c4-9c28-4cd5-bbca-88ea76311177">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b7ff72c4-9c28-4cd5-bbca-88ea76311177" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -946,8 +952,8 @@ r2 = 0.8818
 <section id="regresion-lineal-multidimensional">
 <h3>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72d93969-bc85-45af-b20f-e9e249898e37">
-<span class="eqno">(3)<a class="headerlink" href="#equation-72d93969-bc85-45af-b20f-e9e249898e37" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad588780-c3f6-42c6-95f3-474621b01724">
+<span class="eqno">(3)<a class="headerlink" href="#equation-ad588780-c3f6-42c6-95f3-474621b01724" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, para dos dimensiones tenemos:</p>
@@ -981,8 +987,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 <section id="modelo-lineal-generalizado">
 <h3>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
 <p>Todos los modelos revisados anteriormente pertenecen a un modelo lineal general con la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0fc769c6-a181-4cad-9944-7538ea816983">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0fc769c6-a181-4cad-9944-7538ea816983" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-87c50df3-21d1-48f5-8b67-f7c836334edf">
+<span class="eqno">(4)<a class="headerlink" href="#equation-87c50df3-21d1-48f5-8b67-f7c836334edf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(z_0, z_1,..., z_n\)</span> son funciones base.</p>
@@ -1022,13 +1028,13 @@ y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\rig
 <section id="regresion-por-minimos-cuadrados">
 <h3>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>En general, se busca minimizar el error:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2774149e-a00d-43e4-a93e-fae308de867b">
-<span class="eqno">(5)<a class="headerlink" href="#equation-2774149e-a00d-43e4-a93e-fae308de867b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3a06359a-4025-44eb-bea6-18a81df8350e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-3a06359a-4025-44eb-bea6-18a81df8350e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 S_r = \sum_{i=1}^m (y(x_i) - y_i)^2 = \sum_{i=1}^m \left[\sum_{j=1}^n a_j z_j(x_i) - y_i\right]^2.
 \end{equation}\]</div>
 <p>Se puede demostrar que la minimización de este error está dado por la solución del sistema:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21873477-743f-479a-8f4e-52ef6ebdab4b">
-<span class="eqno">(6)<a class="headerlink" href="#equation-21873477-743f-479a-8f4e-52ef6ebdab4b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01f465bc-515a-41f5-aef1-91615c144302">
+<span class="eqno">(6)<a class="headerlink" href="#equation-01f465bc-515a-41f5-aef1-91615c144302" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Z^T Z \alpha = Z^T Y
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1340,6 +1346,13 @@ r2 = 0.8769
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">1.2 Algebra lineal y sistemas de ecuaciones lineales</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../1.4-Interpolacion/1.4-Interpolacion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1.4 Métodos de Interpolación</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
