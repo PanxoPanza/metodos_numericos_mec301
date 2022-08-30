@@ -101,7 +101,7 @@ showplot()
 # N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 # \end{equation}
 
-# La forma de este polinómio asegura que: $N(x_i) = y_i$ para $i= 0,1,...,n$, donde $x_i, y_i$ son las coordenadas de los datos de la muestra en el plano $x, y$.
+# Para encontrar los coeficientes imponemos la condición: $N(x_i) = y_i$ para $i= 0,1,...,n$, donde $x_i, y_i$ son las coordenadas de los datos de la muestra en el plano $x, y$.
 
 # Los coeficientes $a_i$ se obtienen a partir de una fórmula definida en función de los datos $x_i$ y $N(x_i) = y_i$. Por ejemplo, a partir de $N(x_0) = y_0$ determinamos:
 # 
@@ -130,7 +130,7 @@ showplot()
 # En forma generalizada, decimos que $a_k = f[x_k, x_{k-1}, \dots, x_{1}, x_0]$, donde:
 # 
 # \begin{equation*}
-# f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_2] - f[x_{k-1}, x_{k-2}, \dots, x_{1}, x_0]}{x_k-x_0},
+# f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_1] - f[x_{k-1}, x_{k-2}, \dots, x_{1}, x_0]}{x_k-x_0},
 # \end{equation*}
 # 
 # esta operación se define como **diferencias divididas**.
@@ -143,7 +143,8 @@ showplot()
 # \end{align*}
 
 # Para determinar las diferencias divididas utilizamos un método recursivo que podemos resumir mediante la siguiente tabla:
-# <img src="./images/newton_recursion.png" width="600" align= center>
+# 
+# <img src="./images/newton_recursion.png" width="700" align= center>
 
 # El algoritmo almacena estos valores en una matriz triangular superior, donde la primera fila corresponde al valor de los coeficientes
 
@@ -164,7 +165,7 @@ def divided_diff(x, y):
     coef[:,0] = y # primera columna yi
     
     for j in range(1,n):
-        for i in range(n-j):
+        for i in range(n-j):  
             coef[i][j] = (coef[i+1][j-1] - coef[i][j-1]) /  \
                                   (x[i+j]-x[i])
             
@@ -227,7 +228,7 @@ showplot()
 # In[8]:
 
 
-get_ipython().run_cell_magic('capture', 'showfig', "import numpy as np\nimport matplotlib.pyplot as plt\n\n# Polinomios de Lagrange\nP0 = lambda x: 1/2*(x**2 - 3*x + 2)\nP1 = lambda x: -x**2 + 2*x\nP2 = lambda x: 1/2*(x**2 - x)\n\n# variable para plotear\nx = np.linspace(-0.5,2.5,100)\n\nfig = plt.figure(figsize = (9,7))      # tamaño de figura\nplt.rcParams.update({'font.size': 18}) # tamaño de fuente\n\n# ploteamos las curvas de cada polinomio\nplt.plot(x, P0(xp), 'b', label = '$P_0(x)$')\nplt.plot(x, P1(xp), 'r', label = '$P_1(x)$')\nplt.plot(x, P2(xp), 'g', label = '$P_2(x)$')\n\nplt.title('Polinomios de Lagrange')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
+get_ipython().run_cell_magic('capture', 'showfig', "import numpy as np\nimport matplotlib.pyplot as plt\n\n# Polinomios de Lagrange\nP0 = lambda x: 1/2*(x**2 - 3*x + 2)\nP1 = lambda x: -x**2 + 2*x\nP2 = lambda x: 1/2*(x**2 - x)\n\n# variable para plotear\nx = np.linspace(-0.5,2.5,100)\n\nfig = plt.figure(figsize = (9,7))      # tamaño de figura\nplt.rcParams.update({'font.size': 18}) # tamaño de fuente\n\n# ploteamos las curvas de cada polinomio\nplt.plot(x, P0(x), 'b', label = '$P_0(x)$')\nplt.plot(x, P1(x), 'r', label = '$P_1(x)$')\nplt.plot(x, P2(x), 'g', label = '$P_2(x)$')\n\nplt.title('Polinomios de Lagrange')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[9]:
@@ -335,7 +336,7 @@ print('y0 = y(x0 = 1.5) =',y0)
 # In[16]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# variable para graficar\nx = np.linspace(0,2.0,100)\n\nplt.plot(x, y(x), '-b', label='$y(x)$')            # graficamos la función\nplt.plot(xi, yi, 'ob')                             # graficamos los xi, yi \nplt.plot(1.5, y_hat, 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# variable para graficar\nx = np.linspace(0,2.0,100)\n\nplt.plot(x, y(x), '-b', label='$y(x)$')            # graficamos la función\nplt.plot(xi, yi, 'ob')                             # graficamos los xi, yi \nplt.plot(1.5, y(1.5), 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[17]:
@@ -364,7 +365,7 @@ print('y0 = y(x0 = 1.5) =',y0)
 # In[19]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# variable para graficar\nx = np.linspace(0,2.0,100)\ny = np.interp(x,xi,yi)\n\nplt.plot(x, y, '-b', label='$y(x)$')               # graficamos la función\nplt.plot(xi, yi, 'ob')                             # graficamos los xi, yi \nplt.plot(1.5, y_hat, 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp de numpy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# variable para graficar\nx = np.linspace(0,2.0,100)\ny = np.interp(x,xi,yi)\ny_hat = np.interp(1.5,xi,yi)\n\nplt.plot(x, y, '-b', label='$y(x)$')               # graficamos la función\nplt.plot(xi, yi, 'ob')                             # graficamos los xi, yi \nplt.plot(1.5, y_hat, 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp de numpy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[20]:
@@ -478,7 +479,7 @@ y_3 = CubicSpline(xi,yi,bc_type='natural')
 # In[22]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 7))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ok')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
+get_ipython().run_cell_magic('capture', 'showplot', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 7))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ko')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[23]:
