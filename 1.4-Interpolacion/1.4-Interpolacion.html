@@ -644,11 +644,11 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eae301ca-6ff2-4dfb-ad5e-2977cf98068e">
-<span class="eqno">(7)<a class="headerlink" href="#equation-eae301ca-6ff2-4dfb-ad5e-2977cf98068e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b145f5f1-8cd1-4474-a1d3-bd32956f66c2">
+<span class="eqno">(7)<a class="headerlink" href="#equation-b145f5f1-8cd1-4474-a1d3-bd32956f66c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
-<p>La forma de este polinómio asegura que: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
+<p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
 <p>Los coeficientes <span class="math notranslate nohighlight">\(a_i\)</span> se obtienen a partir de una fórmula definida en función de los datos <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span>. Por ejemplo, a partir de <span class="math notranslate nohighlight">\(N(x_0) = y_0\)</span> determinamos:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -672,7 +672,7 @@ a_3 = \frac{\frac{\frac{y_3-y_2}{x_3-x_2} - \frac{y_2 - y_1}{x_2-x_1}}{x_3 - x_1
 <p>En forma generalizada, decimos que <span class="math notranslate nohighlight">\(a_k = f[x_k, x_{k-1}, \dots, x_{1}, x_0]\)</span>, donde:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_2] - f[x_{k-1}, x_{k-2}, \dots, x_{1}, x_0]}{x_k-x_0},
+f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_1] - f[x_{k-1}, x_{k-2}, \dots, x_{1}, x_0]}{x_k-x_0},
 \end{equation*}\]</div>
 <p>esta operación se define como <strong>diferencias divididas</strong>.</p>
 <p>por ejemplo:</p>
@@ -681,8 +681,8 @@ f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_2] - 
 f[x_1, x_0] &amp;= \frac{y_1 - y_0}{x_1 - x_0} \\[10pt]
 f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1 - x_0}}{x_2 - x_0} = \frac{f[x_2,x_1] - f[x_1,x_0]}{x_2-x_0}
 \end{align*}\]</div>
-<p>Para determinar las diferencias divididas utilizamos un método recursivo que podemos resumir mediante la siguiente tabla:
-<a class="reference internal" href="../_images/newton_recursion.png"><img alt="../_images/newton_recursion.png" class="align-center" src="../_images/newton_recursion.png" style="width: 600px;" /></a></p>
+<p>Para determinar las diferencias divididas utilizamos un método recursivo que podemos resumir mediante la siguiente tabla:</p>
+<a class="reference internal image-reference" href="../_images/newton_recursion.png"><img alt="../_images/newton_recursion.png" class="align-center" src="../_images/newton_recursion.png" style="width: 700px;" /></a>
 <p>El algoritmo almacena estos valores en una matriz triangular superior, donde la primera fila corresponde al valor de los coeficientes</p>
 <p><strong>No existe una función formal en python para determinar los polinomios de Newton</strong>. Sin embargo su implementación en código es sencilla.</p>
 <div class="cell docutils container">
@@ -699,7 +699,7 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
     <span class="n">coef</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span> <span class="c1"># primera columna yi</span>
     
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">j</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">j</span><span class="p">):</span>  
             <span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span>  \
                                   <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             
@@ -776,13 +776,13 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a9c43cd-7761-4e23-b4cf-498520666de2">
-<span class="eqno">(8)<a class="headerlink" href="#equation-1a9c43cd-7761-4e23-b4cf-498520666de2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa251acc-d810-4e37-ae9c-b8a3cb992df7">
+<span class="eqno">(8)<a class="headerlink" href="#equation-fa251acc-d810-4e37-ae9c-b8a3cb992df7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db8d79e1-5f03-4c8d-81e3-26272967b7fd">
-<span class="eqno">(9)<a class="headerlink" href="#equation-db8d79e1-5f03-4c8d-81e3-26272967b7fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6b5f177a-c2d7-4223-b8d4-fc2226de9e57">
+<span class="eqno">(9)<a class="headerlink" href="#equation-6b5f177a-c2d7-4223-b8d4-fc2226de9e57" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
@@ -812,9 +812,9 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># tamaño de fuente</span>
 
 <span class="c1"># ploteamos las curvas de cada polinomio</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P0</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_0(x)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P1</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_1(x)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P2</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_2(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P0</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_0(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_1(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_2(x)$&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polinomios de Lagrange&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -822,20 +822,6 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8308</span><span class="o">/</span><span class="mf">2360488545.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> 
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># ploteamos las curvas de cada polinomio</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P0</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_0(x)$&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P1</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_1(x)$&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P2</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_2(x)$&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;xp&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -847,9 +833,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 648x504 with 0 Axes&gt;
-</pre></div>
-</div>
+<img alt="../_images/1.4-Interpolacion_41_0.png" src="../_images/1.4-Interpolacion_41_0.png" />
 </div>
 </div>
 <p>En python los polinomios de Lagrange están implementados en la función <code class="docutils literal notranslate"><span class="pre">lagrange</span></code> de la librería<code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html">acá</a>)</p>
@@ -1019,7 +1003,7 @@ f(x)=\frac{1}{1 + 25x^2}
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>            <span class="c1"># graficamos la función</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación lineal (interp1d de scipy)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -1027,20 +1011,6 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8308</span><span class="o">/</span><span class="mf">4201598646.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>            <span class="c1"># graficamos la función</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación lineal (interp1d de scipy)&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;y_hat&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1087,6 +1057,7 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="c1"># variable para graficar</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>               <span class="c1"># graficamos la función</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi </span>
@@ -1098,20 +1069,6 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8308</span><span class="o">/</span><span class="mf">1298776779.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>               <span class="c1"># graficamos la función</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> 
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación lineal (interp de numpy)&#39;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;y_hat&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1232,7 +1189,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># variable para graficarS</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>                         <span class="c1"># graficamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>                         <span class="c1"># graficamos los xi, yi</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;not-a-knot&#39;</span><span class="p">)</span>  <span class="c1"># graficamos la función</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;clamped&#39;</span><span class="p">)</span>     <span class="c1"># graficamos la función</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_3</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">)</span>     <span class="c1"># graficamos la función</span>
