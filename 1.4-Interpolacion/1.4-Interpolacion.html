@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.5 Series de Taylor" href="../1.5-Taylor-series/1.5-Taylor-series.html" />
     <link rel="prev" title="1.3 Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -133,6 +134,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1.4 Métodos de Interpolación
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
+   1.5 Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
+   1.6 Algortimos de búsqueda de raíces
   </a>
  </li>
 </ul>
@@ -495,7 +506,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <p><font size="6">MEC301 - Metodos Numéricos</font></p>
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="metodos-de-interpolacion">
 <h1>1.4 Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
@@ -644,8 +655,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b145f5f1-8cd1-4474-a1d3-bd32956f66c2">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b145f5f1-8cd1-4474-a1d3-bd32956f66c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-472c495b-8004-428b-af02-9faf46265853">
+<span class="eqno">(7)<a class="headerlink" href="#equation-472c495b-8004-428b-af02-9faf46265853" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -776,13 +787,13 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa251acc-d810-4e37-ae9c-b8a3cb992df7">
-<span class="eqno">(8)<a class="headerlink" href="#equation-fa251acc-d810-4e37-ae9c-b8a3cb992df7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-14db2b34-2742-49bc-b043-4dc632210cbc">
+<span class="eqno">(8)<a class="headerlink" href="#equation-14db2b34-2742-49bc-b043-4dc632210cbc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b5f177a-c2d7-4223-b8d4-fc2226de9e57">
-<span class="eqno">(9)<a class="headerlink" href="#equation-6b5f177a-c2d7-4223-b8d4-fc2226de9e57" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59f780fe-b62f-4b83-a838-82db7c94420a">
+<span class="eqno">(9)<a class="headerlink" href="#equation-59f780fe-b62f-4b83-a838-82db7c94420a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
@@ -1404,6 +1415,13 @@ z(x=0.15, y=2.45) =  [-0.25105047]
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">1.3 Ajuste de curvas por mínimos cuadrados</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../1.5-Taylor-series/1.5-Taylor-series.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">1.5 Series de Taylor</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
