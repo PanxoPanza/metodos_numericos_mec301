@@ -22,7 +22,7 @@ print('inv(P) = ', inv(P))
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mLinAlgError[0m                               Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1856/453559162.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2243/453559162.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mprint[0m[0;34m([0m[0;34m'inv(P) = '[0m[0;34m,[0m [0minv[0m[0;34m([0m[0mP[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py[0m in [0;36minv[0;34m(*args, **kwargs)[0m

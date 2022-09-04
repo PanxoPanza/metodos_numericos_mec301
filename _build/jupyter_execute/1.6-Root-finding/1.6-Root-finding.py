@@ -437,6 +437,8 @@ print('la solución es: ', root)
 # root = fsolve(func, [1, 1], xtol = 1E-10) # |xk+1 - xk| < 1E-10
 # ```
 
+# Para mayor información, revisar la [documentación oficial](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html)
+
 # ## Referencias
 # - Kong Q., Siauw T., Bayen A. M. **Chapter 19: Root Finding** in *[Python Programming and Numerical Methods – A Guide for Engineers and Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html)*, 1st Ed., Academic Press, 2021
 # 
