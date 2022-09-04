@@ -396,7 +396,7 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # Entre los más conocidos tenemos el **método de Broyden**. Más información en las referencias
 
-# # Métodos de región de confianza
+# ## Métodos de región de confianza
 
 # Un problema de los métodos de busqueda lineal está en el cálculo del Jacobiano de la función. Los métodos de región de confianza se basan en una aproximación de $\vec{F}$ en forma de paraboloide. Esta aproximación simplifica el cálculo del Jacobiano. 
 # 
