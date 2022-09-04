@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Metodos Numéricos</font>
+# <font size="6">MEC301 - Métodos Numéricos</font>
 # # 1.4 Métodos de Interpolación
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>

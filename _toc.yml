@@ -12,3 +12,5 @@ parts:
     - file: 1.2-Algebra_lineal/1.2-Algebra_lineal
     - file: 1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas
     - file: 1.4-Interpolacion/1.4-Interpolacion
+    - file: 1.5-Taylor-series/1.5-Taylor-series
+    - file: 1.6-Root-finding/1.6-Root-finding

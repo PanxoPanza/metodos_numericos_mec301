@@ -136,6 +136,16 @@ const thebe_selector_output = ".output, .cell_output"
    1.4 Métodos de Interpolación
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
+   1.5 Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
+   1.6 Algortimos de búsqueda de raíces
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -522,7 +532,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <p><font size="6">MEC301 - Metodos Numéricos</font></p>
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
 <h1>1.3 Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
@@ -641,8 +651,8 @@ m &amp; \sum x_i \\
 <section id="cuantificacion-del-error">
 <h3>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizamos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd6897c8-3cdb-4718-8562-96683df7898c">
-<span class="eqno">(1)<a class="headerlink" href="#equation-fd6897c8-3cdb-4718-8562-96683df7898c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e35e04ba-79c3-419f-bfe0-40a17132b90c">
+<span class="eqno">(1)<a class="headerlink" href="#equation-e35e04ba-79c3-419f-bfe0-40a17132b90c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S_r\)</span> es el error del modelo lineal, y <span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
@@ -855,8 +865,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7ff72c4-9c28-4cd5-bbca-88ea76311177">
-<span class="eqno">(2)<a class="headerlink" href="#equation-b7ff72c4-9c28-4cd5-bbca-88ea76311177" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9709ca01-aa67-4f68-a1df-78334558bc5d">
+<span class="eqno">(2)<a class="headerlink" href="#equation-9709ca01-aa67-4f68-a1df-78334558bc5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -952,8 +962,8 @@ r2 = 0.8818
 <section id="regresion-lineal-multidimensional">
 <h3>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad588780-c3f6-42c6-95f3-474621b01724">
-<span class="eqno">(3)<a class="headerlink" href="#equation-ad588780-c3f6-42c6-95f3-474621b01724" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c3c3ed2-1ce5-4bc8-a4c0-4dc29baac26b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-7c3c3ed2-1ce5-4bc8-a4c0-4dc29baac26b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, para dos dimensiones tenemos:</p>
@@ -987,8 +997,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 <section id="modelo-lineal-generalizado">
 <h3>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
 <p>Todos los modelos revisados anteriormente pertenecen a un modelo lineal general con la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87c50df3-21d1-48f5-8b67-f7c836334edf">
-<span class="eqno">(4)<a class="headerlink" href="#equation-87c50df3-21d1-48f5-8b67-f7c836334edf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ae8452a1-e9d8-47d3-9973-3cda043339dd">
+<span class="eqno">(4)<a class="headerlink" href="#equation-ae8452a1-e9d8-47d3-9973-3cda043339dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(z_0, z_1,..., z_n\)</span> son funciones base.</p>
@@ -1028,13 +1038,13 @@ y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\rig
 <section id="regresion-por-minimos-cuadrados">
 <h3>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>En general, se busca minimizar el error:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a06359a-4025-44eb-bea6-18a81df8350e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-3a06359a-4025-44eb-bea6-18a81df8350e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ddec3fe-e39e-44b1-a0cf-99178eb4bb75">
+<span class="eqno">(5)<a class="headerlink" href="#equation-8ddec3fe-e39e-44b1-a0cf-99178eb4bb75" title="Permalink to this equation">#</a></span>\[\begin{equation}
 S_r = \sum_{i=1}^m (y(x_i) - y_i)^2 = \sum_{i=1}^m \left[\sum_{j=1}^n a_j z_j(x_i) - y_i\right]^2.
 \end{equation}\]</div>
 <p>Se puede demostrar que la minimización de este error está dado por la solución del sistema:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01f465bc-515a-41f5-aef1-91615c144302">
-<span class="eqno">(6)<a class="headerlink" href="#equation-01f465bc-515a-41f5-aef1-91615c144302" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0797b97b-c49a-4ce1-934f-d07bc8d37245">
+<span class="eqno">(6)<a class="headerlink" href="#equation-0797b97b-c49a-4ce1-934f-d07bc8d37245" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Z^T Z \alpha = Z^T Y
 \end{equation}\]</div>
 <p>donde:</p>
