@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.3 Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
+    <title>3. Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.4 Métodos de Interpolación" href="../1.4-Interpolacion/1.4-Interpolacion.html" />
-    <link rel="prev" title="1.2 Algebra lineal y sistemas de ecuaciones lineales" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html" />
+    <link rel="next" title="4. Métodos de Interpolación" href="../1.4-Interpolacion/1.4-Interpolacion.html" />
+    <link rel="prev" title="2. Algebra lineal y sistemas de ecuaciones lineales" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,32 +118,39 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
-   1.1 Aspectos generales de programación y algoritmos
+   1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
-   1.2 Algebra lineal y sistemas de ecuaciones lineales
+   2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1.3 Ajuste de curvas por mínimos cuadrados
+   3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.4-Interpolacion/1.4-Interpolacion.html">
-   1.4 Métodos de Interpolación
+   4. Métodos de Interpolación
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
-   1.5 Series de Taylor
+   5. Series de Taylor
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
-   1.6 Algortimos de búsqueda de raíces
+   6. Algortimos de búsqueda de raíces
   </a>
  </li>
 </ul>
@@ -309,100 +316,100 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion">
-   Introducción
+   3.1. Introducción
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-unidimensional">
-     Regresión lineal unidimensional
+     3.1.1. Regresión lineal unidimensional
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">
-     Ajuste por mínimos cuadrados paso a paso
+     3.1.2. Ajuste por mínimos cuadrados paso a paso
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cuantificacion-del-error">
-     Cuantificación del error
+     3.1.3. Cuantificación del error
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">
-     Linealización de funciones no lineales
+     3.1.4. Linealización de funciones no lineales
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#otros-modelos-lineales">
-   Otros modelos lineales
+   3.2. Otros modelos lineales
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-polinomial">
-     Regresión polinomial
+     3.2.1. Regresión polinomial
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-multidimensional">
-     Regresión lineal multidimensional
+     3.2.2. Regresión lineal multidimensional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados-generalizado">
-   Regresión por mínimos cuadrados generalizado
+   3.3. Regresión por mínimos cuadrados generalizado
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modelo-lineal-generalizado">
-     Modelo lineal generalizado
+     3.3.1. Modelo lineal generalizado
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados">
-     Regresión por mínimos cuadrados
+     3.3.2. Regresión por mínimos cuadrados
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#minimos-cuadrados-en-python">
-   Mínimos cuadrados en python
+   3.4. Mínimos cuadrados en python
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-linalg-pinv-matriz-pseudo-inversa">
-     numpy.linalg.pinv (matriz pseudo inversa)
+     3.4.1. numpy.linalg.pinv (matriz pseudo inversa)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">
-     numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)
+     3.4.2. numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales">
-     numpy.polyfit (sistemas polinomiales de unidimencionales)
+     3.4.3. numpy.polyfit (sistemas polinomiales de unidimencionales)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">
-     scipy.optimize.curve_fit (regresión no-lineal)
+     3.4.4. scipy.optimize.curve_fit (regresión no-lineal)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">
-     Regresión lineal vs no-lineal
+     3.4.5. Regresión lineal vs no-lineal
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   3.5. Referencias
   </a>
  </li>
 </ul>
@@ -414,7 +421,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1.3 Ajuste de curvas por mínimos cuadrados</h1>
+                <h1>Ajuste de curvas por mínimos cuadrados</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -426,100 +433,100 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion">
-   Introducción
+   3.1. Introducción
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-unidimensional">
-     Regresión lineal unidimensional
+     3.1.1. Regresión lineal unidimensional
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">
-     Ajuste por mínimos cuadrados paso a paso
+     3.1.2. Ajuste por mínimos cuadrados paso a paso
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cuantificacion-del-error">
-     Cuantificación del error
+     3.1.3. Cuantificación del error
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">
-     Linealización de funciones no lineales
+     3.1.4. Linealización de funciones no lineales
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#otros-modelos-lineales">
-   Otros modelos lineales
+   3.2. Otros modelos lineales
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-polinomial">
-     Regresión polinomial
+     3.2.1. Regresión polinomial
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-multidimensional">
-     Regresión lineal multidimensional
+     3.2.2. Regresión lineal multidimensional
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados-generalizado">
-   Regresión por mínimos cuadrados generalizado
+   3.3. Regresión por mínimos cuadrados generalizado
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modelo-lineal-generalizado">
-     Modelo lineal generalizado
+     3.3.1. Modelo lineal generalizado
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados">
-     Regresión por mínimos cuadrados
+     3.3.2. Regresión por mínimos cuadrados
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#minimos-cuadrados-en-python">
-   Mínimos cuadrados en python
+   3.4. Mínimos cuadrados en python
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-linalg-pinv-matriz-pseudo-inversa">
-     numpy.linalg.pinv (matriz pseudo inversa)
+     3.4.1. numpy.linalg.pinv (matriz pseudo inversa)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">
-     numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)
+     3.4.2. numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales">
-     numpy.polyfit (sistemas polinomiales de unidimencionales)
+     3.4.3. numpy.polyfit (sistemas polinomiales de unidimencionales)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">
-     scipy.optimize.curve_fit (regresión no-lineal)
+     3.4.4. scipy.optimize.curve_fit (regresión no-lineal)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">
-     Regresión lineal vs no-lineal
+     3.4.5. Regresión lineal vs no-lineal
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   3.5. Referencias
   </a>
  </li>
 </ul>
@@ -534,12 +541,12 @@ title="Print to PDF"
                 
   <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
-<h1>1.3 Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 22 de Agosto 2022</p>
 <section id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos.</p>
 <p>Por ejemplo, en mecánica de fluidos decimos que la fuerza de arrastre, <span class="math notranslate nohighlight">\(F_D\)</span> sobre un cuerpo es proporcional al cuadrado de la velocidad del flujo alrededor el cuerpo, <span class="math notranslate nohighlight">\(V\)</span>.</p>
 <div class="amsmath math notranslate nohighlight">
@@ -551,7 +558,7 @@ F_D = C_D V^2
 <a class="reference internal image-reference" href="../_images/wind_tunnel.png"><img alt="../_images/wind_tunnel.png" class="align-center" src="../_images/wind_tunnel.png" style="width: 800px;" /></a>
 <p>El valor de <span class="math notranslate nohighlight">\(C_D\)</span> estará dado por la curva que mejor se ajuste a estos valores experimentales.</p>
 <section id="regresion-lineal-unidimensional">
-<h3>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this headline">#</a></h3>
 <p>Consideremos el caso más simple donde buscamos la recta <span class="math notranslate nohighlight">\(y=f(x)\)</span> que mejor se ajuste a nuestros datos.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -567,7 +574,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
 <p>Este criterio se denomina <strong>ajuste por mínimos cuadrados,</strong> y tiene un número de ventajas, como por ejemplo, entregar una solución única para un set de datos.</p>
 </section>
 <section id="ajuste-por-minimos-cuadrados-paso-a-paso">
-<h3>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this headline">#</a></h3>
 <p>Primero, para buscar el mínimo de <span class="math notranslate nohighlight">\(S_r\)</span> aplicamos la derivada respecto a sus variables, es decir, <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -649,10 +656,10 @@ m &amp; \sum x_i \\
 </div>
 </section>
 <section id="cuantificacion-del-error">
-<h3>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizamos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-e35e04ba-79c3-419f-bfe0-40a17132b90c">
-<span class="eqno">(1)<a class="headerlink" href="#equation-e35e04ba-79c3-419f-bfe0-40a17132b90c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59eb9658-703d-4581-a122-a07a542e35f0">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-59eb9658-703d-4581-a122-a07a542e35f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(S_r\)</span> es el error del modelo lineal, y <span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
@@ -683,7 +690,7 @@ r2 = 0.8805
 </div></blockquote>
 </section>
 <section id="linealizacion-de-funciones-no-lineales">
-<h3>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this headline">#</a></h3>
 <p>Existen algúnos modelos no lineales comúnes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
 <p>Algúnos ejemplos son:</p>
 <ul class="simple">
@@ -856,17 +863,17 @@ y = 0.274 x^{1.984},
 </section>
 </section>
 <section id="otros-modelos-lineales">
-<h2>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this headline">#</a></h2>
 <p>El procedimiento de ajuste de curva por mínimos cuadrados se puede extender para modelos de ajuste más complejos, tales como:</p>
 <ul class="simple">
 <li><p>Regresión polinomial</p></li>
 <li><p>Regresión lineal multivariable</p></li>
 </ul>
 <section id="regresion-polinomial">
-<h3>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9709ca01-aa67-4f68-a1df-78334558bc5d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-9709ca01-aa67-4f68-a1df-78334558bc5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-26091c27-73cc-4eb3-8fcc-7fce3f35e019">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-26091c27-73cc-4eb3-8fcc-7fce3f35e019" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -960,10 +967,10 @@ r2 = 0.8818
 <p>Sin embargo, la tendencia del método por minimizar el error (en otras palabras, mejorar <span class="math notranslate nohighlight">\(r^2\)</span>) lleva a forzar una curva lineal que no se ajusta a la física del problema.</p>
 </section>
 <section id="regresion-lineal-multidimensional">
-<h3>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c3c3ed2-1ce5-4bc8-a4c0-4dc29baac26b">
-<span class="eqno">(3)<a class="headerlink" href="#equation-7c3c3ed2-1ce5-4bc8-a4c0-4dc29baac26b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72ef7a38-9ace-4129-a1e0-aa973146ae62">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-72ef7a38-9ace-4129-a1e0-aa973146ae62" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, para dos dimensiones tenemos:</p>
@@ -993,12 +1000,12 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 </section>
 </section>
 <section id="regresion-por-minimos-cuadrados-generalizado">
-<h2>Regresión por mínimos cuadrados generalizado<a class="headerlink" href="#regresion-por-minimos-cuadrados-generalizado" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Regresión por mínimos cuadrados generalizado<a class="headerlink" href="#regresion-por-minimos-cuadrados-generalizado" title="Permalink to this headline">#</a></h2>
 <section id="modelo-lineal-generalizado">
-<h3>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
 <p>Todos los modelos revisados anteriormente pertenecen a un modelo lineal general con la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae8452a1-e9d8-47d3-9973-3cda043339dd">
-<span class="eqno">(4)<a class="headerlink" href="#equation-ae8452a1-e9d8-47d3-9973-3cda043339dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c736881e-1b92-46e8-b872-bc43b968e1f3">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-c736881e-1b92-46e8-b872-bc43b968e1f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(z_0, z_1,..., z_n\)</span> son funciones base.</p>
@@ -1036,15 +1043,15 @@ y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\rig
 \end{equation*}\]</div>
 </section>
 <section id="regresion-por-minimos-cuadrados">
-<h3>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.2. </span>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>En general, se busca minimizar el error:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ddec3fe-e39e-44b1-a0cf-99178eb4bb75">
-<span class="eqno">(5)<a class="headerlink" href="#equation-8ddec3fe-e39e-44b1-a0cf-99178eb4bb75" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f3ebdd1a-c885-49a2-ae90-37b142507ea2">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-f3ebdd1a-c885-49a2-ae90-37b142507ea2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 S_r = \sum_{i=1}^m (y(x_i) - y_i)^2 = \sum_{i=1}^m \left[\sum_{j=1}^n a_j z_j(x_i) - y_i\right]^2.
 \end{equation}\]</div>
 <p>Se puede demostrar que la minimización de este error está dado por la solución del sistema:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0797b97b-c49a-4ce1-934f-d07bc8d37245">
-<span class="eqno">(6)<a class="headerlink" href="#equation-0797b97b-c49a-4ce1-934f-d07bc8d37245" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1de2e1c6-7d7b-4f70-8ca5-c3467d57d310">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-1de2e1c6-7d7b-4f70-8ca5-c3467d57d310" title="Permalink to this equation">#</a></span>\[\begin{equation}
 Z^T Z \alpha = Z^T Y
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1068,10 +1075,10 @@ Y = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\y_m\end{bmatrix}
 </section>
 </section>
 <section id="minimos-cuadrados-en-python">
-<h2>Mínimos cuadrados en python<a class="headerlink" href="#minimos-cuadrados-en-python" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>Mínimos cuadrados en python<a class="headerlink" href="#minimos-cuadrados-en-python" title="Permalink to this headline">#</a></h2>
 <p>Analicemos distintos métodos en python para ajustar el modelo de ajuste para el experimento del tunel de viento</p>
 <section id="numpy-linalg-pinv-matriz-pseudo-inversa">
-<h3>numpy.linalg.pinv (matriz pseudo inversa)<a class="headerlink" href="#numpy-linalg-pinv-matriz-pseudo-inversa" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.1. </span>numpy.linalg.pinv (matriz pseudo inversa)<a class="headerlink" href="#numpy-linalg-pinv-matriz-pseudo-inversa" title="Permalink to this headline">#</a></h3>
 <p>Una forma directa de encontrar los coeficientes del modelo de regresión es determinando la matriz pseudo inversa directamente</p>
 <p>Consideremos un modelo lineal, <span class="math notranslate nohighlight">\(y = a_0+a_1x\)</span> para el ejemplo del tunel de viento.</p>
 <p>La matriz <span class="math notranslate nohighlight">\(Z\)</span> en este caso es:</p>
@@ -1113,7 +1120,7 @@ Z =\begin{bmatrix}
 </div></blockquote>
 </section>
 <section id="numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">
-<h3>numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)<a class="headerlink" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.2. </span>numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)<a class="headerlink" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>Es un método general para resolver sistemas lineales de la forma <span class="math notranslate nohighlight">\(Ax = b\)</span>, independiente la relación entre el número de ecuaciones linealmente independientes y el número de incognitas (es decir, sistemas <span class="math notranslate nohighlight">\(\mathrm{rank}\left([A|b]\right)\neq \mathrm{rank}\left(A\right) \)</span>). Se basa en minimizar la norma de Frobenius <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span>.</p>
 <p>La función <code class="docutils literal notranslate"><span class="pre">lstsq</span></code> genera más de un output (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html">acá</a>). Para conceptos del modelo de ajuste, solo necesitamos el primer output <code class="docutils literal notranslate"><span class="pre">[0]</span></code></p>
 <div class="cell docutils container">
@@ -1141,7 +1148,7 @@ Z =\begin{bmatrix}
 </div>
 </section>
 <section id="numpy-polyfit-sistemas-polinomiales-de-unidimencionales">
-<h3>numpy.polyfit (sistemas polinomiales de unidimencionales)<a class="headerlink" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.3. </span>numpy.polyfit (sistemas polinomiales de unidimencionales)<a class="headerlink" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales" title="Permalink to this headline">#</a></h3>
 <p>Esta función está especificamente diseñada para modelos polinomiales de una dimensión, es decir, <span class="math notranslate nohighlight">\(y = a_0 + a_1x +a_2x^2+...a_nx^n\)</span></p>
 <p><strong>Los coeficientes de <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> están ordenados de mayor potencia a menor potencia.</strong> Por ejemplo, para generar un modelo en base a un polinomio de orden 2,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># coeficientes a0, a1, a2, ...</span>
@@ -1196,7 +1203,7 @@ y = -178.482 + 16.122*x + 0.037*x^2
 </div>
 </section>
 <section id="scipy-optimize-curve-fit-regresion-no-lineal">
-<h3>scipy.optimize.curve_fit (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.4. </span>scipy.optimize.curve_fit (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this headline">#</a></h3>
 <p>Esta función utiliza un método iterativo para ajustar una curva a una muestra. La función <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> puede ser utilizada para cualquier tipo de modelo, linear o no-linear, unidimensional o multidimensional.</p>
 <p>La función entrega una serie de outputs (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">acá</a>). Sin embargo, para determinar los coeficientes solo necesitamos el output <code class="docutils literal notranslate"><span class="pre">[0]</span></code></p>
 <p>Por ejemplo, ajustemos los datos al modelo <span class="math notranslate nohighlight">\(y=\alpha x^\beta\)</span></p>
@@ -1298,7 +1305,7 @@ r2 = 0.8769
 </div>
 </section>
 <section id="regresion-lineal-vs-no-lineal">
-<h3>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.4.5. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this headline">#</a></h3>
 <p>Respecto a la regresión no-lineal:</p>
 <p><strong>Ventajas</strong></p>
 <ul class="simple">
@@ -1315,7 +1322,7 @@ r2 = 0.8769
 </section>
 </section>
 <section id="referencias">
-<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Least Square Regression</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 17: Regresión por mínimos cuadrados</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1354,13 +1361,13 @@ r2 = 0.8769
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">1.2 Algebra lineal y sistemas de ecuaciones lineales</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../1.4-Interpolacion/1.4-Interpolacion.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1.4 Métodos de Interpolación</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Métodos de Interpolación</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

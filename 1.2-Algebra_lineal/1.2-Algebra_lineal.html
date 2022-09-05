@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.2 Algebra lineal y sistemas de ecuaciones lineales &#8212; MEC301 - Métodos Numéricos</title>
+    <title>2. Algebra lineal y sistemas de ecuaciones lineales &#8212; MEC301 - Métodos Numéricos</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.3 Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
-    <link rel="prev" title="1.1 Aspectos generales de programación y algoritmos" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html" />
+    <link rel="next" title="3. Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
+    <link rel="prev" title="1. Aspectos generales de programación y algoritmos" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,32 +118,39 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
-   1.1 Aspectos generales de programación y algoritmos
+   1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1.2 Algebra lineal y sistemas de ecuaciones lineales
+   2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
-   1.3 Ajuste de curvas por mínimos cuadrados
+   3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.4-Interpolacion/1.4-Interpolacion.html">
-   1.4 Métodos de Interpolación
+   4. Métodos de Interpolación
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
-   1.5 Series de Taylor
+   5. Series de Taylor
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
-   1.6 Algortimos de búsqueda de raíces
+   6. Algortimos de búsqueda de raíces
   </a>
  </li>
 </ul>
@@ -309,73 +316,73 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales">
-   Introducción a los sistemas de ecuaciones lineales
+   2.1. Introducción a los sistemas de ecuaciones lineales
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#definicion-general">
-     Definición general
+     2.1.1. Definición general
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#representacion-matricial">
-     Representación matricial
+     2.1.2. Representación matricial
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#repaso-de-matrices">
-     Repaso de matrices
+     2.1.3. Repaso de matrices
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#representacion-en-python">
-     Representación en python
+     2.1.4. Representación en python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales">
-     Caracterización de sistemas de ecuaciones lineales
+     2.1.5. Caracterización de sistemas de ecuaciones lineales
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-de-solucion-directos">
-   Métodos de solución directos
+   2.2. Métodos de solución directos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eliminacion-de-gauss">
-     Eliminación de Gauss
+     2.2.1. Eliminación de Gauss
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#factorizacion-lu">
-     Factorización LU
+     2.2.2. Factorización LU
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-iterativos">
-   Métodos iterativos
+   2.3. Métodos iterativos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gauss-seidel">
-     Gauss-Seidel
+     2.3.1. Gauss-Seidel
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python">
-   Solución de sistemas de ecuaciones lineales con python
+   2.4. Solución de sistemas de ecuaciones lineales con python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   2.5. Referencias
   </a>
  </li>
 </ul>
@@ -387,7 +394,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1.2 Algebra lineal y sistemas de ecuaciones lineales</h1>
+                <h1>Algebra lineal y sistemas de ecuaciones lineales</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -399,73 +406,73 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales">
-   Introducción a los sistemas de ecuaciones lineales
+   2.1. Introducción a los sistemas de ecuaciones lineales
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#definicion-general">
-     Definición general
+     2.1.1. Definición general
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#representacion-matricial">
-     Representación matricial
+     2.1.2. Representación matricial
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#repaso-de-matrices">
-     Repaso de matrices
+     2.1.3. Repaso de matrices
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#representacion-en-python">
-     Representación en python
+     2.1.4. Representación en python
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales">
-     Caracterización de sistemas de ecuaciones lineales
+     2.1.5. Caracterización de sistemas de ecuaciones lineales
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-de-solucion-directos">
-   Métodos de solución directos
+   2.2. Métodos de solución directos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eliminacion-de-gauss">
-     Eliminación de Gauss
+     2.2.1. Eliminación de Gauss
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#factorizacion-lu">
-     Factorización LU
+     2.2.2. Factorización LU
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-iterativos">
-   Métodos iterativos
+   2.3. Métodos iterativos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#gauss-seidel">
-     Gauss-Seidel
+     2.3.1. Gauss-Seidel
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python">
-   Solución de sistemas de ecuaciones lineales con python
+   2.4. Solución de sistemas de ecuaciones lineales con python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   2.5. Referencias
   </a>
  </li>
 </ul>
@@ -480,12 +487,12 @@ title="Print to PDF"
                 
   <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="algebra-lineal-y-sistemas-de-ecuaciones-lineales">
-<h1>1.2 Algebra lineal y sistemas de ecuaciones lineales<a class="headerlink" href="#algebra-lineal-y-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales<a class="headerlink" href="#algebra-lineal-y-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 8 de Agosto 2022</p>
 <section id="introduccion-a-los-sistemas-de-ecuaciones-lineales">
-<h2>Introducción a los sistemas de ecuaciones lineales<a class="headerlink" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1. </span>Introducción a los sistemas de ecuaciones lineales<a class="headerlink" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h2>
 <p>Consideremos el caso de tres personas conectada por cuerdas elásticas.</p>
 <a class="reference internal image-reference" href="../_images/bungee_man.png"><img alt="../_images/bungee_man.png" class="align-center" src="../_images/bungee_man.png" style="width: 300px;" /></a>
 <p>En la primera figura (a), los tres cuerpos están en la posición inicial de forma que los elásticos están totalmente extendidos, <strong>pero no estirados</strong>. Definimos el cambio en la posición inicial de cada persona, como: <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>.</p>
@@ -513,7 +520,7 @@ m_3\frac{d^2 x_3}{dt^2} &amp;= m_3g + k_3(x_2 - x_3)
 <p>Este es el enfoque que utilizan los software de modelación computacional, tales como: el método de elementos finitos (FEM), métodos de los momentos (MoM), o volúmenes finitos (VEM).</p>
 <a class="reference internal image-reference" href="../_images/fem_beam_lattice.png"><img alt="../_images/fem_beam_lattice.png" class="align-center" src="../_images/fem_beam_lattice.png" style="width: 600px;" /></a>
 <section id="definicion-general">
-<h3>Definición general<a class="headerlink" href="#definicion-general" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>Definición general<a class="headerlink" href="#definicion-general" title="Permalink to this headline">#</a></h3>
 <p>Decimos que una ecuación es lineal cuando:</p>
 <ol class="simple">
 <li><p>Todas sus incognitas están <strong>únicamente</strong> separadas por sumas o restas</p></li>
@@ -538,7 +545,7 @@ $<span class="math notranslate nohighlight">\( -3x_1 + x_2 -2x_3 = 0 )\)</span>$
 \end{align*}\]</div>
 </section>
 <section id="representacion-matricial">
-<h3>Representación matricial<a class="headerlink" href="#representacion-matricial" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.2. </span>Representación matricial<a class="headerlink" href="#representacion-matricial" title="Permalink to this headline">#</a></h3>
 <p>Para resolver sistemas de ecuaciones lineal se utiliza la representación matricial. Esto permite la implementación computacional de los algoritmos.</p>
 <p>Por ejemplo, consideremos una ecuación lineal en su forma general:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -590,7 +597,7 @@ k_1 + k_2 &amp; -k_2 &amp; 0 \\
 \left[\begin{array}{c} m_1g \\m_2g \\m_3g \end{array}\right]\end{split}\]</div>
 </section>
 <section id="repaso-de-matrices">
-<h3>Repaso de matrices<a class="headerlink" href="#repaso-de-matrices" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.3. </span>Repaso de matrices<a class="headerlink" href="#repaso-de-matrices" title="Permalink to this headline">#</a></h3>
 <ol>
 <li><p><strong>Norma matricial.</strong> Existen distintos tipos. La más conocida es la <em>p-norma</em>:</p>
 <div class="math notranslate nohighlight">
@@ -674,7 +681,7 @@ d &amp; -b \\
 </div></blockquote>
 </section>
 <section id="representacion-en-python">
-<h3>Representación en python<a class="headerlink" href="#representacion-en-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.4. </span>Representación en python<a class="headerlink" href="#representacion-en-python" title="Permalink to this headline">#</a></h3>
 <p>Para representar sistemas de ecuciones lineales en python utilizamos variables del tipo <em>numyp array</em> de la libreria <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <p>Por ejemplo, para representar el sistema:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -767,7 +774,7 @@ inv(A):
 </div>
 </section>
 <section id="caracterizacion-de-sistemas-de-ecuaciones-lineales">
-<h3>Caracterización de sistemas de ecuaciones lineales<a class="headerlink" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.1.5. </span>Caracterización de sistemas de ecuaciones lineales<a class="headerlink" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h3>
 <p><em>Un sistema de ecuaciones lineales tiene solución única, si y solo si el número de incognitas es igual al número de <strong>ecuaciones linealmente independientes</strong> en el sistema</em></p>
 <p>Por ejemplo, el siguiente sistema de ecuaciones lineales:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -884,24 +891,20 @@ Número de incognitas, n = 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1856</span><span class="o">/</span><span class="mf">453559162.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span>     <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:552,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">552</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> 
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
 <span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span> 
-<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_nonposdef</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 
 <span class="ne">LinAlgError</span>: Singular matrix
 </pre></div>
@@ -962,9 +965,9 @@ det(A) =  0.0
 </section>
 </section>
 <section id="metodos-de-solucion-directos">
-<h2>Métodos de solución directos<a class="headerlink" href="#metodos-de-solucion-directos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2. </span>Métodos de solución directos<a class="headerlink" href="#metodos-de-solucion-directos" title="Permalink to this headline">#</a></h2>
 <section id="eliminacion-de-gauss">
-<h3>Eliminación de Gauss<a class="headerlink" href="#eliminacion-de-gauss" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>Eliminación de Gauss<a class="headerlink" href="#eliminacion-de-gauss" title="Permalink to this headline">#</a></h3>
 <p>Es un algoritmo para resolver sistemas ecuaciones lineales basado en convertir la matriz <span class="math notranslate nohighlight">\(A\)</span> en una matriz <strong>triangular superior</strong>. El sistema toma la forma:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
@@ -1063,7 +1066,7 @@ x_1 &amp;= \frac{-3 - 8x_2 + 0x_3}{8} = 2.208
 </div></blockquote>
 </section>
 <section id="factorizacion-lu">
-<h3>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Permalink to this headline">#</a></h3>
 <p>Es posible demostrar que cualquier matriz cuadrada <span class="math notranslate nohighlight">\(A\)</span> puede ser expresada como el producto de una matriz triangular inferor <span class="math notranslate nohighlight">\(L\)</span>, y una matriz triangular superior <span class="math notranslate nohighlight">\(U\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[A = LU\]</div>
@@ -1177,7 +1180,7 @@ L*U =
 </section>
 </section>
 <section id="metodos-iterativos">
-<h2>Métodos iterativos<a class="headerlink" href="#metodos-iterativos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.3. </span>Métodos iterativos<a class="headerlink" href="#metodos-iterativos" title="Permalink to this headline">#</a></h2>
 <p>Los métodos iterativos están basados en una serie repetitiva de operaciones, comenzando por un valor inicial. A diferencia de los métodos directos, el número de operaciones está condicionado por la convergencia y el valor inicial escogido.</p>
 <p>Las ventajas de los métodos iterativos es que tienen un orden de complejidad menor que los métodos directos, y no requieren gran capacidad de memoria (recordemos que factorización LU requiere almacenar las matrices L, U y P)</p>
 <p>La gran desventaja radica en la convergencia de los algoritmos. Una condición suficiente, pero no necesaria es que la matriz <span class="math notranslate nohighlight">\(A\)</span> debe ser <strong>diagonal dominante</strong>, es decir, los elementos de la diagonal, <span class="math notranslate nohighlight">\(a_{i,i}\)</span>, deben satisfacer:</p>
@@ -1185,7 +1188,7 @@ L*U =
 \[|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|\]</div>
 <p>Estos métodos se utilizan, generalmente, en simulaciones con elementos finitos (FEM), o volúmenes finitos (VEM).</p>
 <section id="gauss-seidel">
-<h3>Gauss-Seidel<a class="headerlink" href="#gauss-seidel" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>Gauss-Seidel<a class="headerlink" href="#gauss-seidel" title="Permalink to this headline">#</a></h3>
 <p>El algoritmo se puede resumir en los siguientes pasos:</p>
 <ol class="simple">
 <li><p>Asumimos un valor inicial para <span class="math notranslate nohighlight">\(x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_1^{(0)}\)</span>).</p></li>
@@ -1327,7 +1330,7 @@ Converged!
 </section>
 </section>
 <section id="solucion-de-sistemas-de-ecuaciones-lineales-con-python">
-<h2>Solución de sistemas de ecuaciones lineales con python<a class="headerlink" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.4. </span>Solución de sistemas de ecuaciones lineales con python<a class="headerlink" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python" title="Permalink to this headline">#</a></h2>
 <p>En python la forma más facil de resolver sistemas de ecuaciones lineal es mediante la función <code class="docutils literal notranslate"><span class="pre">solve</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>. Esta función utiliza factorización LU para resolver el sistema.</p>
 <p>Por ejemplo, tomemos el ejemplo de las personas conectadas por elásticos:</p>
 <table class="colwidths-auto table">
@@ -1435,7 +1438,7 @@ LU:
 </div>
 </section>
 <section id="referencias">
-<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 14: Linear Algebra and Systems of Linear Equations</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Parte tres: Ecuaciones algebraicas lineales</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1474,13 +1477,13 @@ LU:
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">1.1 Aspectos generales de programación y algoritmos</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Aspectos generales de programación y algoritmos</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1.3 Ajuste de curvas por mínimos cuadrados</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.5 Series de Taylor &#8212; MEC301 - Métodos Numéricos</title>
+    <title>5. Series de Taylor &#8212; MEC301 - Métodos Numéricos</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.6 Algortimos de búsqueda de raíces" href="../1.6-Root-finding/1.6-Root-finding.html" />
-    <link rel="prev" title="1.4 Métodos de Interpolación" href="../1.4-Interpolacion/1.4-Interpolacion.html" />
+    <link rel="next" title="6. Algortimos de búsqueda de raíces" href="../1.6-Root-finding/1.6-Root-finding.html" />
+    <link rel="prev" title="4. Métodos de Interpolación" href="../1.4-Interpolacion/1.4-Interpolacion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -115,35 +115,42 @@ const thebe_selector_output = ".output, .cell_output"
   Parte 1. Introducción a los métodos numéricos
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
-   1.1 Aspectos generales de programación y algoritmos
+   1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
-   1.2 Algebra lineal y sistemas de ecuaciones lineales
+   2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
-   1.3 Ajuste de curvas por mínimos cuadrados
+   3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.4-Interpolacion/1.4-Interpolacion.html">
-   1.4 Métodos de Interpolación
+   4. Métodos de Interpolación
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1.5 Series de Taylor
+   5. Series de Taylor
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
-   1.6 Algortimos de búsqueda de raíces
+   6. Algortimos de búsqueda de raíces
   </a>
  </li>
 </ul>
@@ -309,34 +316,34 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#expansion-de-funciones-en-series-de-taylor">
-   Expansión de funciones en series de Taylor
+   5.1. Expansión de funciones en series de Taylor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aproximaciones-mediante-series-de-taylor">
-   Aproximaciones mediante series de Taylor
+   5.2. Aproximaciones mediante series de Taylor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analisis-de-errores-en-series-de-taylor">
-   Analisis de errores en series de Taylor
+   5.3. Analisis de errores en series de Taylor
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#errores-de-truncamiento">
-     Errores de truncamiento
+     5.3.1. Errores de truncamiento
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#errores-de-redondeo">
-   Errores de redondeo
+   5.4. Errores de redondeo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   5.5. Referencias
   </a>
  </li>
 </ul>
@@ -348,7 +355,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1.5 Series de Taylor</h1>
+                <h1>Series de Taylor</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -360,34 +367,34 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#expansion-de-funciones-en-series-de-taylor">
-   Expansión de funciones en series de Taylor
+   5.1. Expansión de funciones en series de Taylor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aproximaciones-mediante-series-de-taylor">
-   Aproximaciones mediante series de Taylor
+   5.2. Aproximaciones mediante series de Taylor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analisis-de-errores-en-series-de-taylor">
-   Analisis de errores en series de Taylor
+   5.3. Analisis de errores en series de Taylor
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#errores-de-truncamiento">
-     Errores de truncamiento
+     5.3.1. Errores de truncamiento
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#errores-de-redondeo">
-   Errores de redondeo
+   5.4. Errores de redondeo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   5.5. Referencias
   </a>
  </li>
 </ul>
@@ -402,15 +409,15 @@ title="Print to PDF"
                 
   <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="series-de-taylor">
-<h1>1.5 Series de Taylor<a class="headerlink" href="#series-de-taylor" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5. </span>Series de Taylor<a class="headerlink" href="#series-de-taylor" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 5 de Septiembre 2022</p>
 <section id="expansion-de-funciones-en-series-de-taylor">
-<h2>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1. </span>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
 <p>La expansión en series de Taylor es una forma alternativa de representar una fución mediante una serie infinita de polinomios alrededor de un punto <span class="math notranslate nohighlight">\(a\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5089300f-e32e-432e-9746-e800357d0d04">
-<span class="eqno">(10)<a class="headerlink" href="#equation-5089300f-e32e-432e-9746-e800357d0d04" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e02a476-76f2-4ed5-99ae-a8f36987ca81">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-9e02a476-76f2-4ed5-99ae-a8f36987ca81" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)(x-a)^n}{n!}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la <span class="math notranslate nohighlight">\(n\)</span>-ésima derivada de <span class="math notranslate nohighlight">\(f\)</span>, con <span class="math notranslate nohighlight">\(f^{(0)} = f\)</span></p>
@@ -440,7 +447,7 @@ f(x) &amp;= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x
 <p>Como cololario general tenemos que <strong>una expansión de Taylor de un polinomio siempre es el mismo polinomio</strong></p>
 </section>
 <section id="aproximaciones-mediante-series-de-taylor">
-<h2>Aproximaciones mediante series de Taylor<a class="headerlink" href="#aproximaciones-mediante-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2. </span>Aproximaciones mediante series de Taylor<a class="headerlink" href="#aproximaciones-mediante-series-de-taylor" title="Permalink to this headline">#</a></h2>
 <p>Para funciones no polinomiales, las series de Taylor continene infinitos términos.</p>
 <p>Por ejemplo, la expansión de Taylor de <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> alrededor de <span class="math notranslate nohighlight">\(a=0\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -502,9 +509,9 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 <p>En otras palabras, siempre se verá lineal si la vemos desde suficientemente cerca.</p>
 </section>
 <section id="analisis-de-errores-en-series-de-taylor">
-<h2>Analisis de errores en series de Taylor<a class="headerlink" href="#analisis-de-errores-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.3. </span>Analisis de errores en series de Taylor<a class="headerlink" href="#analisis-de-errores-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
 <section id="errores-de-truncamiento">
-<h3>Errores de truncamiento<a class="headerlink" href="#errores-de-truncamiento" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.3.1. </span>Errores de truncamiento<a class="headerlink" href="#errores-de-truncamiento" title="Permalink to this headline">#</a></h3>
 <p>En la primera clase hablamos de los errores de redondeo inducidos por la capacidad limitada de un computador de almacenar los decimales de un número. Cuando aproximamos una función por una serie de orden <span class="math notranslate nohighlight">\(N\)</span>, estamos induciendo un error de truncamiento.</p>
 <p>Por ejemplo, la expansión de la función <span class="math notranslate nohighlight">\(e^x\)</span> en series de Taylor está dada por:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -546,7 +553,7 @@ Aprox. orden 9 = 0.00034
 </section>
 </section>
 <section id="errores-de-redondeo">
-<h2>Errores de redondeo<a class="headerlink" href="#errores-de-redondeo" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.4. </span>Errores de redondeo<a class="headerlink" href="#errores-de-redondeo" title="Permalink to this headline">#</a></h2>
 <p>Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante 1a suma susesiva de terminos de la serie.</p>
 <p>Esto puede ocacionar errores de redondeo asociado a la acumulación de decimales redondeados en cada suma.</p>
 <p>Por ejemplo, cosideremos la aproximación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> usando 200 términos de la serie.</p>
@@ -574,7 +581,7 @@ Aprox. orden 9 = 0.00034
 <p>A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> es erronea, a pesar de haber incluído 200 términos de la serie</p>
 </section>
 <section id="referencias">
-<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 18: Taylor Series</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 </ul>
@@ -612,13 +619,13 @@ Aprox. orden 9 = 0.00034
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">1.4 Métodos de Interpolación</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Métodos de Interpolación</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../1.6-Root-finding/1.6-Root-finding.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1.6 Algortimos de búsqueda de raíces</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Algortimos de búsqueda de raíces</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
