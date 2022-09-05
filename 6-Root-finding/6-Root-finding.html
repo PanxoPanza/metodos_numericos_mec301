@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="5. Series de Taylor" href="../1.5-Taylor-series/1.5-Taylor-series.html" />
+    <link rel="prev" title="5. Series de Taylor" href="../5-Taylor-series/5-Taylor-series.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -116,22 +116,22 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
+  <a class="reference internal" href="../1-Aspectos_generales/1-Aspectos_generales.html">
    1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
+  <a class="reference internal" href="../2-Algebra_lineal/2-Algebra_lineal.html">
    2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
+  <a class="reference internal" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html">
    3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.4-Interpolacion/1.4-Interpolacion.html">
+  <a class="reference internal" href="../4-Interpolacion/4-Interpolacion.html">
    4. Métodos de Interpolación
   </a>
  </li>
@@ -143,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
+  <a class="reference internal" href="../5-Taylor-series/5-Taylor-series.html">
    5. Series de Taylor
   </a>
  </li>
@@ -211,7 +211,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/1.6-Root-finding/1.6-Root-finding.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/6-Root-finding/6-Root-finding.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -254,7 +254,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/1.6-Root-finding/1.6-Root-finding.ipynb"
+        <a href="../_sources/6-Root-finding/6-Root-finding.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -339,8 +339,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-relativo-y-absorluto">
-     6.2.4. Error relativo y absorluto
+    <a class="reference internal nav-link" href="#error-relativo-y-absoluto">
+     6.2.4. Error relativo y absoluto
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -424,8 +424,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-relativo-y-absorluto">
-     6.2.4. Error relativo y absorluto
+    <a class="reference internal nav-link" href="#error-relativo-y-absoluto">
+     6.2.4. Error relativo y absoluto
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -607,8 +607,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd68209c-098b-4c4d-a972-9bfd1670ffcf">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-fd68209c-098b-4c4d-a972-9bfd1670ffcf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52812519-1c3b-4ea3-a4c2-a03754b10612">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-52812519-1c3b-4ea3-a4c2-a03754b10612" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -703,7 +703,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.6-Root-finding_42_0.png" src="../_images/1.6-Root-finding_42_0.png" />
+<img alt="../_images/6-Root-finding_42_0.png" src="../_images/6-Root-finding_42_0.png" />
 </div>
 </div>
 </section>
@@ -718,17 +718,17 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </ul>
 <p>Por ejemplo, el <strong>método de Brent’s</strong> combina un método de intervalo abierto, como Newton-Raphson o el método de la secante, con el método de la bisección. Más información en las referencias</p>
 </section>
-<section id="error-relativo-y-absorluto">
-<h3><span class="section-number">6.2.4. </span>Error relativo y absorluto<a class="headerlink" href="#error-relativo-y-absorluto" title="Permalink to this headline">#</a></h3>
+<section id="error-relativo-y-absoluto">
+<h3><span class="section-number">6.2.4. </span>Error relativo y absoluto<a class="headerlink" href="#error-relativo-y-absoluto" title="Permalink to this headline">#</a></h3>
 <p>En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>. Sin embargo, este criterio no es correcto, ya que la definición de <span class="math notranslate nohighlight">\(f(x_0) \approx 0\)</span> es relativa a la escala de <span class="math notranslate nohighlight">\(f(x)\)</span> en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto <span class="math notranslate nohighlight">\(x_i\)</span>, siempre tendremos <span class="math notranslate nohighlight">\(f(x_i)\approx 0\)</span> si nos alejamos lo suficiente de la gráfica de la función.</p>
 <p>Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz <span class="math notranslate nohighlight">\(x^*\)</span>. Sin embargo, debido a que este valor es deconocido, definimos el <strong>error absoluto</strong> para cada nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> como:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db395f13-7c8e-4c81-abee-da49a15a1c3c">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-db395f13-7c8e-4c81-abee-da49a15a1c3c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c461da59-f932-48ab-b3fa-72232ddf50d0">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-c461da59-f932-48ab-b3fa-72232ddf50d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |x_{k+1} -x_{k}|
 \end{equation}\]</div>
 <p>Alternativamente, podemos definir el <strong>error relativo</strong> de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c20ed30-b583-42b0-ad9a-093028c2aae8">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-6c20ed30-b583-42b0-ad9a-093028c2aae8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1aa7e6b0-f03d-4d9b-a780-b1c32220d26d">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-1aa7e6b0-f03d-4d9b-a780-b1c32220d26d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 \end{equation}\]</div>
 <p>En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
@@ -942,7 +942,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <h3><span class="section-number">6.4.1. </span>Búsqueda de raíces de función vectorial en python<a class="headerlink" href="#busqueda-de-raices-de-funcion-vectorial-en-python" title="Permalink to this headline">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> permite encontrar las raíces de una función vectorial.</p>
 <p>La función se basa en los algoritmos de región de confianza “hybrd” y “hybrj” de la libreria <code class="docutils literal notranslate"><span class="pre">MINPACK</span></code>. Más detalles <a class="reference external" href="https://www.math.utah.edu/software/minpack/minpack/hybrj.html">acá</a></p>
-<p>La función <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> requiere, como mínimo, la función vectorial, y los valores iniciales.</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> requiere, como mínimo, la función vectorial y los valores iniciales.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -991,7 +991,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./1.6-Root-finding"
+            path: "./6-Root-finding"
         },
         predefinedOutput: true
     }
@@ -1005,7 +1005,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../1.5-Taylor-series/1.5-Taylor-series.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../5-Taylor-series/5-Taylor-series.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>

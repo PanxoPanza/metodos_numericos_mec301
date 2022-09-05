@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Series de Taylor" href="../1.5-Taylor-series/1.5-Taylor-series.html" />
-    <link rel="prev" title="3. Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
+    <link rel="next" title="5. Series de Taylor" href="../5-Taylor-series/5-Taylor-series.html" />
+    <link rel="prev" title="3. Ajuste de curvas por mínimos cuadrados" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -117,17 +117,17 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
+  <a class="reference internal" href="../1-Aspectos_generales/1-Aspectos_generales.html">
    1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
+  <a class="reference internal" href="../2-Algebra_lineal/2-Algebra_lineal.html">
    2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
+  <a class="reference internal" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html">
    3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
@@ -144,12 +144,12 @@ const thebe_selector_output = ".output, .cell_output"
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
+  <a class="reference internal" href="../5-Taylor-series/5-Taylor-series.html">
    5. Series de Taylor
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
+  <a class="reference internal" href="../6-Root-finding/6-Root-finding.html">
    6. Algortimos de búsqueda de raíces
   </a>
  </li>
@@ -212,7 +212,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/1.4-Interpolacion/1.4-Interpolacion.ipynb"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/4-Interpolacion/4-Interpolacion.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -255,7 +255,7 @@ title="Fullscreen mode"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/1.4-Interpolacion/1.4-Interpolacion.ipynb"
+        <a href="../_sources/4-Interpolacion/4-Interpolacion.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -649,7 +649,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_18_0.png" src="../_images/1.4-Interpolacion_18_0.png" />
+<img alt="../_images/4-Interpolacion_18_0.png" src="../_images/4-Interpolacion_18_0.png" />
 </div>
 </div>
 <p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5, -2\}\)</span>, <span class="math notranslate nohighlight">\(\{0, 2\}\)</span> y <span class="math notranslate nohighlight">\(\{5, 1\}\)</span></strong></p>
@@ -662,8 +662,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee3d6668-0d35-4f49-a7f3-8335584ea9f1">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-ee3d6668-0d35-4f49-a7f3-8335584ea9f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e8c4e47c-d1a8-45de-a52b-11ef9cf29f44">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-e8c4e47c-d1a8-45de-a52b-11ef9cf29f44" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -787,20 +787,20 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_35_0.png" src="../_images/1.4-Interpolacion_35_0.png" />
+<img alt="../_images/4-Interpolacion_35_0.png" src="../_images/4-Interpolacion_35_0.png" />
 </div>
 </div>
 </section>
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-661b8cfe-4efd-4af2-bf86-10070438eafa">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-661b8cfe-4efd-4af2-bf86-10070438eafa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ac7734a-9f5d-4c35-95c7-dbcff8fd4450">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-7ac7734a-9f5d-4c35-95c7-dbcff8fd4450" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-32a77a7a-88b8-41fa-820a-db954946f414">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-32a77a7a-88b8-41fa-820a-db954946f414" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a784d9c6-f7c7-4ac6-a83c-e2f0d4d54217">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-a784d9c6-f7c7-4ac6-a83c-e2f0d4d54217" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
@@ -851,7 +851,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_41_0.png" src="../_images/1.4-Interpolacion_41_0.png" />
+<img alt="../_images/4-Interpolacion_41_0.png" src="../_images/4-Interpolacion_41_0.png" />
 </div>
 </div>
 <p>En python los polinomios de Lagrange están implementados en la función <code class="docutils literal notranslate"><span class="pre">lagrange</span></code> de la librería<code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html">acá</a>)</p>
@@ -894,7 +894,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_44_0.png" src="../_images/1.4-Interpolacion_44_0.png" />
+<img alt="../_images/4-Interpolacion_44_0.png" src="../_images/4-Interpolacion_44_0.png" />
 </div>
 </div>
 </section>
@@ -968,7 +968,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_52_0.png" src="../_images/1.4-Interpolacion_52_0.png" />
+<img alt="../_images/4-Interpolacion_52_0.png" src="../_images/4-Interpolacion_52_0.png" />
 </div>
 </div>
 </section>
@@ -1040,7 +1040,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_60_0.png" src="../_images/1.4-Interpolacion_60_0.png" />
+<img alt="../_images/4-Interpolacion_60_0.png" src="../_images/4-Interpolacion_60_0.png" />
 </div>
 </div>
 <p>Alternativamente, podemos usar<code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> que entrega el <strong>valor interpolado <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span></strong>, a partir de los datos <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span>, y el valor a interpolar <span class="math notranslate nohighlight">\(x_0\)</span> (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.interp.html">acá</a>).</p>
@@ -1098,7 +1098,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_65_0.png" src="../_images/1.4-Interpolacion_65_0.png" />
+<img alt="../_images/4-Interpolacion_65_0.png" src="../_images/4-Interpolacion_65_0.png" />
 </div>
 </div>
 <p>Notar que <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> requiere 2 argumentos, mientras que <code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> requiere 3:</p>
@@ -1229,7 +1229,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_87_0.png" src="../_images/1.4-Interpolacion_87_0.png" />
+<img alt="../_images/4-Interpolacion_87_0.png" src="../_images/4-Interpolacion_87_0.png" />
 </div>
 </div>
 <p>Por defecto, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> extrapola los valores fuera de los valores extremos. Podemos suprimir la extrapolación mediante la instrucción <code class="docutils literal notranslate"><span class="pre">extrapolate=False</span></code>. En este caso, la función entregará <code class="docutils literal notranslate"><span class="pre">NaN</span></code> para los valores extrapolados.</p>
@@ -1270,7 +1270,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_90_0.png" src="../_images/1.4-Interpolacion_90_0.png" />
+<img alt="../_images/4-Interpolacion_90_0.png" src="../_images/4-Interpolacion_90_0.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> además nos permite determinar las derivadas de la función de interpolación. Para esto, debemos incluir un índice en el segundo argumento de la función generada:</p>
@@ -1325,7 +1325,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1.4-Interpolacion_94_0.png" src="../_images/1.4-Interpolacion_94_0.png" />
+<img alt="../_images/4-Interpolacion_94_0.png" src="../_images/4-Interpolacion_94_0.png" />
 </div>
 </div>
 </section>
@@ -1402,7 +1402,7 @@ z(x=0.15, y=2.45) =  [-0.25105047]
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./1.4-Interpolacion"
+            path: "./4-Interpolacion"
         },
         predefinedOutput: true
     }
@@ -1416,14 +1416,14 @@ z(x=0.15, y=2.45) =  [-0.25105047]
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../1.5-Taylor-series/1.5-Taylor-series.html" title="next page">
+    <a class='right-next' id="next-link" href="../5-Taylor-series/5-Taylor-series.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Series de Taylor</p>
