@@ -15,6 +15,8 @@ latex:
   latex_documents:
     targetname: book.tex
 
+only_build_toc_files: true
+
 parse:
  myst_enable_extensions:
   - html_image # parse html image scripts (non-default)
@@ -45,5 +47,6 @@ parse:
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 #html:
+#  use_multitoc_numbering: true
 #  use_issues_button: true
 #  use_repository_button: true

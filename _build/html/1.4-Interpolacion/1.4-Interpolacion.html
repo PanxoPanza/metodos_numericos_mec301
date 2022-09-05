@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.4 Métodos de Interpolación &#8212; MEC301 - Métodos Numéricos</title>
+    <title>4. Métodos de Interpolación &#8212; MEC301 - Métodos Numéricos</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -54,8 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.5 Series de Taylor" href="../1.5-Taylor-series/1.5-Taylor-series.html" />
-    <link rel="prev" title="1.3 Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
+    <link rel="next" title="5. Series de Taylor" href="../1.5-Taylor-series/1.5-Taylor-series.html" />
+    <link rel="prev" title="3. Ajuste de curvas por mínimos cuadrados" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,32 +118,39 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.1-Aspectos_generales/1.1-Aspectos_generales.html">
-   1.1 Aspectos generales de programación y algoritmos
+   1. Aspectos generales de programación y algoritmos
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.2-Algebra_lineal/1.2-Algebra_lineal.html">
-   1.2 Algebra lineal y sistemas de ecuaciones lineales
+   2. Algebra lineal y sistemas de ecuaciones lineales
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas.html">
-   1.3 Ajuste de curvas por mínimos cuadrados
+   3. Ajuste de curvas por mínimos cuadrados
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1.4 Métodos de Interpolación
+   4. Métodos de Interpolación
   </a>
  </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../1.5-Taylor-series/1.5-Taylor-series.html">
-   1.5 Series de Taylor
+   5. Series de Taylor
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../1.6-Root-finding/1.6-Root-finding.html">
-   1.6 Algortimos de búsqueda de raíces
+   6. Algortimos de búsqueda de raíces
   </a>
  </li>
 </ul>
@@ -309,17 +316,17 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion">
-   Introducción
+   4.1. Introducción
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-polinomial">
-   Interpolación Polinomial
+   4.2. Interpolación Polinomial
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
-     Intepolación mediante
+     4.2.1. Intepolación mediante
      <code class="docutils literal notranslate">
       <span class="pre">
        polyfit
@@ -330,29 +337,29 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
-     Polinomios de interpolación de Newton
+     4.2.2. Polinomios de interpolación de Newton
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
-     Polinomios de interpolación de Lagrange
+     4.2.3. Polinomios de interpolación de Lagrange
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#problemas-de-oscilacion">
-     Problemas de oscilación
+     4.2.4. Problemas de oscilación
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-por-tramos">
-   Interpolación por tramos
+   4.3. Interpolación por tramos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
-     Interpolación lineal (
+     4.3.1. Interpolación lineal (
      <em>
       spline
      </em>
@@ -361,7 +368,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
-     Interpolación
+     4.3.2. Interpolación
      <em>
       spline
      </em>
@@ -372,24 +379,24 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-multidimensional">
-   Interpolación multidimensional
+   4.4. Interpolación multidimensional
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-2d">
-     Interpolación 2D
+     4.4.1. Interpolación 2D
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
-     Interpolación en 3 o más dimensiones
+     4.4.2. Interpolación en 3 o más dimensiones
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   4.5. Referencias
   </a>
  </li>
 </ul>
@@ -401,7 +408,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1.4 Métodos de Interpolación</h1>
+                <h1>Métodos de Interpolación</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -413,17 +420,17 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduccion">
-   Introducción
+   4.1. Introducción
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-polinomial">
-   Interpolación Polinomial
+   4.2. Interpolación Polinomial
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
-     Intepolación mediante
+     4.2.1. Intepolación mediante
      <code class="docutils literal notranslate">
       <span class="pre">
        polyfit
@@ -434,29 +441,29 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
-     Polinomios de interpolación de Newton
+     4.2.2. Polinomios de interpolación de Newton
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
-     Polinomios de interpolación de Lagrange
+     4.2.3. Polinomios de interpolación de Lagrange
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#problemas-de-oscilacion">
-     Problemas de oscilación
+     4.2.4. Problemas de oscilación
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-por-tramos">
-   Interpolación por tramos
+   4.3. Interpolación por tramos
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
-     Interpolación lineal (
+     4.3.1. Interpolación lineal (
      <em>
       spline
      </em>
@@ -465,7 +472,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
-     Interpolación
+     4.3.2. Interpolación
      <em>
       spline
      </em>
@@ -476,24 +483,24 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interpolacion-multidimensional">
-   Interpolación multidimensional
+   4.4. Interpolación multidimensional
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-2d">
-     Interpolación 2D
+     4.4.1. Interpolación 2D
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
-     Interpolación en 3 o más dimensiones
+     4.4.2. Interpolación en 3 o más dimensiones
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   Referencias
+   4.5. Referencias
   </a>
  </li>
 </ul>
@@ -508,12 +515,12 @@ title="Print to PDF"
                 
   <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="metodos-de-interpolacion">
-<h1>1.4 Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4. </span>Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this headline">#</a></h1>
 <p><br><br><br><br>
 Profesor: Francisco Ramírez Cuevas<br>
 Fecha: 29 de Agosto 2022</p>
 <section id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>La siguiente tabla muestra las propiedades del agua en función de la temperatura.</p>
 <a class="reference internal image-reference" href="../_images/thermodynamic_properties.png"><img alt="../_images/thermodynamic_properties.png" class="align-center" src="../_images/thermodynamic_properties.png" style="width: 600px;" /></a>
 <p>En ingeniería generalmente debemos utilizar estas tablas. Si quisieramos determinar, por ejemplo, el valor de la densidad a <span class="math notranslate nohighlight">\(10\mathrm{^oC}\)</span> necesitaríamos conocer la función <span class="math notranslate nohighlight">\(\rho(T)\)</span>, ya que el valor no está en la tabla.</p>
@@ -522,7 +529,7 @@ Fecha: 29 de Agosto 2022</p>
 <p>Llamamos a esta función, <strong>función de interpolación</strong> y en esa clase revisaremos diferentes métodos para generarla.</p>
 </section>
 <section id="interpolacion-polinomial">
-<h2>Interpolación Polinomial<a class="headerlink" href="#interpolacion-polinomial" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2. </span>Interpolación Polinomial<a class="headerlink" href="#interpolacion-polinomial" title="Permalink to this headline">#</a></h2>
 <p>Una alternativa, es generar un polinomio de la forma:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -561,7 +568,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 </div>
 <p>En este capítulo explicaremos métodos alternativos para generar este polinomio de forma más estable.</p>
 <section id="intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
-<h3>Intepolación mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> (ajuste por mínimos cuadrados)<a class="headerlink" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.1. </span>Intepolación mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> (ajuste por mínimos cuadrados)<a class="headerlink" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
 <p>En la clase anterior usamos la función <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> para generar un polinomio por ajuste por mínimos cuadrados. Estrictamente hablando, <strong>regresión lineal no está clasificado como método de interpolación, ya que el polinomio no necesariamente pasa por todos los datos <span class="math notranslate nohighlight">\(x_i, y_i\)</span> de la muestra</strong>. Sin embargo, para un polinomio de grado <span class="math notranslate nohighlight">\(n\)</span> y una muestra con <span class="math notranslate nohighlight">\(n\)</span> datos, <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> entregará un polinomio de interpolación.</p>
 <p>Por ejemplo, consideremos el polinomio de ajuste para la muestra:</p>
 <table class="colwidths-auto table">
@@ -648,15 +655,15 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5, -2\}\)</span>, <span class="math notranslate nohighlight">\(\{0, 2\}\)</span> y <span class="math notranslate nohighlight">\(\{5, 1\}\)</span></strong></p>
 </section>
 <section id="polinomios-de-interpolacion-de-newton">
-<h3>Polinomios de interpolación de Newton<a class="headerlink" href="#polinomios-de-interpolacion-de-newton" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>Polinomios de interpolación de Newton<a class="headerlink" href="#polinomios-de-interpolacion-de-newton" title="Permalink to this headline">#</a></h3>
 <p>Un polinomio de interpolación de Newton de grado <span class="math notranslate nohighlight">\(n\)</span> está definido por:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-472c495b-8004-428b-af02-9faf46265853">
-<span class="eqno">(7)<a class="headerlink" href="#equation-472c495b-8004-428b-af02-9faf46265853" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ee3d6668-0d35-4f49-a7f3-8335584ea9f1">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-ee3d6668-0d35-4f49-a7f3-8335584ea9f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -785,15 +792,15 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 </div>
 </section>
 <section id="polinomios-de-interpolacion-de-lagrange">
-<h3>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14db2b34-2742-49bc-b043-4dc632210cbc">
-<span class="eqno">(8)<a class="headerlink" href="#equation-14db2b34-2742-49bc-b043-4dc632210cbc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-661b8cfe-4efd-4af2-bf86-10070438eafa">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-661b8cfe-4efd-4af2-bf86-10070438eafa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-59f780fe-b62f-4b83-a838-82db7c94420a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-59f780fe-b62f-4b83-a838-82db7c94420a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32a77a7a-88b8-41fa-820a-db954946f414">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-32a77a7a-88b8-41fa-820a-db954946f414" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
@@ -892,7 +899,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </section>
 <section id="problemas-de-oscilacion">
-<h3>Problemas de oscilación<a class="headerlink" href="#problemas-de-oscilacion" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.4. </span>Problemas de oscilación<a class="headerlink" href="#problemas-de-oscilacion" title="Permalink to this headline">#</a></h3>
 <p>Un problema de los polinomios de interpolación es que sufren problemas de oscilación a medida que aumenta el número de datos en la muestra.</p>
 <p>Este problema se conoce como el <strong>fenómeno de Runge</strong>, en referencia a Carl Runge, quién en 1901 demostró el mal condicionamiento de los polinomios de interpolación cuando se analizaba la siguiente función:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -967,12 +974,12 @@ f(x)=\frac{1}{1 + 25x^2}
 </section>
 </section>
 <section id="interpolacion-por-tramos">
-<h2>Interpolación por tramos<a class="headerlink" href="#interpolacion-por-tramos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3. </span>Interpolación por tramos<a class="headerlink" href="#interpolacion-por-tramos" title="Permalink to this headline">#</a></h2>
 <p>Una alternativa para evitar los problemas de oscilación de los polinomios de interpolación, es usar polinomios de menor orden e interpolar por tramos.</p>
 <p>En este caso, para un set de <span class="math notranslate nohighlight">\(n+1\)</span> datos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, el método de interpolación por tramos consiste en contruir <span class="math notranslate nohighlight">\(n\)</span> polinomios de interpolación para los <span class="math notranslate nohighlight">\(n\)</span> intervalos interiores.</p>
 <a class="reference internal image-reference" href="../_images/piecewise_interpolation.png"><img alt="../_images/piecewise_interpolation.png" class="align-center" src="../_images/piecewise_interpolation.png" style="width: 500px;" /></a>
 <section id="interpolacion-lineal-spline-linear">
-<h3>Interpolación lineal (<em>spline</em> linear)<a class="headerlink" href="#interpolacion-lineal-spline-linear" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1. </span>Interpolación lineal (<em>spline</em> linear)<a class="headerlink" href="#interpolacion-lineal-spline-linear" title="Permalink to this headline">#</a></h3>
 <p>El modelo más simple consiste en interpolar el valor <span class="math notranslate nohighlight">\(\{x, y\}\)</span> entre dos puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span> y <span class="math notranslate nohighlight">\(\{x_{i+1}, y_{i+1}\}\)</span> mediante una recta.</p>
 <p>El **método de interpolación lineal consiste en construir <span class="math notranslate nohighlight">\(n\)</span> rectas <span class="math notranslate nohighlight">\(\hat{y}_i(x)\)</span>. Las rectas <span class="math notranslate nohighlight">\(\hat{y}_i(x)\)</span> tienen la forma:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1109,7 +1116,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </ul>
 </section>
 <section id="interpolacion-spline-cubico">
-<h3>Interpolación <em>spline</em> cúbico<a class="headerlink" href="#interpolacion-spline-cubico" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2. </span>Interpolación <em>spline</em> cúbico<a class="headerlink" href="#interpolacion-spline-cubico" title="Permalink to this headline">#</a></h3>
 <p>El <em>sline</em> cúbico consiste en generar una función de interpolación basado en una serie de polinomios cúbicos <span class="math notranslate nohighlight">\(S_i(x) = a_i x^3 + b_i x^2 + c_i x + d_i\)</span>, cada uno definido en el tramo <span class="math notranslate nohighlight">\(x\in\left[x_i, x_{i+1}\right]\)</span></p>
 <p>Para encontrar la función de interpolación debemos determinar los coecientes <span class="math notranslate nohighlight">\(a_i, b_i, c_i, d_i\)</span> de cada <span class="math notranslate nohighlight">\(S_i(x)\)</span>.</p>
 <p>Considerando una serie de datos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, el <em>spline</em> cúbico necesita <span class="math notranslate nohighlight">\(n\)</span> polinomios <span class="math notranslate nohighlight">\(S_i(x)\)</span>, lo que nos da un total de <span class="math notranslate nohighlight">\(4n\)</span> incognitas. Por lo tanto, necesitamos <span class="math notranslate nohighlight">\(4n\)</span> ecuaciones linealmente independientes.</p>
@@ -1324,11 +1331,11 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </section>
 </section>
 <section id="interpolacion-multidimensional">
-<h2>Interpolación multidimensional<a class="headerlink" href="#interpolacion-multidimensional" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.4. </span>Interpolación multidimensional<a class="headerlink" href="#interpolacion-multidimensional" title="Permalink to this headline">#</a></h2>
 <p>Los métodos de interpolación por tramos revisados anteriormente pueden ser extendidos para problemas multidimensionales. Por ejemplo, en el caso 2D, el problema consiste en determinar un valor <span class="math notranslate nohighlight">\(z= f(x,y)\)</span>, interpolado entre los valores extremos <span class="math notranslate nohighlight">\(f(x_1,y_1)\)</span>, <span class="math notranslate nohighlight">\(f(x_1,y_2)\)</span>, <span class="math notranslate nohighlight">\(f(x_2,y_1)\)</span> y <span class="math notranslate nohighlight">\(f(x_2,y_2)\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/2dinterpolation.png"><img alt="../_images/2dinterpolation.png" class="align-center" src="../_images/2dinterpolation.png" style="width: 550px;" /></a>
 <section id="interpolacion-2d">
-<h3>Interpolación 2D<a class="headerlink" href="#interpolacion-2d" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.1. </span>Interpolación 2D<a class="headerlink" href="#interpolacion-2d" title="Permalink to this headline">#</a></h3>
 <p>Para interpolacion 2D, la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> posee la funcion <code class="docutils literal notranslate"><span class="pre">interp2d</span></code> (para documentación ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html">acá</a>). Esta función retorna una <strong>función</strong> <span class="math notranslate nohighlight">\(z = f(x,y)\)</span>.</p>
 <p>Para los inputs, <code class="docutils literal notranslate"><span class="pre">interp2d</span></code> requiere, al menos, tres argumentos <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>, donde:</p>
 <ul class="simple">
@@ -1368,13 +1375,13 @@ z(x=0.15, y=2.45) =  [-0.25105047]
 </div>
 </section>
 <section id="interpolacion-en-3-o-mas-dimensiones">
-<h3>Interpolación en 3 o más dimensiones<a class="headerlink" href="#interpolacion-en-3-o-mas-dimensiones" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.4.2. </span>Interpolación en 3 o más dimensiones<a class="headerlink" href="#interpolacion-en-3-o-mas-dimensiones" title="Permalink to this headline">#</a></h3>
 <p>Para interpolación con más de 2 dimensiones, <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> cuenta con la función <code class="docutils literal notranslate"><span class="pre">interpn</span></code>.</p>
 <p>La discusión respecto a esta función está fuera de los alcances del curso. Sin embargo, puede encontrar más información en la <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interpn.html">documentación oficial</a>.</p>
 </section>
 </section>
 <section id="referencias">
-<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Interpolation</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 18: Interpolación</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1413,13 +1420,13 @@ z(x=0.15, y=2.45) =  [-0.25105047]
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">1.3 Ajuste de curvas por mínimos cuadrados</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../1.5-Taylor-series/1.5-Taylor-series.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1.5 Series de Taylor</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Series de Taylor</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

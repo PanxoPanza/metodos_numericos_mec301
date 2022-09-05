@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # 1.2 Algebra lineal y sistemas de ecuaciones lineales
+# # Algebra lineal y sistemas de ecuaciones lineales
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 8 de Agosto 2022

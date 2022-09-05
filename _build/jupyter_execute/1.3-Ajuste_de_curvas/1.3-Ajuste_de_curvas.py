@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # 1.3 Ajuste de curvas por mínimos cuadrados
+# # Ajuste de curvas por mínimos cuadrados
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 22 de Agosto 2022

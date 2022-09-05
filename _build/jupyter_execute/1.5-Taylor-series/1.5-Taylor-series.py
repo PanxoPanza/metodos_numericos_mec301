@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # 1.5 Series de Taylor
+# # Series de Taylor
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 5 de Septiembre 2022

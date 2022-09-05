@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # 1.1 Aspectos generales de programación y algoritmos
+# # Aspectos generales de programación y algoritmos
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 1 de Agosto 2022

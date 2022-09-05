@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # 1.6 Algortimos de búsqueda de raíces
+# # Algortimos de búsqueda de raíces
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 5 de Septiembre 2022
@@ -40,7 +40,7 @@
 
 # En esta unidad revisaremos los aspectos generales de los algoritmos para busqueda de raíces de una función.
 
-# ## Busqueda de raíces para una función escalar
+# ## Búsqueda de raíces para una función escalar
 # Una función escalar es una función con una o más variables dependientes, que entrega un valor unidimencional.
 # \begin{equation*}
 # f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
@@ -112,7 +112,7 @@ x0 = bisection(f,a,b,tol)
 print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
 
-# ### Métodos de intervalo acotado: Newton-Raphson
+# ### Métodos de intervalo abierto: Newton-Raphson
 # El método de Newton-Raphson es un **método de intervalo abierto**. El método se origina a partir de series de Taylor.
 
 # Supongamos que $x_0$ es un punto cercano a la raíz de una función $f(x)$. Mediante la aproximación lineal, la raíz de la función $x_1$ debe satisfacer la ecuación:
@@ -329,7 +329,7 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # Para mayor información revisar la [documentación oficial](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html).
 
-# ## Busqueda de raíces para funciones vectoriales
+# ## Búsqueda de raíces para funciones vectoriales
 # Una función vectorial es una función con una o más variables dependientes, que entrega un vector de múltiples dimensiones.
 # \begin{equation*}
 # f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^m
@@ -436,6 +436,8 @@ print('la solución es: ', root)
 # ```python
 # root = fsolve(func, [1, 1], xtol = 1E-10) # |xk+1 - xk| < 1E-10
 # ```
+
+# Para mayor información, revisar la [documentación oficial](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html)
 
 # ## Referencias
 # - Kong Q., Siauw T., Bayen A. M. **Chapter 19: Root Finding** in *[Python Programming and Numerical Methods – A Guide for Engineers and Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html)*, 1st Ed., Academic Press, 2021
