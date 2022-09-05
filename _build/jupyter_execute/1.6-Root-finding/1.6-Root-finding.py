@@ -107,7 +107,7 @@ print('a = %.3f, f(a) = %.3f' % (a,f(a)))
 print('b = %.3f, f(b) = %.3f' % (b,f(b)))
 
 print('Resultado método de Bisección')
-tol = 0.01 # valor de tolerancia
+tol = 0.001 # valor de tolerancia
 x0 = bisection(f,a,b,tol)
 print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
@@ -199,7 +199,7 @@ f =  lambda x: x**3 - 100*x**2 - x + 100
 
 df = lambda x: 3*x**2 - 200*x - 1
 
-x0 = 0
+x0 = 0.01
 tol = 0.001
 print('x* = %.3f, N. de iteraciones = %i' % 
       newton_raphson(x0, df, f, tol))
@@ -235,7 +235,7 @@ showplot()
 
 # Por ejemplo, el **método de Brent's** combina un método de intervalo abierto, como Newton-Raphson o el método de la secante, con el método de la bisección. Más información en las referencias
 
-# ### Error relativo y absorluto
+# ### Error relativo y absoluto
 # En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia $f(x_0) = 0$. Sin embargo, este criterio no es correcto, ya que la definición de $f(x_0) \approx 0$ es relativa a la escala de $f(x)$ en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto $x_i$, siempre tendremos $f(x_i)\approx 0$ si nos alejamos lo suficiente de la gráfica de la función.
 
 # Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz $x^*$. Sin embargo, debido a que este valor es deconocido, definimos el **error absoluto** para cada nuevo valor $x_{k+1}$ como:
@@ -418,7 +418,7 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # La función se basa en los algoritmos de región de confianza "hybrd" y "hybrj" de la libreria ```MINPACK```. Más detalles [acá](https://www.math.utah.edu/software/minpack/minpack/hybrj.html)
 
-# La función ```fsolve``` requiere, como mínimo, la función vectorial, y los valores iniciales.
+# La función ```fsolve``` requiere, como mínimo, la función vectorial y los valores iniciales.
 
 # In[12]:
 

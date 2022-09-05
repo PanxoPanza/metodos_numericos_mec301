@@ -416,8 +416,8 @@ Fecha: 5 de Septiembre 2022</p>
 <section id="expansion-de-funciones-en-series-de-taylor">
 <h2><span class="section-number">5.1. </span>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
 <p>La expansión en series de Taylor es una forma alternativa de representar una fución mediante una serie infinita de polinomios alrededor de un punto <span class="math notranslate nohighlight">\(a\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e02a476-76f2-4ed5-99ae-a8f36987ca81">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-9e02a476-76f2-4ed5-99ae-a8f36987ca81" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57f8feb0-f6c1-4536-b958-d21730f1b1d4">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-57f8feb0-f6c1-4536-b958-d21730f1b1d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)(x-a)^n}{n!}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la <span class="math notranslate nohighlight">\(n\)</span>-ésima derivada de <span class="math notranslate nohighlight">\(f\)</span>, con <span class="math notranslate nohighlight">\(f^{(0)} = f\)</span></p>
@@ -437,7 +437,7 @@ f(x) &amp;= \frac{1}{0!}(5a^2 + 3a + 5)(x - a)^0 + \frac{1}{1!}(10a + 3)(x - a)^
      &amp;= \frac{5x^0}{0!} + \frac{3x^1}{1!} + \frac{10x^2}{2!} \\
      &amp;= 5x^2 + 3x + 5
 \end{align*}\]</div>
-<p>Si ahora, por ejemplo, derivamos la expansión de Taylor para <span class="math notranslate nohighlight">\(a = 1\)</span>:</p>
+<p>Si ahora, por ejemplo, derivamos la expansión de Taylor para <span class="math notranslate nohighlight">\(a = 2\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 f(x) &amp;= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x - 2)^1 + \frac{1}{2!}(10)(x - 2)^2 + 0 + 0 + \cdots\\
@@ -455,7 +455,7 @@ f(x) &amp;= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x
 f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x^2 + \frac{-\cos(0)}{3!}x^3 + \frac{\sin(0)}{4!}x^4 + \frac{\cos(0)}{5!}x^5 + \cdots \\
      &amp;= \frac{1}{1!}x^1 - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots \\
 \end{align*}\]</div>
-<p>Finalmente, analizando el patrón de la serie, definimos una fórmula general tal que:</p>
+<p>Finalmente, analizando el patrón de la serie, definimos una fórmula general, tal que:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \sin(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
@@ -505,7 +505,7 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 </div>
 </div>
 <p>A partir del grafico vemos como a medida que aumentamos el orden, la aproximación de la función alrededor del punto <span class="math notranslate nohighlight">\(x = 0\)</span> mejora. Para el orden 7, la aproximación es casi perfecta en todo el dominio <span class="math notranslate nohighlight">\(x\in [-\pi,\pi]\)</span></p>
-<p>Comunmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada <strong>aproximación lineal</strong>. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>Comúnmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada <strong>aproximación lineal</strong>. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a <span class="math notranslate nohighlight">\(a\)</span>.</p>
 <p>En otras palabras, siempre se verá lineal si la vemos desde suficientemente cerca.</p>
 </section>
 <section id="analisis-de-errores-en-series-de-taylor">
@@ -513,7 +513,7 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 <section id="errores-de-truncamiento">
 <h3><span class="section-number">5.3.1. </span>Errores de truncamiento<a class="headerlink" href="#errores-de-truncamiento" title="Permalink to this headline">#</a></h3>
 <p>En la primera clase hablamos de los errores de redondeo inducidos por la capacidad limitada de un computador de almacenar los decimales de un número. Cuando aproximamos una función por una serie de orden <span class="math notranslate nohighlight">\(N\)</span>, estamos induciendo un error de truncamiento.</p>
-<p>Por ejemplo, la expansión de la función <span class="math notranslate nohighlight">\(e^x\)</span> en series de Taylor está dada por:</p>
+<p>Por ejemplo, la expansión de la función <span class="math notranslate nohighlight">\(e^x\)</span> en series de Taylor centrada en <span class="math notranslate nohighlight">\(x=0\)</span> está dada por:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 e^x = 1+x+\frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots
@@ -554,13 +554,13 @@ Aprox. orden 9 = 0.00034
 </section>
 <section id="errores-de-redondeo">
 <h2><span class="section-number">5.4. </span>Errores de redondeo<a class="headerlink" href="#errores-de-redondeo" title="Permalink to this headline">#</a></h2>
-<p>Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante 1a suma susesiva de terminos de la serie.</p>
+<p>Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante la suma susesiva de terminos de la serie.</p>
 <p>Esto puede ocacionar errores de redondeo asociado a la acumulación de decimales redondeados en cada suma.</p>
 <p>Por ejemplo, cosideremos la aproximación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> usando 200 términos de la serie.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">201</span><span class="p">):</span>
     <span class="n">exp</span> <span class="o">=</span> <span class="n">exp</span> <span class="o">+</span> \
        <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
@@ -572,13 +572,13 @@ Aprox. orden 9 = 0.00034
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El valor de e^(-30)
-... Aproximación de orden 200: -8.55302e-05
-... Valor exacto: 9.35762e-14
+... Aproximación de orden 200: 1.35335e-01
+... Valor exacto: 1.35335e-01
 </pre></div>
 </div>
 </div>
 </div>
-<p>A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> es erronea, a pesar de haber incluído 200 términos de la serie</p>
+<p>A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> es erronea, a pesar de haber incluído 200 términos de la serie.</p>
 </section>
 <section id="referencias">
 <h2><span class="section-number">5.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>

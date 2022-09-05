@@ -35,7 +35,7 @@
 #      &= 5x^2 + 3x + 5
 # \end{align*}
 
-# Si ahora, por ejemplo, derivamos la expansión de Taylor para $a = 1$:
+# Si ahora, por ejemplo, derivamos la expansión de Taylor para $a = 2$:
 # 
 # \begin{align*}
 # f(x) &= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x - 2)^1 + \frac{1}{2!}(10)(x - 2)^2 + 0 + 0 + \cdots\\
@@ -55,7 +55,7 @@
 #      &= \frac{1}{1!}x^1 - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots \\
 # \end{align*}
 
-# Finalmente, analizando el patrón de la serie, definimos una fórmula general tal que:
+# Finalmente, analizando el patrón de la serie, definimos una fórmula general, tal que:
 # 
 # \begin{equation*}
 # \sin(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
@@ -85,7 +85,7 @@ showplot()
 
 # A partir del grafico vemos como a medida que aumentamos el orden, la aproximación de la función alrededor del punto $x = 0$ mejora. Para el orden 7, la aproximación es casi perfecta en todo el dominio $x\in [-\pi,\pi]$
 
-# Comunmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada **aproximación lineal**. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a $a$.
+# Comúnmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada **aproximación lineal**. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a $a$.
 
 # En otras palabras, siempre se verá lineal si la vemos desde suficientemente cerca.
 
@@ -94,7 +94,7 @@ showplot()
 # ### Errores de truncamiento
 # En la primera clase hablamos de los errores de redondeo inducidos por la capacidad limitada de un computador de almacenar los decimales de un número. Cuando aproximamos una función por una serie de orden $N$, estamos induciendo un error de truncamiento.
 
-# Por ejemplo, la expansión de la función $e^x$ en series de Taylor está dada por:
+# Por ejemplo, la expansión de la función $e^x$ en series de Taylor centrada en $x=0$ está dada por:
 # 
 # \begin{equation*}
 # e^x = 1+x+\frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots
@@ -118,7 +118,7 @@ for i in range(10):
 
 
 # ## Errores de redondeo
-# Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante 1a suma susesiva de terminos de la serie.
+# Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante la suma susesiva de terminos de la serie.
 
 # Esto puede ocacionar errores de redondeo asociado a la acumulación de decimales redondeados en cada suma.
 
@@ -128,7 +128,7 @@ for i in range(10):
 
 
 exp = 0
-x = -30
+x = -2
 for i in range(201):
     exp = exp + \
        ((x**i)/np.math.factorial(i))
@@ -137,7 +137,7 @@ print('... Aproximación de orden %i: %.5e' % (i,exp))
 print('... Valor exacto: %.5e' % np.exp(x))
 
 
-# A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de $e^{-30}$ es erronea, a pesar de haber incluído 200 términos de la serie
+# A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de $e^{-30}$ es erronea, a pesar de haber incluído 200 términos de la serie.
 
 # ## Referencias
 # - Kong Q., Siauw T., Bayen A. M. **Chapter 18: Taylor Series** in *[Python Programming and Numerical Methods – A Guide for Engineers and Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html)*, 1st Ed., Academic Press, 2021
