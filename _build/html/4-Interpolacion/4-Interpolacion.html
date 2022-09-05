@@ -1,0 +1,1458 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Métodos de Interpolación &#8212; MEC301 - Métodos Numéricos</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Series de Taylor" href="../5-Taylor-series/5-Taylor-series.html" />
+    <link rel="prev" title="3. Ajuste de curvas por mínimos cuadrados" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 1. Introducción a los métodos numéricos
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Aspectos_generales/1-Aspectos_generales.html">
+   1. Aspectos generales de programación y algoritmos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-Algebra_lineal/2-Algebra_lineal.html">
+   2. Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html">
+   3. Ajuste de curvas por mínimos cuadrados
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Métodos de Interpolación
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-Taylor-series/5-Taylor-series.html">
+   5. Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../6-Root-finding/6-Root-finding.html">
+   6. Algortimos de búsqueda de raíces
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/4-Interpolacion/4-Interpolacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/4-Interpolacion/4-Interpolacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   4.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-polinomial">
+   4.2. Interpolación Polinomial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
+     4.2.1. Intepolación mediante
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       polyfit
+      </span>
+     </code>
+     (ajuste por mínimos cuadrados)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
+     4.2.2. Polinomios de interpolación de Newton
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
+     4.2.3. Polinomios de interpolación de Lagrange
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemas-de-oscilacion">
+     4.2.4. Problemas de oscilación
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-por-tramos">
+   4.3. Interpolación por tramos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
+     4.3.1. Interpolación lineal (
+     <em>
+      spline
+     </em>
+     linear)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
+     4.3.2. Interpolación
+     <em>
+      spline
+     </em>
+     cúbico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-multidimensional">
+   4.4. Interpolación multidimensional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-2d">
+     4.4.1. Interpolación 2D
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
+     4.4.2. Interpolación en 3 o más dimensiones
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   4.5. Referencias
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Métodos de Interpolación</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   4.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-polinomial">
+   4.2. Interpolación Polinomial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
+     4.2.1. Intepolación mediante
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       polyfit
+      </span>
+     </code>
+     (ajuste por mínimos cuadrados)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
+     4.2.2. Polinomios de interpolación de Newton
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
+     4.2.3. Polinomios de interpolación de Lagrange
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemas-de-oscilacion">
+     4.2.4. Problemas de oscilación
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-por-tramos">
+   4.3. Interpolación por tramos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
+     4.3.1. Interpolación lineal (
+     <em>
+      spline
+     </em>
+     linear)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
+     4.3.2. Interpolación
+     <em>
+      spline
+     </em>
+     cúbico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-multidimensional">
+   4.4. Interpolación multidimensional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-2d">
+     4.4.1. Interpolación 2D
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
+     4.4.2. Interpolación en 3 o más dimensiones
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   4.5. Referencias
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
+<section class="tex2jax_ignore mathjax_ignore" id="metodos-de-interpolacion">
+<h1><span class="section-number">4. </span>Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this headline">#</a></h1>
+<p><br><br><br><br>
+Profesor: Francisco Ramírez Cuevas<br>
+Fecha: 29 de Agosto 2022</p>
+<section id="introduccion">
+<h2><span class="section-number">4.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<p>La siguiente tabla muestra las propiedades del agua en función de la temperatura.</p>
+<a class="reference internal image-reference" href="../_images/thermodynamic_properties.png"><img alt="../_images/thermodynamic_properties.png" class="align-center" src="../_images/thermodynamic_properties.png" style="width: 600px;" /></a>
+<p>En ingeniería generalmente debemos utilizar estas tablas. Si quisieramos determinar, por ejemplo, el valor de la densidad a <span class="math notranslate nohighlight">\(10\mathrm{^oC}\)</span> necesitaríamos conocer la función <span class="math notranslate nohighlight">\(\rho(T)\)</span>, ya que el valor no está en la tabla.</p>
+<p>¿Cuál es la función más adecuada para representar la densidad?</p>
+<p>A diferencia de nuestro problema de ajuste por mínimos cuadrados, en este caso cada valor de la tabla es certero. Es decir, nuestra función debe pasar <strong>estrictamente</strong> por cada valor indicado en la tabla.</p>
+<p>Llamamos a esta función, <strong>función de interpolación</strong> y en esa clase revisaremos diferentes métodos para generarla.</p>
+</section>
+<section id="interpolacion-polinomial">
+<h2><span class="section-number">4.2. </span>Interpolación Polinomial<a class="headerlink" href="#interpolacion-polinomial" title="Permalink to this headline">#</a></h2>
+<p>Una alternativa, es generar un polinomio de la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
+\end{equation*}\]</div>
+<p>considerando <span class="math notranslate nohighlight">\(n+1\)</span> datos, existe solo un polinomio que pasa exáctamente por todos los puntos.</p>
+<p>La forma más intuitiva para resolver este problema consiste en formar “<span class="math notranslate nohighlight">\(n+1\)</span>” ecuaciones considerando la intersección con los <span class="math notranslate nohighlight">\(n+1\)</span> datos. Sin embargo este método genera matrices mal condicionadas que son sencibles a errores de redondeo.</p>
+<p>Por ejemplo, si queremos determinar el polinomio <span class="math notranslate nohighlight">\(f(x) = a_0 + a_1x + a_2x^2\)</span> que pasa por los puntos <span class="math notranslate nohighlight">\(\{x_i,y_i\} = \{300,0.616\}\)</span>, <span class="math notranslate nohighlight">\(\{400,0.616\}\)</span> y <span class="math notranslate nohighlight">\(\{500,0.457\}\)</span>, llegamos a un sistema de ecuaciones de la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{bmatrix}
+ 1 &amp; 300 &amp; 300^2 \\
+ 1 &amp; 400 &amp; 400^2 \\
+ 1 &amp; 500 &amp; 500^2 \\
+\end{bmatrix}
+\left[\begin{array}{c} a_0 \\a_1\\a_2\end{array}\right] =
+\left[\begin{array}{c} 0.616 \\0.525\\0.457 \end{array}\right]
+\end{equation*}\]</div>
+<p>Tenemos que la matriz <span class="math notranslate nohighlight">\(A\)</span> está mal condicionada</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cond(A)&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cond(A) 5893156.794924004
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este capítulo explicaremos métodos alternativos para generar este polinomio de forma más estable.</p>
+<section id="intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
+<h3><span class="section-number">4.2.1. </span>Intepolación mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> (ajuste por mínimos cuadrados)<a class="headerlink" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<p>En la clase anterior usamos la función <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> para generar un polinomio por ajuste por mínimos cuadrados. Estrictamente hablando, <strong>regresión lineal no está clasificado como método de interpolación, ya que el polinomio no necesariamente pasa por todos los datos <span class="math notranslate nohighlight">\(x_i, y_i\)</span> de la muestra</strong>. Sin embargo, para un polinomio de grado <span class="math notranslate nohighlight">\(n\)</span> y una muestra con <span class="math notranslate nohighlight">\(n\)</span> datos, <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> entregará un polinomio de interpolación.</p>
+<p>Por ejemplo, consideremos el polinomio de ajuste para la muestra:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p><span class="math notranslate nohighlight">\(i\)</span></p></th>
+<th class="text-align:center head"><p>0</p></th>
+<th class="text-align:center head"><p>1</p></th>
+<th class="text-align:center head"><p>2</p></th>
+<th class="text-align:center head"><p>3</p></th>
+<th class="text-align:center head"><p>4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_i\)</span></p></td>
+<td class="text-align:center"><p>-5</p></td>
+<td class="text-align:center"><p>-2</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>3</p></td>
+<td class="text-align:center"><p>5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(y_i\)</span></p></td>
+<td class="text-align:center"><p>-2</p></td>
+<td class="text-align:center"><p>-1</p></td>
+<td class="text-align:center"><p>2</p></td>
+<td class="text-align:center"><p>2.5</p></td>
+<td class="text-align:center"><p>-1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Generaremos un polinomio de grado 2 mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code>, considerando dos casos:</p>
+<ol class="simple">
+<li><p>Todos los datos <em>x = [-5, -2, 0, 3, 5]</em>, <em>y = [-2,  -1, 2, 2.5,-1]</em>.</p></li>
+<li><p>Solo los datos <em>x = [-5, 0, 5]</em>, <em>y = [-2, 2,-1]</em>, es decir <span class="math notranslate nohighlight">\(\{x_i,y_i\}\)</span> para <span class="math notranslate nohighlight">\(i = 0,2,4\)</span>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Datos de la muestra xi, yi</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span>  <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span> <span class="c1"># arreglo en x para graficar</span>
+
+<span class="c1"># polinomio grado 2 por ajuste con todos (xi,yi)</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># polinomio grado 2 por ajuste con (xi,yi) para i = 0, 2, 4</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span><span class="n">yi</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y_pol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># ploteamos los dos polinomios</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;todos los $x_i, y_i$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pol</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;solo $(x_i, y_i)$ para $i = 0,2,4$&#39;</span><span class="p">)</span>
+<span class="c1"># ploteamos xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;datos $(x_i, y_i)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polinomio grado 2 por mínimos cuadrados&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_18_0.png" src="../_images/4-Interpolacion_18_0.png" />
+</div>
+</div>
+<p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5, -2\}\)</span>, <span class="math notranslate nohighlight">\(\{0, 2\}\)</span> y <span class="math notranslate nohighlight">\(\{5, 1\}\)</span></strong></p>
+</section>
+<section id="polinomios-de-interpolacion-de-newton">
+<h3><span class="section-number">4.2.2. </span>Polinomios de interpolación de Newton<a class="headerlink" href="#polinomios-de-interpolacion-de-newton" title="Permalink to this headline">#</a></h3>
+<p>Un polinomio de interpolación de Newton de grado <span class="math notranslate nohighlight">\(n\)</span> está definido por:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
+\end{equation*}\]</div>
+<p>o bien, en su forma compacta:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a0a04cd7-19eb-47f3-99c2-21dc7139931d">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-a0a04cd7-19eb-47f3-99c2-21dc7139931d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
+\end{equation}\]</div>
+<p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
+<p>Los coeficientes <span class="math notranslate nohighlight">\(a_i\)</span> se obtienen a partir de una fórmula definida en función de los datos <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span>. Por ejemplo, a partir de <span class="math notranslate nohighlight">\(N(x_0) = y_0\)</span> determinamos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+a_0 = y_0,
+\end{equation*}\]</div>
+<p>luego, para <span class="math notranslate nohighlight">\(N(x_1) = y_1\)</span>, tenemos <span class="math notranslate nohighlight">\(N(x_1) = a_0 + a_1(x_1-x_0) = y_1\)</span>, donde deducimos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+a_1 = \frac{y_1 - y_0}{x_1 - x_0}
+\end{equation*}\]</div>
+<p>para <span class="math notranslate nohighlight">\((x_2, y_2)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+a_2 = \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1 - x_0}}{x_2 - x_0}
+\end{equation*}\]</div>
+<p>para <span class="math notranslate nohighlight">\((x_3, y_3)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+a_3 = \frac{\frac{\frac{y_3-y_2}{x_3-x_2} - \frac{y_2 - y_1}{x_2-x_1}}{x_3 - x_1} - \frac{\frac{y_2-y_1}{x_2-x_1}-\frac{y_1 - y_0}{x_1 - x_0}}{x_2-x_0}}{x_3 - x_0}
+\end{equation*}\]</div>
+<p>En forma generalizada, decimos que <span class="math notranslate nohighlight">\(a_k = f[x_k, x_{k-1}, \dots, x_{1}, x_0]\)</span>, donde:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f[x_k, x_{k-1}, \dots, x_{1}, x_0] = \frac{f[x_k, x_{k-1}, \dots, x_{2}, x_1] - f[x_{k-1}, x_{k-2}, \dots, x_{1}, x_0]}{x_k-x_0},
+\end{equation*}\]</div>
+<p>esta operación se define como <strong>diferencias divididas</strong>.</p>
+<p>por ejemplo:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f[x_1, x_0] &amp;= \frac{y_1 - y_0}{x_1 - x_0} \\[10pt]
+f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1 - x_0}}{x_2 - x_0} = \frac{f[x_2,x_1] - f[x_1,x_0]}{x_2-x_0}
+\end{align*}\]</div>
+<p>Para determinar las diferencias divididas utilizamos un método recursivo que podemos resumir mediante la siguiente tabla:</p>
+<a class="reference internal image-reference" href="../_images/newton_recursion.png"><img alt="../_images/newton_recursion.png" class="align-center" src="../_images/newton_recursion.png" style="width: 700px;" /></a>
+<p>El algoritmo almacena estos valores en una matriz triangular superior, donde la primera fila corresponde al valor de los coeficientes</p>
+<p><strong>No existe una función formal en python para determinar los polinomios de Newton</strong>. Sin embargo su implementación en código es sencilla.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">divided_diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    función para generar los coeficientes del</span>
+<span class="sd">    polinomio de Newton de orden &quot;n&quot;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
+    <span class="n">coef</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span> <span class="c1"># primera columna yi</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">j</span><span class="p">):</span>  
+            <span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span>  \
+                                  <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            
+    <span class="k">return</span> <span class="n">coef</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># retornamos la primera fila</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">newton_poly</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    evalúa el polinomio de newton en x con los coeficientes</span>
+<span class="sd">    de divided_diff</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
+    <span class="n">p</span> <span class="o">=</span> <span class="n">coef</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">coef</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span><span class="n">x_data</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">])</span><span class="o">*</span><span class="n">p</span>
+    <span class="k">return</span> <span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probamos nuestra función para <em><span class="math notranslate nohighlight">\(x_i\)</span> = [-5, -1, 0, 2]</em>, <em><span class="math notranslate nohighlight">\(y_i\)</span> = [-2, 6, 1, 3]</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Datos de la muestra xi, yi</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Determinamos coeficientes por diferencias divididas</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">divided_diff</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span>
+
+<span class="c1"># Generamos un arreglo en x para plotear</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span>
+
+<span class="c1"># Generar el polinomio de Newton usando &quot;ai&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">newton_poly</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>          <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># ploteamos el polinomio de Lagrange</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$N(x)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># ploteamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;datos $x_i, y_i$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación de Newton&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_35_0.png" src="../_images/4-Interpolacion_35_0.png" />
+</div>
+</div>
+</section>
+<section id="polinomios-de-interpolacion-de-lagrange">
+<h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
+<p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-26d308cb-18e5-4bb6-8876-f434a0f1c7ae">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-26d308cb-18e5-4bb6-8876-f434a0f1c7ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+L(x) = \sum_{i = 0}^n y_i P_i(x),
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-99e41914-7e1f-416d-9254-f6c46960ef20">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-99e41914-7e1f-416d-9254-f6c46960ef20" title="Permalink to this equation">#</a></span>\[\begin{equation}
+P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
+\end{equation}\]</div>
+<p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
+<p>Por ejemplo, para el set de datos <em><span class="math notranslate nohighlight">\(x_i\)</span> = [0, 1, 2]</em>, <em><span class="math notranslate nohighlight">\(y_i\)</span> = [1, 3, 2]</em>, podemos definir tres polinomios de Lagrange:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+P_0(x) &amp;=&amp; \frac{(x - x_1)(x - x_2)}{(x_0-x_1)(x_0-x_2)} = \frac{(x - 1)(x - 2)}{(0-1)(0-2)} = \frac{1}{2}(x^2 - 3x + 2),\\[10pt]
+P_1(x) &amp;=&amp; \frac{(x - x_0)(x - x_2)}{(x_1-x_0)(x_1-x_2)} = \frac{(x - 0)(x - 2)}{(1-0)(1-2)} = -x^2 + 2x,\\[10pt]
+P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)(x - 1)}{(2-0)(2-1)} = \frac{1}{2}(x^2 - x).
+\end{eqnarray*}\]</div>
+<p>Graficamos los polinomios de Lagrange <span class="math notranslate nohighlight">\(P_0(x)\)</span>, <span class="math notranslate nohighlight">\(P_1(x)\)</span> y <span class="math notranslate nohighlight">\(P_2(x)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showfig
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Polinomios de Lagrange</span>
+<span class="n">P0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">P1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># variable para plotear</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>      <span class="c1"># tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># tamaño de fuente</span>
+
+<span class="c1"># ploteamos las curvas de cada polinomio</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P0</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_0(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_1(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;$P_2(x)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Polinomios de Lagrange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showfig</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_41_0.png" src="../_images/4-Interpolacion_41_0.png" />
+</div>
+</div>
+<p>En python los polinomios de Lagrange están implementados en la función <code class="docutils literal notranslate"><span class="pre">lagrange</span></code> de la librería<code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html">acá</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">lagrange</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Genera una función en base a interpolación de Lagrange</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span>
+
+<span class="c1"># variable para plotear</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># ploteamos el polinomio de Lagrange</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$L(x)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># ploteamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;datos $x_i, y_i$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación de Lagrange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_44_0.png" src="../_images/4-Interpolacion_44_0.png" />
+</div>
+</div>
+</section>
+<section id="problemas-de-oscilacion">
+<h3><span class="section-number">4.2.4. </span>Problemas de oscilación<a class="headerlink" href="#problemas-de-oscilacion" title="Permalink to this headline">#</a></h3>
+<p>Un problema de los polinomios de interpolación es que sufren problemas de oscilación a medida que aumenta el número de datos en la muestra.</p>
+<p>Este problema se conoce como el <strong>fenómeno de Runge</strong>, en referencia a Carl Runge, quién en 1901 demostró el mal condicionamiento de los polinomios de interpolación cuando se analizaba la siguiente función:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f(x)=\frac{1}{1 + 25x^2}
+\end{equation*}\]</div>
+<p>Esta función se conoce como <strong>función de Runge</strong></p>
+<p>Analicemos este problema considerando el dominio <span class="math notranslate nohighlight">\(x\in\left[-1,1\right]\)</span>. Utilizando polinomios de Lagrange, generaremos un polinomio de interpolación, <span class="math notranslate nohighlight">\(L_5(x)\)</span>, con 5 datos igualmente espaciados; y un polinomio, <span class="math notranslate nohighlight">\(L_7(x)\)</span>, 7 datos igualmente espaciados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">lagrange</span> 
+
+<span class="c1"># generamos la funcion Runge</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">25</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Polinomio con 5 datos igualmente espaciados</span>
+<span class="n">xi5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>    <span class="c1"># xi</span>
+<span class="n">yi5</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xi5</span><span class="p">)</span>                 <span class="c1"># yi </span>
+<span class="n">L5</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span><span class="n">yi5</span><span class="p">)</span> <span class="c1"># polinomio de Lagrange</span>
+
+<span class="c1"># Polinomio con 7 datos igualmente espaciados</span>
+<span class="n">xi7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>    <span class="c1"># xi</span>
+<span class="n">yi7</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xi7</span><span class="p">)</span>                 <span class="c1"># yi </span>
+<span class="n">L7</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span><span class="n">yi7</span><span class="p">)</span> <span class="c1"># polinomio de Lagrange</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos el resultado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># arreglo para plotear</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># ploteamos la función de Runge</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Runge&#39;</span><span class="p">)</span>
+
+<span class="c1"># ploteamos los polinomios de Lagrange</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L5</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$L_5(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L7</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$L_7(x)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># ploteamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span> <span class="n">yi5</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $L_5(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span> <span class="n">yi7</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $L_76(x)$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación de Lagrange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_52_0.png" src="../_images/4-Interpolacion_52_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="interpolacion-por-tramos">
+<h2><span class="section-number">4.3. </span>Interpolación por tramos<a class="headerlink" href="#interpolacion-por-tramos" title="Permalink to this headline">#</a></h2>
+<p>Una alternativa para evitar los problemas de oscilación de los polinomios de interpolación, es usar polinomios de menor orden e interpolar por tramos.</p>
+<p>En este caso, para un set de <span class="math notranslate nohighlight">\(n+1\)</span> datos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, el método de interpolación por tramos consiste en contruir <span class="math notranslate nohighlight">\(n\)</span> polinomios de interpolación para los <span class="math notranslate nohighlight">\(n\)</span> intervalos interiores.</p>
+<a class="reference internal image-reference" href="../_images/piecewise_interpolation.png"><img alt="../_images/piecewise_interpolation.png" class="align-center" src="../_images/piecewise_interpolation.png" style="width: 500px;" /></a>
+<section id="interpolacion-lineal-spline-linear">
+<h3><span class="section-number">4.3.1. </span>Interpolación lineal (<em>spline</em> linear)<a class="headerlink" href="#interpolacion-lineal-spline-linear" title="Permalink to this headline">#</a></h3>
+<p>El modelo más simple consiste en interpolar el valor <span class="math notranslate nohighlight">\(\{x, y\}\)</span> entre dos puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span> y <span class="math notranslate nohighlight">\(\{x_{i+1}, y_{i+1}\}\)</span> mediante una recta.</p>
+<p>El **método de interpolación lineal consiste en construir <span class="math notranslate nohighlight">\(n\)</span> rectas <span class="math notranslate nohighlight">\(\hat{y}_i(x)\)</span>. Las rectas <span class="math notranslate nohighlight">\(\hat{y}_i(x)\)</span> tienen la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\hat{y}_i(x) = y_i + \frac{y_{i+1} - y_{i}}{x_{i+1} - x_{i}}(x - x_{i}),\quad\quad x\in\left[x_i, x_{i+1}\right]
+\end{equation*}\]</div>
+<p>En python <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> permite generar una <strong>función</strong> en base interpolación lineal (para documentación ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html">acá</a>).</p>
+<p>Por ejemplo, si buscamos el valor de <span class="math notranslate nohighlight">\(x_0 = 1.5\)</span> mediante interpolación lineal con los datos <em><span class="math notranslate nohighlight">\(x_i\)</span> = [0, 1, 2]</em>, <em><span class="math notranslate nohighlight">\(y_i\)</span> = [1, 3, 2]</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera una función </span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>          <span class="c1"># Evaluamos la función en x0 = 1.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y0 = y(x0 = 1.5) =&#39;</span><span class="p">,</span><span class="n">y0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y0 = y(x0 = 1.5) = 2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Igualmente, podemos usar la función generada por <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> para interpolar un arreglo de valores de “x” (por ejemplo, para graficar la función).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># variable para graficar</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>            <span class="c1"># graficamos la función</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="mf">1.5</span><span class="p">),</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación lineal (interp1d de scipy)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_60_0.png" src="../_images/4-Interpolacion_60_0.png" />
+</div>
+</div>
+<p>Alternativamente, podemos usar<code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> que entrega el <strong>valor interpolado <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span></strong>, a partir de los datos <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span>, y el valor a interpolar <span class="math notranslate nohighlight">\(x_0\)</span> (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.interp.html">acá</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="c1"># interpolamos y(x) en x0 = 1.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y0 = y(x0 = 1.5) =&#39;</span><span class="p">,</span><span class="n">y0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y0 = y(x0 = 1.5) = 2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, para graficar, usamos <code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> para generar un arreglo <span class="math notranslate nohighlight">\(y\)</span> de valores interpolados en base a un arreglo <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="c1"># variable para graficar</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x)$&#39;</span><span class="p">)</span>               <span class="c1"># graficamos la función</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">)</span>                             <span class="c1"># graficamos los xi, yi </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y(x_0 = 1.5)$&#39;</span><span class="p">)</span> <span class="c1"># graficamos y(1.5)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación lineal (interp de numpy)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_65_0.png" src="../_images/4-Interpolacion_65_0.png" />
+</div>
+</div>
+<p>Notar que <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> requiere 2 argumentos, mientras que <code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> requiere 3:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera una función y(x)</span>
+<span class="o">...</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">interp</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera un arreglo en base a &quot;x&quot;</span>
+</pre></div>
+</div>
+<p>Por defecto, los métodos de interpolación lineal no están diseñados para extrapolar:</p>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> de <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> arrojará un error si el valor <span class="math notranslate nohighlight">\(x\)</span> está fuera de los límites de interpolación.</p></li>
+<li><p>Por otro lado, <code class="docutils literal notranslate"><span class="pre">interp</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> entregará un valor <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p></li>
+</ul>
+</section>
+<section id="interpolacion-spline-cubico">
+<h3><span class="section-number">4.3.2. </span>Interpolación <em>spline</em> cúbico<a class="headerlink" href="#interpolacion-spline-cubico" title="Permalink to this headline">#</a></h3>
+<p>El <em>sline</em> cúbico consiste en generar una función de interpolación basado en una serie de polinomios cúbicos <span class="math notranslate nohighlight">\(S_i(x) = a_i x^3 + b_i x^2 + c_i x + d_i\)</span>, cada uno definido en el tramo <span class="math notranslate nohighlight">\(x\in\left[x_i, x_{i+1}\right]\)</span></p>
+<p>Para encontrar la función de interpolación debemos determinar los coecientes <span class="math notranslate nohighlight">\(a_i, b_i, c_i, d_i\)</span> de cada <span class="math notranslate nohighlight">\(S_i(x)\)</span>.</p>
+<p>Considerando una serie de datos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, el <em>spline</em> cúbico necesita <span class="math notranslate nohighlight">\(n\)</span> polinomios <span class="math notranslate nohighlight">\(S_i(x)\)</span>, lo que nos da un total de <span class="math notranslate nohighlight">\(4n\)</span> incognitas. Por lo tanto, necesitamos <span class="math notranslate nohighlight">\(4n\)</span> ecuaciones linealmente independientes.</p>
+<p>Primero, cada polinomio <span class="math notranslate nohighlight">\(S_i(x)\)</span> debe intersectar los valores extremos del domino en el que está definido. En otras palabras:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+S_i(x_{i-1}) &amp;=&amp; y_{i-1},\quad &amp;i&amp; = 1,\ldots,n,\\
+S_i(x_i) &amp;=&amp; y_i,\quad &amp;i&amp; = 1,\ldots,n,
+\end{eqnarray*}\]</div>
+<p>esto nos da un total de <span class="math notranslate nohighlight">\(2n\)</span> ecuaciones linealmente independientes</p>
+<p>La segunda condición viene de la unión entre los polinomios. Para asegurar una unión suave entre cada tramo, imponemos las condiciones:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+S^{\prime}_i(x_{i}) &amp;=&amp; S^{\prime}_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,\\
+S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
+\end{eqnarray*}\]</div>
+<p>lo que nos da un total de <span class="math notranslate nohighlight">\(2(n - 1)\)</span> ecuaciones linealmente independientes.</p>
+<p>Las últimas dos ecuaciones se determinan por las condiciones de borde en los extremos <span class="math notranslate nohighlight">\(y(x_0)\)</span>,  <span class="math notranslate nohighlight">\(y(x_n)\)</span>. Tenemos distintas alternativas:</p>
+<ul class="simple">
+<li><p><em><strong>Not a knot</strong></em>. Imponemos una condición para la tercera derivada en los extremos, de manera que <span class="math notranslate nohighlight">\(S_1'''(x_1) = S_2'''(x_1)\)</span> y <span class="math notranslate nohighlight">\(S_{n-1}'''(x_{n-1}) = S_n'''(x_{n-1})\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p><em><strong>Clamped</strong></em>. La primera derivada en los extremos, <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n) = 0\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p><em><strong>Natural</strong></em>. La segunda derivada en los extremos, <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n) = 0\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p><em><strong>Periodic</strong></em>. Se usume una función periódica, de manera que <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n)\)</span>, y <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n)\)</span>. <strong>Solo válida para funciones periodicas</strong>, es decir cuando <span class="math notranslate nohighlight">\(y(x_0) = y(x_n)\)</span>.</p></li>
+</ul>
+<p>En python, interpolación cúbica está implementada a través de la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> (para documentación ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html">acá</a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> genera una <strong>función de interpolación</strong> a partir de la muestra <span class="math notranslate nohighlight">\(x_i, y_i\)</span></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera una función y(x)</span>
+</pre></div>
+</div>
+<p>Podemos controlar las condiciones de borde mediante un tercer argumento <code class="docutils literal notranslate"><span class="pre">bc_type</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;not-a-knot&#39;</span><span class="p">)</span> <span class="c1"># Condición de borde not a knot</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span>   <span class="c1"># Condición de borde periodica</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;clamped&#39;</span><span class="p">)</span>    <span class="c1"># Condición de borde &quot;clamped&quot;</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">)</span>    <span class="c1"># Condición de borde&quot;natural&quot;</span>
+</pre></div>
+</div>
+<p>También podemos usar <code class="docutils literal notranslate"><span class="pre">bc_type</span></code> para especificar el valor de las derivadas en los extremos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="c1"># Primera derivada = 0.5 en los extremos&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)))</span> 
+
+<span class="c1"># Segunda derivada = 0.5 en los extremos&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span> <span class="p">)</span> 
+</pre></div>
+</div>
+<p>Particularmente, la instrucción:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bc_type=((1,</span> <span class="pre">0.0),</span> <span class="pre">(1,</span> <span class="pre">0.0))</span></code> es equivalente a <code class="docutils literal notranslate"><span class="pre">clamped</span></code>, y</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bc_type=((2,</span> <span class="pre">0.0),</span> <span class="pre">(2,</span> <span class="pre">0.0))</span></code> es equivalente a <code class="docutils literal notranslate"><span class="pre">natural</span></code>.</p></li>
+</ul>
+<p>Por defecto, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code>asume <code class="docutils literal notranslate"><span class="pre">bc_type='not-a-knot'</span></code></p>
+<p>Analicemos el comportamiento de las condiciones de borde <code class="docutils literal notranslate"><span class="pre">not-a-knot</span></code>, <code class="docutils literal notranslate"><span class="pre">clamped</span></code>y <code class="docutils literal notranslate"><span class="pre">spline</span></code> en la interpolación spline de los datos <em><span class="math notranslate nohighlight">\(x_i\)</span> = [3, 5, 7, 9]</em>, <em><span class="math notranslate nohighlight">\(y_i\)</span> = [2.5, 1.5, 2.0, 1.8]</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>  <span class="mi">3</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span>   <span class="mi">7</span><span class="p">,</span>   <span class="mi">9</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">])</span>
+
+<span class="c1"># Generamos 3 funciones de interpolación &quot;spline&quot; con distintas condiciones de borde</span>
+<span class="n">y_1</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;not-a-knot&#39;</span><span class="p">)</span>
+<span class="n">y_2</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;clamped&#39;</span><span class="p">)</span>
+<span class="n">y_3</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># variable para graficarS</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>                         <span class="c1"># graficamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;not-a-knot&#39;</span><span class="p">)</span>  <span class="c1"># graficamos la función</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;clamped&#39;</span><span class="p">)</span>     <span class="c1"># graficamos la función</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_3</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">)</span>     <span class="c1"># graficamos la función</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación spline&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_87_0.png" src="../_images/4-Interpolacion_87_0.png" />
+</div>
+</div>
+<p>Por defecto, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> extrapola los valores fuera de los valores extremos. Podemos suprimir la extrapolación mediante la instrucción <code class="docutils literal notranslate"><span class="pre">extrapolate=False</span></code>. En este caso, la función entregará <code class="docutils literal notranslate"><span class="pre">NaN</span></code> para los valores extrapolados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>  <span class="mi">3</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span>   <span class="mi">7</span><span class="p">,</span>   <span class="mi">9</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">])</span>
+
+<span class="c1"># spline &quot;not a knot&quot; sin extrapolación</span>
+<span class="n">y_1</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">extrapolate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para graficar</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">)</span>     <span class="c1"># graficamos los xi, yi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>  <span class="c1"># graficamos la función</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interpolación spline&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_90_0.png" src="../_images/4-Interpolacion_90_0.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> además nos permite determinar las derivadas de la función de interpolación. Para esto, debemos incluir un índice en el segundo argumento de la función generada:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Generamos la función de interpolación</span>
+
+<span class="c1"># Derivadas</span>
+<span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Primera derivada</span>
+<span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Segunda derivada</span>
+<span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># Tercera derivada</span>
+</pre></div>
+</div>
+<p>Debido a que <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> está basada en un polinomio de interpolación cúbico, <strong>solo admite hasta la tercera derivada</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+
+<span class="c1"># spline &quot;not a knot&quot;</span>
+<span class="n">y_1</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para graficar</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y(x)$&quot;</span><span class="p">)</span>      <span class="c1"># graficamos la función</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y&#39;(x)$&quot;</span><span class="p">)</span>   <span class="c1"># primera derivada</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y&#39;&#39;(x)$&quot;</span><span class="p">)</span>  <span class="c1"># segunda derivada</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;-g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y&#39;&#39;&#39;(x)$&quot;</span><span class="p">)</span> <span class="c1"># segunda derivada</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Derivadas interpolación spline&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-Interpolacion_94_0.png" src="../_images/4-Interpolacion_94_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="interpolacion-multidimensional">
+<h2><span class="section-number">4.4. </span>Interpolación multidimensional<a class="headerlink" href="#interpolacion-multidimensional" title="Permalink to this headline">#</a></h2>
+<p>Los métodos de interpolación por tramos revisados anteriormente pueden ser extendidos para problemas multidimensionales. Por ejemplo, en el caso 2D, el problema consiste en determinar un valor <span class="math notranslate nohighlight">\(z= f(x,y)\)</span>, interpolado entre los valores extremos <span class="math notranslate nohighlight">\(f(x_1,y_1)\)</span>, <span class="math notranslate nohighlight">\(f(x_1,y_2)\)</span>, <span class="math notranslate nohighlight">\(f(x_2,y_1)\)</span> y <span class="math notranslate nohighlight">\(f(x_2,y_2)\)</span>.</p>
+<a class="reference internal image-reference" href="../_images/2dinterpolation.png"><img alt="../_images/2dinterpolation.png" class="align-center" src="../_images/2dinterpolation.png" style="width: 550px;" /></a>
+<section id="interpolacion-2d">
+<h3><span class="section-number">4.4.1. </span>Interpolación 2D<a class="headerlink" href="#interpolacion-2d" title="Permalink to this headline">#</a></h3>
+<p>Para interpolacion 2D, la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> posee la funcion <code class="docutils literal notranslate"><span class="pre">interp2d</span></code> (para documentación ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html">acá</a>). Esta función retorna una <strong>función</strong> <span class="math notranslate nohighlight">\(z = f(x,y)\)</span>.</p>
+<p>Para los inputs, <code class="docutils literal notranslate"><span class="pre">interp2d</span></code> requiere, al menos, tres argumentos <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>, donde:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> e <code class="docutils literal notranslate"><span class="pre">y</span></code> corresponden a los valores <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(y_j\)</span> en formato <strong>arreglo 1D</strong>, o <strong>cuadrídula 2D</strong> generada por <code class="docutils literal notranslate"><span class="pre">meshgrid</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">z</span></code> corresponde a los valores <span class="math notranslate nohighlight">\(z_{ij}\)</span> en formato de <strong>cuadrídula 2D</strong>.</p></li>
+</ul>
+<p>Mediante la intrucción opcional <code class="docutils literal notranslate"><span class="pre">kind</span></code> podemos especificar el tipo de polinomio de interpolación. Usamos <code class="docutils literal notranslate"><span class="pre">'linear'</span></code> para interpolación linear y <code class="docutils literal notranslate"><span class="pre">'cubic'</span></code> para interpolación cúbica. Por defecto, <code class="docutils literal notranslate"><span class="pre">kind='linear'</span></code></p>
+<p>En el siguiente ejemplo, usamos <code class="docutils literal notranslate"><span class="pre">interp2d</span></code> para interpolar una serie de datos <span class="math notranslate nohighlight">\(x_i\in\left[-5,5\right]\)</span> y <span class="math notranslate nohighlight">\(y_j\in\left[-5,5\right]\)</span>, igualmente espaciados con <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 0.25\)</span>. El valor de <span class="math notranslate nohighlight">\(z_{ij}\)</span> es generado a partir de la función <span class="math notranslate nohighlight">\(z=\sin\left(x^2+y^2\right)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp2d</span>
+
+<span class="c1"># xi, y yj en formato arreglo 1D</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">yj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># Cuadrícula 2D generada por meshgrid</span>
+<span class="n">xxi</span><span class="p">,</span> <span class="n">yyj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yj</span><span class="p">)</span>
+
+<span class="c1"># generamos una cuadrícula 2D para zij a partir de la función sin(x^2 + y^2)</span>
+<span class="n">zij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xxi</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">yyj</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Función de interpolación</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">interp2d</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yj</span><span class="p">,</span> <span class="n">zij</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Función de interpolación&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z(x=0.15, y=2.45) = &#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">2.45</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Función de interpolación
+z(x=0.15, y=2.45) =  [-0.25105047]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpolacion-en-3-o-mas-dimensiones">
+<h3><span class="section-number">4.4.2. </span>Interpolación en 3 o más dimensiones<a class="headerlink" href="#interpolacion-en-3-o-mas-dimensiones" title="Permalink to this headline">#</a></h3>
+<p>Para interpolación con más de 2 dimensiones, <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> cuenta con la función <code class="docutils literal notranslate"><span class="pre">interpn</span></code>.</p>
+<p>La discusión respecto a esta función está fuera de los alcances del curso. Sin embargo, puede encontrar más información en la <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interpn.html">documentación oficial</a>.</p>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">4.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Interpolation</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
+<li><p>Chapra S., Canale R. <strong>Capítulo 18: Interpolación</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./4-Interpolacion"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../5-Taylor-series/5-Taylor-series.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Series de Taylor</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Francisco V. Ramirez-Cuevas<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

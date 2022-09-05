@@ -7,12 +7,12 @@ parts:
   - caption: Parte 1. Introducción a los métodos numéricos
     numbered: true
     chapters:
-    - file: 1.1-Aspectos_generales/1.1-Aspectos_generales
-    - file: 1.2-Algebra_lineal/1.2-Algebra_lineal
-    - file: 1.3-Ajuste_de_curvas/1.3-Ajuste_de_curvas
-    - file: 1.4-Interpolacion/1.4-Interpolacion
+    - file: 1-Aspectos_generales/1-Aspectos_generales
+    - file: 2-Algebra_lineal/2-Algebra_lineal
+    - file: 3-Ajuste_de_curvas/3-Ajuste_de_curvas
+    - file: 4-Interpolacion/4-Interpolacion
   - caption: Parte 2. Métodos numéricos basados en series de Taylor
     numbered: true
     chapters:
-    - file: 1.5-Taylor-series/1.5-Taylor-series
-    - file: 1.6-Root-finding/1.6-Root-finding
+    - file: 5-Taylor-series/5-Taylor-series
+    - file: 6-Root-finding/6-Root-finding
