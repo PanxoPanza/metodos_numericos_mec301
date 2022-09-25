@@ -150,7 +150,6 @@
 # 
 #    para una matrix $3\times3$:
 #    
-# $$
 # \begin{eqnarray*}
 # |M| = \begin{vmatrix}
 # a & b & c \\
@@ -182,7 +181,7 @@
 # \end{vmatrix} \\ 
 # &&\\
 # & = & aei - afh + bfg - bdi + cdh - ceg 
-# \end{eqnarray*}$$
+# \end{eqnarray*}
 
 # 3. **Matriz identidad ($I$).** es una matriz cuadarada con $1$ en la diagonal, y $0$ en el resto de los elementos:
 # 
@@ -378,7 +377,7 @@ print('inv(P) = ', inv(P))
 
 # En python, $\mathrm{Cond}(A)$ está dado por la función `cond` de la librería `numpy.linalg`
 
-# In[17]:
+# In[9]:
 
 
 from numpy.linalg import cond
@@ -395,7 +394,7 @@ print('Cond(P) = ',cond(P))
 # \end{eqnarray*}
 # 
 
-# In[18]:
+# In[10]:
 
 
 print('A\n', A)
@@ -572,7 +571,7 @@ print('det(A) = ', det(A))
 # 1 & 0 & 0 \\
 # \end{bmatrix}$$
 
-# In[41]:
+# In[11]:
 
 
 A = np.array([[ 4,  3, -5],
@@ -592,7 +591,7 @@ P = np.array([[0, 0, 1],
               [1, 0, 0]])
 
 
-# In[43]:
+# In[12]:
 
 
 print('P*A =\n',np.dot(P,A))
@@ -643,7 +642,7 @@ print('L*U =\n',np.dot(L,U))
 # 
 # Primero, verificamos que la matriz es diagonal dominante:
 
-# In[19]:
+# In[13]:
 
 
 A = [[ 8.,  3., -3.], 
@@ -659,16 +658,16 @@ off_diagA = np.sum(np.abs(A), axis=1) - diagA
 print('off_diag(A) =',off_diagA)
 
 
-# In[20]:
+# In[14]:
 
 
-if np.all(diagA > off_diagA):
+if np.all(diagA >= off_diagA):
     print('la matriz es diagonal dominante')
 else:
     print('la matriz no es diagonal dominante')
 
 
-# In[8]:
+# In[15]:
 
 
 def gauss_seidel(A,y,x):
@@ -707,7 +706,7 @@ def gauss_seidel(A,y,x):
     return x
 
 
-# In[9]:
+# In[16]:
 
 
 import numpy as np
@@ -742,7 +741,7 @@ gauss_seidel(A,y,x)
 # \end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\x_3 \end{array}\right] =
 # \left[\begin{array}{c} 588.6 \\686.7 \\784.8\end{array}\right]$$ 
 
-# In[24]:
+# In[17]:
 
 
 import numpy as np
@@ -759,7 +758,7 @@ print(x)
 
 # Notar que en este problema $x_1$, $x_2$ y $x_3$ representan las posiciones relativas de las personas. Así la posición final está dada por:
 
-# In[25]:
+# In[18]:
 
 
 print('Posición final de las personas: ', x + [20, 40, 60])
@@ -767,7 +766,7 @@ print('Posición final de las personas: ', x + [20, 40, 60])
 
 # Mediante la librería `scipy` podemos hacer factorización LU.
 
-# In[26]:
+# In[19]:
 
 
 from scipy.linalg import lu

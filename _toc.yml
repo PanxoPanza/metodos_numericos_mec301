@@ -16,3 +16,4 @@ parts:
     chapters:
     - file: 5-Taylor-series/5-Taylor-series
     - file: 6-Root-finding/6-Root-finding
+    - file: 7-Integracion/7-Integracion

@@ -11,7 +11,7 @@ execute:
 
 # Define the name of the latex output file for PDF builds
 latex:
-  use?jupyterbook_latex: true
+  use_jupyterbook_latex: true
   latex_documents:
     targetname: book.tex
 
