@@ -17,3 +17,7 @@ parts:
     - file: 5-Taylor-series/5-Taylor-series
     - file: 6-Root-finding/6-Root-finding
     - file: 7-Integracion/7-Integracion
+  - caption: Parte 3. Métodos numéricos para ecuaciones diferenciales
+    numbered: true
+    chapters:
+    - file: 8-Derivacion_numerica/8-Derivacion_numerica

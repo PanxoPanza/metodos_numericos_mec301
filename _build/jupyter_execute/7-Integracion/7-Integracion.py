@@ -196,16 +196,16 @@ import numpy as np
 import scipy.integrate as spint
 
 # 10 puntos igualmente espaciados
-x = np.linspace(0,np.pi,10)
-int_sim10 = spint.simpson(np.sin(x), x)
+xi = np.linspace(0,np.pi,10)
+int_sim10 = spint.simpson(np.sin(xi), xi)
 
 # 11 puntos igualmente espaciados
-x = np.linspace(0,np.pi,11)
-int_sim11 = spint.simpson(np.sin(x), x)
+xi = np.linspace(0,np.pi,11)
+int_sim11 = spint.simpson(np.sin(xi), xi)
 
 # 12 puntos igualmente espaciados
-x = np.linspace(0,np.pi,12)
-int_sim12 = spint.simpson(np.sin(x), x)
+xi = np.linspace(0,np.pi,12)
+int_sim12 = spint.simpson(np.sin(xi), xi)
 
 
 # In[3]:

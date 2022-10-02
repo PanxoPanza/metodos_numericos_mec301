@@ -431,8 +431,6 @@ def func(x):
 root = fsolve(func, [1, 1])
 print('la solución es: ', root)
 
-func(root)
-
 
 # También podemos definir el error absoluto mediante la instrucción ```xtol``` (por defecto, ```xtol=1.49012e-08```).
 # ```python
