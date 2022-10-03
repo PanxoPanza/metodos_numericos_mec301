@@ -177,9 +177,6 @@ showplot1()
 # 
 # <img src="./images/forward_difference.png" width="800px" align= center>
 
-# 
-# <img src="./images/forward_difference.png" width="800px" align= center>
-
 # **Diferencia hacia atrás**
 # 
 # <img src="./images/backward_difference.png" width="800px" align= center>
