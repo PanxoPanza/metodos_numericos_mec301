@@ -494,8 +494,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c463af3-830b-4457-9081-65fb55a814c5">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-5c463af3-830b-4457-9081-65fb55a814c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0a8d320c-d0b8-44b6-9a72-b8809e9c2c6e">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-0a8d320c-d0b8-44b6-9a72-b8809e9c2c6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -506,8 +506,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9be3a7f7-c476-4582-a1b5-f2e0fa7d4a63">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-9be3a7f7-c476-4582-a1b5-f2e0fa7d4a63" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-384036a2-ca60-491f-88d9-5979fe185aae">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-384036a2-ca60-491f-88d9-5979fe185aae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -516,8 +516,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-51ca793c-681c-44b8-9d9d-a4de4899c462">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-51ca793c-681c-44b8-9d9d-a4de4899c462" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-937a1dce-d557-4b24-812e-0272e9cdd8ca">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-937a1dce-d557-4b24-812e-0272e9cdd8ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -648,7 +648,6 @@ f''(x_j) \approx \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 <p>Podemos extender nuestro resultado para determinar fórmulas de diferencas finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:</p>
 <p><strong>Diferencia hacia adelante</strong></p>
 <a class="reference internal image-reference" href="../_images/forward_difference.png"><img alt="../_images/forward_difference.png" class="align-center" src="../_images/forward_difference.png" style="width: 800px;" /></a>
-<a class="reference internal image-reference" href="../_images/forward_difference.png"><img alt="../_images/forward_difference.png" class="align-center" src="../_images/forward_difference.png" style="width: 800px;" /></a>
 <p><strong>Diferencia hacia atrás</strong></p>
 <a class="reference internal image-reference" href="../_images/backward_difference.png"><img alt="../_images/backward_difference.png" class="align-center" src="../_images/backward_difference.png" style="width: 800px;" /></a>
 <p><strong>Diferencia central</strong></p>
@@ -716,7 +715,7 @@ f''(x_j) \approx \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8-Derivacion_numerica_40_0.png" src="../_images/8-Derivacion_numerica_40_0.png" />
+<img alt="../_images/8-Derivacion_numerica_39_0.png" src="../_images/8-Derivacion_numerica_39_0.png" />
 </div>
 </div>
 <p><strong>Función  <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>.</strong> Esta función determina la diferencia entre
@@ -758,7 +757,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8-Derivacion_numerica_46_0.png" src="../_images/8-Derivacion_numerica_46_0.png" />
+<img alt="../_images/8-Derivacion_numerica_45_0.png" src="../_images/8-Derivacion_numerica_45_0.png" />
 </div>
 </div>
 <p><strong>Función  <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code>.</strong> Esta es una función más optimizada y específica para calcular derivadas. La función <code class="docutils literal notranslate"><span class="pre">gradient</span></code> calcula <em>directamente</em> la derivada de una función</p>
@@ -799,7 +798,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8-Derivacion_numerica_52_0.png" src="../_images/8-Derivacion_numerica_52_0.png" />
+<img alt="../_images/8-Derivacion_numerica_51_0.png" src="../_images/8-Derivacion_numerica_51_0.png" />
 </div>
 </div>
 <p>Una tercera alternativa para determinar la derivada es mediante la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> de <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code>. A diferencia de <code class="docutils literal notranslate"><span class="pre">diff</span></code> y <code class="docutils literal notranslate"><span class="pre">gradient</span></code>, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> permite determinar derivadas de segundo y tercer orden directamente.</p>
@@ -848,7 +847,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8-Derivacion_numerica_58_0.png" src="../_images/8-Derivacion_numerica_58_0.png" />
+<img alt="../_images/8-Derivacion_numerica_57_0.png" src="../_images/8-Derivacion_numerica_57_0.png" />
 </div>
 </div>
 </section>
