@@ -279,16 +279,16 @@ df = lambda x: 3*x**2   # derivada
 # In[8]:
 
 
-print('Bisección:\n', root_scalar(f,bracket=[0, 3],method='bisect'))
+print('Bisección:\n',      root_scalar(f,bracket=[0, 3]  ,method='bisect'))
 print('Newton-Raphson:\n', root_scalar(f,x0=0.2,fprime=df,method='newton'))
-print('Secante:\n', root_scalar(f,x0=0.2,x1=0.21,method='secant'))
+print('Secante:\n',        root_scalar(f,x0=0.2,x1=0.21  ,method='secant'))
 
 
 # In[9]:
 
 
-print('Brent´s:\n', root_scalar(f,bracket=[0, 3],method='brentq'))
-print('Intervalo (método por defecto):\n', root_scalar(f,bracket=[0, 3]))
+print('Brent´s:\n',                                      root_scalar(f,bracket=[0, 3],method='brentq'))
+print('Intervalo (método por defecto):\n',               root_scalar(f,bracket=[0, 3]))
 print('Cond. inicial y derivada (método po defecto):\n', root_scalar(f,x0=0.2,fprime=df))
 
 
@@ -396,7 +396,7 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # Entre los más conocidos tenemos el **método de Broyden**. Más información en las referencias
 
-# ## Métodos de región de confianza
+# ### Métodos de región de confianza
 
 # Un problema de los métodos de busqueda lineal está en el cálculo del Jacobiano de la función. Los métodos de región de confianza se basan en una aproximación de $\vec{F}$ en forma de paraboloide. Esta aproximación simplifica el cálculo del Jacobiano. 
 # 
