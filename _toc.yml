@@ -21,3 +21,8 @@ parts:
     numbered: true
     chapters:
     - file: 8-Derivacion_numerica/8-Derivacion_numerica
+  - caption: Apéndice
+    numbered: false
+    chapters:
+    - file: Repaso/Repaso_Parte1/Repaso_Parte1
+    - file: Repaso/Repaso_Parte2/Repaso_Parte2

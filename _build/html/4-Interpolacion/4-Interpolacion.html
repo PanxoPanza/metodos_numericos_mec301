@@ -159,6 +159,35 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
 </ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 3. Métodos numéricos para ecuaciones diferenciales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../8-Derivacion_numerica/8-Derivacion_numerica.html">
+   8. Derivación numérica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Material de repaso
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Repaso/Repaso_Parte1/Repaso_Parte1.html">
+   Repaso Parte 1 -  Introducción a los métodos numéricos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Repaso/Repaso_Parte2/Repaso_Parte2.html">
+   Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+  </a>
+ </li>
+</ul>
 
     </div>
 </nav></div>
@@ -667,8 +696,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-75873413-1385-4d2c-966c-056a5e76d2fa">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-75873413-1385-4d2c-966c-056a5e76d2fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-795c1c54-6cbd-4df8-9e35-8680018f79e1">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-795c1c54-6cbd-4df8-9e35-8680018f79e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -799,13 +828,13 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d29c0cf-21b9-4008-91bf-b562338f3fdf">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-7d29c0cf-21b9-4008-91bf-b562338f3fdf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0e563d46-a11a-47de-b363-c8ab1a72913a">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-0e563d46-a11a-47de-b363-c8ab1a72913a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3c5ca4b-05cd-4323-96d7-20e8de2034ef">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-f3c5ca4b-05cd-4323-96d7-20e8de2034ef" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a083ed5f-2e36-4d3c-8f1d-15489d497cba">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-a083ed5f-2e36-4d3c-8f1d-15489d497cba" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
