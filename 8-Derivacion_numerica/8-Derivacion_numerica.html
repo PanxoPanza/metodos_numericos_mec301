@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Repaso Parte 1 - Introducción a los métodos numéricos" href="../Repaso/Repaso_Parte1/Repaso_Parte1.html" />
+    <link rel="next" title="Material de repaso" href="../Apendice/Repaso/Intro_material_de_repaso.html" />
     <link rel="prev" title="7. Integración numérica" href="../7-Integracion/7-Integracion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -177,15 +177,27 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Repaso/Repaso_Parte1/Repaso_Parte1.html">
-   Repaso Parte 1 -  Introducción a los métodos numéricos
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Apendice/Repaso/Intro_material_de_repaso.html">
+   Material de repaso
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../Repaso/Repaso_Parte2/Repaso_Parte2.html">
-   Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
+     Repaso Parte 1 -  Introducción a los métodos numéricos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
+     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -512,8 +524,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b08df3a5-3031-4b2a-857c-c6223b02403e">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-b08df3a5-3031-4b2a-857c-c6223b02403e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1921b25e-0188-4a89-a10f-46be25843064">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-1921b25e-0188-4a89-a10f-46be25843064" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -524,8 +536,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9a87065-c0d5-4dda-89a1-1ecaf1802742">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-c9a87065-c0d5-4dda-89a1-1ecaf1802742" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-554fb751-2862-4c20-b3e8-114493be5cb2">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-554fb751-2862-4c20-b3e8-114493be5cb2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -534,8 +546,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-858c6789-0db5-4baf-b01c-f9868f7261bf">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-858c6789-0db5-4baf-b01c-f9868f7261bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d315edb-75c4-4a85-8c52-56ab2de4fd83">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-6d315edb-75c4-4a85-8c52-56ab2de4fd83" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -955,10 +967,10 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
             <p class="prev-next-title"><span class="section-number">7. </span>Integración numérica</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../Repaso/Repaso_Parte1/Repaso_Parte1.html" title="next page">
+    <a class='right-next' id="next-link" href="../Apendice/Repaso/Intro_material_de_repaso.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Repaso Parte 1 -  Introducción a los métodos numéricos</p>
+        <p class="prev-next-title">Material de repaso</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
