@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Material de repaso
+  Apéndice
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -590,14 +590,14 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + \cdots,
 <h3><span class="section-number">7.2.2. </span>Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)<a class="headerlink" href="#regla-del-trapecio-scipy-integrate-trapezoid" title="Permalink to this headline">#</a></h3>
 <p>Podemos mejorar la aproximación mediante una expansión de segundo orden, <span class="math notranslate nohighlight">\(f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i)\)</span>, donde la derivada es aproximada por <span class="math notranslate nohighlight">\(f^{\prime}(x_i) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} + O(h_i)\)</span>.</p>
 <p>Reemplazando en la integral del subintervalo <span class="math notranslate nohighlight">\(x\in [x_i, x_{i+1}]\)</span>, obtenemos la <strong>regla del trapecio</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7eb0981-81a5-4189-9198-b26338ca9cc0">
-<span class="eqno">(7.1)<a class="headerlink" href="#equation-b7eb0981-81a5-4189-9198-b26338ca9cc0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e821a0a3-da9b-4b61-b419-21114f581789">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-e821a0a3-da9b-4b61-b419-21114f581789" title="Permalink to this equation">#</a></span>\[\begin{align}
 \int_{x_i}^{x_{i+1}}f(x) &amp;= h_if(x_i) + \frac{h_i^2}{2}f^{\prime}(x_i) + O(h^3)\nonumber \\
 &amp;= h_i\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h_i^3).
 \end{align}\]</div>
 <p>Considerando un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla del trapecio <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa90ac93-0c05-4b4d-8042-827012f2426c">
-<span class="eqno">(7.2)<a class="headerlink" href="#equation-fa90ac93-0c05-4b4d-8042-827012f2426c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-caf93525-200f-4b3e-9c14-98663c72fb98">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-caf93525-200f-4b3e-9c14-98663c72fb98" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \sum_{i = 0}^{n-1} h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^2),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(h = \frac{b -a}{n}\)</span></p>
@@ -651,14 +651,14 @@ Error absoluto 6.502e-02
 &amp;&amp;+ f(x_{i+1})\frac{(x - x_{i-1})(x - x_{i})}{(x_{i+1} - x_{i-1})(x_{i+1} -
 x_{i})},\end{eqnarray*}\]</div>
 <p>Al integrar el polinomio en el subintervalo <span class="math notranslate nohighlight">\(x\in [x_{i-1}, x_{i+1}]\)</span> determinamos la <strong>regla de Simpson 1/3</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f135f07-031a-41fa-b5ba-6a422a30a58d">
-<span class="eqno">(7.3)<a class="headerlink" href="#equation-7f135f07-031a-41fa-b5ba-6a422a30a58d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5abf8c48-a73d-4f26-bd17-eec4803a3417">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-5abf8c48-a73d-4f26-bd17-eec4803a3417" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_{x_{i-1}}^{x_{i+1}} f(x) dx = \frac{h}{3}\left[f(x_{i-1}) + 4f(x_i) + f(x_{i+1})\right] + O(h^5).
 \end{equation}\]</div>
 <p>Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es <span class="math notranslate nohighlight">\(O(h^5)\)</span>. La prueba de esto se deja como ejercicio.</p>
 <p>Para un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla de Simpson 1/3 <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6e0d187-77a7-4534-b876-8b084a813967">
-<span class="eqno">(7.4)<a class="headerlink" href="#equation-b6e0d187-77a7-4534-b876-8b084a813967" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a308a10b-1590-4b29-82b4-edf8efb6eb8c">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-a308a10b-1590-4b29-82b4-edf8efb6eb8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{i=1, i\  {\text{impar}}}^{n-1}f(x_i)\right)+2 \left(\sum_{i=2, i\  {\text{par}}}^{n-2}f(x_i)\right)+f(x_n)\right] + O(h^4).
 \end{equation}\]</div>
 <a class="reference internal image-reference" href="../_images/simpson_rule.png"><img alt="../_images/simpson_rule.png" class="align-center" src="../_images/simpson_rule.png" style="width: 400px;" /></a>
