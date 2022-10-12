@@ -24,5 +24,7 @@ parts:
   - caption: Apéndice
     numbered: false
     chapters:
-    - file: Repaso/Repaso_Parte1/Repaso_Parte1
-    - file: Repaso/Repaso_Parte2/Repaso_Parte2
+      - file: Apendice/Repaso/Intro_material_de_repaso
+        sections:
+        - file: Apendice/Repaso/Repaso_Parte1/Repaso_Parte1
+        - file: Apendice/Repaso/Repaso_Parte2/Repaso_Parte2

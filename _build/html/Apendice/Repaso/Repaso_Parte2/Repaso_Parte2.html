@@ -1,0 +1,934 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Repaso Parte 2 - Métodos numéricos basados en series de Taylor &#8212; MEC301 - Métodos Numéricos</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Repaso Parte 1 - Introducción a los métodos numéricos" href="../Repaso_Parte1/Repaso_Parte1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 1. Introducción a los métodos numéricos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../1-Aspectos_generales/1-Aspectos_generales.html">
+   1. Aspectos generales de programación y algoritmos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../2-Algebra_lineal/2-Algebra_lineal.html">
+   2. Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html">
+   3. Ajuste de curvas por mínimos cuadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../4-Interpolacion/4-Interpolacion.html">
+   4. Métodos de Interpolación
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../5-Taylor-series/5-Taylor-series.html">
+   5. Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../6-Root-finding/6-Root-finding.html">
+   6. Algortimos de búsqueda de raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../7-Integracion/7-Integracion.html">
+   7. Integración numérica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 3. Métodos numéricos para ecuaciones diferenciales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../8-Derivacion_numerica/8-Derivacion_numerica.html">
+   8. Derivación numérica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../Intro_material_de_repaso.html">
+   Material de repaso
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Repaso_Parte1/Repaso_Parte1.html">
+     Repaso Parte 1 -  Introducción a los métodos numéricos
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busqueda-de-raices">
+   Búsqueda de raíces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integracion-numerica">
+   Integración numérica
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caso-1-usando-scipy-integrate-trapz">
+     Caso 1. Usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.integrate.trapz
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caso-2-usando-scipy-integrate-quad">
+     Caso 2. Usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.integrate.quad
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Repaso Parte 2 -  Métodos numéricos basados en series de Taylor</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#busqueda-de-raices">
+   Búsqueda de raíces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integracion-numerica">
+   Integración numérica
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caso-1-usando-scipy-integrate-trapz">
+     Caso 1. Usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.integrate.trapz
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caso-2-usando-scipy-integrate-quad">
+     Caso 2. Usando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.integrate.quad
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
+<section class="tex2jax_ignore mathjax_ignore" id="repaso-parte-2-metodos-numericos-basados-en-series-de-taylor">
+<h1>Repaso Parte 2 -  Métodos numéricos basados en series de Taylor<a class="headerlink" href="#repaso-parte-2-metodos-numericos-basados-en-series-de-taylor" title="Permalink to this headline">#</a></h1>
+<p>Profesor: Francisco Ramírez Cuevas<br></p>
+<section id="busqueda-de-raices">
+<h2>Búsqueda de raíces<a class="headerlink" href="#busqueda-de-raices" title="Permalink to this headline">#</a></h2>
+<p>Consideremos el siguiente problema. Queremos resolver el siguiente sistema de ecuaciones</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+3 &amp;= \sqrt{1+x^2} + \sqrt{2+y} \\
+a &amp;= x+y
+\end{align*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(a\)</span> es un parámetro constante.</p>
+<p>Usaremos <code class="docutils literal notranslate"><span class="pre">scipy.optimize.fsolve</span></code> para resolver este sistema dado un valor <span class="math notranslate nohighlight">\(a = 1\)</span>.</p>
+<p>Primero, notemos que resolver el sistema es equivalente a encontrar las raices de la función vectorial:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F(x,y) = \begin{cases}
+\sqrt{1+x^2} + \sqrt{2+y} - 3 \\
+x+y - a
+\end{cases}
+\end{equation*}\]</div>
+<p>En el código llamaremos a esta función <code class="docutils literal notranslate"><span class="pre">find_xy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+
+<span class="k">def</span> <span class="nf">find_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">3</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span>
+    <span class="k">return</span> <span class="n">f</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">roots</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">find_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución es x = </span><span class="si">%.3f</span><span class="s1">, y = </span><span class="si">%.3f</span><span class="s1">: &#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">roots</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La solución es x = 0.556, y = 1.444: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos generar una función <code class="docutils literal notranslate"><span class="pre">F_root(a)</span></code> que, dado un valor <span class="math notranslate nohighlight">\(a\)</span>, determine <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> a partir del sistema de ecuaciones en <code class="docutils literal notranslate"><span class="pre">find_xy</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">F_root</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fsolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">find_xy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">F_root</span><span class="p">(</span><span class="n">ai</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Para a = </span><span class="si">%.1f</span><span class="s1">, la solución es x = </span><span class="si">%.3f</span><span class="s1">, y = </span><span class="si">%.3f</span><span class="s1">: &#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">ai</span><span class="p">,</span> <span class="n">roots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">roots</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Para a = 1.0, la solución es x = 1.435, y = -0.435: 
+Para a = 1.1, la solución es x = 1.343, y = -0.243: 
+Para a = 1.2, la solución es x = 1.257, y = -0.057: 
+Para a = 1.3, la solución es x = 1.173, y = 0.127: 
+Para a = 1.4, la solución es x = 1.092, y = 0.308: 
+Para a = 1.5, la solución es x = 1.012, y = 0.488: 
+Para a = 1.6, la solución es x = 0.931, y = 0.669: 
+Para a = 1.7, la solución es x = 0.848, y = 0.852: 
+Para a = 1.8, la solución es x = 0.761, y = 1.039: 
+Para a = 1.9, la solución es x = 0.667, y = 1.233: 
+Para a = 2.0, la solución es x = 0.556, y = 1.444: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este problema estamos interesados en la evolución de <span class="math notranslate nohighlight">\(y\)</span> con respecto a <span class="math notranslate nohighlight">\(a\)</span>. Analicemos el gráfico <span class="math notranslate nohighlight">\(a\)</span> vs <span class="math notranslate nohighlight">\(y\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot1
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># generamos un arreglo &quot;y&quot; vacío de tamaño a.shape</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_root</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># graficamos el resultado</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente    </span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;parámetro $a$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;valor de $y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/Repaso_Parte2_9_0.png" src="../../../_images/Repaso_Parte2_9_0.png" />
+</div>
+</div>
+<p>Supongamos ahora que queremos encontrar el cruce de la curva <span class="math notranslate nohighlight">\(y(a)\)</span> con respecto a otra curva <span class="math notranslate nohighlight">\(z(a)\)</span>. En el caso de la curva <span class="math notranslate nohighlight">\(z(a)\)</span>, solo contamos con datos tabulados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># datos tabulados de la curva &quot;ai&quot;</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">0.93659254</span><span class="p">,</span>  <span class="mf">1.21600475</span><span class="p">,</span>  <span class="mf">1.47406066</span><span class="p">,</span>  <span class="mf">1.6181766</span> <span class="p">,</span>  <span class="mf">1.79508299</span><span class="p">,</span>  <span class="mf">1.96052857</span><span class="p">])</span>
+<span class="n">zi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.04879138</span><span class="p">,</span>  <span class="mf">9.52771476</span><span class="p">,</span>  <span class="mf">7.76181831</span><span class="p">,</span>  <span class="mf">5.76146062</span><span class="p">,</span>  <span class="mf">1.74436301</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.19067304</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Grafiquemos <span class="math notranslate nohighlight">\(z(a)\)</span> junto a <span class="math notranslate nohighlight">\(y(a)\)</span> para poder estimar el punto donde se cruzan</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente    </span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">zi</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;ai,zi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;parámetro $a$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/Repaso_Parte2_13_0.png" src="../../../_images/Repaso_Parte2_13_0.png" />
+</div>
+</div>
+<p>Notamos que el cruce entre ambas curvas se encuentra en el intervalo <span class="math notranslate nohighlight">\(a\in[1.8,2.0]\)</span></p>
+<p>Para poder determinar el punto donde ambas curvas se cruzan, primero debemos generar una función tipo <em>callable</em> de los datos tabulados <code class="docutils literal notranslate"><span class="pre">ai</span></code> y <code class="docutils literal notranslate"><span class="pre">zi</span></code>. Usamos <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> para generar esta función:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">zi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora, usamos <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root_scalar</span></code> en el intervalo <span class="math notranslate nohighlight">\(a\in[1.8,2.0]\)</span> para determinar el punto de cruce de ambas curvas. Notar que esto es equivalente a encontrar la raíz de una función <span class="math notranslate nohighlight">\(g(a) = z(a) - y(a)\)</span>. Notar también que la función <span class="math notranslate nohighlight">\(y(a)\)</span> no está en la variable <code class="docutils literal notranslate"><span class="pre">y</span></code> sino que en la función <code class="docutils literal notranslate"><span class="pre">F_root(a)[1]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="n">z</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="n">F_root</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mf">1.8</span><span class="p">,</span><span class="mf">2.0</span><span class="p">])</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      converged: True
+           flag: &#39;converged&#39;
+ function_calls: 8
+     iterations: 7
+           root: 1.8176918393722712
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extraemos la raíz de la solución</span>
+<span class="n">a_sol</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">root</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El cruce de la curva y con z(a) es:&#39;</span><span class="p">,</span> <span class="n">a_sol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El cruce de la curva y con z(a) es: 1.8176918393722712
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente    </span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">zi</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">z</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="s1">&#39;:r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$z(a)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">a_sol</span><span class="p">,</span><span class="n">F_root</span><span class="p">(</span><span class="n">a_sol</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;ok&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;solución&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;parámetro $a$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/Repaso_Parte2_20_0.png" src="../../../_images/Repaso_Parte2_20_0.png" />
+</div>
+</div>
+</section>
+<section id="integracion-numerica">
+<h2>Integración numérica<a class="headerlink" href="#integracion-numerica" title="Permalink to this headline">#</a></h2>
+<p>Supongamos que queremos calcular la integral:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\int_0^\infty e^{-3/x^4} f(x) dx
+\end{equation*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(f(x)\)</span> es una función tabulada, tal que:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\lim_{x\rightarrow \pm\infty} f(x) = 0
+\end{equation*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.20277963</span><span class="p">,</span> <span class="mf">0.26630972</span><span class="p">,</span> <span class="mf">0.34247914</span><span class="p">,</span> <span class="mf">0.39667691</span><span class="p">,</span> <span class="mf">0.46547919</span><span class="p">,</span>
+               <span class="mf">0.52478203</span><span class="p">,</span> <span class="mf">0.59343878</span><span class="p">,</span> <span class="mf">0.65994828</span><span class="p">,</span> <span class="mf">0.73700775</span><span class="p">,</span> <span class="mf">0.80918162</span><span class="p">])</span>
+<span class="n">fi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.83447556e-05</span><span class="p">,</span> <span class="mf">1.18014606e-03</span><span class="p">,</span> <span class="mf">4.67326857e-02</span><span class="p">,</span> <span class="mf">2.67674707e-01</span><span class="p">,</span> <span class="mf">8.63188848e-01</span><span class="p">,</span> 
+               <span class="mf">9.26982234e-01</span><span class="p">,</span> <span class="mf">3.40317177e-01</span><span class="p">,</span> <span class="mf">4.24915073e-02</span><span class="p">,</span> <span class="mf">9.73222303e-04</span><span class="p">,</span> <span class="mf">7.49226848e-06</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">fi</span><span class="p">,</span><span class="s1">&#39;o:k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;xi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;fi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;fi&#39;)
+</pre></div>
+</div>
+<img alt="../../../_images/Repaso_Parte2_24_1.png" src="../../../_images/Repaso_Parte2_24_1.png" />
+</div>
+</div>
+<p>Para calcular esta integral tenemos dos altenativas.</p>
+<ol class="simple">
+<li><p>Generar un arreglo <code class="docutils literal notranslate"><span class="pre">yi</span></code> evaluando <span class="math notranslate nohighlight">\(e^{-3/x^4}\)</span> en los datos tabulados <code class="docutils literal notranslate"><span class="pre">xi</span></code>, y luego integrar <code class="docutils literal notranslate"><span class="pre">yi*fi</span></code> usando <code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapz</span></code></p></li>
+<li><p>Generar una función <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> a partir de los datos tabulados <code class="docutils literal notranslate"><span class="pre">xi</span></code> e <code class="docutils literal notranslate"><span class="pre">fi</span></code> y luego integrar <span class="math notranslate nohighlight">\(e^{-3/x^4}f(x)\)</span> usando <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code></p></li>
+</ol>
+<section id="caso-1-usando-scipy-integrate-trapz">
+<h3>Caso 1. Usando <code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapz</span></code><a class="headerlink" href="#caso-1-usando-scipy-integrate-trapz" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">trapz</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">/</span><span class="n">xi</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">int_trapz</span> <span class="o">=</span> <span class="n">trapz</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span><span class="n">xi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Íntegral por regla del trapecio: &#39;</span><span class="p">,</span> <span class="n">int_trapz</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Íntegral por regla del trapecio:  3.586601941404207e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evidentemente, aunque el método es sencillo, la precisión de este método está condicionada por los valores tabulados <code class="docutils literal notranslate"><span class="pre">xi</span></code>. Así, no tenemos control del error</p>
+</section>
+<section id="caso-2-usando-scipy-integrate-quad">
+<h3>Caso 2. Usando <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code><a class="headerlink" href="#caso-2-usando-scipy-integrate-quad" title="Permalink to this headline">#</a></h3>
+<p>Para esto, primero debemos generar una función (<em>callable</em>) a partir de los datos <code class="docutils literal notranslate"><span class="pre">xi</span></code> y <code class="docutils literal notranslate"><span class="pre">fi</span></code>. Usaremos <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> para esto.</p>
+<p>Debido a que la función tiende a 0 en los extremos, usaremos una condición <code class="docutils literal notranslate"><span class="pre">bc_type='natural'</span></code>, es decir: <span class="math notranslate nohighlight">\(f'(x_0) = f'(x_n) = 0\)</span>. Además, dado que la integral comprende el intervalo <span class="math notranslate nohighlight">\(x\in[0,\infty)\)</span>, habilitaremos la extrapolación en <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">fi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">,</span><span class="n">extrapolate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Grafiquemos nuestra función en el intervalo <span class="math notranslate nohighlight">\(x\in[0,1.5]\)</span> para asegurarnos que se comporte de acuerdo a lo esperado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente    </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">fi</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/Repaso_Parte2_33_0.png" src="../../../_images/Repaso_Parte2_33_0.png" />
+</div>
+</div>
+<p>Vemos que nuestra función tiene un comportamiento no adecuado para valores extrapolados.</p>
+<p>Para este caso en particular, lo recomendable es condicionar los valores extrapolados a un valor conocido. Sabemos que <span class="math notranslate nohighlight">\(f(x) \rightarrow 0\)</span> para valores extremos. Así, queremos que nuestra función sea cero fuera de un intervalo acotado de <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>Si observamos los datos tabulados, notamos que en los extremos <code class="docutils literal notranslate"><span class="pre">fi[0]</span></code> y <code class="docutils literal notranslate"><span class="pre">fi[-1]</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">1E-4</span></code>. Por otro lado, de la gráfica anterior, notamos que <span class="math notranslate nohighlight">\(\max[f(x)]= 1\)</span>. Así, tomaremos los extremos <code class="docutils literal notranslate"><span class="pre">x[0]</span> <span class="pre">=</span> <span class="pre">0.80918162</span></code> y <code class="docutils literal notranslate"><span class="pre">x[-1]</span> <span class="pre">=</span> <span class="pre">0.2027796</span></code> como límites para acortar nuestra función.</p>
+<p>Dicho de otra forma, queremos que:</p>
+<p>si <span class="math notranslate nohighlight">\(x&gt;\mathrm{x[0]}\)</span> o <span class="math notranslate nohighlight">\(x&lt;\mathrm{x[-1]}\)</span> <span class="math notranslate nohighlight">\(\Rightarrow f(x) = 0\)</span></p>
+<p>Para esto utilizamos los condicionales <code class="docutils literal notranslate"><span class="pre">&gt;,</span> <span class="pre">&lt;,</span> <span class="pre">==</span></code>.</p>
+<p>Por ejemplo, la condición <code class="docutils literal notranslate"><span class="pre">(xi[0]&lt;</span> <span class="pre">x)</span></code> entrega <code class="docutils literal notranslate"><span class="pre">True</span></code> si <code class="docutils literal notranslate"><span class="pre">x</span></code> es mayor que <code class="docutils literal notranslate"><span class="pre">x[0]</span></code> y <code class="docutils literal notranslate"><span class="pre">False</span></code> de otra forma. Esto se interpreta como 0 o 1 al multiplicar por otro parámetro.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_test = &#39;</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_test &gt; x[0] = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(x[0] &lt; x_test)*x_test =&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x_test</span><span class="p">)</span><span class="o">*</span><span class="n">x_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x_test =  [-1.   0.   0.1  0.2  0.3]
+x_test &gt; x[0] =  [False False  True  True  True]
+(x[0] &lt; x_test)*x_test = [-0.   0.   0.1  0.2  0.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Así, ejecutar <code class="docutils literal notranslate"><span class="pre">(xi[0]&lt;</span> <span class="pre">x)*(x</span> <span class="pre">&lt;</span> <span class="pre">xi[-1])*f(x)</span></code> es equivalente a:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f(x) = \begin{cases}
+\mathrm{CubicSpline(xi,fi)} &amp; \mathrm{si}~\mathrm{x[0]} &lt;x &lt;\mathrm{x[-1]}\\
+0 &amp; \mathrm{otros~casos}
+\end{cases}
+\end{equation*}\]</div>
+<p>Utilicemos esto para generar una versión mejorada de la función <span class="math notranslate nohighlight">\(f(x)\)</span>. Llamaremos a esta función <code class="docutils literal notranslate"><span class="pre">f_fixed</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># limitamos CubicSpline al intervalo  x[0] &lt; x &lt; x[-1]</span>
+<span class="c1"># fuera de este intervalo, la función es 0</span>
+<span class="n">f_fixed</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span> <span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">xi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos nuestra función para comprobar nuestro resultado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot2
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente    </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;:k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) de CubicSpline&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f_fixed</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) modificada&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">fi</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/Repaso_Parte2_46_0.png" src="../../../_images/Repaso_Parte2_46_0.png" />
+</div>
+</div>
+<p>Ya con nuestra función <span class="math notranslate nohighlight">\(f(x)\)</span> podemos proceder a integrar con <code class="docutils literal notranslate"><span class="pre">quad</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="c1"># generamos una función para el integrando e^(-3/x^4)*f(x)</span>
+<span class="n">f_integrate</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">f_fixed</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">int_out</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f_integrate</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;el valor de la integral es:&#39;</span><span class="p">,</span> <span class="n">int_out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El error absoluto es:&#39;</span><span class="p">,</span> <span class="n">int_out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>el valor de la integral es: 4.796062364850844e-09
+El error absoluto es: 7.695272368377512e-09
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notamos que el valor de la integral es del mismo orden que el error absoluto. En otras palabras, el error relativo <span class="math notranslate nohighlight">\(\frac{|x_\mathrm{exact} - x|}{|x_\mathrm{exact}|}\)</span> es alto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error relativo: </span><span class="si">%.3f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">int_out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">int_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error relativo: 160.450 %
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto sucede debido a que, por defecto, el error absoluto de <code class="docutils literal notranslate"><span class="pre">quad</span></code> es <code class="docutils literal notranslate"><span class="pre">epsabs=1.49e-08</span></code> que es mayor al valor de la integral.</p>
+<p>Para ajustar esto debemos condicionar el error absoluto con la instrucción <code class="docutils literal notranslate"><span class="pre">epsabs</span></code>. Consideramos un error absoluto de <span class="math notranslate nohighlight">\(1\times10^{-20}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">int_out</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f_integrate</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">epsabs</span><span class="o">=</span><span class="mf">1E-20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;el valor de la integral es:&#39;</span><span class="p">,</span> <span class="n">int_out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El error absoluto es:&#39;</span><span class="p">,</span> <span class="n">int_out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error relativo: </span><span class="si">%.3e</span><span class="s1"> </span><span class="si">%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">int_out</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">int_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>el valor de la integral es: 1.817223426069607e-08
+El error absoluto es: 9.025210981919136e-17
+Error relativo: 4.966e-07 %
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Apendice/Repaso/Repaso_Parte2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Repaso_Parte1/Repaso_Parte1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Repaso Parte 1 -  Introducción a los métodos numéricos</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Francisco V. Ramirez-Cuevas<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
