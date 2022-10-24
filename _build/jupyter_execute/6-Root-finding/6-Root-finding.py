@@ -420,6 +420,13 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # La función ```fsolve``` requiere, como mínimo, la función vectorial y los valores iniciales.
 
+# Por ejemplo, queremos resolver el sistema
+# 
+# \begin{align*}
+# x\cos(y)=4 \\
+# xy-y=5
+# \end{align*}
+
 # In[12]:
 
 
@@ -430,6 +437,12 @@ def func(x):
             x[1] * x[0] - x[1] - 5]
 root = fsolve(func, [1, 1])
 print('la solución es: ', root)
+
+
+# In[13]:
+
+
+func(root)
 
 
 # También podemos definir el error absoluto mediante la instrucción ```xtol``` (por defecto, ```xtol=1.49012e-08```).

@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Material de repaso" href="../Apendice/Repaso/Intro_material_de_repaso.html" />
+    <link rel="next" title="9. Ecuaciones Diferenciales Ordinarias - Problema de valor inicial" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html" />
     <link rel="prev" title="7. Integración numérica" href="../7-Integracion/7-Integracion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -168,6 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    8. Derivación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html">
+   9. Ecuaciones Diferenciales Ordinarias - Problema de valor inicial
   </a>
  </li>
 </ul>
@@ -506,7 +511,7 @@ Fecha: 26 de Septiembre 2022</p>
 <p>Matemáticamente, representamos la derivada <span class="math notranslate nohighlight">\(f'(x)\)</span> de una función <span class="math notranslate nohighlight">\(f(x)\)</span> en el punto <span class="math notranslate nohighlight">\(x=a\)</span> como:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f(x) = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{h}
+\frac{df}{dx} = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{h}
 \end{equation*}\]</div>
 <p>Gráficamente, para <span class="math notranslate nohighlight">\(a = x_i\)</span> entre dos valores igualmente espaciados <span class="math notranslate nohighlight">\(x_{i-1}\)</span> y <span class="math notranslate nohighlight">\(x_{i+1}\)</span>, con <span class="math notranslate nohighlight">\(h = x_i - x_{i-1}\)</span>, tenemos tres alternativas para aproximar <span class="math notranslate nohighlight">\(f'(x_i)\)</span>:</p>
 <a class="reference internal image-reference" href="../_images/first_order_derivative.png"><img alt="../_images/first_order_derivative.png" class="align-center" src="../_images/first_order_derivative.png" style="width: 800px;" /></a>
@@ -524,8 +529,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1921b25e-0188-4a89-a10f-46be25843064">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-1921b25e-0188-4a89-a10f-46be25843064" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc5840fa-ea19-4eeb-9095-9c253985ac61">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-fc5840fa-ea19-4eeb-9095-9c253985ac61" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -536,8 +541,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-554fb751-2862-4c20-b3e8-114493be5cb2">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-554fb751-2862-4c20-b3e8-114493be5cb2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab220c91-8053-4259-9824-26e7bbe369f2">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-ab220c91-8053-4259-9824-26e7bbe369f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -546,8 +551,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d315edb-75c4-4a85-8c52-56ab2de4fd83">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-6d315edb-75c4-4a85-8c52-56ab2de4fd83" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f175dc5b-e7f7-47c3-8cb4-a531e626ca4d">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-f175dc5b-e7f7-47c3-8cb4-a531e626ca4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -592,7 +597,8 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">xi</span> <span class="o">=</span> <span class="mf">0.5</span>                          <span class="c1"># valor central</span>
-<span class="n">h_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># arreglo de h desde 10^-5 a 10^0</span>
+<span class="n">h_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># arreglo de h desde 10^-5 a 10^0</span>
+<span class="c1">#h_array = np.linspace(0.00001,0.1,20)</span>
 
 <span class="c1"># Creamos un arreglo de ceros para cada error. Este arreglo será </span>
 <span class="c1"># completado en un loop para cada valor de &quot;h&quot;</span>
@@ -626,8 +632,8 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_bw</span><span class="p">,</span><span class="s1">&#39;ob&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_fw</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_ct</span><span class="p">,</span><span class="s1">&#39;ok&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;central&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_fw</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span> <span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_ct</span><span class="p">,</span><span class="s1">&#39;ok&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;central&#39;</span> <span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="c1"># analizamos la pendiente del logaritmo de cada aproxmación</span>
 <span class="n">abw</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">h_array</span><span class="p">),</span> <span class="n">log</span><span class="p">(</span><span class="n">error_bw</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
@@ -673,7 +679,7 @@ f(x_{j-1}) + f(x_{j+1}) = 2f(x_j) + h^2f''(x_j) + \frac{h^4f''''(x_j)}{24} + \cd
 <p>Despejando para <span class="math notranslate nohighlight">\(f''(x_i)\)</span>, obtenemos la fórmula para la segunda derivada por diferencia central:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f''(x_j) \approx \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
+f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 \end{equation*}\]</div>
 <p>Podemos extender nuestro resultado para determinar fórmulas de diferencas finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:</p>
 <p><strong>Diferencia hacia adelante</strong></p>
@@ -768,8 +774,8 @@ los dos valores más cercanos en un arreglo.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">dfdx</span><span class="p">,</span><span class="s1">&#39;ob&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="p">,</span><span class="n">dfdx</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">dfdx</span><span class="p">,</span><span class="s1">&#39;ob&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">,</span><span class="n">dfdx</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;:k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$\cos (x)$&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -967,10 +973,10 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
             <p class="prev-next-title"><span class="section-number">7. </span>Integración numérica</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../Apendice/Repaso/Intro_material_de_repaso.html" title="next page">
+    <a class='right-next' id="next-link" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Material de repaso</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Ecuaciones Diferenciales Ordinarias - Problema de valor inicial</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

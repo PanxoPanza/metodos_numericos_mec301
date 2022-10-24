@@ -22,7 +22,7 @@
 # Matemáticamente, representamos la derivada $f'(x)$ de una función $f(x)$ en el punto $x=a$ como: 
 # 
 # \begin{equation*}
-# f(x) = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{h}
+# \frac{df}{dx} = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{h}
 # \end{equation*}
 
 # Gráficamente, para $a = x_i$ entre dos valores igualmente espaciados $x_{i-1}$ y $x_{i+1}$, con $h = x_i - x_{i-1}$, tenemos tres alternativas para aproximar $f'(x_i)$:
@@ -121,7 +121,8 @@ print("f'(5) = %-5f; Error = %.5f (Derivada central)"        % (df_ct, abs(df_ex
 import numpy as np
 
 xi = 0.5                          # valor central
-h_array = np.logspace(-5,-0,20)  # arreglo de h desde 10^-5 a 10^0
+h_array = np.logspace(-5,0,20)  # arreglo de h desde 10^-5 a 10^0
+#h_array = np.linspace(0.00001,0.1,20)
 
 # Creamos un arreglo de ceros para cada error. Este arreglo será 
 # completado en un loop para cada valor de "h"
@@ -146,7 +147,7 @@ for j in range(len(h_array)):
 # In[3]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nfrom numpy import log, polyfit\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 18}) # Tamaño de fuente\n\nplt.plot(h_array,error_bw,\'ob\',label=\'backward\',alpha=0.5)\nplt.plot(h_array,error_fw,\'or\',label=\'forward\',alpha=0.5)\nplt.plot(h_array,error_ct,\'ok\',label=\'central\',alpha=0.5)\n\n# analizamos la pendiente del logaritmo de cada aproxmación\nabw = polyfit(log(h_array), log(error_bw),1)\nafw = polyfit(log(h_array), log(error_fw),1)\nact = polyfit(log(h_array), log(error_ct),1)\n\n# imprimimos el valor de la pendiente en el gráfico\nplt.text(1E-4,1E-5,\'$\\sim h^{%.3f}$\' % abw[0], color=\'b\')\nplt.text(1E-4,1E-3,\'$\\sim h^{%.3f}$\' % afw[0], color=\'r\')\nplt.text(1E-4,1E-9,\'$\\sim h^{%.3f}$\' % act[0], color=\'k\')\n\n# graficamos en escala logarítmica para visualizar la pendiente\nplt.xscale(\'log\')\nplt.yscale(\'log\')\nplt.xlabel(\'Espaciamiento, $h$\')\nplt.ylabel("Error absoluto")\nplt.title("Aproximación de $f\'(x)$")\nplt.legend(frameon=False, loc=\'lower right\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nfrom numpy import log, polyfit\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 18}) # Tamaño de fuente\n\nplt.plot(h_array,error_bw,\'ob\',label=\'backward\',alpha=0.5)\nplt.plot(h_array,error_fw,\'or\',label=\'forward\' ,alpha=0.5)\nplt.plot(h_array,error_ct,\'ok\',label=\'central\' ,alpha=0.5)\n\n# analizamos la pendiente del logaritmo de cada aproxmación\nabw = polyfit(log(h_array), log(error_bw),1)\nafw = polyfit(log(h_array), log(error_fw),1)\nact = polyfit(log(h_array), log(error_ct),1)\n\n# imprimimos el valor de la pendiente en el gráfico\nplt.text(1E-4,1E-5,\'$\\sim h^{%.3f}$\' % abw[0], color=\'b\')\nplt.text(1E-4,1E-3,\'$\\sim h^{%.3f}$\' % afw[0], color=\'r\')\nplt.text(1E-4,1E-9,\'$\\sim h^{%.3f}$\' % act[0], color=\'k\')\n\n# graficamos en escala logarítmica para visualizar la pendiente\nplt.xscale(\'log\')\nplt.yscale(\'log\')\nplt.xlabel(\'Espaciamiento, $h$\')\nplt.ylabel("Error absoluto")\nplt.title("Aproximación de $f\'(x)$")\nplt.legend(frameon=False, loc=\'lower right\')\nplt.show()\n')
 
 
 # In[4]:
@@ -168,7 +169,7 @@ showplot1()
 # Despejando para $f''(x_i)$, obtenemos la fórmula para la segunda derivada por diferencia central:
 # 
 # \begin{equation*}
-# f''(x_j) \approx \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
+# f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 # \end{equation*}
 
 # Podemos extender nuestro resultado para determinar fórmulas de diferencas finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:
@@ -249,7 +250,7 @@ showplot2()
 # In[8]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot3', '# Evaluamos numpy.diff\ndfdx = np.diff(yi)/np.diff(xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi[:-1],dfdx,\'ob\',label=\'backward\')\nplt.plot(xi[1:] ,dfdx,\'or\',label=\'forward\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot3', '# Evaluamos numpy.diff\ndfdx = np.diff(yi)/np.diff(xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi[1:],dfdx,\'ob\',label=\'backward\')\nplt.plot(xi[:-1] ,dfdx,\'or\',label=\'forward\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()\n')
 
 
 # In[9]:
