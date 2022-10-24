@@ -170,6 +170,11 @@ const thebe_selector_output = ".output, .cell_output"
    8. Derivación numérica
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html">
+   9. Ecuaciones Diferenciales Ordinarias - Problema de valor inicial
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -708,8 +713,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34115cf4-c6f5-43b5-b013-a45ebc555327">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-34115cf4-c6f5-43b5-b013-a45ebc555327" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-26ba7dea-d550-40b7-b690-c31367a23a31">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-26ba7dea-d550-40b7-b690-c31367a23a31" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -840,13 +845,13 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99f9760d-6258-4567-a1fa-3107584aab1b">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-99f9760d-6258-4567-a1fa-3107584aab1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e0fd0d96-ed92-48e1-b7f8-bc1cc78ebdce">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-e0fd0d96-ed92-48e1-b7f8-bc1cc78ebdce" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a57bc2ce-82ef-44bb-8dd1-7d62c0af1df2">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-a57bc2ce-82ef-44bb-8dd1-7d62c0af1df2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34e14ba5-08fd-4fa7-b33f-3de95b876515">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-34e14ba5-08fd-4fa7-b33f-3de95b876515" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
