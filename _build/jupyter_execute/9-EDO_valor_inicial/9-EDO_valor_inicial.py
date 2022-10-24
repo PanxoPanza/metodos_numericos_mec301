@@ -411,7 +411,7 @@ plt.show()
 # 
 # Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden
 
-# Esto permite una mejor presición, ya que el error de truncamiento local se reduce.
+# Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.
 
 # Existen muchas variaciones, todas asociadas a una aproximación de la forma:
 # 
