@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # <font size="6">MEC301 - Métodos Numéricos</font>
-# # Ecuaciones Diferenciales Ordinarias - Problema de valor inicial
+# # Ecuaciones Diferenciales Ordinarias con valor inicial
 # <br><br><br><br>
 # Profesor: Francisco Ramírez Cuevas<br>
 # Fecha: 24 de Octubre 2022
@@ -150,7 +150,7 @@
 # \end{equation}
 # 
 # sujeta a las condiciones inciales:
-# $t = 0, f(0), f^{(1)}(0), f^{(2)}(0),\ldots, f^{(n-1)}(0)$
+# $t = 0, f(0), f^{(1)}(0), f^{(2)}(0),\ldots, f^{(n)}(0)$
 
 # Por ejemplo, en el caso de la ecuación del péndulo:
 # 
@@ -247,6 +247,7 @@ y[0] = y0
 
 for i in range(len(t)-1):
     y[i+1] = y[i] + h*F(t[i], y[i])
+    
 
 
 # In[2]:
@@ -276,9 +277,9 @@ plt.show()
 # 
 # - **Error de truncamiento global:** Error por acumulación de errores de truncamiento local a lo largo de toda la iteración.
 
-# ### Estabilidad y presición
+# ### Estabilidad y precisión
 
-# Asociamos el término **presición** con el error de truncamiento del método. 
+# Asociamos el término **precisión** con el error de truncamiento del método. 
 
 # Otro término relevante en los métodos de solución de EDOs es la **estabilidad.** Esta característica dice relación con el tipo de EDO y método utilizado para resolverla.
 
@@ -298,9 +299,9 @@ plt.show()
 import numpy as np
 
 # Define parameters
-h = 0.1                       # paso de tiempo
+h = 0.09                       # paso de tiempo
 t = np.arange(0, 1+h, h)      # lista de tiempos 
-
+ 
 # Ecuación diferencial 
 F = lambda t, y: -20*y        # Ecuación gobernante dy = F(t,y)
 y0 = 0.5                      # Condición inicial
@@ -359,7 +360,7 @@ import numpy as np
 from scipy.optimize import fsolve
 
 # Define parameters
-h = 0.1                       # paso de tiempo
+h = 0.05                       # paso de tiempo
 t = np.arange(0, 1+h, h)      # lista de tiempos 
 
 # Ecuación diferencial 
@@ -400,7 +401,7 @@ plt.show()
 
 # En efecto, para ODEs de la forma $\frac{dy}{dt} = -ay$, el métodod de Euler implícito es ***incondicionalmente estable***.
 
-# En resumen, en la solución de una ODE debemos considerar la precisión y la estabilidad del problema. Si bien, **la presición está exclusivamente asociada al método, la estabilidad depende del método y la EDO a resolver.**
+# En resumen, en la solución de una ODE debemos considerar la precisión y la estabilidad del problema. Si bien, **la precisión está exclusivamente asociada al método, la estabilidad depende del método y la EDO a resolver.**
 
 # En el ejemplo anterior fue posible cuantificar las condiciones de estabilidad debido a que la EDO era del tipo lineal. **En general, no siempre es posible acotar la inestabilidad de forma analítica, especialmente para EDOs no lineales.**
 
@@ -562,7 +563,7 @@ plt.show()
 
 # ## Solución de EDOs en python (``scipy.integrate.solve_ivp``)
 
-# En python, la función `solve_ivp` de la librería `scipy.integrate` permite resolver sismteas de EDOs con valor inicial.
+# En python, la función `solve_ivp` de la librería `scipy.integrate` permite resolver sistemas de EDOs con valor inicial.
 
 # Como argumentos mínimos de entrada, la función requiere:
 # ```python
