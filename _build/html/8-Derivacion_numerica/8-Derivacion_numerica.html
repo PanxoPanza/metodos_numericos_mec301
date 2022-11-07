@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Ecuaciones Diferenciales Ordinarias - Problema de valor inicial" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html" />
+    <link rel="next" title="9. Ecuaciones Diferenciales Ordinarias con valor inicial" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html" />
     <link rel="prev" title="7. Integración numérica" href="../7-Integracion/7-Integracion.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -172,7 +172,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html">
-   9. Ecuaciones Diferenciales Ordinarias - Problema de valor inicial
+   9. Ecuaciones Diferenciales Ordinarias con valor inicial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">
+   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
   </a>
  </li>
 </ul>
@@ -529,8 +534,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fc5840fa-ea19-4eeb-9095-9c253985ac61">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-fc5840fa-ea19-4eeb-9095-9c253985ac61" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a813fbcb-00e1-45e4-833c-a7884c28cfc1">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-a813fbcb-00e1-45e4-833c-a7884c28cfc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -541,8 +546,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab220c91-8053-4259-9824-26e7bbe369f2">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-ab220c91-8053-4259-9824-26e7bbe369f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e8fbd16-0863-4d26-91c5-43f6367fd507">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-7e8fbd16-0863-4d26-91c5-43f6367fd507" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -551,8 +556,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f175dc5b-e7f7-47c3-8cb4-a531e626ca4d">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-f175dc5b-e7f7-47c3-8cb4-a531e626ca4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcb315cb-c03c-409f-bb0b-d1d9e20c1041">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-dcb315cb-c03c-409f-bb0b-d1d9e20c1041" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -976,7 +981,7 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
     <a class='right-next' id="next-link" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Ecuaciones Diferenciales Ordinarias - Problema de valor inicial</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Ecuaciones Diferenciales Ordinarias con valor inicial</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
