@@ -705,8 +705,5 @@ showplot()
 # - Chapra S., Canale R. **Capítulo 26: Métodos rígidos y de paso múltiple** en *Métodos Numéricos para Ingenieros*, 6ta Ed., McGraw Hill, 2011
 # 
 # 
-# - Chapra S., Canale R. **Capítulo 26: Métodos rígidos y de paso múltiple** en *Métodos Numéricos para Ingenieros*, 6ta Ed., McGraw Hill, 2011
-# 
-# 
 # - Williams H. P. **Chapter 17: Integration of Ordinary Differential Equations** in "Numerical Recipes" 3rd Ed, Cambridge University Press, 2007
 # 
