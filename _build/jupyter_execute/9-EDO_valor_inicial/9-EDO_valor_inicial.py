@@ -36,7 +36,7 @@
 # En este caso la EDO se transforma a una ecuación del tipo lineal:
 # 
 # \begin{equation}
-# ml\frac{d^2\Theta(t)}{dt^2} = -mg \Theta(t) -\kappa \dot{\Theta}(t) 
+# ml\frac{d^2\Theta(t)}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 # \end{equation}
 
 # En general, las EDO lineales tiene solución analítica.
@@ -158,14 +158,14 @@
 # \frac{d^2}{dt^2}\Theta(t) = F(t,\Theta, \dot{\Theta}) 
 # \end{equation*}
 # 
-# donde $ F(t,\Theta, \dot{\Theta})  = - \frac{\kappa}{mg}\dot{\Theta} - \frac{g}{l}
-# \sin \Theta$
+# donde $ F(t,\Theta, \dot{\Theta})  = - \frac{g}{l}\sin \Theta - \frac{\kappa}{ml}\dot{\Theta}
+# $
 
 # Convenientemente, podemos **reducir esta ecuación a un sistema EDO de primer orden**:
 # 
 # \begin{align*}
 # \frac{d}{dt}\Theta(t) &=F_1(t,\Theta, \dot{\Theta})= \dot{\Theta} \\
-# \frac{d}{dt}\dot{\Theta}(t) &= F_2(t,\Theta, \dot{\Theta})  - \frac{\kappa}{ml}\dot{\Theta}- \frac{g}{l}\sin \Theta
+# \frac{d}{dt}\dot{\Theta}(t) &= F_2(t,\Theta, \dot{\Theta})  = - \frac{g}{l}\sin \Theta - \frac{\kappa}{ml}\dot{\Theta}
 # \end{align*}
 
 # En conclución, **siempre podemos reducir una EDO a un problema de la forma**:
@@ -621,7 +621,7 @@ plt.show()
 # 
 # \begin{align*}
 # \frac{d}{dt}\Theta(t) &= \dot{\Theta} \\
-# \frac{d}{dt}\dot{\Theta}(t) &=  - \frac{\kappa}{ml}\dot{\Theta}- \frac{g}{l}\sin \Theta
+# \frac{d}{dt}\dot{\Theta}(t) &= - \frac{g}{l}\sin \Theta - \frac{\kappa}{ml}\dot{\Theta}
 # \end{align*}
 # 
 # con $\vec{y}(0) = \{\Theta_0, 0\}$
@@ -645,7 +645,7 @@ def F(t,y):
     
     f = np.zeros(2)
     f[0] = y[1]
-    f[1] = - K/(m*l)*y[1] - g/l*np.sin(y[0])
+    f[1] = - g/l*np.sin(y[0]) - K/(m*l)*y[1]
     return f
 
 # Condicion inicial

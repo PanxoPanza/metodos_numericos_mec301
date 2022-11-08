@@ -186,7 +186,7 @@ plt.show()
 # In[3]:
 
 
-from scipy.optimize import fsolve
+# from scipy.optimize import fsolve
 
 # Declaramos la función objetivo, f(za)
 def fobjective(za):
@@ -195,7 +195,7 @@ def fobjective(za):
     return T[-1] - Tb # retornamos T(x = L) - Tb
 
 # Buscamos la raiz de f(za) - Tb
-za_sol = fsolve(fobjective, x0 = -45)
+za_sol = fsolve(fobjective, x0 = -40)
 print('El valor de za es: %.3f K/m' % za_sol)
 
 
@@ -233,7 +233,7 @@ plt.show()
 
 # Revisemos esto en un código para $h^* = 0.005$ m$^{-1}$
 
-# In[5]:
+# In[26]:
 
 
 from scipy.optimize import fsolve
@@ -376,7 +376,7 @@ for i in range(N):
 
 
 # Discretización del dominio "x"
-x = np.linspace(0,10,N)
+x = np.linspace(0,L,N)
 
 # Resolvemos el sistema
 T = np.linalg.solve(A,b)

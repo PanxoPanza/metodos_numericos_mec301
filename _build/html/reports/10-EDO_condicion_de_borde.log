@@ -1,0 +1,43 @@
+Traceback (most recent call last):
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/panxopanza/programs/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# from scipy.optimize import fsolve
+
+# Declaramos la función objetivo, f(za)
+def fobjective(za):
+    sol = solve_ivp(F,t_span = [0,L], y0 = [Ta, za])
+    T = sol.y[0]      # distribución de temperaturas en la barra
+    return T[-1] - Tb # retornamos T(x = L) - Tb
+
+# Buscamos la raiz de f(za) - Tb
+za_sol = fsolve(fobjective, x0 = -40)
+print('El valor de za es: %.3f K/m' % za_sol)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/tmp/ipykernel_332/3977799970.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0;34m[0m[0m
+[1;32m      9[0m [0;31m# Buscamos la raiz de f(za) - Tb[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 10[0;31m [0mza_sol[0m [0;34m=[0m [0mfsolve[0m[0;34m([0m[0mfobjective[0m[0;34m,[0m [0mx0[0m [0;34m=[0m [0;34m-[0m[0;36m40[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     11[0m [0mprint[0m[0;34m([0m[0;34m'El valor de za es: %.3f K/m'[0m [0;34m%[0m [0mza_sol[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'fsolve' is not defined
+NameError: name 'fsolve' is not defined
+
