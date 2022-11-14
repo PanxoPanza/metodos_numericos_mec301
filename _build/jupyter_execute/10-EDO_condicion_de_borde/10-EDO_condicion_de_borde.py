@@ -186,7 +186,7 @@ plt.show()
 # In[3]:
 
 
-# from scipy.optimize import fsolve
+from scipy.optimize import fsolve
 
 # Declaramos la función objetivo, f(za)
 def fobjective(za):
@@ -233,7 +233,7 @@ plt.show()
 
 # Revisemos esto en un código para $h^* = 0.005$ m$^{-1}$
 
-# In[26]:
+# In[5]:
 
 
 from scipy.optimize import fsolve

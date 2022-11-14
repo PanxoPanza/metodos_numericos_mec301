@@ -23,6 +23,7 @@ parts:
     - file: 8-Derivacion_numerica/8-Derivacion_numerica
     - file: 9-EDO_valor_inicial/9-EDO_valor_inicial
     - file: 10-EDO_condicion_de_borde/10-EDO_condicion_de_borde
+    - file: 11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP
   - caption: Apéndice
     numbered: false
     chapters:

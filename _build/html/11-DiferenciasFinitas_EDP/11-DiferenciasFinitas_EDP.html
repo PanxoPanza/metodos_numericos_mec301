@@ -1,0 +1,1298 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>11. Diferencias finitas para ecuaciones diferenciales parciales &#8212; MEC301 - Métodos Numéricos</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Material de repaso" href="../Apendice/Repaso/Intro_material_de_repaso.html" />
+    <link rel="prev" title="10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 1. Introducción a los métodos numéricos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1-Aspectos_generales/1-Aspectos_generales.html">
+   1. Aspectos generales de programación y algoritmos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2-Algebra_lineal/2-Algebra_lineal.html">
+   2. Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../3-Ajuste_de_curvas/3-Ajuste_de_curvas.html">
+   3. Ajuste de curvas por mínimos cuadrados
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../4-Interpolacion/4-Interpolacion.html">
+   4. Métodos de Interpolación
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5-Taylor-series/5-Taylor-series.html">
+   5. Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../6-Root-finding/6-Root-finding.html">
+   6. Algortimos de búsqueda de raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../7-Integracion/7-Integracion.html">
+   7. Integración numérica
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 3. Métodos numéricos para ecuaciones diferenciales
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../8-Derivacion_numerica/8-Derivacion_numerica.html">
+   8. Derivación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../9-EDO_valor_inicial/9-EDO_valor_inicial.html">
+   9. Ecuaciones Diferenciales Ordinarias con valor inicial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">
+   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Diferencias finitas para ecuaciones diferenciales parciales
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Apendice/Repaso/Intro_material_de_repaso.html">
+   Material de repaso
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
+     Repaso Parte 1 -  Introducción a los métodos numéricos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
+     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   11.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">
+   11.2. Ecuaciones elipticas  (EDP estacionaria)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">
+     11.2.1. Solución EDP lineal estacionaria
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">
+     11.2.2. Solución EDP estacionaria en python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-secundarias">
+     11.2.3. Variables secundarias
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">
+   11.3. Ecuaciones parabólicas (EDP transciente)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edp-lineal-1d-transciente">
+     11.3.1. EDP lineal 1D transciente
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">
+     11.3.2. EDP no-lineal 1D transciente
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#edp-transcientes-en-2d">
+   11.4. EDP transcientes en 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   11.5. Referencias
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Diferencias finitas para ecuaciones diferenciales parciales</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   11.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">
+   11.2. Ecuaciones elipticas  (EDP estacionaria)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">
+     11.2.1. Solución EDP lineal estacionaria
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">
+     11.2.2. Solución EDP estacionaria en python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-secundarias">
+     11.2.3. Variables secundarias
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">
+   11.3. Ecuaciones parabólicas (EDP transciente)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edp-lineal-1d-transciente">
+     11.3.1. EDP lineal 1D transciente
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">
+     11.3.2. EDP no-lineal 1D transciente
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#edp-transcientes-en-2d">
+   11.4. EDP transcientes en 2D
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   11.5. Referencias
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
+<section class="tex2jax_ignore mathjax_ignore" id="diferencias-finitas-para-ecuaciones-diferenciales-parciales">
+<h1><span class="section-number">11. </span>Diferencias finitas para ecuaciones diferenciales parciales<a class="headerlink" href="#diferencias-finitas-para-ecuaciones-diferenciales-parciales" title="Permalink to this headline">#</a></h1>
+<p><br><br><br><br>
+Profesor: Francisco Ramírez Cuevas<br>
+Fecha: 14 de noviembre 2022</p>
+<section id="introduccion">
+<h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<p>Como mencionamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
+<p>Por ejemplo,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e3c0b25e-6727-4482-af23-ea245e18f296">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-e3c0b25e-6727-4482-af23-ea245e18f296" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial^2u}{\partial x^2} + 
+2xy\frac{\partial^2u}{\partial y^2} = 1
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-30486137-3c5c-4321-b88e-3a178b054316">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-30486137-3c5c-4321-b88e-3a178b054316" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial^3u}{\partial x^2\partial y} + 
+x\frac{\partial^2u}{\partial y^2}  + 8u= 5y
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-550c6b83-c65c-4e71-8dd0-63c089e4dfb3">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-550c6b83-c65c-4e71-8dd0-63c089e4dfb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
+6\frac{\partial^3u}{\partial x\partial y^2} = x
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-2c7ef29a-6590-4a21-9f88-c0d9e0d533ed">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-2c7ef29a-6590-4a21-9f88-c0d9e0d533ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
+xu\frac{\partial u}{\partial y} = x
+\end{equation}\]</div>
+<p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
+<p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
+<p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b8ca6f12-4b4b-465b-88aa-841bdfaaf414">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-b8ca6f12-4b4b-465b-88aa-841bdfaaf414" title="Permalink to this equation">#</a></span>\[\begin{equation}
+A\frac{\partial^2u}{\partial x^2} + 
+B\frac{\partial^2u}{\partial x \partial y} +  
+C\frac{\partial^2u}{\partial y^2} + 
+D = 0
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span> son funciones de <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>, mientras que <span class="math notranslate nohighlight">\(D\)</span> es una función de <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(\partial u / \partial x\)</span> y <span class="math notranslate nohighlight">\(\partial u / \partial y\)</span>.</p>
+<p>A partir de esta forma general podemos clasificar una EDP lineal de segundo orden como elíptica, parabólica o hiperbólica.</p>
+<a class="reference internal image-reference" href="../_images/EDP_2do-orden.png"><img alt="../_images/EDP_2do-orden.png" class="align-center" src="../_images/EDP_2do-orden.png" style="width: 700px;" /></a>
+<p>Esta clasificación es relevante dado que cada categoría se relaciona con problemas de ingeniería específicos, que demandan soluciones especiales.</p>
+<p>Comúnmente, las ecuaciones <em><strong>elípticas</strong></em> se utilizan para caracterizar sistemas en <strong>estado estacionario</strong>, tales como la deflección de una placa sometida a una carga, o la distribución de temperaturas de en una cavidad 2D.</p>
+<p>Las ecuaciones <em><strong>parabólicas</strong></em>, en cambio, se usan generalmente cuando la <strong>función depende del tiempo</strong>. Por ejemplo, la deflección de una barra, inicialmente sin carga, sometida a una carga en la punta.</p>
+<p>Las ecuaciones <em><strong>hiperbólicas</strong></em> son comúnmente <strong>utilizadas en problemas oscilatorios</strong>, como vibraciones o propagación de ondas electromagnéticas.</p>
+<p>En esta unidad revisaremos EDP de tipo ellípticas y parabólica, dada su reelevancia en problemas de ingeniería mecánica.</p>
+</section>
+<section id="ecuaciones-elipticas-edp-estacionaria">
+<h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this headline">#</a></h2>
+<p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-059387f9-d8fe-44a1-9ff0-3e7399c7f8e9">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-059387f9-d8fe-44a1-9ff0-3e7399c7f8e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\frac{\partial^2 T}{\partial x^2} +
+\frac{\partial^2 T}{\partial y^2}
+= 0
+\end{equation}\]</div>
+<p>El método más sensillo para resolver EDPs de este tipo es diferencias finitas.</p>
+<a class="reference internal image-reference" href="../_images/discretized_plate.png"><img alt="../_images/discretized_plate.png" class="align-center" src="../_images/discretized_plate.png" style="width: 400px;" /></a>
+<p>Pimero debemos discretizar el dominio en una serie de nodos.</p>
+<p>El segundo paso es aplicar un esquema de diferencias finitas en cada nodo. En este caso, lo más conveniente es aplicar diferencia central:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{\partial^2 T_{ij}}{\partial x^2} &amp;= \frac{T_{i+1, j} - 2T_{i,j} + T_{i-1,j}}{\Delta x^2} \\[10pt]
+\frac{\partial^2 T_{ij}}{\partial y^2} &amp;= \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta y^2}
+\end{align*}\]</div>
+<p>Reemplazando en la ecuación de Laplace, obtenemos una ecuación de la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\Delta y^2 T_{i+1, j} - (2\Delta y^2 + 2\Delta x^2)T_{i,j} + \Delta y^2T_{i-1,j} + 
+\Delta x^2 T_{i, j+1}  + \Delta x^2T_{i,j-1} = 0 
+\end{equation*}\]</div>
+<p>por conveniencia, <strong>dejamos los valores de <span class="math notranslate nohighlight">\(\Delta x\)</span> y <span class="math notranslate nohighlight">\(\Delta y\)</span> en el numerador</strong> para evitar problemas de crecimiento del error. Esto debido a que <span class="math notranslate nohighlight">\(\Delta x &lt; 1\)</span> y <span class="math notranslate nohighlight">\(\Delta y &lt; 1\)</span>.</p>
+<p>El siguiente paso es discretizar las condiciones de borde.</p>
+<p>Considerando una placa de ancho <span class="math notranslate nohighlight">\(L\)</span> y alto <span class="math notranslate nohighlight">\(H\)</span> con las condiciones de borde de la figura</p>
+<a class="reference internal image-reference" href="../_images/plate_boundary_conditions.png"><img alt="../_images/plate_boundary_conditions.png" class="align-center" src="../_images/plate_boundary_conditions.png" style="width: 400px;" /></a>
+<p>En el caso del lado izquierdo y derecho, tenemos condiciones de Dirichlet.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+T(0, y) &amp;=&amp; T_a &amp;\Rightarrow&amp; T_{0,j} = T_a \\
+T(L, y) &amp;=&amp; T_b &amp;\Rightarrow&amp; T_{m,j} = T_b
+\end{eqnarray*}\]</div>
+<p>En el caso del borde sobre y bajo la placa tenemos condiciones de Neumann. Acá, utilizamos diferencia hacia adelante o hacia atrás según corresponda:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+- \frac{\partial T}{\partial y}\Big|_{y = 0} &amp;=&amp; q_0 &amp;\Rightarrow&amp; T_{i,1} - T_{i,0} = -\Delta y q_0 \\[10pt]
+\frac{\partial T}{\partial y}\Big|_{y = H} &amp;=&amp; h\left[T_\infty - T(x,H)\right] &amp;\Rightarrow&amp;  (1 + h\Delta y)T_{i,n} - T_{i,n-1} = \Delta y~h T_\infty
+\end{eqnarray*}\]</div>
+<p>Finalmente, obtenemos un sistema de ecuaciones de la sforma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+\Delta y^2 T_{i+1, j} - (2\Delta y^2 + 2\Delta x^2)T_{i,j} + \Delta y^2T_{i-1,j} + 
+\Delta x^2 T_{i, j+1} + \Delta x^2T_{i,j-1} &amp;=&amp; 0 \quad\quad &amp;&amp;\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+T_{i,j} &amp;=&amp; T_a\quad\quad &amp;&amp;\mathrm{if}~i = 0 \\[10pt]
+T_{i,j} &amp;=&amp; T_b\quad\quad &amp;&amp;\mathrm{if}~i = m \\[10pt]
+T_{i,j+1} - T_{i,j}  &amp;=&amp; -\Delta y q_0\quad\quad &amp;&amp;\mathrm{if}~j =0\\[10pt]
+(1 + h\Delta y)T_{i,j} -  T_{i,j-1}  &amp;=&amp; \Delta y~hT_\infty\quad\quad &amp;&amp;\mathrm{if}~j = n\\[10pt]
+\end{eqnarray*}\]</div>
+<p>Consideremos, por ejemplo, una malla de 3x3 nodos</p>
+<a class="reference internal image-reference" href="../_images/discretized_plate_4x4.png"><img alt="../_images/discretized_plate_4x4.png" class="align-center" src="../_images/discretized_plate_4x4.png" style="width: 700px;" /></a>
+<p>El sistema de ecuaciones, en su forma matricial, es:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left[
+\begin{matrix}
+ 1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
+ 0 &amp;  1 &amp; 0  &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
+ 0 &amp; 0  &amp;  1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
+ 0 &amp; 0  &amp; 0  &amp; -1 &amp;  1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
+ 0 &amp; \Delta y^2  &amp; 0  &amp;  \Delta x^2 &amp; -2\Delta x^2 -2\Delta y^2 &amp;  \Delta x^2 &amp;  0  &amp;  \Delta y^2 &amp;  0\\
+ 0 &amp; 0  &amp; 0  &amp;  0 &amp;  -1 &amp;1+h\Delta y &amp; 0 &amp;  0  &amp;  0 \\
+ 0 &amp; 0  &amp; 0  &amp;  0 &amp;  0 &amp;  0 &amp;  1 &amp;  0 &amp;  0 \\
+ 0 &amp; 0  &amp; 0  &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  1 &amp;  0 \\
+ 0 &amp; 0  &amp;  0  &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  1 \\
+\end{matrix}
+\right]
+\left(
+\begin{matrix}
+T_{00} \\ T_{01} \\ T_{02} \\ T_{10} \\ T_{11} \\ T_{12} \\ T_{20} \\ T_{21} \\ T_{22}
+\end{matrix}
+\right)
+= 
+\left(
+\begin{matrix}
+T_a \\ T_a \\ T_a \\ -\Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T_b
+\end{matrix}
+\right)
+\end{equation*}\]</div>
+<p>Cuando extendemos el número de nodos, el sistema toma la forma de una matriz diagonal dominante</p>
+<p>Por ejemplo, si consideramos <span class="math notranslate nohighlight">\(\Delta x =  \Delta y = 1\)</span> y condiciones de borde de Dirichlet, podemos comprobar que la matriz <span class="math notranslate nohighlight">\(A\)</span> toma la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left[
+\begin{matrix}
+ -4 &amp;  1      &amp;    &amp;  1      &amp;         &amp;         &amp;         &amp;         &amp;    &amp; &amp; \\
+ 1  &amp; -4      &amp;  1 &amp;         &amp;  1      &amp;         &amp;         &amp;         &amp;    &amp; &amp;\\
+    &amp;  1      &amp; -4 &amp;  1      &amp;         &amp;  1      &amp;         &amp;         &amp;    &amp; &amp; \\
+ 1  &amp;         &amp;  1 &amp; -4      &amp;  1      &amp;         &amp;  1      &amp;         &amp;    &amp; &amp; \\
+    &amp;  \cdot &amp;    &amp;  \cdot &amp;  \cdot &amp;  \cdot &amp;         &amp;  \cdot &amp;    &amp; &amp; &amp; \\
+    &amp; &amp;  \cdot &amp;    &amp;  \cdot &amp;  \cdot &amp;  \cdot &amp;         &amp;  \cdot &amp;    &amp; &amp; \\
+    &amp; &amp; &amp;  \cdot &amp;    &amp;  \cdot &amp;  \cdot &amp;  \cdot &amp;         &amp;  \cdot &amp;    &amp; \\
+   &amp; &amp; &amp; &amp;  \cdot &amp;    &amp;  \cdot &amp;  \cdot &amp;  \cdot &amp;         &amp;  \cdot &amp;    \\
+     &amp; &amp; &amp;  &amp;  &amp; 1  &amp;         &amp;  1      &amp;      -4 &amp;  1      &amp;         &amp;  1 \\
+     &amp;  &amp; &amp;  &amp; &amp; &amp; 1  &amp;         &amp;  1      &amp;      -4 &amp;  1      &amp;         \\
+     &amp; &amp; &amp; &amp; &amp; &amp; &amp; 1  &amp;         &amp;  1      &amp;      -4 &amp;  1      \\
+     &amp; &amp; &amp; &amp; &amp; &amp; &amp; &amp; 1  &amp;         &amp;  1      &amp;      -4 
+\end{matrix}
+\right]
+\end{equation*}\]</div>
+<p>¿Cómo podemos implementar un código computacional que genere el sistema <span class="math notranslate nohighlight">\(Ax = b\)</span> con este esquema, de forma genérica y para cualquier tipo de condición de borde?</p>
+<section id="solucion-edp-lineal-estacionaria">
+<h3><span class="section-number">11.2.1. </span>Solución EDP lineal estacionaria<a class="headerlink" href="#solucion-edp-lineal-estacionaria" title="Permalink to this headline">#</a></h3>
+<p>Antes de implementar nuestro código, debemos recordar que la solución a este tipo de sistemas está dado por el método de Gauss-Seidel.</p>
+<p>Recordando la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/2-Algebra_lineal/2-Algebra_lineal.html#gauss-seidel">unidad 2</a> del curso, el método de Gauss-Seidel se resume en los siguientes pasos:</p>
+<ol>
+<li><p>Asumimos un valor inicial para <span class="math notranslate nohighlight">\(x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_1^{(0)}\)</span>).</p></li>
+<li><p>Calculamos un nuevo valor para <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> mediante:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    x_1^{(1)} = \frac{1}{a_{1,1}}\Big[y_1 - \sum_{j \ne 1}^{n}{a_{1,j}x_j^{(0)}} \Big]
+    \end{equation*}\]</div>
+</li>
+<li><p>Utilizando el nuevo valor <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> y el resto de <span class="math notranslate nohighlight">\(x^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_2^{(0)}\)</span>), determinamos <span class="math notranslate nohighlight">\(x_2^{(1)}\)</span>.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  - {a_{2,1}x_1^{(1)}}\Big]
+    \end{equation*}\]</div>
+</li>
+<li><p>Repetimos el paso 3 hasta completar todos los elementos del vector <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Continunamos iterando hasta que <span class="math notranslate nohighlight">\( \| x^{(i)} - x^{(i-1)}\| \lt \varepsilon \)</span>, donde <span class="math notranslate nohighlight">\(\varepsilon\)</span> es el la tolerancia definida respecto al error absoluto.</p></li>
+</ol>
+<p>Siguiendo este esquema, una forma alternativa es implementar el método de Gauss-Seidel directamente, es decir, sin desarrollar la forma explícita del sistema <span class="math notranslate nohighlight">\(Ax = b\)</span>.</p>
+<p>En otras palabras, implementamos el método iterativo a través de las ecuaciones:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+T_{i,j}^* &amp;=&amp; \frac{1}{2\Delta y^2 + 2\Delta x^2}(\Delta y^2 T_{i+1, j} + \Delta y^2T_{i-1,j} + 
+\Delta x^2 T_{i, j+1} + \Delta x^2T_{i,j-1}) \quad\quad &amp;\mathrm{if}&amp;~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+T_{i,j}^* &amp;=&amp; T_a\quad\quad &amp;\mathrm{if}&amp;~i = 0 \\[10pt]
+T_{i,j}^* &amp;=&amp; T_b\quad\quad &amp;\mathrm{if}&amp;~i = m \\[10pt]
+T_{i,j}^* &amp;=&amp; T_{i,j+1} + \Delta y q_0\quad\quad &amp;\mathrm{if}&amp;~j =0\\[10pt]
+T_{i,j}^* &amp;=&amp; \frac{1}{(1 + h\Delta y)}(T_{i,j-1} + \Delta y~hT_\infty)\quad\quad &amp;\mathrm{if}&amp;~j = n\\[10pt]
+\end{eqnarray*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(T_{i,j}^*\)</span> corresponde al valor obtenido después de cada iteración.</p>
+<p>La siguiente animación ilustra el proceso iterativo:</p>
+<a class="reference internal image-reference" href="../_images/gauss-seidel.gif"><img alt="../_images/gauss-seidel.gif" class="align-center" src="../_images/gauss-seidel.gif" style="width: 600px;" /></a>
+</section>
+<section id="solucion-edp-estacionaria-en-python">
+<h3><span class="section-number">11.2.2. </span>Solución EDP estacionaria en python<a class="headerlink" href="#solucion-edp-estacionaria-en-python" title="Permalink to this headline">#</a></h3>
+<p>Analicemos esto en un código.</p>
+<p>Considerando los siguientes parámetros:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_a &amp;= 500~\mathrm{K} \\
+T_b &amp;= 500~\mathrm{K} \\
+T_\infty &amp;= 300~\mathrm{K} \\
+h &amp;= 100~\mathrm{m}^{-1} \\
+q_0 &amp;= 1000 ~\mathrm{K/m} \\
+L &amp;= 1 ~\mathrm{m} \\
+H &amp;= 1.5 ~\mathrm{m} \\
+\end{align*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
+<span class="n">Ta</span>   <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Temperatura al lado izquierdo (K)</span>
+<span class="n">Tb</span>   <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Temperatura al lado derecho (K)</span>
+<span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># Temperatura del aire (K)</span>
+<span class="n">h</span>    <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
+<span class="n">q0</span>   <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># flujo de calor (K/m)</span>
+<span class="n">L</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span> <span class="c1"># Largo y ancho de la cavidad (m)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span> <span class="c1"># norma de Frobenius</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span> <span class="c1"># librería para iteración</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implementamos el método en una <strong>función,</strong> definida en base al número de nodos <span class="math notranslate nohighlight">\(N_x\)</span> y <span class="math notranslate nohighlight">\(N_y\)</span> y la tolerancia relativa <span class="math notranslate nohighlight">\(\frac{\|x - x_\mathrm{old}\|}{\|x\|} &lt; \varepsilon_\mathrm{rel}\)</span></p>
+<p>Como valor de entrada en la iteración, consideramos <span class="math notranslate nohighlight">\(T^0_{i,j} = T_\infty\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T_plate</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span><span class="n">rel_tol</span><span class="p">,</span> <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+    <span class="c1"># Definimos las características de la malla</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span>         <span class="c1"># índice último nodo</span>
+    <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># espaciamiento entre nodos</span>
+
+    <span class="c1"># Iteramos</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">))</span>  <span class="c1"># valores primera iteración</span>
+    <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>         <span class="c1"># booleano para chequear convergencia</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k_iter</span><span class="p">):</span>
+        <span class="n">Told</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>       <span class="c1"># guardamos la iteración previa</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">Ny</span><span class="p">)):</span>  <span class="c1"># loop sobre i y j</span>
+                
+                <span class="c1"># condiciones de borde</span>
+                <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
+                <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">nx</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tb</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">q0</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="n">ny</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
+            
+                <span class="c1"># nodos centrales</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                
+        <span class="n">E_rel</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">Told</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="c1"># comprobamos el error relativo</span>
+        <span class="k">if</span> <span class="n">E_rel</span> <span class="o">&lt;</span> <span class="n">rel_tol</span><span class="p">:</span>            <span class="c1"># condición de convergencia</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Converged!</span><span class="se">\n\t</span><span class="s1">N. iter = </span><span class="si">%i</span><span class="se">\n\t</span><span class="s1">E_error = </span><span class="si">%.3f%%</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span> <span class="n">k</span><span class="p">,</span> <span class="n">E_rel</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+            <span class="n">converged</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">break</span>
+            
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">converged</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Method did not converged!</span><span class="se">\n\t</span><span class="s1">E_error = </span><span class="si">%.3f%%</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">E_rel</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>         
+    <span class="k">return</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos las características de la malla</span>
+<span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">=</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span>            <span class="c1"># total de nodos</span>
+<span class="n">rel_tol</span> <span class="o">=</span> <span class="mf">0.001</span>            <span class="c1"># tolerancia error relativo</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">T_plate</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span><span class="n">rel_tol</span><span class="p">)</span> <span class="c1"># Determinamos T(x,y)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged!
+	N. iter = 133
+	E_error = 0.100%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+    
+<span class="n">x</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1"># coordenadas x</span>
+<span class="n">y</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Ny</span><span class="p">)</span> <span class="c1"># coordenadas y</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># malla x-y</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (°C)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-DiferenciasFinitas_EDP_48_0.png" src="../_images/11-DiferenciasFinitas_EDP_48_0.png" />
+</div>
+</div>
+<p>Notar que para graficar usamos la traspuesta de la solción mediante el operador <code class="docutils literal notranslate"><span class="pre">.T</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Esto es debido a que el índice <span class="math notranslate nohighlight">\(i\)</span>, asociado al eje <span class="math notranslate nohighlight">\(x\)</span>, corresponde a las filas del arreglo <code class="docutils literal notranslate"><span class="pre">T</span></code>, mientras que el índice <span class="math notranslate nohighlight">\(j\)</span> recorre las columnas de <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
+<p>Notar también que este problema es sencible al valor inicial de la iteración. Puede comprobar esto cambiando <span class="math notranslate nohighlight">\(T_{ij}^0 = T_a\)</span> y verificando que la distribución de temperaturas es diferente.</p>
+</section>
+<section id="variables-secundarias">
+<h3><span class="section-number">11.2.3. </span>Variables secundarias<a class="headerlink" href="#variables-secundarias" title="Permalink to this headline">#</a></h3>
+<p>En el problema anterior, la temperatura es la varible principal del problema. Sin embargo, es común que también que necesitemos información de <strong>variables secundarias</strong> basadas en la derivada o integral de la variable principal.</p>
+<p>Por ejemplo, el <strong>flujo de calor</strong> está definido por: <span class="math notranslate nohighlight">\(\vec{q} = -k \nabla T = - k\left(\frac{\partial T}{\partial x}\hat{x} +\frac{\partial T}{\partial y}\hat{y}\right)\)</span></p>
+<p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> usamos <code class="docutils literal notranslate"><span class="pre">gradient</span></code> para determinar la derivada en problemas de dos o más dimensiones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot1
+
+<span class="n">skip</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">qy</span><span class="p">,</span> <span class="n">qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># gradiente </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (°C)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qy</span><span class="p">[</span><span class="n">skip</span><span class="p">])</span> <span class="c1"># campo vectorial de q</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-DiferenciasFinitas_EDP_55_0.png" src="../_images/11-DiferenciasFinitas_EDP_55_0.png" />
+</div>
+</div>
+<p>Notar el uso de la función <code class="docutils literal notranslate"><span class="pre">gradient</span></code> y <code class="docutils literal notranslate"><span class="pre">quiver</span></code> en este caso .</p>
+<p>En el caso de <code class="docutils literal notranslate"><span class="pre">gradient</span></code>, debemos alternar los ejes <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> en la forma:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qy</span><span class="p">,</span> <span class="n">qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># gradiente</span>
+</pre></div>
+</div>
+<p>Para poder determinar el valor de <span class="math notranslate nohighlight">\(q\)</span> debemos aplicar el negativo de <code class="docutils literal notranslate"><span class="pre">qx</span></code> y <code class="docutils literal notranslate"><span class="pre">qy</span></code>. Esto lo vemos en la función <code class="docutils literal notranslate"><span class="pre">quiver</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="o">-</span> <span class="n">qx</span><span class="p">,</span><span class="o">-</span> <span class="n">qy</span><span class="p">)</span> <span class="c1"># campo vectorial de q </span>
+
+</pre></div>
+</div>
+<p>Por último, usamos <code class="docutils literal notranslate"><span class="pre">slice</span></code> para reducir el número de índices a graficar por <code class="docutils literal notranslate"><span class="pre">quiver</span></code>. En este contexto, la instrucción <code class="docutils literal notranslate"><span class="pre">skip</span> <span class="pre">=</span> <span class="pre">(slice(None,</span> <span class="pre">None,</span> <span class="pre">5),</span> <span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">5))</span></code>, es equivalente a:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">[::</span><span class="mi">5</span><span class="p">,::</span><span class="mi">5</span><span class="p">],</span><span class="n">yy</span><span class="p">[::</span><span class="mi">5</span><span class="p">,::</span><span class="mi">5</span><span class="p">],</span><span class="o">-</span> <span class="n">qx</span><span class="p">[::</span><span class="mi">5</span><span class="p">,::</span><span class="mi">5</span><span class="p">],</span><span class="o">-</span> <span class="n">qy</span><span class="p">[::</span><span class="mi">5</span><span class="p">,::</span><span class="mi">5</span><span class="p">])</span> <span class="c1"># campo vectorial de q </span>
+
+</pre></div>
+</div>
+<p>Para EDP lineales estacionarias, como la ecuación de Laplace, el método de Gauss-Seidel es práctico y sencillo.</p>
+<p>Para ecuaciones no lineales, el método puede ser aplicado mediante esquemas de linealización (similar a <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/6-Root-finding/6-Root-finding.html#metodos-de-busqueda-lineal">Newton Raphson generalizado</a>). Esto dada la dificultad de determinar una expresión explícita para <span class="math notranslate nohighlight">\(T_{i,j}\)</span> con el sistema no-lineal.</p>
+<p>Alternativamente, podemos utilizar EDP de tipo transciente y evaluar la evolución de la solución hasta alcanzar un comportamiento estacionario. Esto lo revisaremos a continuación.</p>
+</section>
+</section>
+<section id="ecuaciones-parabolicas-edp-transciente">
+<h2><span class="section-number">11.3. </span>Ecuaciones parabólicas (EDP transciente)<a class="headerlink" href="#ecuaciones-parabolicas-edp-transciente" title="Permalink to this headline">#</a></h2>
+<p>Una de las ecuaciones parabólicas más comunes es la ley de conducción de calor 1D transciente:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2}
+\end{equation*}\]</div>
+<p>Esta ecuación requiere de dos condiciones de borde para <span class="math notranslate nohighlight">\(x\)</span> y una condición inicial para <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>También podemos usar el método de diferencias finitas para resolver este problema. Sin embargo, en este caso tenemos un problema de condiciones de borde mezclada con un problema de valor inicial.</p>
+<p>Como revisamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, existen diversos métodos para resolver problemas de valor inicial. En esta unidad nos enfocaremos en el <strong>método de Euler explícito</strong>.</p>
+<section id="edp-lineal-1d-transciente">
+<h3><span class="section-number">11.3.1. </span>EDP lineal 1D transciente<a class="headerlink" href="#edp-lineal-1d-transciente" title="Permalink to this headline">#</a></h3>
+<p>Nuevamente, revisemos una barra que se enfría por convección. Ahora, la barra se encuentra inicialmente a temperatura ambiente <span class="math notranslate nohighlight">\(T_\infty\)</span></p>
+<a class="reference internal image-reference" href="../_images/heated_bar1.png"><img alt="../_images/heated_bar1.png" class="align-center" src="../_images/heated_bar1.png" style="width: 400px;" /></a>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
+\end{equation*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+T(0,x) = T_\infty
+\end{equation*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+T(t,0) = T_a;\quad\quad\quad \frac{\partial T}{\partial x}\Big|_{x=L} = h^* \left[T_\infty - T(t,L)\right]
+\end{equation*}\]</div>
+<p>Usando diferencias finitas con el método de Euler explícito:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{T_{i}^{l+1} - T_{i}^l}{\Delta t} = k\frac{T_{i+1}^l - 2T_{i}^l + T_{i-1}^l}{\Delta x^2} + h'(T_\infty - T_i^l) \quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+T_{i}^{l+1}= T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
+\frac{T_{i}^{l+1} -  T_{i-1}^{l+1}}{\Delta x}  = h'(T_\infty - T_i^{l+1})\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+\end{align*}\]</div>
+<p>El sistema a resolver esta dado por:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+T_{i}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
+T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+\end{align*}\]</div>
+<p>Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito</p>
+<p>Resolvemos la equación para los siguientes parámetros:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_a &amp;= 400~\mathrm{K} \\
+T_\infty &amp;= 300~\mathrm{K} \\
+h' &amp;= 0.002~\mathrm{s}^{-1} \\
+k &amp;= 0.0001~\mathrm{m}^2/\mathrm{s} \\
+L &amp;= 1 ~\mathrm{m} \\
+\end{align*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
+<span class="n">Ta</span>   <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
+<span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
+<span class="n">h</span>    <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
+<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># flujo de calor (m^2/s)</span>
+<span class="n">L</span>    <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># Largo de la barra (m)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para asegurar convergencia y estabilidad en nuestra solución, se debe cumplir la condición:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b89514c8-559e-4ae9-8edb-7520429a292f">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-b89514c8-559e-4ae9-8edb-7520429a292f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta t \le \frac{1}{2} \frac{\Delta x^2}{k}
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                    <span class="c1"># número total de nodos</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="c1"># índice del nodo extremo</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>            <span class="c1"># espaciamiento entre nodos</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span>       <span class="c1"># paso de tiempo</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="c1"># Intervalo de tiempo</span>
+
+<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>       <span class="c1"># condición inicial</span>
+<span class="n">T_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">T0</span><span class="p">]</span>              <span class="c1"># arreglo para almacenar soluciones</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="p">:</span>
+    <span class="n">Tl</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">):</span>
+        <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span>
+    <span class="n">T_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora graficamos nuestro resultado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>              <span class="c1"># arreglo de puntos en x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="mi">5</span><span class="p">):</span>         <span class="c1"># iteramos sobre nuestras soluciones   </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Largo, x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-DiferenciasFinitas_EDP_78_0.png" src="../_images/11-DiferenciasFinitas_EDP_78_0.png" />
+</div>
+</div>
+</section>
+<section id="edp-no-lineal-1d-transciente">
+<h3><span class="section-number">11.3.2. </span>EDP no-lineal 1D transciente<a class="headerlink" href="#edp-no-lineal-1d-transciente" title="Permalink to this headline">#</a></h3>
+<p>Una ventaja del método de Euler explícito es que nos permite fácilmente extender el resultado a EDP del tipo no lineal. Esto debido a que los valores de <span class="math notranslate nohighlight">\(T_{i}^{l+1}\)</span> siempre quedan expresados en función de valores conocidos.</p>
+<p>Analicemos esto con el problema de la barra ahora con enfriamiento por convección y radiación</p>
+<a class="reference internal image-reference" href="../_images/heated_bar_radiation.png"><img alt="../_images/heated_bar_radiation.png" class="align-center" src="../_images/heated_bar_radiation.png" style="width: 400px;" /></a>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
+\end{equation*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+T(0,x) = T_\infty
+\end{equation*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+T(t,0) = T_a;\quad\quad\quad \frac{\partial T}{\partial x}\Big|_{x=L} = h^* \left[T_\infty - T(t,L)\right]
+\end{equation*}\]</div>
+<p>Al aplicar diferencias finitas, notamos que el problema, nuevamente, queda definido de forma explícita en función de valores conocidos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l - \Delta t\sigma'\left(T_{i}^4\right)^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty + \Delta t\sigma' T_\infty^4\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+T_{i}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
+T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+\end{align*}\]</div>
+<p>Analicemos la solución de este problema para los siguientes parámetros:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_a &amp;= 400~\mathrm{K} \\
+T_\infty &amp;= 300~\mathrm{K} \\
+h' &amp;= 0.002~\mathrm{s}^{-1} \\
+\sigma' &amp;= 1\times 10^{-10}~\mathrm{s}^{-1}\mathrm{K}^{-3} \\
+k &amp;= 0.0001~\mathrm{m}^2/\mathrm{s} \\
+L &amp;= 1 ~\mathrm{m} \\
+\end{align*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
+<span class="n">Ta</span>   <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
+<span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
+<span class="n">h</span>    <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
+<span class="n">S</span>    <span class="o">=</span> <span class="mf">1E-10</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
+<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># flujo de calor (m^2/s)</span>
+<span class="n">L</span>    <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># Largo de la barra (m)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                    <span class="c1"># número total de nodos</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="c1"># índice del nodo extremo</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>            <span class="c1"># espaciamiento entre nodos</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span>       <span class="c1"># paso de tiempo</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="c1"># Intervalo de tiempo</span>
+
+<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>       <span class="c1"># condición inicial</span>
+<span class="n">T_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">T0</span><span class="p">]</span>              <span class="c1"># arreglo para almacenar soluciones</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="p">:</span>
+    <span class="n">Tl</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">):</span>
+        <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">T_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos nuestro resultado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>              <span class="c1"># arreglo de puntos en x</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="mi">5</span><span class="p">):</span>         <span class="c1"># iteramos sobre nuestras soluciones   </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Largo, x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-DiferenciasFinitas_EDP_89_0.png" src="../_images/11-DiferenciasFinitas_EDP_89_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="edp-transcientes-en-2d">
+<h2><span class="section-number">11.4. </span>EDP transcientes en 2D<a class="headerlink" href="#edp-transcientes-en-2d" title="Permalink to this headline">#</a></h2>
+<p>El método explícito puede ser fácilmente extendido a problemas con más dimenciones, EDP no lineales, o incluso, con más de una varible dependiente (sistemas de EDPs).</p>
+<p>Revisemos una EDP 2D, considerando el problema de la placa analizado anteriormente.</p>
+<a class="reference internal image-reference" href="../_images/plate_boundary_conditions.png"><img alt="../_images/plate_boundary_conditions.png" class="align-center" src="../_images/plate_boundary_conditions.png" style="width: 400px;" /></a>
+<p>Ahora como un problema transciente:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{\partial T}{\partial t}= k\frac{\partial^2 T}{\partial x^2} +
+k\frac{\partial^2 T}{\partial y^2}
+\end{equation*}\]</div>
+<p>con condición inicial <span class="math notranslate nohighlight">\(T(0,x,y) = T_\infty\)</span></p>
+<p>Usando diferencias finitas, con Euler explícito, derivamos un sistema de la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T_{i,j}^{l+1} = T_{i,j}^{l} + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1,j}^l - 2T_{i,j}^l + T_{i-1,j}^l\right)
++ \frac{k\Delta t}{\Delta y^2}\left(T_{i,j+1}^l - 2T_{i,j}^l + T_{i,j-1}^l\right)\quad\quad &amp;\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+T_{i,j}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
+T_{i,j}^{l+1} = T_b\quad\quad &amp;\mathrm{if}~i = m \\[10pt]
+T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0\\[10pt]
+(1 + h\Delta y)T_{i,j}^{l+1} -  T_{i,j-1}^{l+1}  = \Delta y~hT_\infty\quad\quad &amp;\mathrm{if}~j = n\\[10pt]
+\end{align*}\]</div>
+<p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
+<p>En este caso, la condición de estabilidad y convergencia está dada por:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e1bc7c6d-5f01-45ca-935e-25b0d7748845">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-e1bc7c6d-5f01-45ca-935e-25b0d7748845" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{k}
+\end{equation}\]</div>
+<p>Resolvamos este problema en un código, considerando los parámetros</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+T_a &amp;=&amp; 500~\mathrm{K};\quad\quad 
+h &amp;=&amp; 100~\mathrm{m}^{-1} \\
+T_b &amp;=&amp; 500~\mathrm{K};\quad\quad 
+k &amp;=&amp; 0.0001~\mathrm{m}^2/\mathrm{s} \\
+T_\infty &amp;=&amp; 300~\mathrm{K};\quad\quad
+q_0 &amp;=&amp; 1000 ~\mathrm{K/m} \\
+L &amp;=&amp; 1 ~\mathrm{m};\quad\quad\quad
+H &amp;=&amp; 1.5 ~\mathrm{m} \\
+\end{eqnarray*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
+<span class="n">Ta</span>   <span class="o">=</span> <span class="mi">500</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
+<span class="n">Tb</span>   <span class="o">=</span> <span class="mi">500</span>    <span class="c1"># Temperatura al lado derecho (K)</span>
+<span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
+<span class="n">h</span>    <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># Coeficiente convectivo (m^-1)</span>
+<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># conductividad térmica (m^2/s)</span>
+<span class="n">q0</span>   <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># flujo de calor (K/m))</span>
+<span class="n">L</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span> <span class="c1"># Largo y ancho de la cavidad (m)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso, definiremos una función <code class="docutils literal notranslate"><span class="pre">T_plate_time</span></code> que determinará la distribución de temperaturas para un tiempo <code class="docutils literal notranslate"><span class="pre">tend</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T_plate_time</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span> <span class="n">tend</span><span class="p">):</span>
+    <span class="c1"># Definimos las características de la malla</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span>         <span class="c1"># índice último nodo</span>
+    <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># espaciamiento entre nodos</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">k</span>  <span class="c1"># paso de tiempo</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tend</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>        <span class="c1"># Intervalo de tiempo</span>
+
+    <span class="c1"># Iteramos</span>
+    <span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">))</span>       <span class="c1"># condición inicial</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="n">Tl</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>       <span class="c1"># guardamos la iteración previa</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">Ny</span><span class="p">)):</span>  <span class="c1"># loop sobre i y j</span>
+                
+                <span class="c1"># condiciones de borde</span>
+                <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
+                <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">nx</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tb</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">q0</span>
+                <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="n">ny</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
+            
+                <span class="c1"># nodos centrales</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> \
+                                       <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                
+                     
+    <span class="k">return</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot2
+
+<span class="c1"># Definimos las características de la malla</span>
+<span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">=</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span>                    <span class="c1"># total de nodos</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">T_plate_time</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span> <span class="n">tend</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span> <span class="c1"># Determinamos T(x,y)</span>
+
+<span class="n">x</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1"># coordenadas x</span>
+<span class="n">y</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Ny</span><span class="p">)</span> <span class="c1"># coordenadas y</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># malla x-y</span>
+
+<span class="n">skip</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">qy</span><span class="p">,</span> <span class="n">qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># gradiente </span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (°C)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+
+<span class="c1"># campo vectorial de q</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qy</span><span class="p">[</span><span class="n">skip</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11-DiferenciasFinitas_EDP_103_0.png" src="../_images/11-DiferenciasFinitas_EDP_103_0.png" />
+</div>
+</div>
+</section>
+<section id="referencias">
+<h2><span class="section-number">11.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Chapra S., Canale R. <strong>Capítulo 28: Diferencias finitas: ecuaciones elípticas</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
+<li><p>Chapra S., Canale R. <strong>Capítulo 29: Diferencias finitas: ecuaciones parabólicas</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
+<li><p>Williams H. P. <strong>Chapter 20: Partial diferential equations</strong> in “Numerical Recipes” 3rd Ed, Cambridge University Press, 2007</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./11-DiferenciasFinitas_EDP"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Apendice/Repaso/Intro_material_de_repaso.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Material de repaso</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Francisco V. Ramirez-Cuevas<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

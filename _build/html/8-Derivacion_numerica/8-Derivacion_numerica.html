@@ -180,6 +180,11 @@ const thebe_selector_output = ".output, .cell_output"
    10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">
+   11. Diferencias finitas para ecuaciones diferenciales parciales
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -534,8 +539,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a813fbcb-00e1-45e4-833c-a7884c28cfc1">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-a813fbcb-00e1-45e4-833c-a7884c28cfc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-963c5206-6eef-4819-abb9-26e1bd176fa0">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-963c5206-6eef-4819-abb9-26e1bd176fa0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -546,8 +551,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e8fbd16-0863-4d26-91c5-43f6367fd507">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-7e8fbd16-0863-4d26-91c5-43f6367fd507" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a329c46a-fec2-4597-ac79-cf61659b0525">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-a329c46a-fec2-4597-ac79-cf61659b0525" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -556,8 +561,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dcb315cb-c03c-409f-bb0b-d1d9e20c1041">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-dcb315cb-c03c-409f-bb0b-d1d9e20c1041" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8bbbf4b7-a128-44bf-9155-40b998e9dc57">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-8bbbf4b7-a128-44bf-9155-40b998e9dc57" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
