@@ -16,12 +16,12 @@
 
 # \begin{equation}
 # \frac{\partial^2u}{\partial x^2} + 
-# 2xy\frac{\partial^2u}{\partial y^2} = 1
+# 2xy\frac{\partial^2u}{\partial y^2} = 0
 # \end{equation}
 # 
 # \begin{equation}
 # \frac{\partial^3u}{\partial x^2\partial y} + 
-# x\frac{\partial^2u}{\partial y^2}  + 8u= 5y
+# x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 # \end{equation}
 
 # 
@@ -143,7 +143,7 @@
 #  1 &  0 &  0 &  0 &  0 &  0 &  0 &  0 &  0 \\
 #  0 &  1 & 0  &  0 &  0 &  0 &  0 &  0 &  0 \\
 #  0 & 0  &  1 &  0 &  0 &  0 &  0 &  0 &  0 \\
-#  0 & 0  & 0  & -1 &  1 &  0 &  0 &  0 &  0 \\
+#  0 & 0  & 0  & 1 &  -1 &  0 &  0 &  0 &  0 \\
 #  0 & \Delta y^2  & 0  &  \Delta x^2 & -2\Delta x^2 -2\Delta y^2 &  \Delta x^2 &  0  &  \Delta y^2 &  0\\
 #  0 & 0  & 0  &  0 &  -1 &1+h\Delta y & 0 &  0  &  0 \\
 #  0 & 0  & 0  &  0 &  0 &  0 &  1 &  0 &  0 \\
@@ -159,7 +159,7 @@
 # = 
 # \left(
 # \begin{matrix}
-# T_a \\ T_a \\ T_a \\ -\Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T_b
+# T_a \\ T_a \\ T_a \\ \Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T_b
 # \end{matrix}
 # \right)
 # \end{equation*}
@@ -274,11 +274,11 @@ from itertools import product # librería para iteración
 # In[3]:
 
 
-def T_plate(Nx,Ny,rel_tol, k_iter = 1000):
+def T_plate(Nx,Ny,rel_tol, k_iter = 10000):
     # Definimos las características de la malla
     nx, ny = Nx - 1, Ny - 1         # índice último nodo
     dx, dy = L/(Nx - 1), H/(Ny - 1) # espaciamiento entre nodos
-
+    
     # Iteramos
     T = Too*np.ones((Nx,Ny))  # valores primera iteración
     converged = False         # booleano para chequear convergencia
@@ -311,7 +311,7 @@ def T_plate(Nx,Ny,rel_tol, k_iter = 1000):
 
 # Definimos las características de la malla
 Nx, Ny = 51, 76            # total de nodos
-rel_tol = 0.001            # tolerancia error relativo
+rel_tol = 0.00001            # tolerancia error relativo
 T = T_plate(Nx,Ny,rel_tol) # Determinamos T(x,y)
 
 
@@ -334,7 +334,7 @@ showplot()
 # 
 # Esto es debido a que el índice $i$, asociado al eje $x$, corresponde a las filas del arreglo `T`, mientras que el índice $j$ recorre las columnas de `T`.
 
-# Notar también que este problema es sencible al valor inicial de la iteración. Puede comprobar esto cambiando $T_{ij}^0 = T_a$ y verificando que la distribución de temperaturas es diferente.
+# Notar también que, en este problema, requerimos de un error relativo pequeño (0.001% en este caso) para asegurar convergencia. Si aumentamos la tolerancia, la solución se hace sensible al valor inicial en la iteración.
 
 # ### Variables secundarias
 # 
