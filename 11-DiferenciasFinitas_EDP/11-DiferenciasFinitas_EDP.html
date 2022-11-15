@@ -522,31 +522,31 @@ Fecha: 14 de noviembre 2022</p>
 <h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>Como mencionamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
 <p>Por ejemplo,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3c0b25e-6727-4482-af23-ea245e18f296">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-e3c0b25e-6727-4482-af23-ea245e18f296" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a3a1ab7c-fdf9-42b4-a5c1-f5f77806a869">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-a3a1ab7c-fdf9-42b4-a5c1-f5f77806a869" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2u}{\partial x^2} + 
-2xy\frac{\partial^2u}{\partial y^2} = 1
+2xy\frac{\partial^2u}{\partial y^2} = 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-30486137-3c5c-4321-b88e-3a178b054316">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-30486137-3c5c-4321-b88e-3a178b054316" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-39f14065-2bb7-4da2-ae8a-0d1eed93e02b">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-39f14065-2bb7-4da2-ae8a-0d1eed93e02b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^3u}{\partial x^2\partial y} + 
-x\frac{\partial^2u}{\partial y^2}  + 8u= 5y
+x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-550c6b83-c65c-4e71-8dd0-63c089e4dfb3">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-550c6b83-c65c-4e71-8dd0-63c089e4dfb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e3eafd9-5bbb-4f27-ace6-ebdd2a59ea74">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-9e3eafd9-5bbb-4f27-ace6-ebdd2a59ea74" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 6\frac{\partial^3u}{\partial x\partial y^2} = x
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2c7ef29a-6590-4a21-9f88-c0d9e0d533ed">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-2c7ef29a-6590-4a21-9f88-c0d9e0d533ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbda6e2c-afd1-41ee-9826-f9d4110e6408">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-cbda6e2c-afd1-41ee-9826-f9d4110e6408" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 xu\frac{\partial u}{\partial y} = x
 \end{equation}\]</div>
 <p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
 <p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
 <p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8ca6f12-4b4b-465b-88aa-841bdfaaf414">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-b8ca6f12-4b4b-465b-88aa-841bdfaaf414" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-927f3da3-1c1e-40c0-8b49-0fa2a94efe3b">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-927f3da3-1c1e-40c0-8b49-0fa2a94efe3b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\frac{\partial^2u}{\partial x^2} + 
 B\frac{\partial^2u}{\partial x \partial y} +  
 C\frac{\partial^2u}{\partial y^2} + 
@@ -564,8 +564,8 @@ D = 0
 <section id="ecuaciones-elipticas-edp-estacionaria">
 <h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this headline">#</a></h2>
 <p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-059387f9-d8fe-44a1-9ff0-3e7399c7f8e9">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-059387f9-d8fe-44a1-9ff0-3e7399c7f8e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-70c0815c-1929-4a83-93a5-48c409919d8f">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-70c0815c-1929-4a83-93a5-48c409919d8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} +
 \frac{\partial^2 T}{\partial y^2}
 = 0
@@ -621,7 +621,7 @@ T_{i,j+1} - T_{i,j}  &amp;=&amp; -\Delta y q_0\quad\quad &amp;&amp;\mathrm{if}~j
  1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
  0 &amp;  1 &amp; 0  &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
  0 &amp; 0  &amp;  1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
- 0 &amp; 0  &amp; 0  &amp; -1 &amp;  1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
+ 0 &amp; 0  &amp; 0  &amp; 1 &amp;  -1 &amp;  0 &amp;  0 &amp;  0 &amp;  0 \\
  0 &amp; \Delta y^2  &amp; 0  &amp;  \Delta x^2 &amp; -2\Delta x^2 -2\Delta y^2 &amp;  \Delta x^2 &amp;  0  &amp;  \Delta y^2 &amp;  0\\
  0 &amp; 0  &amp; 0  &amp;  0 &amp;  -1 &amp;1+h\Delta y &amp; 0 &amp;  0  &amp;  0 \\
  0 &amp; 0  &amp; 0  &amp;  0 &amp;  0 &amp;  0 &amp;  1 &amp;  0 &amp;  0 \\
@@ -637,7 +637,7 @@ T_{00} \\ T_{01} \\ T_{02} \\ T_{10} \\ T_{11} \\ T_{12} \\ T_{20} \\ T_{21} \\ 
 = 
 \left(
 \begin{matrix}
-T_a \\ T_a \\ T_a \\ -\Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T_b
+T_a \\ T_a \\ T_a \\ \Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T_b
 \end{matrix}
 \right)
 \end{equation*}\]</div>
@@ -739,11 +739,11 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <p>Como valor de entrada en la iteración, consideramos <span class="math notranslate nohighlight">\(T^0_{i,j} = T_\infty\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T_plate</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span><span class="n">rel_tol</span><span class="p">,</span> <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T_plate</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span><span class="n">rel_tol</span><span class="p">,</span> <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">):</span>
     <span class="c1"># Definimos las características de la malla</span>
     <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span>         <span class="c1"># índice último nodo</span>
     <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># espaciamiento entre nodos</span>
-
+    
     <span class="c1"># Iteramos</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">))</span>  <span class="c1"># valores primera iteración</span>
     <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>         <span class="c1"># booleano para chequear convergencia</span>
@@ -777,15 +777,15 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos las características de la malla</span>
 <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">=</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span>            <span class="c1"># total de nodos</span>
-<span class="n">rel_tol</span> <span class="o">=</span> <span class="mf">0.001</span>            <span class="c1"># tolerancia error relativo</span>
+<span class="n">rel_tol</span> <span class="o">=</span> <span class="mf">0.00001</span>            <span class="c1"># tolerancia error relativo</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">T_plate</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">,</span><span class="n">rel_tol</span><span class="p">)</span> <span class="c1"># Determinamos T(x,y)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged!
-	N. iter = 133
-	E_error = 0.100%
+	N. iter = 2073
+	E_error = 0.001%
 </pre></div>
 </div>
 </div>
@@ -828,7 +828,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </pre></div>
 </div>
 <p>Esto es debido a que el índice <span class="math notranslate nohighlight">\(i\)</span>, asociado al eje <span class="math notranslate nohighlight">\(x\)</span>, corresponde a las filas del arreglo <code class="docutils literal notranslate"><span class="pre">T</span></code>, mientras que el índice <span class="math notranslate nohighlight">\(j\)</span> recorre las columnas de <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
-<p>Notar también que este problema es sencible al valor inicial de la iteración. Puede comprobar esto cambiando <span class="math notranslate nohighlight">\(T_{ij}^0 = T_a\)</span> y verificando que la distribución de temperaturas es diferente.</p>
+<p>Notar también que, en este problema, requerimos de un error relativo pequeño (0.001% en este caso) para asegurar convergencia. Si aumentamos la tolerancia, la solución se hace sensible al valor inicial en la iteración.</p>
 </section>
 <section id="variables-secundarias">
 <h3><span class="section-number">11.2.3. </span>Variables secundarias<a class="headerlink" href="#variables-secundarias" title="Permalink to this headline">#</a></h3>
@@ -949,8 +949,8 @@ L &amp;= 1 ~\mathrm{m} \\
 </div>
 </div>
 <p>Para asegurar convergencia y estabilidad en nuestra solución, se debe cumplir la condición:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b89514c8-559e-4ae9-8edb-7520429a292f">
-<span class="eqno">(11.7)<a class="headerlink" href="#equation-b89514c8-559e-4ae9-8edb-7520429a292f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-98aa79b2-295d-4763-b957-767b4bf06a1c">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-98aa79b2-295d-4763-b957-767b4bf06a1c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{2} \frac{\Delta x^2}{k}
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1113,8 +1113,8 @@ T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0
 \end{align*}\]</div>
 <p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
 <p>En este caso, la condición de estabilidad y convergencia está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e1bc7c6d-5f01-45ca-935e-25b0d7748845">
-<span class="eqno">(11.8)<a class="headerlink" href="#equation-e1bc7c6d-5f01-45ca-935e-25b0d7748845" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d257361d-57a1-467c-9558-ed0bbc065c21">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-d257361d-57a1-467c-9558-ed0bbc065c21" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{k}
 \end{equation}\]</div>
 <p>Resolvamos este problema en un código, considerando los parámetros</p>
