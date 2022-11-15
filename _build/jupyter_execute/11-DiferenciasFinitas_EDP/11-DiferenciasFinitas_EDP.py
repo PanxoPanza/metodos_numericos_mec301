@@ -318,7 +318,7 @@ T = T_plate(Nx,Ny,rel_tol) # Determinamos T(x,y)
 # In[5]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (°C)", orientation="vertical")\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[6]:
@@ -347,7 +347,7 @@ showplot()
 # In[7]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot1', '\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (°C)", orientation="vertical")\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) # campo vectorial de q\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot1', '\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) # campo vectorial de q\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[8]:
@@ -690,7 +690,7 @@ def T_plate_time(Nx,Ny, tend):
 # In[17]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 200) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (°C)", orientation="vertical")\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot2', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 200) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[18]:
