@@ -318,7 +318,7 @@ T = T_plate(Nx,Ny,rel_tol) # Determinamos T(x,y)
 # In[5]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm   # librería de mapa de colores\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))            # tamaño de la figura\nplt.rcParams.update({\'font.size\': 18})  # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Mapa T(x,y)\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta en la barra de colores  \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[6]:
@@ -405,7 +405,7 @@ showplot1()
 # <img src="./images/heated_bar.png" width="400px" align= center>
 
 # \begin{equation*}
-# \frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
+# \frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
 # \end{equation*}
 # 
 # \begin{equation*}
@@ -419,28 +419,43 @@ showplot1()
 # Usando diferencias finitas con el método de Euler explícito:
 # 
 # \begin{align*}
-# \frac{T_{i}^{l+1} - T_{i}^l}{\Delta t} = k\frac{T_{i+1}^l - 2T_{i}^l + T_{i-1}^l}{\Delta x^2} + h'(T_\infty - T_i^l) \quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
+# \frac{T_{i}^{l+1} - T_{i}^l}{\Delta t} = \alpha\frac{T_{i+1}^l - 2T_{i}^l + T_{i-1}^l}{\Delta x^2} + h'(T_\infty - T_i^l) \quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
 # T_{i}^{l+1}= T_a\quad\quad &\mathrm{if}~i = 0 \\[10pt]
-# \frac{T_{i}^{l+1} -  T_{i-1}^{l+1}}{\Delta x}  = h'(T_\infty - T_i^{l+1})\quad\quad &\mathrm{if}~i = m\\[10pt]
+# \frac{T_{i}^{l+1} -  T_{i-1}^{l+1}}{\Delta x}  = h^*(T_\infty - T_i^{l+1})\quad\quad &\mathrm{if}~i = m\\[10pt]
 # \end{align*}
 
 # El sistema a resolver esta dado por:
 # 
 # \begin{align*}
-# T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty\quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
+# T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty\quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
 # T_{i}^{l+1} = T_a\quad\quad &\mathrm{if}~i = 0 \\[10pt]
-# T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &\mathrm{if}~i = m\\[10pt]
+# T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\infty\right)\quad\quad &\mathrm{if}~i = m\\[10pt]
 # \end{align*}
 
 # Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito
 
-# Resolvemos la equación para los siguientes parámetros:
+# >**Importante** Una condición necesaria del método explícito para asegurar convergencia y estabilidad en nuestra solución es:
+# >
+# >\begin{equation}
+# \Delta t \le \frac{1}{2} \frac{\Delta x^2}{\alpha}
+# \end{equation}
+
+# >Esto significa que nuestro paso de tiempo está condicionado por el número de nodos en nuestra malla. Es decir, a mayor número de nodos, menor será el paso de tiempo
+
+# >La condición de estabilidad está presente en la mayoría de los métodos explícitos, incluso, en esquemas más complejos como RK4.
+
+# >Una alternativa para utilizar valores de $\Delta t$ mayores es mediante métodos implícitos, o semi-implícitos como [Crack-Nicolson](https://en.wikipedia.org/wiki/Crank%E2%80%93Nicolson_method). Sin embargo, >en este curso solo nos enfocaremos en métodos explícitos
+
+# >Para mayor información sobre métodos implícitos, revisar las referencias al final del capítulo.
+
+# Volvemos a nuestro problema considerando los siguientes parámetros:
 
 # \begin{align*}
 # T_a &= 400~\mathrm{K} \\
 # T_\infty &= 300~\mathrm{K} \\
 # h' &= 0.002~\mathrm{s}^{-1} \\
-# k &= 0.0001~\mathrm{m}^2/\mathrm{s} \\
+# h^* &= 0.005~\mathrm{m}^{-1}\\
+# \alpha &= 0.0001~\mathrm{m}^2/\mathrm{s} \\
 # L &= 1 ~\mathrm{m} \\
 # \end{align*}
 
@@ -448,55 +463,51 @@ showplot1()
 
 
 # definimos las constantes del problema
-Ta   = 400    # Temperatura al lado izquierdo (K)
-Too  = 300    # Temperatura del aire (K)b
-h    = 0.002  # Coeficiente convectivo (m^-1)
-k    = 0.0001 # flujo de calor (m^2/s)
-L    = 1      # Largo de la barra (m)
+Ta    = 400    # Temperatura al lado izquierdo (K)
+Too   = 300    # Temperatura del aire (K)b
+h     = 0.002  # Coeficiente convectivo (s^-1)
+hstar = 0.005  # Coeficiente convectivo c.b. (m^-1)
+a     = 0.0001 # Difusividad térmica (m^2/s)
+L     = 1      # Largo de la barra (m)
 
-
-# Para asegurar convergencia y estabilidad en nuestra solución, se debe cumplir la condición:
-# 
-# \begin{equation}
-# \Delta t \le \frac{1}{2} \frac{\Delta x^2}{k}
-# \end{equation}
 
 # In[10]:
 
 
-Nx = 20                    # número total de nodos
-n = Nx - 1                 # índice del nodo extremo
-dx = L/(Nx - 1)            # espaciamiento entre nodos
-dt = 0.5*1/2*dx**2/k       # paso de tiempo
-t = np.arange(0,100*dt,dt) # Intervalo de tiempo
+Nx = 20                             # número total de nodos
+n = Nx - 1                          # índice del nodo extremo
+dx = L/(Nx - 1)                     # espaciamiento entre nodos
+dt = 0.5*1/2*dx**2/a                # paso de tiempo
+t = np.arange(0,100*dt,dt)          # Intervalo de tiempo
 
-T0 = Too*np.ones(Nx)       # condición inicial
-T_time = [T0]              # arreglo para almacenar soluciones
+T0 = Too*np.ones(Nx)                # condición inicial
+T_time = np.zeros((len(T0),len(t))) # arreglo para almacenar soluciones
+T_time[:,0] = T0
 
 T = T0.copy()             
 for l in range(len(t)) :
     Tl = T.copy()
     for i in range(Nx):
         if   i == 0: T[i] = Ta
-        elif i == n: T[i] = 1/(1+dx*h)*(T[i-1] + dx*h*Too)
+        elif i == n: T[i] = 1/(1+dx*hstar)*(T[i-1] + dx*hstar*Too)
         else:
-            T[i] = (1 - dt*h)*Tl[i] + k*dt/dx**2*(Tl[i+1] - 2*Tl[i] + Tl[i-1]) + dt*h*Too
-    T_time.append(T.copy())
+            T[i] = (1 - dt*h)*Tl[i] + a*dt/dx**2*(Tl[i+1] - 2*Tl[i] + Tl[i-1]) + dt*h*Too
+    
+    T_time[:,l] = T.copy()
 
 
-# Ahora graficamos nuestro resultado
+# Ahora graficamos nuestro resultado, considerando solo 10 curvas dentro del intervalo de tiempo.
 
 # In[11]:
 
 
-x = np.linspace(0,L,Nx)              # arreglo de puntos en x
-plt.figure(figsize = (7, 5))
-plt.rcParams.update({'font.size': 18})
-for it in range(1,len(t),5):         # iteramos sobre nuestras soluciones   
-    plt.plot(x,T_time[it] - 273,'o:') 
-plt.xlabel('Largo, x (m)')
-plt.ylabel('Temperatura (°C)')
-plt.show()
+get_ipython().run_cell_magic('capture', 'showplot2', 'from matplotlib import cm                             # librería de mapa de colores predefinidos\n\nplt.figure(figsize = (8, 5))                          # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\nx = np.linspace(0,L,Nx)                               # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(t)))              # Mapa de colores para cada linea\nfor it in range(1,len(t),round(len(t)/10)):           # Graficamos 10 curvas dentro del periodo total de simulación  \n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it])  # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)             # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(t)/60)])      # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (min)")                        # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
+
+
+# In[12]:
+
+
+showplot2()
 
 
 # ### EDP no-lineal 1D transciente
@@ -508,7 +519,7 @@ plt.show()
 # <img src="./images/heated_bar_radiation.png" width="400px" align= center>
 
 # \begin{equation*}
-# \frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
+# \frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
 # \end{equation*}
 # 
 # \begin{equation*}
@@ -522,9 +533,9 @@ plt.show()
 # Al aplicar diferencias finitas, notamos que el problema, nuevamente, queda definido de forma explícita en función de valores conocidos:
 # 
 # \begin{align*}
-# T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l - \Delta t\sigma'\left(T_{i}^4\right)^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty + \Delta t\sigma' T_\infty^4\quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
+# T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l - \Delta t\sigma'\left(T_{i}^4\right)^l + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty + \Delta t\sigma' T_\infty^4\quad\quad &\mathrm{if}~i \neq 0, m\\[10pt]
 # T_{i}^{l+1} = T_a\quad\quad &\mathrm{if}~i = 0 \\[10pt]
-# T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &\mathrm{if}~i = m\\[10pt]
+# T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\infty\right)\quad\quad &\mathrm{if}~i = m\\[10pt]
 # \end{align*}
 
 # Analicemos la solución de este problema para los siguientes parámetros:
@@ -534,34 +545,37 @@ plt.show()
 # T_a &= 400~\mathrm{K} \\
 # T_\infty &= 300~\mathrm{K} \\
 # h' &= 0.002~\mathrm{s}^{-1} \\
+# h^* &= 0.005~\mathrm{m}^{-1}\\
 # \sigma' &= 1\times 10^{-10}~\mathrm{s}^{-1}\mathrm{K}^{-3} \\
 # k &= 0.0001~\mathrm{m}^2/\mathrm{s} \\
 # L &= 1 ~\mathrm{m} \\
 # \end{align*}
 
-# In[12]:
+# In[13]:
 
 
 # definimos las constantes del problema
 Ta   = 400    # Temperatura al lado izquierdo (K)
 Too  = 300    # Temperatura del aire (K)b
-h    = 0.002  # Coeficiente convectivo (m^-1)
-S    = 1E-10  # Coeficiente convectivo (m^-1)
-k    = 0.0001 # flujo de calor (m^2/s)
+h    = 0.002  # Coeficiente convectivo (s^-1)
+hstar = 0.005 # Coeficiente convectivo c.b. (m^-1)
+S    = 1E-10  # Constante de radiación (m^-1)
+a    = 0.0001 # Difusividad térmica (m^2/s)
 L    = 1      # Largo de la barra (m)
 
 
-# In[13]:
+# In[14]:
 
 
-Nx = 20                    # número total de nodos
-n = Nx - 1                 # índice del nodo extremo
-dx = L/(Nx - 1)            # espaciamiento entre nodos
-dt = 0.5*1/2*dx**2/k       # paso de tiempo
-t = np.arange(0,100*dt,dt) # Intervalo de tiempo
+Nx = 20                             # número total de nodos
+n = Nx - 1                          # índice del nodo extremo
+dx = L/(Nx - 1)                     # espaciamiento entre nodos
+dt = 0.5*1/2*dx**2/a                # paso de tiempo
+t = np.arange(0,10*60,dt)           # Intervalo de tiempo (10 minutos)
 
-T0 = Too*np.ones(Nx)       # condición inicial
-T_time = [T0]              # arreglo para almacenar soluciones
+T0 = Too*np.ones(Nx)                # condición inicial
+T_time = np.zeros((len(T0),len(t))) # arreglo para almacenar soluciones
+T_time[:,0] = T0
 
 T = T0.copy()             
 for l in range(len(t)) :
@@ -570,25 +584,23 @@ for l in range(len(t)) :
         if   i == 0: T[i] = Ta
         elif i == n: T[i] = 1/(1+dx*h)*(T[i-1] + dx*h*Too)
         else:
-            T[i] = (1 - dt*h)*Tl[i] - dt*S*Tl[i]**4 + k*dt/dx**2*(Tl[i+1] - 2*Tl[i] + Tl[i-1]) + dt*h*Too + dt*S*Too**4
-    T_time.append(T.copy())
+            T[i] = (1 - dt*h)*Tl[i] - dt*S*Tl[i]**4 + a*dt/dx**2*(Tl[i+1] - 2*Tl[i] + Tl[i-1]) + dt*h*Too + dt*S*Too**4
+    
+    T_time[:,l] = T.copy()
 
 
-# Graficamos nuestro resultado
+# Graficamos nuestro resultado considerando 10 curvas dentro de los primeros 60 segundos.
 
-# In[14]:
+# In[15]:
 
 
-x = np.linspace(0,L,Nx)              # arreglo de puntos en x
+get_ipython().run_cell_magic('capture', 'showplot3', 'from matplotlib import cm                              # librería de mapa de colores predefinidos\n\nplt.figure(figsize = (8, 5))                           # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                 # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\ntplot = t[t<=60]                                       # primeros 60 segundos\nx = np.linspace(0,L,Nx)                                # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(tplot)))           # Mapa de colores para cada linea\nfor it in range(1,len(tplot),round(len(tplot)/10)):    # Graficamos 10 curvas dentro del periodo total de simulación\n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it]) # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)              # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                  # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(tplot))])       # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (seg)")                         # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
 
-plt.figure(figsize = (7, 5))
-plt.rcParams.update({'font.size': 18})
 
-for it in range(1,len(t),5):         # iteramos sobre nuestras soluciones   
-    plt.plot(x,T_time[it] - 273,'o:') 
-plt.xlabel('Largo, x (m)')
-plt.ylabel('Temperatura (°C)')
-plt.show()
+# In[16]:
+
+
+showplot3()
 
 
 # ## EDP transcientes en 2D
@@ -602,8 +614,8 @@ plt.show()
 # Ahora como un problema transciente:
 # 
 # \begin{equation*}
-# \frac{\partial T}{\partial t}= k\frac{\partial^2 T}{\partial x^2} +
-# k\frac{\partial^2 T}{\partial y^2}
+# \frac{\partial T}{\partial t}= \alpha\frac{\partial^2 T}{\partial x^2} +
+# \alpha\frac{\partial^2 T}{\partial y^2}
 # \end{equation*}
 # 
 # con condición inicial $T(0,x,y) = T_\infty$
@@ -611,8 +623,8 @@ plt.show()
 # Usando diferencias finitas, con Euler explícito, derivamos un sistema de la forma:
 # 
 # \begin{align*}
-# T_{i,j}^{l+1} = T_{i,j}^{l} + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1,j}^l - 2T_{i,j}^l + T_{i-1,j}^l\right)
-# + \frac{k\Delta t}{\Delta y^2}\left(T_{i,j+1}^l - 2T_{i,j}^l + T_{i,j-1}^l\right)\quad\quad &\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+# T_{i,j}^{l+1} = T_{i,j}^{l} + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1,j}^l - 2T_{i,j}^l + T_{i-1,j}^l\right)
+# + \frac{\alpha\Delta t}{\Delta y^2}\left(T_{i,j+1}^l - 2T_{i,j}^l + T_{i,j-1}^l\right)\quad\quad &\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
 # T_{i,j}^{l+1} = T_a\quad\quad &\mathrm{if}~i = 0 \\[10pt]
 # T_{i,j}^{l+1} = T_b\quad\quad &\mathrm{if}~i = m \\[10pt]
 # T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &\mathrm{if}~j =0\\[10pt]
@@ -624,7 +636,7 @@ plt.show()
 # En este caso, la condición de estabilidad y convergencia está dada por:
 # 
 # \begin{equation}
-# \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{k}
+# \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 # \end{equation}
 
 # Resolvamos este problema en un código, considerando los parámetros
@@ -640,7 +652,7 @@ plt.show()
 # H &=& 1.5 ~\mathrm{m} \\
 # \end{eqnarray*}
 
-# In[15]:
+# In[17]:
 
 
 # definimos las constantes del problema
@@ -648,26 +660,25 @@ Ta   = 500    # Temperatura al lado izquierdo (K)
 Tb   = 500    # Temperatura al lado derecho (K)
 Too  = 300    # Temperatura del aire (K)b
 h    = 100    # Coeficiente convectivo (m^-1)
-k    = 0.0001 # conductividad térmica (m^2/s)
+a    = 0.0001 # difusividad térmica (m^2/s)
 q0   = 1000   # flujo de calor (K/m))
 L, H = 1, 1.5 # Largo y ancho de la cavidad (m)
 
 
 # En este caso, definiremos una función `T_plate_time` que determinará la distribución de temperaturas para un tiempo `tend`
 
-# In[16]:
+# In[18]:
 
 
 def T_plate_time(Nx,Ny, tend):
     # Definimos las características de la malla
     nx, ny = Nx - 1, Ny - 1         # índice último nodo
     dx, dy = L/(Nx - 1), H/(Ny - 1) # espaciamiento entre nodos
-    dt = 0.5*1/8*(dx**2 + dy**2)/k  # paso de tiempo
+    dt = 0.5*1/8*(dx**2 + dy**2)/a  # paso de tiempo
     t = np.arange(0,tend,dt)        # Intervalo de tiempo
 
     # Iteramos
-    T0 = Too*np.ones((Nx,Ny))       # condición inicial
-    T = T0.copy()
+    T = Too*np.ones((Nx,Ny))       # condición inicial
     for l in range(len(t)):
         Tl = T.copy()       # guardamos la iteración previa
         
@@ -680,23 +691,23 @@ def T_plate_time(Nx,Ny, tend):
                 elif j == ny: T[i,j] = 1/(1 + dy*h)*(T[i,j-1] + dy*h*Too)
             
                 # nodos centrales
-                else: T[i,j] = Tl[i,j] + k*dt/dx**2*(Tl[i+1,j] - 2*Tl[i,j] + Tl[i-1,j]) \
-                                       + k*dt/dy**2*(Tl[i,j+1] - 2*Tl[i,j] + Tl[i,j-1])
+                else: T[i,j] = Tl[i,j] + a*dt/dx**2*(Tl[i+1,j] - 2*Tl[i,j] + Tl[i-1,j]) \
+                                       + a*dt/dy**2*(Tl[i,j+1] - 2*Tl[i,j] + Tl[i,j-1])
                 
                      
     return T
 
 
-# In[17]:
+# In[19]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 200) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot4', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 200) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))           # Tamaño del lienzo\nplt.rcParams.update({\'font.size\': 18}) # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta de la barra de colores\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip])            # Distribución de flujo de calor\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
-# In[18]:
+# In[20]:
 
 
-showplot2()
+showplot4()
 
 
 # ## Referencias

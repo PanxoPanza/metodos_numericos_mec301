@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -522,31 +523,31 @@ Fecha: 14 de noviembre 2022</p>
 <h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>Como mencionamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
 <p>Por ejemplo,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6896d2f5-e96b-4c5c-b4e8-0990e86cffc1">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-6896d2f5-e96b-4c5c-b4e8-0990e86cffc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0fe70aa-0ab8-43d8-a5e5-104ba232e450">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-a0fe70aa-0ab8-43d8-a5e5-104ba232e450" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2u}{\partial x^2} + 
 2xy\frac{\partial^2u}{\partial y^2} = 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-97c9285e-64dd-4594-8fd6-dec7aa9de7d7">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-97c9285e-64dd-4594-8fd6-dec7aa9de7d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc36a10a-b9a7-489b-9337-1dad825680ae">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-dc36a10a-b9a7-489b-9337-1dad825680ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^3u}{\partial x^2\partial y} + 
 x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-232a4020-8bd8-4ff3-95f6-ce13943b6cb5">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-232a4020-8bd8-4ff3-95f6-ce13943b6cb5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-489dd730-ecaf-4931-b5eb-1e803cd311fd">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-489dd730-ecaf-4931-b5eb-1e803cd311fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 6\frac{\partial^3u}{\partial x\partial y^2} = x
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7724322c-d276-4a51-908b-753e3e0467b3">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-7724322c-d276-4a51-908b-753e3e0467b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7992e008-8023-400c-863b-20c560002f8a">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-7992e008-8023-400c-863b-20c560002f8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 xu\frac{\partial u}{\partial y} = x
 \end{equation}\]</div>
 <p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
 <p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
 <p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-23469c22-5f0f-43d0-ba05-69c4dd026d35">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-23469c22-5f0f-43d0-ba05-69c4dd026d35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bcf3faee-04d3-4bbd-8583-8135800a7a47">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-bcf3faee-04d3-4bbd-8583-8135800a7a47" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\frac{\partial^2u}{\partial x^2} + 
 B\frac{\partial^2u}{\partial x \partial y} +  
 C\frac{\partial^2u}{\partial y^2} + 
@@ -564,8 +565,8 @@ D = 0
 <section id="ecuaciones-elipticas-edp-estacionaria">
 <h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this headline">#</a></h2>
 <p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f268a2fd-86c4-449a-8073-8e29f951b969">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-f268a2fd-86c4-449a-8073-8e29f951b969" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a220e80-d060-4040-8e55-0ff5ef4b6225">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-2a220e80-d060-4040-8e55-0ff5ef4b6225" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} +
 \frac{\partial^2 T}{\partial y^2}
 = 0
@@ -794,17 +795,17 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>   <span class="c1"># librería de mapa de colores</span>
     
 <span class="n">x</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span> <span class="c1"># coordenadas x</span>
 <span class="n">y</span> <span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Ny</span><span class="p">)</span> <span class="c1"># coordenadas y</span>
 <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c1"># malla x-y</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>            <span class="c1"># tamaño de la figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>  <span class="c1"># tamaño de fuente</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (K)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>           <span class="c1"># Mapa T(x,y)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (K)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>  <span class="c1"># Etiqueta en la barra de colores  </span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">)</span>
@@ -902,7 +903,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <a class="reference internal image-reference" href="../_images/heated_bar1.png"><img alt="../_images/heated_bar1.png" class="align-center" src="../_images/heated_bar1.png" style="width: 400px;" /></a>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
+\frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
 \end{equation*}\]</div>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -915,84 +916,124 @@ T(t,0) = T_a;\quad\quad\quad \frac{\partial T}{\partial x}\Big|_{x=L} = h^* \lef
 <p>Usando diferencias finitas con el método de Euler explícito:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\frac{T_{i}^{l+1} - T_{i}^l}{\Delta t} = k\frac{T_{i+1}^l - 2T_{i}^l + T_{i-1}^l}{\Delta x^2} + h'(T_\infty - T_i^l) \quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+\frac{T_{i}^{l+1} - T_{i}^l}{\Delta t} = \alpha\frac{T_{i+1}^l - 2T_{i}^l + T_{i-1}^l}{\Delta x^2} + h'(T_\infty - T_i^l) \quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
 T_{i}^{l+1}= T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
-\frac{T_{i}^{l+1} -  T_{i-1}^{l+1}}{\Delta x}  = h'(T_\infty - T_i^{l+1})\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+\frac{T_{i}^{l+1} -  T_{i-1}^{l+1}}{\Delta x}  = h^*(T_\infty - T_i^{l+1})\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
 \end{align*}\]</div>
 <p>El sistema a resolver esta dado por:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
 T_{i}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
-T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
 \end{align*}\]</div>
 <p>Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito</p>
-<p>Resolvemos la equación para los siguientes parámetros:</p>
+<blockquote>
+<div><p><strong>Importante</strong> Una condición necesaria del método explícito para asegurar convergencia y estabilidad en nuestra solución es:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-20d28bbd-b579-43fa-8018-2c32b1ab6baa">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-20d28bbd-b579-43fa-8018-2c32b1ab6baa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta t \le \frac{1}{2} \frac{\Delta x^2}{\alpha}
+\end{equation}\]</div>
+</div></blockquote>
+<blockquote>
+<div><p>Esto significa que nuestro paso de tiempo está condicionado por el número de nodos en nuestra malla. Es decir, a mayor número de nodos, menor será el paso de tiempo</p>
+</div></blockquote>
+<blockquote>
+<div><p>La condición de estabilidad está presente en la mayoría de los métodos explícitos, incluso, en esquemas más complejos como RK4.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Una alternativa para utilizar valores de <span class="math notranslate nohighlight">\(\Delta t\)</span> mayores es mediante métodos implícitos, o semi-implícitos como <a class="reference external" href="https://en.wikipedia.org/wiki/Crank%E2%80%93Nicolson_method">Crack-Nicolson</a>. Sin embargo, &gt;en este curso solo nos enfocaremos en métodos explícitos</p>
+</div></blockquote>
+<blockquote>
+<div><p>Para mayor información sobre métodos implícitos, revisar las referencias al final del capítulo.</p>
+</div></blockquote>
+<p>Volvemos a nuestro problema considerando los siguientes parámetros:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 T_a &amp;= 400~\mathrm{K} \\
 T_\infty &amp;= 300~\mathrm{K} \\
 h' &amp;= 0.002~\mathrm{s}^{-1} \\
-k &amp;= 0.0001~\mathrm{m}^2/\mathrm{s} \\
+h^* &amp;= 0.005~\mathrm{m}^{-1}\\
+\alpha &amp;= 0.0001~\mathrm{m}^2/\mathrm{s} \\
 L &amp;= 1 ~\mathrm{m} \\
 \end{align*}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
-<span class="n">Ta</span>   <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
-<span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
-<span class="n">h</span>    <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
-<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># flujo de calor (m^2/s)</span>
-<span class="n">L</span>    <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># Largo de la barra (m)</span>
+<span class="n">Ta</span>    <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
+<span class="n">Too</span>   <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
+<span class="n">h</span>     <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (s^-1)</span>
+<span class="n">hstar</span> <span class="o">=</span> <span class="mf">0.005</span>  <span class="c1"># Coeficiente convectivo c.b. (m^-1)</span>
+<span class="n">a</span>     <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># Difusividad térmica (m^2/s)</span>
+<span class="n">L</span>     <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># Largo de la barra (m)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Para asegurar convergencia y estabilidad en nuestra solución, se debe cumplir la condición:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e7e2de1-5a02-4bcc-9aab-3e27b9980c4c">
-<span class="eqno">(11.7)<a class="headerlink" href="#equation-5e7e2de1-5a02-4bcc-9aab-3e27b9980c4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\Delta t \le \frac{1}{2} \frac{\Delta x^2}{k}
-\end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                    <span class="c1"># número total de nodos</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="c1"># índice del nodo extremo</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>            <span class="c1"># espaciamiento entre nodos</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span>       <span class="c1"># paso de tiempo</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="c1"># Intervalo de tiempo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                             <span class="c1"># número total de nodos</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                          <span class="c1"># índice del nodo extremo</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>                     <span class="c1"># espaciamiento entre nodos</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span>                <span class="c1"># paso de tiempo</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>          <span class="c1"># Intervalo de tiempo</span>
 
-<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>       <span class="c1"># condición inicial</span>
-<span class="n">T_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">T0</span><span class="p">]</span>              <span class="c1"># arreglo para almacenar soluciones</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>                <span class="c1"># condición inicial</span>
+<span class="n">T_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c1"># arreglo para almacenar soluciones</span>
+<span class="n">T_time</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="p">:</span>
     <span class="n">Tl</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nx</span><span class="p">):</span>
         <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
-        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="o">*</span><span class="n">hstar</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">hstar</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span>
-    <span class="n">T_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span>
+    
+    <span class="n">T_time</span><span class="p">[:,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Ahora graficamos nuestro resultado</p>
+<p>Ahora graficamos nuestro resultado, considerando solo 10 curvas dentro del intervalo de tiempo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>              <span class="c1"># arreglo de puntos en x</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
-<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="mi">5</span><span class="p">):</span>         <span class="c1"># iteramos sobre nuestras soluciones   </span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot2
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>                             <span class="c1"># librería de mapa de colores predefinidos</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>                          <span class="c1"># Tamaño del gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>                <span class="c1"># Tamaño de la fuente </span>
+
+<span class="c1"># Graficamos la distribución de temperaturas en el tiempo</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>                               <span class="c1"># Arreglo de puntos en x</span>
+<span class="n">cRGB</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>              <span class="c1"># Mapa de colores para cada linea</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)):</span>           <span class="c1"># Graficamos 10 curvas dentro del periodo total de simulación  </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[:,</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cRGB</span><span class="p">[</span><span class="n">it</span><span class="p">])</span>  <span class="c1"># Distribución de temperaturas en tiempo &quot;t&quot;</span>
+
+<span class="c1"># Agregamos una barra de colores como leyenda</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">)</span>             <span class="c1"># Necesario para agregar la barra</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>                 <span class="c1"># Restringir solo dos etiquetas</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.0f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">)])</span>      <span class="c1"># Valor en cada etiqueta del eje</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;Tiempo (min)&quot;</span><span class="p">)</span>                        <span class="c1"># Nombre de la variable</span>
+
+<span class="c1"># formateamos los ejes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Largo, x (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="../_images/11-DiferenciasFinitas_EDP_78_0.png" src="../_images/11-DiferenciasFinitas_EDP_78_0.png" />
+<img alt="../_images/11-DiferenciasFinitas_EDP_83_0.png" src="../_images/11-DiferenciasFinitas_EDP_83_0.png" />
 </div>
 </div>
 </section>
@@ -1003,7 +1044,7 @@ L &amp;= 1 ~\mathrm{m} \\
 <a class="reference internal image-reference" href="../_images/heated_bar_radiation.png"><img alt="../_images/heated_bar_radiation.png" class="align-center" src="../_images/heated_bar_radiation.png" style="width: 400px;" /></a>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\frac{\partial T}{\partial t} = k\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
+\frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
 \end{equation*}\]</div>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1016,9 +1057,9 @@ T(t,0) = T_a;\quad\quad\quad \frac{\partial T}{\partial x}\Big|_{x=L} = h^* \lef
 <p>Al aplicar diferencias finitas, notamos que el problema, nuevamente, queda definido de forma explícita en función de valores conocidos:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l - \Delta t\sigma'\left(T_{i}^4\right)^l + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty + \Delta t\sigma' T_\infty^4\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
+T_{i}^{l+1} = (1 - \Delta t h') T_{i}^l - \Delta t\sigma'\left(T_{i}^4\right)^l + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1}^l - 2T_{i}^l + T_{i-1}^l\right) + \Delta t h'T_\infty + \Delta t\sigma' T_\infty^4\quad\quad &amp;\mathrm{if}~i \neq 0, m\\[10pt]
 T_{i}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
-T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
+T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\infty\right)\quad\quad &amp;\mathrm{if}~i = m\\[10pt]
 \end{align*}\]</div>
 <p>Analicemos la solución de este problema para los siguientes parámetros:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1026,6 +1067,7 @@ T_{i}^{l+1} =\frac{1}{1 + \Delta x h'} \left(T_{i-1}^{l+1}  + \Delta x~h'T_\inft
 T_a &amp;= 400~\mathrm{K} \\
 T_\infty &amp;= 300~\mathrm{K} \\
 h' &amp;= 0.002~\mathrm{s}^{-1} \\
+h^* &amp;= 0.005~\mathrm{m}^{-1}\\
 \sigma' &amp;= 1\times 10^{-10}~\mathrm{s}^{-1}\mathrm{K}^{-3} \\
 k &amp;= 0.0001~\mathrm{m}^2/\mathrm{s} \\
 L &amp;= 1 ~\mathrm{m} \\
@@ -1035,9 +1077,10 @@ L &amp;= 1 ~\mathrm{m} \\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos las constantes del problema</span>
 <span class="n">Ta</span>   <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura al lado izquierdo (K)</span>
 <span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
-<span class="n">h</span>    <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
-<span class="n">S</span>    <span class="o">=</span> <span class="mf">1E-10</span>  <span class="c1"># Coeficiente convectivo (m^-1)</span>
-<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># flujo de calor (m^2/s)</span>
+<span class="n">h</span>    <span class="o">=</span> <span class="mf">0.002</span>  <span class="c1"># Coeficiente convectivo (s^-1)</span>
+<span class="n">hstar</span> <span class="o">=</span> <span class="mf">0.005</span> <span class="c1"># Coeficiente convectivo c.b. (m^-1)</span>
+<span class="n">S</span>    <span class="o">=</span> <span class="mf">1E-10</span>  <span class="c1"># Constante de radiación (m^-1)</span>
+<span class="n">a</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># Difusividad térmica (m^2/s)</span>
 <span class="n">L</span>    <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># Largo de la barra (m)</span>
 </pre></div>
 </div>
@@ -1045,14 +1088,15 @@ L &amp;= 1 ~\mathrm{m} \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                    <span class="c1"># número total de nodos</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="c1"># índice del nodo extremo</span>
-<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>            <span class="c1"># espaciamiento entre nodos</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span>       <span class="c1"># paso de tiempo</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="c1"># Intervalo de tiempo</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">20</span>                             <span class="c1"># número total de nodos</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span>                          <span class="c1"># índice del nodo extremo</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>                     <span class="c1"># espaciamiento entre nodos</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">a</span>                <span class="c1"># paso de tiempo</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>           <span class="c1"># Intervalo de tiempo (10 minutos)</span>
 
-<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>       <span class="c1"># condición inicial</span>
-<span class="n">T_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">T0</span><span class="p">]</span>              <span class="c1"># arreglo para almacenar soluciones</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>                <span class="c1"># condición inicial</span>
+<span class="n">T_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">T0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span> <span class="c1"># arreglo para almacenar soluciones</span>
+<span class="n">T_time</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>             
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="p">:</span>
@@ -1061,30 +1105,52 @@ L &amp;= 1 ~\mathrm{m} \\
         <span class="k">if</span>   <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span>
         <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dx</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span>
-    <span class="n">T_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+            <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span> <span class="o">+</span> <span class="n">dt</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span>
+    
+    <span class="n">T_time</span><span class="p">[:,</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Graficamos nuestro resultado</p>
+<p>Graficamos nuestro resultado considerando 10 curvas dentro de los primeros 60 segundos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>              <span class="c1"># arreglo de puntos en x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot3
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>                              <span class="c1"># librería de mapa de colores predefinidos</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>                           <span class="c1"># Tamaño del gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>                 <span class="c1"># Tamaño de la fuente </span>
 
-<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="mi">5</span><span class="p">):</span>         <span class="c1"># iteramos sobre nuestras soluciones   </span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">)</span> 
+<span class="c1"># Graficamos la distribución de temperaturas en el tiempo</span>
+<span class="n">tplot</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">&lt;=</span><span class="mi">60</span><span class="p">]</span>                                       <span class="c1"># primeros 60 segundos</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">Nx</span><span class="p">)</span>                                <span class="c1"># Arreglo de puntos en x</span>
+<span class="n">cRGB</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tplot</span><span class="p">)))</span>           <span class="c1"># Mapa de colores para cada linea</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tplot</span><span class="p">),</span><span class="nb">round</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tplot</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)):</span>    <span class="c1"># Graficamos 10 curvas dentro del periodo total de simulación</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T_time</span><span class="p">[:,</span><span class="n">it</span><span class="p">]</span> <span class="o">-</span> <span class="mi">273</span><span class="p">,</span><span class="s1">&#39;o:&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cRGB</span><span class="p">[</span><span class="n">it</span><span class="p">])</span> <span class="c1"># Distribución de temperaturas en tiempo &quot;t&quot;</span>
+
+<span class="c1"># Agregamos una barra de colores como leyenda</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">magma</span><span class="p">)</span>              <span class="c1"># Necesario para agregar la barra</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>                  <span class="c1"># Restringir solo dos etiquetas</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.0f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">tplot</span><span class="p">))])</span>       <span class="c1"># Valor en cada etiqueta del eje</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;Tiempo (seg)&quot;</span><span class="p">)</span>                         <span class="c1"># Nombre de la variable</span>
+
+<span class="c1"># formateamos los ejes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Largo, x (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura (°C)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="../_images/11-DiferenciasFinitas_EDP_89_0.png" src="../_images/11-DiferenciasFinitas_EDP_89_0.png" />
+<img alt="../_images/11-DiferenciasFinitas_EDP_95_0.png" src="../_images/11-DiferenciasFinitas_EDP_95_0.png" />
 </div>
 </div>
 </section>
@@ -1097,15 +1163,15 @@ L &amp;= 1 ~\mathrm{m} \\
 <p>Ahora como un problema transciente:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\frac{\partial T}{\partial t}= k\frac{\partial^2 T}{\partial x^2} +
-k\frac{\partial^2 T}{\partial y^2}
+\frac{\partial T}{\partial t}= \alpha\frac{\partial^2 T}{\partial x^2} +
+\alpha\frac{\partial^2 T}{\partial y^2}
 \end{equation*}\]</div>
 <p>con condición inicial <span class="math notranslate nohighlight">\(T(0,x,y) = T_\infty\)</span></p>
 <p>Usando diferencias finitas, con Euler explícito, derivamos un sistema de la forma:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-T_{i,j}^{l+1} = T_{i,j}^{l} + \frac{k\Delta t}{\Delta x^2}\left(T_{i+1,j}^l - 2T_{i,j}^l + T_{i-1,j}^l\right)
-+ \frac{k\Delta t}{\Delta y^2}\left(T_{i,j+1}^l - 2T_{i,j}^l + T_{i,j-1}^l\right)\quad\quad &amp;\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+T_{i,j}^{l+1} = T_{i,j}^{l} + \frac{\alpha\Delta t}{\Delta x^2}\left(T_{i+1,j}^l - 2T_{i,j}^l + T_{i-1,j}^l\right)
++ \frac{\alpha\Delta t}{\Delta y^2}\left(T_{i,j+1}^l - 2T_{i,j}^l + T_{i,j-1}^l\right)\quad\quad &amp;\mathrm{if}~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
 T_{i,j}^{l+1} = T_a\quad\quad &amp;\mathrm{if}~i = 0 \\[10pt]
 T_{i,j}^{l+1} = T_b\quad\quad &amp;\mathrm{if}~i = m \\[10pt]
 T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0\\[10pt]
@@ -1113,9 +1179,9 @@ T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0
 \end{align*}\]</div>
 <p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
 <p>En este caso, la condición de estabilidad y convergencia está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-517db23f-9d0a-4cf5-869d-c3d54dbc3509">
-<span class="eqno">(11.8)<a class="headerlink" href="#equation-517db23f-9d0a-4cf5-869d-c3d54dbc3509" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{k}
+<div class="amsmath math notranslate nohighlight" id="equation-30762656-cb7e-40b0-8dc7-59b3a8cede67">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-30762656-cb7e-40b0-8dc7-59b3a8cede67" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 \end{equation}\]</div>
 <p>Resolvamos este problema en un código, considerando los parámetros</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1136,7 +1202,7 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 <span class="n">Tb</span>   <span class="o">=</span> <span class="mi">500</span>    <span class="c1"># Temperatura al lado derecho (K)</span>
 <span class="n">Too</span>  <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># Temperatura del aire (K)b</span>
 <span class="n">h</span>    <span class="o">=</span> <span class="mi">100</span>    <span class="c1"># Coeficiente convectivo (m^-1)</span>
-<span class="n">k</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># conductividad térmica (m^2/s)</span>
+<span class="n">a</span>    <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># difusividad térmica (m^2/s)</span>
 <span class="n">q0</span>   <span class="o">=</span> <span class="mi">1000</span>   <span class="c1"># flujo de calor (K/m))</span>
 <span class="n">L</span><span class="p">,</span> <span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span> <span class="c1"># Largo y ancho de la cavidad (m)</span>
 </pre></div>
@@ -1150,12 +1216,11 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
     <span class="c1"># Definimos las características de la malla</span>
     <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span>         <span class="c1"># índice último nodo</span>
     <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">Nx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">H</span><span class="o">/</span><span class="p">(</span><span class="n">Ny</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># espaciamiento entre nodos</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">k</span>  <span class="c1"># paso de tiempo</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="o">*</span><span class="p">(</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">a</span>  <span class="c1"># paso de tiempo</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">tend</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>        <span class="c1"># Intervalo de tiempo</span>
 
     <span class="c1"># Iteramos</span>
-    <span class="n">T0</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">))</span>       <span class="c1"># condición inicial</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">T0</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">Too</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="p">,</span><span class="n">Ny</span><span class="p">))</span>       <span class="c1"># condición inicial</span>
     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
         <span class="n">Tl</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>       <span class="c1"># guardamos la iteración previa</span>
         
@@ -1168,8 +1233,8 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
                 <span class="k">elif</span> <span class="n">j</span> <span class="o">==</span> <span class="n">ny</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">Too</span><span class="p">)</span>
             
                 <span class="c1"># nodos centrales</span>
-                <span class="k">else</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> \
-                                       <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">])</span> \
+                                       <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">Tl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
                 
                      
     <span class="k">return</span> <span class="n">T</span>
@@ -1179,7 +1244,7 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot2
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot4
 
 <span class="c1"># Definimos las características de la malla</span>
 <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span> <span class="o">=</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">76</span>                    <span class="c1"># total de nodos</span>
@@ -1192,14 +1257,14 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 <span class="n">skip</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">qy</span><span class="p">,</span> <span class="n">qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># gradiente </span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>           <span class="c1"># Tamaño del lienzo</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># tamaño de fuente</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (K)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">T</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">plasma</span><span class="p">))</span>           <span class="c1"># Distribución T(x,y) en mapa de colores</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Temperatura (K)&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">)</span>  <span class="c1"># Etiqueta de la barra de colores</span>
 
 <span class="c1"># campo vectorial de q</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qy</span><span class="p">[</span><span class="n">skip</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="n">yy</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qx</span><span class="p">[</span><span class="n">skip</span><span class="p">],</span><span class="o">-</span> <span class="n">qy</span><span class="p">[</span><span class="n">skip</span><span class="p">])</span>            <span class="c1"># Distribución de flujo de calor</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y (m)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">)</span>
@@ -1210,12 +1275,12 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot2</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot4</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/11-DiferenciasFinitas_EDP_103_0.png" src="../_images/11-DiferenciasFinitas_EDP_103_0.png" />
+<img alt="../_images/11-DiferenciasFinitas_EDP_109_0.png" src="../_images/11-DiferenciasFinitas_EDP_109_0.png" />
 </div>
 </div>
 </section>
