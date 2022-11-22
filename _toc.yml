@@ -31,3 +31,4 @@ parts:
         sections:
         - file: Apendice/Repaso/Repaso_Parte1/Repaso_Parte1
         - file: Apendice/Repaso/Repaso_Parte2/Repaso_Parte2
+        - file: Apendice/Repaso/Repaso_Parte3/Repaso_Parte3

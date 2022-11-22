@@ -402,7 +402,7 @@ showplot1()
 
 # 
 # 
-# <img src="./images/heated_bar.png" width="400px" align= center>
+# <img src="./images/heated_bar.png" width="450px" align= center>
 
 # \begin{equation*}
 # \frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T)
@@ -444,7 +444,7 @@ showplot1()
 
 # >La condición de estabilidad está presente en la mayoría de los métodos explícitos, incluso, en esquemas más complejos como RK4.
 
-# >Una alternativa para utilizar valores de $\Delta t$ mayores es mediante métodos implícitos, o semi-implícitos como [Crack-Nicolson](https://en.wikipedia.org/wiki/Crank%E2%80%93Nicolson_method). Sin embargo, >en este curso solo nos enfocaremos en métodos explícitos
+# >Una alternativa para utilizar valores de $\Delta t$ mayores es mediante métodos implícitos, o semi-implícitos como [Crack-Nicolson](https://en.wikipedia.org/wiki/Crank%E2%80%93Nicolson_method). Sin embargo, en este curso solo nos enfocaremos en métodos explícitos
 
 # >Para mayor información sobre métodos implícitos, revisar las referencias al final del capítulo.
 
@@ -462,6 +462,7 @@ showplot1()
 # In[9]:
 
 
+import numpy as np
 # definimos las constantes del problema
 Ta    = 400    # Temperatura al lado izquierdo (K)
 Too   = 300    # Temperatura del aire (K)b
@@ -501,7 +502,7 @@ for l in range(len(t)) :
 # In[11]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', 'from matplotlib import cm                             # librería de mapa de colores predefinidos\n\nplt.figure(figsize = (8, 5))                          # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\nx = np.linspace(0,L,Nx)                               # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(t)))              # Mapa de colores para cada linea\nfor it in range(1,len(t),round(len(t)/10)):           # Graficamos 10 curvas dentro del periodo total de simulación  \n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it])  # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)             # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(t)/60)])      # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (min)")                        # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot2', 'from matplotlib import cm                             # librería de mapa de colores predefinidos\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize = (8, 5))                          # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\nx = np.linspace(0,L,Nx)                               # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(t)))              # Mapa de colores para cada linea\nfor it in range(1,len(t),round(len(t)/10)):           # Graficamos 10 curvas dentro del periodo total de simulación  \n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it])  # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)             # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(t)/60)])      # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (min)")                        # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
 
 
 # In[12]:
@@ -516,7 +517,7 @@ showplot2()
 
 # Analicemos esto con el problema de la barra ahora con enfriamiento por convección y radiación
 
-# <img src="./images/heated_bar_radiation.png" width="400px" align= center>
+# <img src="./images/heated_bar_radiation.png" width="450px" align= center>
 
 # \begin{equation*}
 # \frac{\partial T}{\partial t} = \alpha\frac{\partial^2 T}{\partial x^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4)
@@ -633,9 +634,9 @@ showplot3()
 
 # Nuevamente, usamos valores futuros para las condiciones de borde
 
-# En este caso, la condición de estabilidad y convergencia está dada por:
-# 
-# \begin{equation}
+# >**Nota** En este caso, la condición de estabilidad y convergencia está dada por:
+# >
+# >\begin{equation}
 # \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 # \end{equation}
 
@@ -701,7 +702,7 @@ def T_plate_time(Nx,Ny, tend):
 # In[19]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot4', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 200) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))           # Tamaño del lienzo\nplt.rcParams.update({\'font.size\': 18}) # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta de la barra de colores\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip])            # Distribución de flujo de calor\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
+get_ipython().run_cell_magic('capture', 'showplot4', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 100) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))           # Tamaño del lienzo\nplt.rcParams.update({\'font.size\': 18}) # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta de la barra de colores\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip])            # Distribución de flujo de calor\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[20]:
