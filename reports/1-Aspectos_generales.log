@@ -22,10 +22,10 @@ square_number('10')
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipykernel_176/2602675188.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_660/2602675188.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0msquare_number[0m[0;34m([0m[0;34m'10'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;32m/tmp/ipykernel_176/2802720476.py[0m in [0;36msquare_number[0;34m(x)[0m
+[0;32m/tmp/ipykernel_660/2802720476.py[0m in [0;36msquare_number[0;34m(x)[0m
 [1;32m      1[0m [0;32mdef[0m [0msquare_number[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 2[0;31m     [0msq[0m [0;34m=[0m [0mx[0m[0;34m**[0m[0;36m2[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      3[0m     [0msq[0m [0;34m+=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
