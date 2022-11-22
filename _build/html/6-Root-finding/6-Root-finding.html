@@ -193,32 +193,20 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Apendice/Repaso/Intro_material_de_repaso.html">
-   Material de repaso
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
+   Repaso Parte 1 -  Introducción a los métodos numéricos
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
-     Repaso Parte 1 -  Introducción a los métodos numéricos
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
-     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
-     Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
+   Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
+   Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
+  </a>
  </li>
 </ul>
 
@@ -671,8 +659,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70139441-722c-4c3b-ae2b-9c641cc0cbd5">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-70139441-722c-4c3b-ae2b-9c641cc0cbd5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f147542-2077-40b6-8c09-bc09e112ac9c">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-8f147542-2077-40b6-8c09-bc09e112ac9c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -786,13 +774,13 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <h3><span class="section-number">6.2.4. </span>Error relativo y absoluto<a class="headerlink" href="#error-relativo-y-absoluto" title="Permalink to this headline">#</a></h3>
 <p>En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>. Sin embargo, este criterio no es correcto, ya que la definición de <span class="math notranslate nohighlight">\(f(x_0) \approx 0\)</span> es relativa a la escala de <span class="math notranslate nohighlight">\(f(x)\)</span> en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto <span class="math notranslate nohighlight">\(x_i\)</span>, siempre tendremos <span class="math notranslate nohighlight">\(f(x_i)\approx 0\)</span> si nos alejamos lo suficiente de la gráfica de la función.</p>
 <p>Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz <span class="math notranslate nohighlight">\(x^*\)</span>. Sin embargo, debido a que este valor es deconocido, definimos el <strong>error absoluto</strong> para cada nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> como:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0d34e97-06b6-499f-9b90-6d68d41388cc">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-c0d34e97-06b6-499f-9b90-6d68d41388cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0027db23-e59f-4951-865c-69e784ab5d4e">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-0027db23-e59f-4951-865c-69e784ab5d4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |x_{k+1} -x_{k}|
 \end{equation}\]</div>
 <p>Alternativamente, podemos definir el <strong>error relativo</strong> de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22efcfc6-4a5c-4268-9b1f-7c233cab68fb">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-22efcfc6-4a5c-4268-9b1f-7c233cab68fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8cb84e1a-6c53-4b4f-8cc7-5b617d53595e">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-8cb84e1a-6c53-4b4f-8cc7-5b617d53595e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 \end{equation}\]</div>
 <p>En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>

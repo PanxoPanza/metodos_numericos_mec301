@@ -193,32 +193,20 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Apendice/Repaso/Intro_material_de_repaso.html">
-   Material de repaso
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
+   Repaso Parte 1 -  Introducción a los métodos numéricos
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
-     Repaso Parte 1 -  Introducción a los métodos numéricos
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
-     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
-     Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
+   Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
+   Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
+  </a>
  </li>
 </ul>
 
@@ -545,8 +533,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-742fd6e5-4e46-4ec4-944b-79de3ed4622f">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-742fd6e5-4e46-4ec4-944b-79de3ed4622f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1911eb0-4cfe-4142-a695-7469e0d76d28">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-e1911eb0-4cfe-4142-a695-7469e0d76d28" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -557,8 +545,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7962297-0d85-40d2-8e40-f835025c9b22">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-a7962297-0d85-40d2-8e40-f835025c9b22" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84290000-da17-4f1c-8460-1e1073ee440a">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-84290000-da17-4f1c-8460-1e1073ee440a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -567,8 +555,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8dd89be0-e4d2-43a3-b1d4-cbff21c70044">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-8dd89be0-e4d2-43a3-b1d4-cbff21c70044" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c1497e46-4825-42ce-864d-8f16deb3004d">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-c1497e46-4825-42ce-864d-8f16deb3004d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>

@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Material de repaso" href="../Apendice/Repaso/Intro_material_de_repaso.html" />
+    <link rel="next" title="Repaso Parte 1 - Introducción a los métodos numéricos" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html" />
     <link rel="prev" title="10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -193,32 +193,20 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Apendice/Repaso/Intro_material_de_repaso.html">
-   Material de repaso
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
+   Repaso Parte 1 -  Introducción a los métodos numéricos
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html">
-     Repaso Parte 1 -  Introducción a los métodos numéricos
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
-     Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
-     Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte2/Repaso_Parte2.html">
+   Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
+   Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
+  </a>
  </li>
 </ul>
 
@@ -528,31 +516,31 @@ Fecha: 14 de noviembre 2022</p>
 <h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
 <p>Como mencionamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
 <p>Por ejemplo,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cdef7bd9-247d-4b40-b21c-9e13eba63d01">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-cdef7bd9-247d-4b40-b21c-9e13eba63d01" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdc01e04-9ba5-4642-934b-5fa6b9877164">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-cdc01e04-9ba5-4642-934b-5fa6b9877164" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2u}{\partial x^2} + 
 2xy\frac{\partial^2u}{\partial y^2} = 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-29a24011-cbfd-4338-b574-ec43766e4467">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-29a24011-cbfd-4338-b574-ec43766e4467" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ece7345d-b6e4-4874-80a1-ba5d2602d449">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-ece7345d-b6e4-4874-80a1-ba5d2602d449" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^3u}{\partial x^2\partial y} + 
 x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-6aef2aeb-504f-46a3-970a-5c35f8effdc1">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-6aef2aeb-504f-46a3-970a-5c35f8effdc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53bbf8b3-7cb7-4244-a994-76296981ef7b">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-53bbf8b3-7cb7-4244-a994-76296981ef7b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 6\frac{\partial^3u}{\partial x\partial y^2} = x
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-6a03b27e-5502-433f-ad62-390f1197db37">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-6a03b27e-5502-433f-ad62-390f1197db37" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-65d43320-299b-4c4d-9dba-37abb772f5b1">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-65d43320-299b-4c4d-9dba-37abb772f5b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 xu\frac{\partial u}{\partial y} = x
 \end{equation}\]</div>
 <p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
 <p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
 <p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-639f897f-bdc3-42aa-894f-13bb1c5626aa">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-639f897f-bdc3-42aa-894f-13bb1c5626aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7619acf-1e5d-4f9e-8b4b-a037a29a8f0a">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-d7619acf-1e5d-4f9e-8b4b-a037a29a8f0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\frac{\partial^2u}{\partial x^2} + 
 B\frac{\partial^2u}{\partial x \partial y} +  
 C\frac{\partial^2u}{\partial y^2} + 
@@ -570,8 +558,8 @@ D = 0
 <section id="ecuaciones-elipticas-edp-estacionaria">
 <h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this headline">#</a></h2>
 <p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-753f1c35-0f13-4ece-8e1a-9bd0fe38ee0c">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-753f1c35-0f13-4ece-8e1a-9bd0fe38ee0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-58dec044-b3e0-4504-83b9-783a39ba6062">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-58dec044-b3e0-4504-83b9-783a39ba6062" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} +
 \frac{\partial^2 T}{\partial y^2}
 = 0
@@ -935,8 +923,8 @@ T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\in
 <p>Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito</p>
 <blockquote>
 <div><p><strong>Importante</strong> Una condición necesaria del método explícito para asegurar convergencia y estabilidad en nuestra solución es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e39ebbd6-6049-4474-8c0f-780c0ad48650">
-<span class="eqno">(11.7)<a class="headerlink" href="#equation-e39ebbd6-6049-4474-8c0f-780c0ad48650" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ca4b601c-d6bd-4157-80b5-3f2065f9a18a">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-ca4b601c-d6bd-4157-80b5-3f2065f9a18a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{2} \frac{\Delta x^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1187,8 +1175,8 @@ T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0
 <p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
 <blockquote>
 <div><p><strong>Nota</strong> En este caso, la condición de estabilidad y convergencia está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-329116c1-fd92-4c81-87b6-5b7719f26f14">
-<span class="eqno">(11.8)<a class="headerlink" href="#equation-329116c1-fd92-4c81-87b6-5b7719f26f14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af5992d9-a95a-4982-8baa-1ac8817fc050">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-af5992d9-a95a-4982-8baa-1ac8817fc050" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1337,10 +1325,10 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
             <p class="prev-next-title"><span class="section-number">10. </span>Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../Apendice/Repaso/Intro_material_de_repaso.html" title="next page">
+    <a class='right-next' id="next-link" href="../Apendice/Repaso/Repaso_Parte1/Repaso_Parte1.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Material de repaso</p>
+        <p class="prev-next-title">Repaso Parte 1 -  Introducción a los métodos numéricos</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
