@@ -213,6 +213,11 @@ const thebe_selector_output = ".output, .cell_output"
      Repaso Parte 2 -  Métodos numéricos basados en series de Taylor
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Apendice/Repaso/Repaso_Parte3/Repaso_Parte3.html">
+     Repaso Parte 3 -  Métodos numéricos para ecuaciones diferenciales
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -952,20 +957,24 @@ Número de incognitas, n = 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_251</span><span class="o">/</span><span class="mf">453559162.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/core/overrides.py</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
 
-<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:552,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">552</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span>     <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span>     <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span> 
 
-<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
+<span class="nn">~/programs/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> 
 <span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> 
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_nonposdef</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 
 <span class="ne">LinAlgError</span>: Singular matrix
 </pre></div>
