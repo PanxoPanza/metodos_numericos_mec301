@@ -1,0 +1,1114 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Aspectos generales de programación y algoritmos &#8212; MEC301 - Métodos Numéricos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-Aspectos_generales/01-Aspectos_generales';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Algebra lineal y sistemas de ecuaciones lineales" href="../02-Algebra_lineal/02-Algebra_lineal.html" />
+    <link rel="prev" title="Bienvenidos al curso" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Ecuaciones Diferenciales Ordinarias con valor inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01-Aspectos_generales/01-Aspectos_generales.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Aspectos generales de programación y algoritmos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-de-algoritmos">1.1. Complejidad de algoritmos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-algoritmo">1.1.1. ¿Qué es un algoritmo?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o">1.1.2. Notación <em>Big-O</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-fibonacci-y-complejidad-exponencial">1.1.3. Serie de Fibonacci y complejidad exponencial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o-y-tiempo-de-computacion">1.1.4. Notación <em>Big-O</em> y tiempo de computación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-reondeo">1.2. Representación binaria y errores de reondeo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redondeo-en-variables-tipo-float">1.2.1. Redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo-en-variables-tipo-float">1.2.2. Errores de redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.3. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.3.1. Documentación en línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.3.2. Comandos directos para acceder a la documentación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.4. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="aspectos-generales-de-programacion-y-algoritmos">
+<h1><span class="section-number">1. </span>Aspectos generales de programación y algoritmos<a class="headerlink" href="#aspectos-generales-de-programacion-y-algoritmos" title="Permalink to this headline">#</a></h1>
+<section id="complejidad-de-algoritmos">
+<h2><span class="section-number">1.1. </span>Complejidad de algoritmos<a class="headerlink" href="#complejidad-de-algoritmos" title="Permalink to this headline">#</a></h2>
+<section id="que-es-un-algoritmo">
+<h3><span class="section-number">1.1.1. </span>¿Qué es un algoritmo?<a class="headerlink" href="#que-es-un-algoritmo" title="Permalink to this headline">#</a></h3>
+<p>Un algoritmo es una serie ordenada de operaciones sistemáticas que permite hacer un cálculo y hallar la solución de un tipo de problemas.</p>
+<p>Por ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La complejidad de un algoritmo es la <strong>relación entre el tamaño del input <span class="math notranslate nohighlight">\(N\)</span></strong> y la <strong>cantidad de operaciones para completarlo</strong>.
+Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las operaciones básicas</strong>:</p>
+<ul class="simple">
+<li><p>sumas</p></li>
+<li><p>restas</p></li>
+<li><p>multiplicaciones</p></li>
+<li><p>divisiones</p></li>
+<li><p>asignación de variables</p></li>
+<li><p>llamados a otras funciones</p></li>
+</ul>
+<p>Por ejemplo, en el siguiente algoritmo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El número de operaciones son:</p>
+<ul class="simple">
+<li><p>sumas: <span class="math notranslate nohighlight">\(N^2\)</span></p></li>
+<li><p>restas: 0</p></li>
+<li><p>multiplicaciones: <span class="math notranslate nohighlight">\(N^2\)</span></p></li>
+<li><p>divisiones: 0</p></li>
+<li><p>asignación de variables: <span class="math notranslate nohighlight">\(2N^2 + N + 1\)</span></p></li>
+<li><p>llamados a otras funciones: 0</p></li>
+</ul>
+<p>Así, el <strong>total de operaciónes</strong> para completar el algoritmo es <span class="math notranslate nohighlight">\(4N^2+N+1\)</span>.</p>
+</section>
+<section id="notacion-big-o">
+<h3><span class="section-number">1.1.2. </span>Notación <em>Big-O</em><a class="headerlink" href="#notacion-big-o" title="Permalink to this headline">#</a></h3>
+<p>A medida que el tamaño de <span class="math notranslate nohighlight">\(N\)</span> aumenta, las operaciones de mayor orden se hacen dominantes. Así, podemos decir que la complejidad del algoritmo anterior es del orden <span class="math notranslate nohighlight">\(O(N^2)\)</span>. Esta notación, denominada <em><strong>Big-O</strong></em>, es comúnmente utiilzada para <strong>determinar la complejidad del algoritmo cuando <span class="math notranslate nohighlight">\(N\)</span> es de gran tamaño</strong>.</p>
+<blockquote>
+<div><p><strong>Nota</strong> Un algoritmo tiene complejidad <strong>polynomial</strong> cuando es del tipo <span class="math notranslate nohighlight">\(O(N^c)\)</span>, donde <span class="math notranslate nohighlight">\(c\)</span> es una constante.</p>
+</div></blockquote>
+<p>Analicemos la complejidad del siguiente algortimo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_divide_by_two</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">out</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="mi">2</span>
+        <span class="n">out</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A medida que <span class="math notranslate nohighlight">\(N\)</span> crece podemos ver que la parte dominante de este algoritmo esta dentro de la operación <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+<p>Si analizamos el número de iteraciones <span class="math notranslate nohighlight">\(I\)</span> para un determinado <span class="math notranslate nohighlight">\(N\)</span>, notaremos que estos están en la relacción <span class="math notranslate nohighlight">\(N/2^I = 1\)</span>, es decir <span class="math notranslate nohighlight">\(I\approx \log N\)</span>. Así, la complejidad de este algoritmo es <span class="math notranslate nohighlight">\(O(\log N)\)</span>.</p>
+<blockquote>
+<div><p><strong>Nota</strong> Un algoritmo tiene complejidad <strong>logaritmica</strong> cuando es del tipo <span class="math notranslate nohighlight">\(O(\log N)\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="serie-de-fibonacci-y-complejidad-exponencial">
+<h3><span class="section-number">1.1.3. </span>Serie de Fibonacci y complejidad exponencial<a class="headerlink" href="#serie-de-fibonacci-y-complejidad-exponencial" title="Permalink to this headline">#</a></h3>
+<p>Una operación matemática puede ser ejecutada mediante algoritmos con diferente complejidad. Por ejemplo, consideremos la serie de Fibonacci.</p>
+<a class="reference internal image-reference" href="../_images/Fibonacci.png"><img alt="../_images/Fibonacci.png" class="align-center" src="../_images/Fibonacci.png" style="width: 800px;" /></a>
+<p>Esta operación puede ejecutarse de dos maneras: (1) de forma iterativa, (2) de forma recursiva</p>
+<p><strong>(1) Forma iterativa.</strong> complejidad <span class="math notranslate nohighlight">\(O(N)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_fib_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">out</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">])</span>
+        
+    <span class="k">return</span> <span class="n">out</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_fib_iter</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>(2) Forma recursiva.</strong> complejidad <span class="math notranslate nohighlight">\(O\left(2^N\right)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_fib_rec</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">my_fib_rec</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">my_fib_rec</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_fib_rec</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>Nota</strong> Un algoritmo tiene complejidad <strong>exponencial</strong> cuando es del tipo <span class="math notranslate nohighlight">\(O(c^N)\)</span>, donde <span class="math notranslate nohighlight">\(c\)</span> es una constante.</p>
+</div></blockquote>
+</section>
+<section id="notacion-big-o-y-tiempo-de-computacion">
+<h3><span class="section-number">1.1.4. </span>Notación <em>Big-O</em> y tiempo de computación<a class="headerlink" href="#notacion-big-o-y-tiempo-de-computacion" title="Permalink to this headline">#</a></h3>
+<p>La complejidad en la notación <em>Big-O</em> nos entrega una referencia del tiempo computacional dedicado para un determinado algoritmo.</p>
+<a class="reference internal image-reference" href="../_images/08.02.01-complexity.png"><img alt="../_images/08.02.01-complexity.png" class="align-center" src="../_images/08.02.01-complexity.png" style="width: 300px;" /></a>
+<p>Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz <em>(<span class="math notranslate nohighlight">\(\approx\)</span> 5 billones de operaciones por segundo)</em>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">my_fib_iter(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 0.2 nanosegundos
+<br></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_fib_recur(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 8 trillones de años</p></li>
+</ul>
+<p>Podemos evaluar el tiempo de ejecución con la sentencia <code class="docutils literal notranslate"><span class="pre">%time</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_iter(30)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 2 µs, total: 6 µs
+Wall time: 9.78 µs
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_rec(30) # No probar N&gt;30
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 162 ms, sys: 684 µs, total: 163 ms
+Wall time: 177 ms
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>nota</strong> En general, se deben evitar los algoritmos de complejidad exponencial</p>
+</div></blockquote>
+</section>
+</section>
+<section id="representacion-binaria-y-errores-de-reondeo">
+<h2><span class="section-number">1.2. </span>Representación binaria y errores de reondeo<a class="headerlink" href="#representacion-binaria-y-errores-de-reondeo" title="Permalink to this headline">#</a></h2>
+<p>En un computador, la información es almacenada en formato binario. Un <strong>bit</strong> puede tener dos valores: 0 o 1.
+El computador es capaz de interpretar número utilizando códigos binarios.</p>
+<p>Por ejemplo, el código de 8 bits <span class="math notranslate nohighlight">\(001000101\)</span> es equivalente a:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+ 0\cdot2^7 + 0\cdot2^6 + 1\cdot2^5 + 0\cdot2^4 + 0\cdot2^3 + 1\cdot2^2 + 0\cdot2^1 + 1\cdot2^0 = 37
+\end{equation*}\]</div>
+<p>Cada variable tiene una cantidad de bits asociada.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Tipo</p></th>
+<th class="text-center head"><p>Nombre</p></th>
+<th class="text-center head"><p>Número de bits</p></th>
+<th class="text-center head"><p>Rango de valores</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>bool</p></td>
+<td class="text-center"><p>Boolean</p></td>
+<td class="text-center"><p>1</p></td>
+<td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">Flase</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>int32</p></td>
+<td class="text-center"><p>Single precision integer</p></td>
+<td class="text-center"><p>32</p></td>
+<td class="text-center"><p>-2147483648 a 2147483647</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>float64</p></td>
+<td class="text-center"><p>Double presition float</p></td>
+<td class="text-center"><p>64</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\((-1)^s2^{e - 1024}\left(1 + f\right)\)</span><br /> <span class="math notranslate nohighlight">\(s\)</span>: 1 bit; <br /> <span class="math notranslate nohighlight">\(e\)</span>: 11 bits; <br /> <span class="math notranslate nohighlight">\(f\)</span>: 52 bits</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>Nota</strong>. En el código binario siempre existirá un único bit reservado para el signo.</p>
+</div></blockquote>
+<p>En python el tipo de variable se asigna dinámicamente dependiendo del <em>input</em> del usuario. El número de bits depende de la versión de Python y el formato de la máquina en número de bits. Por ejemplo, para una máquina de 64 bits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span> <span class="c1"># int64</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mf">0.4e8</span><span class="p">)</span> <span class="c1"># float64</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<section id="redondeo-en-variables-tipo-float">
+<h3><span class="section-number">1.2.1. </span>Redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code><a class="headerlink" href="#redondeo-en-variables-tipo-float" title="Permalink to this headline">#</a></h3>
+<p>En variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code> existe un máximo y mínimo valor que puede ser representado el cual depende del número de bits.</p>
+<p>En python, para determinar estos límites utilizamos la librería <code class="docutils literal notranslate"><span class="pre">sys</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sys.float_info(max=1.7976931348623157e+308, max_exp=1024, max_10_exp=308, min=2.2250738585072014e-308, min_exp=-1021, min_10_exp=-307, dig=15, mant_dig=53, epsilon=2.220446049250313e-16, radix=2, rounds=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación indicamos algunos valores útiles que podemos extraer de esta información:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Variable</p></th>
+<th class="text-center head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">max</span></code></p></td>
+<td class="text-center"><p>máximo valor <em>float</em> <strong>positivo</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">min*epsilon</span></code></p></td>
+<td class="text-center"><p>mínimo valor <em>float</em> <strong>positivo</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">epsilon</span></code></p></td>
+<td class="text-center"><p>diferencia entre <code class="docutils literal notranslate"><span class="pre">1</span></code> y el valor superior más pequeño representable como un <em>float</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">dig</span></code></p></td>
+<td class="text-center"><p>máximo número de dígitos decimales que pueden ser representados en un <em>float</em></p></td>
+</tr>
+</tbody>
+</table>
+<p>Un número mayor al <strong>máximo positivo</strong> es prepresentado en python como <code class="docutils literal notranslate"><span class="pre">inf</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;máximo positivo:&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor menor al máximo positivo: &#39;</span><span class="p">,</span> <span class="mf">1e+308</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor mayor al máximo positivo: &#39;</span><span class="p">,</span> <span class="mf">2e+308</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>máximo positivo: 1.7976931348623157e+308
+valor menor al máximo positivo:  1e+308
+valor mayor al máximo positivo:  inf
+</pre></div>
+</div>
+</div>
+</div>
+<p>Debido a que el último bit siempre será reservado para el signo, el <strong>mínimo valor negativo</strong> corresponde a <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">sys.float_info.max</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor mayor al mínimo negativo: &#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e+308</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor menor al mínimo negativo: &#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2e+308</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>valor mayor al mínimo negativo:  -1e+308
+valor menor al mínimo negativo:  -inf
+</pre></div>
+</div>
+</div>
+</div>
+<p>Igualmente, un número menor al mínimo positivo es prepresentado en python como <code class="docutils literal notranslate"><span class="pre">0</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mínimo positivo:&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span> <span class="o">*</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor menor al mínimo positivo: &#39;</span><span class="p">,</span> <span class="mf">1e-324</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor mayor al mínimo positivo: &#39;</span><span class="p">,</span> <span class="mf">1e-323</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mínimo positivo: 5e-324
+valor menor al mínimo positivo:  0.0
+valor mayor al mínimo positivo:  1e-323
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="errores-de-redondeo-en-variables-tipo-float">
+<h3><span class="section-number">1.2.2. </span>Errores de redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code><a class="headerlink" href="#errores-de-redondeo-en-variables-tipo-float" title="Permalink to this headline">#</a></h3>
+<p>Las <strong>variables del tipo <code class="docutils literal notranslate"><span class="pre">int</span></code></strong> no son divisibles y, por lo tanto, <strong>no sufren errores de redondeo</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sin embargo, una <strong>variable del tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></strong> es divisible. Esto significa que existe una cantidad de dígitos significativos reservados para un número, lo que <strong>puede inducir errores de redondeo</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">==</span> <span class="mf">0.6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para este tipo de operaciones es recomendable utilizar la función <code class="docutils literal notranslate"><span class="pre">round</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="acumulacion-de-errores-de-redondeo">
+<h3><span class="section-number">1.2.3. </span>Acumulacion de errores de redondeo<a class="headerlink" href="#acumulacion-de-errores-de-redondeo" title="Permalink to this headline">#</a></h3>
+<p>Cuando un código ejecuta una secuencia de operaciones, los errores de redondeo suelen amplificarse.</p>
+<p>Si ejecutamos la siguiente operación una vez, notamos que el valor es correcto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Analicemos el efecto de errores de rendondeo mediante la función <code class="docutils literal notranslate"><span class="pre">add_and_substract</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_and_subtract</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">-=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_subtract</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># Si ejecutamos esta operación 100 veces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000002
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_subtract</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># Si ejecutamos esta operación 1000 veces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000000064
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_subtract</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span> <span class="c1"># Si ejecutamos esta operación 10000 veces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000001166
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="documentacion-de-funciones-en-python">
+<h2><span class="section-number">1.3. </span>Documentación de funciones en python<a class="headerlink" href="#documentacion-de-funciones-en-python" title="Permalink to this headline">#</a></h2>
+<p>En python existen múltiples liberías, cada una con un propósito en específico. En este curso, trabajaremos con:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: Esencial para operaciones matemáticas con arreglos de elementos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: Herramientas para visualización de datos. En este curso utilizaremos particularmente el módulo <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>: Funciones avanzadas para ciencia e ingeniería</p></li>
+</ul>
+<p>A lo largo del curso iremos revisando las principales funciones de cada librería. En esta sección explicaremos como entender como acceder a la documentación oficial de cada función, y como interpretarla.</p>
+<p>Para revisar la documentación de una función tenemos varias alternativas. Las más recomendadas son:</p>
+<ul class="simple">
+<li><p>Documentación oficial en línea</p></li>
+<li><p>Función <code class="docutils literal notranslate"><span class="pre">help</span></code></p></li>
+<li><p>Caracter <code class="docutils literal notranslate"><span class="pre">?</span></code> al final de la función</p></li>
+<li><p>Comando <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">tab</span></code></p></li>
+</ul>
+<blockquote>
+<div><p><strong>Nota.</strong> Por defecto, la documentación en línea está en base a la <strong>última versión de la librería</strong>. Es posible, sin embargo, encontrar la documentación para versiones anteriores.</p>
+</div></blockquote>
+<p>Para verificar la versión de la librería que se está utilizando se debe usar el comando <code class="docutils literal notranslate"><span class="pre">library.__version__</span></code>, donde <code class="docutils literal notranslate"><span class="pre">library</span></code> corresponde a la librería en cuestion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;versión de numpy: &#39;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de numpy: 1.24.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;versión de matplotlib: &#39;</span> <span class="o">+</span> <span class="n">mpl</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de matplotlib: 3.7.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;versión de scipy: &#39;</span> <span class="o">+</span> <span class="n">sp</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de scipy: 1.10.1
+</pre></div>
+</div>
+</div>
+</div>
+<section id="documentacion-en-linea">
+<h3><span class="section-number">1.3.1. </span>Documentación en línea<a class="headerlink" href="#documentacion-en-linea" title="Permalink to this headline">#</a></h3>
+<p>Como ejercicio, consideremos la documentación de la función <code class="docutils literal notranslate"><span class="pre">linspace</span></code> de la libería <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Esta función será utilizada frecuentemente en el curso, y permite generar un arreglo de números distribuidos entre dos límites establecidos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generar un arreglo de 10 números entre 0 y 1</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.  , 0.25, 0.5 , 0.75, 1.  ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Acá podemos ver un extracto de la documentación en línea (para la información completa ver <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">acá</a>)</p>
+<a class="reference internal image-reference" href="../_images/linspace_online-doc.png"><img alt="../_images/linspace_online-doc.png" class="align-center" src="../_images/linspace_online-doc.png" style="width: 800px;" /></a>
+<p>Lo primero que vemos es el encabezado que muestra <strong>todos los parámetros que necesita la función</strong> (En este caso: <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">stop</span></code>, <code class="docutils literal notranslate"><span class="pre">num</span></code>, <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>, <code class="docutils literal notranslate"><span class="pre">retstep</span></code>, <code class="docutils literal notranslate"><span class="pre">dtype</span></code> y <code class="docutils literal notranslate"><span class="pre">axis</span></code>). <em>La función esperará que todos los valores estén asignados, de lo contrario, arrojará un error.</em></p>
+<p>Luego, vemos parámetros con símbolo <code class="docutils literal notranslate"><span class="pre">=</span></code> (<code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">=</span> <span class="pre">50</span></code>, por ejemplo). Esto indica que el parámetro <strong>tiene un valor asignado por defecto</strong>.</p>
+<p><strong>Los parámetros con valor por defecto pueden ser omitidos al llamar a una función</strong>. En ese caso python asumirá el valor asignado por defecto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># omitimos el parámetro &quot;num&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.        , 0.02040816, 0.04081633, 0.06122449, 0.08163265,
+       0.10204082, 0.12244898, 0.14285714, 0.16326531, 0.18367347,
+       0.20408163, 0.2244898 , 0.24489796, 0.26530612, 0.28571429,
+       0.30612245, 0.32653061, 0.34693878, 0.36734694, 0.3877551 ,
+       0.40816327, 0.42857143, 0.44897959, 0.46938776, 0.48979592,
+       0.51020408, 0.53061224, 0.55102041, 0.57142857, 0.59183673,
+       0.6122449 , 0.63265306, 0.65306122, 0.67346939, 0.69387755,
+       0.71428571, 0.73469388, 0.75510204, 0.7755102 , 0.79591837,
+       0.81632653, 0.83673469, 0.85714286, 0.87755102, 0.89795918,
+       0.91836735, 0.93877551, 0.95918367, 0.97959184, 1.        ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>El resultado es un arreglo de números igualmente espaciados entre 0 y 1, con <code class="docutils literal notranslate"><span class="pre">num</span> <span class="pre">=</span> <span class="pre">50</span></code>.</p>
+<p>Más abajo en la documentación, encontramos la descripción de cada parámetro. Notar que los valores con <code class="docutils literal notranslate"><span class="pre">=</span></code> están identificados como <strong>opcional</strong>.</p>
+<a class="reference internal image-reference" href="../_images/linspace_online-doc_parameter.png"><img alt="../_images/linspace_online-doc_parameter.png" class="align-center" src="../_images/linspace_online-doc_parameter.png" style="width: 800px;" /></a>
+<p>Algunos parámetros no están disponibles en todas las versiones de la librería. Es el caso de <code class="docutils literal notranslate"><span class="pre">axis</span></code> de la función<code class="docutils literal notranslate"><span class="pre">linspace</span></code>, el cual está disponible desde la versión 1.16.0. en adelante.</p>
+<a class="reference internal image-reference" href="../_images/linspace_online-doc_new-parameter.png"><img alt="../_images/linspace_online-doc_new-parameter.png" class="align-center" src="../_images/linspace_online-doc_new-parameter.png" style="width: 800px;" /></a>
+<p>Por último, tenemos el <em>output</em> de la función en el encabezado “<strong>Return</strong>”</p>
+<a class="reference internal image-reference" href="../_images/linspace_online-doc_return.png"><img alt="../_images/linspace_online-doc_return.png" class="align-center" src="../_images/linspace_online-doc_return.png" style="width: 800px;" /></a>
+<p>Acá, por ejemplo, la documentación indica que la función entregará dos <em>outputs</em>, donde el primero corresponde al arreglo y el segundo, al espaciamiento entre valores. El segundo <em>output</em> es opcional, condicionado a la variable <code class="docutils literal notranslate"><span class="pre">retstep</span> <span class="pre">=</span> <span class="pre">True</span></code> (<code class="docutils literal notranslate"><span class="pre">False</span></code> por defecto).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Arreglo generado: &#39;</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Espaciamiento: &#39;</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arreglo generado:  [0.   0.25 0.5  0.75 1.  ]
+Espaciamiento:  0.25
+</pre></div>
+</div>
+</div>
+</div>
+<p>En python también podemos llamar a la función indicando el nombre de los parámetros de entrada</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.  , 0.25, 0.5 , 0.75, 1.  ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esta última forma es más conveniente para usuarios que no conocen la función, ya que permite identificar los parámetros de entrada</p>
+<p>De igual forma, podemos cambiar el orden de los argumentos usando este esquema:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.  , 0.25, 0.5 , 0.75, 1.  ])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comandos-directos-para-acceder-a-la-documentacion">
+<h3><span class="section-number">1.3.2. </span>Comandos directos para acceder a la documentación<a class="headerlink" href="#comandos-directos-para-acceder-a-la-documentacion" title="Permalink to this headline">#</a></h3>
+<p>La opción más directa es presionando <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Tab</span></code> posicionando el cursor al final de la función. Este comando depende del <em>IDE</em> utilizado, pero funciona con <em>Jupyter Notebook</em>, <em>Visual Studio Code</em> y <em>Google colab</em>.</p>
+<a class="reference internal image-reference" href="../_images/shift+tab.png"><img alt="../_images/shift+tab.png" class="align-center" src="../_images/shift+tab.png" style="width: 800px;" /></a>
+<p>Otra alternativa es con el comando <code class="docutils literal notranslate"><span class="pre">?</span></code> o con la función <code class="docutils literal notranslate"><span class="pre">help</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>np.linspace?
+help(np.linspace)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">1.4. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<p>Kong Q., Siauw T., Bayen A. M. “<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a>”, 1st Ed., Academic Press, 2021</p>
+<ul class="simple">
+<li><p>Chapter 8. Complexity</p></li>
+<li><p>Chapter 9. Representation of numbers</p></li>
+<li><p>Calítulo 10. Errors, Good Programming Practices, and Debugging</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01-Aspectos_generales"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bienvenidos al curso</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02-Algebra_lineal/02-Algebra_lineal.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-de-algoritmos">1.1. Complejidad de algoritmos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-algoritmo">1.1.1. ¿Qué es un algoritmo?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o">1.1.2. Notación <em>Big-O</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#serie-de-fibonacci-y-complejidad-exponencial">1.1.3. Serie de Fibonacci y complejidad exponencial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o-y-tiempo-de-computacion">1.1.4. Notación <em>Big-O</em> y tiempo de computación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-reondeo">1.2. Representación binaria y errores de reondeo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redondeo-en-variables-tipo-float">1.2.1. Redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo-en-variables-tipo-float">1.2.2. Errores de redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.3. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.3.1. Documentación en línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.3.2. Comandos directos para acceder a la documentación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.4. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
