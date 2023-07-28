@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Series de Taylor &#8212; MEC301 - Métodos Numéricos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05-Taylor-series/05-Taylor-series';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Algortimos de búsqueda de raíces" href="../06-Root-finding/06-Root-finding.html" />
+    <link rel="prev" title="4. Métodos de Interpolación" href="../04-Interpolacion/04-Interpolacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Ecuaciones Diferenciales Ordinarias con valor inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05-Taylor-series/05-Taylor-series.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Series de Taylor</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expansion-de-funciones-en-series-de-taylor">5.1. Expansión de funciones en series de Taylor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximaciones-mediante-series-de-taylor">5.2. Aproximaciones mediante series de Taylor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores-en-series-de-taylor">5.3. Analisis de errores en series de Taylor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-truncamiento">5.3.1. Errores de truncamiento</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo">5.4. Errores de redondeo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">5.5. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
+<section class="tex2jax_ignore mathjax_ignore" id="series-de-taylor">
+<h1><span class="section-number">5. </span>Series de Taylor<a class="headerlink" href="#series-de-taylor" title="Permalink to this headline">#</a></h1>
+<p><br><br><br><br>
+Profesor: Francisco Ramírez Cuevas<br>
+Fecha: 5 de Septiembre 2022</p>
+<section id="expansion-de-funciones-en-series-de-taylor">
+<h2><span class="section-number">5.1. </span>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<p>La expansión en series de Taylor es una forma alternativa de representar una fución mediante una serie infinita de polinomios alrededor de un punto <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e0520653-bdc1-4c79-afe5-9bdf36bd53b8">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-e0520653-bdc1-4c79-afe5-9bdf36bd53b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)(x-a)^n}{n!}
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la <span class="math notranslate nohighlight">\(n\)</span>-ésima derivada de <span class="math notranslate nohighlight">\(f\)</span>, con <span class="math notranslate nohighlight">\(f^{(0)} = f\)</span></p>
+<p>Por ejemplo, derivemos la expansión en series de Taylor de la función <span class="math notranslate nohighlight">\(f(x) = 5x^2 + 3x + 5\)</span> alrededor del punto <span class="math notranslate nohighlight">\(a = 0\)</span>.</p>
+<p>Primero, determinamos la forma de cada derivada:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+f(x) &amp;=&amp; 5x^2 + 3x + 5\\
+f'(x) &amp;=&amp; 10x + 3\\
+f''(x) &amp;=&amp; 10 \\
+f'''(x) &amp;=&amp; 0 \\
+\end{eqnarray*}\]</div>
+<p>Luego, evaluamos cada derivada en el punto <span class="math notranslate nohighlight">\(a = 0\)</span>, y reemplazamos en la fórmula:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x) &amp;= \frac{1}{0!}(5a^2 + 3a + 5)(x - a)^0 + \frac{1}{1!}(10a + 3)(x - a)^1 + \frac{1}{2!}(10)(x - a)^2 + 0 + 0 + \cdots\\
+     &amp;= \frac{5x^0}{0!} + \frac{3x^1}{1!} + \frac{10x^2}{2!} \\
+     &amp;= 5x^2 + 3x + 5
+\end{align*}\]</div>
+<p>Si ahora, por ejemplo, derivamos la expansión de Taylor para <span class="math notranslate nohighlight">\(a = 2\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x) &amp;= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x - 2)^1 + \frac{1}{2!}(10)(x - 2)^2 + 0 + 0 + \cdots\\
+     &amp;= \frac{31(x-2)^0}{0!} + \frac{23(x-2)^1}{1!} + \frac{10(x-2)^2}{2!} = 31 + 23x - 46 + 5x^2 - 20x + 20 \\
+     &amp;= 5x^2 + 3x + 5
+\end{align*}\]</div>
+<p>Como cololario general tenemos que <strong>una expansión de Taylor de un polinomio siempre es el mismo polinomio</strong></p>
+</section>
+<section id="aproximaciones-mediante-series-de-taylor">
+<h2><span class="section-number">5.2. </span>Aproximaciones mediante series de Taylor<a class="headerlink" href="#aproximaciones-mediante-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<p>Para funciones no polinomiales, las series de Taylor continene infinitos términos.</p>
+<p>Por ejemplo, la expansión de Taylor de <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> alrededor de <span class="math notranslate nohighlight">\(a=0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x^2 + \frac{-\cos(0)}{3!}x^3 + \frac{\sin(0)}{4!}x^4 + \frac{\cos(0)}{5!}x^5 + \cdots \\
+     &amp;= \frac{1}{1!}x^1 - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots \\
+\end{align*}\]</div>
+<p>Finalmente, analizando el patrón de la serie, definimos una fórmula general, tal que:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sin(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
+\end{equation*}\]</div>
+<p>La expansión de una función en una serie infinita de términos, no pareciera tener un uso práctico.</p>
+<p>La ventaja de esta representación cobra relevancia cuando buscamos evaluar esta función computacionalmente. Esto debido a que al truncar el número de términos podemos, fácilmente, determinar una aproximación de la función.</p>
+<p>Mientras más términos incluyamos, mejor la aproximación,</p>
+<blockquote>
+<div><p><strong>Decimos que la aproximación de una función es de orden <span class="math notranslate nohighlight">\(N\)</span> cuando la serie considera hasta el término <span class="math notranslate nohighlight">\(N\)</span> de la serie de Taylor</strong></p>
+</div></blockquote>
+<p>Analicemos esto en un código, a partir de la expansión de la función <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Orden </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\sin(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Aproximación de sin(x) en series de Taylor (a = 0)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">showplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/925a0d8e86204af6f8f85c367fbd64b36191fbcb3ac402c7d21f8ddc9c6bd0cc.png" src="../_images/925a0d8e86204af6f8f85c367fbd64b36191fbcb3ac402c7d21f8ddc9c6bd0cc.png" />
+</div>
+</div>
+<p>A partir del grafico vemos como a medida que aumentamos el orden, la aproximación de la función alrededor del punto <span class="math notranslate nohighlight">\(x = 0\)</span> mejora. Para el orden 7, la aproximación es casi perfecta en todo el dominio <span class="math notranslate nohighlight">\(x\in [-\pi,\pi]\)</span></p>
+<p>Comúnmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada <strong>aproximación lineal</strong>. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<p>En otras palabras, siempre se verá lineal si la vemos desde suficientemente cerca.</p>
+</section>
+<section id="analisis-de-errores-en-series-de-taylor">
+<h2><span class="section-number">5.3. </span>Analisis de errores en series de Taylor<a class="headerlink" href="#analisis-de-errores-en-series-de-taylor" title="Permalink to this headline">#</a></h2>
+<section id="errores-de-truncamiento">
+<h3><span class="section-number">5.3.1. </span>Errores de truncamiento<a class="headerlink" href="#errores-de-truncamiento" title="Permalink to this headline">#</a></h3>
+<p>En la primera clase hablamos de los errores de redondeo inducidos por la capacidad limitada de un computador de almacenar los decimales de un número. Cuando aproximamos una función por una serie de orden <span class="math notranslate nohighlight">\(N\)</span>, estamos induciendo un error de truncamiento.</p>
+<p>Por ejemplo, la expansión de la función <span class="math notranslate nohighlight">\(e^x\)</span> en series de Taylor centrada en <span class="math notranslate nohighlight">\(x=0\)</span> está dada por:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+e^x = 1+x+\frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots
+\end{equation*}\]</div>
+<p>Analicemos el error de truncamiento para <span class="math notranslate nohighlight">\(e^2\)</span>, asociado al orden <span class="math notranslate nohighlight">\(N\)</span> de la aproximación</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">exp</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error de truncamiento |e^2 - f^(n)(2)|&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">exp</span> <span class="o">+</span> \
+       <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Aprox. orden </span><span class="si">%i</span><span class="s1"> = </span><span class="si">%.5f</span><span class="s1">&#39;</span> <span class="o">%</span> 
+
+          <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">exp</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error de truncamiento |e^2 - f^(n)(2)|
+Aprox. orden 0 = 6.38906
+Aprox. orden 1 = 4.38906
+Aprox. orden 2 = 2.38906
+Aprox. orden 3 = 1.05572
+Aprox. orden 4 = 0.38906
+Aprox. orden 5 = 0.12239
+Aprox. orden 6 = 0.03350
+Aprox. orden 7 = 0.00810
+Aprox. orden 8 = 0.00175
+Aprox. orden 9 = 0.00034
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="errores-de-redondeo">
+<h2><span class="section-number">5.4. </span>Errores de redondeo<a class="headerlink" href="#errores-de-redondeo" title="Permalink to this headline">#</a></h2>
+<p>Tal como hemos visto en los ejemplos anteriores, la forma más conveniente de computar una serie de Taylor, numéricamente, es mediante la suma susesiva de terminos de la serie.</p>
+<p>Esto puede ocacionar errores de redondeo asociado a la acumulación de decimales redondeados en cada suma.</p>
+<p>Por ejemplo, cosideremos la aproximación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> usando 200 términos de la serie.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">201</span><span class="p">):</span>
+    <span class="n">exp</span> <span class="o">=</span> <span class="n">exp</span> <span class="o">+</span> \
+       <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de e^(-30)&#39;</span><span class="p">)</span>    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... Aproximación de orden </span><span class="si">%i</span><span class="s1">: </span><span class="si">%.5e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">exp</span><span class="p">))</span>    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... Valor exacto: </span><span class="si">%.5e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El valor de e^(-30)
+... Aproximación de orden 200: 1.35335e-01
+... Valor exacto: 1.35335e-01
+</pre></div>
+</div>
+</div>
+</div>
+<p>A partir de este ejemplo podemos ver que, producto del error de redondeo, nuestra estimación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> es erronea, a pesar de haber incluído 200 términos de la serie.</p>
+</section>
+<section id="referencias">
+<h2><span class="section-number">5.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 18: Taylor Series</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05-Taylor-series"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../04-Interpolacion/04-Interpolacion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Métodos de Interpolación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../06-Root-finding/06-Root-finding.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Algortimos de búsqueda de raíces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expansion-de-funciones-en-series-de-taylor">5.1. Expansión de funciones en series de Taylor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximaciones-mediante-series-de-taylor">5.2. Aproximaciones mediante series de Taylor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores-en-series-de-taylor">5.3. Analisis de errores en series de Taylor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-truncamiento">5.3.1. Errores de truncamiento</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo">5.4. Errores de redondeo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">5.5. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

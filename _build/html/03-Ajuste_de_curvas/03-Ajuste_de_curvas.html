@@ -1,0 +1,1294 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03-Ajuste_de_curvas/03-Ajuste_de_curvas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Métodos de Interpolación" href="../04-Interpolacion/04-Interpolacion.html" />
+    <link rel="prev" title="2. Algebra lineal y sistemas de ecuaciones lineales" href="../02-Algebra_lineal/02-Algebra_lineal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Bienvenidos al curso
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Ecuaciones Diferenciales Ordinarias con valor inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ajuste de curvas por mínimos cuadrados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">3.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-unidimensional">3.1.1. Regresión lineal unidimensional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">3.1.2. Ajuste por mínimos cuadrados paso a paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-del-error">3.1.3. Cuantificación del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">3.1.4. Linealización de funciones no lineales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-modelos-lineales">3.2. Otros modelos lineales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomial">3.2.1. Regresión polinomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-multidimensional">3.2.2. Regresión lineal multidimensional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados-generalizado">3.3. Regresión por mínimos cuadrados generalizado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-lineal-generalizado">3.3.1. Modelo lineal generalizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados">3.3.2. Regresión por mínimos cuadrados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-en-python">3.4. Mínimos cuadrados en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-linalg-pinv-matriz-pseudo-inversa">3.4.1. numpy.linalg.pinv (matriz pseudo inversa)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">3.4.2. numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales">3.4.3. numpy.polyfit (sistemas polinomiales de unidimencionales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">3.4.4. scipy.optimize.curve_fit (regresión no-lineal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">3.4.5. Regresión lineal vs no-lineal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
+<section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
+<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this headline">#</a></h1>
+<p><br><br><br><br>
+Profesor: Francisco Ramírez Cuevas<br>
+Fecha: 22 de Agosto 2022</p>
+<section id="introduccion">
+<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<p>La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos.</p>
+<p>Por ejemplo, en mecánica de fluidos decimos que la fuerza de arrastre, <span class="math notranslate nohighlight">\(F_D\)</span> sobre un cuerpo es proporcional al cuadrado de la velocidad del flujo alrededor el cuerpo, <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+F_D = C_D V^2 
+\end{equation*}\]</div>
+<p>Aunque esta relación es válida para cualquier cuerpo, el valor del coeficiente de arrastre <span class="math notranslate nohighlight">\(C_D\)</span>, cambia dependiendo del objeto.</p>
+<p>En la gran mayoría de los casos, este valor no se puede determinar de forma analítica, y debemos recurrir a ensallos en un tunel de viento para determinar la relación entre estas dos variables.</p>
+<a class="reference internal image-reference" href="../_images/wind_tunnel.png"><img alt="../_images/wind_tunnel.png" class="align-center" src="../_images/wind_tunnel.png" style="width: 800px;" /></a>
+<p>El valor de <span class="math notranslate nohighlight">\(C_D\)</span> estará dado por la curva que mejor se ajuste a estos valores experimentales.</p>
+<section id="regresion-lineal-unidimensional">
+<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this headline">#</a></h3>
+<p>Consideremos el caso más simple donde buscamos la recta <span class="math notranslate nohighlight">\(y=f(x)\)</span> que mejor se ajuste a nuestros datos.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = a_0 + a_1x,
+\end{equation*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span> son coeficientes representando el intercepto y la pendiente, respectivamente.</p>
+<p><strong>¿Cómo determinamos los coeficientes?</strong> Se puede demostrar que la mejor forma de determinar los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span> es minimizando el error cuadrático:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
+\end{equation*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(i = 1,...,m\)</span> son los datos de la muestra considerando un total de <span class="math notranslate nohighlight">\(m\)</span> datos.</p>
+<p>Este criterio se denomina <strong>ajuste por mínimos cuadrados,</strong> y tiene un número de ventajas, como por ejemplo, entregar una solución única para un set de datos.</p>
+</section>
+<section id="ajuste-por-minimos-cuadrados-paso-a-paso">
+<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this headline">#</a></h3>
+<p>Primero, para buscar el mínimo de <span class="math notranslate nohighlight">\(S_r\)</span> aplicamos la derivada respecto a sus variables, es decir, <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{\partial S_r}{\partial a_0} &amp;= -2 \sum \left(y_i - a_0 - a_1 x_i\right)
+\\
+\frac{\partial S_r}{\partial a_1} &amp;= -2 \sum \left[\left(y_i - a_0 - a_1 x_i\right)x_i\right]
+\end{align*}\]</div>
+<p>El mínimo está dado cuando ambas derivadas son <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+0 &amp;= \sum y_i - a_0\sum 1 - a_1\sum x_i
+\\
+0 &amp;=  \sum y_ix_i - a_0\sum x_i - a_1 \sum x_i^2
+\end{align*}\]</div>
+<p>El resultado podemos expresarlo como un sistema de ecuaciones lineales:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{bmatrix}
+m &amp; \sum x_i \\
+\sum x_i &amp; \sum x_i^2
+\end{bmatrix}
+\left[\begin{array}{c} a_0 \\a_1\end{array}\right] =
+\left[\begin{array}{c} \sum y_i \\\sum x_iy_i \end{array}\right]
+\end{equation*}\]</div>
+<p>La solución de este sistema nos entregará los valores de <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
+<p>Consideremos los datos del problema del tunel de viento</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># construimos un sistema Ax = b</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+              <span class="p">[</span>   <span class="n">m</span>     <span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>  <span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+             <span class="p">])</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)]])</span>
+
+<span class="c1"># resolvemos el sistema</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo lineal: </span><span class="se">\n</span><span class="s1"> y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo lineal: 
+ y = -234.286 + 19.470*x
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ploteamos nuestro resultado</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+
+<span class="c1"># contruimos el modelo</span>
+<span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># creamos un arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6552e5116f8244740fc1c85b081e29eac0732efb62006a50f5a04ae0f850475c.png" src="../_images/6552e5116f8244740fc1c85b081e29eac0732efb62006a50f5a04ae0f850475c.png" />
+</div>
+</div>
+</section>
+<section id="cuantificacion-del-error">
+<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
+<p>Para cuantificar la calidad de nuestro modelo utilizamos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-7516aa17-f986-42db-b031-ee413aa9c249">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-7516aa17-f986-42db-b031-ee413aa9c249" title="Permalink to this equation">#</a></span>\[\begin{equation}
+r^2 = \frac{S_t - S_r}{S_t}
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(S_r\)</span> es el error del modelo lineal, y <span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
+<blockquote>
+<div><p>El coeficiente de determinación nos permite cuantificar la calidad de nuestro modelo para representar una muestra, en comparación con la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
+</div></blockquote>
+<p>En python este valor está dado por la función <code class="docutils literal notranslate"><span class="pre">r2_score</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coef. de determinación&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r2 = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span><span class="n">y</span><span class="p">(</span><span class="n">xi</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
+r2 = 0.8805
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>El resultado indica que el modelo lineal explica un 88.05% de los datos</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Notar que <code class="docutils literal notranslate"><span class="pre">r2_score(yi,y(xi)))</span></code> requiere dos arreglos de iguales dimensiones.</strong></p>
+</div></blockquote>
+</section>
+<section id="linealizacion-de-funciones-no-lineales">
+<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this headline">#</a></h3>
+<p>Existen algúnos modelos no lineales comúnes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
+<p>Algúnos ejemplos son:</p>
+<ul class="simple">
+<li><p><strong>modelo exponencial</strong></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = \alpha e^{\beta x} \Rightarrow \ln(y) = \ln(\alpha) + \beta x
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p><strong>modelo de potencia</strong></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = \alpha x^{\beta} \Rightarrow \log(y) = \log(\alpha) + \beta \log (x)
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p><strong>modelo de tasa de crecimiento de saturación</strong></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = \alpha \frac{x}{\beta + x} \Rightarrow 
+\frac{1}{y} = \frac{1}{\alpha} +\frac{\beta}{\alpha}\frac{1}{x}
+\end{equation*}\]</div>
+<a class="reference internal image-reference" href="../_images/linealization.png"><img alt="../_images/linealization.png" class="align-center" src="../_images/linealization.png" style="width: 800px;" /></a>
+<blockquote>
+<div><p>Para el modelo de potencia, podemos usar “<span class="math notranslate nohighlight">\(\log\)</span>” o “<span class="math notranslate nohighlight">\(\ln\)</span>” para linealizar, tomando la precausión de usar la función inversa correcta para recuperar el modelo original, es decir:</p>
+</div></blockquote>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y &amp;= 10^{\log \alpha + \beta\log x}\quad\mathrm{o,}\\
+y &amp;= e^{\ln \alpha + \beta\ln x}
+\end{align*}\]</div>
+<blockquote>
+<div><p><strong>Los coeficientes del modelo linealizado serán diferentes</strong> dependiendo de si se usa “<span class="math notranslate nohighlight">\(\log\)</span>” o “<span class="math notranslate nohighlight">\(\ln\)</span>”. <strong>Sin embargo, el modelo original debe ser el mismo</strong>, independientemente de la función utilizada para la linealización.</p>
+</div></blockquote>
+<p>Analicemos el ejemplo anterior, ahora ajustando los datos al modelo de potencia <span class="math notranslate nohighlight">\(y = \alpha x^{\beta}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">log</span> <span class="c1"># en python log(x) = ln(x)</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># linealizamos las variables</span>
+<span class="n">log_xi</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="n">log_yi</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span>
+
+<span class="c1"># construimos un sistema Ax = b</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>   <span class="c1"># numero de datos</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span>   <span class="n">m</span>          <span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="p">)</span>  <span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)]])</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="o">*</span><span class="n">log_xi</span><span class="p">)]])</span>
+
+<span class="c1"># resolvemos el sistema</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo linealizado: </span><span class="se">\n</span><span class="s1"> log(y) = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*log(x)&#39;</span> 
+      <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo linealizado: 
+ log(y) = -1.294 + 1.984*log(x)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para retornar al modelo original, aplicamos</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = e^{\left(a_0+a_1\ln x\right)}
+\end{equation*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo no-lineal&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y = </span><span class="si">%.3f</span><span class="s1">*x^</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo no-lineal
+y = 0.274*x^1.984
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos el resultado linealizado y sin linealizar</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span>
+
+<span class="c1"># reconstrumimos el modelo original con: exp(log(a)+b log(x))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modelo linealizado</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">log_xi</span><span class="p">,</span> <span class="n">log_yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">log</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;log x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/311a4ff19d5fb47fa9ece463e6c6314619aab021a8c4a6b1df6fb84a1cc26676.png" src="../_images/311a4ff19d5fb47fa9ece463e6c6314619aab021a8c4a6b1df6fb84a1cc26676.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># modelo original</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2ad44089d89e33c0a3712506a2fdd42c1b2d95bbfe3186824e3ad1fe9da30c71.png" src="../_images/2ad44089d89e33c0a3712506a2fdd42c1b2d95bbfe3186824e3ad1fe9da30c71.png" />
+</div>
+</div>
+<p>Analizamos la calidad del modelo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># analizamos la calidad del modelo</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coef. de determinación&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r2 = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span><span class="n">y</span><span class="p">(</span><span class="n">xi</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
+r2 = 0.8088
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>El resultado indica que el modelo lineal explica un 80.88% de los datos</p>
+</div></blockquote>
+<p>El coeficiente de determinación para el modelo no-lineal (<span class="math notranslate nohighlight">\(r^2=80.88\%\)</span>) es menor que para el modelo lineal (<span class="math notranslate nohighlight">\(r^2=88.05\%\)</span>). Sin embargo, el modelo no-lineal se ajusta mejor al modelo físico (por ejemplo, <span class="math notranslate nohighlight">\(F = 0\)</span> para <span class="math notranslate nohighlight">\(v = 0\)</span>).</p>
+<p>Por lo tanto, el modelo de potencia:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = 0.274 x^{1.984},
+\end{equation*}\]</div>
+<p>es el más adecuado para los datos.</p>
+</section>
+</section>
+<section id="otros-modelos-lineales">
+<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this headline">#</a></h2>
+<p>El procedimiento de ajuste de curva por mínimos cuadrados se puede extender para modelos de ajuste más complejos, tales como:</p>
+<ul class="simple">
+<li><p>Regresión polinomial</p></li>
+<li><p>Regresión lineal multivariable</p></li>
+</ul>
+<section id="regresion-polinomial">
+<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
+<p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b2e2db78-3096-4fd0-874d-dd527abb1469">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-b2e2db78-3096-4fd0-874d-dd527abb1469" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
+\end{equation}\]</div>
+<p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
+\end{equation*}\]</div>
+<p>Aplicando <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_0} =0\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_1} =0\)</span> y <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_2} =0\)</span>, llegamos al sistema de ecuaciones:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{bmatrix}
+     m     &amp; \sum x_i   &amp; \sum x_i^2 \\
+\sum x_i   &amp; \sum x_i^2 &amp; \sum x_i^3 \\
+\sum x_i^2 &amp; \sum x_i^3 &amp; \sum x_i^4 \\
+\end{bmatrix}
+\left[\begin{array}{c} a_0 \\a_1\\a_2\end{array}\right] =
+\left[\begin{array}{c} \sum y_i \\\sum x_iy_i\\\sum x_i^2y_i \end{array}\right]
+\end{equation*}\]</div>
+<p>Cuya solución nos entrega el valor de los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_1\)</span> y <span class="math notranslate nohighlight">\(a_2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># construimos un sistema Ax = b</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span>   <span class="n">m</span>         <span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span>     <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>   <span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">3</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">4</span><span class="p">)]])</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span>      <span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)</span>   <span class="p">],</span>
+              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)]])</span>
+
+<span class="c1"># resolvemos el sistema</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo polinomial: </span><span class="se">\n</span><span class="s1"> y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x + </span><span class="si">%.3f</span><span class="s1">*x^2&#39;</span> 
+      <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo polinomial: 
+ y = -178.482 + 16.122*x + 0.037*x^2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reconstrumimos como exp(log(a)+b log(x))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># analizamos la calidad del modelo</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coef. de determinación&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r2 = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span><span class="n">y</span><span class="p">(</span><span class="n">xi</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
+r2 = 0.8818
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notar como gráficamente el modelo sigue una tendencia casi lineal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21ea08d4373bc5263c90de7109945b5a598699bbb303f93c3c871e9e29e49047.png" src="../_images/21ea08d4373bc5263c90de7109945b5a598699bbb303f93c3c871e9e29e49047.png" />
+</div>
+</div>
+<p>Al incluir término <span class="math notranslate nohighlight">\(a_2x^2\)</span> en nuestro modelo lineal, <span class="math notranslate nohighlight">\(a_0 + a_1x\)</span>, esperabamos un mejor ajsute con el modelo físico <span class="math notranslate nohighlight">\(F_D = C_D V^2\)</span>.</p>
+<p>Sin embargo, la tendencia del método por minimizar el error (en otras palabras, mejorar <span class="math notranslate nohighlight">\(r^2\)</span>) lleva a forzar una curva lineal que no se ajusta a la física del problema.</p>
+</section>
+<section id="regresion-lineal-multidimensional">
+<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
+<p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-51d142af-08cb-47e6-b662-ea00be6c85d2">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-51d142af-08cb-47e6-b662-ea00be6c85d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
+\end{equation}\]</div>
+<p>Por ejemplo, para dos dimensiones tenemos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = a_0 + a_1x_1+a_2x_2
+\end{equation*}\]</div>
+<p>la mejor curva está dada por el mínimo de:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
+\end{equation*}\]</div>
+<p>Aplicando <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_0} =0\)</span>, <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_1} =0\)</span> y <span class="math notranslate nohighlight">\(\frac{\partial S_r}{\partial a_2} =0\)</span>, llegamos al sistema de ecuaciones:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{bmatrix}
+     m       &amp; \sum x_{1,i}        &amp; \sum x_{2,i} \\
+\sum x_{1,i} &amp; \sum x_{2,i}        &amp; \sum x_{1,i}x_{2,i} \\
+\sum x_{2,i} &amp; \sum x_{1,i}x_{2,i} &amp; \sum x_{2,i}^2 \\
+\end{bmatrix}
+\left[\begin{array}{c} a_0 \\a_1\\a_2\end{array}\right] =
+\left[\begin{array}{c} \sum y_i \\\sum x_{1,i}y_i\\\sum x_{2,i}y_i \end{array}\right]
+\end{equation*}\]</div>
+<p>Cuya solución nos entrega el valor de los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_1\)</span> y <span class="math notranslate nohighlight">\(a_2\)</span></p>
+<p>Gráficamente, el método de regresión por mínimos cuadrados corresponde a determinar el plano que minimice el error cuadrático.</p>
+<a class="reference internal image-reference" href="../_images/2D_plane.png"><img alt="../_images/2D_plane.png" class="align-center" src="../_images/2D_plane.png" style="width: 300px;" /></a>
+</section>
+</section>
+<section id="regresion-por-minimos-cuadrados-generalizado">
+<h2><span class="section-number">3.3. </span>Regresión por mínimos cuadrados generalizado<a class="headerlink" href="#regresion-por-minimos-cuadrados-generalizado" title="Permalink to this headline">#</a></h2>
+<section id="modelo-lineal-generalizado">
+<h3><span class="section-number">3.3.1. </span>Modelo lineal generalizado<a class="headerlink" href="#modelo-lineal-generalizado" title="Permalink to this headline">#</a></h3>
+<p>Todos los modelos revisados anteriormente pertenecen a un modelo lineal general con la forma:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bd1fa41a-19b3-49a1-b861-a2e99eff9015">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-bd1fa41a-19b3-49a1-b861-a2e99eff9015" title="Permalink to this equation">#</a></span>\[\begin{equation}
+y = a_0z_0+a_1z_1+a_2z_2+...a_nz_n,
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(z_0, z_1,..., z_n\)</span> son funciones base.</p>
+<p>Por ejemplo:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>modelo</p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(z_0\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(z_1\)</span></p></th>
+<th class="text-center head"><p><span class="math notranslate nohighlight">\(z_2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>linear unidimensional</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>polinomial</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x^2\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>linear multidimensional</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>El término “<em>lineal</em>” hace referencia al tipo de dependencia entre las funciones base. Tal como sucede con el modelo polinomial, las funciones base <span class="math notranslate nohighlight">\(z_i\)</span> pueden ser no-lineales. Por ejemplo, sinusoides:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = a_0 + a_1 \cos\left(x\right) + a_1 \sin\left(x\right) + a_3 \cos\left(2x\right) + a_4 \sin\left(2x\right) ...,
+\end{equation*}\]</div>
+</section>
+<section id="regresion-por-minimos-cuadrados">
+<h3><span class="section-number">3.3.2. </span>Regresión por mínimos cuadrados<a class="headerlink" href="#regresion-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<p>En general, se busca minimizar el error:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-644a1ee7-8cb4-4218-a7ce-de5194d1093a">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-644a1ee7-8cb4-4218-a7ce-de5194d1093a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+S_r = \sum_{i=1}^m (y(x_i) - y_i)^2 = \sum_{i=1}^m \left[\sum_{j=1}^n a_j z_j(x_i) - y_i\right]^2.
+\end{equation}\]</div>
+<p>Se puede demostrar que la minimización de este error está dado por la solución del sistema:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-099abaad-0a93-4a76-a614-9b48f1bb2507">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-099abaad-0a93-4a76-a614-9b48f1bb2507" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Z^T Z \alpha = Z^T Y
+\end{equation}\]</div>
+<p>donde:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Z =\begin{bmatrix}
+z_0(x_1) &amp; z_1(x_1) &amp; \cdots &amp; z_n(x_1)\\
+z_0(x_2) &amp; z_1(x_2) &amp; \cdots &amp; z_n(x_2)\\
+\vdots &amp; \vdots   &amp; \ddots &amp; \vdots \\
+z_0(x_m) &amp; z_1(x_m) &amp; \cdots &amp; z_n(x_m)
+\end{bmatrix};
+\quad\quad
+\alpha = \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\a_n\end{bmatrix};
+\quad\quad
+Y = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\y_m\end{bmatrix}
+\end{equation*}\]</div>
+<p>La solución está dada por <span class="math notranslate nohighlight">\( \alpha = \left(Z^T Z\right)^{-1}Z^T Y\)</span>.</p>
+<blockquote>
+<div><p>La matriz <span class="math notranslate nohighlight">\(\left(Z^T Z\right)^{-1}Z^T\)</span> se conoce como <strong>matriz pseudo-inversa</strong></p>
+</div></blockquote>
+</section>
+</section>
+<section id="minimos-cuadrados-en-python">
+<h2><span class="section-number">3.4. </span>Mínimos cuadrados en python<a class="headerlink" href="#minimos-cuadrados-en-python" title="Permalink to this headline">#</a></h2>
+<p>Analicemos distintos métodos en python para ajustar el modelo de ajuste para el experimento del tunel de viento</p>
+<section id="numpy-linalg-pinv-matriz-pseudo-inversa">
+<h3><span class="section-number">3.4.1. </span>numpy.linalg.pinv (matriz pseudo inversa)<a class="headerlink" href="#numpy-linalg-pinv-matriz-pseudo-inversa" title="Permalink to this headline">#</a></h3>
+<p>Una forma directa de encontrar los coeficientes del modelo de regresión es determinando la matriz pseudo inversa directamente</p>
+<p>Consideremos un modelo lineal, <span class="math notranslate nohighlight">\(y = a_0+a_1x\)</span> para el ejemplo del tunel de viento.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(Z\)</span> en este caso es:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+Z =\begin{bmatrix}
+1 &amp; x_1 \\
+1 &amp; x_2 \\
+\vdots &amp; \vdots \\
+1 &amp; x_m 
+\end{bmatrix}
+\end{equation*}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">pinv</span> <span class="c1"># pseudo-inverse</span>
+
+<span class="c1"># recopilación de la muestra</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># construimos la matriz Z en base al modelo a0 + a1*x</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">xi</span><span class="o">**</span><span class="mi">0</span><span class="p">,</span> <span class="n">xi</span><span class="o">**</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># matriz pseudo-inversa (A^T*A)^(-1)*A^T</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pinv</span><span class="p">(</span><span class="n">Z</span><span class="p">),</span><span class="n">yi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo lineal: y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo lineal: y = -234.286 + 19.470*x
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>La función <code class="docutils literal notranslate"><span class="pre">numpy.vstack</span></code> genera una matriz <span class="math notranslate nohighlight">\(k\times N\)</span>, considerando <span class="math notranslate nohighlight">\(k\)</span> arreglos 1D con <span class="math notranslate nohighlight">\(N\)</span> elementos cada uno. <strong>Es la forma más segura de apilar vectores fila</strong> (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html">acá</a>).</p>
+</div></blockquote>
+</section>
+<section id="numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">
+<h3><span class="section-number">3.4.2. </span>numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)<a class="headerlink" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados" title="Permalink to this headline">#</a></h3>
+<p>Es un método general para resolver sistemas lineales de la forma <span class="math notranslate nohighlight">\(Ax = b\)</span>, independiente la relación entre el número de ecuaciones linealmente independientes y el número de incognitas (es decir, sistemas <span class="math notranslate nohighlight">\(\mathrm{rank}\left([A|b]\right)\neq \mathrm{rank}\left(A\right) \)</span>). Se basa en minimizar la norma de Frobenius <span class="math notranslate nohighlight">\(\|Ax-b\|\)</span>.</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">lstsq</span></code> genera más de un output (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html">acá</a>). Para conceptos del modelo de ajuste, solo necesitamos el primer output <code class="docutils literal notranslate"><span class="pre">[0]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">lstsq</span>
+
+<span class="c1"># construimos el modelo</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># construimos la matriz Z en base al modelo a0 + a1*x</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">xi</span><span class="o">**</span><span class="mi">0</span><span class="p">,</span> <span class="n">xi</span><span class="o">**</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo lineal: y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo lineal: y = -234.286 + 19.470*x
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="numpy-polyfit-sistemas-polinomiales-de-unidimencionales">
+<h3><span class="section-number">3.4.3. </span>numpy.polyfit (sistemas polinomiales de unidimencionales)<a class="headerlink" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales" title="Permalink to this headline">#</a></h3>
+<p>Esta función está especificamente diseñada para modelos polinomiales de una dimensión, es decir, <span class="math notranslate nohighlight">\(y = a_0 + a_1x +a_2x^2+...a_nx^n\)</span></p>
+<p><strong>Los coeficientes de <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> están ordenados de mayor potencia a menor potencia.</strong> Por ejemplo, para generar un modelo en base a un polinomio de orden 2,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># coeficientes a0, a1, a2, ...</span>
+</pre></div>
+</div>
+<p>donde <span class="math notranslate nohighlight">\(a_0=\)</span> <code class="docutils literal notranslate"><span class="pre">a[2]</span></code>, <span class="math notranslate nohighlight">\(a_1=\)</span> <code class="docutils literal notranslate"><span class="pre">a[1]</span></code>, <span class="math notranslate nohighlight">\(a_2=\)</span> <code class="docutils literal notranslate"><span class="pre">a[0]</span></code></p>
+<p>Para evitar confusiones con el orden de los coeficientes, <strong>se recomienda utilizar <code class="docutils literal notranslate"><span class="pre">numpy.polyval(a,x)</span></code> para genera una función en base al modelo determinado</strong>, donde <code class="docutils literal notranslate"><span class="pre">x</span></code> es un valor arbitrario y <code class="docutils literal notranslate"><span class="pre">a</span></code> son los coeficientes determinados por <code class="docutils literal notranslate"><span class="pre">polyfit</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="c1"># función en base al modelo y(x) = a0 + a1*x + ... am*x^m</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># construimos el modelo</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># Aplicamos modelo polinomial con polyfit</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo polinomial:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x + </span><span class="si">%.3f</span><span class="s1">*x^2&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo polinomial:
+y = -178.482 + 16.122*x + 0.037*x^2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluamos el modelo con polyval</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span> <span class="c1"># y(x) con polyval</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21ea08d4373bc5263c90de7109945b5a598699bbb303f93c3c871e9e29e49047.png" src="../_images/21ea08d4373bc5263c90de7109945b5a598699bbb303f93c3c871e9e29e49047.png" />
+</div>
+</div>
+</section>
+<section id="scipy-optimize-curve-fit-regresion-no-lineal">
+<h3><span class="section-number">3.4.4. </span>scipy.optimize.curve_fit (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this headline">#</a></h3>
+<p>Esta función utiliza un método iterativo para ajustar una curva a una muestra. La función <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> puede ser utilizada para cualquier tipo de modelo, linear o no-linear, unidimensional o multidimensional.</p>
+<p>La función entrega una serie de outputs (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">acá</a>). Sin embargo, para determinar los coeficientes solo necesitamos el output <code class="docutils literal notranslate"><span class="pre">[0]</span></code></p>
+<p>Por ejemplo, ajustemos los datos al modelo <span class="math notranslate nohighlight">\(y=\alpha x^\beta\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="c1"># definimos nuestro modelo en formato de función</span>
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">xdata</span> <span class="o">=</span> <span class="n">xi</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="n">yi</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo no-lineal&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y = </span><span class="si">%.3f</span><span class="s1">*x^</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo no-lineal
+y = 2.538*x^1.436
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para ploteo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/32e8b66797c014ec20b771f6385ad70fd06eeb5853ecd648fa31846944ca489a.png" src="../_images/32e8b66797c014ec20b771f6385ad70fd06eeb5853ecd648fa31846944ca489a.png" />
+</div>
+</div>
+<p>Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+y = 0.274x^{1.984}\quad\left(r^2=80.88\%\right)
+\end{equation*}\]</div>
+<p>Esto es debido a que la regresión no-lineal busca minimizar el error</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S_r = \sum_{i=1}^m (f_\mathrm{nl}(x_i) - y_i)^2,
+\end{equation*}\]</div>
+<p>de forma iterativa, y sin linealizar el modelo no-lineal <span class="math notranslate nohighlight">\(f_\mathrm{nl}(x)\)</span>. Así, <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> permite buscar soluciones con valores <span class="math notranslate nohighlight">\(r^2\)</span> más cercanos a <span class="math notranslate nohighlight">\(1\)</span> que no son accesibles para el modelo lineal</p>
+<p>En efecto, si analizamos el coeficiente de determinación del modelo generado por <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coef. de determinación&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;r2 = </span><span class="si">%.4f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span><span class="n">model</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
+r2 = 0.8769
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el caso de un modelo lineal, ambos métodos generan el mismo modelo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">40</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>   <span class="mi">60</span><span class="p">,</span>  <span class="mi">70</span><span class="p">,</span>  <span class="mi">80</span><span class="p">])</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">1220</span><span class="p">,</span> <span class="mi">830</span><span class="p">,</span> <span class="mi">1450</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">xdata</span> <span class="o">=</span> <span class="n">xi</span><span class="p">,</span> <span class="n">ydata</span> <span class="o">=</span> <span class="n">yi</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modelo lineal: y = </span><span class="si">%.3f</span><span class="s1"> + </span><span class="si">%.3f</span><span class="s1">*x&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo lineal: y = -234.286 + 19.470*x
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="regresion-lineal-vs-no-lineal">
+<h3><span class="section-number">3.4.5. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this headline">#</a></h3>
+<p>Respecto a la regresión no-lineal:</p>
+<p><strong>Ventajas</strong></p>
+<ul class="simple">
+<li><p>Permite trabajar con modelos más generales.</p></li>
+<li><p>Para modelos no-lineales, el método produce curvas con mejores coeficientes de determinación en comparación con modelos lineales en base a linealización.</p></li>
+</ul>
+<p><strong>Desventajas</strong></p>
+<ul class="simple">
+<li><p>Como todo método iterativo, el metodo puede sufrir problemas de inestabilidad condicionados al modelo propuesto, <span class="math notranslate nohighlight">\(f_\mathrm{nl}(x)\)</span>. Esto puede derivar en problemas de convergencia, soluciones locales, o sensibilidad a los valorse iniciales.</p></li>
+</ul>
+<blockquote>
+<div><p>En general, se recomienda <strong>utilizar <code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code></strong>, u otros métodos de ajuste no-lineal, <strong>exclusivamente para modelos no-lineales</strong>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Least Square Regression</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
+<li><p>Chapra S., Canale R. <strong>Capítulo 17: Regresión por mínimos cuadrados</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./03-Ajuste_de_curvas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02-Algebra_lineal/02-Algebra_lineal.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04-Interpolacion/04-Interpolacion.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Métodos de Interpolación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">3.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-unidimensional">3.1.1. Regresión lineal unidimensional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">3.1.2. Ajuste por mínimos cuadrados paso a paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-del-error">3.1.3. Cuantificación del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">3.1.4. Linealización de funciones no lineales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-modelos-lineales">3.2. Otros modelos lineales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomial">3.2.1. Regresión polinomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-multidimensional">3.2.2. Regresión lineal multidimensional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados-generalizado">3.3. Regresión por mínimos cuadrados generalizado</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-lineal-generalizado">3.3.1. Modelo lineal generalizado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-por-minimos-cuadrados">3.3.2. Regresión por mínimos cuadrados</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-en-python">3.4. Mínimos cuadrados en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-linalg-pinv-matriz-pseudo-inversa">3.4.1. numpy.linalg.pinv (matriz pseudo inversa)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-linalg-lstsq-solucion-de-sistemas-lineales-por-minimos-cuadrados">3.4.2. numpy.linalg.lstsq (solución de sistemas lineales por mínimos cuadrados)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit-sistemas-polinomiales-de-unidimencionales">3.4.3. numpy.polyfit (sistemas polinomiales de unidimencionales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">3.4.4. scipy.optimize.curve_fit (regresión no-lineal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">3.4.5. Regresión lineal vs no-lineal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

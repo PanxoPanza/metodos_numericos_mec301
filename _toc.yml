@@ -7,26 +7,26 @@ parts:
   - caption: Parte 1. Introducción a los métodos numéricos
     numbered: true
     chapters:
-    - file: 1-Aspectos_generales/1-Aspectos_generales
-    - file: 2-Algebra_lineal/2-Algebra_lineal
-    - file: 3-Ajuste_de_curvas/3-Ajuste_de_curvas
-    - file: 4-Interpolacion/4-Interpolacion
+    - file: 01-Aspectos_generales/01-Aspectos_generales
+    - file: 02-Algebra_lineal/02-Algebra_lineal
+    - file: 03-Ajuste_de_curvas/03-Ajuste_de_curvas
+    - file: 04-Interpolacion/04-Interpolacion
   - caption: Parte 2. Métodos numéricos basados en series de Taylor
     numbered: true
     chapters:
-    - file: 5-Taylor-series/5-Taylor-series
-    - file: 6-Root-finding/6-Root-finding
-    - file: 7-Integracion/7-Integracion
+    - file: 05-Taylor-series/05-Taylor-series
+    - file: 06-Root-finding/06-Root-finding
+    - file: 07-Integracion/07-Integracion
   - caption: Parte 3. Métodos numéricos para ecuaciones diferenciales
     numbered: true
     chapters:
-    - file: 8-Derivacion_numerica/8-Derivacion_numerica
-    - file: 9-EDO_valor_inicial/9-EDO_valor_inicial
+    - file: 08-Derivacion_numerica/08-Derivacion_numerica
+    - file: 09-EDO_valor_inicial/09-EDO_valor_inicial
     - file: 10-EDO_condicion_de_borde/10-EDO_condicion_de_borde
     - file: 11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP
-  - caption: Apéndice
-    numbered: false
-    chapters:
-      - file: Apendice/Repaso/Repaso_Parte1/Repaso_Parte1
-      - file: Apendice/Repaso/Repaso_Parte2/Repaso_Parte2
-      - file: Apendice/Repaso/Repaso_Parte3/Repaso_Parte3
+#  - caption: Apéndice
+#    numbered: false
+#    chapters:
+#      - file: Apendice/Repaso/Repaso_Parte1/Repaso_Parte1
+#      - file: Apendice/Repaso/Repaso_Parte2/Repaso_Parte2
+#      - file: Apendice/Repaso/Repaso_Parte3/Repaso_Parte3
