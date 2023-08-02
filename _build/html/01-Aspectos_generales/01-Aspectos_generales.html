@@ -324,7 +324,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o-y-tiempo-de-computacion">1.1.4. Notación <em>Big-O</em> y tiempo de computación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-reondeo">1.2. Representación binaria y errores de reondeo</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-redondeo">1.2. Representación binaria y errores de redondeo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redondeo-en-variables-tipo-float">1.2.1. Redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo-en-variables-tipo-float">1.2.2. Errores de redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
@@ -377,7 +377,7 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <li><p>asignación de variables</p></li>
 <li><p>llamados a otras funciones</p></li>
 </ul>
-<p>Por ejemplo, en el siguiente algoritmo:</p>
+<p>En el caso del ejemplo anterior:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -423,7 +423,7 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <p>A medida que <span class="math notranslate nohighlight">\(N\)</span> crece podemos ver que la parte dominante de este algoritmo esta dentro de la operación <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
-<p>Si analizamos el número de iteraciones <span class="math notranslate nohighlight">\(I\)</span> para un determinado <span class="math notranslate nohighlight">\(N\)</span>, notaremos que estos están en la relacción <span class="math notranslate nohighlight">\(N/2^I = 1\)</span>, es decir <span class="math notranslate nohighlight">\(I\approx \log N\)</span>. Así, la complejidad de este algoritmo es <span class="math notranslate nohighlight">\(O(\log N)\)</span>.</p>
+<p>Si analizamos el número de iteraciones <span class="math notranslate nohighlight">\(I\)</span> para un determinado <span class="math notranslate nohighlight">\(N\)</span>, notaremos que estos están en la relación <span class="math notranslate nohighlight">\(N/2^I = 1\)</span>, es decir <span class="math notranslate nohighlight">\(I\approx \log N\)</span>. Así, la complejidad de este algoritmo es <span class="math notranslate nohighlight">\(O(\log N)\)</span>.</p>
 <blockquote>
 <div><p><strong>Nota</strong> Un algoritmo tiene complejidad <strong>logaritmica</strong> cuando es del tipo <span class="math notranslate nohighlight">\(O(\log N)\)</span>.</p>
 </div></blockquote>
@@ -509,8 +509,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 2 µs, total: 6 µs
-Wall time: 9.78 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3 µs, sys: 2 µs, total: 5 µs
+Wall time: 6.91 µs
 </pre></div>
 </div>
 </div>
@@ -522,8 +522,8 @@ Wall time: 9.78 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 162 ms, sys: 684 µs, total: 163 ms
-Wall time: 177 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 128 ms, sys: 0 ns, total: 128 ms
+Wall time: 138 ms
 </pre></div>
 </div>
 </div>
@@ -533,8 +533,8 @@ Wall time: 177 ms
 </div></blockquote>
 </section>
 </section>
-<section id="representacion-binaria-y-errores-de-reondeo">
-<h2><span class="section-number">1.2. </span>Representación binaria y errores de reondeo<a class="headerlink" href="#representacion-binaria-y-errores-de-reondeo" title="Permalink to this headline">#</a></h2>
+<section id="representacion-binaria-y-errores-de-redondeo">
+<h2><span class="section-number">1.2. </span>Representación binaria y errores de redondeo<a class="headerlink" href="#representacion-binaria-y-errores-de-redondeo" title="Permalink to this headline">#</a></h2>
 <p>En un computador, la información es almacenada en formato binario. Un <strong>bit</strong> puede tener dos valores: 0 o 1.
 El computador es capaz de interpretar número utilizando códigos binarios.</p>
 <p>Por ejemplo, el código de 8 bits <span class="math notranslate nohighlight">\(001000101\)</span> es equivalente a:</p>
@@ -1046,7 +1046,7 @@ help(np.linspace)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#notacion-big-o-y-tiempo-de-computacion">1.1.4. Notación <em>Big-O</em> y tiempo de computación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-reondeo">1.2. Representación binaria y errores de reondeo</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representacion-binaria-y-errores-de-redondeo">1.2. Representación binaria y errores de redondeo</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redondeo-en-variables-tipo-float">1.2.1. Redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-de-redondeo-en-variables-tipo-float">1.2.2. Errores de redondeo en variables tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
