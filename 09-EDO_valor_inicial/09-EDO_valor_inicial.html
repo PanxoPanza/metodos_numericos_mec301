@@ -365,8 +365,8 @@ Fecha: 24 de Octubre 2022</p>
 <h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Permalink to this headline">#</a></h3>
 <p>El sistema puede estar compuesto de una ecuacion diferencial.</p>
 <p>Por ejemplo, la <em><strong>ecuación del péndulo</strong></em> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd3c4a79-3b5a-444f-b670-81fd00cb37d1">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-fd3c4a79-3b5a-444f-b670-81fd00cb37d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-409baec4-8090-45ab-b68e-3d421e27c010">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-409baec4-8090-45ab-b68e-3d421e27c010" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
@@ -375,8 +375,8 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 <p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente está condicionada por una variable independiente. Adicionalmente, debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la EDO se transforma a una ecuación del tipo lineal:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96b8bdc1-39ac-4c82-918f-ca5c4abe75de">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-96b8bdc1-39ac-4c82-918f-ca5c4abe75de" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed16d18f-a59a-4485-84fd-32ac368c26f2">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-ed16d18f-a59a-4485-84fd-32ac368c26f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta(t)}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tiene solución analítica.</p>
@@ -401,8 +401,8 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres funciones <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span> y <span class="math notranslate nohighlight">\(p\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos clasificar una ecuación diferencial según el orden de sus derivadas.</p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad9ddc98-24a9-476a-8a41-29e420da5178">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-ad9ddc98-24a9-476a-8a41-29e420da5178" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b3eeb25a-e2be-4937-9d4c-0d4c1a0b1afe">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-b3eeb25a-e2be-4937-9d4c-0d4c1a0b1afe" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -460,8 +460,8 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Permalink to this headline">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f9c7fcbb-fd71-49b2-9f1c-21ac1b9df18f">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-f9c7fcbb-fd71-49b2-9f1c-21ac1b9df18f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1753123b-b2e1-4fad-8975-f512ddcb9336">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-1753123b-b2e1-4fad-8975-f512ddcb9336" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones inciales:
@@ -480,8 +480,8 @@ T(0,x,y) = T_a
 \frac{d}{dt}\dot{\Theta}(t) &amp;= F_2(t,\Theta, \dot{\Theta})  = - \frac{g}{l}\sin \Theta - \frac{\kappa}{ml}\dot{\Theta}
 \end{align*}\]</div>
 <p>En conclución, <strong>siempre podemos reducir una EDO a un problema de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-900a11ac-9e61-485e-ad3c-e020b1202506">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-900a11ac-9e61-485e-ad3c-e020b1202506" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f25dfe0-9bdd-4e06-9742-dbb475bb03fb">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-9f25dfe0-9bdd-4e06-9742-dbb475bb03fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d}{dt}\vec{y} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -641,8 +641,8 @@ T(0,x,y) = T_a
 <p>Es posible demostrar que para ecuaciones del tipo <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, la condición de estabilidad del método de Euler explícito está dada por <span class="math notranslate nohighlight">\(h &gt; 2/a\)</span>.</p>
 <p>En otras palabras, el método de Euler explícito es <em><strong>condicionalmente estable</strong></em></p>
 <p>Alternativamente, podemos definir el <strong>método de Euler implícito</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4865fbd8-1f6f-4a38-9023-b4fce1f69d80">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-4865fbd8-1f6f-4a38-9023-b4fce1f69d80" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-019ad696-d335-46c0-9b03-8e2def897817">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-019ad696-d335-46c0-9b03-8e2def897817" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}[t_{i+1},\vec{y}_{i+1}] + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como implícita debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -709,14 +709,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-57cfc3a1-08e9-43af-a5e7-37ca99efa988">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-57cfc3a1-08e9-43af-a5e7-37ca99efa988" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4d66f12-336b-49bf-8886-8b1c337f2990">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-d4d66f12-336b-49bf-8886-8b1c337f2990" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74b5d6a3-f89d-4c11-b36c-0b740c0e2370">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-74b5d6a3-f89d-4c11-b36c-0b740c0e2370" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-94229eb5-d59b-470c-8969-fd4707e24308">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-94229eb5-d59b-470c-8969-fd4707e24308" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -742,8 +742,8 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Permalink to this headline">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d43a968-6b34-4834-a360-6dc68626884b">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-5d43a968-6b34-4834-a360-6dc68626884b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-964f7fa7-89a3-49cd-b317-4db0384bc955">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-964f7fa7-89a3-49cd-b317-4db0384bc955" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
