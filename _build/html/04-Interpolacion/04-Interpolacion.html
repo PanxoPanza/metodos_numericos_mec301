@@ -1,46 +1,36 @@
 
-
 <!DOCTYPE html>
 
-
-<html >
-
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>4. Métodos de Interpolación &#8212; MEC301 - Métodos Numéricos</title>
-  
-  
-  
-  <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
-  </script>
-  
+    
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
-  
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -48,12 +38,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -63,87 +53,56 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '04-Interpolacion/04-Interpolacion';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Series de Taylor" href="../05-Taylor-series/05-Taylor-series.html" />
     <link rel="prev" title="3. Ajuste de curvas por mínimos cuadrados" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
 
-  
-  
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="../search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
-  <div class="bd-container">
-    <div class="bd-container__inner bd-page-width">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
-      <div class="bd-sidebar-primary bd-sidebar">
-        
-
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
-
-<a class="navbar-brand logo" href="../intro.html">
-  
-  
-  
-  
-  
-    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
+      
+      
+      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -152,201 +111,459 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 1. Introducción a los métodos numéricos
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">3. Ajuste de curvas por mínimos cuadrados</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Métodos de Interpolación</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">
+   1. Aspectos generales de programación y algoritmos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">
+   2. Algebra lineal y sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">
+   3. Ajuste de curvas por mínimos cuadrados
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Métodos de Interpolación
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 2. Métodos numéricos basados en series de Taylor
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">
+   5. Series de Taylor
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../06-Root-finding/06-Root-finding.html">
+   6. Algortimos de búsqueda de raíces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07-Integracion/07-Integracion.html">
+   7. Integración numérica
+  </a>
+ </li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Parte 3. Métodos numéricos para ecuaciones diferenciales
+ </span>
+</p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Ecuaciones Diferenciales Ordinarias con valor inicial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">
+   8. Derivación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">
+   9. Ecuaciones Diferenciales Ordinarias con valor inicial
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">
+   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">
+   11. Diferencias finitas para ecuaciones diferenciales parciales
+  </a>
+ </li>
 </ul>
 
     </div>
 </nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
     </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
-
-
-      </div>
-      
-      <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="../_sources/04-Interpolacion/04-Interpolacion.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
+          
 
 
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
 >
   
 
-<span class="btn__icon-container">
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/PanxoPanza/metodos_numericos_mec301/main?urlpath=tree/04-Interpolacion/04-Interpolacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/04-Interpolacion/04-Interpolacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-
-<script>
-document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
   </button>
-`);
-</script>
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/04-Interpolacion/04-Interpolacion.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
   
-</div>
-</div>
-              
-              
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Métodos de Interpolación</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">4.1. Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-polinomial">4.2. Interpolación Polinomial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">4.2.1. Intepolación mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> (ajuste por mínimos cuadrados)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">4.2.2. Polinomios de interpolación de Newton</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">4.2.3. Polinomios de interpolación de Lagrange</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-oscilacion">4.2.4. Problemas de oscilación</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-tramos">4.3. Interpolación por tramos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">4.3.1. Interpolación lineal (<em>spline</em> linear)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-spline-cubico">4.3.2. Interpolación <em>spline</em> cúbico</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-multidimensional">4.4. Interpolación multidimensional</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-2d">4.4.1. Interpolación 2D</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">4.4.2. Interpolación en 3 o más dimensiones</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">4.5. Referencias</a></li>
-</ul>
-            </nav>
-        </div>
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
     </div>
 </div>
 
-              
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   4.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-polinomial">
+   4.2. Interpolación Polinomial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
+     4.2.1. Intepolación mediante
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       polyfit
+      </span>
+     </code>
+     (ajuste por mínimos cuadrados)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
+     4.2.2. Polinomios de interpolación de Newton
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
+     4.2.3. Polinomios de interpolación de Lagrange
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemas-de-oscilacion">
+     4.2.4. Problemas de oscilación
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-por-tramos">
+   4.3. Interpolación por tramos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
+     4.3.1. Interpolación lineal (
+     <em>
+      spline
+     </em>
+     linear)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
+     4.3.2. Interpolación
+     <em>
+      spline
+     </em>
+     cúbico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-multidimensional">
+   4.4. Interpolación multidimensional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-2d">
+     4.4.1. Interpolación 2D
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
+     4.4.2. Interpolación en 3 o más dimensiones
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   4.5. Referencias
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Métodos de Interpolación</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduccion">
+   4.1. Introducción
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-polinomial">
+   4.2. Interpolación Polinomial
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">
+     4.2.1. Intepolación mediante
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       polyfit
+      </span>
+     </code>
+     (ajuste por mínimos cuadrados)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">
+     4.2.2. Polinomios de interpolación de Newton
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">
+     4.2.3. Polinomios de interpolación de Lagrange
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problemas-de-oscilacion">
+     4.2.4. Problemas de oscilación
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-por-tramos">
+   4.3. Interpolación por tramos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">
+     4.3.1. Interpolación lineal (
+     <em>
+      spline
+     </em>
+     linear)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
+     4.3.2. Interpolación
+     <em>
+      spline
+     </em>
+     cúbico
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpolacion-multidimensional">
+   4.4. Interpolación multidimensional
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-2d">
+     4.4.1. Interpolación 2D
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">
+     4.4.2. Interpolación en 3 o más dimensiones
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   4.5. Referencias
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
                 
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
+              <div>
+                
   <p><font size="6">MEC301 - Métodos Numéricos</font></p>
 <section class="tex2jax_ignore mathjax_ignore" id="metodos-de-interpolacion">
 <h1><span class="section-number">4. </span>Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this headline">#</a></h1>
@@ -407,33 +624,33 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <p>Por ejemplo, consideremos el polinomio de ajuste para la muestra:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p><span class="math notranslate nohighlight">\(i\)</span></p></th>
-<th class="text-center head"><p>0</p></th>
-<th class="text-center head"><p>1</p></th>
-<th class="text-center head"><p>2</p></th>
-<th class="text-center head"><p>3</p></th>
-<th class="text-center head"><p>4</p></th>
+<tr class="row-odd"><th class="text-align:center head"><p><span class="math notranslate nohighlight">\(i\)</span></p></th>
+<th class="text-align:center head"><p>0</p></th>
+<th class="text-align:center head"><p>1</p></th>
+<th class="text-align:center head"><p>2</p></th>
+<th class="text-align:center head"><p>3</p></th>
+<th class="text-align:center head"><p>4</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(x_i\)</span></p></td>
-<td class="text-center"><p>-5</p></td>
-<td class="text-center"><p>-2</p></td>
-<td class="text-center"><p>0</p></td>
-<td class="text-center"><p>3</p></td>
-<td class="text-center"><p>5</p></td>
+<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(x_i\)</span></p></td>
+<td class="text-align:center"><p>-5</p></td>
+<td class="text-align:center"><p>-2</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>3</p></td>
+<td class="text-align:center"><p>5</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(y_i\)</span></p></td>
-<td class="text-center"><p>-2</p></td>
-<td class="text-center"><p>-1</p></td>
-<td class="text-center"><p>2</p></td>
-<td class="text-center"><p>2.5</p></td>
-<td class="text-center"><p>-1</p></td>
+<tr class="row-odd"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(y_i\)</span></p></td>
+<td class="text-align:center"><p>-2</p></td>
+<td class="text-align:center"><p>-1</p></td>
+<td class="text-align:center"><p>2</p></td>
+<td class="text-align:center"><p>2.5</p></td>
+<td class="text-align:center"><p>-1</p></td>
 </tr>
 </tbody>
 </table>
 <p>Generaremos un polinomio de grado 2 mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code>, considerando dos casos:</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Todos los datos <em>x = [-5, -2, 0, 3, 5]</em>, <em>y = [-2,  -1, 2, 2.5,-1]</em>.</p></li>
 <li><p>Solo los datos <em>x = [-5, 0, 5]</em>, <em>y = [-2, 2,-1]</em>, es decir <span class="math notranslate nohighlight">\(\{x_i,y_i\}\)</span> para <span class="math notranslate nohighlight">\(i = 0,2,4\)</span>.</p></li>
 </ol>
@@ -483,7 +700,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dd4a274325a595f5732ef43c963d7a1f156c5b4477ae23a4f0a9f5cab35529fb.png" src="../_images/dd4a274325a595f5732ef43c963d7a1f156c5b4477ae23a4f0a9f5cab35529fb.png" />
+<img alt="../_images/04-Interpolacion_18_0.png" src="../_images/04-Interpolacion_18_0.png" />
 </div>
 </div>
 <p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5, -2\}\)</span>, <span class="math notranslate nohighlight">\(\{0, 2\}\)</span> y <span class="math notranslate nohighlight">\(\{5, 1\}\)</span></strong></p>
@@ -496,8 +713,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 N(x) = a_0 + a_1(x-x_0) + a_2(x-x_0)(x-x_1) + \dots + a_n(x-x_0)(x-x_1)\dots(x-x_n),
 \end{equation*}\]</div>
 <p>o bien, en su forma compacta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74c1c2bb-a9c0-4f11-818c-13512824be92">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-74c1c2bb-a9c0-4f11-818c-13512824be92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-14ae2df5-aa58-4e3c-a165-60b1d43b0534">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-14ae2df5-aa58-4e3c-a165-60b1d43b0534" title="Permalink to this equation">#</a></span>\[\begin{equation}
 N(x) = \sum_{i=0}^{n}{a_i\prod_{j=0}^{i-1}(x-x_j)}
 \end{equation}\]</div>
 <p>Para encontrar los coeficientes imponemos la condición: <span class="math notranslate nohighlight">\(N(x_i) = y_i\)</span> para <span class="math notranslate nohighlight">\(i= 0,1,...,n\)</span>, donde <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son las coordenadas de los datos de la muestra en el plano <span class="math notranslate nohighlight">\(x, y\)</span>.</p>
@@ -621,20 +838,20 @@ f[x_2, x_1, x_0] &amp;= \frac{\frac{y_2 - y_1}{x_2 - x_1} - \frac{y_1 - y_0}{x_1
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a3b0041206f6c049e380f75dd20fff05d460d254c77eb2b891c4510e73f567c4.png" src="../_images/a3b0041206f6c049e380f75dd20fff05d460d254c77eb2b891c4510e73f567c4.png" />
+<img alt="../_images/04-Interpolacion_35_0.png" src="../_images/04-Interpolacion_35_0.png" />
 </div>
 </div>
 </section>
 <section id="polinomios-de-interpolacion-de-lagrange">
 <h3><span class="section-number">4.2.3. </span>Polinomios de interpolación de Lagrange<a class="headerlink" href="#polinomios-de-interpolacion-de-lagrange" title="Permalink to this headline">#</a></h3>
 <p>La interpolación por polinomios de Lagrange consiste en aproximar una serie de datos mediante un polinomio <span class="math notranslate nohighlight">\(L(x_i)\)</span>, tal que:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1441ee76-d559-4a56-aa9b-4d2c8ad61321">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-1441ee76-d559-4a56-aa9b-4d2c8ad61321" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-db8a2bb4-b952-44a1-86f4-6e7a2a64ee5f">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-db8a2bb4-b952-44a1-86f4-6e7a2a64ee5f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 L(x) = \sum_{i = 0}^n y_i P_i(x),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(P_i(x)\)</span>, son los polinomios de Lagrange, definidos por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-edb9332b-50fc-434f-8e2c-787399d08d55">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-edb9332b-50fc-434f-8e2c-787399d08d55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-270bceca-b5fb-4025-8afa-088dbbd173ad">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-270bceca-b5fb-4025-8afa-088dbbd173ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
 P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 \end{equation}\]</div>
 <p>Estos polinomios tienen la propiedad que <span class="math notranslate nohighlight">\(P_i(x_j) = 1\)</span> cuando <span class="math notranslate nohighlight">\(i = j\)</span> y <span class="math notranslate nohighlight">\(P_i(x_j) = 0\)</span> cuando <span class="math notranslate nohighlight">\(i \ne j\)</span>. Así, al igual que la interpolación por polinomios de Newton, la interpolación de Lagrange asegura que <span class="math notranslate nohighlight">\(L(x_i) = y_i\)</span> para cada dato de la muestra.</p>
@@ -685,7 +902,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d69d9fa26ee38f2cce9506e83ad7519ae1c8548e754921c93b5be119b37d2db1.png" src="../_images/d69d9fa26ee38f2cce9506e83ad7519ae1c8548e754921c93b5be119b37d2db1.png" />
+<img alt="../_images/04-Interpolacion_41_0.png" src="../_images/04-Interpolacion_41_0.png" />
 </div>
 </div>
 <p>En python los polinomios de Lagrange están implementados en la función <code class="docutils literal notranslate"><span class="pre">lagrange</span></code> de la librería<code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> (ver documentación <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.lagrange.html">acá</a>)</p>
@@ -728,7 +945,7 @@ P_2(x) &amp;=&amp; \frac{(x - x_0)(x - x_1)}{(x_2-x_0)(x_2-x_1)} = \frac{(x - 0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/77c60bda8f9a35d4760153ab30f362f2e658cd773e6ac28da69f4b3b9f4be0aa.png" src="../_images/77c60bda8f9a35d4760153ab30f362f2e658cd773e6ac28da69f4b3b9f4be0aa.png" />
+<img alt="../_images/04-Interpolacion_44_0.png" src="../_images/04-Interpolacion_44_0.png" />
 </div>
 </div>
 </section>
@@ -802,7 +1019,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a89818ddd85f4460621d80ec6b0868bae685b88a28cd1fd9f05083dcb37c4b34.png" src="../_images/a89818ddd85f4460621d80ec6b0868bae685b88a28cd1fd9f05083dcb37c4b34.png" />
+<img alt="../_images/04-Interpolacion_52_0.png" src="../_images/04-Interpolacion_52_0.png" />
 </div>
 </div>
 </section>
@@ -874,7 +1091,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a90fcfcf3babb19df38000e748b00799ef1a1a6197074a36e83bd09420a73a5e.png" src="../_images/a90fcfcf3babb19df38000e748b00799ef1a1a6197074a36e83bd09420a73a5e.png" />
+<img alt="../_images/04-Interpolacion_60_0.png" src="../_images/04-Interpolacion_60_0.png" />
 </div>
 </div>
 <p>Alternativamente, podemos usar<code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> que entrega el <strong>valor interpolado <span class="math notranslate nohighlight">\(y(x_0) = y_0\)</span></strong>, a partir de los datos <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span>, y el valor a interpolar <span class="math notranslate nohighlight">\(x_0\)</span> (ver documentación <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.interp.html">acá</a>).</p>
@@ -932,7 +1149,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3cbea636e72fe042a9dff8a2a6fb84479cc83df9341fb556f958a26b59c9c005.png" src="../_images/3cbea636e72fe042a9dff8a2a6fb84479cc83df9341fb556f958a26b59c9c005.png" />
+<img alt="../_images/04-Interpolacion_65_0.png" src="../_images/04-Interpolacion_65_0.png" />
 </div>
 </div>
 <p>Notar que <code class="docutils literal notranslate"><span class="pre">interp1d</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code> requiere 2 argumentos, mientras que <code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> requiere 3:</p>
@@ -1063,7 +1280,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/313c145f68741412aea8be143d7fc1ac7caaa5261a39f0ca8681a9a2eca980c4.png" src="../_images/313c145f68741412aea8be143d7fc1ac7caaa5261a39f0ca8681a9a2eca980c4.png" />
+<img alt="../_images/04-Interpolacion_87_0.png" src="../_images/04-Interpolacion_87_0.png" />
 </div>
 </div>
 <p>Por defecto, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> extrapola los valores fuera de los valores extremos. Podemos suprimir la extrapolación mediante la instrucción <code class="docutils literal notranslate"><span class="pre">extrapolate=False</span></code>. En este caso, la función entregará <code class="docutils literal notranslate"><span class="pre">NaN</span></code> para los valores extrapolados.</p>
@@ -1104,7 +1321,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bab6a4e15e8bfb26884d0187c94f6f47e24af0ca1f09c0ac8675da06a3a9be6c.png" src="../_images/bab6a4e15e8bfb26884d0187c94f6f47e24af0ca1f09c0ac8675da06a3a9be6c.png" />
+<img alt="../_images/04-Interpolacion_90_0.png" src="../_images/04-Interpolacion_90_0.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> además nos permite determinar las derivadas de la función de interpolación. Para esto, debemos incluir un índice en el segundo argumento de la función generada:</p>
@@ -1159,7 +1376,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b55860ab66f553b84e3b1aac4648b299a4dc97ab86a917db0d0265c7a9bdd62.png" src="../_images/9b55860ab66f553b84e3b1aac4648b299a4dc97ab86a917db0d0265c7a9bdd62.png" />
+<img alt="../_images/04-Interpolacion_94_0.png" src="../_images/04-Interpolacion_94_0.png" />
 </div>
 </div>
 </section>
@@ -1205,7 +1422,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 z(x=0.15, y=2.45) =  [-0.25105047]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11741/1962226114.py:14: DeprecationWarning: `interp2d` is deprecated!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4062/1962226114.py:14: DeprecationWarning: `interp2d` is deprecated!
 `interp2d` is deprecated in SciPy 1.10 and will be removed in SciPy 1.12.0.
 
 For legacy code, nearly bug-for-bug compatible replacements are
@@ -1220,7 +1437,7 @@ For more details see
 `https://gist.github.com/ev-br/8544371b40f414b7eaf3fe6217209bff`
 
   f = interp2d(xi, yj, zij, kind=&#39;cubic&#39;)
-/tmp/ipykernel_11741/1962226114.py:17: DeprecationWarning:         `interp2d` is deprecated!
+/tmp/ipykernel_4062/1962226114.py:17: DeprecationWarning:         `interp2d` is deprecated!
         `interp2d` is deprecated in SciPy 1.10 and will be removed in SciPy 1.12.0.
 
         For legacy code, nearly bug-for-bug compatible replacements are
@@ -1267,7 +1484,7 @@ For more details see
             mode: "python"
         },
         kernelOptions: {
-            name: "python3",
+            kernelName: "python3",
             path: "./04-Interpolacion"
         },
         predefinedOutput: true
@@ -1275,123 +1492,50 @@ For more details see
     </script>
     <script>kernelName = 'python3'</script>
 
-                </article>
+              </div>
               
-
-              
-              
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
-      </div>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados</p>
+        </div>
     </a>
-    <a class="right-next"
-       href="../05-Taylor-series/05-Taylor-series.html"
-       title="next page">
-      <div class="prev-next-info">
+    <a class='right-next' id="next-link" href="../05-Taylor-series/05-Taylor-series.html" title="next page">
+    <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Series de Taylor</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div></div>
-  
-</div>
-
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">4.1. Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-polinomial">4.2. Interpolación Polinomial</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intepolacion-mediante-polyfit-ajuste-por-minimos-cuadrados">4.2.1. Intepolación mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> (ajuste por mínimos cuadrados)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-newton">4.2.2. Polinomios de interpolación de Newton</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polinomios-de-interpolacion-de-lagrange">4.2.3. Polinomios de interpolación de Lagrange</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-oscilacion">4.2.4. Problemas de oscilación</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-por-tramos">4.3. Interpolación por tramos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-lineal-spline-linear">4.3.1. Interpolación lineal (<em>spline</em> linear)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-spline-cubico">4.3.2. Interpolación <em>spline</em> cúbico</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-multidimensional">4.4. Interpolación multidimensional</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-2d">4.4.1. Interpolación 2D</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion-en-3-o-mas-dimensiones">4.4.2. Interpolación en 3 o más dimensiones</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">4.5. Referencias</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
-            
-          </div>
-          <footer class="bd-footer-content">
-            
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By Francisco V. Ramirez-Cuevas
-</p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
-
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div>
-          </footer>
-        
-
-      </main>
     </div>
-  </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Francisco V. Ramirez-Cuevas<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  <footer class="bd-footer">
-  </footer>
+
   </body>
 </html>
