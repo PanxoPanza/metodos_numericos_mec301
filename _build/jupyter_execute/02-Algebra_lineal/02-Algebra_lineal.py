@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Algebra lineal y sistemas de ecuaciones lineales
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 8 de Agosto 2022
 
 # ## Introducción a los sistemas de ecuaciones lineales
 
@@ -39,27 +35,25 @@
 
 # En el ejemplo anterior, derivamos un sistema de ecuaciones lineales con 3 incognitas el cual podemos resolver con técnicas analíticas.
 
-# Sin embargo, si el sistema es más grande, como por ejemplo un reticulado de vigas:
-# 
-# <img src="./images/beam_lattice.png" width="300" align= center>
+# Sin embargo, si el sistema es más grande tenemos un sistema de ecuaciones con un gran número de incognitas y debemos recurrir a métodos más eficientes para poder resolverlos. 
 
-# Tenemos un sistema de ecuaciones con un gran número de incognitas y debemos recurrir a métodos más eficientes para poder resolverlos.
+# Por ejemplo, un reticulado de barras, donde cada barra se puede modelar como un resorte.
+# 
+# <img src="./images/beam_lattice.png" width="800px" align= center>
 
 # Este es el enfoque que utilizan los software de modelación computacional, tales como: el método de elementos finitos (FEM), métodos de los momentos (MoM), o volúmenes finitos (VEM).
 # 
 # <img src="./images/fem_beam_lattice.png" width="600" align= center>
 
 # ### Definición general
-
 # Decimos que una ecuación es lineal cuando: 
 # 1. Todas sus incognitas están **únicamente** separadas por sumas o restas
 # 2. El exponente de cada incognita es $1$.
-# 
+
 # Por ejemplo,
 # - $3x_1 + 4x_2 - 3 = -5x_3$ (lineal)
 # 
-# - $\frac{-3x_1 + x_2}{x_3} = 2$ (no es lineal,  pero podemos la podemos transformar en una ecuación lineal: 
-# $$ -3x_1 + x_2 -2x_3 = 0 )$$
+# - $\frac{-3x_1 + x_2}{x_3} = 2$ (no es lineal, pero se puede linealizar como $ -3x_1 + x_2 -2x_3 = 0 )$
 # 
 # - $x_1 x_2 + x_3 = 5$ (no lineal)
 # 
@@ -134,24 +128,24 @@
 
 # ### Repaso de matrices
 
-# 1. **Norma matricial.** Existen distintos tipos. La más conocida es la *p-norma*:
+# **Norma matricial.** Existen distintos tipos. La más conocida es la *p-norma*:
 # 
-#    $$\Vert M \Vert_{p} = \sqrt[p]{(\sum_i^m \sum_j^n |a_{ij}|^p)}$$
+#    $$\Vert A \Vert_{p} = \sqrt[p]{(\sum_i^m \sum_j^n |a_{ij}|^p)}$$
 #    
 #    Para $p = 2$, se llama *norma de Frobenius*
 
-# 2. **Determinante.** Se denota como $det(M)$, o $|M|$. **Solo se aplica a matrices cuadradas**.
+# **Determinante.** Se denota como $det(A)$, o $|A|$. **Solo se aplica a matrices cuadradas**.
 # 
 #    Por ejemplo, para una matriz $2\times2$, el determinante es:
 #    
-#    $$ |M| = \begin{vmatrix} a & b \\ 
+#    $$ |A| = \begin{vmatrix} a & b \\ 
 #                              c & d\\ 
 #             \end{vmatrix} = ad - bc,$$
 # 
 #    para una matrix $3\times3$:
 #    
 # \begin{eqnarray*}
-# |M| = \begin{vmatrix}
+# |A| = \begin{vmatrix}
 # a & b & c \\
 # d & e & f \\
 # g & h & i \\
@@ -183,7 +177,7 @@
 # & = & aei - afh + bfg - bdi + cdh - ceg 
 # \end{eqnarray*}
 
-# 3. **Matriz identidad ($I$).** es una matriz cuadarada con $1$ en la diagonal, y $0$ en el resto de los elementos:
+# **Matriz identidad ($I$).** es una matriz cuadarada con $1$ en la diagonal, y $0$ en el resto de los elementos:
 # 
 # $$I = \begin{bmatrix}
 # 1 & 0 & 0 \\
@@ -191,19 +185,19 @@
 # 0 & 0 & 1 \\
 # \end{bmatrix}$$
 
-# 4. **Matriz inversa.** Definimos la matriz inversa de $M$ como: $M^{-1}$. 
+# **Matriz inversa.** Definimos la matriz inversa de $A$ como: $A^{-1}$. 
 # 
 #    - Solo existe para matrices cuadradas. 
 #    
-#    - El producto de la matriz inversa por su diagonal es igual a la matriz identidad $M\cdot M^{-1} = I$
+#    - El producto de la matriz inversa por su diagonal es igual a la matriz identidad $A\cdot A^{-1} = I$
 # 
 #    - Para una matriz $2\times2$, la matriz inversa está definida por:
 #    
 #    $$
-# M^{-1} = \begin{bmatrix}
+# A^{-1} = \begin{bmatrix}
 # a & b \\
 # c & d\\
-# \end{bmatrix}^{-1} = \frac{1}{|M|}\begin{bmatrix}
+# \end{bmatrix}^{-1} = \frac{1}{|A|}\begin{bmatrix}
 # d & -b \\
 # -c & a\\
 # \end{bmatrix}$$
@@ -211,7 +205,7 @@
 # >La solución analítica para determinar la matriz inversa se vuelve mas complicada a medida que aumentan las dimensiones de la matriz.
 
 # ### Representación en python
-# Para representar sistemas de ecuciones lineales en python utilizamos variables del tipo *numyp array* de la libreria `numpy`.
+# Para representar sistemas de ecuaciones lineales en python utilizamos variables del tipo *numyp array* de la libreria `numpy`.
 
 # Por ejemplo, para representar el sistema:
 # 
@@ -236,36 +230,36 @@ print('A:\n',A)
 print('\ny:\n',y)
 
 
-# La librería `linalg` de `numpy` tiene funciones predefinidas para calcular la norma, determinante y matriz inversa.
+# La librería `linalg` de `numpy` tiene funciones predefinidas para calcular la norma (`norm`), determinante (`det`), matriz inversa (`inv`), y matriz identidad (`eye`)
 
 # In[2]:
 
 
-from numpy.linalg import norm, det, inv
+from numpy.linalg import norm, det, inv # norm, det y inv son parte de numpy.linalg
 
 print('norm(A) = %.4f (Frobenius por defecto)'% norm(A))
 print('det(A) = %.4f' % det(A))
 print('inv(A):\n',inv(A))
+print()
+print('eye(3) = (Matriz identidad 3x3) \n', np.eye(3))  # eye es parte de numpy
 
+
+# > Notar que `norm`, `det` y `inv` son parte de la librería `numpy.linalg`, mientras que `eye` es parte de `numpy`.
+
+# Comprobamos la identidad $AA^{-1} = I$ usando `python`.
 
 # In[3]:
 
 
-# comprobamos la identidad A*A^-1 = I
-# usamos numpy.dot() para multiplicar matrices
-A.dot(inv(A))
+A.dot(inv(A)) # usamos numpy.dot() para multiplicar matrices
 
 
-# Para la matriz identidad utilizamos la función `eye` de la libreria `numpy`.
+# ## Caracterización de sistemas de ecuaciones lineales
+# 
 
-# In[4]:
-
-
-np.eye(3)
-
-
-# ### Caracterización de sistemas de ecuaciones lineales
-# *Un sistema de ecuaciones lineales tiene solución única, si y solo si el número de incognitas es igual al número de **ecuaciones linealmente independientes** en el sistema*
+# ### Anáisis mediante el rango
+# 
+# Un **sistema de ecuaciones** lineales tiene **solución única**, si y solo si el **número de incognitas es igual al número de ecuaciones linealmente independientes** en el sistema.
 
 # Por ejemplo, el siguiente sistema de ecuaciones lineales:
 # 
@@ -277,19 +271,7 @@ np.eye(3)
 # 
 # No tiene solución única, ya que: $(\mathrm{ec.~}3) = 2\times(\mathrm{ec.~}1) + (\mathrm{ec.~}2)$
 
-# Definimos el rango de la matriz $\mathrm{rank}(A)$, como el número de filas (o columnas) linealmente independenientes.
-# 
-# En python, $\mathrm{rank}(A)$ está dado por la función `matrix_rank` de la librería `numpy.linalg`
-
-# In[5]:
-
-
-from numpy.linalg import matrix_rank
-A = np.array([[ 3,  1, -5],
-              [-2, -2,  5],
-              [ 4,  0, -5]])
-matrix_rank(A)
-
+# Definimos el **rango de la matriz, $\mathrm{rank}(A)$**, como el número de filas (o columnas) linealmente independenientes.
 
 # Consideremos la matrix aumentada $[A|y]$  como:
 # 
@@ -310,33 +292,55 @@ matrix_rank(A)
 # 
 # - **El no tiene soluciones** si $\mathrm{rank}\left([A|y]\right) = \mathrm{rank}\left(A\right) + 1$
 
+# > En python, $\mathrm{rank}(A)$ está dado por la función `matrix_rank` de la librería `numpy.linalg`
+
+# In[4]:
+
+
+from numpy.linalg import matrix_rank
+M = np.array([[ 3,  1, -5],
+              [-2, -2,  5],
+              [ 4,  0, -5]])
+matrix_rank(M)
+
+
 # En el caso del ejemplo anterior:
 # 
 # \begin{eqnarray*}
 # 3x_1 + 1x_2 - 5x_3 &=& 2 \\
 # -2x_1 - 2x_2 + 5x_3 &=& 5 \\
-# 4x_1 -5x_3  &=& 4 \\
+# 4x_1 -5x_3  &=& 9 \\
 # \end{eqnarray*}
 
-# In[6]:
+# In[5]:
 
 
-y = np.array([[2], [5], [4]])
-Ay_aug = np.concatenate((A,y),axis = 1)
-print('[A|y] =\n', Ay_aug)
+y = np.array([[2], [5], [9]])
+My_aug = np.concatenate((M,y),axis = 1)
+print('[M|y] =\n', My_aug)
 print('\n')
-print('rank(A|b) =', matrix_rank(Ay_aug))
-print('rank(A) =', matrix_rank(A))
-print('Número de incognitas, n =', A.shape[1])
+print('rank(M|b) =', matrix_rank(My_aug))
+print('rank(M) =', matrix_rank(M))
+print('Número de incognitas, n =', M.shape[1])
 
 
 # \begin{align*}
-# \mathrm{rank}\left([A|y]\right) &= \mathrm{rank}\left(A\right) + 1 \\
-# \mathrm{rank}\left(A\right) &\lt n
+# \mathrm{rank}\left([M|y]\right) &= \mathrm{rank}\left(M\right) + 1 \\
+# \mathrm{rank}\left(M\right) &\lt n
 # \end{align*}
-# > **El sistema no tiene soluciones**
+# 
+#  **Por lo tanto, el sistema tiene infinitas soluciones**
 
-# *Si $\mathrm{det}(A) = 0$,  decimos que **la matriz es singular** y, por lo tanto, no es invertible.*
+# ### Matriz singular
+# La forma más directa de resolver un sistema es mediante la matriz inversa: $y = A^{-1}b$. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.
+
+# Recordamos de álgebra lineal, que la matriz inversa está dada por 
+# \begin{equation*}
+# A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
+# \end{equation*}
+# donde $\mathrm{adj}(A)$ es la matriz adjunta.
+
+# Si $\mathrm{det}(A) = 0$,  decimos que **la matriz es singular** y, por lo tanto, no es invertible.
 
 # Por ejemplo, la matriz:
 # 
@@ -348,7 +352,7 @@ print('Número de incognitas, n =', A.shape[1])
 # 
 # es singular.
 
-# In[7]:
+# In[6]:
 
 
 P = np.array([[ 1, 2,-1],
@@ -357,17 +361,19 @@ P = np.array([[ 1, 2,-1],
 print('det(P) = ', det(P))
 
 
-# y, por lo tanto, no es invertible:
+# Como resultado, al intentar calcular la matriz inversa, `python` nos arrojará un error.
 
-# In[8]:
+# In[7]:
 
 
 print('inv(P) = ', inv(P))
 
 
+# ### Condición de una matriz
+# 
 # *Decimos que una matriz $A$ está **mal condicionada**, si $\mathrm{det}(A) \approx 0$.* 
 
-# Si bien las matrices mal condicionadas tienen inversa, son numericamente problemáticas, ya que pueden inducir errores de redondeo, *overflow* o *underflow* como resultado de la división por un número muy pequeño
+# Si bien, las **matrices mal condicionadas** tienen inversa, son **numericamente problemáticas**, ya que pueden inducir errores de redondeo, *overflow* o *underflow* como resultado de la división por un número muy pequeño
 
 # Para determinar si una matriz está mal condicionada utilizamos el **número de condición**, definido como:
 # 
@@ -377,14 +383,14 @@ print('inv(P) = ', inv(P))
 
 # En python, $\mathrm{Cond}(A)$ está dado por la función `cond` de la librería `numpy.linalg`
 
-# In[9]:
+# In[26]:
 
 
 from numpy.linalg import cond
 print('Cond(P) = ',cond(P))
 
 
-# > $\mathrm{det}(A)= 0$, no necesariamente significa que el sistema no tiene solución
+# Notar que $\mathrm{det}(A)= 0$, no necesariamente significa que el sistema no tiene solución
 
 # Por ejemplo, en el ejemplo anterior
 # \begin{eqnarray*}
@@ -394,15 +400,15 @@ print('Cond(P) = ',cond(P))
 # \end{eqnarray*}
 # 
 
-# In[10]:
+# In[27]:
 
 
-print('A\n', A)
+print('M\n', M)
 print('\n')
-print('det(A) = ', det(A))
+print('det(M) = ', det(M))
 
 
-# Sin embargo, como habíamos determinado, el sistema tiene múltiples soluciones.
+# Sin embargo, como habíamos determinado anteriormente, el sistema tiene múltiples soluciones.
 
 # ## Métodos de solución directos
 
@@ -416,9 +422,9 @@ print('det(A) = ', det(A))
 # 0 & 0 & 0 & a_{4,4}'
 # \end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\ x_3 \\x_4 \end{array}\right] =
 # \left[\begin{array}{c} y_1 \\y_2' \\ y_3' \\y_4' \end{array}\right]$$
-# 
+
 # Esta ecuación puede resolverse fácilmente, comenzando por $x_4 = y_4'/a_{4,4}'$, luego continuamos con $x_3 = \frac{y_3' - a_{3,4}x_4}{ a_{3,4}}$, y así sucesivamente hasta llegar a $x_1$. En otras palabras, utilizamos **sustitución hacia atrás**, resolviendo el sistema desde abajo hacia arriba. 
-# 
+
 # Si $A$ es una matriz **triangular inferior**, resolveríamos el problema de arriba hacia abajo utilizando **sustitución hacia adelante.**
 
 # La mejor forma de entender el método de eliminación Gauseana es con un ejemplo:
@@ -449,7 +455,7 @@ print('det(A) = ', det(A))
 # \end{bmatrix}$$
 # <br>
 
-# Paso 3: Deteriminamos la matriz triangular superior utilizando pivoteo parcial y eliminación.
+# Paso 3: Determinamos la matriz triangular superior utilizando pivoteo parcial y eliminación.
 # 
 # - Comenzando por la primera columna. Primero, permutamos las filas de manera que el coeficiente con mayor valor absoluto quede en la primera fila:
 # 
@@ -511,9 +517,9 @@ print('det(A) = ', det(A))
 # Es posible demostrar que cualquier matriz cuadrada $A$ puede ser expresada como el producto de una matriz triangular inferor $L$, y una matriz triangular superior $U$.
 # 
 # $$A = LU$$
-# 
+
 # El proceso para obtener $L$ y $U$ es conocido como *descomposición* o *factorización* LU. **Es el método de solución de ecuaciones lineales más confiable y utilizado.**
-# 
+
 # El tipo de factorización LU no es única, ya que existen múltiples formas de representar $L$ y $U$ para un $A$ dado. Así, definimos tres tipos de factorizaciones comúnmente utilizadas:
 # 
 # |  Nombre   |        Condiciones        |
@@ -571,7 +577,7 @@ print('det(A) = ', det(A))
 # 1 & 0 & 0 \\
 # \end{bmatrix}$$
 
-# In[11]:
+# In[29]:
 
 
 A = np.array([[ 4,  3, -5],
@@ -591,7 +597,7 @@ P = np.array([[0, 0, 1],
               [1, 0, 0]])
 
 
-# In[12]:
+# In[30]:
 
 
 print('P*A =\n',np.dot(P,A))
@@ -601,34 +607,35 @@ print('L*U =\n',np.dot(L,U))
 
 # ## Métodos iterativos
 # Los métodos iterativos están basados en una serie repetitiva de operaciones, comenzando por un valor inicial. A diferencia de los métodos directos, el número de operaciones está condicionado por la convergencia y el valor inicial escogido.
-# 
+
 # Las ventajas de los métodos iterativos es que tienen un orden de complejidad menor que los métodos directos, y no requieren gran capacidad de memoria (recordemos que factorización LU requiere almacenar las matrices L, U y P)
-# 
+
 # La gran desventaja radica en la convergencia de los algoritmos. Una condición suficiente, pero no necesaria es que la matriz $A$ debe ser **diagonal dominante**, es decir, los elementos de la diagonal, $a_{i,i}$, deben satisfacer:
 # 
 # $$|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|$$
-# 
+
 # Estos métodos se utilizan, generalmente, en simulaciones con elementos finitos (FEM), o volúmenes finitos (VEM).
 
 # ### Gauss-Seidel
 # El algoritmo se puede resumir en los siguientes pasos:
 # 
-# 1. Asumimos un valor inicial para $x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}$ (con excepción de $x_1^{(0)}$).
+# Paso 1. Asumimos un valor inicial para $x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}$ (con excepción de $x_1^{(0)}$).
 # 
-# 2. Calculamos un nuevo valor para $x_1^{(1)}$ mediante:
+# Paso 2. Calculamos un nuevo valor para $x_1^{(1)}$ mediante:
 # 
 # $$
 # x_1^{(1)} = \frac{1}{a_{1,1}}\Big[y_1 - \sum_{j \ne 1}^{n}{a_{1,j}x_j^{(0)}} \Big]
 # $$
 # 
-# 3. Utilizando el nuevo valor $x_1^{(1)}$ y el resto de $x^{(0)}$ (con excepción de $x_2^{(0)}$), determinamos $x_2^{(1)}$.
+# Paso 3. Utilizando el nuevo valor $x_1^{(1)}$ y el resto de $x^{(0)}$ (con excepción de $x_2^{(0)}$), determinamos $x_2^{(1)}$.
 # 
 # $$
 # x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  - {a_{2,1}x_1^{(1)}}\Big]
 # $$
 
-# 4. Repetimos el paso 3 hasta completar todos los elementos del vector $x$.
-# 5. Continuamos con la iteración hasta que el valor de $x$ converge dentro de una tolerancia $\varepsilon$, definida por:
+# Paso 4. Repetimos el paso 3 hasta completar todos los elementos del vector $x$.
+# 
+# Paso 5. Continuamos con la iteración hasta que el valor de $x$ converge dentro de una tolerancia $\varepsilon$, definida por:
 # 
 #  $$\| x^{(i)} - x^{(i-1)}\| \lt \varepsilon$$
 
@@ -642,7 +649,7 @@ print('L*U =\n',np.dot(L,U))
 # 
 # Primero, verificamos que la matriz es diagonal dominante:
 
-# In[13]:
+# In[31]:
 
 
 A = [[ 8.,  3., -3.], 
@@ -658,7 +665,7 @@ off_diagA = np.sum(np.abs(A), axis=1) - diagA
 print('off_diag(A) =',off_diagA)
 
 
-# In[14]:
+# In[32]:
 
 
 if np.all(diagA >= off_diagA):
@@ -667,7 +674,7 @@ else:
     print('la matriz no es diagonal dominante')
 
 
-# In[15]:
+# In[ ]:
 
 
 def gauss_seidel(A,y,x):
@@ -706,7 +713,7 @@ def gauss_seidel(A,y,x):
     return x
 
 
-# In[16]:
+# In[ ]:
 
 
 import numpy as np
@@ -741,7 +748,7 @@ gauss_seidel(A,y,x)
 # \end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\x_3 \end{array}\right] =
 # \left[\begin{array}{c} 588.6 \\686.7 \\784.8\end{array}\right]$$ 
 
-# In[17]:
+# In[33]:
 
 
 import numpy as np
@@ -758,7 +765,7 @@ print(x)
 
 # Notar que en este problema $x_1$, $x_2$ y $x_3$ representan las posiciones relativas de las personas. Así la posición final está dada por:
 
-# In[18]:
+# In[34]:
 
 
 print('Posición final de las personas: ', x + [20, 40, 60])
@@ -766,7 +773,7 @@ print('Posición final de las personas: ', x + [20, 40, 60])
 
 # Mediante la librería `scipy` podemos hacer factorización LU.
 
-# In[19]:
+# In[35]:
 
 
 from scipy.linalg import lu
