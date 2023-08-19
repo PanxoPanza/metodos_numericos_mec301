@@ -746,7 +746,7 @@ d &amp; -b \\
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">],</span>
               <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
-              <span class="p">[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">3</span><span class="p">]])</span>
+              <span class="p">[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]])</span>
 
@@ -759,7 +759,7 @@ d &amp; -b \\
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
  [[ 3  1 -5]
  [-2 -2  5]
- [ 8  3  3]]
+ [ 8  3  0]]
 
 y:
  [[ 2]
@@ -769,7 +769,7 @@ y:
 </div>
 </div>
 </div>
-<p>La librería <code class="docutils literal notranslate"><span class="pre">linalg</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> tiene funciones predefinidas para calcular la norma (<code class="docutils literal notranslate"><span class="pre">norm</span></code>), determinante (<code class="docutils literal notranslate"><span class="pre">det</span></code>), matriz inversa (<code class="docutils literal notranslate"><span class="pre">inv</span></code>), y matriz identidad (<code class="docutils literal notranslate"><span class="pre">eye</span></code>)</p>
+<p>La librería <code class="docutils literal notranslate"><span class="pre">linalg</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> tiene funciones predefinidas para calcular la norma (<code class="docutils literal notranslate"><span class="pre">norm</span></code>), determinante (<code class="docutils literal notranslate"><span class="pre">det</span></code>), matriz inversa (<code class="docutils literal notranslate"><span class="pre">inv</span></code>). La matriz identidad (<code class="docutils literal notranslate"><span class="pre">eye</span></code>) viene desde <code class="docutils literal notranslate"><span class="pre">numpy</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">det</span><span class="p">,</span> <span class="n">inv</span> <span class="c1"># norm, det y inv son parte de numpy.linalg</span>
@@ -783,12 +783,12 @@ y:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(A) = 12.2474 (Frobenius por defecto)
-det(A) = -67.0000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>norm(A) = 11.8743 (Frobenius por defecto)
+det(A) = -55.0000
 inv(A):
- [[ 0.31343284  0.26865672  0.07462687]
- [-0.68656716 -0.73134328  0.07462687]
- [-0.14925373  0.01492537  0.05970149]]
+ [[ 0.27272727  0.27272727  0.09090909]
+ [-0.72727273 -0.72727273  0.09090909]
+ [-0.18181818  0.01818182  0.07272727]]
 
 eye(3) = (Matriz identidad 3x3) 
  [[1. 0. 0.]
@@ -809,9 +809,9 @@ eye(3) = (Matriz identidad 3x3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -5.20417043e-18,  3.46944695e-17],
-       [ 0.00000000e+00,  1.00000000e+00,  2.08166817e-17],
-       [ 0.00000000e+00,  9.19403442e-17,  1.00000000e+00]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -9.36750677e-17, -4.16333634e-17],
+       [ 5.55111512e-17,  1.00000000e+00, -1.38777878e-17],
+       [ 0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
 </pre></div>
 </div>
 </div>
@@ -874,7 +874,7 @@ a_{m,1} &amp; a_{m,2} &amp; ... &amp; a_{m,n} &amp; y_n
 \end{eqnarray*}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># y = np.array([[2], [5], [9]])</span>
 <span class="n">My_aug</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">M</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;[M|y] =</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">My_aug</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -888,10 +888,10 @@ a_{m,1} &amp; a_{m,2} &amp; ... &amp; a_{m,n} &amp; y_n
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[M|y] =
  [[ 3  1 -5  2]
  [-2 -2  5  5]
- [ 4  0 -5  9]]
+ [ 4  0 -5 -3]]
 
 
-rank(M|b) = 2
+rank(M|b) = 3
 rank(M) = 2
 Número de incognitas, n = 3
 </pre></div>
@@ -907,7 +907,7 @@ Número de incognitas, n = 3
 </section>
 <section id="matriz-singular">
 <h3><span class="section-number">2.2.2. </span>Matriz singular<a class="headerlink" href="#matriz-singular" title="Permalink to this headline">#</a></h3>
-<p>La forma más directa de resolver un sistema es mediante la matriz inversa: <span class="math notranslate nohighlight">\(y = A^{-1}b\)</span>. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.</p>
+<p>La forma más directa de resolver un sistema es mediante la matriz inversa: <span class="math notranslate nohighlight">\(x = A^{-1}y\)</span>. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.</p>
 <p>Recordamos de álgebra lineal, que la matriz inversa está dada por</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1360,6 +1360,21 @@ off_diag(A) = [6. 7. 8.]
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">14.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.</span><span class="p">])</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span> <span class="c1"># valores iniciales</span>
 <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iter = 1 ; x = [ 1.75    -1.0625  -0.79375]
+iter = 2 ; x = [ 1.85078125 -1.58378906 -0.56333984]
+iter = 3 ; x = [ 2.13266846 -1.51025452 -0.68467328]
+iter = 4 ; x = [ 2.05959296 -1.56781904 -0.63396837]
+iter = 5 ; x = [ 2.100194   -1.54627873 -0.65691883]
+iter = 6 ; x = [ 2.08350996 -1.55645176 -0.64682711]
+iter = 7 ; x = [ 2.09110925 -1.55204425 -0.65131065]
+Converged!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.09110925, -1.55204425, -0.65131065])
 </pre></div>
 </div>
 </div>
