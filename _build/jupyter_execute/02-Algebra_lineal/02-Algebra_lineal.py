@@ -222,7 +222,7 @@ import numpy as np
 
 A = np.array([[ 3,  1, -5],
               [-2, -2,  5],
-              [ 8,  3,  3]])
+              [ 8,  3,  0]])
 
 y = np.array([[2], [5], [-3]])
 
@@ -230,7 +230,7 @@ print('A:\n',A)
 print('\ny:\n',y)
 
 
-# La librería `linalg` de `numpy` tiene funciones predefinidas para calcular la norma (`norm`), determinante (`det`), matriz inversa (`inv`), y matriz identidad (`eye`)
+# La librería `linalg` de `numpy` tiene funciones predefinidas para calcular la norma (`norm`), determinante (`det`), matriz inversa (`inv`). La matriz identidad (`eye`) viene desde `numpy`
 
 # In[2]:
 
@@ -315,7 +315,7 @@ matrix_rank(M)
 # In[5]:
 
 
-y = np.array([[2], [5], [9]])
+# y = np.array([[2], [5], [9]])
 My_aug = np.concatenate((M,y),axis = 1)
 print('[M|y] =\n', My_aug)
 print('\n')
@@ -332,7 +332,7 @@ print('Número de incognitas, n =', M.shape[1])
 #  **Por lo tanto, el sistema tiene infinitas soluciones**
 
 # ### Matriz singular
-# La forma más directa de resolver un sistema es mediante la matriz inversa: $y = A^{-1}b$. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.
+# La forma más directa de resolver un sistema es mediante la matriz inversa: $x = A^{-1}y$. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.
 
 # Recordamos de álgebra lineal, que la matriz inversa está dada por 
 # \begin{equation*}
@@ -383,7 +383,7 @@ print('inv(P) = ', inv(P))
 
 # En python, $\mathrm{Cond}(A)$ está dado por la función `cond` de la librería `numpy.linalg`
 
-# In[26]:
+# In[40]:
 
 
 from numpy.linalg import cond
@@ -400,7 +400,7 @@ print('Cond(P) = ',cond(P))
 # \end{eqnarray*}
 # 
 
-# In[27]:
+# In[9]:
 
 
 print('M\n', M)
@@ -577,7 +577,7 @@ print('det(M) = ', det(M))
 # 1 & 0 & 0 \\
 # \end{bmatrix}$$
 
-# In[29]:
+# In[10]:
 
 
 A = np.array([[ 4,  3, -5],
@@ -597,7 +597,7 @@ P = np.array([[0, 0, 1],
               [1, 0, 0]])
 
 
-# In[30]:
+# In[11]:
 
 
 print('P*A =\n',np.dot(P,A))
@@ -649,7 +649,7 @@ print('L*U =\n',np.dot(L,U))
 # 
 # Primero, verificamos que la matriz es diagonal dominante:
 
-# In[31]:
+# In[12]:
 
 
 A = [[ 8.,  3., -3.], 
@@ -665,7 +665,7 @@ off_diagA = np.sum(np.abs(A), axis=1) - diagA
 print('off_diag(A) =',off_diagA)
 
 
-# In[32]:
+# In[13]:
 
 
 if np.all(diagA >= off_diagA):
@@ -674,7 +674,7 @@ else:
     print('la matriz no es diagonal dominante')
 
 
-# In[ ]:
+# In[14]:
 
 
 def gauss_seidel(A,y,x):
@@ -713,7 +713,7 @@ def gauss_seidel(A,y,x):
     return x
 
 
-# In[ ]:
+# In[15]:
 
 
 import numpy as np
@@ -748,7 +748,7 @@ gauss_seidel(A,y,x)
 # \end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\x_3 \end{array}\right] =
 # \left[\begin{array}{c} 588.6 \\686.7 \\784.8\end{array}\right]$$ 
 
-# In[33]:
+# In[16]:
 
 
 import numpy as np
@@ -765,7 +765,7 @@ print(x)
 
 # Notar que en este problema $x_1$, $x_2$ y $x_3$ representan las posiciones relativas de las personas. Así la posición final está dada por:
 
-# In[34]:
+# In[17]:
 
 
 print('Posición final de las personas: ', x + [20, 40, 60])
@@ -773,7 +773,7 @@ print('Posición final de las personas: ', x + [20, 40, 60])
 
 # Mediante la librería `scipy` podemos hacer factorización LU.
 
-# In[35]:
+# In[18]:
 
 
 from scipy.linalg import lu

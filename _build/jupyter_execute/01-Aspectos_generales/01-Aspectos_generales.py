@@ -371,8 +371,8 @@ print('versión de scipy: ' + sp.__version__)
 # In[28]:
 
 
-# generar un arreglo de 10 números entre 0 y 1
-np.linspace(0,1,5)
+# generar un arreglo de 5 números entre 0 y 1
+np.linspace(0,1,11)
 
 
 # Acá podemos ver un extracto de la documentación en línea (para la información completa ver [acá](https://numpy.org/doc/stable/reference/generated/numpy.linspace.html))
