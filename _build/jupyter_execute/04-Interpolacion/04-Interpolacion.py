@@ -7,7 +7,7 @@
 
 # La siguiente tabla muestra las propiedades del agua en función de la temperatura.
 # 
-# <img src="./images/thermodynamic_properties.png" width="600" align= center>
+# <img src="./images/thermodynamic_properties.png" width="800" align= center>
 
 # En ingeniería generalmente debemos utilizar estas tablas. Si quisieramos determinar, por ejemplo, el valor de la densidad a $10\mathrm{^oC}$ necesitaríamos conocer la función $\rho(T)$, ya que el valor no está en la tabla.
 
@@ -304,7 +304,7 @@ y_3 = CubicSpline(xi,yi,bc_type='natural')
 # In[16]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot4', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (9, 7))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ko')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot4', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ko')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
 
 
 # In[17]:
@@ -343,7 +343,7 @@ showplot5()
 # In[20]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot6', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.array([  3,   5,   7,   9])\nyi = np.array([2.5, 1.5, 2.0, 1.8])\n\n# spline "not a knot" sin extrapolación\ny_1 = CubicSpline(xi,yi,extrapolate=False)\n\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 18}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # arreglo para graficar\n\nplt.plot(xi, yi, \'ok\')     # graficamos los xi, yi\nplt.plot(x, y_1(x), \'-b\')  # graficamos la función\n\nplt.title(\'Interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot6', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.array([  3,   5,   7,   9])\nyi = np.array([2.5, 1.5, 2.0, 1.8])\n\n# spline "not a knot" sin extrapolación\ny_1 = CubicSpline(xi,yi,extrapolate=False)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # arreglo para graficar\n\nplt.plot(xi, yi, \'ok\')     # graficamos los xi, yi\nplt.plot(x, y_1(x), \'-b\')  # graficamos la función\n\nplt.title(\'Interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.show()')
 
 
 # In[21]:
