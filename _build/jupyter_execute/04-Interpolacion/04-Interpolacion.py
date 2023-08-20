@@ -33,7 +33,7 @@
 
 # Por esta razón, se han desarrollado múltiples métodos para encontrar el polinomio de forma eficiente (polinomios de [Newton](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.05-Newtons-Polynomial-Interpolation.html), [Lagrange](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.04-Lagrange-Polynomial-Interpolation.html), etc).
 
-# ### Polinomio de nterpolación mediante `numpy.polyfit`
+# ### Polinomio de Interpolación mediante `numpy.polyfit`
 
 # En python, la forma más simple de generar un polinomio de interpolación es mediante `polyfit`.
 
@@ -129,7 +129,7 @@ showplot1()
 # 
 # En este caso, para un set de $n+1$ datos $\{x_i, y_i\}$, con $i = 0,1,...,n$, el método de interpolación por tramos consiste en contruir $n$ polinomios de interpolación para los $n$ intervalos interiores.
 # 
-# <img src="./images/piecewise_interpolation.png" width="800" align= center>
+# <img src="./images/piecewise_interpolation.png" width="800px" align= center>
 
 # ### Interpolación lineal (`numpy.interp`)
 # El **método de interpolación lineal consiste en construir $n$ rectas $\hat{y}_i(x)$,** cada una definida entre dos puntos $\{x_i, y_i\}$ y $\{x_{i+1}, y_{i+1}\}$ de la forma:
