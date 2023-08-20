@@ -131,7 +131,7 @@ showplot1()
 # 
 # <img src="./images/piecewise_interpolation.png" width="800" align= center>
 
-# ### Interpolación o *spline* lineal (`numpy.interp`)
+# ### Interpolación lineal (`numpy.interp`)
 # El **método de interpolación lineal consiste en construir $n$ rectas $\hat{y}_i(x)$,** cada una definida entre dos puntos $\{x_i, y_i\}$ y $\{x_{i+1}, y_{i+1}\}$ de la forma:
 # 
 # \begin{equation*}
@@ -213,7 +213,7 @@ get_ipython().run_cell_magic('capture', 'showplot3', "import matplotlib.pyplot a
 showplot3()
 
 
-# ### Interpolación *spline* cúbico
+# ### *Spline* cúbico (`scipy.interpolate.CubicSpline`)
 # El *spline* cúbico consiste en generar una función de interpolación basado en una serie de polinomios cúbicos $S_i(x) = a_i x^3 + b_i x^2 + c_i x + d_i$, cada uno definido en el tramo $x\in\left[x_i, x_{i+1}\right]$
 
 # Para encontrar la función de interpolación debemos determinar los coecientes $a_i, b_i, c_i, d_i$ de cada $S_i(x)$.
@@ -248,7 +248,7 @@ showplot3()
 
 # - ***Periodic***. Se usume una función periódica, de manera que $S_1'(x_0) = S_n'(x_n)$, y $S_1''(x_0) = S_n''(x_n)$. **Solo válida para funciones periodicas**, es decir cuando $y(x_0) = y(x_n)$.
 
-# En python, interpolación cúbica está implementada a través de la función ```CubicSpline``` del módulo `interpolate` de la librería ```scipy``` (para documentación ver [acá](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html)).
+# En python, interpolación cúbica está implementada a través de la función ```CubicSpline``` del módulo `interpolate` de la librería ```scipy``` ([ver documentación](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html)).
 
 # `CubicSpline`, por defecto,  genera una **función de interpolación** a partir de la muestra $x_i, y_i$
 # ```python 

@@ -384,12 +384,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#interpolacion-o-spline-lineal-numpy-interp">
-     4.3.1. Interpolación o
-     <em>
-      spline
-     </em>
-     lineal (
+    <a class="reference internal nav-link" href="#interpolacion-lineal-numpy-interp">
+     4.3.1. Interpolación lineal (
      <code class="docutils literal notranslate">
       <span class="pre">
        numpy.interp
@@ -399,12 +395,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
-     4.3.2. Interpolación
+    <a class="reference internal nav-link" href="#spline-cubico-scipy-interpolate-cubicspline">
+     4.3.2.
      <em>
-      spline
+      Spline
      </em>
-     cúbico
+     cúbico (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.interpolate.CubicSpline
+      </span>
+     </code>
+     )
     </a>
    </li>
   </ul>
@@ -470,12 +472,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#interpolacion-o-spline-lineal-numpy-interp">
-     4.3.1. Interpolación o
-     <em>
-      spline
-     </em>
-     lineal (
+    <a class="reference internal nav-link" href="#interpolacion-lineal-numpy-interp">
+     4.3.1. Interpolación lineal (
      <code class="docutils literal notranslate">
       <span class="pre">
        numpy.interp
@@ -485,12 +483,18 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#interpolacion-spline-cubico">
-     4.3.2. Interpolación
+    <a class="reference internal nav-link" href="#spline-cubico-scipy-interpolate-cubicspline">
+     4.3.2.
      <em>
-      spline
+      Spline
      </em>
-     cúbico
+     cúbico (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       scipy.interpolate.CubicSpline
+      </span>
+     </code>
+     )
     </a>
    </li>
   </ul>
@@ -688,8 +692,8 @@ f(x)=\frac{1}{1 + 25x^2}
 <p>Este es el método más confiable para evitar los problemas de oscilación, y el más utilizado en la actualidad</p>
 <p>En este caso, para un set de <span class="math notranslate nohighlight">\(n+1\)</span> datos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, el método de interpolación por tramos consiste en contruir <span class="math notranslate nohighlight">\(n\)</span> polinomios de interpolación para los <span class="math notranslate nohighlight">\(n\)</span> intervalos interiores.</p>
 <a class="reference internal image-reference" href="../_images/piecewise_interpolation.png"><img alt="../_images/piecewise_interpolation.png" class="align-center" src="../_images/piecewise_interpolation.png" style="width: 800px;" /></a>
-<section id="interpolacion-o-spline-lineal-numpy-interp">
-<h3><span class="section-number">4.3.1. </span>Interpolación o <em>spline</em> lineal (<code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code>)<a class="headerlink" href="#interpolacion-o-spline-lineal-numpy-interp" title="Permalink to this headline">#</a></h3>
+<section id="interpolacion-lineal-numpy-interp">
+<h3><span class="section-number">4.3.1. </span>Interpolación lineal (<code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code>)<a class="headerlink" href="#interpolacion-lineal-numpy-interp" title="Permalink to this headline">#</a></h3>
 <p>El <strong>método de interpolación lineal consiste en construir <span class="math notranslate nohighlight">\(n\)</span> rectas <span class="math notranslate nohighlight">\(\hat{y}_i(x)\)</span>,</strong> cada una definida entre dos puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span> y <span class="math notranslate nohighlight">\(\{x_{i+1}, y_{i+1}\}\)</span> de la forma:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -838,8 +842,8 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 </section>
-<section id="interpolacion-spline-cubico">
-<h3><span class="section-number">4.3.2. </span>Interpolación <em>spline</em> cúbico<a class="headerlink" href="#interpolacion-spline-cubico" title="Permalink to this headline">#</a></h3>
+<section id="spline-cubico-scipy-interpolate-cubicspline">
+<h3><span class="section-number">4.3.2. </span><em>Spline</em> cúbico (<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code>)<a class="headerlink" href="#spline-cubico-scipy-interpolate-cubicspline" title="Permalink to this headline">#</a></h3>
 <p>El <em>spline</em> cúbico consiste en generar una función de interpolación basado en una serie de polinomios cúbicos <span class="math notranslate nohighlight">\(S_i(x) = a_i x^3 + b_i x^2 + c_i x + d_i\)</span>, cada uno definido en el tramo <span class="math notranslate nohighlight">\(x\in\left[x_i, x_{i+1}\right]\)</span></p>
 <p>Para encontrar la función de interpolación debemos determinar los coecientes <span class="math notranslate nohighlight">\(a_i, b_i, c_i, d_i\)</span> de cada <span class="math notranslate nohighlight">\(S_i(x)\)</span>.</p>
 <p>Para una serie de <span class="math notranslate nohighlight">\(n+1\)</span> datos tabulados <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, se necesitan <span class="math notranslate nohighlight">\(n\)</span> polinomios <span class="math notranslate nohighlight">\(S_i(x)\)</span>. Esto nos da un <strong>total de <span class="math notranslate nohighlight">\(4n\)</span> incognitas y, por lo tanto, necesitamos de <span class="math notranslate nohighlight">\(4n\)</span> ecuaciones linealmente independientes.</strong></p>
@@ -870,7 +874,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 <ul class="simple">
 <li><p><em><strong>Periodic</strong></em>. Se usume una función periódica, de manera que <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n)\)</span>, y <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n)\)</span>. <strong>Solo válida para funciones periodicas</strong>, es decir cuando <span class="math notranslate nohighlight">\(y(x_0) = y(x_n)\)</span>.</p></li>
 </ul>
-<p>En python, interpolación cúbica está implementada a través de la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code> (para documentación ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html">acá</a>).</p>
+<p>En python, interpolación cúbica está implementada a través de la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code> (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html">ver documentación</a>).</p>
 <p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code>, por defecto,  genera una <strong>función de interpolación</strong> a partir de la muestra <span class="math notranslate nohighlight">\(x_i, y_i\)</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera una función y(x)</span>
