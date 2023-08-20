@@ -358,8 +358,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polinomio-de-nterpolacion-mediante-numpy-polyfit">
-     4.2.1. Polinomio de nterpolación mediante
+    <a class="reference internal nav-link" href="#polinomio-de-interpolacion-mediante-numpy-polyfit">
+     4.2.1. Polinomio de Interpolación mediante
      <code class="docutils literal notranslate">
       <span class="pre">
        numpy.polyfit
@@ -446,8 +446,8 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polinomio-de-nterpolacion-mediante-numpy-polyfit">
-     4.2.1. Polinomio de nterpolación mediante
+    <a class="reference internal nav-link" href="#polinomio-de-interpolacion-mediante-numpy-polyfit">
+     4.2.1. Polinomio de Interpolación mediante
      <code class="docutils literal notranslate">
       <span class="pre">
        numpy.polyfit
@@ -536,8 +536,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <p><strong>que pasa por todos los <span class="math notranslate nohighlight">\(x_i, y_i\)</span>.</strong></p>
 <p>La forma más intuitiva para encontrar los coeficientes es formar “<span class="math notranslate nohighlight">\(n+1\)</span>” ecuaciones considerando la intersección con los <span class="math notranslate nohighlight">\(n+1\)</span> datos. Sin embargo, este método no es eficiente.</p>
 <p>Por esta razón, se han desarrollado múltiples métodos para encontrar el polinomio de forma eficiente (polinomios de <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.05-Newtons-Polynomial-Interpolation.html">Newton</a>, <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.04-Lagrange-Polynomial-Interpolation.html">Lagrange</a>, etc).</p>
-<section id="polinomio-de-nterpolacion-mediante-numpy-polyfit">
-<h3><span class="section-number">4.2.1. </span>Polinomio de nterpolación mediante <code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code><a class="headerlink" href="#polinomio-de-nterpolacion-mediante-numpy-polyfit" title="Permalink to this headline">#</a></h3>
+<section id="polinomio-de-interpolacion-mediante-numpy-polyfit">
+<h3><span class="section-number">4.2.1. </span>Polinomio de Interpolación mediante <code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code><a class="headerlink" href="#polinomio-de-interpolacion-mediante-numpy-polyfit" title="Permalink to this headline">#</a></h3>
 <p>En python, la forma más simple de generar un polinomio de interpolación es mediante <code class="docutils literal notranslate"><span class="pre">polyfit</span></code>.</p>
 <p>Estrictamente hablando, <code class="docutils literal notranslate"><span class="pre">polyfit</span></code> es un método de regresión lineal y, por lo tanto, no está clasificado como método de interpolación. Sin embargo, es importante entender que:</p>
 <center><b>Ajustar un polinomio de grado $n$ con un set de $n+1$ datos tabulados, es equivalente a resolver un sistema de $n$ ecuaciones lineales con $n$ incognitas (solución exacta).</b></center><p>Por ejemplo, consideremos el polinomio de ajuste para la muestra:</p>
