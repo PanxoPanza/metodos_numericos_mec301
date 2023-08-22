@@ -810,8 +810,8 @@ eye(3) = (Matriz identidad 3x3)
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -9.36750677e-17, -4.16333634e-17],
-       [ 5.55111512e-17,  1.00000000e+00, -1.38777878e-17],
-       [ 0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+       [ 1.66533454e-16,  1.00000000e+00, -1.38777878e-17],
+       [-1.11022302e-16, -2.22044605e-16,  1.00000000e+00]])
 </pre></div>
 </div>
 </div>
@@ -951,15 +951,15 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:200,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.10/site-packages/numpy/linalg/linalg.py:538,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">538</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:552,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">552</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.10/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
+<span class="nn">File ~/s/miniconda3/lib/python3.9/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
 <span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
 
@@ -985,11 +985,6 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cond(P) =  1.7784106389713206e+16
-</pre></div>
-</div>
-</div>
 </div>
 <p>Notar que <span class="math notranslate nohighlight">\(\mathrm{det}(A)= 0\)</span>, no necesariamente significa que el sistema no tiene solución</p>
 <p>Por ejemplo, en el ejemplo anterior</p>
@@ -1004,17 +999,6 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det(M) = &#39;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M
- [[ 3  1 -5]
- [-2 -2  5]
- [ 4  0 -5]]
-
-
-det(M) =  0.0
 </pre></div>
 </div>
 </div>
@@ -1125,7 +1109,7 @@ x_1 &amp;= \frac{-3 - 8x_2 + 0x_3}{8} = 2.208
 </section>
 <section id="factorizacion-lu">
 <h3><span class="section-number">2.3.2. </span>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Permalink to this headline">#</a></h3>
-<p>Es posible demostrar que cualquier matriz cuadrada <span class="math notranslate nohighlight">\(A\)</span> puede ser expresada como el producto de una matriz triangular inferor <span class="math notranslate nohighlight">\(L\)</span>, y una matriz triangular superior <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>Es posible demostrar que cualquier matriz cuadrada <span class="math notranslate nohighlight">\(A\)</span> puede ser expresada como el producto de una matriz triangular inferior <span class="math notranslate nohighlight">\(L\)</span>, y una matriz triangular superior <span class="math notranslate nohighlight">\(U\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[A = LU\]</div>
 <p>El proceso para obtener <span class="math notranslate nohighlight">\(L\)</span> y <span class="math notranslate nohighlight">\(U\)</span> es conocido como <em>descomposición</em> o <em>factorización</em> LU. <strong>Es el método de solución de ecuaciones lineales más confiable y utilizado.</strong></p>
@@ -1220,20 +1204,6 @@ P  = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P*A =
- [[ 8  8  0]
- [-2 -4  5]
- [ 4  3 -5]]
-
-
-L*U =
- [[ 8.  8.  0.]
- [-2. -4.  5.]
- [ 4.  3. -5.]]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 </section>
@@ -1282,6 +1252,7 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;diag(A) = &#39;</span><span class="p">,</span><span class="n">diagA</span><span class="p">)</span>
 
 <span class="c1"># suma de los elementos sin la diagonal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">axis</span><span class="o">=-=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">off_diagA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">diagA</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;off_diag(A) =&#39;</span><span class="p">,</span><span class="n">off_diagA</span><span class="p">)</span>
 </pre></div>
@@ -1289,6 +1260,7 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>diag(A) =  [ 8.  8. 10.]
+[ 8. -5. 18.]
 off_diag(A) = [6. 7. 8.]
 </pre></div>
 </div>
@@ -1315,16 +1287,16 @@ off_diag(A) = [6. 7. 8.]
     <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">copy</span>
     <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
     
-    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># tolerancia</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># tolerancia</span>
     <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># verificar convergencia</span>
     
     <span class="c1"># guardamos el valor inicial</span>
     <span class="n">x_old</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>            <span class="c1"># iteraciones</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>       <span class="c1"># recorrer filas</span>
             <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>              <span class="c1"># xi = yi</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>   <span class="c1"># por columnas</span>
                 <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>           <span class="c1"># saltamos i = j</span>
                     <span class="k">continue</span>
                 <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="c1"># xi =  yi - sum(aij*xj)</span>
@@ -1371,10 +1343,13 @@ iter = 4 ; x = [ 2.05959296 -1.56781904 -0.63396837]
 iter = 5 ; x = [ 2.100194   -1.54627873 -0.65691883]
 iter = 6 ; x = [ 2.08350996 -1.55645176 -0.64682711]
 iter = 7 ; x = [ 2.09110925 -1.55204425 -0.65131065]
+iter = 8 ; x = [ 2.0877751  -1.55401293 -0.64932607]
+iter = 9 ; x = [ 2.08925757 -1.55314318 -0.65020568]
+iter = 10 ; x = [ 2.08860156 -1.55352894 -0.649816  ]
 Converged!
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.09110925, -1.55204425, -0.65131065])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.08860156, -1.55352894, -0.649816  ])
 </pre></div>
 </div>
 </div>
