@@ -318,7 +318,7 @@ T = T_plate(Nx,Ny,rel_tol) # Determinamos T(x,y)
 # In[5]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm   # librería de mapa de colores\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))            # tamaño de la figura\nplt.rcParams.update({\'font.size\': 18})  # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Mapa T(x,y)\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta en la barra de colores  \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot', 'import matplotlib.pyplot as plt\nfrom matplotlib import cm   # librería de mapa de colores\n    \nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nplt.figure(figsize = (7, 7))            # tamaño de la figura\nplt.rcParams.update({\'font.size\': 18})  # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Mapa T(x,y)\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta en la barra de colores  \nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[6]:
@@ -347,7 +347,7 @@ showplot()
 # In[7]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot1', '\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) # campo vectorial de q\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot1', '\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))\nplt.rcParams.update({\'font.size\': 18})\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))\nplt.colorbar(label="Temperatura (K)", orientation="vertical")\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip]) # campo vectorial de q\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[8]:
@@ -502,7 +502,7 @@ for l in range(len(t)) :
 # In[11]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', 'from matplotlib import cm                             # librería de mapa de colores predefinidos\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize = (8, 5))                          # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\nx = np.linspace(0,L,Nx)                               # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(t)))              # Mapa de colores para cada linea\nfor it in range(1,len(t),round(len(t)/10)):           # Graficamos 10 curvas dentro del periodo total de simulación  \n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it])  # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)             # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(t)/60)])      # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (min)")                        # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot2', 'from matplotlib import cm                             # librería de mapa de colores predefinidos\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize = (8, 5))                          # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\nx = np.linspace(0,L,Nx)                               # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(t)))              # Mapa de colores para cada linea\nfor it in range(1,len(t),round(len(t)/10)):           # Graficamos 10 curvas dentro del periodo total de simulación  \n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it])  # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)             # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(t)/60)])      # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (min)")                        # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
 
 
 # In[12]:
@@ -595,7 +595,7 @@ for l in range(len(t)) :
 # In[15]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot3', 'from matplotlib import cm                              # librería de mapa de colores predefinidos\n\nplt.figure(figsize = (8, 5))                           # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                 # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\ntplot = t[t<=60]                                       # primeros 60 segundos\nx = np.linspace(0,L,Nx)                                # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(tplot)))           # Mapa de colores para cada linea\nfor it in range(1,len(tplot),round(len(tplot)/10)):    # Graficamos 10 curvas dentro del periodo total de simulación\n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it]) # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)              # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                  # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(tplot))])       # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (seg)")                         # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot3', 'from matplotlib import cm                              # librería de mapa de colores predefinidos\n\nplt.figure(figsize = (8, 5))                           # Tamaño del gráfico\nplt.rcParams.update({\'font.size\': 18})                 # Tamaño de la fuente \n\n# Graficamos la distribución de temperaturas en el tiempo\ntplot = t[t<=60]                                       # primeros 60 segundos\nx = np.linspace(0,L,Nx)                                # Arreglo de puntos en x\ncRGB = cm.magma(np.linspace(0,1,len(tplot)))           # Mapa de colores para cada linea\nfor it in range(1,len(tplot),round(len(tplot)/10)):    # Graficamos 10 curvas dentro del periodo total de simulación\n    plt.plot(x,T_time[:,it] - 273,\'o:\',color=cRGB[it]) # Distribución de temperaturas en tiempo "t"\n\n# Agregamos una barra de colores como leyenda\nsm = plt.cm.ScalarMappable(cmap=cm.magma)              # Necesario para agregar la barra\ncbar = plt.colorbar(sm, ticks=[0, 1])                  # Restringir solo dos etiquetas\ncbar.set_ticklabels([\'0\', \'%.0f\' % (max(tplot))])       # Valor en cada etiqueta del eje\ncbar.set_label("Tiempo (seg)")                         # Nombre de la variable\n\n# formateamos los ejes\nplt.xlabel(\'Largo, x (m)\')\nplt.ylabel(\'Temperatura (°C)\')\nplt.grid()\nplt.show()\n')
 
 
 # In[16]:
@@ -692,7 +692,8 @@ def T_plate_time(Nx,Ny, tend):
                 elif j == ny: T[i,j] = 1/(1 + dy*h)*(T[i,j-1] + dy*h*Too)
             
                 # nodos centrales
-                else: T[i,j] = Tl[i,j] + a*dt/dx**2*(Tl[i+1,j] - 2*Tl[i,j] + Tl[i-1,j])                                        + a*dt/dy**2*(Tl[i,j+1] - 2*Tl[i,j] + Tl[i,j-1])
+                else: T[i,j] = Tl[i,j] + a*dt/dx**2*(Tl[i+1,j] - 2*Tl[i,j] + Tl[i-1,j]) \
+                                       + a*dt/dy**2*(Tl[i,j+1] - 2*Tl[i,j] + Tl[i,j-1])
                 
                      
     return T
@@ -701,7 +702,7 @@ def T_plate_time(Nx,Ny, tend):
 # In[19]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot4', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 100) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))           # Tamaño del lienzo\nplt.rcParams.update({\'font.size\': 18}) # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta de la barra de colores\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip])            # Distribución de flujo de calor\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot4', '\n# Definimos las características de la malla\nNx, Ny = 51, 76                    # total de nodos\nT = T_plate_time(Nx,Ny, tend = 100) # Determinamos T(x,y)\n\nx =   np.linspace(0,L,Nx) # coordenadas x\ny =   np.linspace(0,H,Ny) # coordenadas y\nxx, yy = np.meshgrid(x,y) # malla x-y\n\nskip = (slice(None, None, 5), slice(None, None, 5))\nqy, qx = np.gradient(T.T,y,x) # gradiente \n\nplt.figure(figsize = (7, 7))           # Tamaño del lienzo\nplt.rcParams.update({\'font.size\': 18}) # tamaño de fuente\n\nplt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores\nplt.colorbar(label="Temperatura (K)", orientation="vertical")  # Etiqueta de la barra de colores\n\n# campo vectorial de q\nplt.quiver(xx[skip],yy[skip],- qx[skip],- qy[skip])            # Distribución de flujo de calor\nplt.xlabel(\'x (m)\')\nplt.ylabel(\'y (m)\')\nplt.axis(\'scaled\')\nplt.show()\n')
 
 
 # In[20]:

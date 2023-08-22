@@ -37,9 +37,7 @@
 
 # En python, la forma más simple de generar un polinomio de interpolación es mediante `polyfit`.
 
-# Estrictamente hablando, `polyfit` es un método de regresión lineal y, por lo tanto, no está clasificado como método de interpolación. Sin embargo, es importante entender que:
-# 
-# <center><b>Ajustar un polinomio de grado $n$ con un set de $n+1$ datos tabulados, es equivalente a resolver un sistema de $n$ ecuaciones lineales con $n$ incognitas (solución exacta).</b></center>
+# Estrictamente hablando, `polyfit` es un método de regresión lineal y, por lo tanto, no está clasificado como método de interpolación. Sin embargo, es importante entender que **ajustar un polinomio de grado $n$ con un set de $n+1$ datos tabulados, es equivalente a resolver un sistema de $n$ ecuaciones lineales con $n$ incognitas (solución exacta).**
 
 # Por ejemplo, consideremos el polinomio de ajuste para la muestra:
 # 
@@ -66,7 +64,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\n\n# Datos de la muestra xi, yi\nxi = np.array([-5.0, -2.0, 0.5, 3.0, 5.0])\nyi = np.array([-2.0, -0.1, 2.0, 1.0,-1.0])\n\nx = np.arange(-5, 5, .1) # arreglo en x para graficar\n\n# polinomio de ajuste grado 2\nai = np.polyfit(xi,yi,2)\ny_fit = np.polyval(ai,x)\n\n# polinomio de interpolación grado 2\nai = np.polyfit([xi[0], xi[2], xi[4]],[yi[0], yi[2], yi[4]],2)\ny_pol = np.polyval(ai,x)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# ploteamos los dos polinomios\nplt.plot(x, y_fit, '--k',label='modelo de ajuste')\nplt.plot(x, y_pol, 'b',label='interpolación')\n# ploteamos xi, yi\nplt.plot(xi, yi, 'ro',label='_datos $(x_i, y_i)$')\n\nplt.title('Polinomio grado 2 por mínimos cuadrados')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nimport numpy as np\n\n# Datos de la muestra xi, yi\nxi = np.array([-5.0, -2.0, 0.5, 3.0, 5.0])\nyi = np.array([-2.0, -0.1, 2.0, 1.0,-1.0])\n\nx = np.arange(-5, 5, .1) # arreglo en x para graficar\n\n# polinomio de ajuste grado 2\nai = np.polyfit(xi,yi,2)\ny_fit = np.polyval(ai,x)\n\n# polinomio de interpolación grado 2\nai = np.polyfit([xi[0], xi[2], xi[4]],[yi[0], yi[2], yi[4]],2)\ny_pol = np.polyval(ai,x)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# ploteamos los dos polinomios\nplt.plot(x, y_fit, '--k',label='modelo de ajuste')\nplt.plot(x, y_pol, 'b',label='interpolación')\n# ploteamos xi, yi\nplt.plot(xi, yi, 'ro',label='_datos $(x_i, y_i)$')\n\nplt.title('Polinomio grado 2 por mínimos cuadrados')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[2]:
@@ -114,7 +112,7 @@ p7 = np.polyfit(xi7,yi7,len(xi7)-1) # coeficientes del polinomio de interpolaci�
 # In[4]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\n# arreglo para plotear\nx = np.linspace(-1,1,100)\n\n# ploteamos la función de Runge\nplt.plot(x,f(x),\'--k\', label=\'Runge\')\n\n# ploteamos los polinomios de Lagrange\nplt.plot(x, np.polyval(p5,x), \'r\',label=\'polinomio grado 5\')\nplt.plot(x, np.polyval(p7,x), \'b\',label=\'polinomio grado 7\')\n\n# ploteamos los xi, yi\n# ! usamos \'_\' al comienzo del label para suprimir el output en "legend"\nplt.plot(xi5, yi5, \'ro\',label=\'_$x_i, y_i$ para $P_5(x)$\') \nplt.plot(xi7, yi7, \'bo\',label=\'_$x_i, y_i$ para $P_7(x)$\')\n\nplt.title(\'Problema de oscilación por interpolación\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\n# arreglo para plotear\nx = np.linspace(-1,1,100)\n\n# ploteamos la función de Runge\nplt.plot(x,f(x),\'--k\', label=\'Runge\')\n\n# ploteamos los polinomios de Lagrange\nplt.plot(x, np.polyval(p5,x), \'r\',label=\'polinomio grado 5\')\nplt.plot(x, np.polyval(p7,x), \'b\',label=\'polinomio grado 7\')\n\n# ploteamos los xi, yi\n# ! usamos \'_\' al comienzo del label para suprimir el output en "legend"\nplt.plot(xi5, yi5, \'ro\',label=\'_$x_i, y_i$ para $P_5(x)$\') \nplt.plot(xi7, yi7, \'bo\',label=\'_$x_i, y_i$ para $P_7(x)$\')\n\nplt.title(\'Problema de oscilación por interpolación\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n')
 
 
 # In[5]:
@@ -190,7 +188,7 @@ y(x)
 # In[11]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# generamos datos para graficar y función de interpolación\nx = np.linspace(0,2.0,100)             # 100 puntos entre 0 y 2\n\nplt.plot(x, y(x), '-b', label='$y(x)$')             # graficamos la función\nplt.plot(xi, yi, 'ob')                              # graficamos los xi, yi \nplt.plot(1.5, y(1.5), 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot2', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# generamos datos para graficar y función de interpolación\nx = np.linspace(0,2.0,100)             # 100 puntos entre 0 y 2\n\nplt.plot(x, y(x), '-b', label='$y(x)$')             # graficamos la función\nplt.plot(xi, yi, 'ob')                              # graficamos los xi, yi \nplt.plot(1.5, y(1.5), 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[12]:
@@ -204,7 +202,7 @@ showplot2()
 # In[13]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot3', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# generamos datos para graficar y función de interpolación\nx = np.linspace(-1,3,100)             # 100 puntos entre 0 y 2\n\nplt.plot(x, y(x), '-b', label='$y(x)$')             # graficamos la función\nplt.plot(xi, yi, 'ob')                              # graficamos los xi, yi \nplt.plot(1.5, y(1.5), 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot3', "import matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\n# generamos datos para graficar y función de interpolación\nx = np.linspace(-1,3,100)             # 100 puntos entre 0 y 2\n\nplt.plot(x, y(x), '-b', label='$y(x)$')             # graficamos la función\nplt.plot(xi, yi, 'ob')                              # graficamos los xi, yi \nplt.plot(1.5, y(1.5), 'or', label='$y(x_0 = 1.5)$') # graficamos y(1.5)\n\nplt.title('Interpolación lineal (interp1d de scipy)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[14]:
@@ -304,7 +302,7 @@ y_3 = CubicSpline(xi,yi,bc_type='natural')
 # In[16]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot4', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ko')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot4', "\nimport matplotlib.pyplot as plt\nimport numpy as np\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({'font.size': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # variable para graficarS\n\nplt.plot(xi, yi, 'ko')                         # graficamos los xi, yi\nplt.plot(x, y_1(x), '-b', label='not-a-knot')  # graficamos la función\nplt.plot(x, y_2(x), '-r', label='clamped')     # graficamos la función\nplt.plot(x, y_3(x), '-g', label='natural')     # graficamos la función\n\nplt.title('Interpolación spline')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.grid()\nplt.legend(frameon=False)\nplt.show()\n")
 
 
 # In[17]:
@@ -329,7 +327,7 @@ showplot4()
 # In[18]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot5', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.linspace(-2*np.pi,2*np.pi,20)\nyi = np.sin(xi)\n\n# spline "not a knot"\ny_1 = CubicSpline(xi,yi)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\nx = np.linspace(-2*np.pi,2*np.pi,100) # arreglo para graficar\n\nplt.plot(x, y_1(x), \'--k\',label=r"$y(x)$")     # graficamos la función\nplt.plot(x, y_1(x,1), \'-b\',label=r"$y\'(x)$")   # primera derivada\nplt.plot(x, y_1(x,2), \'-r\',label=r"$y\'\'(x)$")  # segunda derivada\nplt.plot(x, y_1(x,3), \'-g\',label=r"$y\'\'\'(x)$") # segunda derivada\n\nplt.title(\'Derivadas interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.ylim(-2,2)\nplt.grid()\nplt.legend()\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot5', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.linspace(-2*np.pi,2*np.pi,20)\nyi = np.sin(xi)\n\n# spline "not a knot"\ny_1 = CubicSpline(xi,yi)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\nx = np.linspace(-2*np.pi,2*np.pi,100) # arreglo para graficar\n\nplt.plot(x, y_1(x), \'--k\',label=r"$y(x)$")     # graficamos la función\nplt.plot(x, y_1(x,1), \'-b\',label=r"$y\'(x)$")   # primera derivada\nplt.plot(x, y_1(x,2), \'-r\',label=r"$y\'\'(x)$")  # segunda derivada\nplt.plot(x, y_1(x,3), \'-g\',label=r"$y\'\'\'(x)$") # segunda derivada\n\nplt.title(\'Derivadas interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.ylim(-2,2)\nplt.grid()\nplt.legend()\nplt.show()\n')
 
 
 # In[19]:
@@ -343,7 +341,7 @@ showplot5()
 # In[20]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot6', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.array([  3,   5,   7,   9])\nyi = np.array([2.5, 1.5, 2.0, 1.8])\n\n# spline "not a knot" sin extrapolación\ny_1 = CubicSpline(xi,yi,extrapolate=False)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # arreglo para graficar\n\nplt.plot(xi, yi, \'ok\')     # graficamos los xi, yi\nplt.plot(x, y_1(x), \'-b\')  # graficamos la función\n\nplt.title(\'Interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot6', 'from scipy.interpolate import CubicSpline\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxi = np.array([  3,   5,   7,   9])\nyi = np.array([2.5, 1.5, 2.0, 1.8])\n\n# spline "not a knot" sin extrapolación\ny_1 = CubicSpline(xi,yi,extrapolate=False)\n\nplt.figure(figsize = (4, 3))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 10}) # Tamaño de fuente\n\nx = np.linspace(2,10,100) # arreglo para graficar\n\nplt.plot(xi, yi, \'ok\')     # graficamos los xi, yi\nplt.plot(x, y_1(x), \'-b\')  # graficamos la función\n\nplt.title(\'Interpolación spline\')\nplt.xlabel(\'x\')\nplt.ylabel(\'y\')\nplt.grid()\nplt.show()\n')
 
 
 # In[21]:

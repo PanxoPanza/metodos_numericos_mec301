@@ -147,7 +147,7 @@ for j in range(len(h_array)):
 # In[3]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nfrom numpy import log, polyfit\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 18}) # Tamaño de fuente\n\nplt.plot(h_array,error_bw,\'ob\',label=\'backward\',alpha=0.5)\nplt.plot(h_array,error_fw,\'or\',label=\'forward\' ,alpha=0.5)\nplt.plot(h_array,error_ct,\'ok\',label=\'central\' ,alpha=0.5)\n\n# analizamos la pendiente del logaritmo de cada aproxmación\nabw = polyfit(log(h_array), log(error_bw),1)\nafw = polyfit(log(h_array), log(error_fw),1)\nact = polyfit(log(h_array), log(error_ct),1)\n\n# imprimimos el valor de la pendiente en el gráfico\nplt.text(1E-4,1E-5,\'$\\sim h^{%.3f}$\' % abw[0], color=\'b\')\nplt.text(1E-4,1E-3,\'$\\sim h^{%.3f}$\' % afw[0], color=\'r\')\nplt.text(1E-4,1E-9,\'$\\sim h^{%.3f}$\' % act[0], color=\'k\')\n\n# graficamos en escala logarítmica para visualizar la pendiente\nplt.xscale(\'log\')\nplt.yscale(\'log\')\nplt.xlabel(\'Espaciamiento, $h$\')\nplt.ylabel("Error absoluto")\nplt.title("Aproximación de $f\'(x)$")\nplt.legend(frameon=False, loc=\'lower right\')\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot1', 'import matplotlib.pyplot as plt\nfrom numpy import log, polyfit\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 18}) # Tamaño de fuente\n\nplt.plot(h_array,error_bw,\'ob\',label=\'backward\',alpha=0.5)\nplt.plot(h_array,error_fw,\'or\',label=\'forward\' ,alpha=0.5)\nplt.plot(h_array,error_ct,\'ok\',label=\'central\' ,alpha=0.5)\n\n# analizamos la pendiente del logaritmo de cada aproxmación\nabw = polyfit(log(h_array), log(error_bw),1)\nafw = polyfit(log(h_array), log(error_fw),1)\nact = polyfit(log(h_array), log(error_ct),1)\n\n# imprimimos el valor de la pendiente en el gráfico\nplt.text(1E-4,1E-5,\'$\\sim h^{%.3f}$\' % abw[0], color=\'b\')\nplt.text(1E-4,1E-3,\'$\\sim h^{%.3f}$\' % afw[0], color=\'r\')\nplt.text(1E-4,1E-9,\'$\\sim h^{%.3f}$\' % act[0], color=\'k\')\n\n# graficamos en escala logarítmica para visualizar la pendiente\nplt.xscale(\'log\')\nplt.yscale(\'log\')\nplt.xlabel(\'Espaciamiento, $h$\')\nplt.ylabel("Error absoluto")\nplt.title("Aproximación de $f\'(x)$")\nplt.legend(frameon=False, loc=\'lower right\')\nplt.show()\n')
 
 
 # In[4]:
@@ -220,7 +220,7 @@ yi = np.array([ 0,  0.66596509,  0.94420348,  0.90895968,  0.35562432, 0.0318805
 # In[6]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot2', "import matplotlib.pyplot as plt\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# Graficamos sin(x) y junto con (xi,yi)\nf = lambda x: np.sin(x)\nx = np.linspace(0,2*np.pi,100)\n\nplt.plot(xi,yi,'or')  # datos tabulados\nplt.plot(x,f(x),':b') # función sin(x)\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid()\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot2', "import matplotlib.pyplot as plt\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\n# Graficamos sin(x) y junto con (xi,yi)\nf = lambda x: np.sin(x)\nx = np.linspace(0,2*np.pi,100)\n\nplt.plot(xi,yi,'or')  # datos tabulados\nplt.plot(x,f(x),':b') # función sin(x)\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid()\nplt.show()\n")
 
 
 # In[7]:
@@ -250,7 +250,7 @@ showplot2()
 # In[8]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot3', '# Evaluamos numpy.diff\ndfdx = np.diff(yi)/np.diff(xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi[1:],dfdx,\'ob\',label=\'backward\')\nplt.plot(xi[:-1] ,dfdx,\'or\',label=\'forward\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot3', '# Evaluamos numpy.diff\ndfdx = np.diff(yi)/np.diff(xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi[1:],dfdx,\'ob\',label=\'backward\')\nplt.plot(xi[:-1] ,dfdx,\'or\',label=\'forward\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()\n')
 
 
 # In[9]:
@@ -277,7 +277,7 @@ showplot3()
 # In[10]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot4', '# Evaluamos numpy.diff\ndfdx = np.gradient(yi,xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi,dfdx,\'or\',label=\'gradient\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot4', '# Evaluamos numpy.diff\ndfdx = np.gradient(yi,xi)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi,dfdx,\'or\',label=\'gradient\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()\n')
 
 
 # In[11]:
@@ -309,7 +309,7 @@ showplot4()
 # In[12]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot5', 'from scipy.interpolate import CubicSpline\n# generamos una función de interpolación\ndfdx = CubicSpline(xi,yi).derivative(1)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi,dfdx(xi),\'or\',label=\'CubicSpline\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()')
+get_ipython().run_cell_magic('capture', 'showplot5', 'from scipy.interpolate import CubicSpline\n# generamos una función de interpolación\ndfdx = CubicSpline(xi,yi).derivative(1)\n\nplt.figure(figsize = (7, 5))           # Tamaño de figura\nplt.rcParams.update({\'font.size\': 16}) # Tamaño de fuente\n\nplt.plot(xi,dfdx(xi),\'or\',label=\'CubicSpline\')\nplt.plot(x,np.cos(x),\':k\',label=\'$\\cos (x)$\')\n\nplt.legend()\nplt.xlabel(\'x\')\nplt.ylabel("$f\'(x) = \\cos(x)$")\nplt.show()\n')
 
 
 # In[13]:

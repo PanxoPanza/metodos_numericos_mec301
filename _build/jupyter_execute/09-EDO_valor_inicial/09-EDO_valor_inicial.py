@@ -665,7 +665,7 @@ print(sol)
 # In[9]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\n\n# transformamos el ángulo a grados\ntheta     = np.degrees(sol.y[0,:])\ntheta_dot = np.degrees(sol.y[1,:])\n\nfig, ax = plt.subplots(2,1,figsize=(5,6))\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nax[0].plot(sol.t,theta,    label=r'$\\Theta(t)$')\nax[1].plot(sol.t,theta_dot,label=r'$\\dot{\\Theta}(t)$')\nax[0].set_xlabel('')\nax[0].set_ylabel('Ángulo (deg)')\nax[1].set_xlabel('Tiempo (seg)')\nax[1].set_ylabel('Vel. angular (deg/s)')\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\n\n# transformamos el ángulo a grados\ntheta     = np.degrees(sol.y[0,:])\ntheta_dot = np.degrees(sol.y[1,:])\n\nfig, ax = plt.subplots(2,1,figsize=(5,6))\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nax[0].plot(sol.t,theta,    label=r'$\\Theta(t)$')\nax[1].plot(sol.t,theta_dot,label=r'$\\dot{\\Theta}(t)$')\nax[0].set_xlabel('')\nax[0].set_ylabel('Ángulo (deg)')\nax[1].set_xlabel('Tiempo (seg)')\nax[1].set_ylabel('Vel. angular (deg/s)')\nplt.show()\n")
 
 
 # In[10]:
@@ -688,7 +688,7 @@ sol = solve_ivp(F,t_span = t_interval, t_eval = t_array, y0 = y0)
 # In[12]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\n\n# transformamos el ángulo a grados\ntheta     = np.degrees(sol.y[0,:])\ntheta_dot = np.degrees(sol.y[1,:])\n\nfig, ax = plt.subplots(2,1,figsize=(5,6))\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nax[0].plot(sol.t,theta,    label=r'$\\Theta(t)$')\nax[1].plot(sol.t,theta_dot,label=r'$\\dot{\\Theta}(t)$')\nax[0].set_xlabel('')\nax[0].set_ylabel('Ángulo (deg)')\nax[1].set_xlabel('Tiempo (seg)')\nax[1].set_ylabel('Vel. angular (deg/s)')\nplt.show()")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\n\n# transformamos el ángulo a grados\ntheta     = np.degrees(sol.y[0,:])\ntheta_dot = np.degrees(sol.y[1,:])\n\nfig, ax = plt.subplots(2,1,figsize=(5,6))\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nax[0].plot(sol.t,theta,    label=r'$\\Theta(t)$')\nax[1].plot(sol.t,theta_dot,label=r'$\\dot{\\Theta}(t)$')\nax[0].set_xlabel('')\nax[0].set_ylabel('Ángulo (deg)')\nax[1].set_xlabel('Tiempo (seg)')\nax[1].set_ylabel('Vel. angular (deg/s)')\nplt.show()\n")
 
 
 # In[13]:

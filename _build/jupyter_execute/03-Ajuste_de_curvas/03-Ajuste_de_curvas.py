@@ -130,7 +130,7 @@ plt.rcParams.update({'font.size': 10}) # tamaño de fuente
 plt.figure(figsize = (5,4))            # tamaño del lienzo
 
 # ploteamos nuestro resultado
-y = lambda x: a[0] + a[1]*x # creamos una función con el modelo de ajuste
+y = lambda x: a[0] + a[1]*x  #c reamos una función con el modelo de ajuste
 x = np.linspace(0,85,100)   # creamos un arreglo para ploteo
 
 plt.plot(xi, yi, 'bo',label = 'xi, yi')                             # gráfico con los datos tabulados

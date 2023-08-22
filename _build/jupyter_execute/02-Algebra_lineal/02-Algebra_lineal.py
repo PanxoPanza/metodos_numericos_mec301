@@ -383,7 +383,7 @@ print('inv(P) = ', inv(P))
 
 # En python, $\mathrm{Cond}(A)$ está dado por la función `cond` de la librería `numpy.linalg`
 
-# In[40]:
+# In[ ]:
 
 
 from numpy.linalg import cond
@@ -400,7 +400,7 @@ print('Cond(P) = ',cond(P))
 # \end{eqnarray*}
 # 
 
-# In[9]:
+# In[ ]:
 
 
 print('M\n', M)
@@ -514,7 +514,7 @@ print('det(M) = ', det(M))
 # > El método de eliminación Gaussiana es de complejidad $O(N^3)$
 
 # ### Factorización LU
-# Es posible demostrar que cualquier matriz cuadrada $A$ puede ser expresada como el producto de una matriz triangular inferor $L$, y una matriz triangular superior $U$.
+# Es posible demostrar que cualquier matriz cuadrada $A$ puede ser expresada como el producto de una matriz triangular inferior $L$, y una matriz triangular superior $U$.
 # 
 # $$A = LU$$
 
@@ -577,7 +577,7 @@ print('det(M) = ', det(M))
 # 1 & 0 & 0 \\
 # \end{bmatrix}$$
 
-# In[10]:
+# In[ ]:
 
 
 A = np.array([[ 4,  3, -5],
@@ -597,7 +597,7 @@ P = np.array([[0, 0, 1],
               [1, 0, 0]])
 
 
-# In[11]:
+# In[ ]:
 
 
 print('P*A =\n',np.dot(P,A))
@@ -649,7 +649,7 @@ print('L*U =\n',np.dot(L,U))
 # 
 # Primero, verificamos que la matriz es diagonal dominante:
 
-# In[12]:
+# In[18]:
 
 
 A = [[ 8.,  3., -3.], 
@@ -661,11 +661,12 @@ diagA = np.diag(np.abs(A))
 print('diag(A) = ',diagA)
 
 # suma de los elementos sin la diagonal
+print(np.sum(A,axis=-=1))
 off_diagA = np.sum(np.abs(A), axis=1) - diagA
 print('off_diag(A) =',off_diagA)
 
 
-# In[13]:
+# In[25]:
 
 
 if np.all(diagA >= off_diagA):
@@ -674,23 +675,23 @@ else:
     print('la matriz no es diagonal dominante')
 
 
-# In[14]:
+# In[31]:
 
 
 def gauss_seidel(A,y,x):
     from numpy import copy
     from numpy.linalg import norm
     
-    epsilon = 0.01 # tolerancia
+    epsilon = 0.001 # tolerancia
     converged = False # verificar convergencia
     
     # guardamos el valor inicial
     x_old = copy(x)
     
-    for k in range(1, 50):
-        for i in range(x.size):
+    for k in range(1, 50):            # iteraciones
+        for i in range(x.size):       # recorrer filas
             x[i] = y[i]              # xi = yi
-            for j in range(x.size):
+            for j in range(x.size):   # por columnas
                 if i == j:           # saltamos i = j
                     continue
                 x[i] -= A[i][j]*x[j] # xi =  yi - sum(aij*xj)
@@ -713,7 +714,7 @@ def gauss_seidel(A,y,x):
     return x
 
 
-# In[15]:
+# In[32]:
 
 
 import numpy as np
@@ -748,7 +749,7 @@ gauss_seidel(A,y,x)
 # \end{bmatrix}\left[\begin{array}{c} x_1 \\x_2 \\x_3 \end{array}\right] =
 # \left[\begin{array}{c} 588.6 \\686.7 \\784.8\end{array}\right]$$ 
 
-# In[16]:
+# In[33]:
 
 
 import numpy as np
@@ -765,7 +766,7 @@ print(x)
 
 # Notar que en este problema $x_1$, $x_2$ y $x_3$ representan las posiciones relativas de las personas. Así la posición final está dada por:
 
-# In[17]:
+# In[34]:
 
 
 print('Posición final de las personas: ', x + [20, 40, 60])
@@ -773,7 +774,7 @@ print('Posición final de las personas: ', x + [20, 40, 60])
 
 # Mediante la librería `scipy` podemos hacer factorización LU.
 
-# In[18]:
+# In[35]:
 
 
 from scipy.linalg import lu

@@ -216,7 +216,7 @@ print('x* = %.3f, N. de iteraciones = %i' %
 # In[5]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nx = np.linspace(-10,110.1,100)\n\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nplt.plot(x,f(x))\nplt.xlabel('x')\nplt.ylabel('f(x)')\nplt.title('Gráfica de $x^3 - 100x^2 - x + 100$')\nplt.grid()")
+get_ipython().run_cell_magic('capture', 'showplot', "import matplotlib.pyplot as plt\nx = np.linspace(-10,110.1,100)\n\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 18}) # Tamaño de fuente\n\nplt.plot(x,f(x))\nplt.xlabel('x')\nplt.ylabel('f(x)')\nplt.title('Gráfica de $x^3 - 100x^2 - x + 100$')\nplt.grid()\n")
 
 
 # In[6]:
