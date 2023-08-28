@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Series de Taylor
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 5 de Septiembre 2022
 
 # ## Expansión de funciones en series de Taylor 
 # La expansión en series de Taylor es una forma alternativa de representar una fución mediante una serie infinita de polinomios alrededor de un punto $a$:

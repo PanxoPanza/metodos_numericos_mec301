@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Algortimos de búsqueda de raíces
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 5 de Septiembre 2022
 
 # ## Introducción
 # Consideremos el problema de caída de presión $\Delta P$ al mover un fluído con densidad $\rho$ y viscosidad cinemática $\nu$, a través de una tubería de largo $L$.
@@ -42,6 +38,7 @@
 
 # ## Búsqueda de raíces para una función escalar
 # Una función escalar es una función con una o más variables dependientes, que entrega un valor unidimencional.
+# 
 # \begin{equation*}
 # f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 # \end{equation*}
@@ -51,11 +48,14 @@
 # En esta sección veremos los métodos más conocidos para resolver este problema
 
 # ### Métodos de intervalo acotado: Bisección
-# El método de la bisección es un **método de intervalo acotado**. Se basa en el teorema del valor intermedio
+# 
+# Los **métodos de intervalo acotado** consisten en **encontrar la raiz de una función escalar a partir de un dominio acotado**.
+
+# El más conocido es el **método de la bisección**, el cual se basa en el teorema del valor intermedio
 
 # > **Teorema del valor intermedio** para una función $f(x)$ continua en entre los puntos $a$ y $b$, tal que $f(a)f(b) < 0$, existe un valor $c$, $a<c<b$, tal que $f(c) = 0$.
 
-# <img src="./images/valor_intermedio.png" width="250px" align= center>
+# <img src="./images/valor_intermedio.png" width="400px" align= center>
 
 # Para un intervalo $x\in [a,b]$, tal que $f(a)f(b) < 0$, el método de la bisección consiste en acotar el intervalo evaluando el punto medio $f(m)$, con $m = \frac{a+b}{2}$.
 # 
@@ -77,8 +77,7 @@ def bisection(f,a,b,tol):
     
     # primero, verificamos si el intervalo [a,b]
     # satisface el teorema del valor medio
-    if f(a)*f(b) >= 0 :
-        raise Exception("El intervalo [a, b] no contiene raices")
+    assert f(a)*f(b) < 0 , "El intervalo [a, b] no contiene raices"
     
     # determinamos el punto medio entre [a, b]
     m = (a + b)/2
@@ -113,7 +112,11 @@ print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
 
 # ### Métodos de intervalo abierto: Newton-Raphson
-# El método de Newton-Raphson es un **método de intervalo abierto**. El método se origina a partir de series de Taylor.
+# 
+# Definimos como **método de intervalo abierto** a aquellos **algoritmos para búsqueda de raíces a partir de un valor inicial**.
+
+# 
+# El más conocido es el **método de Newton-Raphson**. El método se origina a partir de series de Taylor.
 
 # Supongamos que $x_0$ es un punto cercano a la raíz de una función $f(x)$. Mediante la aproximación lineal, la raíz de la función $x_1$ debe satisfacer la ecuación:
 # 
@@ -137,7 +140,7 @@ print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
 # Gráficamente, lo que hacemos en cada iteración es encontrar el punto $x_{k+1}$ donde la recta $f(x_k) + f^{\prime}(x_k)(x-x_k)$ intersecta el eje $y = 0$.  
 
-# <img src="./images/newton_raphson.png" width="300px" align= center>
+# <img src="./images/newton_raphson.png" width="400px" align= center>
 
 # La ventaja de este algoritmo es que, a diferencia de los métodos por intervalo acotado, solo necesita de un valor inicial. Esta es una caracterísca general de los métodos de intervalo abierto.
 
@@ -147,11 +150,9 @@ print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 # 
 # <center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center>
 
-# Esta es una característica general de los métodos de intervalo abierto.
-
 # Otros métodos de intervalo abierto se diferencian de Newton-Raphson en la forma de determinar $f'(x)$. Esto debido a que no siempre es posible determinar la derviada de forma analítica.
 
-# Por ejemplo, en el **método de la secante**, mediante la aproximación $f'(x_k) = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$, aplica la siguiente fórmula de iteración:
+# Por ejemplo, en el **método de la secante**, aproxima $f'(x)$ por $f'(x_k) = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$, lo que deriva en la siguiente fórmula recursiva:
 # 
 # \begin{equation*}
 # x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
@@ -159,7 +160,7 @@ print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
 # Notar que, debido a esta fórmula, el método de la secante requiere **dos valores iniciales, $x_0$ y $x_1$**
 
-# Una desventaja de los métodos de intervalo abierto es que pueden sufrir serios problemas de convergencia si el valor $x_k$ cae en un punto de la función donde $f'(x_k) \approx 0$
+# Una desventaja general en los métodos de intervalo abierto es que pueden sufrir serios problemas de convergencia si el valor $x_k$ cae en un punto de la función donde $f'(x_k) \approx 0$
 
 # En esta animación vemos como el número de iteraciones "$n$" aumenta considerablemente debido a problemas de convergencia en los puntos $f'(x_k) \approx 0$. En la notación, $y = f(x_k)$
 # <img src="./images/newton_raphson_bad.gif" width="600px" align= center>
@@ -196,7 +197,6 @@ def newton_raphson(x0, df, f, tol):
 
 
 f =  lambda x: x**3 - 100*x**2 - x + 100
-
 df = lambda x: 3*x**2 - 200*x - 1
 
 x0 = 0
@@ -233,7 +233,7 @@ showplot()
 # - Se procede con la iteración mediante un método de intervalo abierto
 # - Si la solución se mueve fuera del intervalo acotado, se procede a iterar con un método de intervalo cerrado.
 
-# Por ejemplo, el **método de Brent's** combina un método de intervalo abierto, como Newton-Raphson o el método de la secante, con el método de la bisección. Más información en las referencias
+# Por ejemplo, el **método de Brent's** combina un método de intervalo abierto (como Newton-Raphson o secante), con el método de la bisección. Más información en las referencias
 
 # ### Error relativo y absoluto
 # En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia $f(x_0) = 0$. Sin embargo, este criterio no es correcto, ya que la definición de $f(x_0) \approx 0$ es relativa a la escala de $f(x)$ en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto $x_i$, siempre tendremos $f(x_i)\approx 0$ si nos alejamos lo suficiente de la gráfica de la función.
@@ -250,19 +250,44 @@ showplot()
 # \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 # \end{equation}
 
-# En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.
+# En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.
 
-# ### Búsqueda de raíces de función escalar en python
-# En python, la función ```root_scalar``` de la librería ```scipy.optimize```, permite determinar raíces de una función escalar. Esta función tiene implementada distintos métodos de intervalo abierto, cerrado y combinados, tales como: bisección, Newton-Raphson, secante y Brent's.
+# ### Búsqueda de raíces de función escalar en python 
+# En python, la función ```root_scalar``` de la librería ```scipy.optimize```, permite determinar raíces de una función escalar.
 
-# Así, la función puede aceptar:
-# - Un valor inicial $x_0$, y la derivada
-# - Dos valores iniciales $x_0$ y $x_1$
-# - Un intervalo. 
+# Los argumento más relevantes en esta función son:
+# ```python
+# from scipy.optimize import root_scalar
+# root_scalar(f,            # callable, función objetivo
+#             args=(),      # tuple (opcional), argumentos extra para la función
+#             method=None,  # str (opcional), tipo de método
+#             bracket=None, # 2 floats list (opcional), intervalo de búsqueda de raíces
+#             fprime=None,  # callable (opcional), primera derivada
+#             x0=None,      # float (opcional), valor inicial
+#             x1=None,      # float (opcional), segundo valor inicial (para aproximar derivada)
+#             xtol=None,    # float (opcional), tolerancia para error absoluto
+#             rtol=None,    # float (opcional), tolerancia para error relativo
+#             maxiter=None  # int (opcional), número máximo de operaciones
+#            )
+# ```
+
+# La función tiene implementada distintos métodos de intervalo abierto, cerrado y combinados, tales como: bisección (`bisect`), Newton-Raphson (`newton`), secante (`secant`) y Brent's (`brentq` o `brenth`). El tipo de método debe ir indicado en `method`:
+
+# Además de la función objetivo, se debe indicar un valor inicial, dos valores iniciales o un intervalo. Con esto `root_scalar` definirá el tipo de método dependiendo del input: 
 # 
-# Dependiendo de este input, la función decide el tipo de método más adecuado.
+# - Un valor inicial $x_0$ (variable `x0`), y la derivada (variable `fprime`) $\rightarrow$ método de intervalo abierto o híbrido
+# - Dos valores iniciales $x_0$ (variable `x0`) y $x_1$ (variable `x1`) $\rightarrow$ método de intervalo abierto o híbrido
+# - Un intervalo. (variable `bracket`)  $\rightarrow$ método de intervalo cerrado o híbrido
 
-# También podemos especificar el tipo de método a utilizar mediante la instrucción ```method='tipo_de_metodo'``` como argumento en la función
+# El tipo de argumento para cada método está indicado en la siguiente tabla (x=requerido, o=opcional):
+# 
+# |`method`| `f` |`args`|`brackets`| `x0` | `x1` |`fprime`|`xtol`|`rtol`|`maxiter`|
+# |:----:|:-:|:--:|:------:|:--:|:--:|:----:|:--:|:--:|:-----:|
+# |`'bisect'`|x|o|x| | | |o|o|o|o|
+# |`'brentq'`|x|o|x| | | |o|o|o|o|
+# |`'brenth'`|x|o|x| | | |o|o|o|o|
+# |`'secant'`|x|o| |x|x| |o|o|o|o|
+# |`'newton'`|x|o| |x| |x|o|o|o|o|
 
 # 
 # 
@@ -272,9 +297,11 @@ showplot()
 
 
 from scipy.optimize import root_scalar
-f  = lambda x: x**3 - 1 # función a resolver
-df = lambda x: 3*x**2   # derivada
+f  = lambda x: x**3 - 1 # función objetivo f(x)
+df = lambda x: 3*x**2   # primera derivada de f(x)
 
+
+# Usamor `roor_scalar` con el argumento `method` para especificar el tipo de método que queremos utilizar
 
 # In[8]:
 
@@ -283,6 +310,8 @@ print('Bisección:\n',      root_scalar(f,bracket=[0, 3]  ,method='bisect'))
 print('Newton-Raphson:\n', root_scalar(f,x0=0.2,fprime=df,method='newton'))
 print('Secante:\n',        root_scalar(f,x0=0.2,x1=0.21  ,method='secant'))
 
+
+# Si omitimos el argumento `method`, `root_scalar` utilizará el método más adecuado en base al tipo de input (`x0`, `bracket`, `fprime`, ect) 
 
 # In[9]:
 
@@ -331,6 +360,7 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # ## Búsqueda de raíces para funciones vectoriales
 # Una función vectorial es una función con una o más variables dependientes, que entrega un vector de múltiples dimensiones.
+# 
 # \begin{equation*}
 # f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^m
 # \end{equation*}
@@ -367,7 +397,9 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 # 
 # donde $\bar{J} = \nabla\vec{F}$ es el **Jacobiano** de $\vec{F}$. 
 
-# Por ejemplo, para una función vectorial $\vec{F}(x,y) = \big\{f(x,y), g(x,y)\big\}$:
+#  El **operador $\nabla \vec{F}$ corresponde a una matriz**, donde cada elemento está dado por la derivada parcial de una componente de la función respecto a un parámetro independiente, es decir: $J_{ij} = \frac{\partial f_i}{\partial x_j}$
+
+# Por ejemplo, para una función vectorial $\vec{F}(x,y) = \big\{f(x,y), g(x,y)\big\}$, el Jacobiano está dado por:
 # 
 # \begin{equation*}
 # \bar{J}(x,y) = 
@@ -378,9 +410,10 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 # \end{matrix}\right]
 # \end{equation*}
 
-# En términos simples, el Jacobiano es la derivada de una función vectorial.
+# En otras palabras, el Jacobiano es equivalente a la derivada pero para funciones vectoriales.
+# 
 
-# En otras palabras, el método generalizado de Newton-Raphson consiste en encontrar un nuevo vector $\vec{x}_{k+1}$ a partir de la pendiente descendiente definida en el vector $\vec{x}_{k}$.
+# El método generalizado de Newton-Raphson, así, consiste en encontrar un nuevo vector $\vec{x}_{k+1}$ a partir de la pendiente descendiente definida en el vector $\vec{x}_{k}$.
 
 # Sin embargo, a diferencia del caso unidimensional, el Jacobiano entrega multiples direcciones posibles. ¿Como saber cuál es la dirección que minimiza $\vec{F}$?
 
@@ -392,14 +425,14 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # Así, el problema de busqueda de raíces de una función vectorial se transforma en un problema de minimización.
 
-# Esta es la estrategia de los métodos de Búsqueda lineal.
+# Esta es la estrategia de los **métodos de búsqueda lineal**.
 
 # Entre los más conocidos tenemos el **método de Broyden**. Más información en las referencias
 
 # ### Métodos de región de confianza
 
-# Un problema de los métodos de busqueda lineal está en el cálculo del Jacobiano de la función. Los métodos de región de confianza se basan en una aproximación de $\vec{F}$ en forma de paraboloide. Esta aproximación simplifica el cálculo del Jacobiano. 
-# 
+# En general, determinar el Jacobiano de una función vectorial es complicado. A raíz de esto nacen los métodos de región de confianza, los cuales se basan en una aproximación de $\vec{F}$ en forma de paraboloide. Esta aproximación simplifica el cálculo del Jacobiano. 
+
 # Se define como **región de confianza a la región donde la función puede ser aproximada por un parabolide**.
 
 # En términos generales, los métodos de región de confianza operan de la siguiente forma:
@@ -415,6 +448,16 @@ print('raíz x*=%.3f' % root_scalar(f,bracket=[0, 3]).root)
 
 # ### Búsqueda de raíces de función vectorial en python
 # En python, la función ```fsolve``` de la librería ```scipy.optimize``` permite encontrar las raíces de una función vectorial.
+
+# Los principales inputs de la función son:
+# 
+# ```python
+# scipy.optimize.fsolve(func,             # función vectorial objetivo (callable)
+#                       x0,               # valores iniciales
+#                       args=(),          # argumentos extras para la iteración
+#                       xtol=1.49012e-08  # tolerancia al error relativo
+#                      )
+# ```
 
 # La función se basa en los algoritmos de región de confianza "hybrd" y "hybrj" de la libreria ```MINPACK```. Más detalles [acá](https://www.math.utah.edu/software/minpack/minpack/hybrj.html)
 

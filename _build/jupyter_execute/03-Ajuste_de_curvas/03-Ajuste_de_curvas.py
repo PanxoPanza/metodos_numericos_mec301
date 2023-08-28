@@ -19,6 +19,8 @@
 
 # Aunque esta relación es válida para cualquier cuerpo, el valor de $C_D$, cambia dependiendo del objeto.
 
+# 
+
 # En la gran mayoría de los casos, este valor no se puede determinar de forma analítica, y debemos recurrir a ensallos en un tunel de viento para determinar la relación entre estas dos variables.
 # 
 # <img src="./images/wind_tunnel.png" width="800" align= center>
@@ -391,13 +393,15 @@ xi = np.array([ 10, 20,  30,  40,  50,   60,  70,  80])
 yi = np.array([ 25, 70, 380, 550, 610, 1220, 830, 1450])
 
 # Aplicamos modelo polinomial con polyfit
-a = np.polyfit(xi,yi,2)
+a = np.polyfit(xi,yi,3)
 print('Modelo polinomial:')
-print('y = %.3f + %.3f*x + %.3f*x^2' % (a[2], a[1], a[0]))
+#print('y = %.3f + %.3f*x + %.3f*x^2' % (a[2], a[1], a[0]))
 
 # evaluamos polinomio de ajuste con polyval
-x0 = 15 # valor de prueba
-print('y(%.3f) = %.3f'% (x0,np.polyval(a,x0)))
+x0 = xi # valor de prueba
+#print('y(%.3f) = %.3f'% (x0,np.polyval(a,x0)))
+np.polyval(a,x0)
+a
 
 
 # Graficamos la solución con `polyval`:

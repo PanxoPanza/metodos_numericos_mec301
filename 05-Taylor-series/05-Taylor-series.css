@@ -10,18 +10,33 @@ body.rise-enabled
 
 div.inner_cell>div.text_cell_render.rendered_html {
     font-size: 80%;
+    font-family: "Calibri Light"
 }
 
-div.inner_cell>div.text_cell_render.rendered_html img{
-    display: block;
-    max-height: 500px;
-    max-width: 90%;
+div.inner_cell>div.text_cell_render.rendered_html h1{
+    color: rgb(0,175,216);
+}
+
+div.inner_cell>div.text_cell_render.rendered_html h2{
+    color: rgb(0,175,216);
+}
+
+div.inner_cell>div.text_cell_render.rendered_html h3{
+    color: rgb(0,175,216);
+}
+
+div.inner_cell>div.text_cell_render.rendered_html  img{
+    max-height: 80%;
+    max-width: 100%;
     height: auto;
     width: auto;
     margin-left: auto;
     margin-right: auto;
 }
 
-div.inner_cell>div.text_cell_render.rendered_html table{
-     font-size: 100%;
+.reveal blockquote {
+border-left: 10px solid #ccc;
+margin: 1.5em 10px;
+padding: 0.5em 10px;
+width: 100%;
 }
