@@ -511,8 +511,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4dcea38-de29-4642-b988-1dac13053f31">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-b4dcea38-de29-4642-b988-1dac13053f31" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f83ab6e8-9f79-46fe-825a-224fb1b82cca">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-f83ab6e8-9f79-46fe-825a-224fb1b82cca" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -523,8 +523,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-874091d4-8779-4536-a25c-ab75823aaf0c">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-874091d4-8779-4536-a25c-ab75823aaf0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e0ad28a6-6622-4b5a-8ee4-babef845db11">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-e0ad28a6-6622-4b5a-8ee4-babef845db11" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -533,8 +533,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6718061-7f53-4cd1-98ad-a0df3d088f79">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-d6718061-7f53-4cd1-98ad-a0df3d088f79" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6e2e00d8-a5bb-4c3a-8295-db54d1f8bb5e">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-6e2e00d8-a5bb-4c3a-8295-db54d1f8bb5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -906,6 +906,10 @@ h = 0.400, dfdx = 0.487, error = 1.323e-02
 h = 0.300, dfdx = 0.493, error = 7.466e-03
 h = 0.200, dfdx = 0.497, error = 3.327e-03
 h = 0.100, dfdx = 0.499, error = 8.329e-04
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11110/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
+  dfdx = derivative(f,x0,dx=h)
 </pre></div>
 </div>
 </div>

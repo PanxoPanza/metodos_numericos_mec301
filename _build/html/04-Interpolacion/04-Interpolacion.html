@@ -571,22 +571,24 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
 <span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">])</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)</span> <span class="c1"># arreglo en x para graficar</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo en x para graficar</span>
 
 <span class="c1"># polinomio de ajuste grado 2</span>
 <span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># polinomio de interpolación grado 2</span>
-<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">([</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],[</span><span class="n">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">([</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+                <span class="p">[</span><span class="n">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+                <span class="mi">2</span><span class="p">)</span>
 <span class="n">y_pol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
 <span class="c1"># ploteamos los dos polinomios</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;modelo de ajuste&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pol</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;interpolación&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pol</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;interpolación&#39;</span><span class="p">)</span>
 <span class="c1"># ploteamos xi, yi</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_datos $(x_i, y_i)$&#39;</span><span class="p">)</span>
 
@@ -632,12 +634,12 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="c1"># Polinomio con 5 datos igualmente espaciados</span>
 <span class="n">xi5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>          <span class="c1"># xi</span>
 <span class="n">yi5</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xi5</span><span class="p">)</span>                       <span class="c1"># yi </span>
-<span class="n">p5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span><span class="n">yi5</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xi5</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># coeficientes del polinomio de interpolación</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span><span class="n">yi5</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xi5</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># coeficientes del polinomio de interpolación</span>
 
 <span class="c1"># Polinomio con 7 datos igualmente espaciados</span>
 <span class="n">xi7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>          <span class="c1"># xi</span>
 <span class="n">yi7</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xi7</span><span class="p">)</span>                       <span class="c1"># yi </span>
-<span class="n">p7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span><span class="n">yi7</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xi7</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># coeficientes del polinomio de interpolación</span>
+<span class="n">p6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span><span class="n">yi7</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xi7</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># coeficientes del polinomio de interpolación</span>
 </pre></div>
 </div>
 </div>
@@ -647,7 +649,7 @@ f(x)=\frac{1}{1 + 25x^2}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot1
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
 <span class="c1"># arreglo para plotear</span>
@@ -657,13 +659,13 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Runge&#39;</span><span class="p">)</span>
 
 <span class="c1"># ploteamos los polinomios de Lagrange</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p5</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;polinomio grado 5&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p7</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;polinomio grado 7&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p4</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;polinomio grado 4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p6</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;polinomio grado 6&#39;</span><span class="p">)</span>
 
 <span class="c1"># ploteamos los xi, yi</span>
 <span class="c1"># ! usamos &#39;_&#39; al comienzo del label para suprimir el output en &quot;legend&quot;</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span> <span class="n">yi5</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $P_5(x)$&#39;</span><span class="p">)</span> 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span> <span class="n">yi7</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $P_7(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi5</span><span class="p">,</span> <span class="n">yi5</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $P_4(x)$&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi7</span><span class="p">,</span> <span class="n">yi7</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;_$x_i, y_i$ para $P_6(x)$&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Problema de oscilación por interpolación&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -708,14 +710,15 @@ f(x)=\frac{1}{1 + 25x^2}
 <span class="n">xi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># xi</span>
 <span class="n">yi</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="c1"># yi</span>
 
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.5</span>                   <span class="c1"># valor x para determinar</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.5</span><span class="c1"># valor x para determinar</span>
 <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span> <span class="c1"># interpolamos y(x) en x0 = 1.5</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y0 = y(x0 = 1.5) =&#39;</span><span class="p">,</span><span class="n">y0</span><span class="p">)</span>
+<span class="c1">#print(&#39;y0 = y(x0 = 1.5) =&#39;,y0)</span>
+<span class="n">y0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>y0 = y(x0 = 1.5) = 2.5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5
 </pre></div>
 </div>
 </div>
@@ -919,6 +922,13 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 <span class="n">y_1</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;not-a-knot&#39;</span><span class="p">)</span>
 <span class="n">y_2</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;clamped&#39;</span><span class="p">)</span>
 <span class="n">y_3</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="n">bc_type</span><span class="o">=</span><span class="s1">&#39;natural&#39;</span><span class="p">)</span>
+
+<span class="n">y_1</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(-25.)
 </pre></div>
 </div>
 </div>
@@ -983,7 +993,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 <span class="c1"># spline &quot;not a knot&quot;</span>
 <span class="n">y_1</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para graficar</span>

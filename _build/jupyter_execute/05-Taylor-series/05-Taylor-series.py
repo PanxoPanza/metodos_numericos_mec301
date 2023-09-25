@@ -70,7 +70,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('capture', 'showplot', "import numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(-np.pi, np.pi, 200)\ny = np.zeros(x.shape)\n\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 16}) # Tamaño de fuente\n\nfor n in range(4):\n    y += ((-1)**n*(x)**(2*n+1))/np.math.factorial((2*n+1))\n    plt.plot(x,y, label = ('Orden %i' % (2*n+1)))\n\nplt.plot(x, np.sin(x), 'k', label = r'$\\sin(x)$')\nplt.grid()\nplt.title('Aproximación de sin(x) en series de Taylor (a = 0)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.legend()\nplt.show()\n")
+get_ipython().run_cell_magic('capture', 'showplot', "import numpy as np\nimport math    # para generar número factorial\nimport matplotlib.pyplot as plt\n\nx = np.linspace(-np.pi, np.pi, 200)\ny = np.zeros(x.shape)\n\nplt.figure(figsize = (9, 6))           # Tamaño de figura\nplt.rcParams.update({'font.size': 16}) # Tamaño de fuente\n\nfor n in range(10):\n    y += ((-1)**n*(x)**(2*n+1))/math.factorial((2*n+1))   # serie de taylor\n    plt.plot(x,y, label = ('Orden %i' % (2*n+1)))         # graficamos serie de taylor\n\nplt.plot(x, np.sin(x), 'k', label = r'$\\sin(x)$')\nplt.grid()\nplt.title('Aproximación de sin(x) en series de Taylor (a = 0)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.legend()\nplt.ylim(-2,2)\nplt.show()\n")
 
 
 # In[2]:
@@ -101,13 +101,11 @@ showplot()
 # In[3]:
 
 
-import numpy as np
 exp = 0
 x = 2
 print('Error de truncamiento |e^2 - f^(n)(2)|')
 for i in range(10):
-    exp = exp + \
-       ((x**i)/np.math.factorial(i))
+    exp = exp + ((x**i)/math.factorial(i))
     print('Aprox. orden %i = %.5f' % 
 
           (i,np.abs(exp - np.exp(2))))
@@ -124,10 +122,9 @@ for i in range(10):
 
 
 exp = 0
-x = -2
+x = -30
 for i in range(201):
-    exp = exp + \
-       ((x**i)/np.math.factorial(i))
+    exp = exp + ((x**i)/math.factorial(i))
 print('El valor de e^(-30)')    
 print('... Aproximación de orden %i: %.5e' % (i,exp))    
 print('... Valor exacto: %.5e' % np.exp(x))

@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Integración numérica
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 26 de Septiembre 2022
 
 # ## Introducción
 # El cálculo de integrales es fundamental en todos los problemas de ingeniería. Muchos ejemplos tienen relación directa con la estimación de áreas: (a) La superficie de un campo limitado por dos carreteras y un rio, (b) El área transversal de un canal, (c) La fuerza de arrastre sobre un edificio ocacionada por el viento.
@@ -78,14 +74,23 @@
 # \end{equation*}
 
 # ### Regla del trapecio (```scipy.integrate.trapezoid```)
-# Podemos mejorar la aproximación mediante una expansión de segundo orden, $f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i)$, donde la derivada es aproximada por $f^{\prime}(x_i) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} + O(h_i)$.
-
-# Reemplazando en la integral del subintervalo $x\in [x_i, x_{i+1}]$, obtenemos la **regla del trapecio**
+# Podemos mejorar la aproximación mediante una expansión de segundo orden,
 # 
-# \begin{align}
-# \int_{x_i}^{x_{i+1}}f(x) &= h_if(x_i) + \frac{h_i^2}{2}f^{\prime}(x_i) + O(h^3)\nonumber \\
-# &= h_i\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h_i^3).
-# \end{align}
+# \begin{equation*}
+# f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
+# \end{equation*}
+
+# Reemplazando en la integral del subintervalo $x\in [x_i, x_{i+1}]$:
+# 
+# \begin{equation*}
+# \int_{x_i}^{x_{i+1}}f(x) = h_if(x_i) + \frac{h_i^2}{2}f^{\prime}(x_i) + O(h^3)
+# \end{equation*}
+
+# Luego, aproximando la derivada como: $f^{\prime}(x_i) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} + O(h_i)$, obtenemos la **regla del trapecio:**
+# 
+# \begin{equation*}
+# \int_{x_i}^{x_{i+1}}f(x) = h_i\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h_i^3).
+# \end{equation*}
 
 # Considerando un set de $n+1$ puntos igualmente espaciados en el intervalo $x\in[a,b]$, la **regla del trapecio *extendida o compuesta*** es:
 # 
@@ -105,7 +110,7 @@
 # 
 # ```
 
-# **NOTA** ```scipy.intergrate.trapezoid``` no requiere que los valores de ```xi``` esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño ($h_i$ constante).
+# > ```scipy.intergrate.trapezoid``` no requiere que los valores de ```xi``` esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño ($h_i$ constante).
 
 # Más información en la [documentación oficial](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapezoid.html#scipy.integrate.trapezoid)
 
@@ -134,10 +139,23 @@ print('Error absoluto %.3e' % abs(2 - int_trpz))
 
 # El error es menor que $h^2 \approx 9.870\times 10^{-2}$
 
+# > La función `trapz` también está disponible desde la librería `numpy`. La función es similar a la disponible por `scipy`.
+
 # ### Regla de Simpson 1/3 (```scipy.integrate.simpson```)
 # En términos genrales, lo que hicimos en la regla del trapecio y Riemann es aproximar $f(x)$ por un polinomio y luego integrarlo en cada subintervalo $x\in [x_i, x_{i+1}]$. El error de truncamiento disminuye a medida que aumentamos el orden del polinomio.
 
-# La regla de Simpson sigue esta lógica, aunque utilizando polinomios de interpolación de Lagrange en lugar de expansiones de Taylor. 
+# La regla de Simpson sigue esta lógica, aunque utilizando **polinomios de interpolación de Lagrange** en lugar de expansiones de Taylor. 
+
+# Los polinomios de interpolación de Lagrange están dados por la fórmula:
+# 
+# \begin{equation*}
+# L(x) = \sum_{i = 0}^n y_i P_i(x),
+# \end{equation*}
+# 
+# donde $P_i(x)$, son las bases polinómicas definidas por:
+# \begin{equation*}
+# P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
+# \end{equation*}
 
 # Por ejemplo, la regla de Simpson 1/3 considera polinomios de Lagrange de segundo orden:
 # 
@@ -151,7 +169,7 @@ print('Error absoluto %.3e' % abs(2 - int_trpz))
 # \int_{x_{i-1}}^{x_{i+1}} f(x) dx = \frac{h}{3}\left[f(x_{i-1}) + 4f(x_i) + f(x_{i+1})\right] + O(h^5).
 # \end{equation}
 
-# Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es $O(h^5)$. La prueba de esto se deja como ejercicio.
+# Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es $O(h^5)$ ([ver demostración](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter21.04-Simpsons-Rule.html))
 
 # Para un set de $n+1$ puntos igualmente espaciados en el intervalo $x\in[a,b]$, la **regla de Simpson 1/3 *extendida o compuesta*** es:
 # 
@@ -161,7 +179,7 @@ print('Error absoluto %.3e' % abs(2 - int_trpz))
 
 # <img src="./images/simpson_rule.png" width="400px" align= center>
 
-# **NOTA** Debido a que la regla de Simpson 1/3 requiere de dos intervalos, el número de puntos debe ser impar.
+# > Notar que, debido a que la regla de Simpson 1/3 requiere de dos intervalos, el número de puntos debe ser impar.
 
 # En ```python``` tenemos la función ```simpson``` de la librería ```scipy.integrate```. La función también puede ser llamada como ```simps``` (alias).
 
@@ -172,7 +190,7 @@ print('Error absoluto %.3e' % abs(2 - int_trpz))
 # 
 # ```
 
-# **NOTA** ```scipy.intergrate.simpson``` no requiere que el número de puntos ```xi``` sea impar, ni que esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño ($h_i$ constante).
+# ```scipy.intergrate.simpson``` no requiere que el número de puntos ```xi``` sea impar, ni que esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño ($h_i$ constante).
 
 # **Si el número de puntos ```xi``` es par**, la función ```simpson```, por defecto, considera el promedio entre: 
 # 
@@ -226,7 +244,9 @@ print('Error absoluto %.3e\n' % abs(2 - int_sim12))
 # Esto ocurre debido a que, internamente, ```scipy.integrate.simpson``` considera regla del trapecio para el primer y/o último intervalo impar. La diferencia en el error es el castigo por considerar un método de orden de truncamiento mayor.
 
 # ## Integración de funciones evaluadas
-# Las fórmulas de Newton-Cotes son útiles cuando no conocemos la función y solo disponemos de datos tabulados. Si la función a integrar es conocida, las fórmulas de Newton-Cotes aún son válidas. Sin embargo, existen métodos más eficientes para calcular la integral numéricamente.
+# Las fórmulas de Newton-Cotes son útiles cuando no conocemos la función y solo disponemos de datos tabulados.
+
+# Si la función a integrar es conocida, las fórmulas de Newton-Cotes aún son válidas. Sin embargo, existen métodos más eficientes para calcular la integral numéricamente.
 
 # ### Cuadratura Gaussiana (```scipy.integrate.fixed_quad```)
 # En la regla del trapecio aproximamos la integral por el área bajo una línea contectando dos puntos. Tal como indica la figura de abajo, podemos mejorar este resultado buscando un trapecio que, conectando dos puntos de la curva, minice el error de la aproximación.
@@ -242,7 +262,9 @@ print('Error absoluto %.3e\n' % abs(2 - int_sim12))
 
 # En el caso de la regla del trapecio tenemos $x_0 = -1$, $x_1 = 1$, y $c_0=c_1=h/2$. Recordemos que esta fórmula fue derivada mediante la aproximación de $f(x)$ por un polinomio de grado 1.
 
-# Sin embargo, si liberamos las restricciones para $c_0$, $c_1$, $x_0$, $x_1$, podemos ajustar sus valores para un polinomio de mayor grado. Debido a que tenemos 4 incognitas, podemos generalizar el método para integrar un polinomio de grado 3 de manera exacta.
+# Sin embargo, si liberamos las restricciones para $c_0$, $c_1$, $x_0$, $x_1$, tenemos un problema 4 incognitas.
+
+# Debido a que ahora necesitamos 4 ecuaciones, aproximaremos la función a un polinomio de grado 3, de la forma $f(x) \approx a_0 + a_1x+ a_2x^2+a_3x^3$. Esto nos permitirá derivar las 4 euaciones para determinar $c_0$, $c_1$, $x_0$, $x_1$.
 
 # Mediante la aproximación, $f(x) \approx a_0 + a_1x+ a_2x^2+a_3x^3$, e integrando a ambos lados de la ecuación de cuadratura, derivamos el siguiente sistema de ecuaciones:
 # 
@@ -270,7 +292,7 @@ print('Error absoluto %.3e\n' % abs(2 - int_sim12))
 # Mediante un procedimiento similar, podemos generar aproximaciones para polinomios de mayor orden. La siguiente tabla resume la lista de pesos $c_i$ y puntos de evaluación $x_i$, junto a sus errores de truncamiento:
 # <img src="./images/gaussian_quadrature_table.png" width="700px" align= center>
 
-# **NOTA** El error de truncamiento de cuadratura Gaussiana disminuye con el número de puntos de evaluación, $n$, en la forma $O(h^{2n})$.
+# Notar que el error de truncamiento de cuadratura Gaussiana disminuye con el número de puntos de evaluación, $n$, en la forma $O(h^{2n})$.
 
 # En ```python``` tenemos la función ```fixed_quad``` para cuadratura Gaussiana, implementada en la libería ```scipy.integrate```. 
 
@@ -308,24 +330,24 @@ fixed_quad(f,a,b,n=2)[0] # cuadratura Gaussiana de 2 puntos
 
 
 import numpy as np
-import scipy.integrate as spint
+from scipy.integrate import fixed_quad, trapz
 
 N = 10                  # máximo número de puntos de integración
 f = lambda x: np.sin(x) # función en formato callable
 a, b = 0, np.pi         # intervalo de integración
 I0 = 2                  # valor exacto de la integral
 
-Etrapz_arr = [] # generamos una lista vacía para iterar
-Egauss_arr = [] # generamos una lista vacía para iterar
+Etrapz_arr = [] # generamos una lista vacía para guardar los resultados de "trapz"
+Egauss_arr = [] # generamos una lista vacía para guardar los resultados de "fixed_quad"
 for n in range(2,N+1):
     xi = np.linspace(a,b,n)
     
     # error regla del trapecio
-    Etrapz = abs(I0 - spint.trapz(f(xi),xi))    
+    Etrapz = abs(I0 - trapz(f(xi),xi))    
     Etrapz_arr.append(Etrapz)
     
     # error cuadratura de Gauss
-    Egauss = abs(I0 - spint.fixed_quad(f,a,b,n=n)[0])
+    Egauss = abs(I0 - fixed_quad(f,a,b,n=n)[0])
     Egauss_arr.append(Egauss)
 
 
@@ -333,8 +355,8 @@ for n in range(2,N+1):
 
 
 import matplotlib.pyplot as plt
-plt.figure(figsize = (7, 5))           # Tamaño de figura
-plt.rcParams.update({'font.size': 16}) # Tamaño de fuente
+plt.figure(figsize = (5, 3))           # Tamaño de lienzo
+plt.rcParams.update({'font.size': 12}) # Tamaño de fuente
 
 plt.plot(list(range(2,N+1)), Etrapz_arr,'o:r', label='Trapecio')
 plt.plot(list(range(2,N+1)), Egauss_arr,'o:b', label='Gauss')
@@ -361,9 +383,11 @@ plt.show()
 # 2. Determine el error absoluto $\epsilon = I_1 - I_2$.
 
 # 3. Si $\epsilon < \tau$, donde $\tau$ es la tolerancia, aceptamos $I_1$ como aproximación de $I$. En caso contrario, subdividimos el intervalo $x\in[a,b]$ en dos subintervalos:
+# 
 # \begin{equation*}
 # I = \int_a^m f(x) dx + \int_m^b f(x) dx\quad\quad m=(a+b)/2
 # \end{equation*}
+# 
 # y repetimos el paso (1) para cada integral.
 
 # Para calcular las estimaciones $I_1$ y $I_2$ se utiliza algún método de cuadratura estática, como por ejemplo, cuadratura de Gauss.

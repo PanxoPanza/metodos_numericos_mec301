@@ -86,7 +86,7 @@ def bisection(f,a,b,tol):
         
         # si no, evaluamos el intervalo acotado más cercano a x0
         if   f(a)*f(m) < 0 : b = m
-        elif f(a)*f(m) > 0 : a = m
+        elif f(m)*f(b) < 0 : a = m
         
         # llamamos a bisection recursivamente
         m = bisection(f,a,b,tol)
@@ -101,12 +101,12 @@ import matplotlib.pyplot as plt
 f = lambda x: np.exp(x) - x**2
 
 print('Análisis de intervalos')
-a, b = - 1, 1 # intervalo [a,b]
+a, b = -0.70350, 1 # intervalo [a,b]
 print('a = %.3f, f(a) = %.3f' % (a,f(a)))
 print('b = %.3f, f(b) = %.3f' % (b,f(b)))
 
 print('Resultado método de Bisección')
-tol = 0.01 # valor de tolerancia
+tol = 0.0001 # valor de tolerancia
 x0 = bisection(f,a,b,tol)
 print('x* = %.5f, f(x*) = %.3e' % (x0,f(x0)))
 
@@ -199,7 +199,7 @@ def newton_raphson(x0, df, f, tol):
 f =  lambda x: x**3 - 100*x**2 - x + 100
 df = lambda x: 3*x**2 - 200*x - 1
 
-x0 = 0
+x0 = 1.5
 tol = 0.001
 print('x* = %.3f, N. de iteraciones = %i' % 
       newton_raphson(x0, df, f, tol))
@@ -326,9 +326,8 @@ print('Cond. inicial y derivada (método po defecto):\n', root_scalar(f,x0=0.2,f
 # In[10]:
 
 
-sol = root_scalar(f,bracket=[0, 3])
-print('raíz x*=%.3f' % sol.root)
-print('número de iteraciones %i' % sol.iterations)
+sol = root_scalar(f,bracket=[0, 3]).root
+print('raíz x*=%.3f' % sol)
 
 
 # También podemos extraer el valor de la raíz directamente mediante ```root_scalar(...).root```
