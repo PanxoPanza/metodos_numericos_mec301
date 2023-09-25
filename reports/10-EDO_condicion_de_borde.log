@@ -1,19 +1,19 @@
 Traceback (most recent call last):
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/home/panxopanza/miniconda3/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+  File "/home/panxopanza/miniconda3/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
     return future.result()
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/panxopanza/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+  File "/home/panxopanza/miniconda3/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -38,36 +38,36 @@ Cell [0;32mIn[3], line 10[0m
 [0;32m---> 10[0m za_sol [38;5;241m=[39m [43mfsolve[49m[43m([49m[43mfobjective[49m[43m,[49m[43m [49m[43mx0[49m[43m [49m[38;5;241;43m=[39;49m[43m [49m[38;5;241;43m-[39;49m[38;5;241;43m40[39;49m[43m)[49m
 [1;32m     11[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mEl valor de za es: [39m[38;5;132;01m%.3f[39;00m[38;5;124m K/m[39m[38;5;124m'[39m [38;5;241m%[39m za_sol)
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/optimize/_minpack_py.py:163[0m, in [0;36mfsolve[0;34m(func, x0, args, fprime, full_output, col_deriv, xtol, maxfev, band, epsfcn, factor, diag)[0m
-[1;32m     51[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
-[1;32m     52[0m [38;5;124;03mFind the roots of a function.[39;00m
-[1;32m     53[0m 
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:162[0m, in [0;36mfsolve[0;34m(func, x0, args, fprime, full_output, col_deriv, xtol, maxfev, band, epsfcn, factor, diag)[0m
+[1;32m     50[0m [38;5;250m[39m[38;5;124;03m"""[39;00m
+[1;32m     51[0m [38;5;124;03mFind the roots of a function.[39;00m
+[1;32m     52[0m 
 [0;32m   (...)[0m
-[1;32m    153[0m 
-[1;32m    154[0m [38;5;124;03m"""[39;00m
-[1;32m    155[0m options [38;5;241m=[39m {[38;5;124m'[39m[38;5;124mcol_deriv[39m[38;5;124m'[39m: col_deriv,
-[1;32m    156[0m            [38;5;124m'[39m[38;5;124mxtol[39m[38;5;124m'[39m: xtol,
-[1;32m    157[0m            [38;5;124m'[39m[38;5;124mmaxfev[39m[38;5;124m'[39m: maxfev,
+[1;32m    152[0m 
+[1;32m    153[0m [38;5;124;03m"""[39;00m
+[1;32m    154[0m options [38;5;241m=[39m {[38;5;124m'[39m[38;5;124mcol_deriv[39m[38;5;124m'[39m: col_deriv,
+[1;32m    155[0m            [38;5;124m'[39m[38;5;124mxtol[39m[38;5;124m'[39m: xtol,
+[1;32m    156[0m            [38;5;124m'[39m[38;5;124mmaxfev[39m[38;5;124m'[39m: maxfev,
 [0;32m   (...)[0m
-[1;32m    160[0m            [38;5;124m'[39m[38;5;124mfactor[39m[38;5;124m'[39m: factor,
-[1;32m    161[0m            [38;5;124m'[39m[38;5;124mdiag[39m[38;5;124m'[39m: diag}
-[0;32m--> 163[0m res [38;5;241m=[39m [43m_root_hybr[49m[43m([49m[43mfunc[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43margs[49m[43m,[49m[43m [49m[43mjac[49m[38;5;241;43m=[39;49m[43mfprime[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43moptions[49m[43m)[49m
-[1;32m    164[0m [38;5;28;01mif[39;00m full_output:
-[1;32m    165[0m     x [38;5;241m=[39m res[[38;5;124m'[39m[38;5;124mx[39m[38;5;124m'[39m]
+[1;32m    159[0m            [38;5;124m'[39m[38;5;124mfactor[39m[38;5;124m'[39m: factor,
+[1;32m    160[0m            [38;5;124m'[39m[38;5;124mdiag[39m[38;5;124m'[39m: diag}
+[0;32m--> 162[0m res [38;5;241m=[39m [43m_root_hybr[49m[43m([49m[43mfunc[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43margs[49m[43m,[49m[43m [49m[43mjac[49m[38;5;241;43m=[39;49m[43mfprime[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43moptions[49m[43m)[49m
+[1;32m    163[0m [38;5;28;01mif[39;00m full_output:
+[1;32m    164[0m     x [38;5;241m=[39m res[[38;5;124m'[39m[38;5;124mx[39m[38;5;124m'[39m]
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/optimize/_minpack_py.py:229[0m, in [0;36m_root_hybr[0;34m(func, x0, args, jac, col_deriv, xtol, maxfev, band, eps, factor, diag, **unknown_options)[0m
-[1;32m    227[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(args, [38;5;28mtuple[39m):
-[1;32m    228[0m     args [38;5;241m=[39m (args,)
-[0;32m--> 229[0m shape, dtype [38;5;241m=[39m [43m_check_func[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mfsolve[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mfunc[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mfunc[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43margs[49m[43m,[49m[43m [49m[43mn[49m[43m,[49m[43m [49m[43m([49m[43mn[49m[43m,[49m[43m)[49m[43m)[49m
-[1;32m    230[0m [38;5;28;01mif[39;00m epsfcn [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    231[0m     epsfcn [38;5;241m=[39m finfo(dtype)[38;5;241m.[39meps
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:228[0m, in [0;36m_root_hybr[0;34m(func, x0, args, jac, col_deriv, xtol, maxfev, band, eps, factor, diag, **unknown_options)[0m
+[1;32m    226[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(args, [38;5;28mtuple[39m):
+[1;32m    227[0m     args [38;5;241m=[39m (args,)
+[0;32m--> 228[0m shape, dtype [38;5;241m=[39m [43m_check_func[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mfsolve[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mfunc[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mfunc[49m[43m,[49m[43m [49m[43mx0[49m[43m,[49m[43m [49m[43margs[49m[43m,[49m[43m [49m[43mn[49m[43m,[49m[43m [49m[43m([49m[43mn[49m[43m,[49m[43m)[49m[43m)[49m
+[1;32m    229[0m [38;5;28;01mif[39;00m epsfcn [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    230[0m     epsfcn [38;5;241m=[39m finfo(dtype)[38;5;241m.[39meps
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/optimize/_minpack_py.py:26[0m, in [0;36m_check_func[0;34m(checker, argname, thefunc, x0, args, numinputs, output_shape)[0m
-[1;32m     24[0m [38;5;28;01mdef[39;00m [38;5;21m_check_func[39m(checker, argname, thefunc, x0, args, numinputs,
-[1;32m     25[0m                 output_shape[38;5;241m=[39m[38;5;28;01mNone[39;00m):
-[0;32m---> 26[0m     res [38;5;241m=[39m atleast_1d([43mthefunc[49m[43m([49m[38;5;241;43m*[39;49m[43m([49m[43m([49m[43mx0[49m[43m[[49m[43m:[49m[43mnuminputs[49m[43m][49m[43m,[49m[43m)[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43margs[49m[43m)[49m[43m)[49m)
-[1;32m     27[0m     [38;5;28;01mif[39;00m (output_shape [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m) [38;5;129;01mand[39;00m (shape(res) [38;5;241m!=[39m output_shape):
-[1;32m     28[0m         [38;5;28;01mif[39;00m (output_shape[[38;5;241m0[39m] [38;5;241m!=[39m [38;5;241m1[39m):
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:25[0m, in [0;36m_check_func[0;34m(checker, argname, thefunc, x0, args, numinputs, output_shape)[0m
+[1;32m     23[0m [38;5;28;01mdef[39;00m [38;5;21m_check_func[39m(checker, argname, thefunc, x0, args, numinputs,
+[1;32m     24[0m                 output_shape[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m---> 25[0m     res [38;5;241m=[39m atleast_1d([43mthefunc[49m[43m([49m[38;5;241;43m*[39;49m[43m([49m[43m([49m[43mx0[49m[43m[[49m[43m:[49m[43mnuminputs[49m[43m][49m[43m,[49m[43m)[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[43margs[49m[43m)[49m[43m)[49m)
+[1;32m     26[0m     [38;5;28;01mif[39;00m (output_shape [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m) [38;5;129;01mand[39;00m (shape(res) [38;5;241m!=[39m output_shape):
+[1;32m     27[0m         [38;5;28;01mif[39;00m (output_shape[[38;5;241m0[39m] [38;5;241m!=[39m [38;5;241m1[39m):
 
 Cell [0;32mIn[3], line 5[0m, in [0;36mfobjective[0;34m(za)[0m
 [1;32m      4[0m [38;5;28;01mdef[39;00m [38;5;21mfobjective[39m(za):
@@ -75,14 +75,14 @@ Cell [0;32mIn[3], line 5[0m, in [0;36mfobjective[0;34m(za)[0m
 [1;32m      6[0m     T [38;5;241m=[39m sol[38;5;241m.[39my[[38;5;241m0[39m]      [38;5;66;03m# distribución de temperaturas en la barra[39;00m
 [1;32m      7[0m     [38;5;28;01mreturn[39;00m T[[38;5;241m-[39m[38;5;241m1[39m] [38;5;241m-[39m Tb
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/integrate/_ivp/ivp.py:557[0m, in [0;36msolve_ivp[0;34m(fun, t_span, y0, method, t_eval, dense_output, events, vectorized, args, **options)[0m
-[1;32m    554[0m [38;5;28;01mif[39;00m method [38;5;129;01min[39;00m METHODS:
-[1;32m    555[0m     method [38;5;241m=[39m METHODS[method]
-[0;32m--> 557[0m solver [38;5;241m=[39m [43mmethod[49m[43m([49m[43mfun[49m[43m,[49m[43m [49m[43mt0[49m[43m,[49m[43m [49m[43my0[49m[43m,[49m[43m [49m[43mtf[49m[43m,[49m[43m [49m[43mvectorized[49m[38;5;241;43m=[39;49m[43mvectorized[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43moptions[49m[43m)[49m
-[1;32m    559[0m [38;5;28;01mif[39;00m t_eval [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    560[0m     ts [38;5;241m=[39m [t0]
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/ivp.py:568[0m, in [0;36msolve_ivp[0;34m(fun, t_span, y0, method, t_eval, dense_output, events, vectorized, args, **options)[0m
+[1;32m    565[0m [38;5;28;01mif[39;00m method [38;5;129;01min[39;00m METHODS:
+[1;32m    566[0m     method [38;5;241m=[39m METHODS[method]
+[0;32m--> 568[0m solver [38;5;241m=[39m [43mmethod[49m[43m([49m[43mfun[49m[43m,[49m[43m [49m[43mt0[49m[43m,[49m[43m [49m[43my0[49m[43m,[49m[43m [49m[43mtf[49m[43m,[49m[43m [49m[43mvectorized[49m[38;5;241;43m=[39;49m[43mvectorized[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43moptions[49m[43m)[49m
+[1;32m    570[0m [38;5;28;01mif[39;00m t_eval [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    571[0m     ts [38;5;241m=[39m [t0]
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/integrate/_ivp/rk.py:89[0m, in [0;36mRungeKutta.__init__[0;34m(self, fun, t0, y0, t_bound, max_step, rtol, atol, vectorized, first_step, **extraneous)[0m
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/rk.py:89[0m, in [0;36mRungeKutta.__init__[0;34m(self, fun, t0, y0, t_bound, max_step, rtol, atol, vectorized, first_step, **extraneous)[0m
 [1;32m     85[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, fun, t0, y0, t_bound, max_step[38;5;241m=[39mnp[38;5;241m.[39minf,
 [1;32m     86[0m              rtol[38;5;241m=[39m[38;5;241m1e-3[39m, atol[38;5;241m=[39m[38;5;241m1e-6[39m, vectorized[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
 [1;32m     87[0m              first_step[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mextraneous):
@@ -92,14 +92,14 @@ File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/integrate/_ivp/rk.py
 [1;32m     91[0m     [38;5;28mself[39m[38;5;241m.[39my_old [38;5;241m=[39m [38;5;28;01mNone[39;00m
 [1;32m     92[0m     [38;5;28mself[39m[38;5;241m.[39mmax_step [38;5;241m=[39m validate_max_step(max_step)
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/integrate/_ivp/base.py:119[0m, in [0;36mOdeSolver.__init__[0;34m(self, fun, t0, y0, t_bound, vectorized, support_complex)[0m
-[1;32m    117[0m [38;5;28mself[39m[38;5;241m.[39mt_old [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[1;32m    118[0m [38;5;28mself[39m[38;5;241m.[39mt [38;5;241m=[39m t0
-[0;32m--> 119[0m [38;5;28mself[39m[38;5;241m.[39m_fun, [38;5;28mself[39m[38;5;241m.[39my [38;5;241m=[39m [43mcheck_arguments[49m[43m([49m[43mfun[49m[43m,[49m[43m [49m[43my0[49m[43m,[49m[43m [49m[43msupport_complex[49m[43m)[49m
-[1;32m    120[0m [38;5;28mself[39m[38;5;241m.[39mt_bound [38;5;241m=[39m t_bound
-[1;32m    121[0m [38;5;28mself[39m[38;5;241m.[39mvectorized [38;5;241m=[39m vectorized
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/base.py:135[0m, in [0;36mOdeSolver.__init__[0;34m(self, fun, t0, y0, t_bound, vectorized, support_complex)[0m
+[1;32m    133[0m [38;5;28mself[39m[38;5;241m.[39mt_old [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m    134[0m [38;5;28mself[39m[38;5;241m.[39mt [38;5;241m=[39m t0
+[0;32m--> 135[0m [38;5;28mself[39m[38;5;241m.[39m_fun, [38;5;28mself[39m[38;5;241m.[39my [38;5;241m=[39m [43mcheck_arguments[49m[43m([49m[43mfun[49m[43m,[49m[43m [49m[43my0[49m[43m,[49m[43m [49m[43msupport_complex[49m[43m)[49m
+[1;32m    136[0m [38;5;28mself[39m[38;5;241m.[39mt_bound [38;5;241m=[39m t_bound
+[1;32m    137[0m [38;5;28mself[39m[38;5;241m.[39mvectorized [38;5;241m=[39m vectorized
 
-File [0;32m~/miniconda3/lib/python3.10/site-packages/scipy/integrate/_ivp/base.py:6[0m, in [0;36mcheck_arguments[0;34m(fun, y0, support_complex)[0m
+File [0;32m~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/base.py:6[0m, in [0;36mcheck_arguments[0;34m(fun, y0, support_complex)[0m
 [1;32m      4[0m [38;5;28;01mdef[39;00m [38;5;21mcheck_arguments[39m(fun, y0, support_complex):
 [1;32m      5[0m [38;5;250m    [39m[38;5;124;03m"""Helper function for checking arguments common to all solvers."""[39;00m
 [0;32m----> 6[0m     y0 [38;5;241m=[39m [43mnp[49m[38;5;241;43m.[39;49m[43masarray[49m[43m([49m[43my0[49m[43m)[49m

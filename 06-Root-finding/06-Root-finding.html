@@ -573,7 +573,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
         
         <span class="c1"># si no, evaluamos el intervalo acotado más cercano a x0</span>
         <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">m</span>
-        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span>
         
         <span class="c1"># llamamos a bisection recursivamente</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">)</span>
@@ -589,12 +589,12 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Análisis de intervalos&#39;</span><span class="p">)</span>
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="c1"># intervalo [a,b]</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.70350</span><span class="p">,</span> <span class="mi">1</span> <span class="c1"># intervalo [a,b]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a = </span><span class="si">%.3f</span><span class="s1">, f(a) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b = </span><span class="si">%.3f</span><span class="s1">, f(b) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resultado método de Bisección&#39;</span><span class="p">)</span>
-<span class="n">tol</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># valor de tolerancia</span>
+<span class="n">tol</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># valor de tolerancia</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x* = </span><span class="si">%.5f</span><span class="s1">, f(x*) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)))</span>
 </pre></div>
@@ -602,17 +602,25 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de intervalos
-a = -1.000, f(a) = -0.632
+a = -0.704, f(a) = -0.000
 b = 1.000, f(b) = 1.718
 Resultado método de Bisección
-(a,b) = (-1.000, 1.000)
-(a,b) = (-1.000, 0.000)
-(a,b) = (-1.000, -0.500)
-(a,b) = (-0.750, -0.500)
-(a,b) = (-0.750, -0.625)
-(a,b) = (-0.750, -0.688)
-(a,b) = (-0.719, -0.688)
-x* = -0.70312, f(x*) = 6.511e-04
+(a,b) = (-0.704, 1.000)
+(a,b) = (-0.704, 0.148)
+(a,b) = (-0.704, -0.278)
+(a,b) = (-0.704, -0.491)
+(a,b) = (-0.704, -0.597)
+(a,b) = (-0.704, -0.650)
+(a,b) = (-0.704, -0.677)
+(a,b) = (-0.704, -0.690)
+(a,b) = (-0.704, -0.697)
+(a,b) = (-0.704, -0.700)
+(a,b) = (-0.704, -0.702)
+(a,b) = (-0.704, -0.703)
+(a,b) = (-0.704, -0.703)
+(a,b) = (-0.704, -0.703)
+(a,b) = (-0.704, -0.703)
+x* = -0.70345, f(x*) = 3.691e-05
 </pre></div>
 </div>
 </div>
@@ -634,8 +642,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f75d1de-6e56-4cdf-ac00-a3b57cc4972f">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-8f75d1de-6e56-4cdf-ac00-a3b57cc4972f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-826fe3ab-a8c4-4191-b64d-23f0e282b9ea">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-826fe3ab-a8c4-4191-b64d-23f0e282b9ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -683,7 +691,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">100</span>
 <span class="n">df</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.5</span>
 <span class="n">tol</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x* = </span><span class="si">%.3f</span><span class="s1">, N. de iteraciones = </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> 
       <span class="n">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">tol</span><span class="p">))</span>
@@ -691,7 +699,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x* = 100.000, N. de iteraciones = 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x* = 1.000, N. de iteraciones = 4
 </pre></div>
 </div>
 </div>
@@ -747,13 +755,13 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <h3><span class="section-number">6.2.4. </span>Error relativo y absoluto<a class="headerlink" href="#error-relativo-y-absoluto" title="Permalink to this headline">#</a></h3>
 <p>En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>. Sin embargo, este criterio no es correcto, ya que la definición de <span class="math notranslate nohighlight">\(f(x_0) \approx 0\)</span> es relativa a la escala de <span class="math notranslate nohighlight">\(f(x)\)</span> en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto <span class="math notranslate nohighlight">\(x_i\)</span>, siempre tendremos <span class="math notranslate nohighlight">\(f(x_i)\approx 0\)</span> si nos alejamos lo suficiente de la gráfica de la función.</p>
 <p>Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz <span class="math notranslate nohighlight">\(x^*\)</span>. Sin embargo, debido a que este valor es deconocido, definimos el <strong>error absoluto</strong> para cada nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> como:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c4f23ef-8cfa-40f6-b140-4629010a9bb8">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-7c4f23ef-8cfa-40f6-b140-4629010a9bb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-258f31bc-aaba-4725-96e2-6162fd67bffb">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-258f31bc-aaba-4725-96e2-6162fd67bffb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |x_{k+1} -x_{k}|
 \end{equation}\]</div>
 <p>Alternativamente, podemos definir el <strong>error relativo</strong> de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b781dfd-a73a-4471-a52d-9a0d7a3b46d7">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-7b781dfd-a73a-4471-a52d-9a0d7a3b46d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01cba1ec-5077-4ccb-bcdb-f12040ccb49b">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-01cba1ec-5077-4ccb-bcdb-f12040ccb49b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 \end{equation}\]</div>
 <p>En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
@@ -878,19 +886,19 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisección:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 43
      iterations: 41
            root: 1.0000000000004547
 Newton-Raphson:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 22
      iterations: 11
            root: 1.0
 Secante:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 23
      iterations: 22
            root: 1.0
@@ -910,19 +918,19 @@ Secante:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Brent´s:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 11
      iterations: 10
            root: 1.0
 Intervalo (método por defecto):
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 11
      iterations: 10
            root: 1.0
 Cond. inicial y derivada (método po defecto):
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 22
      iterations: 11
            root: 1.0
@@ -933,15 +941,13 @@ Cond. inicial y derivada (método po defecto):
 <p>Si hacemos <code class="docutils literal notranslate"><span class="pre">sol</span> <span class="pre">=</span> <span class="pre">root_scalar</span></code>, la variable <code class="docutils literal notranslate"><span class="pre">sol</span></code> almacena la información de la función:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raíz x*=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;número de iteraciones </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">iterations</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">root</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raíz x*=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>raíz x*=1.000
-número de iteraciones 10
 </pre></div>
 </div>
 </div>
