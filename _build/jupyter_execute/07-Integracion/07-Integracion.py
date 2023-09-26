@@ -407,7 +407,7 @@ print('Valor de la integral = %.5f' % quad(f,a,b)[0])
 print('Error absoluto = %.5e'       % quad(f,a,b)[1])
 
 
-# ```quad``` también permite determinar integrales con intervalos hacia el infinito.
+# ```quad``` también permite determinar integrales impropias.
 
 # Por ejemplo, consideremos la integral
 # 
