@@ -568,8 +568,8 @@ Fecha: 24 de Octubre 2022</p>
 <h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Permalink to this headline">#</a></h3>
 <p>El sistema puede estar compuesto de una ecuacion diferencial.</p>
 <p>Por ejemplo, la <em><strong>ecuación del péndulo</strong></em> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7f0bdd2-6a3b-4375-9ccb-cbe1e3f3b93c">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-e7f0bdd2-6a3b-4375-9ccb-cbe1e3f3b93c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-529f252f-b6e8-4399-a7d2-c25925c37422">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-529f252f-b6e8-4399-a7d2-c25925c37422" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
@@ -578,8 +578,8 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 <p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente está condicionada por una variable independiente. Adicionalmente, debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la EDO se transforma a una ecuación del tipo lineal:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a5c18405-11b4-4a19-9c3c-510aac571f74">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-a5c18405-11b4-4a19-9c3c-510aac571f74" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6ddb8e1a-900a-445c-acaf-b1e2f9a0f4cb">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-6ddb8e1a-900a-445c-acaf-b1e2f9a0f4cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta(t)}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tiene solución analítica.</p>
@@ -604,8 +604,8 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres funciones <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span> y <span class="math notranslate nohighlight">\(p\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos clasificar una ecuación diferencial según el orden de sus derivadas.</p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-122029aa-4da9-4fca-bbd0-d35468d79862">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-122029aa-4da9-4fca-bbd0-d35468d79862" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ad0f098-fbc4-465a-902b-e61012304cc6">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-9ad0f098-fbc4-465a-902b-e61012304cc6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -663,8 +663,8 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Permalink to this headline">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d589a493-de2f-47db-91ec-24ca47d206c7">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-d589a493-de2f-47db-91ec-24ca47d206c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-85c1a819-95eb-4019-a15a-6b216995a27a">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-85c1a819-95eb-4019-a15a-6b216995a27a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones inciales:
@@ -683,8 +683,8 @@ T(0,x,y) = T_a
 \frac{d}{dt}\dot{\Theta}(t) &amp;= F_2(t,\Theta, \dot{\Theta})  = - \frac{g}{l}\sin \Theta - \frac{\kappa}{ml}\dot{\Theta}
 \end{align*}\]</div>
 <p>En conclución, <strong>siempre podemos reducir una EDO a un problema de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-20d2ec09-9c14-4f70-b5c0-caf7e3017361">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-20d2ec09-9c14-4f70-b5c0-caf7e3017361" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ecec56f0-613f-46c1-aed2-0521880ba397">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-ecec56f0-613f-46c1-aed2-0521880ba397" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d}{dt}\vec{y} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -844,8 +844,8 @@ T(0,x,y) = T_a
 <p>Es posible demostrar que para ecuaciones del tipo <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, la condición de estabilidad del método de Euler explícito está dada por <span class="math notranslate nohighlight">\(h &gt; 2/a\)</span>.</p>
 <p>En otras palabras, el método de Euler explícito es <em><strong>condicionalmente estable</strong></em></p>
 <p>Alternativamente, podemos definir el <strong>método de Euler implícito</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9eb0e7aa-a756-4b75-9ab7-4a08ec60311e">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-9eb0e7aa-a756-4b75-9ab7-4a08ec60311e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84b309bd-35d8-444c-b5e9-6754e37f5daa">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-84b309bd-35d8-444c-b5e9-6754e37f5daa" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}[t_{i+1},\vec{y}_{i+1}] + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como implícita debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -874,12 +874,6 @@ T(0,x,y) = T_a
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">E_implicit</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">yip1</span><span class="p">:</span> <span class="n">yip1</span> <span class="o">-</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">yip1</span><span class="p">))</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">E_implicit</span><span class="p">,</span><span class="n">x0</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11174/2742748.py:21: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  y[i+1] = fsolve(E_implicit,x0 = y[i])
 </pre></div>
 </div>
 </div>
@@ -918,14 +912,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d391e3d2-9c5e-4517-ad4a-f152dc1021e4">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-d391e3d2-9c5e-4517-ad4a-f152dc1021e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e0ab994-031d-4332-8c30-374a8b4206a6">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-8e0ab994-031d-4332-8c30-374a8b4206a6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b8bb7f8-ac1d-4fa6-88a5-b689a8e4e4a7">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-6b8bb7f8-ac1d-4fa6-88a5-b689a8e4e4a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d907dbf3-eed4-4908-91e8-e097afe3c657">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-d907dbf3-eed4-4908-91e8-e097afe3c657" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -951,8 +945,8 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Permalink to this headline">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d15cefa4-a82d-458c-8942-c01ad4e4a027">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-d15cefa4-a82d-458c-8942-c01ad4e4a027" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5ff4d5e5-5297-4421-b0c8-6c5301c5a931">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-5ff4d5e5-5297-4421-b0c8-6c5301c5a931" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1128,18 +1122,48 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: The solver successfully reached the end of the integration interval.
-  success: True
-   status: 0
-        t: [ 0.000e+00  1.753e-04 ...  4.955e+00  5.000e+00]
-        y: [[ 1.745e-01  1.745e-01 ... -2.589e-03 -2.683e-03]
-            [ 0.000e+00 -9.942e-04 ... -4.145e-03 -8.792e-05]]
-      sol: None
- t_events: None
- y_events: None
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: &#39;The solver successfully reached the end of the integration interval.&#39;
      nfev: 230
      njev: 0
       nlu: 0
+      sol: None
+   status: 0
+  success: True
+        t: array([0.00000000e+00, 1.75284586e-04, 1.92813044e-03, 1.94565890e-02,
+       1.39441050e-01, 3.04008731e-01, 4.72919132e-01, 6.35118344e-01,
+       7.83387614e-01, 9.31662174e-01, 1.07845955e+00, 1.24456245e+00,
+       1.40132489e+00, 1.57147017e+00, 1.73206020e+00, 1.88426787e+00,
+       2.03536835e+00, 2.18646883e+00, 2.35301990e+00, 2.50923821e+00,
+       2.68049986e+00, 2.84188849e+00, 2.99499158e+00, 3.14863804e+00,
+       3.30228450e+00, 3.46974090e+00, 3.62757996e+00, 3.80012204e+00,
+       3.96538139e+00, 4.11683664e+00, 4.29182086e+00, 4.44982848e+00,
+       4.61612277e+00, 4.78210241e+00, 4.95498197e+00, 5.00000000e+00])
+ t_events: None
+        y: array([[ 1.74532925e-01,  1.74532838e-01,  1.74522392e-01,
+         1.73471824e-01,  1.25987979e-01,  1.94514445e-04,
+        -9.68827250e-02, -9.91909415e-02, -3.85813400e-02,
+         3.18500394e-02,  6.76552832e-02,  5.14324950e-02,
+         4.50938836e-03, -3.65980724e-02, -4.05640071e-02,
+        -1.73215600e-02,  1.13959895e-02,  2.66548406e-02,
+         2.06025104e-02,  2.18436090e-03, -1.43587299e-02,
+        -1.60884253e-02, -6.88091627e-03,  4.64656330e-03,
+         1.06031246e-02,  7.93514938e-03,  5.08559338e-04,
+        -5.86432155e-03, -6.18855316e-03, -2.38783173e-03,
+         2.58539936e-03,  4.26560179e-03,  2.55555006e-03,
+        -6.03769523e-04, -2.58877355e-03, -2.68342371e-03],
+       [ 0.00000000e+00, -9.94157675e-04, -1.09195610e-02,
+        -1.08377048e-01, -6.34349851e-01, -7.73453179e-01,
+        -3.08022095e-01,  2.55233415e-01,  5.02378023e-01,
+         3.94619950e-01,  7.75948888e-02, -2.42632573e-01,
+        -3.12242336e-01, -1.40650910e-01,  8.43495076e-02,
+         1.96621785e-01,  1.61083137e-01,  3.36926023e-02,
+        -9.46002249e-02, -1.23979799e-01, -5.68328076e-02,
+         3.27661853e-02,  7.77484208e-02,  6.31666005e-02,
+         1.15942581e-02, -3.85503165e-02, -4.86151013e-02,
+        -2.05595404e-02,  1.52212371e-02,  3.10997807e-02,
+         2.14030020e-02, -6.01072841e-04, -1.75728871e-02,
+        -1.75901901e-02, -4.14469138e-03, -8.79234631e-05]])
+ y_events: None
 </pre></div>
 </div>
 </div>

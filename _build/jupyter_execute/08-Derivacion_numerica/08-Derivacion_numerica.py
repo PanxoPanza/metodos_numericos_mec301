@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Derivación numérica
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 26 de Septiembre 2022
 
 # ## Introducción
 # 
@@ -158,7 +154,7 @@ showplot1()
 
 # ### Derivadas de segundo o mayor orden
 
-# Mediante un procedimiento similar, podemos generar aproximacióndes de diferencias finitas para derivadas de mayor orden.
+# Mediante un procedimiento similar, podemos generar aproximaciónes de diferencias finitas para derivadas de mayor orden.
 
 # Por ejemplo, consideremos la suma de las expansiones $f(x_{i+1})$ y $f(x_{i-1})$ centradas en $x_i$,
 # 

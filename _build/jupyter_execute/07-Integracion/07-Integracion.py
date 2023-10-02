@@ -131,7 +131,8 @@ import scipy.integrate as spint
 a, b = 0, np.pi                            # intervalo de integración
 h = (b-a)/10                               # tamaño de subintervalo
 xi = np.arange(a,b,h)                      # set de puntos xi
-int_trpz = spint.trapezoid(np.sin(xi), xi) # Regla del trapecio
+yi = np.sin(xi)
+int_trpz = spint.trapezoid(yi, xi) # Regla del trapecio
 
 print('Regla trapecio: %.3f' % int_trpz)
 print('Error absoluto %.3e' % abs(2 - int_trpz))
@@ -142,7 +143,7 @@ print('Error absoluto %.3e' % abs(2 - int_trpz))
 # > La función `trapz` también está disponible desde la librería `numpy`. La función es similar a la disponible por `scipy`.
 
 # ### Regla de Simpson 1/3 (```scipy.integrate.simpson```)
-# En términos genrales, lo que hicimos en la regla del trapecio y Riemann es aproximar $f(x)$ por un polinomio y luego integrarlo en cada subintervalo $x\in [x_i, x_{i+1}]$. El error de truncamiento disminuye a medida que aumentamos el orden del polinomio.
+# En términos generales, lo que hicimos en la regla del trapecio y Riemann es aproximar $f(x)$ por un polinomio y luego integrarlo en cada subintervalo $x\in [x_i, x_{i+1}]$. El error de truncamiento disminuye a medida que aumentamos el orden del polinomio.
 
 # La regla de Simpson sigue esta lógica, aunque utilizando **polinomios de interpolación de Lagrange** en lugar de expansiones de Taylor. 
 
@@ -372,7 +373,12 @@ plt.show()
 
 
 # ### Cuadratura adaptativa (```scipy.integrate.quad```)
-# Los métodos de cuadratura adaptativa son los más utilizados hoy en dia. Aunque existen diversos tipos, podemos resumir el procedimiento mediante los siguientes pasos:
+# Los métodos de cuadratura adaptativa son los más utilizados hoy en dia. Estos métodos toman en cuenta cambios abruptos en regiones acotadas de una función, refinando el valor de $h$ directamente en estos intervalos.
+# 
+# 
+# <img src="./images/adaptive_quadrature.png" width="450px" align= center>
+
+# Aunque existen diversos tipos, podemos resumir el procedimiento mediante los siguientes pasos:
 
 # 1. Supongamos que tenemos dos estimaciones $I_1$ y $I_2$ de la integral:
 # \begin{equation*}
@@ -430,8 +436,14 @@ print('I = %.5f; E. absoluto = %.5e' % quad(f,a,b))
 # quad(f,a,b,epsabs=1E-5) # Tolerancia absoluta de 0.00001
 # quad(f,a,b,epsrel=1E-2) # Tolerancia relativa del 1%
 # ```
+# > Por defecto, ```epsabs=1.49e-08```, y ```epsrel=1.49e-08```.
 
-# Por defecto, ```epsabs=1.49e-08```, y ```epsrel=1.49e-08```.
+# También podemos ajustar el número máximo de subdivisiones del dominio mediante `limit=50`.
+# 
+# ```python
+# quad(f,a,b,limit=20) # 20 subintervalos como máximo
+# ```
+# > Por defecto, ```limit=50```.
 
 # Más información en la [documentación oficial](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad)
 
