@@ -438,7 +438,7 @@ print('I = %.5f; E. absoluto = %.5e' % quad(f,a,b))
 # ```
 # > Por defecto, ```epsabs=1.49e-08```, y ```epsrel=1.49e-08```.
 
-# También podemos ajustar el número máximo de subdivisiones del dominio mediante `limit=50`.
+# También podemos ajustar el número máximo de subdivisiones del dominio mediante `limit`.
 # 
 # ```python
 # quad(f,a,b,limit=20) # 20 subintervalos como máximo

@@ -45,7 +45,7 @@
 # \Theta(t = t_1) &= \Theta_1
 # \end{align*}
 
-# Una condición de borde, así se define como el *condicionamiento de una solución en valores extremos*
+# Una condición de borde, así se define como el **condicionamiento de una solución en valores extremos**
 
 # Aunque en el ejemplo anterior consideramos la variable tiempo, los problemas de condiciones de borde son normalmente aplicados para variables espaciales.
 
@@ -549,7 +549,7 @@ plt.show()
 # 
 # Los problemas con condiciones de borde también estan expuestos a errores por truncamiento y por estabilidad.
 
-# -  En el caso del **método del disparo**, el error es similar a lo discutido con los métodos para resolver EDOs con valor inicial. Es decir, **este método puede presentar problemas de inestabilidad y errores de truncamiento** dependiendo del método utilizado para resolver el problema de valor inicial
+# -  En el caso del **método del disparo**, el error es similar a lo discutido con los métodos para resolver EDOs con valor inicial. Es decir, **este método puede presentar problemas de inestabilidad, rigidez, y errores de truncamiento** dependiendo del método utilizado para resolver el problema de valor inicial
 
 # - En el caso del **método de diferencias finitas**, el **error está directamente asociado al truncamiento de la serie de Taylor**, lo cual depende del esquema utilizado para la discretización (diferencia central, diferencia hacia adelante, etc).
 

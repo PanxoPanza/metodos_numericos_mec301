@@ -18,7 +18,7 @@
 # Matemáticamente, representamos la derivada $f'(x)$ de una función $f(x)$ en el punto $x=a$ como: 
 # 
 # \begin{equation*}
-# \frac{df}{dx} = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{h}
+# \frac{df}{dx} = \lim_{a\rightarrow 0}\frac{f(x+a)-f(x)}{a}
 # \end{equation*}
 
 # Gráficamente, para $a = x_i$ entre dos valores igualmente espaciados $x_{i-1}$ y $x_{i+1}$, con $h = x_i - x_{i-1}$, tenemos tres alternativas para aproximar $f'(x_i)$:
@@ -33,7 +33,7 @@
 # 
 # \begin{align*}
 # f(x) &= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!} + \frac{f''(x_i)(x - x_i)^2}{2!} + \frac{f'''(x_i)(x - x_i)^3}{3!} + \cdots \\[10pt]
-# &= f(x_j) + f^{\prime}(x_i)(x - x_i) + \frac{f''(x_i)}{2}(x - x_i)^2 + \frac{f'''(x_i)}{6}(x - x_i)^3 + \cdots
+# &= f(x_i) + f^{\prime}(x_i)(x - x_i) + \frac{f''(x_i)}{2}(x - x_i)^2 + \frac{f'''(x_i)}{6}(x - x_i)^3 + \cdots
 # \end{align*}
 # 
 

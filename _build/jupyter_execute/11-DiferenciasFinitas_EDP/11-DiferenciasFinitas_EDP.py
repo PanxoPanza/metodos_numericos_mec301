@@ -338,7 +338,7 @@ showplot()
 
 # ### Variables secundarias
 # 
-# En el problema anterior, la temperatura es la varible principal del problema. Sin embargo, es común que también que necesitemos información de **variables secundarias** basadas en la derivada o integral de la variable principal.
+# En el problema anterior, la temperatura es la varible principal del problema. Sin embargo, es común que también necesitemos información de **variables secundarias** basadas en la derivada o integral de la variable principal.
 
 # Por ejemplo, el **flujo de calor** está definido por: $\vec{q} = -k \nabla T = - k\left(\frac{\partial T}{\partial x}\hat{x} +\frac{\partial T}{\partial y}\hat{y}\right)$
 
