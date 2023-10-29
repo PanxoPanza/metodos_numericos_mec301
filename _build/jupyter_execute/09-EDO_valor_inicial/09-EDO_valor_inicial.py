@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Ecuaciones Diferenciales Ordinarias con valor inicial
+# # Problemas de valor inicial
 
 # ## Introducción
 # 
@@ -11,12 +11,12 @@
 
 # ### Clasificación de ecuaciones diferenciales
 
-# Una ecuacion diferencial puede estar compueta por **una variable dependiente y una independiente**.
+# Una ecuacion diferencial puede estar compuesta por **una variable dependiente y una independiente**.
 
 # Por ejemplo, la **ecuación del péndulo** que define la variación temporal del ángulo $\Theta$ en función del tiempo $t$:
 # 
 # \begin{equation}
-# ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
+# ml\frac{d^2}{dt^2}\Theta(t) + \kappa l\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 # \end{equation}
 # 
 # donde $g$ es la gravedad, $m$ la masa del péndulo, $l$ es la distancia al centro de rotación y $\kappa$ es una constante a amortiguación asociado al arrastre por el viento
@@ -117,7 +117,7 @@
 # **Condición de borde**
 # 
 # \begin{equation*}
-# T_f = T_{f,i}
+# T_f(y = 0) = T_{f,i}
 # \end{equation*}
 
 # donde $T_{f,i}$ es la temperatura del agua a la entrada del colector, $\dot{m}$ es el flujo másico de agua por el colector, $T_a$ es la temperatura ambiente, $S$ es la radiación solar absorbida, $c_p$ es el calor específico del agua, $U_L$ es el coeficiente global de transferencia de calor, y $n$, $W$ y $F'$ son parámetros de diseño del colector.
@@ -259,19 +259,19 @@ import numpy as np
 y_exact = lambda t: -0.5*np.exp(-2*t)
 
 # Definimos parámetros numéricos
-h = 0.1                       # paso de tiempo
-t = np.arange(0, 1+h, h)      # lista de tiempos 
+h = 0.01                       # paso de tiempo (dt)
+t = np.arange(0, 1+h, h)      # lista de tiempos (arreglo desde 0 a 1s)
 
 # Escribimos ecuación diferencial en formato de código 
 F = lambda t, y: np.exp(-2*t) # Ecuación gobernante dy = F(t,y)
 y0 = -0.5                     # Condición inicial
 
 # Método de Euler
-y = np.zeros(len(t))
+y = np.zeros(len(t))          # arreglo vacio para y
 y[0] = y0
 
 for i in range(len(t)-1):
-    y[i+1] = y[i] + h*F(t[i], y[i])
+    y[i+1] = y[i] + h*F(t[i], y[i]) # Euler explicito
     
 
 
@@ -329,7 +329,7 @@ import numpy as np
 y_exact = lambda t: 0.5*np.exp(-20*t)
 
 # Definimos parámetros numéricos
-h = 0.09                       # paso de tiempo
+h = 0.05                       # paso de tiempo
 t = np.arange(0, 1+h, h)      # lista de tiempos 
  
 # Ecuación diferencial 
@@ -409,7 +409,7 @@ from scipy.optimize import fsolve
 y_exact = lambda t: 0.5*np.exp(-20*t)
 
 # Definimos parámetros numéricos
-h = 0.05                  # paso de tiempo
+h = 0.1                  # paso de tiempo
 t = np.arange(0, 1+h, h)  # lista de tiempos 
 
 # Ecuación diferencial 
@@ -606,7 +606,7 @@ plt.show()
 # - `t_span = (ti, tf)`: (*tupple*) intervalo entre el valor inicial (`ti`)  y final (`tf`).
 # - `y0`: (*ndarray*) condición inicial $\vec{y}(0)$
 
-# La función posee 6 métodos disponibles, los cuales se pueden condicionar con un cuarto argumento `method`.
+# La función posee 5 métodos disponibles, los cuales se pueden condicionar con un cuarto argumento `method`.
 
 # Entre los métodos disponibles tenemos:
 # - `method = 'RK45'`: [Runge-Kutta 4(5) explícito](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method).
@@ -640,7 +640,7 @@ plt.show()
 # \Theta(t = 0) &= \Theta_0
 # \end{align*}
 
-# Primero debemos transformar la ecuación a la forma $\vec{y} = F(t,\vec{y})$:
+# Primero debemos transformar la ecuación a la forma $\frac{d}{dt}\vec{y} = F(t,\vec{y})$:
 
 # **Ecuación gobernante**
 # 
@@ -673,20 +673,19 @@ import numpy as np
 
 theta0 = np.radians(10) # condición inicial
 
+m = 0.1  # masa péndulo (kg)
+l = 0.3  # largo del péndulo (m)
+K = 0.05 # constante de amortiguación (kg/m*s)
+g = 9.8  # gravedad (m/s2)
+    
 # Definimos la función F(t,y)
 def F(t,y):
-    m = 0.1  # masa péndulo (kg)
-    l = 0.3  # largo del péndulo (m)
-    K = 0.05 # constante de amortiguación (kg/m*s)
-    g = 9.8  # gravedad (m/s2)
-    
-    f = np.zeros(2)
-    f[0] = y[1]
-    f[1] = - g/l*np.sin(y[0]) - K/(m*l)*y[1]
-    return f
+    return [y[1],                              # F0(t,y)
+            - g/l*np.sin(y[0]) - K/(m*l)*y[1]] # F1(t,y)
 
 # Condicion inicial
-y0 = np.array([theta0,0]) 
+y0 = np.array([theta0,   # posición inicial
+               0])       # velocidad inicial
 
 
 # In[8]:
@@ -721,7 +720,7 @@ print('Tamaño arreglo y:', sol.y.shape)
 # In[10]:
 
 
-idx = 20
+idx = 30
 print('Ángulo en t = %.1fs: %.3f°' % (sol.t[idx], np.degrees(sol.y[0,idx])))
 print('Velocidad angular en t = %.1fs: %.3f°/s' % (sol.t[idx], np.degrees(sol.y[1,idx])))
 
