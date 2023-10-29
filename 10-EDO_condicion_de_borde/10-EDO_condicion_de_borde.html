@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde &#8212; MEC301 - Métodos Numéricos</title>
+    <title>10. Problema de valor en la frontera &#8212; MEC301 - Métodos Numéricos</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11. Diferencias finitas para ecuaciones diferenciales parciales" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html" />
-    <link rel="prev" title="9. Ecuaciones Diferenciales Ordinarias con valor inicial" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html" />
+    <link rel="prev" title="9. Problemas de valor inicial" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -173,12 +173,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">
-   9. Ecuaciones Diferenciales Ordinarias con valor inicial
+   9. Problemas de valor inicial
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
+   10. Problema de valor en la frontera
   </a>
  </li>
  <li class="toctree-l1">
@@ -353,23 +353,75 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#el-metodo-de-disparo">
-   10.2. El método de disparo
+  <a class="reference internal nav-link" href="#metodo-de-disparo">
+   10.2. Método de disparo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#condiciones-de-borde-de-newman-o-robin">
+     10.2.1. Condiciones de borde de Newman o Robin
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">
+   10.3. Método de diferencias finitas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">
+     10.3.1. EDO lineal con condición de borde de Dirichlet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">
+     10.3.2. EDO lineal con condición de borde de Robin
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-no-lineal">
+     10.3.3. EDO no lineal
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-colocacion">
+   10.4. Método de colocación
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#el-metodo-de-diferencias-finitas">
-   10.3. El método de diferencias finitas
+  <a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">
+   10.5. Problemas de valor de frontera en python (
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_bvp
+    </span>
+   </code>
+   )
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aspectos-generales">
+     10.5.1. Aspectos generales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     10.5.2. Ejemplo
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">
-   10.4. Errores numéricos y  estabilidad
+   10.6. Errores numéricos y  estabilidad
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   10.5. Referencias
+   10.7. Referencias
   </a>
  </li>
 </ul>
@@ -381,7 +433,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</h1>
+                <h1>Problema de valor en la frontera</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -397,23 +449,75 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#el-metodo-de-disparo">
-   10.2. El método de disparo
+  <a class="reference internal nav-link" href="#metodo-de-disparo">
+   10.2. Método de disparo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#condiciones-de-borde-de-newman-o-robin">
+     10.2.1. Condiciones de borde de Newman o Robin
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">
+   10.3. Método de diferencias finitas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">
+     10.3.1. EDO lineal con condición de borde de Dirichlet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">
+     10.3.2. EDO lineal con condición de borde de Robin
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#edo-no-lineal">
+     10.3.3. EDO no lineal
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-colocacion">
+   10.4. Método de colocación
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#el-metodo-de-diferencias-finitas">
-   10.3. El método de diferencias finitas
+  <a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">
+   10.5. Problemas de valor de frontera en python (
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     solve_bvp
+    </span>
+   </code>
+   )
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aspectos-generales">
+     10.5.1. Aspectos generales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     10.5.2. Ejemplo
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">
-   10.4. Errores numéricos y  estabilidad
+   10.6. Errores numéricos y  estabilidad
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias">
-   10.5. Referencias
+   10.7. Referencias
   </a>
  </li>
 </ul>
@@ -426,15 +530,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
-<section class="tex2jax_ignore mathjax_ignore" id="ecuaciones-diferenciales-ordinarias-con-condiciones-de-borde">
-<h1><span class="section-number">10. </span>Ecuaciones Diferenciales Ordinarias con Condiciones de Borde<a class="headerlink" href="#ecuaciones-diferenciales-ordinarias-con-condiciones-de-borde" title="Permalink to this headline">#</a></h1>
-<p><br><br><br><br>
-Profesor: Francisco Ramírez Cuevas<br>
-Fecha: 12 de noviembre 2022</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="problema-de-valor-en-la-frontera">
+<h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Permalink to this headline">#</a></h1>
 <section id="introduccion">
 <h2><span class="section-number">10.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
-<p>En la unidad anterior nos enfocamos en ecuación diferenciales ordinarias condionadas por valores iniciales.</p>
+<p>En la unidad anterior nos enfocamos en ecuación diferenciales ordinarias condionadas por valores iniciales o <strong>problema de valor inicial</strong>.</p>
 <p>Repasando la ecuación del péndulo:</p>
 <p><strong>Ecuación gobernante</strong></p>
 <div class="amsmath math notranslate nohighlight">
@@ -448,7 +548,7 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 \Theta(t = 0) &amp;= \Theta_0
 \end{align*}\]</div>
 <p>Ahora, supontagamos que en el problema del péndulo conocemos el ángulo en <span class="math notranslate nohighlight">\(t = 0\)</span>, y en un tiempo <span class="math notranslate nohighlight">\(t = t_1\)</span>, tal que <span class="math notranslate nohighlight">\(\Theta(t_1) = \Theta_1\)</span>.</p>
-<p>En este caso, la EDO está condicionada por <strong>condiciones de borde</strong>, en la forma</p>
+<p>En este caso, la EDO está condicionada por <strong>condiciones de frontera</strong>, en la forma</p>
 <p><strong>Ecuación gobernante</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -461,8 +561,8 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 \Theta(t = t_1) &amp;= \Theta_1
 \end{align*}\]</div>
 <p>Una condición de borde, así se define como el <strong>condicionamiento de una solución en valores extremos</strong></p>
-<p>Aunque en el ejemplo anterior consideramos la variable tiempo, los problemas de condiciones de borde son normalmente aplicados para variables espaciales.</p>
-<p>Por ejemplo, consideremos el problema de una barra de largo <span class="math notranslate nohighlight">\(L\)</span>, con temperatura constante en los extremos izquierdo y derecho <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(T_b\)</span>, respectivamente, y expuesta a pérdidas de calor por convección y radiación.</p>
+<p>Aunque en el ejemplo anterior consideramos la variable tiempo, los <strong>problemas de condiciones de borde o valor de frontera, son normalmente aplicados para variables espaciales.</strong></p>
+<p>Por ejemplo, consideremos el problema de una barra de largo <span class="math notranslate nohighlight">\(L\)</span> y diámetro <span class="math notranslate nohighlight">\(d\)</span>, con temperatura constante en los extremos izquierdo y derecho <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(T_b\)</span>, respectivamente, y expuesta a pérdidas de calor por convección y radiación.</p>
 <a class="reference internal image-reference" href="../_images/heated_bar.png"><img alt="../_images/heated_bar.png" class="align-center" src="../_images/heated_bar.png" style="width: 400px;" /></a>
 <p>La ecuación que describe la distribución de temperaturas en el eje axial está definida por:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -476,33 +576,34 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 T(0) &amp;= T_a\\
 T(L) &amp;= T_b
 \end{align*}\]</div>
-<p>El modelo respresenta una <strong>EDO no lineal con condiciones de borde</strong>.</p>
+<p>El modelo respresenta una <strong>EDO no lineal con valor de frontera</strong>.</p>
 <p>En esta unidad revisaremos dos métodos para resolver este tipo de problemas:</p>
 <ul class="simple">
 <li><p>Método del disparo</p></li>
 <li><p>Método de diferencias finitas</p></li>
 </ul>
 </section>
-<section id="el-metodo-de-disparo">
-<h2><span class="section-number">10.2. </span>El método de disparo<a class="headerlink" href="#el-metodo-de-disparo" title="Permalink to this headline">#</a></h2>
+<section id="metodo-de-disparo">
+<h2><span class="section-number">10.2. </span>Método de disparo<a class="headerlink" href="#metodo-de-disparo" title="Permalink to this headline">#</a></h2>
 <p>El método del disparo consiste en transformar una EDO con condiciones de borde a una EDO de valor inicial. Mediante un proceso iterativo, el método busca una solución al problema de valores iniciales que satisfaga la condiciones de bordes.</p>
 <p>Para ilustrar este método, consideremos el problema de la barra con enfriamiento.</p>
 <p>Podemos transformar este problema en un problema de valor inicial de la forma:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\frac{dT}{dx} &amp;= z \\
-\frac{dz}{dx} &amp;= - h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
+\frac{dT}{dx} &amp;= q \\
+\frac{dq}{dx} &amp;= - h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
 \end{align*}\]</div>
 <p>Con condiciones iniciales:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 T(0) &amp;= T_a \\
-z(0) &amp;= z_a
+\frac{dT}{dx}\Big|_{x=0} = q(0) &amp;= q_a
 \end{align*}\]</div>
-<p>Si conocieramos el valor de <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(z_a\)</span>, podríamos resolver el problema como una EDO con valor inicial. Sin embargo, el valor de <span class="math notranslate nohighlight">\(z_a\)</span> es desconocido.</p>
-<p>El método del disparo, así, consiste en iterar sobre el valor de <span class="math notranslate nohighlight">\(z_a\)</span>, resolviendo el problema como una EDO de valor inicial, hasta que <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>.</p>
+<p>Si conocieramos el valor de <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(q_a\)</span>, podríamos resolver el problema como una EDO con valor inicial. Sin embargo, el valor de <span class="math notranslate nohighlight">\(q_a\)</span> es desconocido.</p>
+<p>Por otro lado, sabemos que existirá un valor de <span class="math notranslate nohighlight">\(q_a\)</span>, tal que <span class="math notranslate nohighlight">\(T( L) = T_b\)</span>.</p>
 <p>Ilustrativamente, esto es similar a ajustar el ángulo de inclinación de un cañón (o la pendiente a través de <span class="math notranslate nohighlight">\(z_a\)</span>), hasta que la trayectoria del disparo coincida con el valor la segunda condición de borde.</p>
 <a class="reference internal image-reference" href="../_images/shooting_method.png"><img alt="../_images/shooting_method.png" class="align-center" src="../_images/shooting_method.png" style="width: 400px;" /></a>
+<p>El método del disparo, así, consiste en iterar sobre el valor de <span class="math notranslate nohighlight">\(q_a\)</span>, resolviendo el problema como una EDO de valor inicial, hasta que <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>.</p>
 <p>Analicemos esto con el problema de la barra en enfriamiento, y los valores:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(L = 10\)</span> m</p></li>
@@ -517,19 +618,18 @@ z(0) &amp;= z_a
 \[\begin{equation*}
 \vec{y} = \Bigg\{\begin{matrix}
 T \\
-z
+q
 \end{matrix}\Bigg\};
 \quad\quad
 \vec{F} = \Bigg\{\begin{matrix}
-z \\
+q \\
 - h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
 \end{matrix}\Bigg\};\quad\quad \vec{y}_0 = \Bigg\{\begin{matrix}
 T_a \\
-z_a
+q_a
 \end{matrix}\Bigg\}
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(t = x\)</span>.</p>
-<p>Resolveremos este problema para distintos valores de <span class="math notranslate nohighlight">\(z_a\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -551,16 +651,17 @@ z_a
 </div>
 </div>
 </div>
+<p>Analicemos el comportamiento de este problema para <span class="math notranslate nohighlight">\(q_a = -40\)</span> y <span class="math notranslate nohighlight">\(q_a = -45\)</span>. En la misma gráfica indicaremos el valor de <span class="math notranslate nohighlight">\(T(L) = T_b\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
 <span class="c1"># Resolvemos la ecuación para distintos valores de za</span>
-<span class="k">for</span> <span class="n">za</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">]:</span>
-    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$z_a = </span><span class="si">%.0f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">za</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">]:</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$q_a = </span><span class="si">%.0f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">qa</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura en la barra, $T$ (K)&#39;</span><span class="p">)</span>
@@ -570,123 +671,48 @@ z_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_27_0.png" src="../_images/10-EDO_condicion_de_borde_27_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_28_0.png" src="../_images/10-EDO_condicion_de_borde_28_0.png" />
 </div>
 </div>
-<p>¿Cómo podemos adivinar el valor de <span class="math notranslate nohighlight">\(z_a\)</span> correcto?</p>
-<p>Cláramente, el método gráfico nos ayuda a acercarnos a la solución. Por ejemplo, notamos ahora que el valor de <span class="math notranslate nohighlight">\(z_a\)</span> está acotado entre <span class="math notranslate nohighlight">\(z_a\in[-40, -45]\)</span> K/m. Asi, una alternativa sería utilizar interpolación lineal basado en estos dos primeras estimaciones.</p>
+<p>¿Cómo podemos adivinar el valor de <span class="math notranslate nohighlight">\(q_a\)</span> correcto?</p>
+<p>Cláramente, el método gráfico nos ayuda a acercarnos a la solución. Por ejemplo, notamos ahora que el valor de <span class="math notranslate nohighlight">\(q_a\)</span> está acotado entre <span class="math notranslate nohighlight">\(q_a\in[-40, -45]\)</span> K/m. Asi, una alternativa sería utilizar interpolación lineal basado en estos dos primeras estimaciones.</p>
 <p>Sin embargo, este método aún podría entregar resultados inexactos dado que la EDO es del tipo no-lineal.</p>
 <p>Una forma más genérica de resolver este problema en un computador es utilizando métodos de búsqueda de raices.</p>
-<p>Primero, debemos entender que resolver nuesta EDO con valor inicial y evaluarla en <span class="math notranslate nohighlight">\(x = L\)</span>, es equivalente a tener una función <span class="math notranslate nohighlight">\(T_{x=L}(z_a)\)</span>.</p>
-<p>Así, el objetivo es encontrar la raíz de la función <span class="math notranslate nohighlight">\(f(z_a) = T_{x=L}(z_a) - T_b\)</span></p>
+<p>Primero, debemos entender que resolver la EDO con valor inicial <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(q_a\)</span>, y luego evaluarla en <span class="math notranslate nohighlight">\(x = L\)</span>, es equivalente a tener una función <span class="math notranslate nohighlight">\(T_{x=L}(q_a)\)</span>.</p>
+<p>Así, el objetivo es encontrar la raíz de la función <span class="math notranslate nohighlight">\(f(q_a) = T_{x=L}(q_a) - T_b\)</span></p>
 <p>Implementemos esta solución mediante con el ejemplo anterior.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
 
-<span class="c1"># Declaramos la función objetivo, f(za)</span>
-<span class="k">def</span> <span class="nf">fobjective</span><span class="p">(</span><span class="n">za</span><span class="p">):</span>
-    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># distribución de temperaturas en la barra</span>
-    <span class="k">return</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tb</span> <span class="c1"># retornamos T(x = L) - Tb</span>
+<span class="c1"># Declaramos la función objetivo para encontrar T(x = L) - Tb, dado &quot;za&quot;</span>
+<span class="k">def</span> <span class="nf">fobjective</span><span class="p">(</span><span class="n">qa</span><span class="p">):</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa</span><span class="p">])</span> <span class="c1"># solución de la odo con VI</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                                     <span class="c1"># distribución de temperaturas en la barra</span>
+    <span class="k">return</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tb</span>                                <span class="c1"># retornamos T(x = L) - Tb</span>
 
-<span class="c1"># Buscamos la raiz de f(za) - Tb</span>
-<span class="n">za_sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">fobjective</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de za es: </span><span class="si">%.3f</span><span class="s1"> K/m&#39;</span> <span class="o">%</span> <span class="n">za_sol</span><span class="p">)</span>
+<span class="c1"># Buscamos la raiz de fobjective(za)</span>
+<span class="n">qa_sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">fobjective</span><span class="p">,</span> <span class="n">bracket</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">])</span><span class="o">.</span><span class="n">root</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de qa es: </span><span class="si">%.3f</span><span class="s1"> K/m&#39;</span> <span class="o">%</span> <span class="n">qa_sol</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">return</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tb</span> <span class="c1"># retornamos T(x = L) - Tb</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Buscamos la raiz de f(za) - Tb</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">za_sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">fobjective</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de za es: </span><span class="si">%.3f</span><span class="s1"> K/m&#39;</span> <span class="o">%</span> <span class="n">za_sol</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:162,</span> in <span class="ni">fsolve</span><span class="nt">(func, x0, args, fprime, full_output, col_deriv, xtol, maxfev, band, epsfcn, factor, diag)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span><span class="sd"> Find the roots of a function.</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;col_deriv&#39;</span><span class="p">:</span> <span class="n">col_deriv</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">155</span>            <span class="s1">&#39;xtol&#39;</span><span class="p">:</span> <span class="n">xtol</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span>            <span class="s1">&#39;maxfev&#39;</span><span class="p">:</span> <span class="n">maxfev</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span>            <span class="s1">&#39;factor&#39;</span><span class="p">:</span> <span class="n">factor</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span>            <span class="s1">&#39;diag&#39;</span><span class="p">:</span> <span class="n">diag</span><span class="p">}</span>
-<span class="ne">--&gt; </span><span class="mi">162</span> <span class="n">res</span> <span class="o">=</span> <span class="n">_root_hybr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="n">fprime</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="k">if</span> <span class="n">full_output</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:228,</span> in <span class="ni">_root_hybr</span><span class="nt">(func, x0, args, jac, col_deriv, xtol, maxfev, band, eps, factor, diag, **unknown_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">226</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">,)</span>
-<span class="ne">--&gt; </span><span class="mi">228</span> <span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">_check_func</span><span class="p">(</span><span class="s1">&#39;fsolve&#39;</span><span class="p">,</span> <span class="s1">&#39;func&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,))</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">if</span> <span class="n">epsfcn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>     <span class="n">epsfcn</span> <span class="o">=</span> <span class="n">finfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/optimize/_minpack_py.py:25,</span> in <span class="ni">_check_func</span><span class="nt">(checker, argname, thefunc, x0, args, numinputs, output_shape)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="k">def</span> <span class="nf">_check_func</span><span class="p">(</span><span class="n">checker</span><span class="p">,</span> <span class="n">argname</span><span class="p">,</span> <span class="n">thefunc</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">numinputs</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>                 <span class="n">output_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="n">thefunc</span><span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="n">x0</span><span class="p">[:</span><span class="n">numinputs</span><span class="p">],)</span> <span class="o">+</span> <span class="n">args</span><span class="p">)))</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">if</span> <span class="p">(</span><span class="n">output_shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">shape</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">!=</span> <span class="n">output_shape</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>         <span class="k">if</span> <span class="p">(</span><span class="n">output_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
-
-<span class="nn">Cell In[3], line 5,</span> in <span class="ni">fobjective</span><span class="nt">(za)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span> <span class="nf">fobjective</span><span class="p">(</span><span class="n">za</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">T</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># distribución de temperaturas en la barra</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">return</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Tb</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/ivp.py:568,</span> in <span class="ni">solve_ivp</span><span class="nt">(fun, t_span, y0, method, t_eval, dense_output, events, vectorized, args, **options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">METHODS</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="n">method</span> <span class="o">=</span> <span class="n">METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">568</span> <span class="n">solver</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="n">vectorized</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span> <span class="k">if</span> <span class="n">t_eval</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="n">ts</span> <span class="o">=</span> <span class="p">[</span><span class="n">t0</span><span class="p">]</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/rk.py:89,</span> in <span class="ni">RungeKutta.__init__</span><span class="nt">(self, fun, t0, y0, t_bound, max_step, rtol, atol, vectorized, first_step, **extraneous)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fun</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_bound</span><span class="p">,</span> <span class="n">max_step</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>              <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">vectorized</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span>              <span class="n">first_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extraneous</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="n">warn_extraneous</span><span class="p">(</span><span class="n">extraneous</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">t_bound</span><span class="p">,</span> <span class="n">vectorized</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>                      <span class="n">support_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="bp">self</span><span class="o">.</span><span class="n">y_old</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_step</span> <span class="o">=</span> <span class="n">validate_max_step</span><span class="p">(</span><span class="n">max_step</span><span class="p">)</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/base.py:135,</span> in <span class="ni">OdeSolver.__init__</span><span class="nt">(self, fun, t0, y0, t_bound, vectorized, support_complex)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_old</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">t0</span>
-<span class="ne">--&gt; </span><span class="mi">135</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fun</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">check_arguments</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">support_complex</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_bound</span> <span class="o">=</span> <span class="n">t_bound</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="bp">self</span><span class="o">.</span><span class="n">vectorized</span> <span class="o">=</span> <span class="n">vectorized</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.9/site-packages/scipy/integrate/_ivp/base.py:6,</span> in <span class="ni">check_arguments</span><span class="nt">(fun, y0, support_complex)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span> <span class="nf">check_arguments</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">support_complex</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Helper function for checking arguments common to all solvers.&quot;&quot;&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">y0</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">support_complex</span><span class="p">:</span>
-
-<span class="ne">ValueError</span>: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El valor de qa es: -41.735 K/m
 </pre></div>
 </div>
 </div>
 </div>
+<p>De lo anterior, hemos determinado que el valor correcto para <span class="math notranslate nohighlight">\(q_a = -41.735~\mathrm{K/m}\)</span>. Ahora grafiquemos la solución correcta</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
 <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># rango de valores para evaluar T(x)</span>
 
-<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za_sol</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$z_a = </span><span class="si">%.3f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">za_sol</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa_sol</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$q_a = </span><span class="si">%.3f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">qa_sol</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
@@ -697,35 +723,41 @@ z_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_36_0.png" src="../_images/10-EDO_condicion_de_borde_36_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_38_0.png" src="../_images/10-EDO_condicion_de_borde_38_0.png" />
 </div>
 </div>
-<p>La condición de borde <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>, o <em>condición de borde de Dirichlet.</em> Es una de muchos tipos de condiciones de borde que se utilizan en ingeniería y ciencias.</p>
-<p>A veces, las condiciones de borde están definidas en función de derivadas.</p>
-<p>Por ejemplo, respecto al problema de la barra, es común definir una condición de borde convectiva, o <em>condición de borde de Neumann:</em></p>
+<section id="condiciones-de-borde-de-newman-o-robin">
+<h3><span class="section-number">10.2.1. </span>Condiciones de borde de Newman o Robin<a class="headerlink" href="#condiciones-de-borde-de-newman-o-robin" title="Permalink to this headline">#</a></h3>
+<p>Las condiciones de borde <span class="math notranslate nohighlight">\(T(0) = T_a\)</span> y <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>, se conoce como <em>condición de borde de Dirichlet o de primer tipo.</em> Es una de muchos tipos de condiciones de borde que se utilizan en ingeniería y ciencias.</p>
+<p>A veces, las condiciones de borde están definidas en función de derivadas. En este caso distinguimos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{eqnarray*}
+y'(a) &amp;=&amp; \alpha&amp;&amp;\quad\mathrm{condición~de~Neumann~(o~de~segundo~tipo)} \\
+\alpha y(a) + \beta y'(a) &amp;=&amp; \gamma &amp;&amp;\quad\mathrm{condición~de~Robin~(o~de~tercer~tipo)}
+\end{eqnarray*}\]</div>
+<p>Lo común en ambos casos es la presencia de la derivada en la condición de borde.</p>
+<p>Por ejemplo, respecto al problema de la barra, tenemos que si el extremo derecho pierde calor hacia el ambiente la condición es (condición de borde de Robin):</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \frac{dT}{dx}\Big|_{x=L} = h^*\left[ T_\infty - T(L)\right]
 \end{equation*}\]</div>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
-<p>Para este tipo de problemas, todo lo que debemos hacer es modificar nuestra función objetivo.</p>
+<p>En este caso el procedimiento para resolver la EDO es similar, pero debemos modificar nuestra función objetivo.</p>
 <p>Revisemos esto en un código para <span class="math notranslate nohighlight">\(h^* = 0.005\)</span> m<span class="math notranslate nohighlight">\(^{-1}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
-
-<span class="n">hstar</span> <span class="o">=</span> <span class="mf">0.005</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hstar</span> <span class="o">=</span> <span class="mf">0.005</span>
 
 <span class="c1"># Declaramos la función objetivo, f(za) con condición de Neumann</span>
-<span class="k">def</span> <span class="nf">fobjective</span><span class="p">(</span><span class="n">za</span><span class="p">):</span>
-    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">fobjective</span><span class="p">(</span><span class="n">qa</span><span class="p">):</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa</span><span class="p">])</span>
     <span class="n">T</span>    <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                       <span class="c1"># distribución de temperaturas en la barra</span>
     <span class="n">dTdx</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                       <span class="c1"># distribución de dTdx en la barra</span>
     <span class="k">return</span> <span class="n">dTdx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">hstar</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># retornamos dTdx|(x=L) - h(Too - T(L))</span>
 
 <span class="c1"># Buscamos la raiz de f(za) - Tb</span>
-<span class="n">za_sol</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">fobjective</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">45</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de za es: </span><span class="si">%.3f</span><span class="s1"> K/m&#39;</span> <span class="o">%</span> <span class="n">za_sol</span><span class="p">)</span>
+<span class="n">qa_sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">fobjective</span><span class="p">,</span> <span class="n">bracket</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">])</span><span class="o">.</span><span class="n">root</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de za es: </span><span class="si">%.3f</span><span class="s1"> K/m&#39;</span> <span class="o">%</span> <span class="n">qa_sol</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -737,13 +769,13 @@ z_a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
 <span class="n">x_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># rango de valores para evaluar T(x)</span>
 
-<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">za_sol</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$z_a = </span><span class="si">%.3f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">za_sol</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa_sol</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$q_a = </span><span class="si">%.3f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">qa_sol</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura en la barra, $T$ (K)&#39;</span><span class="p">)</span>
@@ -753,13 +785,16 @@ z_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_44_0.png" src="../_images/10-EDO_condicion_de_borde_44_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_49_0.png" src="../_images/10-EDO_condicion_de_borde_49_0.png" />
 </div>
 </div>
 </section>
-<section id="el-metodo-de-diferencias-finitas">
-<h2><span class="section-number">10.3. </span>El método de diferencias finitas<a class="headerlink" href="#el-metodo-de-diferencias-finitas" title="Permalink to this headline">#</a></h2>
-<p>La alternativa más común para resolver EDOs con condiciones de borde es mediante diferencias finitas. Esto consiste en discretizar la ecuación diferencial utilizando las fórmulas de la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/8-Derivacion_numerica/8-Derivacion_numerica.html">unidad 8</a>.</p>
+</section>
+<section id="metodo-de-diferencias-finitas">
+<h2><span class="section-number">10.3. </span>Método de diferencias finitas<a class="headerlink" href="#metodo-de-diferencias-finitas" title="Permalink to this headline">#</a></h2>
+<p>Diferencias finitas es el método más general para resolver EDOs con condiciones de borde. Esto consiste en discretizar la ecuación diferencial utilizando las fórmulas de la <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html"><span class="doc std std-doc">unidad 8</span></a>.</p>
+<section id="edo-lineal-con-condicion-de-borde-de-dirichlet">
+<h3><span class="section-number">10.3.1. </span>EDO lineal con condición de borde de Dirichlet<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-dirichlet" title="Permalink to this headline">#</a></h3>
 <p>Revisemos esto con el problema de la barra. Ahora, únicamente, considerando pérdidas de calor por convección.</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convection_losses.png"><img alt="../_images/heated_bar_convection_losses.png" class="align-center" src="../_images/heated_bar_convection_losses.png" style="width: 400px;" /></a>
 <p>En este caso <strong>la EDO es del tipo lineal</strong>:</p>
@@ -797,8 +832,8 @@ T(L) &amp;= T_b
 \end{bmatrix}\left[\begin{array}{c} T_1 \\T_2 \\ \vdots \\ T_{n-2} \\ T_{n-1} \end{array}\right] =
 \left[\begin{array}{c} T_0 + h'\Delta x^2 T_\infty \\h'\Delta x^2 T_\infty \\ \vdots \\h'\Delta x^2 T_\infty \\ T_n + h'\Delta x^2 T_\infty\end{array}\right]
 \end{equation*}\]</div>
-<p>Notar que <strong>la matriz <span class="math notranslate nohighlight">\(A\)</span> en este caso es diagonal dominante</strong>. Este es un aspecto fundamental del método de diferencias finitas, ya que permite determinar soluciones mediante métodos iterativos como Gauss-Seidel.</p>
-<p>Como discutimos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/2-Algebra_lineal/2-Algebra_lineal.html#metodos-iterativos">unidad 2</a> del curso, los métodos iterativos son más eficientes y requiren menor cantidad memoria computacional, permitiendo un cálculo eficiente.</p>
+<p>Notar que <strong>la matriz <span class="math notranslate nohighlight">\(A\)</span> es, naturalmente trididiagonal y diagnal dominante</strong>. Este característica estará siempre presente en el método de diferencias finitas.</p>
+<p>Como vimos en la <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="doc std std-doc">unidad 2</span></a> del curso, este tipo de sistemas de ecuaciones se pueden resolver mediante métodos iterativos (como Gauss-Seidel), los cuales destacan por su menor uso de recursos de memoria computacional.</p>
 <p>Revisemos esto en un código en python. En este caso, queremos preparar un código genérico para un <span class="math notranslate nohighlight">\(n\)</span> variable</p>
 <p>Podemos expresar el sistema de ecuaciones, convenientemente, en la forma:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -812,50 +847,55 @@ T(L) &amp;= T_b
 \end{bmatrix}\left[\begin{array}{c} T_0 \\ T_1 \\ \vdots \\ T_{n-1} \\T_n \end{array}\right] =
 \left[\begin{array}{c} T_a \\ h'\Delta x^2 T_\infty \\ \vdots \\ h'\Delta x^2 T_\infty \\ T_b\end{array}\right]
 \end{equation*}\]</div>
-<p>Esta forma nos permitirá una expresión más simplificada para crear nuestras matrices <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<p>Esta formulación nos permitirá una expresión generalizada para crear nuestras matrices <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b\)</span>, que podemos modificar fácilmente ante un cambio en las condiciones de borde.</p>
+<p>El siguiente código genera las matrices <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b\)</span> para un número de nodos <span class="math notranslate nohighlight">\(n\)</span> arbitrário.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código genérico para barra 1D con diferencias finitas</span>
-
 <span class="n">N</span>  <span class="o">=</span> <span class="mi">10</span>              <span class="c1"># número de nodos</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>       <span class="c1"># espaciamiento entre nodos</span>
 <span class="n">n</span>  <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>           <span class="c1"># nodo final   </span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>  <span class="c1"># declaramos matrix A</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>      <span class="c1"># declaramos vector b</span>
+
+<span class="c1"># recorremos los nodos de la barra</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    
     <span class="c1"># condiciones de borde</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># Temperatura fija en el extremo izquierdo</span>
+    <span class="c1">#------------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># T(x = 0) = Ta</span>
         <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>   <span class="o">=</span> <span class="n">Ta</span>
         <span class="k">continue</span>
     
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>       <span class="c1"># Temperatura fija en el extremo derecho</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>       <span class="c1"># T(x = L) = Tb</span>
         <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>   <span class="o">=</span> <span class="n">Tb</span>
         <span class="k">continue</span>
     
     <span class="c1"># nodos interiores</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="p">]</span> <span class="o">=</span>  <span class="mi">2</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    
+    <span class="c1">#------------------------------------------------------</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Too</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Resolvemos el sistema usando <code class="docutils literal notranslate"><span class="pre">numpy.linalg.solve</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Discretización del dominio &quot;x&quot;</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1"># Resolvemos el sistema</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego graficamos nuestra solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># Discretización del dominio &quot;x&quot;</span>
 
-<span class="c1"># Resolvemos el sistema</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;:x&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Barra con temperaturas fijas (dif. finitas)&#39;</span><span class="p">)</span>
@@ -866,10 +906,13 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_62_0.png" src="../_images/10-EDO_condicion_de_borde_62_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_72_0.png" src="../_images/10-EDO_condicion_de_borde_72_0.png" />
 </div>
 </div>
-<p>Consideremos ahora el caso de una barra con condiciones de borde de Neuman:</p>
+</section>
+<section id="edo-lineal-con-condicion-de-borde-de-robin">
+<h3><span class="section-number">10.3.2. </span>EDO lineal con condición de borde de Robin<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-robin" title="Permalink to this headline">#</a></h3>
+<p>Consideremos ahora el caso de una barra con condiciones de borde de Robin:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \frac{dT}{dx}\Big|_{x=L} = h^*\left[ T_\infty - T(L)\right]
@@ -897,51 +940,54 @@ T(L) &amp;= T_b
 \end{bmatrix}\left[\begin{array}{c} T_0 \\ T_1 \\ \vdots \\ T_{n-1} \\T_n \end{array}\right] =
 \left[\begin{array}{c} T_a \\ h'\Delta x^2 T_\infty \\ \vdots \\ h'\Delta x^2 T_\infty \\ h'\Delta x T_\infty\end{array}\right]
 \end{equation*}\]</div>
-<p>La implementación en código es análoga al caso anterior. Notar que ahora solo editamos la condición de borde para <span class="math notranslate nohighlight">\(i = n\)</span></p>
+<p>Respecto al código anterior, editamos la condición de borde para <span class="math notranslate nohighlight">\(i = n\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código genérico para barra 1D con diferencias finitas</span>
-     
 <span class="n">N</span>  <span class="o">=</span> <span class="mi">10</span>              <span class="c1"># número de nodos</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>       <span class="c1"># espaciamiento entre nodos</span>
 <span class="n">n</span>  <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>           <span class="c1"># nodo final   </span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>  <span class="c1"># declaramos matrix A</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>      <span class="c1"># declaramos vector b</span>
+
+<span class="c1"># recorremos los nodos de la barra</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    
     <span class="c1"># condiciones de borde</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>     <span class="c1"># Temperatura fija en el extremo izquierdo</span>
+    <span class="c1">#------------------------------------------------------</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># Condición de borde en el extremo izquierdo</span>
         <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>   <span class="o">=</span> <span class="n">Ta</span>
         <span class="k">continue</span>
     
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>     <span class="c1"># convección en el extremo derecho</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>   <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>       <span class="c1"># Condición de borde en el extremo derecho</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span>
         <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>     <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">Too</span>
         <span class="k">continue</span>
     
     <span class="c1"># nodos interiores</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="p">]</span> <span class="o">=</span>  <span class="mi">2</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    
+    <span class="c1">#------------------------------------------------------</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Too</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Resolvemos el sistema:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Discretización del dominio &quot;x&quot;</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="c1"># Resolvemos el sistema</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, graficamos nuestra solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># Discretización del dominio &quot;x&quot;</span>
 
-<span class="c1"># Resolvemos el sistema</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;:x&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Barra con convección en un extremo (dif. finitas)&#39;</span><span class="p">)</span>
@@ -952,10 +998,13 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_70_0.png" src="../_images/10-EDO_condicion_de_borde_70_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_84_0.png" src="../_images/10-EDO_condicion_de_borde_84_0.png" />
 </div>
 </div>
-<p>Si la EDO es no lineal la forma de resolver el problema es análoga. Sin embargo, el sistema de ecuaciones a resolver también será del tipo no lineal y para esto debemos utilizar un método de búsqueda de raices.</p>
+</section>
+<section id="edo-no-lineal">
+<h3><span class="section-number">10.3.3. </span>EDO no lineal<a class="headerlink" href="#edo-no-lineal" title="Permalink to this headline">#</a></h3>
+<p>Si la EDO es no lineal la forma de resolver el problema es análoga. Sin embargo, <strong>el sistema de ecuaciones a resolver también será del tipo no lineal y para esto debemos utilizar un método de búsqueda de raices</strong>.</p>
 <p>Revisemos esto con el problema de la barra con enfriamiento por radiación y convección</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
 <p>La ecuación discretizada por diferencias finitas es de la forma:</p>
@@ -968,10 +1017,10 @@ T(L) &amp;= T_b
 \[\begin{equation*}
 - T_{i - 1}+ (2 + h'\Delta x^2)T_i + \sigma'\Delta x^2 T_i^4 - T_{i + 1} - h'\Delta x^2 T_\infty - \sigma' \Delta x^2 T_\infty^4 = 0
 \end{equation*}\]</div>
+<p>En el siguiente código implementamos las ecuaciones gobernantes mediante una función objetivo <code class="docutils literal notranslate"><span class="pre">fsystem</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Código genérico para barra 1D con diferencias finitas</span>
-
 <span class="n">N</span>  <span class="o">=</span> <span class="mi">10</span>              <span class="c1"># número de nodos</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>       <span class="c1"># espaciamiento entre nodos</span>
 <span class="n">n</span>  <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span>           <span class="c1"># nodo final   </span>
@@ -997,18 +1046,28 @@ T(L) &amp;= T_b
 </div>
 </div>
 </div>
+<p>Resolvemos el sistema usando <code class="docutils literal notranslate"><span class="pre">scipy.optimize.fsolve</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+
 <span class="c1"># condicionamos la variable inicial para la iteración</span>
 <span class="n">Tinc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">Tinc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Tinc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ta</span><span class="p">,</span> <span class="n">Too</span>
 
-<span class="n">T</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">fsystem</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">Tinc</span><span class="p">)</span>  <span class="c1"># Solución del sistema no lineal</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>         <span class="c1"># Discretización del dominio &quot;x&quot;</span>
+<span class="c1"># Solución del sistema no lineal</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">fsystem</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">Tinc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos nuestra solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>         <span class="c1"># Discretización del dominio &quot;x&quot;</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;:x&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Barra con convección en un extremo (dif. finitas)&#39;</span><span class="p">)</span>
@@ -1019,12 +1078,293 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_77_0.png" src="../_images/10-EDO_condicion_de_borde_77_0.png" />
+<img alt="../_images/10-EDO_condicion_de_borde_96_0.png" src="../_images/10-EDO_condicion_de_borde_96_0.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="metodo-de-colocacion">
+<h2><span class="section-number">10.4. </span>Método de colocación<a class="headerlink" href="#metodo-de-colocacion" title="Permalink to this headline">#</a></h2>
+<p>El método de colocación consiste en <strong>aproximar la función buscada por un polinómio de interpolación evaluado en puntos de colocación</strong>. Aunque existen distintas versiones dependiendo del polinomio escogido, acá revisaremos los aspectos más generales del método.</p>
+<p>Consideremos el problema general:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{dy}{dx} = F(x,y),
+\end{equation*}\]</div>
+<p>con condiciones de borde</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\alpha_0 y(a) + \beta_0 y'(a) &amp;= \gamma_0 \\
+\alpha_n y(b) + \beta_n y'(b) &amp;= \gamma_n
+\end{align*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\alpha_0\)</span>, <span class="math notranslate nohighlight">\(\alpha_1\)</span>, <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span>, <span class="math notranslate nohighlight">\(\gamma_0\)</span> y <span class="math notranslate nohighlight">\(\gamma_1\)</span> son constantes arbitrarias.</p>
+<p>Para un set de <span class="math notranslate nohighlight">\(n + 1\)</span> puntos de colocación <span class="math notranslate nohighlight">\(x_i = x_0, x_1,\dots,x_n\)</span> aproximaremos <span class="math notranslate nohighlight">\(y\)</span> por el polomio:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+S(x) = a_0 + a_1x + a_2x^2+ \cdots + a_n x^n
+\end{equation*}\]</div>
+<p>donde sus coeficientes están dados por la solución de <span class="math notranslate nohighlight">\(S(x_i) = y_i\)</span>. En forma matricial:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3cc6c981-9abd-49f8-8b62-83712d578533">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-3cc6c981-9abd-49f8-8b62-83712d578533" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\left[\begin{matrix} 
+1      &amp;    x_0 &amp;  x_0^2 &amp; \cdots &amp; x_0^n \\
+1      &amp;    x_1 &amp;  x_1^2 &amp; \cdots &amp; x_1^n \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\
+1      &amp;    x_n &amp;  x_n^2 &amp; \cdots &amp; x_n^n
+\end{matrix}\right]
+\left\{\begin{matrix}
+a_0 \\ a_1 \\ a_2 \\ \vdots\\a_n
+\end{matrix}\right\}
+=
+\left\{\begin{matrix}
+y_0 \\ y_1 \\ y_2 \\ \vdots\\y_n
+\end{matrix}\right\}
+\end{equation}\]</div>
+<p>por simplicidad, denotaremos el sistema como <span class="math notranslate nohighlight">\(A\omega = u\)</span>, donde <span class="math notranslate nohighlight">\(\omega\)</span> y <span class="math notranslate nohighlight">\(u\)</span> son vectores columna con los coeficientes <span class="math notranslate nohighlight">\(a_i\)</span> y <span class="math notranslate nohighlight">\(y_i\)</span> respectivamente; y <span class="math notranslate nohighlight">\(A\)</span> es una matriz.</p>
+<p>Por otro lado, el polinomio <span class="math notranslate nohighlight">\(S(x)\)</span> debe ser solución de la ecuación diferencial en los puntos de colocación, es decir:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{dS}{dx}\Bigg|_{x = x_i} = F(x_i,S_i)\Rightarrow
+\left[\begin{matrix} 
+0      &amp;    1 &amp;  2x_0 &amp; \cdots &amp; nx_0^{n-1} \\
+0      &amp;    1 &amp;  2x_1 &amp; \cdots &amp; nx_1^{n-1} \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\
+0      &amp;    1 &amp;  2x_n &amp; \cdots &amp; nx_n^{n-1}
+\end{matrix}\right]
+\left\{\begin{matrix}
+a_0 \\ a_1 \\ a_2 \\ \vdots\\a_n
+\end{matrix}\right\}
+=
+\left\{\begin{matrix}
+F(x_0,y_0) \\ F(x_1,y_1) \\ F(x_2,y_2) \\ \vdots\\ F(x_n,y_n)
+\end{matrix}\right\}
+\end{equation*}\]</div>
+<p>Si reemplazamos la primera y última fila del sistema por las condiciones de borde, tenemos:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left[\begin{matrix} 
+\alpha_0      &amp;    \alpha_0x_0 +  \beta_0 &amp;  \alpha_0x_0^2 + 2\beta_0x_0 &amp; \cdots &amp; \alpha_0x_0^n + n\beta_0x_0^{n-1} \\
+0      &amp;    1 &amp;  2x_1 &amp; \cdots &amp; nx_1^{n-1} \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\
+0      &amp;    1 &amp;  2x_{n-1} &amp; \cdots &amp; n(x_{n-1})^{n-1} \\
+\alpha_n      &amp;    \alpha_nx_n +  \beta_n &amp;  \alpha_nx_n^2 + 2\beta_nx_n &amp; \cdots &amp; \alpha_0x_n^n + n\beta_0x_n^{n-1}
+\end{matrix}\right]
+\left\{\begin{matrix}
+a_0 \\ a_1 \\ a_2 \\ \vdots\\ a_{n-1} \\ a_{n}
+\end{matrix}\right\}
+=
+\left\{\begin{matrix}
+\gamma_0 \\ F(x_1,y_1) \\ F(x_2,y_2) \\ \vdots\\ F(x_{n-1},y_{n-1}) \\ \gamma_n
+\end{matrix}\right\}
+\end{equation*}\]</div>
+<p>para simplificar, denotaremos este sistema como <span class="math notranslate nohighlight">\(T\omega = b\)</span>.</p>
+<p>Este sistema de ecuaciones tiene dos series de valores desconocidos, <span class="math notranslate nohighlight">\(a_i\)</span> y <span class="math notranslate nohighlight">\(y_i\)</span>. Sin embargo, a partir del sistema de ecuaciones (10.1), tenemos que <span class="math notranslate nohighlight">\(\alpha = A^{-1}u\)</span></p>
+<p>Combinando ambos resultados, tenemos que los valores de <span class="math notranslate nohighlight">\(y_i\)</span> en los puntos de colocación están dados por la solución de <span class="math notranslate nohighlight">\(TA^{-1}u = b\)</span>:</p>
+<p>explícitamente:</p>
+<div class="full-width">
+<p style="line-height:2.0em;"></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\left[\begin{matrix} 
+\alpha_0      &amp;    \alpha_0x_0 +  \beta_0 &amp;  \alpha_0x_0^2 + 2\beta_0x_0 &amp; \cdots &amp; \alpha_0x_0^n + n\beta_0x_0^{n-1} \\
+0      &amp;    1 &amp;  2x_1 &amp; \cdots &amp; nx_1^{n-1} \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\
+0      &amp;    1 &amp;  2x_{n-1} &amp; \cdots &amp; n(x_{n-1})^{n-1} \\
+\alpha_n      &amp;    \alpha_nx_n +  \beta_n &amp;  \alpha_nx_n^2 + 2\beta_nx_n &amp; \cdots &amp; \alpha_0x_n^n + n\beta_0x_n^{n-1}
+\end{matrix}\right]
+\left[\begin{matrix} 
+1      &amp;    x_0 &amp;  x_0^2 &amp; \cdots &amp; x_0^n \\
+1      &amp;    x_1 &amp;  x_1^2 &amp; \cdots &amp; x_1^n \\
+\vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\
+1      &amp;    x_{n-1} &amp;  (x_{n-1})^2 &amp; \cdots &amp; (x_{n-1})^n\\
+1      &amp;    x_n &amp;  x_n^2 &amp; \cdots &amp; x_n^n
+\end{matrix}\right]^{-1}
+\left\{\begin{matrix}
+y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
+\end{matrix}\right\}
+=
+\left\{\begin{matrix}
+\gamma_0 \\ F(x_1,y_1) \\ F(x_2,y_2) \\ \vdots\\ F(x_{n-1},y_{n-1}) \\ \gamma_n
+\end{matrix}\right\}
+\end{equation*}\]</div>
+</div><p>Este sistema consiste en un set de <span class="math notranslate nohighlight">\(n+1\)</span> ecuaciones, para <span class="math notranslate nohighlight">\(n+1\)</span> incognitas (<span class="math notranslate nohighlight">\(y_0, y_1, \dots, y_n\)</span>). El sistema puede ser del tipo lineal o no-lineal, dependiendo de la función <span class="math notranslate nohighlight">\(F(x,y)\)</span>. Respectivamente, la solución se obtiene mediante métodos de solución de sistemas de ecuaciones lineales (<a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="doc std std-doc">unidad 2</span></a>), o de búsqueda de raices (<a class="reference internal" href="../06-Root-finding/06-Root-finding.html"><span class="doc std std-doc">unidad 6</span></a>).</p>
+<p>En la práctica, <strong>no es recomendable utilizar polinomios de alto grado debido a los problemas de oscilación</strong> (revisar <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html"><span class="doc std std-doc">unidad 4</span></a>)</p>
+<p>En cambio, el método de colocación utiliza interpolación por tramos. El número de puntos de colocación se determina de forma iterativa mediante algoritmos adaptativos, similares a los revisados en cuadratura adaptativa (ver <a class="reference internal" href="../07-Integracion/07-Integracion.html"><span class="doc std std-doc">unidad 7</span></a>)</p>
+<p>A diferencia del método de diferencias finitas, cuya aproximación de la derivada es local, el método de colocación permite determinar la solución en base a varios nodos. Esto implica soluciónes más suaves y con menor error.</p>
+</section>
+<section id="problemas-de-valor-de-frontera-en-python-solve-bvp">
+<h2><span class="section-number">10.5. </span>Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)<a class="headerlink" href="#problemas-de-valor-de-frontera-en-python-solve-bvp" title="Permalink to this headline">#</a></h2>
+<p>La función predeterminada en python para resolver EDOs con C.B. es <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>. Esta función, parte de la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>, <strong>resuelve sistemas de EDOs de primer orden mediante una variante del método de colocación</strong> (ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html">documentación oficial</a>):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{d\vec{y}}{dx} = \vec{F}(x,\vec{y}),
+\end{equation*}\]</div>
+<p>con condiciones de borde:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\alpha_0 \vec{y}(a) + \beta_0 \vec{y}'(a) &amp; - \gamma_0 = 0 \\
+\alpha_n \vec{y}(b) + \beta_n \vec{y}'(b) &amp; - \gamma_n = 0
+\end{align*}\]</div>
+<p>Al igual que lo visto en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="doc std std-doc">unidad 9</span></a>, <strong>para resolver EDOs de mayor orden debemos, primero, modificar el problema a un sistemas de EDOs de primer orden.</strong></p>
+<section id="aspectos-generales">
+<h3><span class="section-number">10.5.1. </span>Aspectos generales<a class="headerlink" href="#aspectos-generales" title="Permalink to this headline">#</a></h3>
+<p>La función requiere 4 argumentos mínimos, <code class="docutils literal notranslate"><span class="pre">fun</span></code>, <code class="docutils literal notranslate"><span class="pre">bc</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span><span class="n">bc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fun</span></code>: <em>callable</em>, Función <span class="math notranslate nohighlight">\(\vec{F}(x,\vec{y})\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bc</span></code>: <em>callable</em>, Función para condiciones de borde</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: <em>ndarray</em>, nodos de colocación</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code>: <em>ndarray</em>, valores iniciales de <span class="math notranslate nohighlight">\(\vec{y}\)</span> en los nodos de colocación</p></li>
+</ul>
+</section>
+<section id="ejemplo">
+<h3><span class="section-number">10.5.2. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">#</a></h3>
+<p>Analicemos como utilizar el método con el siguiente problema de enfriamiento de una barra:</p>
+<a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{d^2T}{dx^2} + h'(T_\infty - T) + \sigma'(T_\infty^4 - T^4) = 0
+\end{equation*}\]</div>
+<p>con condiciones de borde</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T(0) &amp;= T_a\\
+\frac{dT}{dx}\Big|_{x=L} &amp;= h^*\left[ T_\infty - T(L)\right]
+\end{align*}\]</div>
+<p>Primero, transformamos la EDO de 2do orden a un sistema de dos EDOs de primer orden:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{dT}{dx} &amp;= q \\
+\frac{dz}{dx} &amp;= -h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
+\end{align*}\]</div>
+<p>que en su forma matricial se reduce a una ecuación <span class="math notranslate nohighlight">\(\frac{d\vec{y}}{dx} = \vec{F}(x,\vec{y})\)</span>, de la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{d}{dx}\left\{\begin{matrix} T \\ q\end{matrix}\right\} = \left\{\begin{matrix} q \\  -h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)\end{matrix}\right\}
+\end{equation*}\]</div>
+<p>En python, usaremos la función <code class="docutils literal notranslate"><span class="pre">fun</span></code> para reprentar este sistema:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
+
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>                                   <span class="c1">#   q</span>
+            <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span> <span class="c1"># - h&#39;(Too - T) - S*(Too^4 - T^4)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las condiciones de borde son:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+T(0) - T_a &amp;= 0 \\
+q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
+\end{align*}\]</div>
+<p>En este caso, usamos la función <code class="docutils literal notranslate"><span class="pre">bc(ya,yb)</span></code> para indicar las condiciones de borde, donde <code class="docutils literal notranslate"><span class="pre">ya</span></code> y <code class="docutils literal notranslate"><span class="pre">yb</span></code> son vectores de dos dimensiones con</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ya[0]</span></code> = <span class="math notranslate nohighlight">\(T(0)\)</span>, <code class="docutils literal notranslate"><span class="pre">ya[1]</span></code> = <span class="math notranslate nohighlight">\(q(0)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yb[0]</span></code> = <span class="math notranslate nohighlight">\(T(L)\)</span> y <code class="docutils literal notranslate"><span class="pre">yb[1]</span></code> = <span class="math notranslate nohighlight">\(q(L)\)</span></p></li>
+</ul>
+<p>Debido a que solo tenemos dos condiciones de borde, usamos <code class="docutils literal notranslate"><span class="pre">ya[0]</span></code>, <code class="docutils literal notranslate"><span class="pre">yb[1]</span></code> y <code class="docutils literal notranslate"><span class="pre">yb[0]</span></code> en la función <code class="docutils literal notranslate"><span class="pre">bc</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">ya</span><span class="p">,</span><span class="n">yb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">ya</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ta</span><span class="p">,</span>              <span class="c1"># T(0) - Ta</span>
+            <span class="n">yb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span> <span class="o">-</span> <span class="n">yb</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="c1"># q(L) - h(Too - T(L))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Luego, generamos los nodos de colocación y valores iniciales. <strong>Estos valores son arbitrarios</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>                              <span class="c1"># Número de nodos de colocación</span>
+<span class="n">x_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>         <span class="c1"># nodos de colocación</span>
+<span class="n">y_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_init</span><span class="p">)))</span> <span class="c1"># Valores iniciales en nodos de colocación</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente, ejecutamos <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x_init</span><span class="p">,</span> <span class="n">y_init</span><span class="p">)</span>
+<span class="n">out</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       message: The algorithm converged to the desired accuracy.
+       success: True
+        status: 0
+             x: [ 0.000e+00  5.556e-01 ...  9.444e+00  1.000e+01]
+           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f5ea209b8b0&gt;
+             p: None
+             y: [[ 3.000e+02  2.788e+02 ...  2.039e+02  2.037e+02]
+                 [-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]]
+            yp: [[-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]
+                 [ 2.255e+01  1.593e+01 ...  5.442e-01  5.181e-01]]
+ rms_residuals: [ 5.847e-04  4.042e-04 ...  4.991e-05  5.614e-05]
+         niter: 2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notar que tenemos una serie de <em>outputs</em>, de los cuales <code class="docutils literal notranslate"><span class="pre">out.x</span></code> corresponden a los nodos de la malla, <code class="docutils literal notranslate"><span class="pre">out.y[0,:]</span></code> valores de temperatura, y <code class="docutils literal notranslate"><span class="pre">out.y[1,:]</span></code> valores para q.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xi</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">x</span>      <span class="c1"># nodos de colocación</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="c1"># valores de temperatura en xi</span>
+<span class="n">qi</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1"># valores de q en xi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Además la solución nos entrega un polinomio de interpolación en la variable <code class="docutils literal notranslate"><span class="pre">out.sol</span></code>, que podemos evaluar en puntos arbitrarios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([284.16173859, -35.78400116])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usamos nuestro resultado para graficar la solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># arreglo para gráficar </span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>        <span class="c1"># valores de temperatura evaluados en polinomio de interpolación</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">Ti</span><span class="p">,</span><span class="s1">&#39;xb&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;nodos de colocación&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="s1">&#39;:r&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;polinomio de interpolación evaluado&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Barra con convección en un extremo (solve_bvp)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura en la barra, $T$ (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/10-EDO_condicion_de_borde_140_0.png" src="../_images/10-EDO_condicion_de_borde_140_0.png" />
+</div>
+</div>
+</section>
+</section>
 <section id="errores-numericos-y-estabilidad">
-<h2><span class="section-number">10.4. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.6. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Permalink to this headline">#</a></h2>
 <p>Los problemas con condiciones de borde también estan expuestos a errores por truncamiento y por estabilidad.</p>
 <ul class="simple">
 <li><p>En el caso del <strong>método del disparo</strong>, el error es similar a lo discutido con los métodos para resolver EDOs con valor inicial. Es decir, <strong>este método puede presentar problemas de inestabilidad, rigidez, y errores de truncamiento</strong> dependiendo del método utilizado para resolver el problema de valor inicial</p></li>
@@ -1032,10 +1372,13 @@ T(L) &amp;= T_b
 <ul class="simple">
 <li><p>En el caso del <strong>método de diferencias finitas</strong>, el <strong>error está directamente asociado al truncamiento de la serie de Taylor</strong>, lo cual depende del esquema utilizado para la discretización (diferencia central, diferencia hacia adelante, etc).</p></li>
 </ul>
-<p>Por último es importante mencionar que el método de diferencias finitas es fácilmente extensible a problemas expresados en ecuaciones diferenciales parciales, mientras que el método del disparo solo puede ser planteado para EDOs con valor inicial. Esto lo revisaremos en la próxima unidad del curso.</p>
+<ul class="simple">
+<li><p>Similarmente, <strong>el error del método método de colocación está condicionado al truncamiento de la serie de Taylor, el cual está intrínsecamente ligado al grado del polinomio de interpolación.</strong></p></li>
+</ul>
+<p>Por último es importante mencionar que el método de diferencias finitas es fácilmente extensible a problemas expresados en ecuaciones diferenciales parciales. Esto lo revisaremos en la próxima unidad del curso.</p>
 </section>
 <section id="referencias">
-<h2><span class="section-number">10.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 23: Boundary-Value Problems for ODEs</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter23.00-ODE-Boundary-Value-Problems.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 27 Problemas de valores en la frontera y de valores própios</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1074,7 +1417,7 @@ T(L) &amp;= T_b
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">9. </span>Ecuaciones Diferenciales Ordinarias con valor inicial</p>
+            <p class="prev-next-title"><span class="section-number">9. </span>Problemas de valor inicial</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html" title="next page">
