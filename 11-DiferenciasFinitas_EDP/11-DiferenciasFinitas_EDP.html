@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>11. Diferencias finitas para ecuaciones diferenciales parciales &#8212; MEC301 - Métodos Numéricos</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,55 +65,96 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="prev" title="10. Problema de valor en la frontera" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,414 +163,258 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 1. Introducción a los métodos numéricos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">
-   1. Aspectos generales de programación y algoritmos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">
-   2. Algebra lineal y sistemas de ecuaciones lineales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">
-   3. Ajuste de curvas por mínimos cuadrados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">
-   4. Métodos de Interpolación
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 2. Métodos numéricos basados en series de Taylor
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">
-   5. Series de Taylor
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../06-Root-finding/06-Root-finding.html">
-   6. Algortimos de búsqueda de raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07-Integracion/07-Integracion.html">
-   7. Integración numérica
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 3. Métodos numéricos para ecuaciones diferenciales
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">
-   8. Derivación numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">
-   9. Ecuaciones Diferenciales Ordinarias con valor inicial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">
-   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   11. Diferencias finitas para ecuaciones diferenciales parciales
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Problemas de valor inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Problema de valor en la frontera</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   11.1. Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">
-   11.2. Ecuaciones elipticas  (EDP estacionaria)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">
-     11.2.1. Solución EDP lineal estacionaria
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">
-     11.2.2. Solución EDP estacionaria en python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variables-secundarias">
-     11.2.3. Variables secundarias
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">
-   11.3. Ecuaciones parabólicas (EDP transciente)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edp-lineal-1d-transciente">
-     11.3.1. EDP lineal 1D transciente
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">
-     11.3.2. EDP no-lineal 1D transciente
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#edp-transcientes-en-2d">
-   11.4. EDP transcientes en 2D
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   11.5. Referencias
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Diferencias finitas para ecuaciones diferenciales parciales</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   11.1. Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">
-   11.2. Ecuaciones elipticas  (EDP estacionaria)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">
-     11.2.1. Solución EDP lineal estacionaria
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">
-     11.2.2. Solución EDP estacionaria en python
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#variables-secundarias">
-     11.2.3. Variables secundarias
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">
-   11.3. Ecuaciones parabólicas (EDP transciente)
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edp-lineal-1d-transciente">
-     11.3.1. EDP lineal 1D transciente
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">
-     11.3.2. EDP no-lineal 1D transciente
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#edp-transcientes-en-2d">
-   11.4. EDP transcientes en 2D
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   11.5. Referencias
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diferencias finitas para ecuaciones diferenciales parciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">11.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">11.2. Ecuaciones elipticas  (EDP estacionaria)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">11.2.1. Solución EDP lineal estacionaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">11.2.2. Solución EDP estacionaria en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-secundarias">11.2.3. Variables secundarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">11.3. Ecuaciones parabólicas (EDP transciente)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-lineal-1d-transciente">11.3.1. EDP lineal 1D transciente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">11.3.2. EDP no-lineal 1D transciente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-transcientes-en-2d">11.4. EDP transcientes en 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">11.5. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
-  <p><font size="6">MEC301 - Métodos Numéricos</font></p>
-<section class="tex2jax_ignore mathjax_ignore" id="diferencias-finitas-para-ecuaciones-diferenciales-parciales">
-<h1><span class="section-number">11. </span>Diferencias finitas para ecuaciones diferenciales parciales<a class="headerlink" href="#diferencias-finitas-para-ecuaciones-diferenciales-parciales" title="Permalink to this headline">#</a></h1>
-<p><br><br><br><br>
-Profesor: Francisco Ramírez Cuevas<br>
-Fecha: 14 de noviembre 2022</p>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diferencias-finitas-para-ecuaciones-diferenciales-parciales">
+<h1><span class="section-number">11. </span>Diferencias finitas para ecuaciones diferenciales parciales<a class="headerlink" href="#diferencias-finitas-para-ecuaciones-diferenciales-parciales" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
-<p>Como mencionamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
+<h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>Como mencionamos en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="doc std std-doc">unidad 9</span></a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
 <p>Por ejemplo,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ccb67ac-ca6b-40a9-b4be-8eee3b78c480">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-0ccb67ac-ca6b-40a9-b4be-8eee3b78c480" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4965dd19-c8b2-4c26-b767-89434b9c0ee5">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-4965dd19-c8b2-4c26-b767-89434b9c0ee5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2u}{\partial x^2} + 
 2xy\frac{\partial^2u}{\partial y^2} = 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2cd35cbd-5cb6-4238-bdbe-a61d370e4a56">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-2cd35cbd-5cb6-4238-bdbe-a61d370e4a56" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2a7419c-63ad-4617-90b0-aff744e91cb8">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-e2a7419c-63ad-4617-90b0-aff744e91cb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^3u}{\partial x^2\partial y} + 
 x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f244420a-a55a-47da-b1a4-aefeb5a120a8">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-f244420a-a55a-47da-b1a4-aefeb5a120a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0a963df8-2208-41db-a4de-003435d531ff">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-0a963df8-2208-41db-a4de-003435d531ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 6\frac{\partial^3u}{\partial x\partial y^2} = x
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-46201537-1574-4013-9fa0-3ae4eeed21e8">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-46201537-1574-4013-9fa0-3ae4eeed21e8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a029518f-d41c-4569-a0a9-dc08c6e370c1">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-a029518f-d41c-4569-a0a9-dc08c6e370c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 xu\frac{\partial u}{\partial y} = x
 \end{equation}\]</div>
 <p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
 <p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
 <p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f24c24c-e96d-415d-be3f-bd28edaa14bf">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-2f24c24c-e96d-415d-be3f-bd28edaa14bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b1c2f8b1-cd8d-4bed-bf21-c114524f76cf">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-b1c2f8b1-cd8d-4bed-bf21-c114524f76cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\frac{\partial^2u}{\partial x^2} + 
 B\frac{\partial^2u}{\partial x \partial y} +  
 C\frac{\partial^2u}{\partial y^2} + 
@@ -533,10 +430,10 @@ D = 0
 <p>En esta unidad revisaremos EDP de tipo ellípticas y parabólica, dada su reelevancia en problemas de ingeniería mecánica.</p>
 </section>
 <section id="ecuaciones-elipticas-edp-estacionaria">
-<h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Permalink to this heading">#</a></h2>
 <p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d5c7791-2d5c-47bd-85be-dc9c28ae64d8">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-1d5c7791-2d5c-47bd-85be-dc9c28ae64d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5306073c-0efc-4451-a484-6471c66906da">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-5306073c-0efc-4451-a484-6471c66906da" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} +
 \frac{\partial^2 T}{\partial y^2}
 = 0
@@ -635,10 +532,10 @@ T_a \\ T_a \\ T_a \\ \Delta y q_0 \\ 0 \\ \Delta y h T_\infty \\ T_b \\ T_b \\ T
 \end{equation*}\]</div>
 <p>¿Cómo podemos implementar un código computacional que genere el sistema <span class="math notranslate nohighlight">\(Ax = b\)</span> con este esquema, de forma genérica y para cualquier tipo de condición de borde?</p>
 <section id="solucion-edp-lineal-estacionaria">
-<h3><span class="section-number">11.2.1. </span>Solución EDP lineal estacionaria<a class="headerlink" href="#solucion-edp-lineal-estacionaria" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.2.1. </span>Solución EDP lineal estacionaria<a class="headerlink" href="#solucion-edp-lineal-estacionaria" title="Permalink to this heading">#</a></h3>
 <p>Antes de implementar nuestro código, debemos recordar que la solución a este tipo de sistemas está dado por el método de Gauss-Seidel.</p>
 <p>Recordando la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/2-Algebra_lineal/2-Algebra_lineal.html#gauss-seidel">unidad 2</a> del curso, el método de Gauss-Seidel se resume en los siguientes pasos:</p>
-<ol>
+<ol class="arabic">
 <li><p>Asumimos un valor inicial para <span class="math notranslate nohighlight">\(x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_1^{(0)}\)</span>).</p></li>
 <li><p>Calculamos un nuevo valor para <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> mediante:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -671,7 +568,7 @@ T_{i,j}^* &amp;=&amp; \frac{1}{(1 + h\Delta y)}(T_{i,j-1} + \Delta y~hT_\infty)\
 <a class="reference internal image-reference" href="../_images/gauss-seidel.gif"><img alt="../_images/gauss-seidel.gif" class="align-center" src="../_images/gauss-seidel.gif" style="width: 600px;" /></a>
 </section>
 <section id="solucion-edp-estacionaria-en-python">
-<h3><span class="section-number">11.2.2. </span>Solución EDP estacionaria en python<a class="headerlink" href="#solucion-edp-estacionaria-en-python" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.2.2. </span>Solución EDP estacionaria en python<a class="headerlink" href="#solucion-edp-estacionaria-en-python" title="Permalink to this heading">#</a></h3>
 <p>Analicemos esto en un código.</p>
 <p>Considerando los siguientes parámetros:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -791,11 +688,11 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3970/4126467964.py:11: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9446/4126467964.py:11: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Mapa T(x,y)
 </pre></div>
 </div>
-<img alt="../_images/11-DiferenciasFinitas_EDP_48_1.png" src="../_images/11-DiferenciasFinitas_EDP_48_1.png" />
+<img alt="../_images/c7001a9dc24c47492b34ca6b92f0566ef580a0b9266ee7926b38fbaa8abc563c.png" src="../_images/c7001a9dc24c47492b34ca6b92f0566ef580a0b9266ee7926b38fbaa8abc563c.png" />
 </div>
 </div>
 <p>Notar que para graficar usamos la traspuesta de la solción mediante el operador <code class="docutils literal notranslate"><span class="pre">.T</span></code></p>
@@ -806,7 +703,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <p>Notar también que, en este problema, requerimos de un error relativo pequeño (0.001% en este caso) para asegurar convergencia. Si aumentamos la tolerancia, la solución se hace sensible al valor inicial en la iteración.</p>
 </section>
 <section id="variables-secundarias">
-<h3><span class="section-number">11.2.3. </span>Variables secundarias<a class="headerlink" href="#variables-secundarias" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.2.3. </span>Variables secundarias<a class="headerlink" href="#variables-secundarias" title="Permalink to this heading">#</a></h3>
 <p>En el problema anterior, la temperatura es la varible principal del problema. Sin embargo, es común que también necesitemos información de <strong>variables secundarias</strong> basadas en la derivada o integral de la variable principal.</p>
 <p>Por ejemplo, el <strong>flujo de calor</strong> está definido por: <span class="math notranslate nohighlight">\(\vec{q} = -k \nabla T = - k\left(\frac{\partial T}{\partial x}\hat{x} +\frac{\partial T}{\partial y}\hat{y}\right)\)</span></p>
 <p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> usamos <code class="docutils literal notranslate"><span class="pre">gradient</span></code> para determinar la derivada en problemas de dos o más dimensiones</p>
@@ -838,11 +735,11 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3970/4229917211.py:7: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9446/4229917211.py:7: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))
 </pre></div>
 </div>
-<img alt="../_images/11-DiferenciasFinitas_EDP_55_1.png" src="../_images/11-DiferenciasFinitas_EDP_55_1.png" />
+<img alt="../_images/9f5503d280be8cb830f0512e52937fa41e578ffb6aed3b813f9dc54b2cfffc49.png" src="../_images/9f5503d280be8cb830f0512e52937fa41e578ffb6aed3b813f9dc54b2cfffc49.png" />
 </div>
 </div>
 <p>Notar el uso de la función <code class="docutils literal notranslate"><span class="pre">gradient</span></code> y <code class="docutils literal notranslate"><span class="pre">quiver</span></code> en este caso .</p>
@@ -866,7 +763,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </section>
 </section>
 <section id="ecuaciones-parabolicas-edp-transciente">
-<h2><span class="section-number">11.3. </span>Ecuaciones parabólicas (EDP transciente)<a class="headerlink" href="#ecuaciones-parabolicas-edp-transciente" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.3. </span>Ecuaciones parabólicas (EDP transciente)<a class="headerlink" href="#ecuaciones-parabolicas-edp-transciente" title="Permalink to this heading">#</a></h2>
 <p>Una de las ecuaciones parabólicas más comunes es la ley de conducción de calor 1D transciente:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -876,7 +773,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 <p>También podemos usar el método de diferencias finitas para resolver este problema. Sin embargo, en este caso tenemos un problema de condiciones de borde mezclada con un problema de valor inicial.</p>
 <p>Como revisamos en la <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html">unidad 9</a>, existen diversos métodos para resolver problemas de valor inicial. En esta unidad nos enfocaremos en el <strong>método de Euler explícito</strong>.</p>
 <section id="edp-lineal-1d-transciente">
-<h3><span class="section-number">11.3.1. </span>EDP lineal 1D transciente<a class="headerlink" href="#edp-lineal-1d-transciente" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.3.1. </span>EDP lineal 1D transciente<a class="headerlink" href="#edp-lineal-1d-transciente" title="Permalink to this heading">#</a></h3>
 <p>Nuevamente, revisemos una barra que se enfría por convección. Ahora, la barra se encuentra inicialmente a temperatura ambiente <span class="math notranslate nohighlight">\(T_\infty\)</span></p>
 <a class="reference internal image-reference" href="../_images/heated_bar1.png"><img alt="../_images/heated_bar1.png" class="align-center" src="../_images/heated_bar1.png" style="width: 450px;" /></a>
 <div class="amsmath math notranslate nohighlight">
@@ -908,8 +805,8 @@ T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\in
 <p>Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito</p>
 <blockquote>
 <div><p><strong>Importante</strong> Una condición necesaria del método explícito para asegurar convergencia y estabilidad en nuestra solución es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a272cac0-f651-4261-9d63-7175821c54c8">
-<span class="eqno">(11.7)<a class="headerlink" href="#equation-a272cac0-f651-4261-9d63-7175821c54c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-333fba8b-a10e-4ece-8e21-04a00384c6c4">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-333fba8b-a10e-4ece-8e21-04a00384c6c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{2} \frac{\Delta x^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1013,16 +910,16 @@ L &amp;= 1 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3970/3669370231.py:15: MatplotlibDeprecationWarning: Unable to determine Axes to steal space for Colorbar. Using gca(), but will raise in the future. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9446/3669370231.py:15: MatplotlibDeprecationWarning: Unable to determine Axes to steal space for Colorbar. Using gca(), but will raise in the future. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
   cbar = plt.colorbar(sm, ticks=[0, 1])                 # Restringir solo dos etiquetas
 </pre></div>
 </div>
-<img alt="../_images/11-DiferenciasFinitas_EDP_83_1.png" src="../_images/11-DiferenciasFinitas_EDP_83_1.png" />
+<img alt="../_images/353aadd3910b4051f20804880a630853ac20bf724bd1ae3a225ff4f64b2e8a0e.png" src="../_images/353aadd3910b4051f20804880a630853ac20bf724bd1ae3a225ff4f64b2e8a0e.png" />
 </div>
 </div>
 </section>
 <section id="edp-no-lineal-1d-transciente">
-<h3><span class="section-number">11.3.2. </span>EDP no-lineal 1D transciente<a class="headerlink" href="#edp-no-lineal-1d-transciente" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">11.3.2. </span>EDP no-lineal 1D transciente<a class="headerlink" href="#edp-no-lineal-1d-transciente" title="Permalink to this heading">#</a></h3>
 <p>Una ventaja del método de Euler explícito es que nos permite fácilmente extender el resultado a EDP del tipo no lineal. Esto debido a que los valores de <span class="math notranslate nohighlight">\(T_{i}^{l+1}\)</span> siempre quedan expresados en función de valores conocidos.</p>
 <p>Analicemos esto con el problema de la barra ahora con enfriamiento por convección y radiación</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_radiation.png"><img alt="../_images/heated_bar_radiation.png" class="align-center" src="../_images/heated_bar_radiation.png" style="width: 450px;" /></a>
@@ -1134,17 +1031,17 @@ L &amp;= 1 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3970/1704454942.py:15: MatplotlibDeprecationWarning: Unable to determine Axes to steal space for Colorbar. Using gca(), but will raise in the future. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9446/1704454942.py:15: MatplotlibDeprecationWarning: Unable to determine Axes to steal space for Colorbar. Using gca(), but will raise in the future. Either provide the *cax* argument to use as the Axes for the Colorbar, provide the *ax* argument to steal space from it, or add *mappable* to an Axes.
   cbar = plt.colorbar(sm, ticks=[0, 1])                  # Restringir solo dos etiquetas
 </pre></div>
 </div>
-<img alt="../_images/11-DiferenciasFinitas_EDP_95_1.png" src="../_images/11-DiferenciasFinitas_EDP_95_1.png" />
+<img alt="../_images/4fe9124c187e828aec242b3b7f30cd8aa81dbbd6fb4f5c063240ae6e3a4a645b.png" src="../_images/4fe9124c187e828aec242b3b7f30cd8aa81dbbd6fb4f5c063240ae6e3a4a645b.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="edp-transcientes-en-2d">
-<h2><span class="section-number">11.4. </span>EDP transcientes en 2D<a class="headerlink" href="#edp-transcientes-en-2d" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.4. </span>EDP transcientes en 2D<a class="headerlink" href="#edp-transcientes-en-2d" title="Permalink to this heading">#</a></h2>
 <p>El método explícito puede ser fácilmente extendido a problemas con más dimenciones, EDP no lineales, o incluso, con más de una varible dependiente (sistemas de EDPs).</p>
 <p>Revisemos una EDP 2D, considerando el problema de la placa analizado anteriormente.</p>
 <a class="reference internal image-reference" href="../_images/plate_boundary_conditions.png"><img alt="../_images/plate_boundary_conditions.png" class="align-center" src="../_images/plate_boundary_conditions.png" style="width: 400px;" /></a>
@@ -1168,8 +1065,8 @@ T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0
 <p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
 <blockquote>
 <div><p><strong>Nota</strong> En este caso, la condición de estabilidad y convergencia está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c04e386b-8746-4be0-a3ea-d84fb180f0ba">
-<span class="eqno">(11.8)<a class="headerlink" href="#equation-c04e386b-8746-4be0-a3ea-d84fb180f0ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a949dc4d-575a-4c80-b832-579d72e08654">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-a949dc4d-575a-4c80-b832-579d72e08654" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1270,16 +1167,16 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3970/2608929585.py:15: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9446/2608929585.py:15: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores
 </pre></div>
 </div>
-<img alt="../_images/11-DiferenciasFinitas_EDP_109_1.png" src="../_images/11-DiferenciasFinitas_EDP_109_1.png" />
+<img alt="../_images/38a152257e8a6e42fd856b3942d0a4757f8215dd847f660a713fe64997515fb9.png" src="../_images/38a152257e8a6e42fd856b3942d0a4757f8215dd847f660a713fe64997515fb9.png" />
 </div>
 </div>
 </section>
 <section id="referencias">
-<h2><span class="section-number">11.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">11.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Chapra S., Canale R. <strong>Capítulo 28: Diferencias finitas: ecuaciones elípticas</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 29: Diferencias finitas: ecuaciones parabólicas</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1300,7 +1197,7 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./11-DiferenciasFinitas_EDP"
         },
         predefinedOutput: true
@@ -1308,43 +1205,105 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">10. </span>Ecuaciones Diferenciales Ordinarias con Condiciones de Borde</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Problema de valor en la frontera</p>
+      </div>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">11.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-elipticas-edp-estacionaria">11.2. Ecuaciones elipticas  (EDP estacionaria)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-edp-lineal-estacionaria">11.2.1. Solución EDP lineal estacionaria</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-edp-estacionaria-en-python">11.2.2. Solución EDP estacionaria en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-secundarias">11.2.3. Variables secundarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ecuaciones-parabolicas-edp-transciente">11.3. Ecuaciones parabólicas (EDP transciente)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-lineal-1d-transciente">11.3.1. EDP lineal 1D transciente</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-no-lineal-1d-transciente">11.3.2. EDP no-lineal 1D transciente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edp-transcientes-en-2d">11.4. EDP transcientes en 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">11.5. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Francisco V. Ramirez-Cuevas<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

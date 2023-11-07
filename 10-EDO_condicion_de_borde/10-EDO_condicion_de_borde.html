@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>10. Problema de valor en la frontera &#8212; MEC301 - Métodos Numéricos</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,56 +65,97 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10-EDO_condicion_de_borde/10-EDO_condicion_de_borde';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="11. Diferencias finitas para ecuaciones diferenciales parciales" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html" />
     <link rel="prev" title="9. Problemas de valor inicial" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,429 +164,236 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 1. Introducción a los métodos numéricos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">
-   1. Aspectos generales de programación y algoritmos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">
-   2. Algebra lineal y sistemas de ecuaciones lineales
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">
-   3. Ajuste de curvas por mínimos cuadrados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">
-   4. Métodos de Interpolación
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 2. Métodos numéricos basados en series de Taylor
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">
-   5. Series de Taylor
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../06-Root-finding/06-Root-finding.html">
-   6. Algortimos de búsqueda de raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07-Integracion/07-Integracion.html">
-   7. Integración numérica
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 3. Métodos numéricos para ecuaciones diferenciales
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">
-   8. Derivación numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">
-   9. Problemas de valor inicial
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   10. Problema de valor en la frontera
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">
-   11. Diferencias finitas para ecuaciones diferenciales parciales
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Problemas de valor inicial</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Problema de valor en la frontera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   10.1. Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-disparo">
-   10.2. Método de disparo
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#condiciones-de-borde-de-newman-o-robin">
-     10.2.1. Condiciones de borde de Newman o Robin
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">
-   10.3. Método de diferencias finitas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">
-     10.3.1. EDO lineal con condición de borde de Dirichlet
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">
-     10.3.2. EDO lineal con condición de borde de Robin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-no-lineal">
-     10.3.3. EDO no lineal
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-colocacion">
-   10.4. Método de colocación
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">
-   10.5. Problemas de valor de frontera en python (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     solve_bvp
-    </span>
-   </code>
-   )
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aspectos-generales">
-     10.5.1. Aspectos generales
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo">
-     10.5.2. Ejemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">
-   10.6. Errores numéricos y  estabilidad
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   10.7. Referencias
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Problema de valor en la frontera</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   10.1. Introducción
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-disparo">
-   10.2. Método de disparo
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#condiciones-de-borde-de-newman-o-robin">
-     10.2.1. Condiciones de borde de Newman o Robin
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">
-   10.3. Método de diferencias finitas
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">
-     10.3.1. EDO lineal con condición de borde de Dirichlet
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">
-     10.3.2. EDO lineal con condición de borde de Robin
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#edo-no-lineal">
-     10.3.3. EDO no lineal
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-de-colocacion">
-   10.4. Método de colocación
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">
-   10.5. Problemas de valor de frontera en python (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     solve_bvp
-    </span>
-   </code>
-   )
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#aspectos-generales">
-     10.5.1. Aspectos generales
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo">
-     10.5.2. Ejemplo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">
-   10.6. Errores numéricos y  estabilidad
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   10.7. Referencias
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Problema de valor en la frontera</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">10.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-disparo">10.2. Método de disparo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde-de-neumann-o-robin">10.2.1. Condiciones de borde de Neumann o Robin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">10.3. Método de diferencias finitas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">10.3.1. EDO lineal con condición de borde de Dirichlet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">10.3.2. EDO lineal con condición de borde de Robin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-no-lineal">10.3.3. EDO no lineal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-colocacion">10.4. Método de colocación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">10.5. Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aspectos-generales">10.5.1. Aspectos generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">10.5.2. Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">10.6. Errores numéricos y  estabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">10.7. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="problema-de-valor-en-la-frontera">
-<h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">10.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>En la unidad anterior nos enfocamos en ecuación diferenciales ordinarias condionadas por valores iniciales o <strong>problema de valor inicial</strong>.</p>
 <p>Repasando la ecuación del péndulo:</p>
 <p><strong>Ecuación gobernante</strong></p>
@@ -584,7 +444,7 @@ T(L) &amp;= T_b
 </ul>
 </section>
 <section id="metodo-de-disparo">
-<h2><span class="section-number">10.2. </span>Método de disparo<a class="headerlink" href="#metodo-de-disparo" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.2. </span>Método de disparo<a class="headerlink" href="#metodo-de-disparo" title="Permalink to this heading">#</a></h2>
 <p>El método del disparo consiste en transformar una EDO con condiciones de borde a una EDO de valor inicial. Mediante un proceso iterativo, el método busca una solución al problema de valores iniciales que satisfaga la condiciones de bordes.</p>
 <p>Para ilustrar este método, consideremos el problema de la barra con enfriamiento.</p>
 <p>Podemos transformar este problema en un problema de valor inicial de la forma:</p>
@@ -644,9 +504,9 @@ q_a
 <span class="n">Tb</span>  <span class="o">=</span> <span class="mi">400</span>    <span class="c1"># Temperatura extremo derecho (K)</span>
 <span class="n">L</span>   <span class="o">=</span> <span class="mi">10</span>     <span class="c1"># Largo de la barra (m)</span>
 
-<span class="c1"># Declaramos F con y[0] = T, y[1] = z</span>
-<span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
-                <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
+<span class="c1"># Declaramos F con y[0] = T, y[1] = q</span>
+<span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                 <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">Too</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
@@ -671,7 +531,7 @@ q_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_28_0.png" src="../_images/10-EDO_condicion_de_borde_28_0.png" />
+<img alt="../_images/6c6a5fa289645439dcde01fd1242b70ea7f9a792ec63574eafceeab5815c784e.png" src="../_images/6c6a5fa289645439dcde01fd1242b70ea7f9a792ec63574eafceeab5815c784e.png" />
 </div>
 </div>
 <p>¿Cómo podemos adivinar el valor de <span class="math notranslate nohighlight">\(q_a\)</span> correcto?</p>
@@ -723,11 +583,11 @@ q_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_38_0.png" src="../_images/10-EDO_condicion_de_borde_38_0.png" />
+<img alt="../_images/e51036aac6aebda9d0b44e11976c773b4317035dffb4d949eb683e78dd88d7cc.png" src="../_images/e51036aac6aebda9d0b44e11976c773b4317035dffb4d949eb683e78dd88d7cc.png" />
 </div>
 </div>
-<section id="condiciones-de-borde-de-newman-o-robin">
-<h3><span class="section-number">10.2.1. </span>Condiciones de borde de Newman o Robin<a class="headerlink" href="#condiciones-de-borde-de-newman-o-robin" title="Permalink to this headline">#</a></h3>
+<section id="condiciones-de-borde-de-neumann-o-robin">
+<h3><span class="section-number">10.2.1. </span>Condiciones de borde de Neumann o Robin<a class="headerlink" href="#condiciones-de-borde-de-neumann-o-robin" title="Permalink to this heading">#</a></h3>
 <p>Las condiciones de borde <span class="math notranslate nohighlight">\(T(0) = T_a\)</span> y <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>, se conoce como <em>condición de borde de Dirichlet o de primer tipo.</em> Es una de muchos tipos de condiciones de borde que se utilizan en ingeniería y ciencias.</p>
 <p>A veces, las condiciones de borde están definidas en función de derivadas. En este caso distinguimos:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -785,16 +645,16 @@ y'(a) &amp;=&amp; \alpha&amp;&amp;\quad\mathrm{condición~de~Neumann~(o~de~segun
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_49_0.png" src="../_images/10-EDO_condicion_de_borde_49_0.png" />
+<img alt="../_images/90c3f5912db6099e6ae95de706abaa66a5c7b356293c2bc6eeee5018730fa7aa.png" src="../_images/90c3f5912db6099e6ae95de706abaa66a5c7b356293c2bc6eeee5018730fa7aa.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="metodo-de-diferencias-finitas">
-<h2><span class="section-number">10.3. </span>Método de diferencias finitas<a class="headerlink" href="#metodo-de-diferencias-finitas" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.3. </span>Método de diferencias finitas<a class="headerlink" href="#metodo-de-diferencias-finitas" title="Permalink to this heading">#</a></h2>
 <p>Diferencias finitas es el método más general para resolver EDOs con condiciones de borde. Esto consiste en discretizar la ecuación diferencial utilizando las fórmulas de la <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html"><span class="doc std std-doc">unidad 8</span></a>.</p>
 <section id="edo-lineal-con-condicion-de-borde-de-dirichlet">
-<h3><span class="section-number">10.3.1. </span>EDO lineal con condición de borde de Dirichlet<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-dirichlet" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">10.3.1. </span>EDO lineal con condición de borde de Dirichlet<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-dirichlet" title="Permalink to this heading">#</a></h3>
 <p>Revisemos esto con el problema de la barra. Ahora, únicamente, considerando pérdidas de calor por convección.</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convection_losses.png"><img alt="../_images/heated_bar_convection_losses.png" class="align-center" src="../_images/heated_bar_convection_losses.png" style="width: 400px;" /></a>
 <p>En este caso <strong>la EDO es del tipo lineal</strong>:</p>
@@ -906,12 +766,12 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_72_0.png" src="../_images/10-EDO_condicion_de_borde_72_0.png" />
+<img alt="../_images/d702582b557a25be472eba2757f1c7da184f5d026dd5fd6b23301a1810ec06da.png" src="../_images/d702582b557a25be472eba2757f1c7da184f5d026dd5fd6b23301a1810ec06da.png" />
 </div>
 </div>
 </section>
 <section id="edo-lineal-con-condicion-de-borde-de-robin">
-<h3><span class="section-number">10.3.2. </span>EDO lineal con condición de borde de Robin<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-robin" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">10.3.2. </span>EDO lineal con condición de borde de Robin<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-robin" title="Permalink to this heading">#</a></h3>
 <p>Consideremos ahora el caso de una barra con condiciones de borde de Robin:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -998,12 +858,12 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_84_0.png" src="../_images/10-EDO_condicion_de_borde_84_0.png" />
+<img alt="../_images/63926d7d9ab659a2e707f3fae7b3edd204d2bfd617db2cefdbbf767cfd4dcb16.png" src="../_images/63926d7d9ab659a2e707f3fae7b3edd204d2bfd617db2cefdbbf767cfd4dcb16.png" />
 </div>
 </div>
 </section>
 <section id="edo-no-lineal">
-<h3><span class="section-number">10.3.3. </span>EDO no lineal<a class="headerlink" href="#edo-no-lineal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">10.3.3. </span>EDO no lineal<a class="headerlink" href="#edo-no-lineal" title="Permalink to this heading">#</a></h3>
 <p>Si la EDO es no lineal la forma de resolver el problema es análoga. Sin embargo, <strong>el sistema de ecuaciones a resolver también será del tipo no lineal y para esto debemos utilizar un método de búsqueda de raices</strong>.</p>
 <p>Revisemos esto con el problema de la barra con enfriamiento por radiación y convección</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
@@ -1078,13 +938,13 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_96_0.png" src="../_images/10-EDO_condicion_de_borde_96_0.png" />
+<img alt="../_images/5329b405ced1ca7a18a1a704019be7f0592819c76ccf42d33b5fd17be5f1f151.png" src="../_images/5329b405ced1ca7a18a1a704019be7f0592819c76ccf42d33b5fd17be5f1f151.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="metodo-de-colocacion">
-<h2><span class="section-number">10.4. </span>Método de colocación<a class="headerlink" href="#metodo-de-colocacion" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.4. </span>Método de colocación<a class="headerlink" href="#metodo-de-colocacion" title="Permalink to this heading">#</a></h2>
 <p>El método de colocación consiste en <strong>aproximar la función buscada por un polinómio de interpolación evaluado en puntos de colocación</strong>. Aunque existen distintas versiones dependiendo del polinomio escogido, acá revisaremos los aspectos más generales del método.</p>
 <p>Consideremos el problema general:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1104,8 +964,8 @@ T(L) &amp;= T_b
 S(x) = a_0 + a_1x + a_2x^2+ \cdots + a_n x^n
 \end{equation*}\]</div>
 <p>donde sus coeficientes están dados por la solución de <span class="math notranslate nohighlight">\(S(x_i) = y_i\)</span>. En forma matricial:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3cc6c981-9abd-49f8-8b62-83712d578533">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-3cc6c981-9abd-49f8-8b62-83712d578533" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c1c50597-889b-4f25-9f70-f22ef1fe3b80">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-c1c50597-889b-4f25-9f70-f22ef1fe3b80" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left[\begin{matrix} 
 1      &amp;    x_0 &amp;  x_0^2 &amp; \cdots &amp; x_0^n \\
 1      &amp;    x_1 &amp;  x_1^2 &amp; \cdots &amp; x_1^n \\
@@ -1193,7 +1053,7 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 <p>A diferencia del método de diferencias finitas, cuya aproximación de la derivada es local, el método de colocación permite determinar la solución en base a varios nodos. Esto implica soluciónes más suaves y con menor error.</p>
 </section>
 <section id="problemas-de-valor-de-frontera-en-python-solve-bvp">
-<h2><span class="section-number">10.5. </span>Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)<a class="headerlink" href="#problemas-de-valor-de-frontera-en-python-solve-bvp" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.5. </span>Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)<a class="headerlink" href="#problemas-de-valor-de-frontera-en-python-solve-bvp" title="Permalink to this heading">#</a></h2>
 <p>La función predeterminada en python para resolver EDOs con C.B. es <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>. Esta función, parte de la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>, <strong>resuelve sistemas de EDOs de primer orden mediante una variante del método de colocación</strong> (ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html">documentación oficial</a>):</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1207,7 +1067,7 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 \end{align*}\]</div>
 <p>Al igual que lo visto en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="doc std std-doc">unidad 9</span></a>, <strong>para resolver EDOs de mayor orden debemos, primero, modificar el problema a un sistemas de EDOs de primer orden.</strong></p>
 <section id="aspectos-generales">
-<h3><span class="section-number">10.5.1. </span>Aspectos generales<a class="headerlink" href="#aspectos-generales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">10.5.1. </span>Aspectos generales<a class="headerlink" href="#aspectos-generales" title="Permalink to this heading">#</a></h3>
 <p>La función requiere 4 argumentos mínimos, <code class="docutils literal notranslate"><span class="pre">fun</span></code>, <code class="docutils literal notranslate"><span class="pre">bc</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span><span class="n">bc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -1222,7 +1082,7 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 </ul>
 </section>
 <section id="ejemplo">
-<h3><span class="section-number">10.5.2. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">10.5.2. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this heading">#</a></h3>
 <p>Analicemos como utilizar el método con el siguiente problema de enfriamiento de una barra:</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
 <div class="amsmath math notranslate nohighlight">
@@ -1302,7 +1162,7 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
        success: True
         status: 0
              x: [ 0.000e+00  5.556e-01 ...  9.444e+00  1.000e+01]
-           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f5ea209b8b0&gt;
+           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f07068c7db0&gt;
              p: None
              y: [[ 3.000e+02  2.788e+02 ...  2.039e+02  2.037e+02]
                  [-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]]
@@ -1358,13 +1218,13 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10-EDO_condicion_de_borde_140_0.png" src="../_images/10-EDO_condicion_de_borde_140_0.png" />
+<img alt="../_images/756c56ef6d0eb5673238392cee9c136890b861b4947b5b6add196e1972fb86cf.png" src="../_images/756c56ef6d0eb5673238392cee9c136890b861b4947b5b6add196e1972fb86cf.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="errores-numericos-y-estabilidad">
-<h2><span class="section-number">10.6. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.6. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Permalink to this heading">#</a></h2>
 <p>Los problemas con condiciones de borde también estan expuestos a errores por truncamiento y por estabilidad.</p>
 <ul class="simple">
 <li><p>En el caso del <strong>método del disparo</strong>, el error es similar a lo discutido con los métodos para resolver EDOs con valor inicial. Es decir, <strong>este método puede presentar problemas de inestabilidad, rigidez, y errores de truncamiento</strong> dependiendo del método utilizado para resolver el problema de valor inicial</p></li>
@@ -1378,7 +1238,7 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
 <p>Por último es importante mencionar que el método de diferencias finitas es fácilmente extensible a problemas expresados en ecuaciones diferenciales parciales. Esto lo revisaremos en la próxima unidad del curso.</p>
 </section>
 <section id="referencias">
-<h2><span class="section-number">10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 23: Boundary-Value Problems for ODEs</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter23.00-ODE-Boundary-Value-Problems.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 27 Problemas de valores en la frontera y de valores própios</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1398,7 +1258,7 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./10-EDO_condicion_de_borde"
         },
         predefinedOutput: true
@@ -1406,50 +1266,119 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">9. </span>Problemas de valor inicial</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Problemas de valor inicial</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">11. </span>Diferencias finitas para ecuaciones diferenciales parciales</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">10.1. Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-disparo">10.2. Método de disparo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde-de-neumann-o-robin">10.2.1. Condiciones de borde de Neumann o Robin</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-diferencias-finitas">10.3. Método de diferencias finitas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-dirichlet">10.3.1. EDO lineal con condición de borde de Dirichlet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-lineal-con-condicion-de-borde-de-robin">10.3.2. EDO lineal con condición de borde de Robin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edo-no-lineal">10.3.3. EDO no lineal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-colocacion">10.4. Método de colocación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-valor-de-frontera-en-python-solve-bvp">10.5. Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aspectos-generales">10.5.1. Aspectos generales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">10.5.2. Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-numericos-y-estabilidad">10.6. Errores numéricos y  estabilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">10.7. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Francisco V. Ramirez-Cuevas<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
