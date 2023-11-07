@@ -1,49 +1,61 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>3. Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,56 +65,97 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03-Ajuste_de_curvas/03-Ajuste_de_curvas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Métodos de Interpolación" href="../04-Interpolacion/04-Interpolacion.html" />
     <link rel="prev" title="2. Algebra lineal y sistemas de ecuaciones lineales" href="../02-Algebra_lineal/02-Algebra_lineal.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">MEC301 - Métodos Numéricos</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">MEC301 - Métodos Numéricos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -111,441 +164,236 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 1. Introducción a los métodos numéricos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 1. Introducción a los métodos numéricos</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">
-   1. Aspectos generales de programación y algoritmos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">
-   2. Algebra lineal y sistemas de ecuaciones lineales
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   3. Ajuste de curvas por mínimos cuadrados
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">
-   4. Métodos de Interpolación
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../01-Aspectos_generales/01-Aspectos_generales.html">1. Aspectos generales de programación y algoritmos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html">2. Algebra lineal y sistemas de ecuaciones lineales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Ajuste de curvas por mínimos cuadrados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html">4. Métodos de Interpolación</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 2. Métodos numéricos basados en series de Taylor
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">
-   5. Series de Taylor
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../06-Root-finding/06-Root-finding.html">
-   6. Algortimos de búsqueda de raíces
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../07-Integracion/07-Integracion.html">
-   7. Integración numérica
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-Root-finding/06-Root-finding.html">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Parte 3. Métodos numéricos para ecuaciones diferenciales
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">
-   8. Derivación numérica
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">
-   9. Ecuaciones Diferenciales Ordinarias con valor inicial
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">
-   10. Ecuaciones Diferenciales Ordinarias con Condiciones de Borde
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">
-   11. Diferencias finitas para ecuaciones diferenciales parciales
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html">8. Derivación numérica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html">9. Problemas de valor inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.html">10. Problema de valor en la frontera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-DiferenciasFinitas_EDP/11-DiferenciasFinitas_EDP.html">11. Diferencias finitas para ecuaciones diferenciales parciales</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="../_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   3.1. Introducción
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-lineal-unidimensional">
-     3.1.1. Regresión lineal unidimensional
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">
-     3.1.2. Ajuste por mínimos cuadrados paso a paso
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cuantificacion-del-error">
-     3.1.3. Cuantificación del error
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">
-     3.1.4. Linealización de funciones no lineales
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#otros-modelos-lineales">
-   3.2. Otros modelos lineales
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-polinomial">
-     3.2.1. Regresión polinomial
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-lineal-multidimensional">
-     3.2.2. Regresión lineal multidimensional
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modelos-de-ajuste-en-python">
-   3.3. Modelos de ajuste en python
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numpy-polyfit-modelo-polinomial-unidimencional">
-     3.3.1.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       numpy.polyfit
-      </span>
-     </code>
-     (modelo polinomial unidimencional)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">
-     3.3.2.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       scipy.optimize.curve_fit
-      </span>
-     </code>
-     (regresión no-lineal)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">
-   3.4. Regresión lineal vs no-lineal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   3.5. Referencias
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Ajuste de curvas por mínimos cuadrados</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduccion">
-   3.1. Introducción
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-lineal-unidimensional">
-     3.1.1. Regresión lineal unidimensional
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">
-     3.1.2. Ajuste por mínimos cuadrados paso a paso
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cuantificacion-del-error">
-     3.1.3. Cuantificación del error
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">
-     3.1.4. Linealización de funciones no lineales
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#otros-modelos-lineales">
-   3.2. Otros modelos lineales
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-polinomial">
-     3.2.1. Regresión polinomial
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-lineal-multidimensional">
-     3.2.2. Regresión lineal multidimensional
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modelos-de-ajuste-en-python">
-   3.3. Modelos de ajuste en python
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numpy-polyfit-modelo-polinomial-unidimencional">
-     3.3.1.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       numpy.polyfit
-      </span>
-     </code>
-     (modelo polinomial unidimencional)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">
-     3.3.2.
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       scipy.optimize.curve_fit
-      </span>
-     </code>
-     (regresión no-lineal)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">
-   3.4. Regresión lineal vs no-lineal
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencias">
-   3.5. Referencias
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Ajuste de curvas por mínimos cuadrados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">3.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-unidimensional">3.1.1. Regresión lineal unidimensional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">3.1.2. Ajuste por mínimos cuadrados paso a paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-del-error">3.1.3. Cuantificación del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">3.1.4. Linealización de funciones no lineales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-modelos-lineales">3.2. Otros modelos lineales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomial">3.2.1. Regresión polinomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-multidimensional">3.2.2. Regresión lineal multidimensional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-ajuste-en-python">3.3. Modelos de ajuste en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit-modelo-polinomial-unidimencional">3.3.1. <code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code> (modelo polinomial unidimencional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">3.3.2. <code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">3.4. Regresión lineal vs no-lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5. Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
-<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos.</p>
 <p>Por ejemplo, en mecánica de fluidos la fuerza de arrastre, <span class="math notranslate nohighlight">\(F_D\)</span>, es proporcional al cuadrado de la velocidad del flujo alrededor el cuerpo, <span class="math notranslate nohighlight">\(V\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -559,7 +407,7 @@ F_D = \frac{1}{2}\rho A C_D V^2
 <a class="reference internal image-reference" href="../_images/wind_tunnel.png"><img alt="../_images/wind_tunnel.png" class="align-center" src="../_images/wind_tunnel.png" style="width: 800px;" /></a>
 <p>El valor de <span class="math notranslate nohighlight">\(C_D\)</span> estará dado por la curva que mejor se ajuste a estos valores experimentales.</p>
 <section id="regresion-lineal-unidimensional">
-<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this heading">#</a></h3>
 <p>Consideremos el caso más simple, donde buscamos ajustar nuestros datos <span class="math notranslate nohighlight">\(x_i, y_i\)</span> <span class="math notranslate nohighlight">\((i = 0,1,\cdots,n)\)</span> al modelo:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -586,7 +434,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
 <p>Este criterio se denomina <strong>ajuste por mínimos cuadrados.</strong></p>
 </section>
 <section id="ajuste-por-minimos-cuadrados-paso-a-paso">
-<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this heading">#</a></h3>
 <p>Primero, para buscar el mínimo de <span class="math notranslate nohighlight">\(S_r\)</span> aplicamos la derivada respecto a sus variables, es decir, <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -615,23 +463,23 @@ m &amp; \sum x_i \\
 <p>Consideremos los datos del problema del tunel de viento</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-align:center head"><p><span class="math notranslate nohighlight">\(V\)</span> (m/s)</p></th>
-<th class="text-align:center head"><p>10</p></th>
-<th class="text-align:center head"><p>20</p></th>
-<th class="text-align:center head"><p>30</p></th>
-<th class="text-align:center head"><p>40</p></th>
-<th class="text-align:center head"><p>50</p></th>
-<th class="text-align:center head"><p>60</p></th>
+<tr class="row-odd"><th class="text-center head"><p><span class="math notranslate nohighlight">\(V\)</span> (m/s)</p></th>
+<th class="text-center head"><p>10</p></th>
+<th class="text-center head"><p>20</p></th>
+<th class="text-center head"><p>30</p></th>
+<th class="text-center head"><p>40</p></th>
+<th class="text-center head"><p>50</p></th>
+<th class="text-center head"><p>60</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:center"><p><span class="math notranslate nohighlight">\(F\)</span> (N)</p></td>
-<td class="text-align:center"><p>25</p></td>
-<td class="text-align:center"><p>70</p></td>
-<td class="text-align:center"><p>380</p></td>
-<td class="text-align:center"><p>550</p></td>
-<td class="text-align:center"><p>610</p></td>
-<td class="text-align:center"><p>1220</p></td>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(F\)</span> (N)</p></td>
+<td class="text-center"><p>25</p></td>
+<td class="text-center"><p>70</p></td>
+<td class="text-center"><p>380</p></td>
+<td class="text-center"><p>550</p></td>
+<td class="text-center"><p>610</p></td>
+<td class="text-center"><p>1220</p></td>
 </tr>
 </tbody>
 </table>
@@ -662,7 +510,7 @@ m &amp; \sum x_i \\
  y = -234.286 + 19.470*x
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3498/230161597.py:17: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8973/230161597.py:17: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   print(&#39;Modelo lineal: \n y = %.3f + %.3f*x&#39; % (a[0], a[1]))
 </pre></div>
 </div>
@@ -690,19 +538,19 @@ m &amp; \sum x_i \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3498/2851368952.py:12: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8973/2851368952.py:12: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   plt.plot(x, y(x), &#39;-r&#39;, label = &#39;y = %.2f + %.2fx&#39; % (a[0], a[1]))  # gráfico del modelo
 </pre></div>
 </div>
-<img alt="../_images/03-Ajuste_de_curvas_21_1.png" src="../_images/03-Ajuste_de_curvas_21_1.png" />
+<img alt="../_images/e01e380819a6939093d8bb71d8cdc525c8f800c5d15806dbcd5796a9119da2e6.png" src="../_images/e01e380819a6939093d8bb71d8cdc525c8f800c5d15806dbcd5796a9119da2e6.png" />
 </div>
 </div>
 </section>
 <section id="cuantificacion-del-error">
-<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4020e3ef-5f73-4d57-9122-0f8acf7da739">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-4020e3ef-5f73-4d57-9122-0f8acf7da739" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5a9fdf7-d4ae-4f42-a73b-21d4af1fef43">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-b5a9fdf7-d4ae-4f42-a73b-21d4af1fef43" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
@@ -737,7 +585,7 @@ r2 = 0.8805
 </div></blockquote>
 </section>
 <section id="linealizacion-de-funciones-no-lineales">
-<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this heading">#</a></h3>
 <p>Existen algúnos modelos no lineales comúnes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
 <p>Algúnos ejemplos son:</p>
 <ul class="simple">
@@ -806,7 +654,7 @@ y &amp;= e^{\ln \alpha + \beta\ln x}
  ln(y) = -1.294 + 1.984*ln(x)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3498/1169339268.py:20: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8973/1169339268.py:20: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   print(&#39;Modelo linealizado: \n ln(y) = %.3f + %.3f*ln(x)&#39;
 </pre></div>
 </div>
@@ -833,7 +681,7 @@ y = e^{\left(a_0+a_1\ln x\right)} = e^{a_0} x^{a_1} = \alpha x ^\beta
 y = 0.274*x^1.984
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3498/967901107.py:5: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8973/967901107.py:5: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   print(&#39;y = %.3f*x^%.3f&#39; % (alpha, beta))
 </pre></div>
 </div>
@@ -860,11 +708,11 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3498/538564046.py:10: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_8973/538564046.py:10: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   plt.plot(x, y(x), &#39;-r&#39;, label = r&#39;$y = %.3fx^{%.3f}$&#39; % (alpha, beta))  # gráfico del modelo
 </pre></div>
 </div>
-<img alt="../_images/03-Ajuste_de_curvas_40_1.png" src="../_images/03-Ajuste_de_curvas_40_1.png" />
+<img alt="../_images/0f7860e13e14be87ce25d5d9ca9228d0b4729a90c188c3df8c8253e4566763ef.png" src="../_images/0f7860e13e14be87ce25d5d9ca9228d0b4729a90c188c3df8c8253e4566763ef.png" />
 </div>
 </div>
 <p>Analizamos la calidad del modelo</p>
@@ -897,17 +745,17 @@ y = 0.274 x^{1.984},
 </section>
 </section>
 <section id="otros-modelos-lineales">
-<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this heading">#</a></h2>
 <p>El procedimiento de ajuste de curva por mínimos cuadrados se puede extender para modelos de ajuste más complejos, tales como:</p>
 <ul class="simple">
 <li><p>Regresión polinomial</p></li>
 <li><p>Regresión lineal multivariable</p></li>
 </ul>
 <section id="regresion-polinomial">
-<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1511be55-04b6-402f-b374-1ef5e23bd5d0">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-1511be55-04b6-402f-b374-1ef5e23bd5d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-15e89950-5cad-4f52-b6b4-e0ce02f214ef">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-15e89950-5cad-4f52-b6b4-e0ce02f214ef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -929,10 +777,10 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 <p>Cuya solución nos entrega el valor de los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_1\)</span> y <span class="math notranslate nohighlight">\(a_2\)</span></p>
 </section>
 <section id="regresion-lineal-multidimensional">
-<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this heading">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bf8b0d9-49c2-4438-9545-6ca10ff64e1e">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-5bf8b0d9-49c2-4438-9545-6ca10ff64e1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ae2d8825-8e3f-47b1-b2c8-6fce7c84d50c">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-ae2d8825-8e3f-47b1-b2c8-6fce7c84d50c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>
@@ -957,11 +805,11 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 </section>
 </section>
 <section id="modelos-de-ajuste-en-python">
-<h2><span class="section-number">3.3. </span>Modelos de ajuste en python<a class="headerlink" href="#modelos-de-ajuste-en-python" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.3. </span>Modelos de ajuste en python<a class="headerlink" href="#modelos-de-ajuste-en-python" title="Permalink to this heading">#</a></h2>
 <p>Es importante mencionar que en materia de modelos de ajuste la librería más adecuada es <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. La librería, sin embargo, puede ser demasiado compleja para modelos lineales simples.</p>
 <p>En este capítulo, mostraremos los métodos más simples para regreción lineal polinomial y no-lineal, utilizando <code class="docutils literal notranslate"><span class="pre">numpy</span></code> y <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <section id="numpy-polyfit-modelo-polinomial-unidimencional">
-<h3><span class="section-number">3.3.1. </span><code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code> (modelo polinomial unidimencional)<a class="headerlink" href="#numpy-polyfit-modelo-polinomial-unidimencional" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.1. </span><code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code> (modelo polinomial unidimencional)<a class="headerlink" href="#numpy-polyfit-modelo-polinomial-unidimencional" title="Permalink to this heading">#</a></h3>
 <p>Esta función está especificamente diseñada para modelos polinomiales de una dimensión, es decir, <span class="math notranslate nohighlight">\(y = a_0 + a_1x +a_2x^2+...a_nx^n\)</span></p>
 <p>Por ejemplo, para generar un modelo en base a un polinomio de orden 2,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># coeficientes a0, a1, a2, ...</span>
@@ -1025,7 +873,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03-Ajuste_de_curvas_63_0.png" src="../_images/03-Ajuste_de_curvas_63_0.png" />
+<img alt="../_images/9c746c75cd6b0a57561c771ea093af6f66436b4dd45706bf3c68774e66e53e37.png" src="../_images/9c746c75cd6b0a57561c771ea093af6f66436b4dd45706bf3c68774e66e53e37.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1050,7 +898,7 @@ r2 = 0.8818
 <p>Sin embargo, <strong>la tendencia del método es minimizar el error (en otras palabras, mejorar <span class="math notranslate nohighlight">\(r^2\)</span>).</strong> Esto significa que el método va a forzar una curva lineal, aunque esta no corresponda a la física del problema.</p>
 </section>
 <section id="scipy-optimize-curve-fit-regresion-no-lineal">
-<h3><span class="section-number">3.3.2. </span><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">3.3.2. </span><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this heading">#</a></h3>
 <p>Esta función, parte del módulo <code class="docutils literal notranslate"><span class="pre">optimize</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, <strong>utiliza un método iterativo para minimizar el error cuadrático</strong>. La función <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> puede ser utilizada para cualquier tipo de modelo, linear o no-linear, unidimensional o multidimensional.</p>
 <p>La función entrega múltiples <em>outputs</em> (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">ver documentación</a>). Sin embargo, en nuestro caso <strong>necesitamos solo el primer <em>output</em></strong>, el cual <strong>corresponde a los coeficientes del modelo</strong>.</p>
 <p>Para usar <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> primero debemos crear el modelo de ajuste en formato de función, por ejemplo para <span class="math notranslate nohighlight">\(y = \alpha x^\beta\)</span>:</p>
@@ -1121,7 +969,7 @@ y = 2.538*x^1.436
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03-Ajuste_de_curvas_76_0.png" src="../_images/03-Ajuste_de_curvas_76_0.png" />
+<img alt="../_images/6705ecc49e3cd05e5290942f92149e627fb95ed3a443a95c4b407b5af3c5592d.png" src="../_images/6705ecc49e3cd05e5290942f92149e627fb95ed3a443a95c4b407b5af3c5592d.png" />
 </div>
 </div>
 <p>Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.</p>
@@ -1178,7 +1026,7 @@ r2 = 0.8769
 </section>
 </section>
 <section id="regresion-lineal-vs-no-lineal">
-<h2><span class="section-number">3.4. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.4. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this heading">#</a></h2>
 <p>Respecto a la regresión no-lineal:</p>
 <p><strong>Ventajas</strong></p>
 <ul class="simple">
@@ -1194,7 +1042,7 @@ r2 = 0.8769
 </div></blockquote>
 </section>
 <section id="referencias">
-<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Least Square Regression</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 17: Regresión por mínimos cuadrados</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1214,7 +1062,7 @@ r2 = 0.8769
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./03-Ajuste_de_curvas"
         },
         predefinedOutput: true
@@ -1222,50 +1070,119 @@ r2 = 0.8769
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../02-Algebra_lineal/02-Algebra_lineal.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02-Algebra_lineal/02-Algebra_lineal.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../04-Interpolacion/04-Interpolacion.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../04-Interpolacion/04-Interpolacion.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">4. </span>Métodos de Interpolación</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">3.1. Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-unidimensional">3.1.1. Regresión lineal unidimensional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-por-minimos-cuadrados-paso-a-paso">3.1.2. Ajuste por mínimos cuadrados paso a paso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantificacion-del-error">3.1.3. Cuantificación del error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linealizacion-de-funciones-no-lineales">3.1.4. Linealización de funciones no lineales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-modelos-lineales">3.2. Otros modelos lineales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomial">3.2.1. Regresión polinomial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-multidimensional">3.2.2. Regresión lineal multidimensional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-de-ajuste-en-python">3.3. Modelos de ajuste en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-polyfit-modelo-polinomial-unidimencional">3.3.1. <code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code> (modelo polinomial unidimencional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy-optimize-curve-fit-regresion-no-lineal">3.3.2. <code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal-vs-no-lineal">3.4. Regresión lineal vs no-lineal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">3.5. Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Francisco V. Ramirez-Cuevas<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Francisco V. Ramirez-Cuevas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

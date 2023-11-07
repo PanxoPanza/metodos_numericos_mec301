@@ -1,3 +1,12 @@
 p {
     text-align: justify;
 }
+
+.skip-link {
+    display: none;
+}
+
+.bd-content {
+    max-width: 100%;
+    flex-grow: 0;
+  }
