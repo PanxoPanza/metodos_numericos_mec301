@@ -409,7 +409,7 @@ from scipy.optimize import fsolve
 y_exact = lambda t: 0.5*np.exp(-20*t)
 
 # Definimos parámetros numéricos
-h = 0.1                  # paso de tiempo
+h = 0.1                   # paso de tiempo
 t = np.arange(0, 1+h, h)  # lista de tiempos 
 
 # Ecuación diferencial 
@@ -423,15 +423,15 @@ y[0] = y0                 # guardamos condicion inicial
 for i in range(len(t)-1): # itereamos según paso de tiempo
     
     # Guardamos valores conocidos
-    t0, t1, y0 = t[i], t[i+1], y[i]
+    ti, ti1, yi = t[i], t[i+1], y[i]
     
     # Definimos la función objetivo para la búsqueda de raices
-    E_implicit = lambda y1: y1 - (y0 + h*F(t1, y1))
+    E_implicit = lambda yi1: yi1 - (yi + h*F(ti1, yi1))
     
     # Buscamos la raiz de forma iterativa con valor inicial y0
-    y1 = fsolve(E_implicit, x0 = y0)[0]
+    ysol = fsolve(E_implicit, x0 = yi)[0]
     
-    y[i+1] = y1 # Guardamos el valor para la siguiente iteración
+    y[i+1] = ysol # Guardamos el valor para la siguiente iteración
 
 
 # In[6]:

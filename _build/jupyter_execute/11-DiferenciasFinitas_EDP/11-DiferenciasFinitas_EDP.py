@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# <font size="6">MEC301 - Métodos Numéricos</font>
 # # Diferencias finitas para ecuaciones diferenciales parciales
-# <br><br><br><br>
-# Profesor: Francisco Ramírez Cuevas<br>
-# Fecha: 14 de noviembre 2022
 
 # ## Introducción
 # 
 
-# Como mencionamos en la [unidad 9](https://panxopanza.github.io/metodos_numericos_mec301/9-EDO_valor_inicial/9-EDO_valor_inicial.html), una **ecuación en derivadas parciales (EDP)** corresponde a una **ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes**.
+# Como mencionamos en la [unidad 9](../09-EDO_valor_inicial/09-EDO_valor_inicial.ipynb), una **ecuación en derivadas parciales (EDP)** corresponde a una **ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes**.
 
 # Por ejemplo, 
 
@@ -77,7 +73,7 @@
 # \end{equation}
 # 
 
-# El método más sensillo para resolver EDPs de este tipo es diferencias finitas.
+# El método más sencillo para resolver EDPs de este tipo es diferencias finitas.
 
 # 
 # <img src="./images/discretized_plate.png" width="400px" align= center>
@@ -210,22 +206,22 @@
 #     
 # 4. Repetimos el paso 3 hasta completar todos los elementos del vector $x$.
 # 
-# 5. Continunamos iterando hasta que $ \| x^{(i)} - x^{(i-1)}\| \lt \varepsilon $, donde $\varepsilon$ es el la tolerancia definida respecto al error absoluto. 
+# 5. Continunamos iterando hasta que $ \| x^{(k)} - x^{(k-1)}\| \lt \varepsilon $, donde $\varepsilon$ es el la tolerancia definida respecto al error absoluto. 
 
 # Siguiendo este esquema, una forma alternativa es implementar el método de Gauss-Seidel directamente, es decir, sin desarrollar la forma explícita del sistema $Ax = b$.
 
 # En otras palabras, implementamos el método iterativo a través de las ecuaciones:
 # 
 # \begin{eqnarray*}
-# T_{i,j}^* &=& \frac{1}{2\Delta y^2 + 2\Delta x^2}(\Delta y^2 T_{i+1, j} + \Delta y^2T_{i-1,j} + 
-# \Delta x^2 T_{i, j+1} + \Delta x^2T_{i,j-1}) \quad\quad &\mathrm{if}&~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
-# T_{i,j}^* &=& T_a\quad\quad &\mathrm{if}&~i = 0 \\[10pt]
-# T_{i,j}^* &=& T_b\quad\quad &\mathrm{if}&~i = m \\[10pt]
-# T_{i,j}^* &=& T_{i,j+1} + \Delta y q_0\quad\quad &\mathrm{if}&~j =0\\[10pt]
-# T_{i,j}^* &=& \frac{1}{(1 + h\Delta y)}(T_{i,j-1} + \Delta y~hT_\infty)\quad\quad &\mathrm{if}&~j = n\\[10pt]
+# T_{i,j}^k &=& \frac{1}{2\Delta y^2 + 2\Delta x^2}(\Delta y^2 T_{i+1, j}^{k-1} + \Delta y^2T_{i-1,j}^{k} + 
+# \Delta x^2 T_{i, j+1}^{k-1} + \Delta x^2T_{i,j-1}^{k}) \quad\quad &\mathrm{if}&~i \neq 0, m~\mathrm{and}~j\neq0,n \\[10pt]
+# T_{i,j}^k &=& T_a\quad\quad &\mathrm{if}&~i = 0 \\[10pt]
+# T_{i,j}^k &=& T_b\quad\quad &\mathrm{if}&~i = m \\[10pt]
+# T_{i,j}^k &=& T_{i,j+1}^{k-1} + \Delta y q_0\quad\quad &\mathrm{if}&~j =0\\[10pt]
+# T_{i,j}^k &=& \frac{1}{(1 + h\Delta y)}(T_{i,j-1}^{k} + \Delta y~hT_\infty)\quad\quad &\mathrm{if}&~j = n\\[10pt]
 # \end{eqnarray*}
 
-# donde $T_{i,j}^*$ corresponde al valor obtenido después de cada iteración.
+# donde $T_{i,j}^{k-1}$ corresponde al valor de la iteración anterior, y $T_{i,j}^k$ al valor de la nueva iteración.
 
 # La siguiente animación ilustra el proceso iterativo:
 # 

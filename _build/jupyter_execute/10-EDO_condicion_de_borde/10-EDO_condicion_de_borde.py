@@ -142,9 +142,9 @@ Ta  = 300    # Temperatura extremo izquierdo (K)
 Tb  = 400    # Temperatura extremo derecho (K)
 L   = 10     # Largo de la barra (m)
 
-# Declaramos F con y[0] = T, y[1] = z
-F = lambda t,y: [y[1], 
-                - h*(Too - y[0]) - S*(Too**4 - y[0]**4)]
+# Declaramos F con y[0] = T, y[1] = q
+F = lambda t, y: [y[1], 
+                 - h*(Too - y[0]) - S*(Too**4 - y[0]**4)]
 
 
 # Analicemos el comportamiento de este problema para $q_a = -40$ y $q_a = -45$. En la misma gráfica indicaremos el valor de $T(L) = T_b$
@@ -217,7 +217,7 @@ ax.legend(frameon=False)
 plt.show()
 
 
-# ### Condiciones de borde de Newman o Robin
+# ### Condiciones de borde de Neumann o Robin
 
 # Las condiciones de borde $T(0) = T_a$ y $T(L) = T_b$, se conoce como *condición de borde de Dirichlet o de primer tipo.* Es una de muchos tipos de condiciones de borde que se utilizan en ingeniería y ciencias.
 
@@ -559,8 +559,7 @@ def fsystem(T):
 from scipy.optimize import fsolve
 
 # condicionamos la variable inicial para la iteración
-Tinc = np.zeros(N)
-Tinc[0], Tinc[-1] = Ta, Too
+Tinc = np.ones(N)*Too # Too, Too, Too, Too,... Too
 
 # Solución del sistema no lineal
 T = fsolve(fsystem, x0 = Tinc)
@@ -649,6 +648,7 @@ plt.show()
 # \end{matrix}\right\}
 # \end{equation*}
 
+# 
 # Si reemplazamos la primera y última fila del sistema por las condiciones de borde, tenemos:
 # 
 # \begin{equation*}
@@ -670,7 +670,7 @@ plt.show()
 # 
 # para simplificar, denotaremos este sistema como $T\omega = b$.
 
-# Este sistema de ecuaciones tiene dos series de valores desconocidos, $a_i$ y $y_i$. Sin embargo, a partir del sistema de ecuaciones (10.1), tenemos que $\alpha = A^{-1}u$
+# Este sistema de ecuaciones tiene dos series de valores desconocidos, $a_i$ y $y_i$. Sin embargo, a partir del sistema de ecuaciones (10.1), tenemos que $\omega = A^{-1}u$
 
 # Combinando ambos resultados, tenemos que los valores de $y_i$ en los puntos de colocación están dados por la solución de $TA^{-1}u = b$:
 
@@ -765,7 +765,7 @@ plt.show()
 
 # \begin{align*}
 # \frac{dT}{dx} &= q \\
-# \frac{dz}{dx} &= -h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
+# \frac{dq}{dx} &= -h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)
 # \end{align*}
 
 # que en su forma matricial se reduce a una ecuación $\frac{d\vec{y}}{dx} = \vec{F}(x,\vec{y})$, de la forma:
@@ -774,16 +774,20 @@ plt.show()
 # \frac{d}{dx}\left\{\begin{matrix} T \\ q\end{matrix}\right\} = \left\{\begin{matrix} q \\  -h'(T_\infty - T) - \sigma'(T_\infty^4 - T^4)\end{matrix}\right\}
 # \end{equation*}
 
-# En python, usaremos la función `fun` para reprentar este sistema:
+# En python, usaremos la función `F` para reprentar este sistema:
 
 # In[16]:
 
 
 from scipy.integrate import solve_bvp
 
-def fun(x,y):
-    return [ y[1],                                   #   q
-            - h*(Too - y[0]) - S*(Too**4 - y[0]**4)] # - h'(Too - T) - S*(Too^4 - T^4)
+def F(x,y):
+    
+    T = y[0]
+    q = y[1]
+    
+    return [ q,                                   #   q
+            - h*(Too - T) - S*(Too**4 - T**4)] # - h'(Too - T) - S*(Too^4 - T^4)
 
 
 # Las condiciones de borde son:
@@ -804,8 +808,11 @@ def fun(x,y):
 
 
 def bc(ya,yb):
-    return [ya[0] - Ta,              # T(0) - Ta
-            yb[1] - h*(Too - yb[0])] # q(L) - h(Too - T(L))
+    T0, q0 = ya[0], ya[1]
+    TL, qL = yb[0], yb[1]
+    
+    return [T0 - Ta,           # T(0) - Ta
+            qL - h*(Too - TL)] # q(L) - h(Too - T(L))
 
 
 # Luego, generamos los nodos de colocación y valores iniciales. **Estos valores son arbitrarios**.
@@ -823,7 +830,7 @@ y_init = np.zeros((2, len(x_init))) # Valores iniciales en nodos de colocación
 # In[19]:
 
 
-out = solve_bvp(fun, bc, x_init, y_init)
+out = solve_bvp(F, bc, x_init, y_init)
 out
 
 
@@ -842,12 +849,26 @@ qi = out.y[1,:] # valores de q en xi
 # In[21]:
 
 
-out.sol(0.4)
+# Evaluamos el polinomio en X = 0.4
+X = 0.4
+print('Temperatura en x = %.1f: %.1f K' % (X, out.sol(X)[0]))
+print('Valor de Q en x = %.1f: %.1f K/m' % (X, out.sol(X)[1]))
+
+
+# Al igual que las funciones de interpolación de `CubicSpline`, el polinómio de `out.sol` se pueden usar para determinar derivadas
+
+# In[22]:
+
+
+# Evaluamos la derivada del polinomio en X = 0.4
+X = 0.4
+print('dT/dx en x = %.1f: %.1f K/m' % (X, out.sol(X,1)[0]))
+print('dQ/dx en x = %.1f: %.1f K/m^2' % (X, out.sol(X,1)[1]))
 
 
 # Usamos nuestro resultado para graficar la solución
 
-# In[22]:
+# In[23]:
 
 
 plt.rcParams.update({'font.size': 10}) # Tamaño de fuente
@@ -876,7 +897,7 @@ plt.show()
 
 # - Similarmente, **el error del método método de colocación está condicionado al truncamiento de la serie de Taylor, el cual está intrínsecamente ligado al grado del polinomio de interpolación.**
 
-# Por último es importante mencionar que el método de diferencias finitas es fácilmente extensible a problemas expresados en ecuaciones diferenciales parciales. Esto lo revisaremos en la próxima unidad del curso.
+# Por último es importante mencionar que el método de diferencias finitas es fácilmente extendible a problemas expresados en ecuaciones diferenciales parciales. Esto lo revisaremos en la próxima unidad del curso.
 
 # ## Referencias
 # - Kong Q., Siauw T., Bayen A. M. **Chapter 23: Boundary-Value Problems for ODEs** in *[Python Programming and Numerical Methods – A Guide for Engineers and Scientists](https://pythonnumericalmethods.berkeley.edu/notebooks/chapter23.00-ODE-Boundary-Value-Problems.html)*, 1st Ed., Academic Press, 2021
