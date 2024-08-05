@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>3. Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -388,7 +394,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
 <h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this heading">#</a></h1>
@@ -461,15 +467,15 @@ m &amp; \sum x_i \\
 \end{equation*}\]</div>
 <p>La solución de este sistema nos entregará los valores de <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
 <p>Consideremos los datos del problema del tunel de viento</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p><span class="math notranslate nohighlight">\(V\)</span> (m/s)</p></th>
-<th class="text-center head"><p>10</p></th>
-<th class="text-center head"><p>20</p></th>
-<th class="text-center head"><p>30</p></th>
-<th class="text-center head"><p>40</p></th>
-<th class="text-center head"><p>50</p></th>
-<th class="text-center head"><p>60</p></th>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\(V\)</span> (m/s)</p></th>
+<th class="head text-center"><p>10</p></th>
+<th class="head text-center"><p>20</p></th>
+<th class="head text-center"><p>30</p></th>
+<th class="head text-center"><p>40</p></th>
+<th class="head text-center"><p>50</p></th>
+<th class="head text-center"><p>60</p></th>
 </tr>
 </thead>
 <tbody>
@@ -483,6 +489,7 @@ m &amp; \sum x_i \\
 </tr>
 </tbody>
 </table>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -534,15 +541,15 @@ m &amp; \sum x_i \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bfe15d19e0937b498b7acea9257c48d298b19956684d6cd8870db0e08485c422.png" src="../_images/bfe15d19e0937b498b7acea9257c48d298b19956684d6cd8870db0e08485c422.png" />
+<img alt="../_images/90b6af91f1f0d404eb7db6eaa69487b68fea2dfef70ceef950ba6ca3e8077754.png" src="../_images/90b6af91f1f0d404eb7db6eaa69487b68fea2dfef70ceef950ba6ca3e8077754.png" />
 </div>
 </div>
 </section>
 <section id="cuantificacion-del-error">
 <h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a1412e9-0afb-4f13-9c6e-e63b46084fd4">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-4a1412e9-0afb-4f13-9c6e-e63b46084fd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-586b4026-265b-46c9-8249-777dbbdacbba">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-586b4026-265b-46c9-8249-777dbbdacbba" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
@@ -692,7 +699,7 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9ca43fe126af326143b45390f20db993cc259768e4d9ac73542165f656fc2cd4.png" src="../_images/9ca43fe126af326143b45390f20db993cc259768e4d9ac73542165f656fc2cd4.png" />
+<img alt="../_images/67e5d93d8fea3429510871676d16c5a6fd5f80b0c531f6d10c4a6c3c1df66050.png" src="../_images/67e5d93d8fea3429510871676d16c5a6fd5f80b0c531f6d10c4a6c3c1df66050.png" />
 </div>
 </div>
 <p>Analizamos la calidad del modelo</p>
@@ -734,8 +741,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a169bd71-f4df-43d6-9d85-d77363379633">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-a169bd71-f4df-43d6-9d85-d77363379633" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ae73d983-1208-4a95-a6e4-1fa6c6913ee4">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-ae73d983-1208-4a95-a6e4-1fa6c6913ee4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -759,8 +766,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 <section id="regresion-lineal-multidimensional">
 <h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this heading">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95738fc5-9d20-49ac-9091-699c8044544c">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-95738fc5-9d20-49ac-9091-699c8044544c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-22b52dde-5e02-4625-a80e-15b44be56f50">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-22b52dde-5e02-4625-a80e-15b44be56f50" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>
@@ -853,7 +860,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0d7ab9262d8659a9f6eaadd51970ae434495b9f9e099fbc340bd581d6eacaa8e.png" src="../_images/0d7ab9262d8659a9f6eaadd51970ae434495b9f9e099fbc340bd581d6eacaa8e.png" />
+<img alt="../_images/e391a9f36ba0cf847197e174414462b2eb932ee742a85ea7895c8b935f77b087.png" src="../_images/e391a9f36ba0cf847197e174414462b2eb932ee742a85ea7895c8b935f77b087.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -949,7 +956,7 @@ y = 2.538*x^1.436
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/40c83c6ac6cf82210352288bb3c206b466dac868ee12ce4e70c5a165a9efaba4.png" src="../_images/40c83c6ac6cf82210352288bb3c206b466dac868ee12ce4e70c5a165a9efaba4.png" />
+<img alt="../_images/4d1c83450683476e48fbe2b90d501f89e582df34563089b185819dbb88753c8a.png" src="../_images/4d1c83450683476e48fbe2b90d501f89e582df34563089b185819dbb88753c8a.png" />
 </div>
 </div>
 <p>Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.</p>
@@ -1057,8 +1064,8 @@ r2 = 0.8769
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../02-Algebra_lineal/02-Algebra_lineal.html"
@@ -1086,6 +1093,7 @@ r2 = 0.8769
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1133,6 +1141,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1159,8 +1168,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

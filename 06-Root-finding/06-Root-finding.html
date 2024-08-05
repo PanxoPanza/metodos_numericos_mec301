@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>6. Algortimos de búsqueda de raíces &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -385,7 +391,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algortimos-de-busqueda-de-raices">
 <h1><span class="section-number">6. </span>Algortimos de búsqueda de raíces<a class="headerlink" href="#algortimos-de-busqueda-de-raices" title="Permalink to this heading">#</a></h1>
@@ -525,8 +531,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03f0f18e-614e-4d08-83ff-cdb018d47471">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-03f0f18e-614e-4d08-83ff-cdb018d47471" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-09145791-635f-4e70-ba95-ff3e6b6e0bdd">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-09145791-635f-4e70-ba95-ff3e6b6e0bdd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -619,7 +625,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/077aa6111cac39eff3ff8f4ec5f3d14c6324ae88b4d5f066309900ea7e089b9c.png" src="../_images/077aa6111cac39eff3ff8f4ec5f3d14c6324ae88b4d5f066309900ea7e089b9c.png" />
+<img alt="../_images/779e2e480a2893d3e9dc8aa4e9f107dcd5ad1c347d8bc6cebe8ebf97f8d82cc4.png" src="../_images/779e2e480a2893d3e9dc8aa4e9f107dcd5ad1c347d8bc6cebe8ebf97f8d82cc4.png" />
 </div>
 </div>
 </section>
@@ -638,13 +644,13 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <h3><span class="section-number">6.2.4. </span>Error relativo y absoluto<a class="headerlink" href="#error-relativo-y-absoluto" title="Permalink to this heading">#</a></h3>
 <p>En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>. Sin embargo, este criterio no es correcto, ya que la definición de <span class="math notranslate nohighlight">\(f(x_0) \approx 0\)</span> es relativa a la escala de <span class="math notranslate nohighlight">\(f(x)\)</span> en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto <span class="math notranslate nohighlight">\(x_i\)</span>, siempre tendremos <span class="math notranslate nohighlight">\(f(x_i)\approx 0\)</span> si nos alejamos lo suficiente de la gráfica de la función.</p>
 <p>Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz <span class="math notranslate nohighlight">\(x^*\)</span>. Sin embargo, debido a que este valor es deconocido, definimos el <strong>error absoluto</strong> para cada nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> como:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a46f25c-87e6-4f0f-972d-71137e1dcc50">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-8a46f25c-87e6-4f0f-972d-71137e1dcc50" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-baad7642-26fa-4240-a69f-c1a803cd14e2">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-baad7642-26fa-4240-a69f-c1a803cd14e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 |x_{k+1} -x_{k}|
 \end{equation}\]</div>
 <p>Alternativamente, podemos definir el <strong>error relativo</strong> de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cccd814e-695f-4ce7-aa59-4cf37339fa77">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-cccd814e-695f-4ce7-aa59-4cf37339fa77" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fcec261c-3dc5-4618-8e38-fc1fa9472c52">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-fcec261c-3dc5-4618-8e38-fc1fa9472c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 \end{equation}\]</div>
 <p>En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
@@ -675,18 +681,18 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <li><p>Un intervalo. (variable <code class="docutils literal notranslate"><span class="pre">bracket</span></code>)  <span class="math notranslate nohighlight">\(\rightarrow\)</span> método de intervalo cerrado o híbrido</p></li>
 </ul>
 <p>El tipo de argumento para cada método está indicado en la siguiente tabla (x=requerido, o=opcional):</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">args</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">brackets</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">x1</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">fprime</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">xtol</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">rtol</span></code></p></th>
-<th class="text-center head"><p><code class="docutils literal notranslate"><span class="pre">maxiter</span></code></p></th>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">method</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">args</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">brackets</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">x1</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">fprime</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">xtol</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">rtol</span></code></p></th>
+<th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">maxiter</span></code></p></th>
 </tr>
 </thead>
 <tbody>
@@ -747,6 +753,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </tr>
 </tbody>
 </table>
+</div>
 <p>Por ejemplo, analizamos la raíz de la función <span class="math notranslate nohighlight">\(f(x) = x^3 - 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -769,22 +776,25 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bisección:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 43
      iterations: 41
            root: 1.0000000000004547
+         method: bisect
 Newton-Raphson:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 22
      iterations: 11
            root: 1.0
+         method: newton
 Secante:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 23
      iterations: 22
            root: 1.0
+         method: secant
 </pre></div>
 </div>
 </div>
@@ -801,22 +811,25 @@ Secante:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Brent´s:
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 11
      iterations: 10
            root: 1.0
+         method: brentq
 Intervalo (método por defecto):
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 11
      iterations: 10
            root: 1.0
+         method: brentq
 Cond. inicial y derivada (método po defecto):
        converged: True
-           flag: &#39;converged&#39;
+           flag: converged
  function_calls: 22
      iterations: 11
            root: 1.0
+         method: newton
 </pre></div>
 </div>
 </div>
@@ -1035,8 +1048,8 @@ xy-y=5
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../05-Taylor-series/05-Taylor-series.html"
@@ -1064,6 +1077,7 @@ xy-y=5
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1108,6 +1122,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1134,8 +1149,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

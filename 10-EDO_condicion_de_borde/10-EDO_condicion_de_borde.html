@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>10. Problema de valor en la frontera &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -388,7 +394,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="problema-de-valor-en-la-frontera">
 <h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Permalink to this heading">#</a></h1>
@@ -531,7 +537,7 @@ q_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/518db98e92d065b2f34131e8d5497234c5073952ec6a0c95a575d05053fed1c7.png" src="../_images/518db98e92d065b2f34131e8d5497234c5073952ec6a0c95a575d05053fed1c7.png" />
+<img alt="../_images/d83efc28f3f31689d1fb33742002bd38927025b1444088ae58eef3b97b9e186a.png" src="../_images/d83efc28f3f31689d1fb33742002bd38927025b1444088ae58eef3b97b9e186a.png" />
 </div>
 </div>
 <p>¿Cómo podemos adivinar el valor de <span class="math notranslate nohighlight">\(q_a\)</span> correcto?</p>
@@ -583,7 +589,7 @@ q_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/86f96b4a470cf7a409d3133da36839fb7463000e0f9ad9eeb09e55b56e06d9f0.png" src="../_images/86f96b4a470cf7a409d3133da36839fb7463000e0f9ad9eeb09e55b56e06d9f0.png" />
+<img alt="../_images/9ac6dd11746c5b89b73a19a13757ff8c71151872a4c699c30a059bd7b145aaf6.png" src="../_images/9ac6dd11746c5b89b73a19a13757ff8c71151872a4c699c30a059bd7b145aaf6.png" />
 </div>
 </div>
 <section id="condiciones-de-borde-de-neumann-o-robin">
@@ -645,7 +651,7 @@ y'(a) &amp;=&amp; \alpha&amp;&amp;\quad\mathrm{condición~de~Neumann~(o~de~segun
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e41ca0290a14f295bf3a1a60c4ec32d089a087e3fe3d14039d96fa6c8ec19ea3.png" src="../_images/e41ca0290a14f295bf3a1a60c4ec32d089a087e3fe3d14039d96fa6c8ec19ea3.png" />
+<img alt="../_images/1653ae218cea8f9804c579a921f0839f8a4fee47fae888cde4736ec9002566dc.png" src="../_images/1653ae218cea8f9804c579a921f0839f8a4fee47fae888cde4736ec9002566dc.png" />
 </div>
 </div>
 </section>
@@ -766,7 +772,7 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9d1b9c7b40e6ecef9c341ccfeb1c53228193de5e9dd81fe1a303b08b7b8d768f.png" src="../_images/9d1b9c7b40e6ecef9c341ccfeb1c53228193de5e9dd81fe1a303b08b7b8d768f.png" />
+<img alt="../_images/c84eaeb7d3e4930ebfa6a844a29a2ae0620c4c6c1ecc64cf9cb6b7fdf3ff27ec.png" src="../_images/c84eaeb7d3e4930ebfa6a844a29a2ae0620c4c6c1ecc64cf9cb6b7fdf3ff27ec.png" />
 </div>
 </div>
 </section>
@@ -858,7 +864,7 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/60f3878212a63a94dc3312d5bf964b03e72870df810d5ae1ef96c5f3c8fdec6d.png" src="../_images/60f3878212a63a94dc3312d5bf964b03e72870df810d5ae1ef96c5f3c8fdec6d.png" />
+<img alt="../_images/7a423a43bc51e79a2ae8d2cb267f2d9d41ff155f4b55e41f0856cf076555e192.png" src="../_images/7a423a43bc51e79a2ae8d2cb267f2d9d41ff155f4b55e41f0856cf076555e192.png" />
 </div>
 </div>
 </section>
@@ -937,7 +943,7 @@ T(L) &amp;= T_b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cfc129ba043d37a1468cd1829bf803d1bb9673f5dcb3ef772498c871b89ecf0b.png" src="../_images/cfc129ba043d37a1468cd1829bf803d1bb9673f5dcb3ef772498c871b89ecf0b.png" />
+<img alt="../_images/5ebabc3ecfabec607f8b4061a04d2297c8fbec7483fbed86abc7dd9606f88c68.png" src="../_images/5ebabc3ecfabec607f8b4061a04d2297c8fbec7483fbed86abc7dd9606f88c68.png" />
 </div>
 </div>
 </section>
@@ -963,8 +969,8 @@ T(L) &amp;= T_b
 S(x) = a_0 + a_1x + a_2x^2+ \cdots + a_n x^n
 \end{equation*}\]</div>
 <p>donde sus coeficientes están dados por la solución de <span class="math notranslate nohighlight">\(S(x_i) = y_i\)</span>. En forma matricial:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbd81cdf-091c-4eb5-8b20-e3caeb7ec917">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-bbd81cdf-091c-4eb5-8b20-e3caeb7ec917" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-51875597-9ecf-4b0b-96df-585f0fccea04">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-51875597-9ecf-4b0b-96df-585f0fccea04" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left[\begin{matrix} 
 1      &amp;    x_0 &amp;  x_0^2 &amp; \cdots &amp; x_0^n \\
 1      &amp;    x_1 &amp;  x_1^2 &amp; \cdots &amp; x_1^n \\
@@ -1164,43 +1170,18 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       message: &#39;The algorithm converged to the desired accuracy.&#39;
-         niter: 2
-             p: None
- rms_residuals: array([5.84688799e-04, 4.04228873e-04, 2.93941040e-04, 2.22971019e-04,
-       1.75277013e-04, 1.41989499e-04, 8.82935442e-04, 8.63447766e-05,
-       7.55927297e-05, 6.70181701e-05, 6.01474027e-05, 5.47352080e-05,
-       5.07302076e-05, 4.82766897e-05, 4.77571532e-05, 4.99095220e-05,
-       5.61447055e-05])
-           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f5d98e9d9f0&gt;
-        status: 0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       message: The algorithm converged to the desired accuracy.
        success: True
-             x: array([ 0.        ,  0.55555556,  1.11111111,  1.66666667,  2.22222222,
-        2.77777778,  3.33333333,  4.44444444,  5.        ,  5.55555556,
-        6.11111111,  6.66666667,  7.22222222,  7.77777778,  8.33333333,
-        8.88888889,  9.44444444, 10.        ])
-             y: array([[ 3.00000000e+02,  2.78801935e+02,  2.62579938e+02,
-         2.49986378e+02,  2.40107028e+02,  2.32297283e+02,
-         2.26088980e+02,  2.17170809e+02,  2.13995594e+02,
-         2.11453446e+02,  2.09422913e+02,  2.07809109e+02,
-         2.06537939e+02,  2.05551850e+02,  2.04806680e+02,
-         2.04269336e+02,  2.03916100e+02,  2.03731448e+02],
-       [-4.37373822e+01, -3.31882845e+01, -2.56080472e+01,
-        -1.99991902e+01, -1.57576342e+01, -1.24965504e+01,
-        -9.95684011e+00, -6.37269668e+00, -5.10459247e+00,
-        -4.08337946e+00, -3.25486330e+00, -2.57695649e+00,
-        -2.01644348e+00, -1.54666764e+00, -1.14582940e+00,
-        -7.95696268e-01, -4.80591884e-01, -1.86572414e-01]])
-            yp: array([[-43.73738221, -33.18828448, -25.60804723, -19.99919017,
-        -15.75763423, -12.49655038,  -9.95684011,  -6.37269668,
-         -5.10459247,  -4.08337946,  -3.2548633 ,  -2.57695649,
-         -2.01644348,  -1.54666764,  -1.1458294 ,  -0.79569627,
-         -0.48059188,  -0.18657241],
-       [ 22.55      ,  15.93358727,  11.64441244,   8.72389527,
-          6.65929333,   5.15699531,   4.03919436,   2.54432234,
-          2.04195209,   1.65054747,   1.34465063,   1.10571755,
-          0.92008196,   0.77761786,   0.67084403,   0.59431766,
-          0.54422401,   0.51810486]])
+        status: 0
+             x: [ 0.000e+00  5.556e-01 ...  9.444e+00  1.000e+01]
+           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f68e9f21a30&gt;
+             p: None
+             y: [[ 3.000e+02  2.788e+02 ...  2.039e+02  2.037e+02]
+                 [-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]]
+            yp: [[-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]
+                 [ 2.255e+01  1.593e+01 ...  5.442e-01  5.181e-01]]
+ rms_residuals: [ 5.847e-04  4.042e-04 ...  4.991e-05  5.614e-05]
+         niter: 2
 </pre></div>
 </div>
 </div>
@@ -1270,7 +1251,7 @@ dQ/dx en x = 0.4: 17.5 K/m^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/467ac59733e6cbde2c02fa03a33981d570b2d7c83cbf52eccf53218b09b68a3f.png" src="../_images/467ac59733e6cbde2c02fa03a33981d570b2d7c83cbf52eccf53218b09b68a3f.png" />
+<img alt="../_images/0ae42bedc4b3786e260e6b6f4e788d0e666ab193e432afab4d758c2c9250908e.png" src="../_images/0ae42bedc4b3786e260e6b6f4e788d0e666ab193e432afab4d758c2c9250908e.png" />
 </div>
 </div>
 </section>
@@ -1325,8 +1306,8 @@ dQ/dx en x = 0.4: 17.5 K/m^2
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"
@@ -1354,6 +1335,7 @@ dQ/dx en x = 0.4: 17.5 K/m^2
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1401,6 +1383,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1427,8 +1410,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

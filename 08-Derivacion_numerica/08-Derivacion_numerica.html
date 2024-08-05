@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>8. Derivación numérica &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -382,7 +388,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="derivacion-numerica">
 <h1><span class="section-number">8. </span>Derivación numérica<a class="headerlink" href="#derivacion-numerica" title="Permalink to this heading">#</a></h1>
@@ -417,8 +423,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span> nos da la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-224c040d-840a-48b1-8622-71de9d814124">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-224c040d-840a-48b1-8622-71de9d814124" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-57cba674-c7ea-4cc5-a0df-380cc6dafd20">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-57cba674-c7ea-4cc5-a0df-380cc6dafd20" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -429,8 +435,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e5852f8b-bb03-4520-b56a-368375594552">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-e5852f8b-bb03-4520-b56a-368375594552" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eeeb0692-d8e6-44b1-8f7d-047d53941470">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-eeeb0692-d8e6-44b1-8f7d-047d53941470" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -439,8 +445,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49a3bb73-c197-4bd7-a945-4bb989893e76">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-49a3bb73-c197-4bd7-a945-4bb989893e76" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-990dc11f-0f5e-4f2f-9b0d-23f87e652931">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-990dc11f-0f5e-4f2f-9b0d-23f87e652931" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
@@ -552,7 +558,7 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f1b150586ff6d17da867f0a4eede411c7ec8ede56778e5c5df7f17accb507e55.png" src="../_images/f1b150586ff6d17da867f0a4eede411c7ec8ede56778e5c5df7f17accb507e55.png" />
+<img alt="../_images/2566e8b2969afb5488efcd8f2fff817a24438ac62c5c0a45f320142b09dbde40.png" src="../_images/2566e8b2969afb5488efcd8f2fff817a24438ac62c5c0a45f320142b09dbde40.png" />
 </div>
 </div>
 </section>
@@ -639,7 +645,7 @@ f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e8e24a5bd86aa3a0d0352e33f25012906e3d1d6c8a3321791fd5c3f827cbc117.png" src="../_images/e8e24a5bd86aa3a0d0352e33f25012906e3d1d6c8a3321791fd5c3f827cbc117.png" />
+<img alt="../_images/c1eacba711a9c1e518fbf1b155ff950bdcb21539d4000882b8e78528b369ebd2.png" src="../_images/c1eacba711a9c1e518fbf1b155ff950bdcb21539d4000882b8e78528b369ebd2.png" />
 </div>
 </div>
 <p><strong>Función  <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>.</strong> Esta función determina la diferencia entre
@@ -681,7 +687,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/29f75cb801353b6b6e4c8bc5bf216d95a2bd2b97dc7011d4fc28954093dbc948.png" src="../_images/29f75cb801353b6b6e4c8bc5bf216d95a2bd2b97dc7011d4fc28954093dbc948.png" />
+<img alt="../_images/a9c1a9eeda437ca5258f81067ee052a91475a165455d53b733220a2711ede8dd.png" src="../_images/a9c1a9eeda437ca5258f81067ee052a91475a165455d53b733220a2711ede8dd.png" />
 </div>
 </div>
 <p><strong>Función  <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code>.</strong> Esta es una función más optimizada y específica para calcular derivadas. La función <code class="docutils literal notranslate"><span class="pre">gradient</span></code> calcula <em>directamente</em> la derivada de una función</p>
@@ -722,7 +728,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c0b0b980d7f69f669f0223640fec8c42ee5f81d1a49cb640aa3df05664b5d87b.png" src="../_images/c0b0b980d7f69f669f0223640fec8c42ee5f81d1a49cb640aa3df05664b5d87b.png" />
+<img alt="../_images/ae8b60418641dc82f0377ca9760e2c3da613c31dbd81414d65ffa10597678104.png" src="../_images/ae8b60418641dc82f0377ca9760e2c3da613c31dbd81414d65ffa10597678104.png" />
 </div>
 </div>
 <p>Una tercera alternativa para determinar la derivada es mediante la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> de <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code>. A diferencia de <code class="docutils literal notranslate"><span class="pre">diff</span></code> y <code class="docutils literal notranslate"><span class="pre">gradient</span></code>, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> permite determinar derivadas de segundo y tercer orden directamente.</p>
@@ -771,7 +777,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cad58f57357d4771bb94434bc4627e7cc0f51a59fa7b0ffb7ce72453634ece8a.png" src="../_images/cad58f57357d4771bb94434bc4627e7cc0f51a59fa7b0ffb7ce72453634ece8a.png" />
+<img alt="../_images/026a91408a158fb2d746bd79ba67759008df3a06c0856a038b5dc2f9b4bcef70.png" src="../_images/026a91408a158fb2d746bd79ba67759008df3a06c0856a038b5dc2f9b4bcef70.png" />
 </div>
 </div>
 </section>
@@ -814,6 +820,10 @@ h = 0.200, dfdx = 0.497, error = 3.327e-03
 h = 0.100, dfdx = 0.499, error = 8.329e-04
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_204536/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
+  dfdx = derivative(f,x0,dx=h)
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -854,8 +864,8 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../07-Integracion/07-Integracion.html"
@@ -883,6 +893,7 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -924,6 +935,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -950,8 +962,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

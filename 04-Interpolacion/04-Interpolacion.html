@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>4. Métodos de Interpolación &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -381,7 +387,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="metodos-de-interpolacion">
 <h1><span class="section-number">4. </span>Métodos de Interpolación<a class="headerlink" href="#metodos-de-interpolacion" title="Permalink to this heading">#</a></h1>
@@ -478,7 +484,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/22cb15d995ead332cd9971ca660ee65c2ad0bbf19ea62476db7ecfaa92d44a9b.png" src="../_images/22cb15d995ead332cd9971ca660ee65c2ad0bbf19ea62476db7ecfaa92d44a9b.png" />
+<img alt="../_images/114591d97f13e788da221d7456662feadb9b82ed433a0cbca1719b9346acd9af.png" src="../_images/114591d97f13e788da221d7456662feadb9b82ed433a0cbca1719b9346acd9af.png" />
 </div>
 </div>
 <p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5.0, -2.0\}\)</span>, <span class="math notranslate nohighlight">\(\{0.5, 2.0\}\)</span> y <span class="math notranslate nohighlight">\(\{5.0, -1.0\}\)</span></strong></p>
@@ -553,7 +559,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a386701e2805648f28fcf096a4c9dae0b309e6c05b92f12cc30ff22353c9797b.png" src="../_images/a386701e2805648f28fcf096a4c9dae0b309e6c05b92f12cc30ff22353c9797b.png" />
+<img alt="../_images/1c8f55bfc4ce63ea250950e1944d0db041c9a749c18065c3d2ad0c8d58f15f05.png" src="../_images/1c8f55bfc4ce63ea250950e1944d0db041c9a749c18065c3d2ad0c8d58f15f05.png" />
 </div>
 </div>
 </section>
@@ -674,7 +680,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/918de6b38db9340d1042585dda5afda0f8199f203db44f99cc5568607264581e.png" src="../_images/918de6b38db9340d1042585dda5afda0f8199f203db44f99cc5568607264581e.png" />
+<img alt="../_images/b379d173514e0e0c3e89a5ebaf60c32677f48cf98b9e3a28b07342691b87dc31.png" src="../_images/b379d173514e0e0c3e89a5ebaf60c32677f48cf98b9e3a28b07342691b87dc31.png" />
 </div>
 </div>
 <p>Por defecto, <code class="docutils literal notranslate"><span class="pre">numpy.interp</span></code> entregará los valores extremos cuando intentemos extrapolar.</p>
@@ -710,7 +716,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5f4d5e410da939356021474dcf94a89285275ada7ab229dd92c95e7bc0a5bafe.png" src="../_images/5f4d5e410da939356021474dcf94a89285275ada7ab229dd92c95e7bc0a5bafe.png" />
+<img alt="../_images/ca292e36c8c310687e5c061ee9240a90716bf9c6f7acbc08bd12dd453f0841c4.png" src="../_images/ca292e36c8c310687e5c061ee9240a90716bf9c6f7acbc08bd12dd453f0841c4.png" />
 </div>
 </div>
 </section>
@@ -835,7 +841,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/24f93a1918f64b8288b317e6269d995f28b7235b692fb4fa45af9b232c164139.png" src="../_images/24f93a1918f64b8288b317e6269d995f28b7235b692fb4fa45af9b232c164139.png" />
+<img alt="../_images/a4e05b9925352e88c9d7b8a237d8529c1a30907bac0927edc520797b5c5aa4a8.png" src="../_images/a4e05b9925352e88c9d7b8a237d8529c1a30907bac0927edc520797b5c5aa4a8.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> además nos permite determinar las derivadas de la función de interpolación. Para esto, debemos incluir un índice en el segundo argumento de la función generada:</p>
@@ -890,7 +896,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b6ea8734fbbdd48d817742ddff0406203cbfb8b544dfecaee05a6941341a88ad.png" src="../_images/b6ea8734fbbdd48d817742ddff0406203cbfb8b544dfecaee05a6941341a88ad.png" />
+<img alt="../_images/cd7f08fd98231069d460812943532d26c249f7566a84c3b3ada739f41b5343c8.png" src="../_images/cd7f08fd98231069d460812943532d26c249f7566a84c3b3ada739f41b5343c8.png" />
 </div>
 </div>
 <p>Por defecto, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> extrapola los valores fuera de los valores extremos. Podemos suprimir la extrapolación mediante la instrucción <code class="docutils literal notranslate"><span class="pre">extrapolate=False</span></code>. En este caso, la función entregará <code class="docutils literal notranslate"><span class="pre">NaN</span></code> para los valores extrapolados.</p>
@@ -931,7 +937,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/433785e7677993158256a74b46c44c4f8fe657ef621f1e69bf3ef28e92d44690.png" src="../_images/433785e7677993158256a74b46c44c4f8fe657ef621f1e69bf3ef28e92d44690.png" />
+<img alt="../_images/b767bcd3d3846977173f798b8b372dfb30aab9157ff3cdf40b38ddc4238774aa.png" src="../_images/b767bcd3d3846977173f798b8b372dfb30aab9157ff3cdf40b38ddc4238774aa.png" />
 </div>
 </div>
 </section>
@@ -972,8 +978,8 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../03-Ajuste_de_curvas/03-Ajuste_de_curvas.html"
@@ -1001,6 +1007,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1041,6 +1048,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1067,8 +1075,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

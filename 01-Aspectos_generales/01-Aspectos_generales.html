@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>1. Aspectos generales de programación y algoritmos &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -373,12 +379,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.3. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.3.1. Documentación en línea</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.3.2. Comandos directos para acceder a la documentación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-absoluto-y-relativo">1.3. Error absoluto y relativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.4. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.4.1. Documentación en línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.4.2. Comandos directos para acceder a la documentación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.4. Referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.5. Referencias</a></li>
 </ul>
             </nav>
         </div>
@@ -388,7 +395,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="aspectos-generales-de-programacion-y-algoritmos">
 <h1><span class="section-number">1. </span>Aspectos generales de programación y algoritmos<a class="headerlink" href="#aspectos-generales-de-programacion-y-algoritmos" title="Permalink to this heading">#</a></h1>
@@ -429,24 +436,6 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
             <span class="n">out</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
     <span class="k">return</span> <span class="n">out</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">out</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="n">i</span><span class="o">*</span><span class="n">j</span>
-        
-<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025
 </pre></div>
 </div>
 </div>
@@ -570,8 +559,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
-Wall time: 11 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5 µs, sys: 2 µs, total: 7 µs
+Wall time: 7.63 µs
 </pre></div>
 </div>
 </div>
@@ -583,8 +572,8 @@ Wall time: 11 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 125 ms, sys: 0 ns, total: 125 ms
-Wall time: 132 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 84.9 ms, sys: 508 µs, total: 85.4 ms
+Wall time: 85.3 ms
 </pre></div>
 </div>
 </div>
@@ -604,12 +593,12 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
  0\cdot2^7 + 0\cdot2^6 + 1\cdot2^5 + 0\cdot2^4 + 0\cdot2^3 + 1\cdot2^2 + 0\cdot2^1 + 1\cdot2^0 = 37
 \end{equation*}\]</div>
 <p>Cada variable tiene una cantidad de bits asociada.</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Tipo</p></th>
-<th class="text-center head"><p>Nombre</p></th>
-<th class="text-center head"><p>Número de bits</p></th>
-<th class="text-center head"><p>Rango de valores</p></th>
+<tr class="row-odd"><th class="head text-center"><p>Tipo</p></th>
+<th class="head text-center"><p>Nombre</p></th>
+<th class="head text-center"><p>Número de bits</p></th>
+<th class="head text-center"><p>Rango de valores</p></th>
 </tr>
 </thead>
 <tbody>
@@ -630,6 +619,7 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <blockquote>
 <div><p><strong>Nota</strong>. En el código binario siempre existirá un único bit reservado para el signo.</p>
 </div></blockquote>
@@ -676,10 +666,10 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
 </div>
 </div>
 <p>A continuación indicamos algunos valores útiles que podemos extraer de esta información:</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Variable</p></th>
-<th class="text-center head"><p>Descripción</p></th>
+<tr class="row-odd"><th class="head text-center"><p>Variable</p></th>
+<th class="head text-center"><p>Descripción</p></th>
 </tr>
 </thead>
 <tbody>
@@ -697,6 +687,7 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Un número mayor al <strong>máximo positivo</strong> es prepresentado en python como <code class="docutils literal notranslate"><span class="pre">inf</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -762,7 +753,7 @@ valor mayor al mínimo positivo:  1e-323
 </div>
 </div>
 </div>
-<p>Sin embargo, una <strong>variable del tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></strong> es divisible. Esto significa que existe una cantidad de dígitos significativos reservados para un número, lo que <strong>puede inducir errores de redondeo</strong>:</p>
+<p>En cambio, una <strong>variable del tipo <code class="docutils literal notranslate"><span class="pre">float</span></code></strong> es divisible. Esto significa que existe una cantidad de dígitos significativos reservados para un número, lo que <strong>puede inducir errores de redondeo</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">==</span> <span class="mf">0.6</span>
@@ -859,8 +850,44 @@ valor mayor al mínimo positivo:  1e-323
 </div>
 </section>
 </section>
+<section id="error-absoluto-y-relativo">
+<h2><span class="section-number">1.3. </span>Error absoluto y relativo<a class="headerlink" href="#error-absoluto-y-relativo" title="Permalink to this heading">#</a></h2>
+<p>Como veremos a lo largo del curso, los métodos numéricos se basan en <em>aproximaciones</em> para representar funciones y operaciones complejas. Estas aproximaciones pueden producir dos tipos de errores:</p>
+<ul class="simple">
+<li><p>Errores de truncamiento: debido al uso expresiones aproximadas del procedimiento matemtático exacto</p></li>
+<li><p>Errores de redondeo: debido a las limitaciones de representación numérica propias del computador</p></li>
+</ul>
+<p>Para cuantificar el error utilizamos dos tipos de métricas</p>
+<p><strong>Error absoluto</strong> Corresponde al error neto de la propuesta numérica:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-891a286c-99e5-4b1a-9715-c275e886a2c0">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-891a286c-99e5-4b1a-9715-c275e886a2c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+E_\mathrm{abs} = |\mathrm{valor~aproximado} - \mathrm{valor~exacto}|
+\end{equation}\]</div>
+<p><strong>Error relativo</strong> Corresponde al error de la propuesta numérica respecto al valor exacto:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5ac30c78-8af8-4f90-9c7a-986e419b252a">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-5ac30c78-8af8-4f90-9c7a-986e419b252a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\mathrm{valor~exacto}|}
+\end{equation}\]</div>
+<blockquote>
+<div><p><strong>Nota</strong> A veces, el error relativo se representa como porcentaje</p>
+</div></blockquote>
+<p>Comúnmente, los métodos numéricos se basan en procesos iterativos donde una solución <span class="math notranslate nohighlight">\(x^k\)</span> es mejorada en la iteración siguiente <span class="math notranslate nohighlight">\(x^{k+1}\)</span>. En el caso que la solución exacta no se conozca (caso más común), calculamos los errores como</p>
+<ul class="simple">
+<li><p><strong>Error absoluto</strong> \begin{equation}
+E_\mathrm{abs} = |x^{k+1} - x^{k}|
+\end{equation}</p></li>
+</ul>
+<ul>
+<li><p><strong>Error relativo</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-960e550c-96db-4f22-87a5-ad6aa964283a">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-960e550c-96db-4f22-87a5-ad6aa964283a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
+    \end{equation}\]</div>
+</li>
+</ul>
+</section>
 <section id="documentacion-de-funciones-en-python">
-<h2><span class="section-number">1.3. </span>Documentación de funciones en python<a class="headerlink" href="#documentacion-de-funciones-en-python" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.4. </span>Documentación de funciones en python<a class="headerlink" href="#documentacion-de-funciones-en-python" title="Permalink to this heading">#</a></h2>
 <p>En python existen múltiples liberías, cada una con un propósito en específico. En este curso, trabajaremos con:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: Esencial para operaciones matemáticas con arreglos de elementos</p></li>
@@ -887,7 +914,7 @@ valor mayor al mínimo positivo:  1e-323
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de numpy: 1.23.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de numpy: 1.24.3
 </pre></div>
 </div>
 </div>
@@ -900,7 +927,7 @@ valor mayor al mínimo positivo:  1e-323
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de matplotlib: 3.5.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de matplotlib: 3.8.3
 </pre></div>
 </div>
 </div>
@@ -913,13 +940,13 @@ valor mayor al mínimo positivo:  1e-323
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de scipy: 1.9.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>versión de scipy: 1.12.0
 </pre></div>
 </div>
 </div>
 </div>
 <section id="documentacion-en-linea">
-<h3><span class="section-number">1.3.1. </span>Documentación en línea<a class="headerlink" href="#documentacion-en-linea" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.4.1. </span>Documentación en línea<a class="headerlink" href="#documentacion-en-linea" title="Permalink to this heading">#</a></h3>
 <p>Como ejercicio, consideremos la documentación de la función <code class="docutils literal notranslate"><span class="pre">linspace</span></code> de la libería <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Esta función será utilizada frecuentemente en el curso, y permite generar un arreglo de números distribuidos entre dos límites establecidos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1012,7 +1039,7 @@ Espaciamiento:  0.25
 </div>
 </section>
 <section id="comandos-directos-para-acceder-a-la-documentacion">
-<h3><span class="section-number">1.3.2. </span>Comandos directos para acceder a la documentación<a class="headerlink" href="#comandos-directos-para-acceder-a-la-documentacion" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">1.4.2. </span>Comandos directos para acceder a la documentación<a class="headerlink" href="#comandos-directos-para-acceder-a-la-documentacion" title="Permalink to this heading">#</a></h3>
 <p>La opción más directa es presionando <code class="docutils literal notranslate"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Tab</span></code> posicionando el cursor al final de la función. Este comando depende del <em>IDE</em> utilizado, pero funciona con <em>Jupyter Notebook</em>, <em>Visual Studio Code</em> y <em>Google colab</em>.</p>
 <a class="reference internal image-reference" href="../_images/shift+tab.png"><img alt="../_images/shift+tab.png" class="align-center" src="../_images/shift+tab.png" style="width: 800px;" /></a>
 <p>Otra alternativa es con el comando <code class="docutils literal notranslate"><span class="pre">?</span></code> o con la función <code class="docutils literal notranslate"><span class="pre">help</span></code></p>
@@ -1023,7 +1050,7 @@ help(np.linspace)
 </section>
 </section>
 <section id="referencias">
-<h2><span class="section-number">1.4. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <p>Kong Q., Siauw T., Bayen A. M. “<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a>”, 1st Ed., Academic Press, 2021</p>
 <ul class="simple">
 <li><p>Chapter 8. Complexity</p></li>
@@ -1060,8 +1087,8 @@ help(np.linspace)
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../intro.html"
@@ -1090,6 +1117,7 @@ help(np.linspace)
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
@@ -1109,12 +1137,13 @@ help(np.linspace)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acumulacion-de-errores-de-redondeo">1.2.3. Acumulacion de errores de redondeo</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.3. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.3.1. Documentación en línea</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.3.2. Comandos directos para acceder a la documentación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-absoluto-y-relativo">1.3. Error absoluto y relativo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-en-python">1.4. Documentación de funciones en python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-en-linea">1.4.1. Documentación en línea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-directos-para-acceder-a-la-documentacion">1.4.2. Comandos directos para acceder a la documentación</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.4. Referencias</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">1.5. Referencias</a></li>
 </ul>
   </nav></div>
 
@@ -1136,6 +1165,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1162,8 +1192,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
