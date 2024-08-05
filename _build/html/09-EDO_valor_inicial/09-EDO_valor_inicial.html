@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>9. Problemas de valor inicial &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -15,19 +15,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
@@ -39,9 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,28 +79,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -122,12 +117,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -142,6 +145,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -198,7 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -207,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -320,6 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -329,6 +334,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -395,7 +401,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="problemas-de-valor-inicial">
 <h1><span class="section-number">9. </span>Problemas de valor inicial<a class="headerlink" href="#problemas-de-valor-inicial" title="Permalink to this heading">#</a></h1>
@@ -407,8 +413,8 @@ document.write(`
 <h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Permalink to this heading">#</a></h3>
 <p>Una ecuacion diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
 <p>Por ejemplo, la <strong>ecuación del péndulo</strong> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79aa7dbd-61c1-4ee6-a949-345df6591eb4">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-79aa7dbd-61c1-4ee6-a949-345df6591eb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff003cd2-682b-4575-bdec-8afa49b11334">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-ff003cd2-682b-4575-bdec-8afa49b11334" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa l\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
@@ -416,8 +422,8 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa l\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) 
 <p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la ecuación se transforma en una <strong>EDO lineal</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc32af0b-ad68-4b1d-bd8b-b22db3eedbfb">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-bc32af0b-ad68-4b1d-bd8b-b22db3eedbfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ce4b4df6-e4e9-4b30-9311-c9b821e7f8c6">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-ce4b4df6-e4e9-4b30-9311-c9b821e7f8c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta(t)}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tiene solución analítica.</p>
@@ -442,8 +448,8 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres variables dependientes (<span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, y <span class="math notranslate nohighlight">\(p\)</span>) en función de tres variables independientes (tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>). Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos <strong>clasificar una ecuación diferencial según el orden de sus derivadas.</strong></p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ca17fbb-c681-41ce-941d-58a8cf7264f5">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-1ca17fbb-c681-41ce-941d-58a8cf7264f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d68fb3d2-29c6-4faa-ac94-73479941a6e5">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-d68fb3d2-29c6-4faa-ac94-73479941a6e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -516,8 +522,8 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Permalink to this heading">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3b8b4d1-8262-436b-9ca0-173f0bd269d8">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-f3b8b4d1-8262-436b-9ca0-173f0bd269d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12ffa9d1-fc1c-443b-a0a6-cfefafc8547f">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-12ffa9d1-fc1c-443b-a0a6-cfefafc8547f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones inciales:
@@ -546,8 +552,8 @@ T(0,x,y) = T_a
 \left\{\begin{matrix} \Theta(0) \\ \dot{\Theta(0)}\end{matrix}\right\} = \left\{\begin{matrix} \Theta_0 \\ 0\end{matrix}\right\}
 \end{equation*}\]</div>
 <p>A partir de este procedimiento, <strong>hemos reducido una EDO de orden superior a una EDO de primer orden de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f905dd61-b879-41a5-a01f-bc6444ce8512">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-f905dd61-b879-41a5-a01f-bc6444ce8512" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cea04304-f1aa-43ba-996a-88cf326a0123">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-cea04304-f1aa-43ba-996a-88cf326a0123" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d}{dt}\vec{y} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -635,7 +641,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c0bf213835f1dd4d34e8bbb9cceb4874d7cfdf6bed8d8a0589f720fe4c4d5170.png" src="../_images/c0bf213835f1dd4d34e8bbb9cceb4874d7cfdf6bed8d8a0589f720fe4c4d5170.png" />
+<img alt="../_images/e1cb9839b9b2f83437754a7acb602dfcf3ef1e7637cc2ad06fda9ca436eb924e.png" src="../_images/e1cb9839b9b2f83437754a7acb602dfcf3ef1e7637cc2ad06fda9ca436eb924e.png" />
 </div>
 </div>
 </section>
@@ -704,7 +710,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8455050650022a3604d74f4fbcbb6e0c87001b3f04d522b76cd268e425a56b8b.png" src="../_images/8455050650022a3604d74f4fbcbb6e0c87001b3f04d522b76cd268e425a56b8b.png" />
+<img alt="../_images/d7b719df50204b213a276f1f0e3495bb7da2cc0cae4309204dd1714823784121.png" src="../_images/d7b719df50204b213a276f1f0e3495bb7da2cc0cae4309204dd1714823784121.png" />
 </div>
 </div>
 <p>Observamos que el método de Euler converge cuando <span class="math notranslate nohighlight">\(h = 0.01\)</span>, pero oscila constantemente para <span class="math notranslate nohighlight">\(h &gt; 0.1\)</span>. Esta es un característica típica de un problema de estabilidad.</p>
@@ -714,8 +720,8 @@ T(0,x,y) = T_a
 <section id="metodo-de-euler-implicito">
 <h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Permalink to this heading">#</a></h3>
 <p>Alternativamente, podemos definir el argumento de <span class="math notranslate nohighlight">\(\vec{F}(t,\vec{y})\)</span> en función de los valores futuros <span class="math notranslate nohighlight">\(t_{i+1}\)</span> y <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2bb0fd9a-6526-459a-bba6-eb4cc7d8a750">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-2bb0fd9a-6526-459a-bba6-eb4cc7d8a750" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-98224db0-ffc3-4fcc-8930-9f2ecfcfeebb">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-98224db0-ffc3-4fcc-8930-9f2ecfcfeebb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}\left(t_{i+1},\vec{y}_{i+1}\right) + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como <strong>implícita</strong> debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -789,7 +795,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b96389255782d4cef2d100cc8a3fdeece100d25aa06ee81dd952f36bc4db766b.png" src="../_images/b96389255782d4cef2d100cc8a3fdeece100d25aa06ee81dd952f36bc4db766b.png" />
+<img alt="../_images/c35c5afb64e2ab2f048d76b9d90074d5f4fbcfbc25811be6fbdb1da903fef3ee.png" src="../_images/c35c5afb64e2ab2f048d76b9d90074d5f4fbcfbc25811be6fbdb1da903fef3ee.png" />
 </div>
 </div>
 <p>En el ejemplo vemos que, si bien la precisión sigue condicionada al error de truncamiento <span class="math notranslate nohighlight">\(O(h^2)\)</span>, el método no presenta problemas de inestabilidad</p>
@@ -804,14 +810,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d89b8e9b-6645-44cf-8b7c-d3aeba092cfb">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-d89b8e9b-6645-44cf-8b7c-d3aeba092cfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c5dca01-c8a9-427e-af72-1421bb968308">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-0c5dca01-c8a9-427e-af72-1421bb968308" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e672dff-53c8-46fd-bfd1-55c1d13dc6a7">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-0e672dff-53c8-46fd-bfd1-55c1d13dc6a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd7545f1-ea7b-4c9c-93db-b7647e0983f5">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-bd7545f1-ea7b-4c9c-93db-b7647e0983f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -837,8 +843,8 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Permalink to this heading">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f992c1c6-63bc-453a-9019-702d254a745e">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-f992c1c6-63bc-453a-9019-702d254a745e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-382755ad-a604-40aa-bda5-b046a8a08ec9">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-382755ad-a604-40aa-bda5-b046a8a08ec9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1004,48 +1010,18 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: &#39;The solver successfully reached the end of the integration interval.&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  message: The solver successfully reached the end of the integration interval.
+  success: True
+   status: 0
+        t: [ 0.000e+00  1.753e-04 ...  4.955e+00  5.000e+00]
+        y: [[ 1.745e-01  1.745e-01 ... -2.589e-03 -2.683e-03]
+            [ 0.000e+00 -9.942e-04 ... -4.145e-03 -8.792e-05]]
+      sol: None
+ t_events: None
+ y_events: None
      nfev: 230
      njev: 0
       nlu: 0
-      sol: None
-   status: 0
-  success: True
-        t: array([0.00000000e+00, 1.75284586e-04, 1.92813044e-03, 1.94565890e-02,
-       1.39441050e-01, 3.04008731e-01, 4.72919132e-01, 6.35118344e-01,
-       7.83387614e-01, 9.31662174e-01, 1.07845955e+00, 1.24456245e+00,
-       1.40132489e+00, 1.57147017e+00, 1.73206020e+00, 1.88426787e+00,
-       2.03536835e+00, 2.18646883e+00, 2.35301990e+00, 2.50923821e+00,
-       2.68049986e+00, 2.84188849e+00, 2.99499158e+00, 3.14863804e+00,
-       3.30228450e+00, 3.46974090e+00, 3.62757996e+00, 3.80012204e+00,
-       3.96538139e+00, 4.11683664e+00, 4.29182086e+00, 4.44982848e+00,
-       4.61612277e+00, 4.78210241e+00, 4.95498197e+00, 5.00000000e+00])
- t_events: None
-        y: array([[ 1.74532925e-01,  1.74532838e-01,  1.74522392e-01,
-         1.73471824e-01,  1.25987979e-01,  1.94514445e-04,
-        -9.68827250e-02, -9.91909415e-02, -3.85813400e-02,
-         3.18500394e-02,  6.76552832e-02,  5.14324950e-02,
-         4.50938836e-03, -3.65980724e-02, -4.05640071e-02,
-        -1.73215600e-02,  1.13959895e-02,  2.66548406e-02,
-         2.06025104e-02,  2.18436090e-03, -1.43587299e-02,
-        -1.60884253e-02, -6.88091627e-03,  4.64656330e-03,
-         1.06031246e-02,  7.93514938e-03,  5.08559338e-04,
-        -5.86432155e-03, -6.18855316e-03, -2.38783173e-03,
-         2.58539936e-03,  4.26560179e-03,  2.55555006e-03,
-        -6.03769523e-04, -2.58877355e-03, -2.68342371e-03],
-       [ 0.00000000e+00, -9.94157675e-04, -1.09195610e-02,
-        -1.08377048e-01, -6.34349851e-01, -7.73453179e-01,
-        -3.08022095e-01,  2.55233415e-01,  5.02378023e-01,
-         3.94619950e-01,  7.75948888e-02, -2.42632573e-01,
-        -3.12242336e-01, -1.40650910e-01,  8.43495076e-02,
-         1.96621785e-01,  1.61083137e-01,  3.36926023e-02,
-        -9.46002249e-02, -1.23979799e-01, -5.68328076e-02,
-         3.27661853e-02,  7.77484208e-02,  6.31666005e-02,
-         1.15942581e-02, -3.85503165e-02, -4.86151013e-02,
-        -2.05595404e-02,  1.52212371e-02,  3.10997807e-02,
-         2.14030020e-02, -6.01072841e-04, -1.75728871e-02,
-        -1.75901901e-02, -4.14469138e-03, -8.79234631e-05]])
- y_events: None
 </pre></div>
 </div>
 </div>
@@ -1138,7 +1114,7 @@ Velocidad angular en t = 4.3s: 1.226°/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5d1caedc57c69b4eada9d4ea44c3e82a76813af01bae64a89146e13f3fa49532.png" src="../_images/5d1caedc57c69b4eada9d4ea44c3e82a76813af01bae64a89146e13f3fa49532.png" />
+<img alt="../_images/feb9a2e86ae3a042cf8b8b92075205e2ed7ec9078ad089b6b3c230613212ea0e.png" src="../_images/feb9a2e86ae3a042cf8b8b92075205e2ed7ec9078ad089b6b3c230613212ea0e.png" />
 </div>
 </div>
 <p>Alternativamente, podemos definir los tiempos donde queremos conocer nuestra solución utilizando el argumento <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>. Este argumento puede ser un valor específico o un arreglo.</p>
@@ -1188,7 +1164,7 @@ Velocidad angular en t = 4.3s: 1.226°/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d8b2f503efb8cc03c52bb4447415e96d4449a710ec38e2db90581c7ec9936227.png" src="../_images/d8b2f503efb8cc03c52bb4447415e96d4449a710ec38e2db90581c7ec9936227.png" />
+<img alt="../_images/848a3944dafb426ca45575910937dcf526fa8e23848083c40f540c125294ecdf.png" src="../_images/848a3944dafb426ca45575910937dcf526fa8e23848083c40f540c125294ecdf.png" />
 </div>
 </div>
 </section>
@@ -1248,8 +1224,8 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.7 s, sys: 203 ms, total: 14.9 s
-Wall time: 14.9 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13.3 s, sys: 35.6 ms, total: 13.4 s
+Wall time: 13.4 s
 Número de subdivisiones de variable &quot;t&quot;: 302037
 </pre></div>
 </div>
@@ -1264,8 +1240,8 @@ Número de subdivisiones de variable &quot;t&quot;: 302037
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.6 ms, sys: 0 ns, total: 15.6 ms
-Wall time: 7.6 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.25 ms, sys: 0 ns, total: 9.25 ms
+Wall time: 10.1 ms
 Número de subdivisiones de variable &quot;t&quot;: 56
 </pre></div>
 </div>
@@ -1280,8 +1256,8 @@ Número de subdivisiones de variable &quot;t&quot;: 56
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
-Wall time: 1.85 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.38 ms, sys: 0 ns, total: 3.38 ms
+Wall time: 7.31 ms
 Número de subdivisiones de variable &quot;t&quot;: 7
 </pre></div>
 </div>
@@ -1328,8 +1304,8 @@ Número de subdivisiones de variable &quot;t&quot;: 7
               
               
               
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="prev-next-footer d-print-none">
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="../08-Derivacion_numerica/08-Derivacion_numerica.html"
@@ -1357,6 +1333,7 @@ Número de subdivisiones de variable &quot;t&quot;: 7
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1411,6 +1388,7 @@ By Francisco V. Ramirez-Cuevas
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -1437,8 +1415,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
