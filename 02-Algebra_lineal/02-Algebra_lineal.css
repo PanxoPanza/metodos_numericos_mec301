@@ -25,6 +25,10 @@ div.inner_cell>div.text_cell_render.rendered_html h3{
     color: rgb(0,175,216);
 }
 
+div.inner_cell>div.text_cell_render.rendered_html h4{
+    color: rgb(0,175,216);
+}
+
 div.inner_cell>div.text_cell_render.rendered_html  img{
     max-height: 550px;
     max-width: 100%;

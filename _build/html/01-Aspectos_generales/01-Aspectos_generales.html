@@ -559,8 +559,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5 µs, sys: 2 µs, total: 7 µs
-Wall time: 7.63 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 1 µs, total: 5 µs
+Wall time: 6.68 µs
 </pre></div>
 </div>
 </div>
@@ -572,8 +572,8 @@ Wall time: 7.63 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 84.9 ms, sys: 508 µs, total: 85.4 ms
-Wall time: 85.3 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 78.7 ms, sys: 1.09 ms, total: 79.8 ms
+Wall time: 86.5 ms
 </pre></div>
 </div>
 </div>
@@ -859,13 +859,13 @@ valor mayor al mínimo positivo:  1e-323
 </ul>
 <p>Para cuantificar el error utilizamos dos tipos de métricas</p>
 <p><strong>Error absoluto</strong> Corresponde al error neto de la propuesta numérica:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-891a286c-99e5-4b1a-9715-c275e886a2c0">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-891a286c-99e5-4b1a-9715-c275e886a2c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f34da91-9617-4d09-8a4a-af6bc8ec7399">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-5f34da91-9617-4d09-8a4a-af6bc8ec7399" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |\mathrm{valor~aproximado} - \mathrm{valor~exacto}|
 \end{equation}\]</div>
 <p><strong>Error relativo</strong> Corresponde al error de la propuesta numérica respecto al valor exacto:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5ac30c78-8af8-4f90-9c7a-986e419b252a">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-5ac30c78-8af8-4f90-9c7a-986e419b252a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6fe96bdb-0802-413a-9952-66660ca569c8">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-6fe96bdb-0802-413a-9952-66660ca569c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\mathrm{valor~exacto}|}
 \end{equation}\]</div>
 <blockquote>
@@ -879,8 +879,8 @@ E_\mathrm{abs} = |x^{k+1} - x^{k}|
 </ul>
 <ul>
 <li><p><strong>Error relativo</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-960e550c-96db-4f22-87a5-ad6aa964283a">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-960e550c-96db-4f22-87a5-ad6aa964283a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3aaa8e11-769b-4784-82a8-40db9d691d3a">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-3aaa8e11-769b-4784-82a8-40db9d691d3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
     \end{equation}\]</div>
 </li>
