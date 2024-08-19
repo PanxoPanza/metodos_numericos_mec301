@@ -554,26 +554,26 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <p>Podemos evaluar el tiempo de ejecución con la sentencia <code class="docutils literal notranslate"><span class="pre">%time</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_iter(30)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_iter(34)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 1 µs, total: 5 µs
-Wall time: 6.68 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8 µs, sys: 3 µs, total: 11 µs
+Wall time: 16.5 µs
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_rec(30) # No probar N&gt;30
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_rec(34) # No probar N&gt;30
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 78.7 ms, sys: 1.09 ms, total: 79.8 ms
-Wall time: 86.5 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.12 s, sys: 0 ns, total: 1.12 s
+Wall time: 1.21 s
 </pre></div>
 </div>
 </div>
@@ -613,7 +613,7 @@ El computador es capaz de interpretar número utilizando códigos binarios.</p>
 <td class="text-center"><p>-2147483648 a 2147483647</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p>float64</p></td>
-<td class="text-center"><p>Double presition float</p></td>
+<td class="text-center"><p>Double precision float</p></td>
 <td class="text-center"><p>64</p></td>
 <td class="text-center"><p><span class="math notranslate nohighlight">\((-1)^s2^{e - 1024}\left(1 + f\right)\)</span><br /> <span class="math notranslate nohighlight">\(s\)</span>: 1 bit; <br /> <span class="math notranslate nohighlight">\(e\)</span>: 11 bits; <br /> <span class="math notranslate nohighlight">\(f\)</span>: 52 bits</p></td>
 </tr>
@@ -769,7 +769,7 @@ valor mayor al mínimo positivo:  1e-323
 <p>Para este tipo de operaciones es recomendable utilizar la función <code class="docutils literal notranslate"><span class="pre">round</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># redondeo al primer decimal</span>
 </pre></div>
 </div>
 </div>
@@ -859,13 +859,13 @@ valor mayor al mínimo positivo:  1e-323
 </ul>
 <p>Para cuantificar el error utilizamos dos tipos de métricas</p>
 <p><strong>Error absoluto</strong> Corresponde al error neto de la propuesta numérica:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f34da91-9617-4d09-8a4a-af6bc8ec7399">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-5f34da91-9617-4d09-8a4a-af6bc8ec7399" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27087395-6ab5-430a-bf94-dfee495e46eb">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-27087395-6ab5-430a-bf94-dfee495e46eb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |\mathrm{valor~aproximado} - \mathrm{valor~exacto}|
 \end{equation}\]</div>
 <p><strong>Error relativo</strong> Corresponde al error de la propuesta numérica respecto al valor exacto:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6fe96bdb-0802-413a-9952-66660ca569c8">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-6fe96bdb-0802-413a-9952-66660ca569c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-204e1247-4aef-4df0-a352-974633b6e8c8">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-204e1247-4aef-4df0-a352-974633b6e8c8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\mathrm{valor~exacto}|}
 \end{equation}\]</div>
 <blockquote>
@@ -879,8 +879,8 @@ E_\mathrm{abs} = |x^{k+1} - x^{k}|
 </ul>
 <ul>
 <li><p><strong>Error relativo</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-3aaa8e11-769b-4784-82a8-40db9d691d3a">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-3aaa8e11-769b-4784-82a8-40db9d691d3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8fd48015-9533-4c14-848a-9720c7bd8713">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-8fd48015-9533-4c14-848a-9720c7bd8713" title="Permalink to this equation">#</a></span>\[\begin{equation}
     E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
     \end{equation}\]</div>
 </li>
