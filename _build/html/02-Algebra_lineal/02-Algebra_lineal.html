@@ -757,7 +757,7 @@ Número de incognitas, n = 3
 </div>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\mathrm{rank}\left([M|y]\right) &amp;= \mathrm{rank}\left(M\right) + 1 \\
+\mathrm{rank}\left([M|y]\right) &amp;= \mathrm{rank}\left(M\right) \\
 \mathrm{rank}\left(M\right) &amp;\lt n
 \end{align*}\]</div>
 <p><strong>Por lo tanto, el sistema tiene infinitas soluciones</strong></p>
@@ -832,11 +832,6 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
 </div>
 <blockquote>
 <div><p><strong>Nota</strong> Una matriz <span class="math notranslate nohighlight">\(A\)</span> de tamaño <span class="math notranslate nohighlight">\(n\times n\)</span>, será siempre singular si <span class="math notranslate nohighlight">\(\mathrm{rank(A)} &lt; n\)</span> y viceversa.</p>
@@ -858,11 +853,6 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cond(P) =  1.7784106389713206e+16
-</pre></div>
-</div>
-</div>
 </div>
 <p>Notar que <span class="math notranslate nohighlight">\(\mathrm{det}(A)= 0\)</span>, no necesariamente significa que el sistema no tiene solución</p>
 <p>Por ejemplo, en el ejemplo anterior</p>
@@ -877,17 +867,6 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det(M) = &#39;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M
- [[ 3  1 -5]
- [-2 -2  5]
- [ 4  0 -5]]
-
-
-det(M) =  0.0
 </pre></div>
 </div>
 </div>
@@ -1096,20 +1075,6 @@ P  = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P*A =
- [[ 8  8  0]
- [-2 -4  5]
- [ 4  3 -5]]
-
-
-L*U =
- [[ 8.  8.  0.]
- [-2. -4.  5.]
- [ 4.  3. -5.]]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Notar que, considerando la permutación, <strong>la solución al sistema <span class="math notranslate nohighlight">\(Ax=y\)</span> está dada por</strong>:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1167,15 +1132,6 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = 
- [[ 8.  3. -3.]
- [-2. -8.  5.]
- [ 3.  5. 10.]]
-y =  [14.  5. -8.]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Primero, verificamos que la matriz es diagonal dominante:</p>
 <div class="cell docutils container">
@@ -1197,18 +1153,11 @@ y =  [14.  5. -8.]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|a_ii| =  [ 8.  8. 10.]
-sum(|a_ij|, i!=j) = [6. 7. 8.]
-la matriz es diagonal dominante
-</pre></div>
-</div>
-</div>
 </div>
 <p>Luego, elaboramos una función para ejecutar el algoritmo de Gauss-Seidel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-3</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-3</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Algoritmo Gauss-Seidel para resolver un sistema Ax = y</span>
 <span class="sd">    </span>
@@ -1219,11 +1168,13 @@ la matriz es diagonal dominante
 <span class="sd">        - y : ndarray</span>
 <span class="sd">                vector columna &quot;y&quot; (dimensión n x 1)</span>
 <span class="sd">        - x0 : ndarray</span>
-<span class="sd">                vector inicial (dimensión n x 1)</span>
+<span class="sd">                vector &quot;x&quot; inicial (dimensión n x 1)</span>
 <span class="sd">        - max_iter : int</span>
 <span class="sd">                número máximo de iteraciones (50 por defecto)</span>
 <span class="sd">        - abs_tol : float</span>
 <span class="sd">                tolerancia al error absoluto (1E-3 por defecto)</span>
+<span class="sd">        - verbose: bool</span>
+<span class="sd">                generar mensajes al usuario (&quot;False&quot; por defecto)</span>
 <span class="sd">    Return</span>
 <span class="sd">    -------</span>
 <span class="sd">        - xsol: ndarray</span>
@@ -1231,40 +1182,46 @@ la matriz es diagonal dominante
 <span class="sd">        - error_abs: float</span>
 <span class="sd">                error absoluto</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1"># ------------------------ Importamos funciones de numpy ---------------------------------</span>
-    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">copy</span>
-    <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+    <span class="c1"># -------------------------------- Importamos funciones de numpy ------------------------------------</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">copy</span><span class="p">,</span> <span class="n">concatenate</span>
+    <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">matrix_rank</span>
     
-    <span class="c1"># ------------------------ Parámetros de entrada ---------------------------------</span>
-    <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># booleano para verificar convergencia (falso por defecto)</span>
-    <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># registramos número de filas y columnas</span>
+    <span class="c1"># -------------------------------- Parámetros de entrada --------------------------------------------</span>
+    <span class="n">converged</span> <span class="o">=</span> <span class="kc">False</span>                                               <span class="c1"># verificar convergencia (falso por defecto)</span>
+    <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span>                                          <span class="c1"># registramos número de filas y columnas</span>
     
-    <span class="c1"># ----------------------- Algoritmo Gauss-Seidel ---------------------------------</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>                 <span class="c1"># generamos un arreglo vacío &quot;like&quot; x0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">):</span>             <span class="c1"># iteraciones</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>            <span class="c1"># recorrer filas</span>
-            
-            <span class="c1"># construimos la expresión: xi =  (yi - sum(aij*xj))/aii</span>
-            <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>                   <span class="c1"># xi^k = yi</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>        <span class="c1"># recorrer columnas</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>                <span class="c1"># saltamos i = j</span>
-                    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x0</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="c1"># xi^k =  yi - sum(aij*xj^(k-1), i != j)</span>
-            <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>           <span class="c1"># xi^k = (yi - sum(aij*xj^(k-1), i != j))/aii</span>
+    <span class="c1"># ------------------------ verificamos si el sistema tiene solución única ---------------------------</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>                                             <span class="c1"># transformamos y a vector columna</span>
+    <span class="n">Ay</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>                                <span class="c1"># matriz aumentada</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>                                                      <span class="c1"># número de incognitas</span>
+    <span class="k">assert</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">Ay</span><span class="p">)</span> <span class="o">==</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="ow">and</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span><span class="p">,</span> <span class="s1">&#39;El sistema no tiene solución única&#39;</span>
+        
     
-        <span class="c1"># determinamos el error absoluto</span>
-        <span class="n">error_abs</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span>            <span class="c1"># || x^k - x^(k-1)||</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iter =&quot;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;; x =&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>       <span class="c1"># mostramos resultado de iteración (opcional)</span>
+    <span class="c1"># ------------------------------ Algoritmo Gauss-Seidel ---------------------------------------------</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>                                                          <span class="c1"># pasamos el valor inicial a &quot;x&quot;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">):</span>                                    <span class="c1"># iteraciones</span>
+        <span class="n">x_old</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                                             <span class="c1"># copiamos iteración k-1</span>
+
+        <span class="c1"># Perform iteration</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>                                          <span class="c1"># recorrer filas</span>
+            <span class="n">sum2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">x_old</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> <span class="c1"># sum(aij*xj^(k-1), j &gt; i + 1)</span>
+            <span class="n">sum1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>        <span class="c1"># sum(aij*xj^(k)  , j &lt; i    )</span>
+            <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum1</span> <span class="o">-</span> <span class="n">sum2</span><span class="p">)</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>                   <span class="c1"># xi^k = (yi - sum(aij*xj^(k-1), i != j))/aii</span>
+    
+        <span class="c1"># determinamos el error absoluto con norma Frobenius</span>
+        <span class="n">error_abs</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_old</span><span class="p">)</span>                                   <span class="c1"># || x^k - x^(k-1)||</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;iter =&quot;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;; x =&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>                             <span class="c1"># mostramos resultado de iteración (opcional)</span>
         
         <span class="c1"># verificamos convergencia con || x^k - x^(k-1)|| &lt; abs_tol</span>
         <span class="k">if</span> <span class="n">error_abs</span> <span class="o">&lt;</span> <span class="n">abs_tol</span><span class="p">:</span>
             <span class="n">converged</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Converged!&#39;</span><span class="p">)</span>
-            <span class="k">break</span>                         <span class="c1"># terminamos loop &quot;for k in range(1, Niter)&quot;</span>
-        
-        <span class="c1"># si no converge, actualizamos x^(k-1) para la siguiente iteración</span>
-        <span class="n">x0</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Converged!&#39;</span><span class="p">)</span>
+            <span class="k">break</span>                                                   <span class="c1"># terminamos loop &quot;for k in range(1, Niter)&quot;</span>
+
     <span class="c1"># --------------------- Preparamos output ----------------------------------------</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">converged</span><span class="p">:</span> <span class="c1"># si no converge entregamos una advertencia al usuario</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">converged</span><span class="p">:</span>                                               <span class="c1"># si no converge entregamos una advertencia al usuario</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No converge, incrementar número de iteraciones&#39;</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">error_abs</span>
@@ -1276,29 +1233,7 @@ la matriz es diagonal dominante
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span> <span class="c1"># valores iniciales</span>
-<span class="n">xsol</span><span class="p">,</span> <span class="n">Eabs</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iter = 1 ; x = [ 1.75  -0.625 -0.8  ]
-iter = 2 ; x = [ 1.684375 -1.5625   -1.0125  ]
-iter = 3 ; x = [ 1.95625    -1.67890625 -0.5240625 ]
-iter = 4 ; x = [ 2.18306641 -1.44160156 -0.54742188]
-iter = 5 ; x = [ 2.08531738 -1.51290527 -0.73411914]
-iter = 6 ; x = [ 2.0420448  -1.60515381 -0.66914258]
-iter = 7 ; x = [ 2.10100421 -1.55372531 -0.61003654]
-iter = 8 ; x = [ 2.10388329 -1.53152389 -0.65343861]
-iter = 9 ; x = [ 2.07928198 -1.55936995 -0.66540304]
-iter = 10 ; x = [ 2.08523759 -1.5606974  -0.64409962]
-iter = 11 ; x = [ 2.09372417 -1.54887166 -0.64522258]
-iter = 12 ; x = [ 2.08886841 -1.55169515 -0.65368142]
-iter = 13 ; x = [ 2.08675515 -1.55576799 -0.65081294]
-iter = 14 ; x = [ 2.08935814 -1.55344688 -0.64814255]
-iter = 15 ; x = [ 2.08948912 -1.55242863 -0.650084  ]
-iter = 16 ; x = [ 2.08837923 -1.55367478 -0.65063242]
-iter = 17 ; x = [ 2.08864089 -1.55374007 -0.64967638]
-Converged!
+<span class="n">xsol</span><span class="p">,</span> <span class="n">Eabs</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1310,44 +1245,12 @@ Converged!
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error absoluto =  0.005264944223005044
-</pre></div>
-</div>
-</div>
 </div>
 <p>Notar que el error absoluto de <span class="math notranslate nohighlight">\(\| Ax_\mathrm{sol} - y\| \gt \varepsilon\)</span>. Esto debido a que el criterio de convergencia se estableció en base a  <span class="math notranslate nohighlight">\(\| x^{(k)} - x^{(k-1)}\| \lt \varepsilon\)</span>. Sin embargo, el error es proporcional a la tolerancia, de manera que siempre podremos mejorar nuestra solución reduciendo el valor de <span class="math notranslate nohighlight">\(\varepsilon\)</span> (compruebe cambiando <code class="docutils literal notranslate"><span class="pre">abs_tol</span></code> en <code class="docutils literal notranslate"><span class="pre">gauss_seidel</span></code>).</p>
 <p>Debido a que agregamos una descripción de la función, podemos revisar los argumentos y <em>output</em> de la función usando <code class="docutils literal notranslate"><span class="pre">help</span></code> o <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">tab</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">gauss_seidel</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function gauss_seidel in module __main__:
-
-gauss_seidel(A, y, x0, Niter=50, abs_tol=0.001)
-    Algoritmo Gauss-Seidel para resolver un sistema Ax = y
-    
-    Parametros
-    ------------
-        - A : ndarray
-                matriz de coeficientes (debe ser de dimensiones n x n)
-        - y : ndarray
-                vector columna &quot;y&quot; (dimensión n x 1)
-        - x0 : ndarray
-                vector inicial (dimensión n x 1)
-        - Niter : int
-                número de iteraciones (50 por defecto)
-        - abs_tol : float
-                tolerancia al error absoluto (1E-3 por defecto)
-    Return
-    -------
-        - xsol: ndarray
-                solución del sistema (dimensión n x 1)
-        - error_abs: float
-                error absoluto
 </pre></div>
 </div>
 </div>
@@ -1409,22 +1312,12 @@ gauss_seidel(A, y, x0, Niter=50, abs_tol=0.001)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[41.202 55.917 71.613]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Notar que en este problema <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_3\)</span> representan las posiciones relativas de las personas. Así la posición final está dada por:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_inic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span> <span class="c1"># posición inicial</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Posición final de las personas: &#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x_inic</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posición final de las personas:  [ 61.202  95.917 131.613]
 </pre></div>
 </div>
 </div>
@@ -1439,26 +1332,6 @@ gauss_seidel(A, y, x0, Niter=50, abs_tol=0.001)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;U:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;LU:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P:
- [[1. 0. 0.]
- [0. 1. 0.]
- [0. 0. 1.]]
-L:
- [[ 1.          0.          0.        ]
- [-0.66666667  1.          0.        ]
- [ 0.         -0.6         1.        ]]
-U:
- [[ 150.         -100.            0.        ]
- [   0.           83.33333333  -50.        ]
- [   0.            0.           20.        ]]
-LU:
- [[ 150. -100.    0.]
- [-100.  150.  -50.]
- [   0.  -50.   50.]]
 </pre></div>
 </div>
 </div>
