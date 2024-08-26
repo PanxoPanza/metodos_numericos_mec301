@@ -755,6 +755,56 @@ Número de incognitas, n = 3
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 3,  1, -5],
+       [-2, -2,  5],
+       [ 8,  3,  0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 2, 0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1,  1, 11])
+</pre></div>
+</div>
+</div>
+</div>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \mathrm{rank}\left([M|y]\right) &amp;= \mathrm{rank}\left(M\right) \\
@@ -805,7 +855,7 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
 <span class="nn">File &lt;__array_function__ internals&gt;:200,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
@@ -850,6 +900,11 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">cond</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cond(P) = &#39;</span><span class="p">,</span><span class="n">cond</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cond(P) =  1.7784106389713206e+16
 </pre></div>
 </div>
 </div>
@@ -1069,9 +1124,31 @@ P  = \begin{bmatrix}
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P*A =</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A=</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;P*A =</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">A</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L*U =</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">U</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A=
+ [[ 4  3 -5]
+ [-2 -4  5]
+ [ 8  8  0]]
+
+
+P*A =
+ [[ 8  8  0]
+ [-2 -4  5]
+ [ 4  3 -5]]
+
+
+L*U =
+ [[ 8.  8.  0.]
+ [-2. -4.  5.]
+ [ 4.  3. -5.]]
 </pre></div>
 </div>
 </div>
@@ -1132,6 +1209,15 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A = 
+ [[ 8.  3. -3.]
+ [-2. -8.  5.]
+ [ 3.  5. 10.]]
+y =  [14.  5. -8.]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Primero, verificamos que la matriz es diagonal dominante:</p>
 <div class="cell docutils container">
@@ -1150,6 +1236,13 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;la matriz es diagonal dominante&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;la matriz no es diagonal dominante&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|a_ii| =  [ 8.  8. 10.]
+sum(|a_ij|, i!=j) = [6. 7. 8.]
+la matriz es diagonal dominante
 </pre></div>
 </div>
 </div>
@@ -1233,7 +1326,22 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span> <span class="c1"># valores iniciales</span>
-<span class="n">xsol</span><span class="p">,</span> <span class="n">Eabs</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">xsol</span><span class="p">,</span> <span class="n">Eabs</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iter = 1 ; x = [ 1.75    -1.0625  -0.79375]
+iter = 2 ; x = [ 1.85078125 -1.58378906 -0.56333984]
+iter = 3 ; x = [ 2.13266846 -1.51025452 -0.68467328]
+iter = 4 ; x = [ 2.05959296 -1.56781904 -0.63396837]
+iter = 5 ; x = [ 2.100194   -1.54627873 -0.65691883]
+iter = 6 ; x = [ 2.08350996 -1.55645176 -0.64682711]
+iter = 7 ; x = [ 2.09110925 -1.55204425 -0.65131065]
+iter = 8 ; x = [ 2.0877751  -1.55401293 -0.64932607]
+iter = 9 ; x = [ 2.08925757 -1.55314318 -0.65020568]
+iter = 10 ; x = [ 2.08860156 -1.55352894 -0.649816  ]
+Converged!
 </pre></div>
 </div>
 </div>
@@ -1245,12 +1353,46 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error absoluto =  0.003034471171707093
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notar que el error absoluto de <span class="math notranslate nohighlight">\(\| Ax_\mathrm{sol} - y\| \gt \varepsilon\)</span>. Esto debido a que el criterio de convergencia se estableció en base a  <span class="math notranslate nohighlight">\(\| x^{(k)} - x^{(k-1)}\| \lt \varepsilon\)</span>. Sin embargo, el error es proporcional a la tolerancia, de manera que siempre podremos mejorar nuestra solución reduciendo el valor de <span class="math notranslate nohighlight">\(\varepsilon\)</span> (compruebe cambiando <code class="docutils literal notranslate"><span class="pre">abs_tol</span></code> en <code class="docutils literal notranslate"><span class="pre">gauss_seidel</span></code>).</p>
 <p>Debido a que agregamos una descripción de la función, podemos revisar los argumentos y <em>output</em> de la función usando <code class="docutils literal notranslate"><span class="pre">help</span></code> o <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">tab</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">gauss_seidel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function gauss_seidel in module __main__:
+
+gauss_seidel(A, y, x0, max_iter=50, abs_tol=0.001, verbose=False)
+    Algoritmo Gauss-Seidel para resolver un sistema Ax = y
+    
+    Parametros
+    ------------
+        - A : ndarray
+                matriz de coeficientes (debe ser de dimensiones n x n)
+        - y : ndarray
+                vector columna &quot;y&quot; (dimensión n x 1)
+        - x0 : ndarray
+                vector &quot;x&quot; inicial (dimensión n x 1)
+        - max_iter : int
+                número máximo de iteraciones (50 por defecto)
+        - abs_tol : float
+                tolerancia al error absoluto (1E-3 por defecto)
+        - verbose: bool
+                generar mensajes al usuario (&quot;False&quot; por defecto)
+    Return
+    -------
+        - xsol: ndarray
+                solución del sistema (dimensión n x 1)
+        - error_abs: float
+                error absoluto
 </pre></div>
 </div>
 </div>
@@ -1312,12 +1454,22 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[41.202 55.917 71.613]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notar que en este problema <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> y <span class="math notranslate nohighlight">\(x_3\)</span> representan las posiciones relativas de las personas. Así la posición final está dada por:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_inic</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span> <span class="c1"># posición inicial</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Posición final de las personas: &#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x_inic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Posición final de las personas:  [ 61.202  95.917 131.613]
 </pre></div>
 </div>
 </div>
@@ -1332,6 +1484,26 @@ x_2^{(1)} = \frac{1}{a_{2,2}}\Big[y_2 - \sum_{j \ne 1,2}^{n}{a_{2,j}x_j^{(0)}}  
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;L:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;U:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;LU:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P:
+ [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+L:
+ [[ 1.          0.          0.        ]
+ [-0.66666667  1.          0.        ]
+ [ 0.         -0.6         1.        ]]
+U:
+ [[ 150.         -100.            0.        ]
+ [   0.           83.33333333  -50.        ]
+ [   0.            0.           20.        ]]
+LU:
+ [[ 150. -100.    0.]
+ [-100.  150.  -50.]
+ [   0.  -50.   50.]]
 </pre></div>
 </div>
 </div>

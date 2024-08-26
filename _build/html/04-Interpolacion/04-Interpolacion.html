@@ -395,7 +395,7 @@ document.write(`
 <h2><span class="section-number">4.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>La siguiente tabla muestra las propiedades del agua en función de la temperatura.</p>
 <a class="reference internal image-reference" href="../_images/thermodynamic_properties.png"><img alt="../_images/thermodynamic_properties.png" class="align-center" src="../_images/thermodynamic_properties.png" style="width: 800px;" /></a>
-<p>En ingeniería generalmente debemos utilizar estas tablas. Si quisieramos determinar, por ejemplo, el valor de la densidad a <span class="math notranslate nohighlight">\(10\mathrm{^oC}\)</span> necesitaríamos conocer la función <span class="math notranslate nohighlight">\(\rho(T)\)</span>, ya que el valor no está en la tabla.</p>
+<p>En ingeniería generalmente debemos utilizar estas tablas. Si quisiéramos determinar, por ejemplo, el valor de la densidad a <span class="math notranslate nohighlight">\(10\mathrm{^oC}\)</span> necesitaríamos conocer la función <span class="math notranslate nohighlight">\(\rho(T)\)</span>, ya que el valor no está en la tabla.</p>
 <p>¿Cuál es la función más adecuada para representar la densidad?</p>
 <p>A diferencia de nuestro problema de ajuste por mínimos cuadrados, en este caso cada valor de la tabla es certero. Es decir, <strong>nuestra función debe pasar estrictamente por cada valor indicado en la tabla</strong>.</p>
 <p>Llamamos a esta función, <strong>función de interpolación</strong> y en esa clase revisaremos diferentes métodos para generarla.</p>
@@ -403,7 +403,7 @@ document.write(`
 <section id="interpolacion-polinomial">
 <h2><span class="section-number">4.2. </span>Interpolación Polinomial<a class="headerlink" href="#interpolacion-polinomial" title="Permalink to this heading">#</a></h2>
 <p>Este método <strong>consiste en determinar una único polinomio de interpolación que pase por todos los puntos tabulados.</strong></p>
-<p>Matemáticamente, se puede demostrar que <strong>para una série de <span class="math notranslate nohighlight">\(n+1\)</span> valores tabulados (<span class="math notranslate nohighlight">\(x_i, y_i\)</span> con <span class="math notranslate nohighlight">\(i = 0,1,\cdots), n\)</span>, existe un único polinomio de grado <span class="math notranslate nohighlight">\(n\)</span>:</strong></p>
+<p>Matemáticamente, se puede demostrar que <strong>para una serie de <span class="math notranslate nohighlight">\(n+1\)</span> valores tabulados (<span class="math notranslate nohighlight">\(x_i, y_i\)</span> con <span class="math notranslate nohighlight">\(i = 0,1,\cdots), n\)</span>, existe un único polinomio de grado <span class="math notranslate nohighlight">\(n\)</span>:</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
@@ -752,7 +752,9 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 <ul class="simple">
 <li><p><em><strong>Periodic</strong></em>. Se usume una función periódica, de manera que <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n)\)</span>, y <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n)\)</span>. <strong>Solo válida para funciones periodicas</strong>, es decir cuando <span class="math notranslate nohighlight">\(y(x_0) = y(x_n)\)</span>.</p></li>
 </ul>
-<p>En python, interpolación cúbica está implementada a través de la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code> (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html">ver documentación</a>).</p>
+<p>El tipo condicion de borde modificará el comportamiento de la función en los extremos.</p>
+<center><video controls muted src="../_static/videos/BoundaryConditions.mp4"  width="800px" align=center></video></center>
+<center> <small> Efecto de condiciones de borde en el spline cúbico (Autor: Matías Rojas)  </small></center><p>En python, interpolación cúbica está implementada a través de la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> del módulo <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code> (<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html">ver documentación</a>).</p>
 <p><code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code>, por defecto,  genera una <strong>función de interpolación</strong> a partir de la muestra <span class="math notranslate nohighlight">\(x_i, y_i\)</span></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># Genera una función y(x)</span>
