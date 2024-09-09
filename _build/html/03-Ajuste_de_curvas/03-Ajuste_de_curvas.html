@@ -548,8 +548,8 @@ m &amp; \sum x_i \\
 <section id="cuantificacion-del-error">
 <h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea3bc202-5c87-4161-91f1-6923189c2a78">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-ea3bc202-5c87-4161-91f1-6923189c2a78" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95e008f9-48cd-4fc8-8eb3-fe52448d6ac7">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-95e008f9-48cd-4fc8-8eb3-fe52448d6ac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
@@ -715,9 +715,7 @@ y = 0.274*x^1.984
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2 = 0.8088
+r2 = 0.8088
 </pre></div>
 </div>
 </div>
@@ -743,8 +741,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c800e88b-c439-4cdd-9ac8-fb93ffe03a7f">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-c800e88b-c439-4cdd-9ac8-fb93ffe03a7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a302704f-0fa1-4820-84b9-98da5b946464">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-a302704f-0fa1-4820-84b9-98da5b946464" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -768,8 +766,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 <section id="regresion-lineal-multidimensional">
 <h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this heading">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3013d1e-4993-4fa5-b5df-a0ac3aa37fa0">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-e3013d1e-4993-4fa5-b5df-a0ac3aa37fa0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d00c4c73-7237-4100-93de-642fea6239dd">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-d00c4c73-7237-4100-93de-642fea6239dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>

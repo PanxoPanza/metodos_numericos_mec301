@@ -368,17 +368,24 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">6.1. Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-una-funcion-escalar">6.2. Búsqueda de raíces para una función escalar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-intervalo-acotado-biseccion">6.2.1. Métodos de intervalo acotado: Bisección</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-intervalo-abierto-newton-raphson">6.2.2. Métodos de intervalo abierto: Newton-Raphson</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-biseccion-intervalo-acotado">6.2.1. Método de la Bisección (intervalo acotado)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-convergencia">6.2.1.1. Criterio de convergencia</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-newton-raphson-intervalo-abierto">6.2.2. Método de Newton-Raphson (intervalo abierto)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-f-x-no-es-analitica-metodo-de-la-secante">6.2.2.1. Caso <span class="math notranslate nohighlight">\(f'(x)\)</span> no es analítica (Método de la secante)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-convergencia">6.2.2.2. Problemas de convergencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-la-solucion">6.2.2.3. Control de la solución</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-combinados">6.2.3. Métodos combinados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-relativo-y-absoluto">6.2.4. Error relativo y absoluto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-de-funcion-escalar-en-python">6.2.5. Búsqueda de raíces de función escalar en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raices de función escalar en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-funciones-vectoriales">6.3. Búsqueda de raíces para funciones vectoriales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-busqueda-lineal">6.3.1. Métodos de búsqueda lineal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-region-de-confianza">6.3.2. Métodos de región de confianza</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-de-funcion-vectorial-en-python">6.3.3. Búsqueda de raíces de función vectorial en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-vectorial-en-python">6.3.3. Raíces de función vectorial en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">6.4. Referencias</a></li>
@@ -399,21 +406,21 @@ document.write(`
 <h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>Consideremos el problema de caída de presión <span class="math notranslate nohighlight">\(\Delta P\)</span> al mover un fluído con densidad <span class="math notranslate nohighlight">\(\rho\)</span> y viscosidad cinemática <span class="math notranslate nohighlight">\(\nu\)</span>, a través de una tubería de largo <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/presure_drop.png"><img alt="../_images/presure_drop.png" class="align-center" src="../_images/presure_drop.png" style="width: 350px;" /></a>
-<p>Para un fluido que fluye a una velocidad <span class="math notranslate nohighlight">\(V\)</span>,la caída de presión está dada por:</p>
+<p>Para un fluido que fluye a una velocidad <span class="math notranslate nohighlight">\(V\)</span>, la caída de presión está dada por:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\frac{\Delta P}{\rho g} =f \frac{L}{D}\frac{V^2}{2g}
+\frac{\Delta P}{\rho g} =f_c \frac{L}{D}\frac{V^2}{2g}
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(f\)</span> es el factor de fricción.</p>
-<p>Para determinar <span class="math notranslate nohighlight">\(f\)</span> debemos resolver la ecuación de Colebrook:</p>
+<p>Para determinar <span class="math notranslate nohighlight">\(f_c\)</span> debemos resolver la ecuación de Colebrook:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\frac{1}{\sqrt{f}} = -2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}{\mathrm{Re}\sqrt{f}}\right)
+\frac{1}{\sqrt{f_c}} = -2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}{\mathrm{Re}\sqrt{f_c}}\right)
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\mathrm{Re} = \frac{VD}{\nu}\)</span> es el número de Reynolds, y <span class="math notranslate nohighlight">\(\varepsilon/D\)</span> la rugosidad relativa.</p>
 <p>Sin embargo, esta ecuación no se puede resolver analíticamente. ¿Como resolvemos esta ecuación?</p>
 <p>Llamamos raíces de una función <span class="math notranslate nohighlight">\(f(x)\)</span> a los valores <span class="math notranslate nohighlight">\(x^*\)</span> tales que <span class="math notranslate nohighlight">\(f(x^*) = 0\)</span>.</p>
-<p>Determinar <span class="math notranslate nohighlight">\(f\)</span> a partir de la ecuación de Colebrook es equivalente a encontrar las raíces de la función:</p>
+<p>Determinar <span class="math notranslate nohighlight">\(f_c\)</span> a partir de la ecuación de Colebrook es equivalente a encontrar las raíces de la función:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x) = \frac{1}{\sqrt{x}} + 2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}{\mathrm{Re}\sqrt{x}}\right)
@@ -427,12 +434,18 @@ f(x) = \frac{1}{\sqrt{x}} + 2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}
 \[\begin{equation*}
 f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 \end{equation*}\]</div>
-<p>Resolver una ecuación unidimiencional es equivalente a encontrar las raices de una función escalar con una variable dependiente, <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
-<p>En esta sección veremos los métodos más conocidos para resolver este problema</p>
-<section id="metodos-de-intervalo-acotado-biseccion">
-<h3><span class="section-number">6.2.1. </span>Métodos de intervalo acotado: Bisección<a class="headerlink" href="#metodos-de-intervalo-acotado-biseccion" title="Permalink to this heading">#</a></h3>
-<p>Los <strong>métodos de intervalo acotado</strong> consisten en <strong>encontrar la raiz de una función escalar a partir de un dominio acotado</strong>.</p>
-<p>El más conocido es el <strong>método de la bisección</strong>, el cual se basa en el teorema del valor intermedio</p>
+<p>Resolver una ecuación unidimiencional es equivalente a encontrar las raices de una función escalar con <strong>una variable dependiente.</strong></p>
+<p>En otras palabras, dada una función <span class="math notranslate nohighlight">\(f(x)\)</span>, las raíces <span class="math notranslate nohighlight">\(x_0\)</span> están dadas por <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>.</p>
+<p>Para una solución <span class="math notranslate nohighlight">\(x_0\)</span>, tal que <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>, podemos clasificar los métodos para resolver este problema en tres tipos:</p>
+<ul class="simple">
+<li><p><strong>Métodos de intervalo cerrado.</strong> buscan la raíz <span class="math notranslate nohighlight">\(x_0\)</span> iterando dentro un intervalo <span class="math notranslate nohighlight">\(x\in[a, b]\)</span> acotado.</p></li>
+<li><p><strong>Métodos de intervalo abierto.</strong> buscan la raíz <span class="math notranslate nohighlight">\(x_0\)</span> iterando desde un valor inicial, sin acotar el intervalo de búsqueda.</p></li>
+<li><p><strong>Métodos combinados.</strong> Combinan iteraciones con intervalo abierto y cerrado según convenga.</p></li>
+</ul>
+<p>En esta unidad veremos el método de la bisección (intervalo cerrado) y el método de Newton-Raphson (intervalo abierto).</p>
+<section id="metodo-de-la-biseccion-intervalo-acotado">
+<h3><span class="section-number">6.2.1. </span>Método de la Bisección (intervalo acotado)<a class="headerlink" href="#metodo-de-la-biseccion-intervalo-acotado" title="Permalink to this heading">#</a></h3>
+<p>El método de la bisección es un método de intervalo acotado que se basa en el teorema del valor intermedio</p>
 <blockquote>
 <div><p><strong>Teorema del valor intermedio</strong> para una función <span class="math notranslate nohighlight">\(f(x)\)</span> continua en entre los puntos <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span>, tal que <span class="math notranslate nohighlight">\(f(a)f(b) &lt; 0\)</span>, existe un valor <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span>, tal que <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.</p>
 </div></blockquote>
@@ -443,82 +456,137 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 </ul>
 <p>El algoritmo continua acotando el intervalo hasta encontrar la raíz de <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" class="align-center" src="../_images/bisection.png" style="width: 400px;" /></a>
+<section id="criterio-de-convergencia">
+<h4><span class="section-number">6.2.1.1. </span>Criterio de convergencia<a class="headerlink" href="#criterio-de-convergencia" title="Permalink to this heading">#</a></h4>
+<p>Para un nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> obtenido a partir de un valor <span class="math notranslate nohighlight">\(x_k\)</span>, definimos el <strong>criterio de convergencia</strong> en base a:</p>
+<ul class="simple">
+<li><p><strong>error absoluto</strong></p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+|x_{k+1} -x_{k}|
+\end{equation*}\]</div>
+<ul class="simple">
+<li><p><strong>error relativo</strong>:</p></li>
+</ul>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
+\end{equation*}\]</div>
+<p>Es importante menciona que, en general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
 <p>Creemos una función en python para calcular raíces por medio del método de la bisección</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="k">def</span> <span class="nf">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">):</span>
-    <span class="c1"># imprimimos el intervalo en cada iteración</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(a,b) = (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bracket</span><span class="p">,</span> <span class="n">xtol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Método de la bisección para encontrar la raíz de f(x)</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">        - f: callable</span>
+<span class="sd">            función de búsqueda de raíz, f(x)</span>
+<span class="sd">            </span>
+<span class="sd">        - bracket: tupple</span>
+<span class="sd">            intervalo de búsqueda (a, b)</span>
+<span class="sd">            </span>
+<span class="sd">        - xtol: float (optional)</span>
+<span class="sd">            tolerancia al error absoluto (1E-5 por defecto)</span>
+<span class="sd">            </span>
+<span class="sd">        - max_iter: int (opcional)</span>
+<span class="sd">            número máximo de iteraciones (100 por defecto)</span>
+<span class="sd">            </span>
+<span class="sd">    Return</span>
+<span class="sd">        - x_sol: float</span>
+<span class="sd">            raíz de f(x)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bracket</span> <span class="c1"># extraemos los valores del intervalo</span>
     
-    <span class="c1"># primero, verificamos si el intervalo [a,b]</span>
-    <span class="c1"># satisface el teorema del valor medio</span>
+    <span class="c1"># verificamos si el intervalo [a,b] satisface el teorema del valor medio</span>
     <span class="k">assert</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">,</span> <span class="s2">&quot;El intervalo [a, b] no contiene raices&quot;</span>
     
-    <span class="c1"># determinamos el punto medio entre [a, b]</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+    <span class="c1"># Asignamos valores arbitrarios para la primera iteración</span>
+    <span class="n">x_old</span> <span class="o">=</span> <span class="n">a</span>  <span class="c1"># xk</span>
+    <span class="n">x_new</span> <span class="o">=</span> <span class="n">b</span>  <span class="c1"># xk+1</span>
     
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="p">:</span> <span class="c1"># si |f(m)| &lt; tol, m = x0</span>
+    <span class="c1"># loop si |xk+1 - xk| &gt; abs_tol</span>
+    <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">abs_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="c1"># error absoluto</span>
+    <span class="k">while</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="ow">and</span> <span class="n">k_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>        
         
-        <span class="c1"># si no, evaluamos el intervalo acotado más cercano a x0</span>
-        <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">m</span>
-        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="c1"># imprimimos el intervalo en cada iteración (ESTO ES ILUSTRATIVO)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k = </span><span class="si">%i</span><span class="s1">, (a,b) = (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">), abs_error = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k_iter</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">abs_error</span><span class="p">))</span>
         
-        <span class="c1"># llamamos a bisection recursivamente</span>
-        <span class="n">m</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">)</span>
+        <span class="c1"># evaluamos el intervalo acotado más cercano a x0</span>
+        <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">x_new</span>
+        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">x_new</span>
+            
+        <span class="c1"># actualizamos xk y xk+1 para la siguiente itereación</span>
+        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_new</span>
+        <span class="n">x_new</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># punto medio entre [a, b]</span>
+        
+        <span class="n">abs_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="c1"># nuevo error absoluto</span>
+        <span class="n">k_iter</span> <span class="o">+=</span> <span class="mi">1</span>                       <span class="c1"># contamos la iteración</span>
     
-    <span class="k">return</span> <span class="n">m</span> 
+    <span class="c1"># si la solución no converge y k_iter &gt; max_iter, informar a usuario</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
+    
+    <span class="n">x_sol</span> <span class="o">=</span> <span class="n">x_new</span>
+    <span class="k">return</span> <span class="n">x_sol</span> 
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># función de búsqueda de raíz</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="c1"># intervalo [a,b]</span>
 
+<span class="c1"># Mostramos valor de f en los extremos [a, b] (solo para confirmación)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Análisis de intervalos&#39;</span><span class="p">)</span>
-<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.70350</span><span class="p">,</span> <span class="mi">1</span> <span class="c1"># intervalo [a,b]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a = </span><span class="si">%.3f</span><span class="s1">, f(a) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b = </span><span class="si">%.3f</span><span class="s1">, f(b) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a = </span><span class="si">%.3f</span><span class="s1">, f(a) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b = </span><span class="si">%.3f</span><span class="s1">, f(b) = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resultado método de Bisección&#39;</span><span class="p">)</span>
-<span class="n">tol</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># valor de tolerancia</span>
-<span class="n">x0</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tol</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x* = </span><span class="si">%.5f</span><span class="s1">, f(x*) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)))</span>
+<span class="c1"># </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Resultado método de Bisección&#39;</span><span class="p">)</span>
+<span class="n">x_sol</span> <span class="o">=</span> <span class="n">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bracket</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_sol = </span><span class="si">%.5f</span><span class="s1">, f(x_sol) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x_sol</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_sol</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Análisis de intervalos
-a = -0.704, f(a) = -0.000
+a = -1.000, f(a) = -0.632
 b = 1.000, f(b) = 1.718
+
 Resultado método de Bisección
-(a,b) = (-0.704, 1.000)
-(a,b) = (-0.704, 0.148)
-(a,b) = (-0.704, -0.278)
-(a,b) = (-0.704, -0.491)
-(a,b) = (-0.704, -0.597)
-(a,b) = (-0.704, -0.650)
-(a,b) = (-0.704, -0.677)
-(a,b) = (-0.704, -0.690)
-(a,b) = (-0.704, -0.697)
-(a,b) = (-0.704, -0.700)
-(a,b) = (-0.704, -0.702)
-(a,b) = (-0.704, -0.703)
-(a,b) = (-0.704, -0.703)
-(a,b) = (-0.704, -0.703)
-(a,b) = (-0.704, -0.703)
-x* = -0.70345, f(x*) = 3.691e-05
+k = 1, (a,b) = (-1.000, 1.000), abs_error = 2.000e+00
+k = 2, (a,b) = (-1.000, 1.000), abs_error = 1.000e+00
+k = 3, (a,b) = (-1.000, 0.000), abs_error = 5.000e-01
+k = 4, (a,b) = (-1.000, -0.500), abs_error = 2.500e-01
+k = 5, (a,b) = (-0.750, -0.500), abs_error = 1.250e-01
+k = 6, (a,b) = (-0.750, -0.625), abs_error = 6.250e-02
+k = 7, (a,b) = (-0.750, -0.688), abs_error = 3.125e-02
+k = 8, (a,b) = (-0.719, -0.688), abs_error = 1.562e-02
+k = 9, (a,b) = (-0.719, -0.703), abs_error = 7.812e-03
+k = 10, (a,b) = (-0.711, -0.703), abs_error = 3.906e-03
+k = 11, (a,b) = (-0.707, -0.703), abs_error = 1.953e-03
+k = 12, (a,b) = (-0.705, -0.703), abs_error = 9.766e-04
+k = 13, (a,b) = (-0.704, -0.703), abs_error = 4.883e-04
+k = 14, (a,b) = (-0.704, -0.703), abs_error = 2.441e-04
+k = 15, (a,b) = (-0.704, -0.703), abs_error = 1.221e-04
+k = 16, (a,b) = (-0.703, -0.703), abs_error = 6.104e-05
+k = 17, (a,b) = (-0.703, -0.703), abs_error = 3.052e-05
+k = 18, (a,b) = (-0.703, -0.703), abs_error = 1.526e-05
+x_sol = -0.70347, f(x_sol) = -1.712e-06
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="metodos-de-intervalo-abierto-newton-raphson">
-<h3><span class="section-number">6.2.2. </span>Métodos de intervalo abierto: Newton-Raphson<a class="headerlink" href="#metodos-de-intervalo-abierto-newton-raphson" title="Permalink to this heading">#</a></h3>
-<p>Definimos como <strong>método de intervalo abierto</strong> a aquellos <strong>algoritmos para búsqueda de raíces a partir de un valor inicial</strong>.</p>
-<p>El más conocido es el <strong>método de Newton-Raphson</strong>. El método se origina a partir de series de Taylor.</p>
+</section>
+<section id="metodo-de-newton-raphson-intervalo-abierto">
+<h3><span class="section-number">6.2.2. </span>Método de Newton-Raphson (intervalo abierto)<a class="headerlink" href="#metodo-de-newton-raphson-intervalo-abierto" title="Permalink to this heading">#</a></h3>
+<p>Es el método de intervalo abierto más popular. Se origina a partir de series de Taylor</p>
 <p>Supongamos que <span class="math notranslate nohighlight">\(x_0\)</span> es un punto cercano a la raíz de una función <span class="math notranslate nohighlight">\(f(x)\)</span>. Mediante la aproximación lineal, la raíz de la función <span class="math notranslate nohighlight">\(x_1\)</span> debe satisfacer la ecuación:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -531,8 +599,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ca98cce-061b-45e2-9714-d5312b231297">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-1ca98cce-061b-45e2-9714-d5312b231297" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9209cf2-4a9d-4ee3-b895-e8fc3e095bb4">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-b9209cf2-4a9d-4ee3-b895-e8fc3e095bb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -540,55 +608,132 @@ x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 <p>La ventaja de este algoritmo es que, a diferencia de los métodos por intervalo acotado, solo necesita de un valor inicial. Esta es una caracterísca general de los métodos de intervalo abierto.</p>
 <p>Una segunda ventaja radica en la rápida convergencia del algoritmo para encontrar soluciones.</p>
 <a class="reference internal image-reference" href="../_images/newton_raphson_good.gif"><img alt="../_images/newton_raphson_good.gif" class="align-center" src="../_images/newton_raphson_good.gif" style="width: 600px;" /></a>
-<center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center><p>Otros métodos de intervalo abierto se diferencian de Newton-Raphson en la forma de determinar <span class="math notranslate nohighlight">\(f'(x)\)</span>. Esto debido a que no siempre es posible determinar la derviada de forma analítica.</p>
+<center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center><p>La siguiente función implementa el método de Newton-Raphson</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span> <span class="nf">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">fprime</span><span class="p">,</span> <span class="n">xtol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Método de Newton-Raphson para encontrar la raíz de f(x)</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        - x0: float</span>
+<span class="sd">            valor inicial</span>
+<span class="sd">            </span>
+<span class="sd">        - f: callable</span>
+<span class="sd">            función de búsqueda de raíz f(x)</span>
+<span class="sd">            </span>
+<span class="sd">        - fprime: callable</span>
+<span class="sd">            derivada de la función de busqueda df/dx</span>
+<span class="sd">            </span>
+<span class="sd">        - xtol: float (optional)</span>
+<span class="sd">            tolerancia al valor absoluto (1E-5 por defecto)</span>
+<span class="sd">            </span>
+<span class="sd">        - max_iter: int (optional)</span>
+<span class="sd">            número máximo de iteraciones (100 por defecto)</span>
+<span class="sd">            </span>
+<span class="sd">    Return:</span>
+<span class="sd">        x_sol: float</span>
+<span class="sd">            raíz de f(x)</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">abs_error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># inicializamos el error absoluto</span>
+    <span class="n">x_old</span> <span class="o">=</span> <span class="n">x0</span>       <span class="c1"># valor inicial</span>
+    
+    <span class="c1"># comenzamos las iteraciones</span>
+    <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="ow">and</span> <span class="n">k_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
+
+        <span class="c1"># newton-raphson</span>
+        <span class="n">x_new</span> <span class="o">=</span> <span class="n">x_old</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x_old</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="p">(</span><span class="n">x_old</span><span class="p">)</span>
+        
+        <span class="c1"># imprimimos valor de x_new (SOLO ILUSTRATIVO)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k = </span><span class="si">%i</span><span class="s1">, x_sol = </span><span class="si">%.3f</span><span class="s1">, abs_error = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k_iter</span><span class="p">,</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">abs_error</span><span class="p">))</span>
+        
+        <span class="c1"># calculamos error absoluto</span>
+        <span class="n">abs_error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span>
+        
+        <span class="c1"># actualizamos x0 y número de iteraciones</span>
+        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_new</span>
+        <span class="n">k_iter</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="c1"># si k_iter &gt; max_iter y la solución no converge, indicar al usuario</span>
+    <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
+
+    <span class="n">x_sol</span> <span class="o">=</span> <span class="n">x_new</span>
+    <span class="k">return</span> <span class="n">x_sol</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probamos el método para encontrar la raíz de <span class="math notranslate nohighlight">\(f(x) = e^{x} - x^2\)</span> con <span class="math notranslate nohighlight">\(f'(x) = e^{x} - 2x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">df</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># valor inicial</span>
+<span class="n">x_sol</span> <span class="o">=</span> <span class="n">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_sol = </span><span class="si">%.3f</span><span class="s1">, f(x_sol) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x_sol</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_sol</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = -1.392, abs_error = 1.000e+03
+k = 2, x_sol = -0.835, abs_error = 2.392e+00
+k = 3, x_sol = -0.710, abs_error = 5.571e-01
+k = 4, x_sol = -0.703, abs_error = 1.253e-01
+k = 5, x_sol = -0.703, abs_error = 6.351e-03
+k = 6, x_sol = -0.703, abs_error = 1.598e-05
+x_sol = -0.703, f(x_sol) = 0.000e+00
+</pre></div>
+</div>
+</div>
+</div>
+<p>En comparación con el método de la bisección, Newton-Raphson es capaz de encontrar la raíz con menor número de iteraciones.</p>
+<section id="caso-f-x-no-es-analitica-metodo-de-la-secante">
+<h4><span class="section-number">6.2.2.1. </span>Caso <span class="math notranslate nohighlight">\(f'(x)\)</span> no es analítica (Método de la secante)<a class="headerlink" href="#caso-f-x-no-es-analitica-metodo-de-la-secante" title="Permalink to this heading">#</a></h4>
+<p>Otros métodos de intervalo abierto se diferencian de Newton-Raphson en la forma de determinar <span class="math notranslate nohighlight">\(f'(x)\)</span>. Esto debido a que no siempre es posible determinar la derviada de forma analítica.</p>
 <p>Por ejemplo, en el <strong>método de la secante</strong>, aproxima <span class="math notranslate nohighlight">\(f'(x)\)</span> por <span class="math notranslate nohighlight">\(f'(x_k) = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}\)</span>, lo que deriva en la siguiente fórmula recursiva:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 \end{equation*}\]</div>
 <p>Notar que, debido a esta fórmula, el método de la secante requiere <strong>dos valores iniciales, <span class="math notranslate nohighlight">\(x_0\)</span> y <span class="math notranslate nohighlight">\(x_1\)</span></strong></p>
+</section>
+<section id="problemas-de-convergencia">
+<h4><span class="section-number">6.2.2.2. </span>Problemas de convergencia<a class="headerlink" href="#problemas-de-convergencia" title="Permalink to this heading">#</a></h4>
 <p>Una desventaja general en los métodos de intervalo abierto es que pueden sufrir serios problemas de convergencia si el valor <span class="math notranslate nohighlight">\(x_k\)</span> cae en un punto de la función donde <span class="math notranslate nohighlight">\(f'(x_k) \approx 0\)</span></p>
 <p>En esta animación vemos como el número de iteraciones “<span class="math notranslate nohighlight">\(n\)</span>” aumenta considerablemente debido a problemas de convergencia en los puntos <span class="math notranslate nohighlight">\(f'(x_k) \approx 0\)</span>. En la notación, <span class="math notranslate nohighlight">\(y = f(x_k)\)</span>
 <a class="reference internal" href="../_images/newton_raphson_bad.gif"><img alt="../_images/newton_raphson_bad.gif" class="align-center" src="../_images/newton_raphson_bad.gif" style="width: 600px;" /></a></p>
-<center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center><p>Además, estos métodos no tienen control sobre la raíz encontrada.</p>
-<p>Por ejemplo, la función <span class="math notranslate nohighlight">\(f(x) = f(x) = x^3 - 100x^2 - x + 100\)</span> tiene dos raíces <span class="math notranslate nohighlight">\(x^* = 1\)</span> y <span class="math notranslate nohighlight">\(x^* = 100\)</span>. Analicemos como Newton-Raphson entrega distintas soluciones dependiendo del valor inicial <span class="math notranslate nohighlight">\(x_0\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="k">def</span> <span class="nf">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">tol</span><span class="p">):</span>
-    <span class="n">nIter</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># número de iteraciones</span>
-    <span class="n">niter_max</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># número máximo de iteraciones (util cuando usamos &quot;while&quot;)</span>
-    
-    <span class="c1"># Newton-Raphson iterativo</span>
-    <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="n">nIter</span> <span class="o">&lt;</span> <span class="n">niter_max</span><span class="p">:</span>
-        <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
-        
-        <span class="c1"># actualizamos x0, el error y número de iteraciones</span>
-        <span class="n">x0</span> <span class="o">=</span> <span class="n">x1</span>
-        <span class="n">nIter</span> <span class="o">+=</span> <span class="mi">1</span>
-    
-    <span class="c1"># si nIter &gt; niter_max y la solución no converge </span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">x0</span><span class="p">,</span> <span class="n">nIter</span>
-</pre></div>
-</div>
-</div>
-</div>
+<center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center></section>
+<section id="control-de-la-solucion">
+<h4><span class="section-number">6.2.2.3. </span>Control de la solución<a class="headerlink" href="#control-de-la-solucion" title="Permalink to this heading">#</a></h4>
+<p>Otra desventaja de los métodos de intervalo abierto es que estos no tienen control sobre la raíz encontrada.</p>
+<p>Por ejemplo, la función <span class="math notranslate nohighlight">\(f(x) = f(x) = x^3 - 100x^2 - x + 100\)</span> tiene dos raíces <span class="math notranslate nohighlight">\(x^* = 1\)</span> y <span class="math notranslate nohighlight">\(x^* = 100\)</span>. Analicemos como Newton-Raphson entrega distintas soluciones dependiendo del valor inicial <span class="math notranslate nohighlight">\(x_0 = 0.01\)</span> y <span class="math notranslate nohighlight">\(x_0 = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">100</span>
 <span class="n">df</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">1.5</span>
-<span class="n">tol</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x* = </span><span class="si">%.3f</span><span class="s1">, N. de iteraciones = </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> 
-      <span class="n">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">tol</span><span class="p">))</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># valor inicial</span>
+<span class="n">x_sol</span> <span class="o">=</span> <span class="n">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_sol = </span><span class="si">%.3f</span><span class="s1">, f(x_sol) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> 
+      <span class="p">(</span><span class="n">x_sol</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_sol</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x* = 1.000, N. de iteraciones = 4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = 33.340, abs_error = 1.000e+03
+k = 2, x_sol = 11.138, abs_error = 3.333e+01
+k = 3, x_sol = 5.248, abs_error = 2.220e+01
+k = 4, x_sol = 2.650, abs_error = 5.890e+00
+k = 5, x_sol = 1.500, abs_error = 2.598e+00
+k = 6, x_sol = 1.082, abs_error = 1.150e+00
+k = 7, x_sol = 1.003, abs_error = 4.186e-01
+k = 8, x_sol = 1.000, abs_error = 7.859e-02
+k = 9, x_sol = 1.000, abs_error = 3.012e-03
+x_sol = 1.000, f(x_sol) = -1.915e-09
 </pre></div>
 </div>
 </div>
@@ -629,6 +774,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 </section>
+</section>
 <section id="metodos-combinados">
 <h3><span class="section-number">6.2.3. </span>Métodos combinados<a class="headerlink" href="#metodos-combinados" title="Permalink to this heading">#</a></h3>
 <p>Los metodos más sofisticados para búsqueda de raices combinan métodos de intervalo abierto y cerrado. Por un lado, el método de intervalo abierto permite una convergencia más rápida, mientras que el método de intervalo cerrado permite acotar la solución.</p>
@@ -640,23 +786,8 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </ul>
 <p>Por ejemplo, el <strong>método de Brent’s</strong> combina un método de intervalo abierto (como Newton-Raphson o secante), con el método de la bisección. Más información en las referencias</p>
 </section>
-<section id="error-relativo-y-absoluto">
-<h3><span class="section-number">6.2.4. </span>Error relativo y absoluto<a class="headerlink" href="#error-relativo-y-absoluto" title="Permalink to this heading">#</a></h3>
-<p>En los códigos de bisección y Newton-Raphson definimos el criterio de convergencia <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>. Sin embargo, este criterio no es correcto, ya que la definición de <span class="math notranslate nohighlight">\(f(x_0) \approx 0\)</span> es relativa a la escala de <span class="math notranslate nohighlight">\(f(x)\)</span> en el dominio donde estemos trabajando. Dicho de otra manera, para cualquier punto <span class="math notranslate nohighlight">\(x_i\)</span>, siempre tendremos <span class="math notranslate nohighlight">\(f(x_i)\approx 0\)</span> si nos alejamos lo suficiente de la gráfica de la función.</p>
-<p>Un criterio más adecuado, en cambio, sería definir el error relavo al valor exácto de la raíz <span class="math notranslate nohighlight">\(x^*\)</span>. Sin embargo, debido a que este valor es deconocido, definimos el <strong>error absoluto</strong> para cada nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> como:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a9f1ed7-37bd-49e2-99d5-38fd9ee82afc">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-0a9f1ed7-37bd-49e2-99d5-38fd9ee82afc" title="Permalink to this equation">#</a></span>\[\begin{equation}
-|x_{k+1} -x_{k}|
-\end{equation}\]</div>
-<p>Alternativamente, podemos definir el <strong>error relativo</strong> de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc608101-9666-419a-8184-e6317bd94ab0">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-dc608101-9666-419a-8184-e6317bd94ab0" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
-\end{equation}\]</div>
-<p>En general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
-</section>
-<section id="busqueda-de-raices-de-funcion-escalar-en-python">
-<h3><span class="section-number">6.2.5. </span>Búsqueda de raíces de función escalar en python<a class="headerlink" href="#busqueda-de-raices-de-funcion-escalar-en-python" title="Permalink to this heading">#</a></h3>
+<section id="raices-de-funcion-escalar-en-python">
+<h3><span class="section-number">6.2.4. </span>Raices de función escalar en python<a class="headerlink" href="#raices-de-funcion-escalar-en-python" title="Permalink to this heading">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">root_scalar</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>, permite determinar raíces de una función escalar.</p>
 <p>Los argumento más relevantes en esta función son:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -666,7 +797,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
             <span class="n">bracket</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="c1"># 2 floats list (opcional), intervalo de búsqueda de raíces</span>
             <span class="n">fprime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># callable (opcional), primera derivada</span>
             <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>      <span class="c1"># float (opcional), valor inicial</span>
-            <span class="n">x1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>      <span class="c1"># float (opcional), segundo valor inicial (para aproximar derivada)</span>
+            <span class="n">x1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>      <span class="c1"># float (opcional), 2do valor inicial (para aproximar derivada)</span>
             <span class="n">xtol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    <span class="c1"># float (opcional), tolerancia para error absoluto</span>
             <span class="n">rtol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    <span class="c1"># float (opcional), tolerancia para error relativo</span>
             <span class="n">maxiter</span><span class="o">=</span><span class="kc">None</span>  <span class="c1"># int (opcional), número máximo de operaciones</span>
@@ -768,8 +899,8 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bisección:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>      <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>  <span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bisect&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Newton-Raphson:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;newton&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Secante:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>        <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">x1</span><span class="o">=</span><span class="mf">0.21</span>  <span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;secant&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Newton-Raphson:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;newton&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Secante:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>        <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">x1</span><span class="o">=</span><span class="mf">0.21</span>  <span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;secant&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -781,6 +912,7 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
      iterations: 41
            root: 1.0000000000004547
          method: bisect
+
 Newton-Raphson:
        converged: True
            flag: converged
@@ -788,6 +920,7 @@ Newton-Raphson:
      iterations: 11
            root: 1.0
          method: newton
+
 Secante:
        converged: True
            flag: converged
@@ -803,8 +936,8 @@ Secante:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Brent´s:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>                                      <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;brentq&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Intervalo (método por defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>               <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cond. inicial y derivada (método po defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Intervalo (método por defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>               <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cond. inicial y derivada (método po defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -816,6 +949,7 @@ Secante:
      iterations: 10
            root: 1.0
          method: brentq
+
 Intervalo (método por defecto):
        converged: True
            flag: converged
@@ -823,6 +957,7 @@ Intervalo (método por defecto):
      iterations: 10
            root: 1.0
          method: brentq
+
 Cond. inicial y derivada (método po defecto):
        converged: True
            flag: converged
@@ -834,11 +969,11 @@ Cond. inicial y derivada (método po defecto):
 </div>
 </div>
 </div>
-<p>Si hacemos <code class="docutils literal notranslate"><span class="pre">sol</span> <span class="pre">=</span> <span class="pre">root_scalar</span></code>, la variable <code class="docutils literal notranslate"><span class="pre">sol</span></code> almacena la información de la función:</p>
+<p>Si hacemos <code class="docutils literal notranslate"><span class="pre">sol</span> <span class="pre">=</span> <span class="pre">root_scalar</span></code>, la variable <code class="docutils literal notranslate"><span class="pre">sol</span></code> almacena la información desplegada anteriormente mediante <code class="docutils literal notranslate"><span class="pre">print</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">root</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raíz x*=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;raíz x*=</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -935,7 +1070,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <p>Para definir la dirección descendiente se considera el criterio:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathrm{min}[f] = \mathrm{min}\left[\vec{F}\cdot\vec{F}\right] 
+\mathrm{min}\left[\vec{F}\cdot\vec{F}\right] 
 \end{equation*}\]</div>
 <p>Así, el problema de busqueda de raíces de una función vectorial se transforma en un problema de minimización.</p>
 <p>Esta es la estrategia de los <strong>métodos de búsqueda lineal</strong>.</p>
@@ -948,15 +1083,15 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <p>En términos generales, los métodos de región de confianza operan de la siguiente forma:</p>
 <ul class="simple">
 <li><p>Se define una región de confianza inicial y se busca un mínimo dentro esa región.</p></li>
-<li><p>Si el valor encontrado miniza <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se construye una aproximación hyperboloide de <span class="math notranslate nohighlight">\(\vec{F}\)</span> y se incrementa la región de confianza.</p></li>
-<li><p>Si el valor encontrado no miniza <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se reduce la región de confianza, y se vuelve a buscar el mínimo.</p></li>
+<li><p>Si el valor encontrado minisa <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se construye una aproximación hyperboloide de <span class="math notranslate nohighlight">\(\vec{F}\)</span> y se incrementa la región de confianza.</p></li>
+<li><p>Si el valor encontrado no minisa <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se reduce la región de confianza, y se vuelve a buscar el mínimo.</p></li>
 <li><p>El algoritmo itera hasta encontrar un mínimo global de <span class="math notranslate nohighlight">\(\vec{F}\)</span>.</p></li>
 </ul>
 <p>En general, los métodos de región de confianza son más estables que los métodos de búsqueda lineal, y son los métodos por defecto en funciones de python.</p>
 <p>Mayor información sobre estos métodos <a class="reference external" href="http://www.applied-mathematics.net/optimization/optimizationIntro.html">acá</a></p>
 </section>
-<section id="busqueda-de-raices-de-funcion-vectorial-en-python">
-<h3><span class="section-number">6.3.3. </span>Búsqueda de raíces de función vectorial en python<a class="headerlink" href="#busqueda-de-raices-de-funcion-vectorial-en-python" title="Permalink to this heading">#</a></h3>
+<section id="raices-de-funcion-vectorial-en-python">
+<h3><span class="section-number">6.3.3. </span>Raíces de función vectorial en python<a class="headerlink" href="#raices-de-funcion-vectorial-en-python" title="Permalink to this heading">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> permite encontrar las raíces de una función vectorial.</p>
 <p>Los principales inputs de la función son:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span>             <span class="c1"># función vectorial objetivo (callable)</span>
@@ -1087,17 +1222,24 @@ xy-y=5
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">6.1. Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-una-funcion-escalar">6.2. Búsqueda de raíces para una función escalar</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-intervalo-acotado-biseccion">6.2.1. Métodos de intervalo acotado: Bisección</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-intervalo-abierto-newton-raphson">6.2.2. Métodos de intervalo abierto: Newton-Raphson</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-biseccion-intervalo-acotado">6.2.1. Método de la Bisección (intervalo acotado)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterio-de-convergencia">6.2.1.1. Criterio de convergencia</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-newton-raphson-intervalo-abierto">6.2.2. Método de Newton-Raphson (intervalo abierto)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caso-f-x-no-es-analitica-metodo-de-la-secante">6.2.2.1. Caso <span class="math notranslate nohighlight">\(f'(x)\)</span> no es analítica (Método de la secante)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#problemas-de-convergencia">6.2.2.2. Problemas de convergencia</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#control-de-la-solucion">6.2.2.3. Control de la solución</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-combinados">6.2.3. Métodos combinados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-relativo-y-absoluto">6.2.4. Error relativo y absoluto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-de-funcion-escalar-en-python">6.2.5. Búsqueda de raíces de función escalar en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raices de función escalar en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-funciones-vectoriales">6.3. Búsqueda de raíces para funciones vectoriales</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-busqueda-lineal">6.3.1. Métodos de búsqueda lineal</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-region-de-confianza">6.3.2. Métodos de región de confianza</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-de-funcion-vectorial-en-python">6.3.3. Búsqueda de raíces de función vectorial en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-vectorial-en-python">6.3.3. Raíces de función vectorial en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">6.4. Referencias</a></li>
