@@ -599,8 +599,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b9209cf2-4a9d-4ee3-b895-e8fc3e095bb4">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-b9209cf2-4a9d-4ee3-b895-e8fc3e095bb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a63e2352-d0eb-4350-afa2-68b2e5815498">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-a63e2352-d0eb-4350-afa2-68b2e5815498" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -710,13 +710,13 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <section id="control-de-la-solucion">
 <h4><span class="section-number">6.2.2.3. </span>Control de la solución<a class="headerlink" href="#control-de-la-solucion" title="Permalink to this heading">#</a></h4>
 <p>Otra desventaja de los métodos de intervalo abierto es que estos no tienen control sobre la raíz encontrada.</p>
-<p>Por ejemplo, la función <span class="math notranslate nohighlight">\(f(x) = f(x) = x^3 - 100x^2 - x + 100\)</span> tiene dos raíces <span class="math notranslate nohighlight">\(x^* = 1\)</span> y <span class="math notranslate nohighlight">\(x^* = 100\)</span>. Analicemos como Newton-Raphson entrega distintas soluciones dependiendo del valor inicial <span class="math notranslate nohighlight">\(x_0 = 0.01\)</span> y <span class="math notranslate nohighlight">\(x_0 = 0\)</span>.</p>
+<p>Por ejemplo, la función <span class="math notranslate nohighlight">\(f(x) = x^3 - 100x^2 - x + 100\)</span> tiene dos raíces <span class="math notranslate nohighlight">\(x^* = 1\)</span> y <span class="math notranslate nohighlight">\(x^* = 100\)</span>. Analicemos como Newton-Raphson entrega distintas soluciones dependiendo del valor inicial <span class="math notranslate nohighlight">\(x_0 = 0.01\)</span> y <span class="math notranslate nohighlight">\(x_0 = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span>  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">100</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">100</span>
 <span class="n">df</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">200</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># valor inicial</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># valor inicial</span>
 <span class="n">x_sol</span> <span class="o">=</span> <span class="n">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x_sol = </span><span class="si">%.3f</span><span class="s1">, f(x_sol) = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> 
       <span class="p">(</span><span class="n">x_sol</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_sol</span><span class="p">)))</span>
@@ -724,16 +724,9 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = 33.340, abs_error = 1.000e+03
-k = 2, x_sol = 11.138, abs_error = 3.333e+01
-k = 3, x_sol = 5.248, abs_error = 2.220e+01
-k = 4, x_sol = 2.650, abs_error = 5.890e+00
-k = 5, x_sol = 1.500, abs_error = 2.598e+00
-k = 6, x_sol = 1.082, abs_error = 1.150e+00
-k = 7, x_sol = 1.003, abs_error = 4.186e-01
-k = 8, x_sol = 1.000, abs_error = 7.859e-02
-k = 9, x_sol = 1.000, abs_error = 3.012e-03
-x_sol = 1.000, f(x_sol) = -1.915e-09
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = 100.000, abs_error = 1.000e+03
+k = 2, x_sol = 100.000, abs_error = 1.000e+02
+x_sol = 100.000, f(x_sol) = 0.000e+00
 </pre></div>
 </div>
 </div>

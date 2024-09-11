@@ -390,8 +390,8 @@ document.write(`
 <section id="expansion-de-funciones-en-series-de-taylor">
 <h2><span class="section-number">5.1. </span>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Permalink to this heading">#</a></h2>
 <p>La expansión en series de Taylor es una forma alternativa de representar una función mediante una serie infinita de polinomios alrededor de un punto <span class="math notranslate nohighlight">\(a\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad324cf8-4381-44a1-89f6-8770cd318168">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-ad324cf8-4381-44a1-89f6-8770cd318168" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-08311430-a136-41ae-809c-2fd105f7b0f4">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-08311430-a136-41ae-809c-2fd105f7b0f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)(x-a)^n}{n!}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la <span class="math notranslate nohighlight">\(n\)</span>-ésima derivada de <span class="math notranslate nohighlight">\(f\)</span>, con <span class="math notranslate nohighlight">\(f^{(0)} = f\)</span></p>
@@ -455,12 +455,12 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>           <span class="c1"># Tamaño de figura</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">y</span> <span class="o">+=</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># serie de taylor</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Orden </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>         <span class="c1"># graficamos serie de taylor</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># serie de taylor</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Orden </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))))</span> <span class="c1"># graficamos serie de taylor</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\sin(x)$&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -481,10 +481,10 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bc64b4ff3dc6d9bba1fed454b204c4c73fafdd810bdb3a1e993a97886bfb7084.png" src="../_images/bc64b4ff3dc6d9bba1fed454b204c4c73fafdd810bdb3a1e993a97886bfb7084.png" />
+<img alt="../_images/352db24f1ad24a706ecfe7196ab12fa3a680dd162fac4e495600c5ae7801dcdd.png" src="../_images/352db24f1ad24a706ecfe7196ab12fa3a680dd162fac4e495600c5ae7801dcdd.png" />
 </div>
 </div>
-<p>El grafico muestra como la aproximación de <span class="math notranslate nohighlight">\(\sin(x)\)</span> mejora alrededor del punto <span class="math notranslate nohighlight">\(x = 0\)</span>, a medida que aumentamos el orden. Para el orden 7, la aproximación es casi perfecta en todo el dominio <span class="math notranslate nohighlight">\(x\in [-\pi,\pi]\)</span></p>
+<p>El grafico muestra como la aproximación de <span class="math notranslate nohighlight">\(\sin(x)\)</span> mejora alrededor del punto <span class="math notranslate nohighlight">\(x = 0\)</span>, a medida que aumentamos el orden. Para el orden 8, la aproximación es casi perfecta en todo el dominio <span class="math notranslate nohighlight">\(x\in [-\pi,\pi]\)</span></p>
 <p>Comúnmente, los métodos numéricos utilizan la aproximación de primer orden, también denominada <strong>aproximación lineal</strong>. Esto debido a que la aproximación lineal es suficientemente buena en valores cercanos a “<span class="math notranslate nohighlight">\(a\)</span>”.</p>
 <p>En otras palabras, una función siempre se verá lineal si la vemos desde suficientemente cerca.</p>
 </section>
@@ -506,11 +506,13 @@ e^x \approx \sum_{n = 0}^N \frac{x^n}{n!}
 \end{equation*}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">x</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">exp</span> <span class="o">+=</span> <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error aprox. orden </span><span class="si">%i</span><span class="s1">: </span><span class="si">%.5f</span><span class="s1">&#39;</span> <span class="o">%</span>  <span class="p">(</span><span class="n">n</span> <span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">exp</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># evaluamos la función exp(2)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">exp_approx</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># valor inicial</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">exp_approx</span> <span class="o">+=</span> <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error aprox. orden </span><span class="si">%i</span><span class="s1">: </span><span class="si">%.5f</span><span class="s1">&#39;</span> <span class="o">%</span>  <span class="p">(</span><span class="n">n</span> <span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">exp_approx</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
@@ -534,12 +536,12 @@ Error aprox. orden 9: 0.00034
 <section id="errores-de-redondeo">
 <h2><span class="section-number">5.4. </span>Errores de redondeo<a class="headerlink" href="#errores-de-redondeo" title="Permalink to this heading">#</a></h2>
 <p>Es importante notar que debido a que una serie de Taylor se calcula mediante la suma susesiva de términos, esto puede generar errores de redondeo. Generalmente, el error es más evidente cuando el valor exacto es pequeño.</p>
-<p>Por ejemplo, cosideremos la aproximación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> usando 200 términos de la serie.</p>
+<p>Por ejemplo, consideremos la aproximación de <span class="math notranslate nohighlight">\(e^{-30}\)</span> usando 200 términos de la serie.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">201</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">exp</span> <span class="o">+=</span> <span class="p">((</span><span class="n">x</span><span class="o">**</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El valor de e^(-30)&#39;</span><span class="p">)</span>    
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;... Aproximación de orden </span><span class="si">%i</span><span class="s1">: </span><span class="si">%.5e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">exp</span><span class="p">))</span>    
@@ -549,7 +551,7 @@ Error aprox. orden 9: 0.00034
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El valor de e^(-30)
-... Aproximación de orden 200: -8.55302e-05
+... Aproximación de orden 4: 2.96710e+04
 ... Valor exacto: 9.35762e-14
 </pre></div>
 </div>
