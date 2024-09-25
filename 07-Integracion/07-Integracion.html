@@ -467,8 +467,8 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 \int_{x_i}^{x_{i+1}}f(x) = h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^3).
 \end{equation*}\]</div>
 <p>Considerando un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla del trapecio <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bc396c8-9f46-43f2-8b98-4cb1556a0690">
-<span class="eqno">(7.1)<a class="headerlink" href="#equation-6bc396c8-9f46-43f2-8b98-4cb1556a0690" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5a95999f-08d2-4c07-bf5c-5f80f7cdce91">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-5a95999f-08d2-4c07-bf5c-5f80f7cdce91" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \sum_{i = 0}^{n-1} h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^2),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(h = \frac{b -a}{n}\)</span></p>
@@ -496,7 +496,7 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 <span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">spint</span>
 
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>                            <span class="c1"># intervalo de integración</span>
-<span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span>                               <span class="c1"># tamaño de subintervalo</span>
+<span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span>                              <span class="c1"># tamaño de subintervalo</span>
 <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>                      <span class="c1"># set de puntos xi</span>
 <span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
 <span class="n">int_trpz</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span> <span class="c1"># Regla del trapecio</span>
@@ -538,14 +538,14 @@ P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 &amp;&amp;+ f(x_{i+1})\frac{(x - x_{i-1})(x - x_{i})}{(x_{i+1} - x_{i-1})(x_{i+1} -
 x_{i})},\end{eqnarray*}\]</div>
 <p>Al integrar el polinomio en el subintervalo <span class="math notranslate nohighlight">\(x\in [x_{i-1}, x_{i+1}]\)</span> determinamos la <strong>regla de Simpson 1/3</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19b0c2dd-0322-4cc4-98f6-3da96f3985f1">
-<span class="eqno">(7.2)<a class="headerlink" href="#equation-19b0c2dd-0322-4cc4-98f6-3da96f3985f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f01c54a-f9d7-48ef-8a35-507d1f23cb85">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-5f01c54a-f9d7-48ef-8a35-507d1f23cb85" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_{x_{i-1}}^{x_{i+1}} f(x) dx = \frac{h}{3}\left[f(x_{i-1}) + 4f(x_i) + f(x_{i+1})\right] + O(h^5).
 \end{equation}\]</div>
 <p>Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es <span class="math notranslate nohighlight">\(O(h^5)\)</span> (<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter21.04-Simpsons-Rule.html">ver demostración</a>)</p>
 <p>Para un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla de Simpson 1/3 <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0e784109-1e29-4154-aac4-66e995f6f269">
-<span class="eqno">(7.3)<a class="headerlink" href="#equation-0e784109-1e29-4154-aac4-66e995f6f269" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a5bed46f-032f-41ef-8e25-aed5c13b5db5">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-a5bed46f-032f-41ef-8e25-aed5c13b5db5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{i=1, i\  {\text{impar}}}^{n-1}f(x_i)\right)+2 \left(\sum_{i=2, i\  {\text{par}}}^{n-2}f(x_i)\right)+f(x_n)\right] + O(h^4).
 \end{equation}\]</div>
 <a class="reference internal image-reference" href="../_images/simpson_rule.png"><img alt="../_images/simpson_rule.png" class="align-center" src="../_images/simpson_rule.png" style="width: 400px;" /></a>
@@ -580,28 +580,15 @@ x_{i})},\end{eqnarray*}\]</div>
 
 <span class="c1"># 10 puntos igualmente espaciados</span>
 <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">int_sim10</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">xi</span><span class="p">)</span>
+<span class="n">int_sim10</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">x</span> <span class="o">=</span> <span class="n">xi</span><span class="p">)</span>
 
 <span class="c1"># 11 puntos igualmente espaciados</span>
 <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">int_sim11</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">xi</span><span class="p">)</span>
+<span class="n">int_sim11</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">x</span> <span class="o">=</span> <span class="n">xi</span><span class="p">)</span>
 
 <span class="c1"># 12 puntos igualmente espaciados</span>
 <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">int_sim12</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">xi</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_202947/3295441286.py:6: DeprecationWarning: You are passing x=[0.         0.34906585 0.6981317  1.04719755 1.3962634  1.74532925
- 2.0943951  2.44346095 2.7925268  3.14159265] as a positional argument. Please change your invocation to use keyword arguments. From SciPy 1.14, passing these as positional arguments will result in an error.
-  int_sim10 = spint.simpson(np.sin(xi), xi)
-/tmp/ipykernel_202947/3295441286.py:10: DeprecationWarning: You are passing x=[0.         0.31415927 0.62831853 0.9424778  1.25663706 1.57079633
- 1.88495559 2.19911486 2.51327412 2.82743339 3.14159265] as a positional argument. Please change your invocation to use keyword arguments. From SciPy 1.14, passing these as positional arguments will result in an error.
-  int_sim11 = spint.simpson(np.sin(xi), xi)
-/tmp/ipykernel_202947/3295441286.py:14: DeprecationWarning: You are passing x=[0.         0.28559933 0.57119866 0.856798   1.14239733 1.42799666
- 1.71359599 1.99919533 2.28479466 2.57039399 2.85599332 3.14159265] as a positional argument. Please change your invocation to use keyword arguments. From SciPy 1.14, passing these as positional arguments will result in an error.
-  int_sim12 = spint.simpson(np.sin(xi), xi)
+<span class="n">int_sim12</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">x</span> <span class="o">=</span> <span class="n">xi</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -660,20 +647,27 @@ c_1x_1 + c_2x_2 &amp;= \int_{-1}^{1} x dx = 0 \\
 c_1x_1^2 + c_2x_2^2 &amp;= \int_{-1}^{1} x^2 dx = 2/3 \\
 c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
 \end{align*}\]</div>
-<p>cuya solución es <span class="math notranslate nohighlight">\(c_0 = c_1 = 1\)</span>, <span class="math notranslate nohighlight">\(x_0 = -1/\sqrt{3}\)</span>, y <span class="math notranslate nohighlight">\(x_1 = 1/\sqrt{3}\)</span></p>
-<p>El método permite generar una aproximación de orden <span class="math notranslate nohighlight">\(O(h^4)\)</span> de la forma:</p>
+<p>cuya solución es <span class="math notranslate nohighlight">\(c_0 = c_1 = 1\)</span>, <span class="math notranslate nohighlight">\(x_0 = -1/\sqrt{3}\)</span>, y <span class="math notranslate nohighlight">\(x_1 = 1/\sqrt{3}\)</span>.</p>
+<p>El resultado se conoce como <strong>regla de cuadratura gaussiana de orden 2</strong>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\int_{-1}^{1} f(x) dx = f\left(-\frac{1}{\sqrt{3}}\right) + f\left(\frac{1}{\sqrt{3}}\right) + O(h^4)
+\int_{-1}^{1} f(x) dx = f\left(-\frac{1}{\sqrt{3}}\right) + f\left(\frac{1}{\sqrt{3}}\right) + O(h^5)
 \end{equation*}\]</div>
-<p>Mediante sustitución de variables, podemos generalizar esta fórmula para una integral en un intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>:</p>
+<p>Debido a que la función fue aproximada por un polinomio grado 3, la aproximación de la integral tiene un error del orden <span class="math notranslate nohighlight">\(O(h^5)\)</span>.</p>
+<p>Mediante un procedimiento similar, podemos generar aproximaciones para polinomios de mayor orden. La siguiente tabla resume la lista de pesos <span class="math notranslate nohighlight">\(c_i\)</span> y puntos de evaluación <span class="math notranslate nohighlight">\(x_i\)</span>, junto a sus errores de truncamiento:</p>
+<a class="reference internal image-reference" href="../_images/gaussian_quadrature_table.png"><img alt="../_images/gaussian_quadrature_table.png" class="align-center" src="../_images/gaussian_quadrature_table.png" style="width: 700px;" /></a>
+<center><small><b>Tabla 1.</b> Lista de pesos y puntos de evaluación para cuadratura Gaussiana</small></center><p>Notar que el error de truncamiento de cuadratura Gaussiana disminuye con el orden, <span class="math notranslate nohighlight">\(n\)</span>, en la forma <span class="math notranslate nohighlight">\(O(h^{2n+1})\)</span>.</p>
+<p>Si bien, las reglas de cuadratura gaussiana están diseñadas para integrales en el dominio <span class="math notranslate nohighlight">\(x\in[-1, 1]\)</span>, podemos generalizarlas al intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span> mediante cambio de variables.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\int_{a}^{b} f(x) dx \approx \frac{2}{b-a}\left[f\left(\frac{b+a}{2} - \frac{b-a}{2}\frac{1}{\sqrt{3}}\right) + f\left(\frac{b+a}{2} + \frac{b-a}{2}\frac{1}{\sqrt{3}}\right)\right]
+\int_{a}^{b} f(x) dx = \frac{b-a}{2}\int_{-1}^{1}f\left(\frac{b+a}{2} - \frac{b-a}{2}x\right)dx
 \end{equation*}\]</div>
-<p>Mediante un procedimiento similar, podemos generar aproximaciones para polinomios de mayor orden. La siguiente tabla resume la lista de pesos <span class="math notranslate nohighlight">\(c_i\)</span> y puntos de evaluación <span class="math notranslate nohighlight">\(x_i\)</span>, junto a sus errores de truncamiento:
-<a class="reference internal" href="../_images/gaussian_quadrature_table.png"><img alt="../_images/gaussian_quadrature_table.png" class="align-center" src="../_images/gaussian_quadrature_table.png" style="width: 700px;" /></a></p>
-<p>Notar que el error de truncamiento de cuadratura Gaussiana disminuye con el número de puntos de evaluación, <span class="math notranslate nohighlight">\(n\)</span>, en la forma <span class="math notranslate nohighlight">\(O(h^{2n})\)</span>.</p>
+<p>En este caso, las reglas de cuadratura gaussiana toman la forma:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\int_{a}^{b} f(x) dx = \frac{b-a}{2}\sum_{i = 0}^{n-1} c_i f\left(\frac{b+a}{2} - \frac{b-a}{2}x_i\right) + O(h^{2n+1})
+\end{equation*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(c_i\)</span> corresponden a los valores indicados en la tabla 1.</p>
 <p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> tenemos la función <code class="docutils literal notranslate"><span class="pre">fixed_quad</span></code> para cuadratura Gaussiana, implementada en la libería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>.</p>
 <p>Para calcular la cuadratura llamamos la función como <code class="docutils literal notranslate"><span class="pre">fixed_quad(f,a,b,n)[0]</span></code>, donde:</p>
 <ul class="simple">
@@ -709,7 +703,7 @@ c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">fixed_quad</span><span class="p">,</span> <span class="n">trapz</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">fixed_quad</span><span class="p">,</span> <span class="n">trapezoid</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>                  <span class="c1"># máximo número de puntos de integración</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># función en formato callable</span>
@@ -722,18 +716,12 @@ c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
     <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     
     <span class="c1"># error regla del trapecio</span>
-    <span class="n">Etrapz</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">I0</span> <span class="o">-</span> <span class="n">trapz</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span><span class="n">xi</span><span class="p">))</span>    
+    <span class="n">Etrapz</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">I0</span> <span class="o">-</span> <span class="n">trapezoid</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span><span class="n">xi</span><span class="p">))</span>    
     <span class="n">Etrapz_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Etrapz</span><span class="p">)</span>
     
     <span class="c1"># error cuadratura de Gauss</span>
     <span class="n">Egauss</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">I0</span> <span class="o">-</span> <span class="n">fixed_quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">Egauss_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Egauss</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_202947/3130460250.py:15: DeprecationWarning: &#39;scipy.integrate.trapz&#39; is deprecated in favour of &#39;scipy.integrate.trapezoid&#39; and will be removed in SciPy 1.14.0
-  Etrapz = abs(I0 - trapz(f(xi),xi))
 </pre></div>
 </div>
 </div>
