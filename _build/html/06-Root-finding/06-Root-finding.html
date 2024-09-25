@@ -599,8 +599,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a63e2352-d0eb-4350-afa2-68b2e5815498">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-a63e2352-d0eb-4350-afa2-68b2e5815498" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e64fccc6-3ff7-4559-ba5f-2c871aa3a0ad">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-e64fccc6-3ff7-4559-ba5f-2c871aa3a0ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -1076,7 +1076,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <p>En términos generales, los métodos de región de confianza operan de la siguiente forma:</p>
 <ul class="simple">
 <li><p>Se define una región de confianza inicial y se busca un mínimo dentro esa región.</p></li>
-<li><p>Si el valor encontrado minisa <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se construye una aproximación hyperboloide de <span class="math notranslate nohighlight">\(\vec{F}\)</span> y se incrementa la región de confianza.</p></li>
+<li><p>Si el valor encontrado minimiza <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se construye una aproximación hyperboloide de <span class="math notranslate nohighlight">\(\vec{F}\)</span> y se incrementa la región de confianza.</p></li>
 <li><p>Si el valor encontrado no minisa <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se reduce la región de confianza, y se vuelve a buscar el mínimo.</p></li>
 <li><p>El algoritmo itera hasta encontrar un mínimo global de <span class="math notranslate nohighlight">\(\vec{F}\)</span>.</p></li>
 </ul>
@@ -1109,7 +1109,8 @@ xy-y=5
 <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span>
             <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;la solución es: &#39;</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
 </pre></div>
 </div>
