@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. Algebra lineal y sistemas de ecuaciones lineales &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -17,52 +16,51 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02-Algebra_lineal/02-Algebra_lineal';</script>
@@ -72,6 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="1. Aspectos generales de programación y algoritmos" href="../01-Aspectos_generales/01-Aspectos_generales.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,19 +86,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -107,7 +95,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -115,8 +102,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -132,7 +119,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,6 +135,8 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../intro.html">
   
@@ -158,7 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -216,9 +213,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -243,14 +240,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/02-Algebra_lineal/02-Algebra_lineal.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -325,27 +322,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -408,9 +397,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algebra-lineal-y-sistemas-de-ecuaciones-lineales">
-<h1><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales<a class="headerlink" href="#algebra-lineal-y-sistemas-de-ecuaciones-lineales" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2. </span>Algebra lineal y sistemas de ecuaciones lineales<a class="headerlink" href="#algebra-lineal-y-sistemas-de-ecuaciones-lineales" title="Link to this heading">#</a></h1>
 <section id="introduccion-a-los-sistemas-de-ecuaciones-lineales">
-<h2><span class="section-number">2.1. </span>Introducción a los sistemas de ecuaciones lineales<a class="headerlink" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Introducción a los sistemas de ecuaciones lineales<a class="headerlink" href="#introduccion-a-los-sistemas-de-ecuaciones-lineales" title="Link to this heading">#</a></h2>
 <p>Consideremos el caso de tres personas conectada por cuerdas elásticas.</p>
 <a class="reference internal image-reference" href="../_images/bungee_man.png"><img alt="../_images/bungee_man.png" class="align-center" src="../_images/bungee_man.png" style="width: 300px;" /></a>
 <p>En la primera figura (a), los tres cuerpos están en la posición inicial de forma que los elásticos están totalmente extendidos, <strong>pero no estirados</strong>. Definimos el cambio en la posición inicial de cada persona, como: <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span>, <span class="math notranslate nohighlight">\(x_3\)</span>.</p>
@@ -438,7 +427,7 @@ m_3\frac{d^2 x_3}{dt^2} &amp;= m_3g + k_3(x_2 - x_3)
 <p>Este es el enfoque que utilizan los software de modelación computacional, tales como: el método de elementos finitos (FEM), métodos de los momentos (MoM), o volúmenes finitos (VEM).</p>
 <a class="reference internal image-reference" href="../_images/fem_beam_lattice.png"><img alt="../_images/fem_beam_lattice.png" class="align-center" src="../_images/fem_beam_lattice.png" style="width: 600px;" /></a>
 <section id="caracterizacion-de-sistemas-lineales">
-<h3><span class="section-number">2.1.1. </span>Caracterización de sistemas lineales<a class="headerlink" href="#caracterizacion-de-sistemas-lineales" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>Caracterización de sistemas lineales<a class="headerlink" href="#caracterizacion-de-sistemas-lineales" title="Link to this heading">#</a></h3>
 <p>Decimos que una ecuación es lineal cuando:</p>
 <ol class="arabic simple">
 <li><p>Todas sus incognitas están <strong>únicamente</strong> separadas por sumas o restas</p></li>
@@ -462,7 +451,7 @@ m_3\frac{d^2 x_3}{dt^2} &amp;= m_3g + k_3(x_2 - x_3)
 \end{align*}\]</div>
 </section>
 <section id="representacion-matricial">
-<h3><span class="section-number">2.1.2. </span>Representación matricial<a class="headerlink" href="#representacion-matricial" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.2. </span>Representación matricial<a class="headerlink" href="#representacion-matricial" title="Link to this heading">#</a></h3>
 <p>Para resolver un sistema de ecuaciones lineales utilizamos la representación matricial. Esto permite la implementación computacional de los algoritmos.</p>
 <p>Por ejemplo, el sistema de ecuaciones lineales generalizado:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -514,9 +503,9 @@ k_1 + k_2 &amp; -k_2 &amp; 0 \\
 \left[\begin{array}{c} m_1g \\m_2g \\m_3g \end{array}\right]\end{split}\]</div>
 </section>
 <section id="repaso-de-matrices">
-<h3><span class="section-number">2.1.3. </span>Repaso de matrices<a class="headerlink" href="#repaso-de-matrices" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.3. </span>Repaso de matrices<a class="headerlink" href="#repaso-de-matrices" title="Link to this heading">#</a></h3>
 <section id="determinante-a">
-<h4><span class="section-number">2.1.3.1. </span>Determinante (<span class="math notranslate nohighlight">\(|A|\)</span>)<a class="headerlink" href="#determinante-a" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">2.1.3.1. </span>Determinante (<span class="math notranslate nohighlight">\(|A|\)</span>)<a class="headerlink" href="#determinante-a" title="Link to this heading">#</a></h4>
 <p>Se denota como <span class="math notranslate nohighlight">\(\mathrm{det}(A)\)</span>, o <span class="math notranslate nohighlight">\(|A|\)</span>. <strong>Solo se aplica a matrices cuadradas</strong>.</p>
 <p>Por ejemplo, para una matriz <span class="math notranslate nohighlight">\(2\times2\)</span>, el determinante es:</p>
 <div class="math notranslate nohighlight">
@@ -559,7 +548,7 @@ g &amp; h \\
 \end{eqnarray*}\]</div>
 </section>
 <section id="matriz-identidad-i">
-<h4><span class="section-number">2.1.3.2. </span>Matriz identidad (<span class="math notranslate nohighlight">\(I\)</span>)<a class="headerlink" href="#matriz-identidad-i" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">2.1.3.2. </span>Matriz identidad (<span class="math notranslate nohighlight">\(I\)</span>)<a class="headerlink" href="#matriz-identidad-i" title="Link to this heading">#</a></h4>
 <p>Es una matriz cuadarada con <span class="math notranslate nohighlight">\(1\)</span> en la diagonal, y <span class="math notranslate nohighlight">\(0\)</span> en el resto de los elementos:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}I = \begin{bmatrix}
@@ -569,7 +558,7 @@ g &amp; h \\
 \end{bmatrix}\end{split}\]</div>
 </section>
 <section id="matriz-inversa-a-1">
-<h4><span class="section-number">2.1.3.3. </span>Matriz inversa (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)<a class="headerlink" href="#matriz-inversa-a-1" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">2.1.3.3. </span>Matriz inversa (<span class="math notranslate nohighlight">\(A^{-1}\)</span>)<a class="headerlink" href="#matriz-inversa-a-1" title="Link to this heading">#</a></h4>
 <p>Definimos la matriz inversa de <span class="math notranslate nohighlight">\(A\)</span> como: <span class="math notranslate nohighlight">\(A^{-1}\)</span>.</p>
 <ul class="simple">
 <li><p>Solo existe para matrices cuadradas.</p></li>
@@ -590,7 +579,7 @@ d &amp; -b \\
 </div></blockquote>
 </section>
 <section id="norma-matricial">
-<h4><span class="section-number">2.1.3.4. </span>Norma matricial<a class="headerlink" href="#norma-matricial" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">2.1.3.4. </span>Norma matricial<a class="headerlink" href="#norma-matricial" title="Link to this heading">#</a></h4>
 <p>Es una extensión del módulo o <em>norma</em> vectorial. Existen distintos formas de definir una norma matricial. La más conocida es la <em>p-norma</em>:</p>
 <div class="math notranslate nohighlight">
 \[\Vert A \Vert_{p} = \sqrt[p]{(\sum_i^m \sum_j^n |a_{ij}|^p)}\]</div>
@@ -598,7 +587,7 @@ d &amp; -b \\
 </section>
 </section>
 <section id="representacion-en-python">
-<h3><span class="section-number">2.1.4. </span>Representación en python<a class="headerlink" href="#representacion-en-python" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.4. </span>Representación en python<a class="headerlink" href="#representacion-en-python" title="Link to this heading">#</a></h3>
 <p>Para representar sistemas de ecuaciones lineales en python utilizamos variables <em><strong>numpy array</strong></em> de la libreria <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <p>Por ejemplo, para representar el sistema:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -675,8 +664,8 @@ eye(3) = (Matriz identidad 3x3)
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -9.36750677e-17, -4.16333634e-17],
-       [ 5.55111512e-17,  1.00000000e+00, -1.38777878e-17],
-       [ 0.00000000e+00,  0.00000000e+00,  1.00000000e+00]])
+       [ 1.66533454e-16,  1.00000000e+00, -1.38777878e-17],
+       [-1.11022302e-16, -2.22044605e-16,  1.00000000e+00]])
 </pre></div>
 </div>
 </div>
@@ -685,9 +674,9 @@ eye(3) = (Matriz identidad 3x3)
 </section>
 </section>
 <section id="caracterizacion-de-sistemas-de-ecuaciones-lineales">
-<h2><span class="section-number">2.2. </span>Caracterización de sistemas de ecuaciones lineales<a class="headerlink" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Caracterización de sistemas de ecuaciones lineales<a class="headerlink" href="#caracterizacion-de-sistemas-de-ecuaciones-lineales" title="Link to this heading">#</a></h2>
 <section id="solucion-unica-rango-de-una-matriz">
-<h3><span class="section-number">2.2.1. </span>Solución única (rango de una matriz)<a class="headerlink" href="#solucion-unica-rango-de-una-matriz" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>Solución única (rango de una matriz)<a class="headerlink" href="#solucion-unica-rango-de-una-matriz" title="Link to this heading">#</a></h3>
 <p>Un <strong>sistema de ecuaciones</strong> lineales tiene <strong>solución única</strong>, si y solo si el <strong>número de incognitas es igual al número de ecuaciones linealmente independientes</strong> en el sistema.</p>
 <p>Por ejemplo, el siguiente sistema de ecuaciones lineales:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -813,7 +802,7 @@ Número de incognitas, n = 3
 <p><strong>Por lo tanto, el sistema tiene infinitas soluciones</strong></p>
 </section>
 <section id="matriz-singular">
-<h3><span class="section-number">2.2.2. </span>Matriz singular<a class="headerlink" href="#matriz-singular" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.2. </span>Matriz singular<a class="headerlink" href="#matriz-singular" title="Link to this heading">#</a></h3>
 <p>La forma más directa de resolver un sistema es mediante la matriz inversa: <span class="math notranslate nohighlight">\(x = A^{-1}y\)</span>. Sin embargo, la estabilidad de esta expresión dependerá si la matriz es invertible o no.</p>
 <p>Recordamos de álgebra lineal, que la matriz inversa está dada por</p>
 <div class="amsmath math notranslate nohighlight">
@@ -858,17 +847,15 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inv(P) = &#39;</span><span class="p">,</span> <span class="n">inv</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:200,</span> in <span class="ni">inv</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/numpy/linalg/linalg.py:561,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">561</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/numpy/linalg/linalg.py:538,</span> in <span class="ni">inv</span><span class="nt">(a)</span>
-<span class="g g-Whitespace">    </span><span class="mi">536</span> <span class="n">signature</span> <span class="o">=</span> <span class="s1">&#39;D-&gt;D&#39;</span> <span class="k">if</span> <span class="n">isComplexType</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;d-&gt;d&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">537</span> <span class="n">extobj</span> <span class="o">=</span> <span class="n">get_linalg_error_extobj</span><span class="p">(</span><span class="n">_raise_linalgerror_singular</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">538</span> <span class="n">ainv</span> <span class="o">=</span> <span class="n">_umath_linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span> <span class="n">extobj</span><span class="o">=</span><span class="n">extobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span> <span class="k">return</span> <span class="n">wrap</span><span class="p">(</span><span class="n">ainv</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">result_t</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-
-<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/numpy/linalg/linalg.py:89,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/numpy/linalg/linalg.py:112,</span> in <span class="ni">_raise_linalgerror_singular</span><span class="nt">(err, flag)</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="k">def</span> <span class="nf">_raise_linalgerror_singular</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;Singular matrix&quot;</span><span class="p">)</span>
 
 <span class="ne">LinAlgError</span>: Singular matrix
 </pre></div>
@@ -888,7 +875,7 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </div></blockquote>
 </section>
 <section id="condicion-de-una-matriz">
-<h3><span class="section-number">2.2.3. </span>Condición de una matriz<a class="headerlink" href="#condicion-de-una-matriz" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.3. </span>Condición de una matriz<a class="headerlink" href="#condicion-de-una-matriz" title="Link to this heading">#</a></h3>
 <p><em>Decimos que una matriz <span class="math notranslate nohighlight">\(A\)</span> está <strong>mal condicionada</strong>, si <span class="math notranslate nohighlight">\(\mathrm{det}(A) \approx 0\)</span>.</em></p>
 <p>Si bien las <strong>matrices mal condicionadas</strong> tienen inversa, son <strong>numericamente problemáticas</strong>, ya que pueden inducir errores de redondeo, o diferencias numericas excesivamente grandes entre elementos (<em>overflow</em>) como resultado de la división por un número muy pequeño</p>
 <p>Para determinar si una matriz está mal condicionada utilizamos el <strong>número de condición</strong>, definido como:</p>
@@ -930,9 +917,9 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </section>
 </section>
 <section id="metodos-directos-para-resolver-sistemas-de-ecuaciones">
-<h2><span class="section-number">2.3. </span>Métodos directos para resolver sistemas de ecuaciones<a class="headerlink" href="#metodos-directos-para-resolver-sistemas-de-ecuaciones" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Métodos directos para resolver sistemas de ecuaciones<a class="headerlink" href="#metodos-directos-para-resolver-sistemas-de-ecuaciones" title="Link to this heading">#</a></h2>
 <section id="eliminacion-de-gauss">
-<h3><span class="section-number">2.3.1. </span>Eliminación de Gauss<a class="headerlink" href="#eliminacion-de-gauss" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.1. </span>Eliminación de Gauss<a class="headerlink" href="#eliminacion-de-gauss" title="Link to this heading">#</a></h3>
 <p>Es un algoritmo para resolver sistemas ecuaciones lineales basado en convertir la matriz <span class="math notranslate nohighlight">\(A\)</span> en una matriz <strong>triangular superior</strong>. El sistema toma la forma:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{bmatrix}
@@ -1031,7 +1018,7 @@ x_1 &amp;= \frac{-3 - 8x_2 + 0x_3}{8} = 2.208
 </div></blockquote>
 </section>
 <section id="factorizacion-lu">
-<h3><span class="section-number">2.3.2. </span>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.3.2. </span>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Link to this heading">#</a></h3>
 <p>Es posible demostrar que cualquier matriz cuadrada <span class="math notranslate nohighlight">\(A\)</span> puede ser expresada como el producto de una matriz triangular inferior <span class="math notranslate nohighlight">\(L\)</span>, y una matriz triangular superior <span class="math notranslate nohighlight">\(U\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[A = LU\]</div>
@@ -1161,7 +1148,7 @@ LUx = Py
 </section>
 </section>
 <section id="metodos-iterativos-para-resolver-sistemas-de-ecuaciones">
-<h2><span class="section-number">2.4. </span>Métodos iterativos para resolver sistemas de ecuaciones<a class="headerlink" href="#metodos-iterativos-para-resolver-sistemas-de-ecuaciones" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.4. </span>Métodos iterativos para resolver sistemas de ecuaciones<a class="headerlink" href="#metodos-iterativos-para-resolver-sistemas-de-ecuaciones" title="Link to this heading">#</a></h2>
 <p>Los métodos iterativos están basados en una serie repetitiva de operaciones, comenzando por un valor inicial.</p>
 <p>A diferencia de los métodos directos, el número de operaciones está condicionado por la convergencia y el valor inicial escogido</p>
 <p>Las ventajas de los métodos iterativos es que tienen un orden de complejidad menor que los métodos directos, y no requieren gran capacidad de memoria (recordemos que factorización LU requiere almacenar las matrices L, U y P)</p>
@@ -1170,7 +1157,7 @@ LUx = Py
 \[|a_{i,i}| \geq \sum_{j\neq i} |a_{i,j}|\]</div>
 <p>Estos métodos se utilizan, generalmente, en simulaciones con elementos finitos (FEM), o volúmenes finitos (VEM).</p>
 <section id="gauss-seidel">
-<h3><span class="section-number">2.4.1. </span>Gauss-Seidel<a class="headerlink" href="#gauss-seidel" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.4.1. </span>Gauss-Seidel<a class="headerlink" href="#gauss-seidel" title="Link to this heading">#</a></h3>
 <p>El algoritmo se puede resumir en los siguientes pasos:</p>
 <p>Paso 1. Asumimos un valor inicial para <span class="math notranslate nohighlight">\(x_2^{(0)}, x_3^{(0)}, \cdots, x_n^{(0)}\)</span> (con excepción de <span class="math notranslate nohighlight">\(x_1^{(0)}\)</span>).</p>
 <p>Paso 2. Calculamos un nuevo valor para <span class="math notranslate nohighlight">\(x_1^{(1)}\)</span> mediante:</p>
@@ -1400,7 +1387,7 @@ gauss_seidel(A, y, x0, max_iter=50, abs_tol=0.001, verbose=False)
 </section>
 </section>
 <section id="solucion-de-sistemas-de-ecuaciones-lineales-con-python">
-<h2><span class="section-number">2.5. </span>Solución de sistemas de ecuaciones lineales con python<a class="headerlink" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.5. </span>Solución de sistemas de ecuaciones lineales con python<a class="headerlink" href="#solucion-de-sistemas-de-ecuaciones-lineales-con-python" title="Link to this heading">#</a></h2>
 <p>En python la forma más facil de resolver sistemas de ecuaciones lineal es mediante la función <code class="docutils literal notranslate"><span class="pre">solve</span></code> de <code class="docutils literal notranslate"><span class="pre">numpy.linalg</span></code>. Esta función utiliza factorización LU para resolver el sistema.</p>
 <p>Por ejemplo, tomemos el ejemplo de las personas conectadas por elásticos:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -1510,7 +1497,7 @@ LU:
 </div>
 </section>
 <section id="referencias">
-<h2><span class="section-number">2.6. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.6. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 14: Linear Algebra and Systems of Linear Equations</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Parte tres: Ecuaciones algebraicas lineales</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1573,7 +1560,8 @@ LU:
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1636,7 +1624,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1660,8 +1648,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

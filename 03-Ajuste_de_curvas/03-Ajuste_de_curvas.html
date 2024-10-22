@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>3. Ajuste de curvas por mínimos cuadrados &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -17,52 +16,51 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '03-Ajuste_de_curvas/03-Ajuste_de_curvas';</script>
@@ -72,6 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="2. Algebra lineal y sistemas de ecuaciones lineales" href="../02-Algebra_lineal/02-Algebra_lineal.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,19 +86,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -107,7 +95,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -115,8 +102,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -132,7 +119,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,6 +135,8 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../intro.html">
   
@@ -158,7 +148,14 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -216,9 +213,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -243,14 +240,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/03-Ajuste_de_curvas/03-Ajuste_de_curvas.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -325,27 +322,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -397,9 +386,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ajuste-de-curvas-por-minimos-cuadrados">
-<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Ajuste de curvas por mínimos cuadrados<a class="headerlink" href="#ajuste-de-curvas-por-minimos-cuadrados" title="Link to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>La gran mayoría de las fórmulas en la ciencia no pueden ser determinadas de forma teórica y debemos recurrir a relaciones empíricas en base a experimentos.</p>
 <p>Por ejemplo, en mecánica de fluidos la fuerza de arrastre, <span class="math notranslate nohighlight">\(F_D\)</span>, es proporcional al cuadrado de la velocidad del flujo alrededor el cuerpo, <span class="math notranslate nohighlight">\(V\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -413,7 +402,7 @@ F_D = \frac{1}{2}\rho A C_D V^2
 <a class="reference internal image-reference" href="../_images/wind_tunnel.png"><img alt="../_images/wind_tunnel.png" class="align-center" src="../_images/wind_tunnel.png" style="width: 800px;" /></a>
 <p>El valor de <span class="math notranslate nohighlight">\(C_D\)</span> estará dado por la curva que mejor se ajuste a estos valores experimentales.</p>
 <section id="regresion-lineal-unidimensional">
-<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Regresión lineal unidimensional<a class="headerlink" href="#regresion-lineal-unidimensional" title="Link to this heading">#</a></h3>
 <p>Consideremos el caso más simple, donde buscamos ajustar nuestros datos <span class="math notranslate nohighlight">\(x_i, y_i\)</span> <span class="math notranslate nohighlight">\((i = 0,1,\cdots,n)\)</span> al modelo:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -440,7 +429,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i\right)^2 \label{eq:error_linear1D}
 <p>Este criterio se denomina <strong>ajuste por mínimos cuadrados.</strong></p>
 </section>
 <section id="ajuste-por-minimos-cuadrados-paso-a-paso">
-<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Ajuste por mínimos cuadrados paso a paso<a class="headerlink" href="#ajuste-por-minimos-cuadrados-paso-a-paso" title="Link to this heading">#</a></h3>
 <p>Primero, para buscar el mínimo de <span class="math notranslate nohighlight">\(S_r\)</span> aplicamos la derivada respecto a sus variables, es decir, <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -517,6 +506,10 @@ m &amp; \sum x_i \\
  y = -234.286 + 19.470*x
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_226/230161597.py:17: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  print(&#39;Modelo lineal: \n y = %.3f + %.3f*x&#39; % (a[0], a[1]))
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -541,15 +534,19 @@ m &amp; \sum x_i \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/90b6af91f1f0d404eb7db6eaa69487b68fea2dfef70ceef950ba6ca3e8077754.png" src="../_images/90b6af91f1f0d404eb7db6eaa69487b68fea2dfef70ceef950ba6ca3e8077754.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_226/1466663917.py:12: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  plt.plot(x, y(x), &#39;-r&#39;, label = &#39;y = %.2f + %.2fx&#39; % (a[0], a[1]))  # gráfico del modelo
+</pre></div>
+</div>
+<img alt="../_images/34257d144a16a60a543c7987695aae3d366de55662d67cf6f4e008f7efa2ba57.png" src="../_images/34257d144a16a60a543c7987695aae3d366de55662d67cf6f4e008f7efa2ba57.png" />
 </div>
 </div>
 </section>
 <section id="cuantificacion-del-error">
-<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Link to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-95e008f9-48cd-4fc8-8eb3-fe52448d6ac7">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-95e008f9-48cd-4fc8-8eb3-fe52448d6ac7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47c9bcac-75f1-49f8-a294-a8f0ff16cc82">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-47c9bcac-75f1-49f8-a294-a8f0ff16cc82" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
@@ -584,7 +581,7 @@ r2 = 0.8805
 </div></blockquote>
 </section>
 <section id="linealizacion-de-funciones-no-lineales">
-<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Link to this heading">#</a></h3>
 <p>Existen algúnos modelos no lineales comúnes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
 <p>Algúnos ejemplos son:</p>
 <ul class="simple">
@@ -653,6 +650,10 @@ y &amp;= e^{\ln \alpha + \beta\ln x}
  ln(y) = -1.294 + 1.984*ln(x)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_226/1169339268.py:20: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  print(&#39;Modelo linealizado: \n ln(y) = %.3f + %.3f*ln(x)&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Para retornar al modelo original, aplicamos</p>
@@ -674,6 +675,10 @@ y = e^{\left(a_0+a_1\ln x\right)} = e^{a_0} x^{a_1} = \alpha x ^\beta
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo no-lineal
 y = 0.274*x^1.984
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_226/967901107.py:5: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  print(&#39;y = %.3f*x^%.3f&#39; % (alpha, beta))
 </pre></div>
 </div>
 </div>
@@ -699,7 +704,11 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/67e5d93d8fea3429510871676d16c5a6fd5f80b0c531f6d10c4a6c3c1df66050.png" src="../_images/67e5d93d8fea3429510871676d16c5a6fd5f80b0c531f6d10c4a6c3c1df66050.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_226/538564046.py:10: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  plt.plot(x, y(x), &#39;-r&#39;, label = r&#39;$y = %.3fx^{%.3f}$&#39; % (alpha, beta))  # gráfico del modelo
+</pre></div>
+</div>
+<img alt="../_images/b66215fafa6bdd8b9a69557d4367b0f582fbdcbcee24a2114cf14ebd4b7bcca3.png" src="../_images/b66215fafa6bdd8b9a69557d4367b0f582fbdcbcee24a2114cf14ebd4b7bcca3.png" />
 </div>
 </div>
 <p>Analizamos la calidad del modelo</p>
@@ -732,17 +741,17 @@ y = 0.274 x^{1.984},
 </section>
 </section>
 <section id="otros-modelos-lineales">
-<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Otros modelos lineales<a class="headerlink" href="#otros-modelos-lineales" title="Link to this heading">#</a></h2>
 <p>El procedimiento de ajuste de curva por mínimos cuadrados se puede extender para modelos de ajuste más complejos, tales como:</p>
 <ul class="simple">
 <li><p>Regresión polinomial</p></li>
 <li><p>Regresión lineal multivariable</p></li>
 </ul>
 <section id="regresion-polinomial">
-<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Link to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a302704f-0fa1-4820-84b9-98da5b946464">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-a302704f-0fa1-4820-84b9-98da5b946464" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d63d5cc9-b1f9-4502-9a77-886fff26f9bf">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-d63d5cc9-b1f9-4502-9a77-886fff26f9bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -764,10 +773,10 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 <p>Cuya solución nos entrega el valor de los coeficientes <span class="math notranslate nohighlight">\(a_0\)</span>, <span class="math notranslate nohighlight">\(a_1\)</span> y <span class="math notranslate nohighlight">\(a_2\)</span></p>
 </section>
 <section id="regresion-lineal-multidimensional">
-<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Link to this heading">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d00c4c73-7237-4100-93de-642fea6239dd">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-d00c4c73-7237-4100-93de-642fea6239dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-24275fe9-8aeb-46bd-a6da-2eceba284cf1">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-24275fe9-8aeb-46bd-a6da-2eceba284cf1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>
@@ -792,11 +801,11 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 </section>
 </section>
 <section id="modelos-de-ajuste-en-python">
-<h2><span class="section-number">3.3. </span>Modelos de ajuste en python<a class="headerlink" href="#modelos-de-ajuste-en-python" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Modelos de ajuste en python<a class="headerlink" href="#modelos-de-ajuste-en-python" title="Link to this heading">#</a></h2>
 <p>Es importante mencionar que en materia de modelos de ajuste la librería más adecuada es <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. La librería, sin embargo, puede ser demasiado compleja para modelos lineales simples.</p>
 <p>En este capítulo, mostraremos los métodos más simples para regreción lineal polinomial y no-lineal, utilizando <code class="docutils literal notranslate"><span class="pre">numpy</span></code> y <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <section id="modelo-polinomial-unidimencional-numpy-polyfit">
-<h3><span class="section-number">3.3.1. </span>Modelo polinomial unidimencional (<code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code>)<a class="headerlink" href="#modelo-polinomial-unidimencional-numpy-polyfit" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.1. </span>Modelo polinomial unidimencional (<code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code>)<a class="headerlink" href="#modelo-polinomial-unidimencional-numpy-polyfit" title="Link to this heading">#</a></h3>
 <p>Esta función está especificamente diseñada para modelos polinomiales de una dimensión, es decir, <span class="math notranslate nohighlight">\(y = a_0 + a_1x +a_2x^2+...a_nx^n\)</span></p>
 <p>Por ejemplo, para generar un modelo en base a un polinomio de orden 2,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># coeficientes a0, a1, a2, ...</span>
@@ -857,7 +866,7 @@ y(34.000) = 412.673
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f73fa6b23994f3d046989186627a8b87b237027c015dc08feba4b670c6ad0894.png" src="../_images/f73fa6b23994f3d046989186627a8b87b237027c015dc08feba4b670c6ad0894.png" />
+<img alt="../_images/9c60204b0f17e81c2bb4c8c6ba0628ba081f425722a542abd86aed80e4dcb223.png" src="../_images/9c60204b0f17e81c2bb4c8c6ba0628ba081f425722a542abd86aed80e4dcb223.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -882,7 +891,7 @@ r2 = 0.8818
 <p>Sin embargo, <strong>la tendencia del método es minimizar el error (en otras palabras, mejorar <span class="math notranslate nohighlight">\(r^2\)</span>).</strong> Esto significa que el método va a forzar una curva lineal, aunque esta no corresponda a la física del problema.</p>
 </section>
 <section id="scipy-optimize-curve-fit-regresion-no-lineal">
-<h3><span class="section-number">3.3.2. </span><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">3.3.2. </span><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code> (regresión no-lineal)<a class="headerlink" href="#scipy-optimize-curve-fit-regresion-no-lineal" title="Link to this heading">#</a></h3>
 <p>Esta función, parte del módulo <code class="docutils literal notranslate"><span class="pre">optimize</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, <strong>utiliza un método iterativo para minimizar el error cuadrático</strong>. La función <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> puede ser utilizada para cualquier tipo de modelo, linear o no-linear, unidimensional o multidimensional.</p>
 <blockquote>
 <div><p><strong>Nota</strong> Para más información de <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code>, revisar <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">documentación en línea</a></p>
@@ -955,7 +964,7 @@ y = 2.538*x^1.436
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4d1c83450683476e48fbe2b90d501f89e582df34563089b185819dbb88753c8a.png" src="../_images/4d1c83450683476e48fbe2b90d501f89e582df34563089b185819dbb88753c8a.png" />
+<img alt="../_images/75da4fa9f38f7081fc329b37174b512ca46f8098ce94be0b70706fb953e72c0d.png" src="../_images/75da4fa9f38f7081fc329b37174b512ca46f8098ce94be0b70706fb953e72c0d.png" />
 </div>
 </div>
 <p>Notar que los coeficientes de este modelo son diferentes a los que determinamos mediante regresión lineal en la función linealizada.</p>
@@ -1012,7 +1021,7 @@ r2 = 0.8769
 </section>
 </section>
 <section id="regresion-lineal-vs-no-lineal">
-<h2><span class="section-number">3.4. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.4. </span>Regresión lineal vs no-lineal<a class="headerlink" href="#regresion-lineal-vs-no-lineal" title="Link to this heading">#</a></h2>
 <p>Respecto a la regresión no-lineal:</p>
 <p><strong>Ventajas</strong></p>
 <ul class="simple">
@@ -1028,7 +1037,7 @@ r2 = 0.8769
 </div></blockquote>
 </section>
 <section id="referencias">
-<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">3.5. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 16: Least Square Regression</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/Index.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 17: Regresión por mínimos cuadrados</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1091,7 +1100,8 @@ r2 = 0.8769
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1143,7 +1153,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1167,8 +1177,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
