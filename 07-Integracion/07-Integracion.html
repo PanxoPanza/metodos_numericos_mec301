@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>7. Integración numérica &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -16,51 +17,52 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '07-Integracion/07-Integracion';</script>
@@ -70,7 +72,6 @@
     <link rel="prev" title="6. Algortimos de búsqueda de raíces" href="../06-Root-finding/06-Root-finding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +87,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -95,6 +107,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +115,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +132,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -135,8 +147,6 @@
         <div class="sidebar-primary-item">
 
   
-    
-  
 
 <a class="navbar-brand logo" href="../intro.html">
   
@@ -148,14 +158,7 @@
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -213,9 +216,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -240,14 +243,14 @@
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/07-Integracion/07-Integracion.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
+   title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+    <img src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -322,19 +325,27 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -380,15 +391,15 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="integracion-numerica">
-<h1><span class="section-number">7. </span>Integración numérica<a class="headerlink" href="#integracion-numerica" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Integración numérica<a class="headerlink" href="#integracion-numerica" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">7.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>El cálculo de integrales es fundamental en todos los problemas de ingeniería. Muchos ejemplos tienen relación directa con la estimación de áreas: (a) La superficie de un campo limitado por dos carreteras y un rio, (b) El área transversal de un canal, (c) La fuerza de arrastre sobre un edificio ocacionada por el viento.</p>
 <a class="reference internal image-reference" href="../_images/integration_examples.png"><img alt="../_images/integration_examples.png" class="align-center" src="../_images/integration_examples.png" style="width: 600px;" /></a>
 <p>En este capítulo revisaremos dos métodos de integración (1) Formulas de Newton-Cotes para datos tabulados de una función desconocida (2) Integrales para funciones conocidas</p>
 </section>
 <section id="integracion-mediante-datos-tabulados-formulas-de-newton-cotes">
-<h2><span class="section-number">7.2. </span>Integración mediante datos tabulados (Fórmulas de Newton-Cotes)<a class="headerlink" href="#integracion-mediante-datos-tabulados-formulas-de-newton-cotes" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Integración mediante datos tabulados (Fórmulas de Newton-Cotes)<a class="headerlink" href="#integracion-mediante-datos-tabulados-formulas-de-newton-cotes" title="Permalink to this heading">#</a></h2>
 <p>Queremos aproximar la integral de una función <span class="math notranslate nohighlight">\(f(x)\)</span> en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -404,7 +415,7 @@
 <p>Las fórmulas de Newton-Cotes se basan en la aproximación de una función <span class="math notranslate nohighlight">\(f(x)\)</span> mediante polinomios generados a partir de los datos tabulados <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(f(x_i)\)</span></p>
 <a class="reference internal image-reference" href="../_images/Newton_cotes.png"><img alt="../_images/Newton_cotes.png" class="align-center" src="../_images/Newton_cotes.png" style="width: 600px;" /></a>
 <section id="integral-de-riemman">
-<h3><span class="section-number">7.2.1. </span>Integral de Riemman<a class="headerlink" href="#integral-de-riemman" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.1. </span>Integral de Riemman<a class="headerlink" href="#integral-de-riemman" title="Permalink to this heading">#</a></h3>
 <p>El caso más sencillo consiste en aproximar <span class="math notranslate nohighlight">\(f(x)\)</span> en el subintervalo <span class="math notranslate nohighlight">\(x\in[x_{i+1}, x_i]\)</span> mediante un polinomio de grado 0. La elección más lógica sería <span class="math notranslate nohighlight">\(f(x) \approx f(x_i)\)</span> o <span class="math notranslate nohighlight">\(f(x) \approx f(x_{i+1})\)</span>, ya que estos puntos son conocidos por la tabulación.</p>
 <p>Matemáticamente:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -439,7 +450,7 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + \cdots,
 \end{equation*}\]</div>
 </section>
 <section id="regla-del-trapecio-scipy-integrate-trapezoid">
-<h3><span class="section-number">7.2.2. </span>Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)<a class="headerlink" href="#regla-del-trapecio-scipy-integrate-trapezoid" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.2. </span>Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)<a class="headerlink" href="#regla-del-trapecio-scipy-integrate-trapezoid" title="Permalink to this heading">#</a></h3>
 <p>Podemos mejorar la aproximación mediante una expansión de segundo orden,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -456,8 +467,8 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 \int_{x_i}^{x_{i+1}}f(x) = h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^3).
 \end{equation*}\]</div>
 <p>Considerando un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla del trapecio <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1d49591-95c2-42bf-94dd-572c38b0aae4">
-<span class="eqno">(7.1)<a class="headerlink" href="#equation-a1d49591-95c2-42bf-94dd-572c38b0aae4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c053dd8-ec49-4daf-8231-6f0f70e506c6">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-7c053dd8-ec49-4daf-8231-6f0f70e506c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \sum_{i = 0}^{n-1} h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^2),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(h = \frac{b -a}{n}\)</span></p>
@@ -512,7 +523,7 @@ Error O(h^2) = O(9.870e-04)
 </div></blockquote>
 </section>
 <section id="regla-de-simpson-1-3-scipy-integrate-simpson">
-<h3><span class="section-number">7.2.3. </span>Regla de Simpson 1/3 (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.simpson</span></code>)<a class="headerlink" href="#regla-de-simpson-1-3-scipy-integrate-simpson" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.2.3. </span>Regla de Simpson 1/3 (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.simpson</span></code>)<a class="headerlink" href="#regla-de-simpson-1-3-scipy-integrate-simpson" title="Permalink to this heading">#</a></h3>
 <p>En términos generales, lo que hicimos en la regla del trapecio y Riemann es aproximar <span class="math notranslate nohighlight">\(f(x)\)</span> por un polinomio y luego integrarlo en cada subintervalo <span class="math notranslate nohighlight">\(x\in [x_i, x_{i+1}]\)</span>. El error de truncamiento disminuye a medida que aumentamos el orden del polinomio.</p>
 <p>La regla de Simpson sigue esta lógica, aunque utilizando <strong>polinomios de interpolación de Lagrange</strong> en lugar de expansiones de Taylor.</p>
 <p>Los polinomios de interpolación de Lagrange están dados por la fórmula:</p>
@@ -531,14 +542,14 @@ P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 &amp;&amp;+ f(x_{i+1})\frac{(x - x_{i-1})(x - x_{i})}{(x_{i+1} - x_{i-1})(x_{i+1} -
 x_{i})},\end{eqnarray*}\]</div>
 <p>Al integrar el polinomio en el subintervalo <span class="math notranslate nohighlight">\(x\in [x_{i-1}, x_{i+1}]\)</span> determinamos la <strong>regla de Simpson 1/3</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f724bf28-fdd2-428a-9c41-6fcb55c98d58">
-<span class="eqno">(7.2)<a class="headerlink" href="#equation-f724bf28-fdd2-428a-9c41-6fcb55c98d58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d5e49ab0-e476-475a-8600-6a8988b6e594">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-d5e49ab0-e476-475a-8600-6a8988b6e594" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_{x_{i-1}}^{x_{i+1}} f(x) dx = \frac{h}{3}\left[f(x_{i-1}) + 4f(x_i) + f(x_{i+1})\right] + O(h^5).
 \end{equation}\]</div>
 <p>Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es <span class="math notranslate nohighlight">\(O(h^5)\)</span> (<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter21.04-Simpsons-Rule.html">ver demostración</a>)</p>
 <p>Para un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla de Simpson 1/3 <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f267846-7f77-4744-8a78-5b0d77ec11db">
-<span class="eqno">(7.3)<a class="headerlink" href="#equation-2f267846-7f77-4744-8a78-5b0d77ec11db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a219130e-905a-4d2a-ad23-92ee80a5195a">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-a219130e-905a-4d2a-ad23-92ee80a5195a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{i=1, i\  {\text{impar}}}^{n-1}f(x_i)\right)+2 \left(\sum_{i=2, i\  {\text{par}}}^{n-2}f(x_i)\right)+f(x_n)\right] + O(h^4).
 \end{equation}\]</div>
 <a class="reference internal image-reference" href="../_images/simpson_rule.png"><img alt="../_images/simpson_rule.png" class="align-center" src="../_images/simpson_rule.png" style="width: 400px;" /></a>
@@ -617,11 +628,11 @@ Error absoluto 3.406e-04
 </section>
 </section>
 <section id="integracion-de-funciones-evaluadas">
-<h2><span class="section-number">7.3. </span>Integración de funciones evaluadas<a class="headerlink" href="#integracion-de-funciones-evaluadas" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Integración de funciones evaluadas<a class="headerlink" href="#integracion-de-funciones-evaluadas" title="Permalink to this heading">#</a></h2>
 <p>Las fórmulas de Newton-Cotes son útiles cuando no conocemos la función y solo disponemos de datos tabulados.</p>
 <p>Si la función a integrar es conocida, las fórmulas de Newton-Cotes aún son válidas. Sin embargo, existen métodos más eficientes para calcular la integral numéricamente.</p>
 <section id="cuadratura-gaussiana-scipy-integrate-fixed-quad">
-<h3><span class="section-number">7.3.1. </span>Cuadratura Gaussiana (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.fixed_quad</span></code>)<a class="headerlink" href="#cuadratura-gaussiana-scipy-integrate-fixed-quad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.3.1. </span>Cuadratura Gaussiana (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.fixed_quad</span></code>)<a class="headerlink" href="#cuadratura-gaussiana-scipy-integrate-fixed-quad" title="Permalink to this heading">#</a></h3>
 <p>En la regla del trapecio aproximamos la integral por el área bajo una línea contectando dos puntos. Tal como indica la figura de abajo, podemos mejorar este resultado buscando un trapecio que, conectando dos puntos de la curva, minice el error de la aproximación.</p>
 <a class="reference internal image-reference" href="../_images/gaussian_quadrature.png"><img alt="../_images/gaussian_quadrature.png" class="align-center" src="../_images/gaussian_quadrature.png" style="width: 550px;" /></a>
 <p>Considere la forma general para aproximar una integral en el intervalo <span class="math notranslate nohighlight">\(x\in[-1,1]\)</span>, mediante dos puntos <span class="math notranslate nohighlight">\(x_0\)</span> y <span class="math notranslate nohighlight">\(x_1\)</span></p>
@@ -740,22 +751,23 @@ c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/834bce7b61ea498f14da830bfa45fa3eb5a44365436cc9714c6a7eee1e348c27.png" src="../_images/834bce7b61ea498f14da830bfa45fa3eb5a44365436cc9714c6a7eee1e348c27.png" />
+<img alt="../_images/6f170096a8a087945ea79623454fcfe939c1e10d238fbc00f9be274a5ea601cd.png" src="../_images/6f170096a8a087945ea79623454fcfe939c1e10d238fbc00f9be274a5ea601cd.png" />
 </div>
 </div>
 </section>
 <section id="cuadratura-adaptativa-scipy-integrate-quad">
-<h3><span class="section-number">7.3.2. </span>Cuadratura adaptativa (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code>)<a class="headerlink" href="#cuadratura-adaptativa-scipy-integrate-quad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">7.3.2. </span>Cuadratura adaptativa (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code>)<a class="headerlink" href="#cuadratura-adaptativa-scipy-integrate-quad" title="Permalink to this heading">#</a></h3>
 <p>Los métodos de cuadratura adaptativa son los más utilizados hoy en dia. Estos métodos toman en cuenta cambios abruptos en regiones acotadas de una función, refinando el valor de <span class="math notranslate nohighlight">\(h\)</span> directamente en estos intervalos.</p>
 <a class="reference internal image-reference" href="../_images/adaptive_quadrature.png"><img alt="../_images/adaptive_quadrature.png" class="align-center" src="../_images/adaptive_quadrature.png" style="width: 450px;" /></a>
 <p>Aunque existen diversos tipos, podemos resumir el procedimiento mediante los siguientes pasos:</p>
 <ol class="arabic simple">
-<li><p>Supongamos que tenemos dos estimaciones <span class="math notranslate nohighlight">\(I_1\)</span> y <span class="math notranslate nohighlight">\(I_2\)</span> de la integral:
-\begin{equation*}
-I = \int_a^b f(x) dx,
-\end{equation*}
-donde <span class="math notranslate nohighlight">\(I_1\)</span> corresponde a la aproximación más precisa.</p></li>
+<li><p>Supongamos que tenemos dos estimaciones <span class="math notranslate nohighlight">\(I_1\)</span> y <span class="math notranslate nohighlight">\(I_2\)</span> de la integral:</p></li>
 </ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+I = \int_a^b f(x) dx,
+\end{equation*}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(I_1\)</span> corresponde a la aproximación más precisa.</p>
 <ol class="arabic simple" start="2">
 <li><p>Determine el error absoluto <span class="math notranslate nohighlight">\(\epsilon = I_1 - I_2\)</span>.</p></li>
 </ol>
@@ -829,7 +841,7 @@ Error absoluto = 2.22045e-14
 </section>
 </section>
 <section id="referencias">
-<h2><span class="section-number">7.4. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 21: Numerical Integration</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 21: Fórmula de integración de Newton-Cotes</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -894,8 +906,7 @@ Error absoluto = 2.22045e-14
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -941,7 +952,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -965,8 +976,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
