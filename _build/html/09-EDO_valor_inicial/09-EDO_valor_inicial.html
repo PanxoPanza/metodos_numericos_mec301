@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>9. Problemas de valor inicial &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -16,51 +17,52 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '09-EDO_valor_inicial/09-EDO_valor_inicial';</script>
@@ -70,7 +72,6 @@
     <link rel="prev" title="8. Derivación numérica" href="../08-Derivacion_numerica/08-Derivacion_numerica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,8 +87,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -95,6 +107,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -102,8 +115,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -119,8 +132,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -135,8 +147,6 @@
         <div class="sidebar-primary-item">
 
   
-    
-  
 
 <a class="navbar-brand logo" href="../intro.html">
   
@@ -148,14 +158,7 @@
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -213,9 +216,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -240,14 +243,14 @@
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/09-EDO_valor_inicial/09-EDO_valor_inicial.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
+   title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+    <img src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -322,19 +325,27 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -397,9 +408,9 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="problemas-de-valor-inicial">
-<h1><span class="section-number">9. </span>Problemas de valor inicial<a class="headerlink" href="#problemas-de-valor-inicial" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Problemas de valor inicial<a class="headerlink" href="#problemas-de-valor-inicial" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">9.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p>Las ecuaciones diferenciales son utilizadas para modelar sistemas en todos los campos de ciencia e ingeniería.</p>
 <p>Como definición general, un <strong>sistema de ecuaciones diferenciales</strong> define la relación entre:</p>
 <ul class="simple">
@@ -408,11 +419,11 @@
 <li><p>sus derivadas.</p></li>
 </ul>
 <section id="clasificacion-de-ecuaciones-diferenciales">
-<h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Permalink to this heading">#</a></h3>
 <p>Una ecuacion diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
 <p>Por ejemplo, la <strong>ecuación del péndulo</strong> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-869d217e-c5bb-4d93-aab8-4999e785b042">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-869d217e-c5bb-4d93-aab8-4999e785b042" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-40b246bc-9c05-4b22-bc1e-eaebd3add9c1">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-40b246bc-9c05-4b22-bc1e-eaebd3add9c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
@@ -420,8 +431,8 @@ ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 <p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la ecuación se transforma en una <strong>EDO lineal</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17a22b99-9169-446d-8bde-b5d15371881d">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-17a22b99-9169-446d-8bde-b5d15371881d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bb53758b-673d-4647-af91-daf9e4440643">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-bb53758b-673d-4647-af91-daf9e4440643" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tiene solución analítica.</p>
@@ -446,14 +457,14 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres variables dependientes (<span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, y <span class="math notranslate nohighlight">\(p\)</span>) en función de tres variables independientes (tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>). Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos <strong>clasificar una ecuación diferencial según el orden de sus derivadas.</strong></p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-afaf5c93-21d3-4cc3-a31c-90572b48fb9b">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-afaf5c93-21d3-4cc3-a31c-90572b48fb9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ae0c4dbf-18ab-468e-8089-644ef65be0e0">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-ae0c4dbf-18ab-468e-8089-644ef65be0e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="condiciones-de-borde-y-condiciones-iniciales">
-<h3><span class="section-number">9.1.2. </span>Condiciones de borde y condiciones iniciales<a class="headerlink" href="#condiciones-de-borde-y-condiciones-iniciales" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.1.2. </span>Condiciones de borde y condiciones iniciales<a class="headerlink" href="#condiciones-de-borde-y-condiciones-iniciales" title="Permalink to this heading">#</a></h3>
 <p>Las ecuaciones diferenciales presentadas anteriormente representan una formulación general asociada a un fenómeno físco (movimiento de un péndulo, distribución de temperaturas o movimiento de un fluido). Sin embargo, estas ecuaciones no están condicionadas a un problema en específico y, por lo tanto, su solución es definida en base a constantes de valor arbitrario.</p>
 <p>Por ejemplo, la versión lineal de la EDO del péndulo tiene como solución general:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -462,7 +473,7 @@ ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation*}\]</div>
 <p>Para asociar una ecuacion diferencial a un problema específico necesitamos <strong>condiciones de borde</strong> o <strong>condiciones iniciales</strong></p>
 <section id="condiciones-iniciales">
-<h4><span class="section-number">9.1.2.1. </span>Condiciones iniciales<a class="headerlink" href="#condiciones-iniciales" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.1.2.1. </span>Condiciones iniciales<a class="headerlink" href="#condiciones-iniciales" title="Permalink to this heading">#</a></h4>
 <p>Usamos <strong>condiciones iniciales</strong> si <strong>la variable dependiente <em>evoluciona</em> respecto a la variable independiente.</strong></p>
 <p>Por ejemplo, en el caso del péndulo, el ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> evoluciona respecto al tiempo, <span class="math notranslate nohighlight">\(t\)</span>, y por lo tanto necesitamos de condiciones inciales.</p>
 <p>Como condición inicial, por ejemplo, asumamos que el péndulo está en reposo con un ángulo <span class="math notranslate nohighlight">\(\Theta_0\)</span>:</p>
@@ -496,7 +507,7 @@ T_f(y = 0) = T_{f,i}
 <p>En este caso, la temperatura del agua (<span class="math notranslate nohighlight">\(T_f\)</span>) <em><strong>evoluciona</strong></em> al recorrer el eje axial de los tubos. Así, este problema también podría ser considerado como un problema con <strong>valor inicial</strong>.</p>
 </section>
 <section id="condiciones-de-borde">
-<h4><span class="section-number">9.1.2.2. </span>Condiciones de borde<a class="headerlink" href="#condiciones-de-borde" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">9.1.2.2. </span>Condiciones de borde<a class="headerlink" href="#condiciones-de-borde" title="Permalink to this heading">#</a></h4>
 <p>Usamos <strong>condiciones de borde</strong> si <strong>la variable dependiente está determinada en más de un valor de la variable independiente.</strong></p>
 <p>Por ejemplo, la distribución de temperaturas de una placa cuadrada de largo <span class="math notranslate nohighlight">\(L\)</span>, incialmente a temperatura <span class="math notranslate nohighlight">\(T_a\)</span>, con temperaturas en <span class="math notranslate nohighlight">\(T_h\)</span> y <span class="math notranslate nohighlight">\(T_c\)</span> en los bordes izquierdo y derecho, y tempertura <span class="math notranslate nohighlight">\(T_0\)</span> en la parte superior e inferior, está descrita por la ecuación:</p>
 <p><strong>Ecuación gobernante</strong></p>
@@ -522,12 +533,12 @@ T(0,x,y) = T_a
 </section>
 </section>
 <section id="aspectos-generales-de-los-metodos-numericos-para-solucion-de-edos">
-<h2><span class="section-number">9.2. </span>Aspectos generales de los métodos numéricos para solución de EDOs<a class="headerlink" href="#aspectos-generales-de-los-metodos-numericos-para-solucion-de-edos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.2. </span>Aspectos generales de los métodos numéricos para solución de EDOs<a class="headerlink" href="#aspectos-generales-de-los-metodos-numericos-para-solucion-de-edos" title="Permalink to this heading">#</a></h2>
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
-<h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Permalink to this heading">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f03d87e5-ed15-4c16-8a32-14d4888a9316">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-f03d87e5-ed15-4c16-8a32-14d4888a9316" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-028c6c70-94bd-43dc-aa93-11ba68264f69">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-028c6c70-94bd-43dc-aa93-11ba68264f69" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones inciales:
@@ -556,8 +567,8 @@ T(0,x,y) = T_a
 \left\{\begin{matrix} \Theta(0) \\ \dot{\Theta(0)}\end{matrix}\right\} = \left\{\begin{matrix} \Theta_0 \\ 0\end{matrix}\right\}
 \end{equation*}\]</div>
 <p>A partir de este procedimiento, <strong>hemos reducido una EDO de orden superior a una EDO de primer orden de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6459e7ad-be57-4a95-8298-bcec10d6a58c">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-6459e7ad-be57-4a95-8298-bcec10d6a58c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c39739b4-33d8-4d69-9b17-1cb1375537d9">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-c39739b4-33d8-4d69-9b17-1cb1375537d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec{y}}{dt} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -572,7 +583,7 @@ T(0,x,y) = T_a
 <p>Esto nos permite enfocarnos en métodos numéricos para resolver una EDO (o un sistema de EDOs) de primer orden.</p>
 </section>
 <section id="metodo-de-euler-explicito">
-<h3><span class="section-number">9.2.2. </span>Método de Euler explícito<a class="headerlink" href="#metodo-de-euler-explicito" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.2. </span>Método de Euler explícito<a class="headerlink" href="#metodo-de-euler-explicito" title="Permalink to this heading">#</a></h3>
 <p>Dada la condición inicial <span class="math notranslate nohighlight">\(\vec{y}(t_0)\)</span>, supongamos que queremos determinar el valor de <span class="math notranslate nohighlight">\(\vec{y}\)</span> en un tiempo <span class="math notranslate nohighlight">\(t_0 +\Delta t\)</span>.</p>
 <p>La forma más sencilla es mediante una expansión de Taylor centrada en <span class="math notranslate nohighlight">\(t_0\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -608,8 +619,9 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>                       <span class="c1"># paso de tiempo (dt)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>      <span class="c1"># lista de tiempos (arreglo desde 0 a 1s)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                       <span class="c1"># paso de tiempo (dt)</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>                <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos</span>
 
 <span class="c1"># Escribimos ecuación diferencial en formato de código </span>
 <span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="c1"># Ecuación gobernante dy = F(t,y)</span>
@@ -633,8 +645,11 @@ T(0,x,y) = T_a
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
+<span class="c1"># arreglo de tiempos para graficar sol exacta</span>
+<span class="n">t_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t_plot</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Evaluación ecuación $\frac</span><span class="si">{dy}{dt}</span><span class="s1"> = e^{-2t}; y(0) = -0.5$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y(t)&#39;</span><span class="p">)</span>
@@ -645,12 +660,12 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7e7b7897bcc53ca5e173dc518ea7383aa0a3472447ef371c7da456d4c0bf68bc.png" src="../_images/7e7b7897bcc53ca5e173dc518ea7383aa0a3472447ef371c7da456d4c0bf68bc.png" />
+<img alt="../_images/02aa6849e6e64424a2a22ae635a7f8f9ae300698594bfaff7eab4dd936488c68.png" src="../_images/02aa6849e6e64424a2a22ae635a7f8f9ae300698594bfaff7eab4dd936488c68.png" />
 </div>
 </div>
 </section>
 <section id="precision">
-<h3><span class="section-number">9.2.3. </span>Precisión<a class="headerlink" href="#precision" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.3. </span>Precisión<a class="headerlink" href="#precision" title="Permalink to this heading">#</a></h3>
 <p>En el ejemplo anterior, notamos una considerable <strong>mejora en la aproximación cuando disminumos <span class="math notranslate nohighlight">\(h\)</span></strong>, de <span class="math notranslate nohighlight">\(h = 0.1\)</span> a <span class="math notranslate nohighlight">\(h = 0.01\)</span>. Esto es una <strong>consecuencia directa del error de truncamiento <span class="math notranslate nohighlight">\(O(h^2)\)</span>.</strong></p>
 <p>Por otro lado, en ambos casos notamos que <strong>el error aumenta a medida que nos alejamos del valor inicial</strong>. Esta propagación del error ocurre porque el error de truncamiento nos entrega una estimación del error local, es decir, durante un solo paso del método.</p>
 <p>En base a esto, <strong>caracterizamos la presición de un método considerando dos tipos de error</strong>:</p>
@@ -660,7 +675,7 @@ T(0,x,y) = T_a
 </ul>
 </section>
 <section id="estabilidad">
-<h3><span class="section-number">9.2.4. </span>Estabilidad<a class="headerlink" href="#estabilidad" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.4. </span>Estabilidad<a class="headerlink" href="#estabilidad" title="Permalink to this heading">#</a></h3>
 <p>Otro término relevante en los métodos de solución de EDOs es la <strong>estabilidad.</strong> A diferencia de la precisión, que depende solo del método numérico escogido, <strong>la estabilidad depende de la EDO a resolver y del método escogido</strong>.</p>
 <p>Es decir, un método puede ser estable para algunos problemas e inestable para otros.</p>
 <p>Analicemos el problema de estabilidad con la siguiente EDO:</p>
@@ -678,8 +693,9 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.08</span>                       <span class="c1"># paso de tiempo</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>      <span class="c1"># lista de tiempos </span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.09</span>                      <span class="c1"># paso de tiempo</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>                <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos</span>
  
 <span class="c1"># Ecuación diferencial </span>
 <span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">y</span>        <span class="c1"># Ecuación gobernante dy = F(t,y)</span>
@@ -702,8 +718,11 @@ T(0,x,y) = T_a
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
+<span class="c1"># arreglo de tiempos para graficar sol exacta</span>
+<span class="n">t_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t_plot</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Evaluación ecuación $\frac</span><span class="si">{dy}{dt}</span><span class="s1"> = e^{-2t}; y(0) = -0.5$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y(t)&#39;</span><span class="p">)</span>
@@ -714,7 +733,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2855aca7c11fabf0b77d593fbc83564ef4d13c9d7b929760a3476d0edea478df.png" src="../_images/2855aca7c11fabf0b77d593fbc83564ef4d13c9d7b929760a3476d0edea478df.png" />
+<img alt="../_images/6be2f54153ff185c49116c658267eccc5082470f49ffbd8965fa68adc39ec30f.png" src="../_images/6be2f54153ff185c49116c658267eccc5082470f49ffbd8965fa68adc39ec30f.png" />
 </div>
 </div>
 <p>Observamos que el método de Euler converge cuando <span class="math notranslate nohighlight">\(h = 0.01\)</span>, pero oscila constantemente para <span class="math notranslate nohighlight">\(h &gt; 0.1\)</span>. Esta es un característica típica de un problema de estabilidad.</p>
@@ -723,10 +742,10 @@ T(0,x,y) = T_a
 <p>Sin embargo, <strong>no existe una regla universal para identificar las condiciones de inestabilidad</strong> y, en general, depende del tipo de ecuación diferencial, el método a utilizar, y el paso de tiempo <span class="math notranslate nohighlight">\(\Delta t = h\)</span>.</p>
 </section>
 <section id="metodo-de-euler-implicito">
-<h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Permalink to this heading">#</a></h3>
 <p>Alternativamente, podemos definir el argumento de <span class="math notranslate nohighlight">\(\vec{F}(t,\vec{y})\)</span> en función de los valores futuros <span class="math notranslate nohighlight">\(t_{i+1}\)</span> y <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f16c746-4a5d-459c-a3f2-544f1c7b6ebb">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-4f16c746-4a5d-459c-a3f2-544f1c7b6ebb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2587e96-c3da-49f7-a252-27f050944e1e">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-e2587e96-c3da-49f7-a252-27f050944e1e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}\left(t_{i+1},\vec{y}_{i+1}\right) + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como <strong>implícita</strong> debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -754,8 +773,9 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                   <span class="c1"># paso de tiempo</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>  <span class="c1"># lista de tiempos </span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                    <span class="c1"># paso de tiempo</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>             <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="c1"># lista de tiempos</span>
 
 <span class="c1"># Ecuación diferencial </span>
 <span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">y</span>    <span class="c1"># Ecuación gobernante dy = F(t,y)</span>
@@ -788,19 +808,22 @@ T(0,x,y) = T_a
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 
+<span class="c1"># arreglo de tiempos para graficar sol exacta</span>
+<span class="n">t_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler implícito&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_exact</span><span class="p">(</span><span class="n">t_plot</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solución exacta&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Evaluación ecuación $\frac</span><span class="si">{dy}{dt}</span><span class="s1"> = e^{-2t}; y(0) = -0.5$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y(t)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fd55a61da16b90cdd1b6d29a35a17e18fff15bbcf5f38f1eb101f9bdf38470f2.png" src="../_images/fd55a61da16b90cdd1b6d29a35a17e18fff15bbcf5f38f1eb101f9bdf38470f2.png" />
+<img alt="../_images/683df1f9ee1b777d63c11042cf087f4e2d5236f38dba60b1c6adef2b486d5ea7.png" src="../_images/683df1f9ee1b777d63c11042cf087f4e2d5236f38dba60b1c6adef2b486d5ea7.png" />
 </div>
 </div>
 <p>En el ejemplo vemos que, si bien la precisión sigue condicionada al error de truncamiento <span class="math notranslate nohighlight">\(O(h^2)\)</span>, el método no presenta problemas de inestabilidad</p>
@@ -811,18 +834,18 @@ T(0,x,y) = T_a
 </section>
 </section>
 <section id="metodos-de-paso-simple-runge-kutta">
-<h2><span class="section-number">9.3. </span>Métodos de paso simple (Runge-Kutta)<a class="headerlink" href="#metodos-de-paso-simple-runge-kutta" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.3. </span>Métodos de paso simple (Runge-Kutta)<a class="headerlink" href="#metodos-de-paso-simple-runge-kutta" title="Permalink to this heading">#</a></h2>
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-429a6489-88f2-4a80-ab58-4d65eb62c5a6">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-429a6489-88f2-4a80-ab58-4d65eb62c5a6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2aee6b81-c361-4fb4-8a2e-40d48ad5e027">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-2aee6b81-c361-4fb4-8a2e-40d48ad5e027" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd71a50e-04db-45af-8f12-69b9e034d330">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-fd71a50e-04db-45af-8f12-69b9e034d330" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d857cd0-e9db-44a1-858e-ee68b05f876f">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-8d857cd0-e9db-44a1-858e-ee68b05f876f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -837,19 +860,22 @@ k_n &amp;= F(x_i+p_{n-1}h,y_i+q_{n-1,1}k_1h++q_{n-1,2}k_2h+\cdots q_{n-1,n-1}k_{
 <p>donde <span class="math notranslate nohighlight">\(p_m\)</span> y <span class="math notranslate nohighlight">\(q_{m,n}\)</span> son constantes.</p>
 <p>Notar que los valores de <span class="math notranslate nohighlight">\(k_j\)</span> están definidos por recurrencia, es decir <span class="math notranslate nohighlight">\(k_j\)</span> depende de <span class="math notranslate nohighlight">\(k_{j-1}, k_{j-2}, \cdots, k_{1}\)</span></p>
 <p>Para obtener una formulación específica debemos especificar <span class="math notranslate nohighlight">\(n\)</span>.</p>
-<p>Una vez definido el valor de <span class="math notranslate nohighlight">\(n\)</span>, los valores de <span class="math notranslate nohighlight">\(a_j\)</span>, <span class="math notranslate nohighlight">\(p_m\)</span> y <span class="math notranslate nohighlight">\(q_{m,n}\)</span> se determinan igualando la expresión <span class="math notranslate nohighlight">\(y_{i+1} = y_i + \phi h\)</span> con los términos de la expansión de Taylor (<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter22.05-Predictor-Corrector-Methods.html#second-order-runge-kutta-method">más info acá</a>):</p>
+<p>Una vez definido el valor de <span class="math notranslate nohighlight">\(n\)</span>, debemos igualar la expresión <span class="math notranslate nohighlight">\(y_{i+1} = y_i + \phi h\)</span> con los <span class="math notranslate nohighlight">\(n\)</span> términos de la expansión de Taylor:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1}{n!}y^{(n)}(t_i)h^n \\
- &amp;= y(t_i) + F(t_i,y_i)h + \frac{1}{2!}F'(t_i,y_i)h^2 + \cdots + \frac{1}{n!}F^{(n-1)}(t_i,y_i)h^n 
+y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1}{n!}y^{(n)}(t_i)h^n 
+\\
+ &amp;= y(t_i) + F(t_i,y_i)h + \frac{1}{2!}F'(t_i,y_i)h^2 + \cdots + \frac{1}{n!}F^{(n-1)}(t_i,y_i)h^n + O\left(h^{n+1}\right) 
 \end{align*}\]</div>
-<p>Así, por ejemplo, la formulación para <span class="math notranslate nohighlight">\(n = 1\)</span> permite aproximar hasta la primera derivada de la serie de Taylor y, por lo tanto, tiene un error de truncamiento local <span class="math notranslate nohighlight">\(O(h^2)\)</span>.</p>
-<p><strong>La formula RK1 corresponde al método de Euler explícito.</strong></p>
+<p>A partir de esta igualdad generamos el número de ecuaciones necesarias para determinar <span class="math notranslate nohighlight">\(a_j\)</span>, <span class="math notranslate nohighlight">\(p_m\)</span> y <span class="math notranslate nohighlight">\(q_{m,n}\)</span>. Para más información, revisar el desarrollo para <span class="math notranslate nohighlight">\(n = 2\)</span> <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter22.05-Predictor-Corrector-Methods.html#second-order-runge-kutta-method">acá</a>.</p>
+<p>Lo importante de esta formulación es notar que el <strong>número de parámetros <span class="math notranslate nohighlight">\(k_n\)</span> tendrá asociado un error local <span class="math notranslate nohighlight">\(O(h^{n+1})\)</span></strong>, debido al truncamiento de la série de Taylor.</p>
+<p>Así, por ejemplo, la formulación para <span class="math notranslate nohighlight">\(n = 1\)</span> permite aproximar hasta la primera derivada de la serie de Taylor. El fórmula resultante, que corresponde a <strong>RK1, es el método de Euler explícito</strong> que tiene un <strong>error de truncamiento local <span class="math notranslate nohighlight">\(O(h^2)\)</span></strong>.</p>
+<p>Igualmente, un RK2, que corresponde a <span class="math notranslate nohighlight">\(n=2\)</span> (<span class="math notranslate nohighlight">\(\phi = a_1k_1 + a_2k_2\)</span>), tendría un error del orden <span class="math notranslate nohighlight">\(O(h^3)\)</span>.</p>
 <section id="runge-kutta-de-segundo-orden-rk2">
-<h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Permalink to this heading">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e863c217-b0d0-42ba-a864-c26f94678808">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-e863c217-b0d0-42ba-a864-c26f94678808" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6896e143-f05c-44d6-9169-a15b35c9da54">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-6896e143-f05c-44d6-9169-a15b35c9da54" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -891,7 +917,7 @@ k_2 &amp;= F(t_i+h/2,y_i+k_1h/2)
 <a class="reference internal image-reference" href="../_images/Midpoint_method.png"><img alt="../_images/Midpoint_method.png" class="align-center" src="../_images/Midpoint_method.png" style="width: 700px;" /></a>
 </section>
 <section id="runge-kutta-de-cuarto-orden-rk4">
-<h3><span class="section-number">9.3.2. </span>Runge-Kutta de cuarto orden (RK4)<a class="headerlink" href="#runge-kutta-de-cuarto-orden-rk4" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.3.2. </span>Runge-Kutta de cuarto orden (RK4)<a class="headerlink" href="#runge-kutta-de-cuarto-orden-rk4" title="Permalink to this heading">#</a></h3>
 <p>Los métodos RK de cuarto orden son los más populares. Al igual que con RK2, existen muchas versiones. La más popular es:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -908,7 +934,7 @@ k_4 &amp;= F\left(t_i+h,y_i+k_3h\right)
 </section>
 </section>
 <section id="metodos-multipasos">
-<h2><span class="section-number">9.4. </span>Métodos multipasos<a class="headerlink" href="#metodos-multipasos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.4. </span>Métodos multipasos<a class="headerlink" href="#metodos-multipasos" title="Permalink to this heading">#</a></h2>
 <p>Los métodos discutidos hasta ahora se clasifican como <strong>métodos de paso simple</strong> debido a que el valor futuro <span class="math notranslate nohighlight">\(y_{i+1}\)</span> es determinado exclusivamente por la predicción anterior en el tiempo <span class="math notranslate nohighlight">\(t_i\)</span>. Esto implica que los métodos no retienen la información para la predicción de aproximaciones en itereciones futuras (es decir, <span class="math notranslate nohighlight">\(y_2\)</span> considera el resultado en <span class="math notranslate nohighlight">\(t_1\)</span>, pero no en <span class="math notranslate nohighlight">\(t_0\)</span>).</p>
 <p>Este comportamiento hace que los métodos de paso simple sean ineficientes para problemas clasificados como <em>rígidos</em>, algo que discutiremos al final de esta unidad.</p>
 <p>Los <strong>métodos multipasos, o de paso múltiple</strong> corrigen este comportamiento mediante polinomios de interpolación construidos a partir de una serie de estimaciones en tiempos previos, permitiendo mejorar la estimación de la trayectoria de la solución.</p>
@@ -917,7 +943,7 @@ k_4 &amp;= F\left(t_i+h,y_i+k_3h\right)
 <p>Los métodos más utilizados son los métodos de Adams-Bashforth, Adamns-Moulton y las <strong>fórmulas de diferenciación hacia atrás (BDFs)</strong>. Esta última está implementada en la librería python oficial para resolver EDO con valor inicial.</p>
 </section>
 <section id="solucion-de-edos-en-python-scipy-integrate-solve-ivp">
-<h2><span class="section-number">9.5. </span>Solución de EDOs en python (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp</span></code>)<a class="headerlink" href="#solucion-de-edos-en-python-scipy-integrate-solve-ivp" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.5. </span>Solución de EDOs en python (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp</span></code>)<a class="headerlink" href="#solucion-de-edos-en-python-scipy-integrate-solve-ivp" title="Permalink to this heading">#</a></h2>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> permite resolver sistemas de EDOs con valor inicial.</p>
 <p>Considerando los argumentos mínimos para llamar la función:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ipv</span>
@@ -1004,11 +1030,11 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ti</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>                       <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>                       <span class="c1"># tiempo inicial (ti) y final (tf)</span>
 
 <span class="c1"># resolvemos la EDO dy/dt = F(t,y)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span>    <span class="o">=</span> <span class="n">F</span><span class="p">,</span>          <span class="c1"># Función F(t,y)</span>
-                <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">ti</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span>   <span class="c1"># Intervalo de tiempo</span>
+                <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span>   <span class="c1"># Intervalo de tiempo</span>
                 <span class="n">y0</span>     <span class="o">=</span> <span class="n">y0</span><span class="p">)</span>         <span class="c1"># Condición inicial</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
 </pre></div>
@@ -1119,7 +1145,7 @@ Velocidad angular en t = 4.3s: 1.226°/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/165afa7875faa83a44defcbaf5b76c64ee78cbe79546f693fdc1ea2d2a208908.png" src="../_images/165afa7875faa83a44defcbaf5b76c64ee78cbe79546f693fdc1ea2d2a208908.png" />
+<img alt="../_images/feb9a2e86ae3a042cf8b8b92075205e2ed7ec9078ad089b6b3c230613212ea0e.png" src="../_images/feb9a2e86ae3a042cf8b8b92075205e2ed7ec9078ad089b6b3c230613212ea0e.png" />
 </div>
 </div>
 <p>Alternativamente, podemos definir los tiempos donde queremos conocer nuestra solución utilizando el argumento <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>. Este argumento puede ser un valor específico o un arreglo.</p>
@@ -1128,11 +1154,11 @@ Velocidad angular en t = 4.3s: 1.226°/s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>                           <span class="c1"># paso de tiempo (s)</span>
 <span class="n">t_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>         <span class="c1"># arreglo de tiempos a evaluar</span>
-<span class="n">ti</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>                     <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span>                     <span class="c1"># tiempo inicial (ti) y final (tf)</span>
 
 <span class="c1"># Resolvemos la EDO dy/dt = F(t,y)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span>    <span class="o">=</span> <span class="n">F</span><span class="p">,</span>        <span class="c1"># Función F(t,y)</span>
-                <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">ti</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span> <span class="c1"># Intervalo de tiempo</span>
+                <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span> <span class="c1"># Intervalo de tiempo</span>
                 <span class="n">y0</span>     <span class="o">=</span> <span class="n">y0</span><span class="p">,</span>       <span class="c1"># Condición inicial</span>
                 <span class="n">t_eval</span> <span class="o">=</span> <span class="n">t_array</span><span class="p">)</span>  <span class="c1"># Tiempos de evaluación de la solución</span>
 </pre></div>
@@ -1169,14 +1195,14 @@ Velocidad angular en t = 4.3s: 1.226°/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/246817ee3029cf481833afefe1b9fc639bcf0d71a1d5545dc8f8718025f5f950.png" src="../_images/246817ee3029cf481833afefe1b9fc639bcf0d71a1d5545dc8f8718025f5f950.png" />
+<img alt="../_images/848a3944dafb426ca45575910937dcf526fa8e23848083c40f540c125294ecdf.png" src="../_images/848a3944dafb426ca45575910937dcf526fa8e23848083c40f540c125294ecdf.png" />
 </div>
 </div>
 </section>
 <section id="rigidez-en-edos">
-<h2><span class="section-number">9.6. </span>Rigidez en EDOs<a class="headerlink" href="#rigidez-en-edos" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.6. </span>Rigidez en EDOs<a class="headerlink" href="#rigidez-en-edos" title="Permalink to this heading">#</a></h2>
 <section id="rigidez">
-<h3><span class="section-number">9.6.1. </span>Rigidez<a class="headerlink" href="#rigidez" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.6.1. </span>Rigidez<a class="headerlink" href="#rigidez" title="Permalink to this heading">#</a></h3>
 <p>Una EDO se define como <em><strong>rígida</strong></em> si una de sus componentes cambia rápidamente respecto a otra. Esto provoca problemas de estabilidad en la solución.</p>
 <p>Consideremos por ejemplo la ecuación:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -1194,7 +1220,7 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 <p>Como el método no conoce la solución analítica, el término transitorio genera problemas de inestabilidad si el valor de <span class="math notranslate nohighlight">\(\Delta t\)</span> es muy grande; o de convergencia, si <span class="math notranslate nohighlight">\(\Delta t\)</span> es muy pequeño.</p>
 </section>
 <section id="recomendaciones">
-<h3><span class="section-number">9.6.2. </span>Recomendaciones<a class="headerlink" href="#recomendaciones" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">9.6.2. </span>Recomendaciones<a class="headerlink" href="#recomendaciones" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Para EDOs no rígidas</strong>, se recomiendan los métodos <code class="docutils literal notranslate"><span class="pre">RK45</span></code>, <code class="docutils literal notranslate"><span class="pre">RK23</span></code> y <code class="docutils literal notranslate"><span class="pre">DOP853</span></code>.</p></li>
 <li><p><strong>Para EDOs rígidas</strong>, se recomienda los métodos <code class="docutils literal notranslate"><span class="pre">Radau</span></code> y <code class="docutils literal notranslate"><span class="pre">BDF</span></code>.</p></li>
@@ -1208,7 +1234,7 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos nuestra EDO en código</span>
-<span class="n">ti</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>                            <span class="c1"># intervalo de tiempo</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>                            <span class="c1"># intervalo de tiempo</span>
 <span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="o">-</span> <span class="mi">100000</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="c1"># función F(t,y)</span>
 </pre></div>
 </div>
@@ -1223,14 +1249,14 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = RK45</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (ti, tf), y0 = [1], method = &#39;RK45&#39;)
+<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;RK45&#39;)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13.4 s, sys: 62.5 ms, total: 13.4 s
-Wall time: 13.4 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.9 s, sys: 99.8 ms, total: 15 s
+Wall time: 16.3 s
 Número de subdivisiones de variable &quot;t&quot;: 302037
 </pre></div>
 </div>
@@ -1239,14 +1265,14 @@ Número de subdivisiones de variable &quot;t&quot;: 302037
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = BDF</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (ti, tf), y0 = [1], method = &#39;BDF&#39;)
+<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;BDF&#39;)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
-Wall time: 6.97 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.35 ms, sys: 0 ns, total: 8.35 ms
+Wall time: 8.8 ms
 Número de subdivisiones de variable &quot;t&quot;: 56
 </pre></div>
 </div>
@@ -1255,14 +1281,14 @@ Número de subdivisiones de variable &quot;t&quot;: 56
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = Radau</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (ti, tf), y0 = [1], method = &#39;Radau&#39;)
+<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;Radau&#39;)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.6 ms, sys: 0 ns, total: 15.6 ms
-Wall time: 2.46 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.34 ms, sys: 0 ns, total: 2.34 ms
+Wall time: 2.35 ms
 Número de subdivisiones de variable &quot;t&quot;: 7
 </pre></div>
 </div>
@@ -1272,7 +1298,7 @@ Número de subdivisiones de variable &quot;t&quot;: 7
 </section>
 </section>
 <section id="referencias">
-<h2><span class="section-number">9.7. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">9.7. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 22: ODEs Initial-Value Problems</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter22.00-ODE-Initial-Value-Problems.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 25: Métodos de Runge-Kutta</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1337,8 +1363,7 @@ Número de subdivisiones de variable &quot;t&quot;: 7
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1401,7 +1426,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1425,8 +1450,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
