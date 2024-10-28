@@ -38,7 +38,7 @@ The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
 # Usamos method = RK45
-%time sol = solve_ivp(fun = F,t_span = (ti, tf), y0 = [1], method = 'RK45')
+%time sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = 'RK45')
 print('Número de subdivisiones de variable "t": %i' % sol.t.shape[0])
 -------------------
 
