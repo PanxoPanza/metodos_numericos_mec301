@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>6. Algortimos de búsqueda de raíces &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -29,40 +28,36 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '06-Root-finding/06-Root-finding';</script>
@@ -158,7 +153,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -216,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -243,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/06-Root-finding/06-Root-finding.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -343,9 +349,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -401,9 +407,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algortimos-de-busqueda-de-raices">
-<h1><span class="section-number">6. </span>Algortimos de búsqueda de raíces<a class="headerlink" href="#algortimos-de-busqueda-de-raices" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Algortimos de búsqueda de raíces<a class="headerlink" href="#algortimos-de-busqueda-de-raices" title="Link to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>Consideremos el problema de caída de presión <span class="math notranslate nohighlight">\(\Delta P\)</span> al mover un fluído con densidad <span class="math notranslate nohighlight">\(\rho\)</span> y viscosidad cinemática <span class="math notranslate nohighlight">\(\nu\)</span>, a través de una tubería de largo <span class="math notranslate nohighlight">\(L\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/presure_drop.png"><img alt="../_images/presure_drop.png" class="align-center" src="../_images/presure_drop.png" style="width: 350px;" /></a>
 <p>Para un fluido que fluye a una velocidad <span class="math notranslate nohighlight">\(V\)</span>, la caída de presión está dada por:</p>
@@ -428,7 +434,7 @@ f(x) = \frac{1}{\sqrt{x}} + 2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}
 <p>En esta unidad revisaremos los aspectos generales de los algoritmos para busqueda de raíces de una función.</p>
 </section>
 <section id="busqueda-de-raices-para-una-funcion-escalar">
-<h2><span class="section-number">6.2. </span>Búsqueda de raíces para una función escalar<a class="headerlink" href="#busqueda-de-raices-para-una-funcion-escalar" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Búsqueda de raíces para una función escalar<a class="headerlink" href="#busqueda-de-raices-para-una-funcion-escalar" title="Link to this heading">#</a></h2>
 <p>Una función escalar es una función con una o más variables dependientes, que entrega un valor unidimencional.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -444,7 +450,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 </ul>
 <p>En esta unidad veremos el método de la bisección (intervalo cerrado) y el método de Newton-Raphson (intervalo abierto).</p>
 <section id="metodo-de-la-biseccion-intervalo-acotado">
-<h3><span class="section-number">6.2.1. </span>Método de la Bisección (intervalo acotado)<a class="headerlink" href="#metodo-de-la-biseccion-intervalo-acotado" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Método de la Bisección (intervalo acotado)<a class="headerlink" href="#metodo-de-la-biseccion-intervalo-acotado" title="Link to this heading">#</a></h3>
 <p>El método de la bisección es un método de intervalo acotado que se basa en el teorema del valor intermedio</p>
 <blockquote>
 <div><p><strong>Teorema del valor intermedio</strong> para una función <span class="math notranslate nohighlight">\(f(x)\)</span> continua en entre los puntos <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span>, tal que <span class="math notranslate nohighlight">\(f(a)f(b) &lt; 0\)</span>, existe un valor <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span>, tal que <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.</p>
@@ -457,7 +463,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 <p>El algoritmo continua acotando el intervalo hasta encontrar la raíz de <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" class="align-center" src="../_images/bisection.png" style="width: 400px;" /></a>
 <section id="criterio-de-convergencia">
-<h4><span class="section-number">6.2.1.1. </span>Criterio de convergencia<a class="headerlink" href="#criterio-de-convergencia" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.2.1.1. </span>Criterio de convergencia<a class="headerlink" href="#criterio-de-convergencia" title="Link to this heading">#</a></h4>
 <p>Para un nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> obtenido a partir de un valor <span class="math notranslate nohighlight">\(x_k\)</span>, definimos el <strong>criterio de convergencia</strong> en base a:</p>
 <ul class="simple">
 <li><p><strong>error absoluto</strong></p></li>
@@ -585,7 +591,7 @@ x_sol = -0.70347, f(x_sol) = -1.712e-06
 </section>
 </section>
 <section id="metodo-de-newton-raphson-intervalo-abierto">
-<h3><span class="section-number">6.2.2. </span>Método de Newton-Raphson (intervalo abierto)<a class="headerlink" href="#metodo-de-newton-raphson-intervalo-abierto" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>Método de Newton-Raphson (intervalo abierto)<a class="headerlink" href="#metodo-de-newton-raphson-intervalo-abierto" title="Link to this heading">#</a></h3>
 <p>Es el método de intervalo abierto más popular. Se origina a partir de series de Taylor</p>
 <p>Supongamos que <span class="math notranslate nohighlight">\(x_0\)</span> es un punto cercano a la raíz de una función <span class="math notranslate nohighlight">\(f(x)\)</span>. Mediante la aproximación lineal, la raíz de la función <span class="math notranslate nohighlight">\(x_1\)</span> debe satisfacer la ecuación:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -599,8 +605,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9264d72-40ef-425b-aa45-84647f32d9c0">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-c9264d72-40ef-425b-aa45-84647f32d9c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-422b6c66-722a-4e87-9a35-3c865362c96d">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-422b6c66-722a-4e87-9a35-3c865362c96d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -692,7 +698,7 @@ x_sol = -0.703, f(x_sol) = 0.000e+00
 </div>
 <p>En comparación con el método de la bisección, Newton-Raphson es capaz de encontrar la raíz con menor número de iteraciones.</p>
 <section id="caso-f-x-no-es-analitica-metodo-de-la-secante">
-<h4><span class="section-number">6.2.2.1. </span>Caso <span class="math notranslate nohighlight">\(f'(x)\)</span> no es analítica (Método de la secante)<a class="headerlink" href="#caso-f-x-no-es-analitica-metodo-de-la-secante" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.2.2.1. </span>Caso <span class="math notranslate nohighlight">\(f'(x)\)</span> no es analítica (Método de la secante)<a class="headerlink" href="#caso-f-x-no-es-analitica-metodo-de-la-secante" title="Link to this heading">#</a></h4>
 <p>Otros métodos de intervalo abierto se diferencian de Newton-Raphson en la forma de determinar <span class="math notranslate nohighlight">\(f'(x)\)</span>. Esto debido a que no siempre es posible determinar la derviada de forma analítica.</p>
 <p>Por ejemplo, en el <strong>método de la secante</strong>, aproxima <span class="math notranslate nohighlight">\(f'(x)\)</span> por <span class="math notranslate nohighlight">\(f'(x_k) = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}\)</span>, lo que deriva en la siguiente fórmula recursiva:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -702,13 +708,13 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 <p>Notar que, debido a esta fórmula, el método de la secante requiere <strong>dos valores iniciales, <span class="math notranslate nohighlight">\(x_0\)</span> y <span class="math notranslate nohighlight">\(x_1\)</span></strong></p>
 </section>
 <section id="problemas-de-convergencia">
-<h4><span class="section-number">6.2.2.2. </span>Problemas de convergencia<a class="headerlink" href="#problemas-de-convergencia" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.2.2.2. </span>Problemas de convergencia<a class="headerlink" href="#problemas-de-convergencia" title="Link to this heading">#</a></h4>
 <p>Una desventaja general en los métodos de intervalo abierto es que pueden sufrir serios problemas de convergencia si el valor <span class="math notranslate nohighlight">\(x_k\)</span> cae en un punto de la función donde <span class="math notranslate nohighlight">\(f'(x_k) \approx 0\)</span></p>
 <p>En esta animación vemos como el número de iteraciones “<span class="math notranslate nohighlight">\(n\)</span>” aumenta considerablemente debido a problemas de convergencia en los puntos <span class="math notranslate nohighlight">\(f'(x_k) \approx 0\)</span>. En la notación, <span class="math notranslate nohighlight">\(y = f(x_k)\)</span>
 <a class="reference internal" href="../_images/newton_raphson_bad.gif"><img alt="../_images/newton_raphson_bad.gif" class="align-center" src="../_images/newton_raphson_bad.gif" style="width: 600px;" /></a></p>
 <center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center></section>
 <section id="control-de-la-solucion">
-<h4><span class="section-number">6.2.2.3. </span>Control de la solución<a class="headerlink" href="#control-de-la-solucion" title="Permalink to this heading">#</a></h4>
+<h4><span class="section-number">6.2.2.3. </span>Control de la solución<a class="headerlink" href="#control-de-la-solucion" title="Link to this heading">#</a></h4>
 <p>Otra desventaja de los métodos de intervalo abierto es que estos no tienen control sobre la raíz encontrada.</p>
 <p>Por ejemplo, la función <span class="math notranslate nohighlight">\(f(x) = x^3 - 100x^2 - x + 100\)</span> tiene dos raíces <span class="math notranslate nohighlight">\(x^* = 1\)</span> y <span class="math notranslate nohighlight">\(x^* = 100\)</span>. Analicemos como Newton-Raphson entrega distintas soluciones dependiendo del valor inicial <span class="math notranslate nohighlight">\(x_0 = 0.01\)</span> y <span class="math notranslate nohighlight">\(x_0 = 0\)</span>.</p>
 <div class="cell docutils container">
@@ -769,7 +775,7 @@ x_sol = 100.000, f(x_sol) = 0.000e+00
 </section>
 </section>
 <section id="metodos-combinados">
-<h3><span class="section-number">6.2.3. </span>Métodos combinados<a class="headerlink" href="#metodos-combinados" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.3. </span>Métodos combinados<a class="headerlink" href="#metodos-combinados" title="Link to this heading">#</a></h3>
 <p>Los metodos más sofisticados para búsqueda de raices combinan métodos de intervalo abierto y cerrado. Por un lado, el método de intervalo abierto permite una convergencia más rápida, mientras que el método de intervalo cerrado permite acotar la solución.</p>
 <p>En términos generales, los métodos combinados operan de la siguente forma.</p>
 <ul class="simple">
@@ -780,7 +786,7 @@ x_sol = 100.000, f(x_sol) = 0.000e+00
 <p>Por ejemplo, el <strong>método de Brent’s</strong> combina un método de intervalo abierto (como Newton-Raphson o secante), con el método de la bisección. Más información en las referencias</p>
 </section>
 <section id="raices-de-funcion-escalar-en-python">
-<h3><span class="section-number">6.2.4. </span>Raices de función escalar en python<a class="headerlink" href="#raices-de-funcion-escalar-en-python" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.2.4. </span>Raices de función escalar en python<a class="headerlink" href="#raices-de-funcion-escalar-en-python" title="Link to this heading">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">root_scalar</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>, permite determinar raíces de una función escalar.</p>
 <p>Los argumento más relevantes en esta función son:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -1011,7 +1017,7 @@ Cond. inicial y derivada (método po defecto):
 </section>
 </section>
 <section id="busqueda-de-raices-para-funciones-vectoriales">
-<h2><span class="section-number">6.3. </span>Búsqueda de raíces para funciones vectoriales<a class="headerlink" href="#busqueda-de-raices-para-funciones-vectoriales" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Búsqueda de raíces para funciones vectoriales<a class="headerlink" href="#busqueda-de-raices-para-funciones-vectoriales" title="Link to this heading">#</a></h2>
 <p>Una función vectorial es una función con una o más variables dependientes, que entrega un vector de múltiples dimensiones.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1039,7 +1045,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 \end{equation*}\]</div>
 <p>En este capítulo revisaremos los aspectos generales de los métodos numéricos para resolver este problema.</p>
 <section id="metodos-de-busqueda-lineal">
-<h3><span class="section-number">6.3.1. </span>Métodos de búsqueda lineal<a class="headerlink" href="#metodos-de-busqueda-lineal" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.1. </span>Métodos de búsqueda lineal<a class="headerlink" href="#metodos-de-busqueda-lineal" title="Link to this heading">#</a></h3>
 <p>Para un vector <span class="math notranslate nohighlight">\(\vec{x} = \{x_1, x_2, ... x_n\}\)</span>, y una función vectorial <span class="math notranslate nohighlight">\(\vec{F}\left(\vec{x}\right) = \big\{f_1\left(\vec{x}\right),f_2\left(\vec{x}\right), ... f_n\left(\vec{x}\right)\big\}\)</span>, consideremos la forma generalizada del método de Newton-Raphson:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1070,7 +1076,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <p>Entre los más conocidos tenemos el <strong>método de Broyden</strong>. Más información en las referencias</p>
 </section>
 <section id="metodos-de-region-de-confianza">
-<h3><span class="section-number">6.3.2. </span>Métodos de región de confianza<a class="headerlink" href="#metodos-de-region-de-confianza" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.2. </span>Métodos de región de confianza<a class="headerlink" href="#metodos-de-region-de-confianza" title="Link to this heading">#</a></h3>
 <p>En general, determinar el Jacobiano de una función vectorial es complicado. A raíz de esto nacen los métodos de región de confianza, los cuales se basan en una aproximación de <span class="math notranslate nohighlight">\(\vec{F}\)</span> en forma de paraboloide. Esta aproximación simplifica el cálculo del Jacobiano.</p>
 <p>Se define como <strong>región de confianza a la región donde la función puede ser aproximada por un parabolide</strong>.</p>
 <p>En términos generales, los métodos de región de confianza operan de la siguiente forma:</p>
@@ -1084,7 +1090,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <p>Mayor información sobre estos métodos <a class="reference external" href="http://www.applied-mathematics.net/optimization/optimizationIntro.html">acá</a></p>
 </section>
 <section id="raices-de-funcion-vectorial-en-python">
-<h3><span class="section-number">6.3.3. </span>Raíces de función vectorial en python<a class="headerlink" href="#raices-de-funcion-vectorial-en-python" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.3.3. </span>Raíces de función vectorial en python<a class="headerlink" href="#raices-de-funcion-vectorial-en-python" title="Link to this heading">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">fsolve</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> permite encontrar las raíces de una función vectorial.</p>
 <p>Los principales inputs de la función son:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">func</span><span class="p">,</span>             <span class="c1"># función vectorial objetivo (callable)</span>
@@ -1141,7 +1147,7 @@ xy-y=5
 </section>
 </section>
 <section id="referencias">
-<h2><span class="section-number">6.4. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.4. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 19: Root Finding</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Parte dos: Raíces de ecuaciones</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1261,7 +1267,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>

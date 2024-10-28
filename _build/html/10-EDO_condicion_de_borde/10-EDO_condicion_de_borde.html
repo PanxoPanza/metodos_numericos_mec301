@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>10. Problema de valor en la frontera &#8212; MEC301 - Métodos Numéricos</title>
   
@@ -29,40 +28,36 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '10-EDO_condicion_de_borde/10-EDO_condicion_de_borde';</script>
@@ -158,7 +153,18 @@ const thebe_selector_output = ".output, .cell_output"
     <p class="title logo__title">MEC301 - Métodos Numéricos</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -216,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -243,14 +249,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/PanxoPanza/metodos_numericos_mec301/blob/main/10-EDO_condicion_de_borde/10-EDO_condicion_de_borde.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -343,9 +349,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -397,9 +403,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="problema-de-valor-en-la-frontera">
-<h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">10. </span>Problema de valor en la frontera<a class="headerlink" href="#problema-de-valor-en-la-frontera" title="Link to this heading">#</a></h1>
 <section id="introduccion">
-<h2><span class="section-number">10.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>En la unidad anterior nos enfocamos en ecuación diferenciales ordinarias condionadas por valores iniciales o <strong>problema de valor inicial</strong>.</p>
 <p>Repasando la ecuación del péndulo:</p>
 <p><strong>Ecuación gobernante</strong></p>
@@ -413,7 +419,7 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 \dot{\Theta}(t = 0) &amp;= 0 \\
 \Theta(t = 0) &amp;= \Theta_0
 \end{align*}\]</div>
-<p>Ahora, supontagamos que en el problema del péndulo conocemos el ángulo en <span class="math notranslate nohighlight">\(t = 0\)</span>, y en un tiempo <span class="math notranslate nohighlight">\(t = t_1\)</span>, tal que <span class="math notranslate nohighlight">\(\Theta(t_1) = \Theta_1\)</span>.</p>
+<p>Ahora, supongamos que en el problema del péndulo conocemos el ángulo en <span class="math notranslate nohighlight">\(t = 0\)</span>, y en un tiempo <span class="math notranslate nohighlight">\(t = t_1\)</span>, tal que <span class="math notranslate nohighlight">\(\Theta(t_1) = \Theta_1\)</span>.</p>
 <p>En este caso, la EDO está condicionada por <strong>condiciones de frontera</strong>, en la forma</p>
 <p><strong>Ecuación gobernante</strong></p>
 <div class="amsmath math notranslate nohighlight">
@@ -443,14 +449,15 @@ T(0) &amp;= T_a\\
 T(L) &amp;= T_b
 \end{align*}\]</div>
 <p>El modelo respresenta una <strong>EDO no lineal con valor de frontera</strong>.</p>
-<p>En esta unidad revisaremos dos métodos para resolver este tipo de problemas:</p>
+<p>En esta unidad revisaremos tres métodos para resolver este tipo de problemas:</p>
 <ul class="simple">
 <li><p>Método del disparo</p></li>
 <li><p>Método de diferencias finitas</p></li>
+<li><p>Método de colocación</p></li>
 </ul>
 </section>
 <section id="metodo-de-disparo">
-<h2><span class="section-number">10.2. </span>Método de disparo<a class="headerlink" href="#metodo-de-disparo" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.2. </span>Método de disparo<a class="headerlink" href="#metodo-de-disparo" title="Link to this heading">#</a></h2>
 <p>El método del disparo consiste en transformar una EDO con condiciones de borde a una EDO de valor inicial. Mediante un proceso iterativo, el método busca una solución al problema de valores iniciales que satisfaga la condiciones de bordes.</p>
 <p>Para ilustrar este método, consideremos el problema de la barra con enfriamiento.</p>
 <p>Podemos transformar este problema en un problema de valor inicial de la forma:</p>
@@ -469,7 +476,7 @@ T(0) &amp;= T_a \\
 <p>Por otro lado, sabemos que existirá un valor de <span class="math notranslate nohighlight">\(q_a\)</span>, tal que <span class="math notranslate nohighlight">\(T( L) = T_b\)</span>.</p>
 <p>Ilustrativamente, esto es similar a ajustar el ángulo de inclinación de un cañón (o la pendiente a través de <span class="math notranslate nohighlight">\(z_a\)</span>), hasta que la trayectoria del disparo coincida con el valor la segunda condición de borde.</p>
 <a class="reference internal image-reference" href="../_images/shooting_method.png"><img alt="../_images/shooting_method.png" class="align-center" src="../_images/shooting_method.png" style="width: 400px;" /></a>
-<p>El método del disparo, así, consiste en iterar sobre el valor de <span class="math notranslate nohighlight">\(q_a\)</span>, resolviendo el problema como una EDO de valor inicial, hasta que <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>.</p>
+<p>El método del disparo, así, consiste en <strong>iterar sobre el valor de <span class="math notranslate nohighlight">\(q_a\)</span></strong>, resolviendo el problema como una EDO de valor inicial, hasta que <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>.</p>
 <p>Analicemos esto con el problema de la barra en enfriamiento, y los valores:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(L = 10\)</span> m</p></li>
@@ -523,7 +530,7 @@ q_a
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span> <span class="c1"># Tamaño de fuente</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$T(L) = T_b$&#39;</span><span class="p">)</span>
 <span class="c1"># Resolvemos la ecuación para distintos valores de za</span>
 <span class="k">for</span> <span class="n">qa</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">]:</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa</span><span class="p">])</span>
@@ -531,13 +538,14 @@ q_a
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura en la barra, $T$ (K)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Método del disparo para una barra de largo $L = 10$ m&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d83efc28f3f31689d1fb33742002bd38927025b1444088ae58eef3b97b9e186a.png" src="../_images/d83efc28f3f31689d1fb33742002bd38927025b1444088ae58eef3b97b9e186a.png" />
+<img alt="../_images/ae6b0958f236cd3222bcbcb8d5c9e3876ea7fd22b5a368759e5cc3185e713a40.png" src="../_images/ae6b0958f236cd3222bcbcb8d5c9e3876ea7fd22b5a368759e5cc3185e713a40.png" />
 </div>
 </div>
 <p>¿Cómo podemos adivinar el valor de <span class="math notranslate nohighlight">\(q_a\)</span> correcto?</p>
@@ -546,7 +554,7 @@ q_a
 <p>Una forma más genérica de resolver este problema en un computador es utilizando métodos de búsqueda de raices.</p>
 <p>Primero, debemos entender que resolver la EDO con valor inicial <span class="math notranslate nohighlight">\(T_a\)</span> y <span class="math notranslate nohighlight">\(q_a\)</span>, y luego evaluarla en <span class="math notranslate nohighlight">\(x = L\)</span>, es equivalente a tener una función <span class="math notranslate nohighlight">\(T_{x=L}(q_a)\)</span>.</p>
 <p>Así, el objetivo es encontrar la raíz de la función <span class="math notranslate nohighlight">\(f(q_a) = T_{x=L}(q_a) - T_b\)</span></p>
-<p>Implementemos esta solución mediante con el ejemplo anterior.</p>
+<p>Implementemos esta solución en el ejemplo anterior.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -579,21 +587,22 @@ q_a
 
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">t_span</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">],</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">x_range</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ta</span><span class="p">,</span> <span class="n">qa_sol</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s1">&#39;:x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$q_a = </span><span class="si">%.3f</span><span class="s1">$ K/m&#39;</span> <span class="o">%</span> <span class="n">qa_sol</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">Tb</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$T(L) = T_b$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Posicion de la barra, $x$ (m)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatura en la barra, $T$ (K)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Método del disparo para una barra de largo $L = 10$ m&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9ac6dd11746c5b89b73a19a13757ff8c71151872a4c699c30a059bd7b145aaf6.png" src="../_images/9ac6dd11746c5b89b73a19a13757ff8c71151872a4c699c30a059bd7b145aaf6.png" />
+<img alt="../_images/bafd77c6a2cb6f894cfa2cd00f0e560e1df481c3f97f7b12f6c29ed3de7dfeed.png" src="../_images/bafd77c6a2cb6f894cfa2cd00f0e560e1df481c3f97f7b12f6c29ed3de7dfeed.png" />
 </div>
 </div>
 <section id="condiciones-de-borde-de-neumann-o-robin">
-<h3><span class="section-number">10.2.1. </span>Condiciones de borde de Neumann o Robin<a class="headerlink" href="#condiciones-de-borde-de-neumann-o-robin" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.2.1. </span>Condiciones de borde de Neumann o Robin<a class="headerlink" href="#condiciones-de-borde-de-neumann-o-robin" title="Link to this heading">#</a></h3>
 <p>Las condiciones de borde <span class="math notranslate nohighlight">\(T(0) = T_a\)</span> y <span class="math notranslate nohighlight">\(T(L) = T_b\)</span>, se conoce como <em>condición de borde de Dirichlet o de primer tipo.</em> Es una de muchos tipos de condiciones de borde que se utilizan en ingeniería y ciencias.</p>
 <p>A veces, las condiciones de borde están definidas en función de derivadas. En este caso distinguimos:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -657,10 +666,10 @@ y'(a) &amp;=&amp; \alpha&amp;&amp;\quad\mathrm{condición~de~Neumann~(o~de~segun
 </section>
 </section>
 <section id="metodo-de-diferencias-finitas">
-<h2><span class="section-number">10.3. </span>Método de diferencias finitas<a class="headerlink" href="#metodo-de-diferencias-finitas" title="Permalink to this heading">#</a></h2>
-<p>Diferencias finitas es el método más general para resolver EDOs con condiciones de borde. Esto consiste en discretizar la ecuación diferencial utilizando las fórmulas de la <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html"><span class="doc std std-doc">unidad 8</span></a>.</p>
+<h2><span class="section-number">10.3. </span>Método de diferencias finitas<a class="headerlink" href="#metodo-de-diferencias-finitas" title="Link to this heading">#</a></h2>
+<p>Diferencias finitas es el método más general para resolver EDOs con condiciones de borde. Esto consiste en discretizar la ecuación diferencial utilizando las fórmulas de la <a class="reference internal" href="../08-Derivacion_numerica/08-Derivacion_numerica.html"><span class="std std-doc">unidad 8</span></a>.</p>
 <section id="edo-lineal-con-condicion-de-borde-de-dirichlet">
-<h3><span class="section-number">10.3.1. </span>EDO lineal con condición de borde de Dirichlet<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-dirichlet" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.3.1. </span>EDO lineal con condición de borde de Dirichlet<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-dirichlet" title="Link to this heading">#</a></h3>
 <p>Revisemos esto con el problema de la barra. Ahora, únicamente, considerando pérdidas de calor por convección.</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convection_losses.png"><img alt="../_images/heated_bar_convection_losses.png" class="align-center" src="../_images/heated_bar_convection_losses.png" style="width: 400px;" /></a>
 <p>En este caso <strong>la EDO es del tipo lineal</strong>:</p>
@@ -699,7 +708,7 @@ T(L) &amp;= T_b
 \left[\begin{array}{c} T_0 + h'\Delta x^2 T_\infty \\h'\Delta x^2 T_\infty \\ \vdots \\h'\Delta x^2 T_\infty \\ T_n + h'\Delta x^2 T_\infty\end{array}\right]
 \end{equation*}\]</div>
 <p>Notar que <strong>la matriz <span class="math notranslate nohighlight">\(A\)</span> es, naturalmente trididiagonal y diagnal dominante</strong>. Este característica estará siempre presente en el método de diferencias finitas.</p>
-<p>Como vimos en la <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="doc std std-doc">unidad 2</span></a> del curso, este tipo de sistemas de ecuaciones se pueden resolver mediante métodos iterativos (como Gauss-Seidel), los cuales destacan por su menor uso de recursos de memoria computacional.</p>
+<p>Como vimos en la <a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="std std-doc">unidad 2</span></a> del curso, este tipo de sistemas de ecuaciones se pueden resolver mediante métodos iterativos (como Gauss-Seidel), los cuales destacan por su menor uso de recursos de memoria computacional.</p>
 <p>Revisemos esto en un código en python. En este caso, queremos preparar un código genérico para un <span class="math notranslate nohighlight">\(n\)</span> variable</p>
 <p>Podemos expresar el sistema de ecuaciones, convenientemente, en la forma:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -777,7 +786,7 @@ T(L) &amp;= T_b
 </div>
 </section>
 <section id="edo-lineal-con-condicion-de-borde-de-robin">
-<h3><span class="section-number">10.3.2. </span>EDO lineal con condición de borde de Robin<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-robin" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.3.2. </span>EDO lineal con condición de borde de Robin<a class="headerlink" href="#edo-lineal-con-condicion-de-borde-de-robin" title="Link to this heading">#</a></h3>
 <p>Consideremos ahora el caso de una barra con condiciones de borde de Robin:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -869,8 +878,8 @@ T(L) &amp;= T_b
 </div>
 </section>
 <section id="edo-no-lineal">
-<h3><span class="section-number">10.3.3. </span>EDO no lineal<a class="headerlink" href="#edo-no-lineal" title="Permalink to this heading">#</a></h3>
-<p>Si la EDO es no lineal la forma de resolver el problema es análoga. Sin embargo, <strong>el sistema de ecuaciones a resolver también será del tipo no lineal y para esto debemos utilizar un método de búsqueda de raices</strong>.</p>
+<h3><span class="section-number">10.3.3. </span>EDO no lineal<a class="headerlink" href="#edo-no-lineal" title="Link to this heading">#</a></h3>
+<p>Si la EDO es no lineal, la forma de resolver el problema es análoga. Sin embargo, <strong>el sistema de ecuaciones a resolver también será del tipo no lineal y para esto debemos utilizar un método de búsqueda de raices</strong>.</p>
 <p>Revisemos esto con el problema de la barra con enfriamiento por radiación y convección</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
 <p>La ecuación discretizada por diferencias finitas es de la forma:</p>
@@ -949,7 +958,7 @@ T(L) &amp;= T_b
 </section>
 </section>
 <section id="metodo-de-colocacion">
-<h2><span class="section-number">10.4. </span>Método de colocación<a class="headerlink" href="#metodo-de-colocacion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.4. </span>Método de colocación<a class="headerlink" href="#metodo-de-colocacion" title="Link to this heading">#</a></h2>
 <p>El método de colocación consiste en <strong>aproximar la función buscada por un polinómio de interpolación evaluado en puntos de colocación</strong>. Aunque existen distintas versiones dependiendo del polinomio escogido, acá revisaremos los aspectos más generales del método.</p>
 <p>Consideremos el problema general:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -969,8 +978,8 @@ T(L) &amp;= T_b
 S(x) = a_0 + a_1x + a_2x^2+ \cdots + a_n x^n
 \end{equation*}\]</div>
 <p>donde sus coeficientes están dados por la solución de <span class="math notranslate nohighlight">\(S(x_i) = y_i\)</span>. En forma matricial:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fab29433-df2d-49f8-9de3-ca68831c2fb3">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-fab29433-df2d-49f8-9de3-ca68831c2fb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ada8859-3c3e-4d4a-b8e1-41dad07e27f4">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-4ada8859-3c3e-4d4a-b8e1-41dad07e27f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left[\begin{matrix} 
 1      &amp;    x_0 &amp;  x_0^2 &amp; \cdots &amp; x_0^n \\
 1      &amp;    x_1 &amp;  x_1^2 &amp; \cdots &amp; x_1^n \\
@@ -1052,13 +1061,13 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 \gamma_0 \\ F(x_1,y_1) \\ F(x_2,y_2) \\ \vdots\\ F(x_{n-1},y_{n-1}) \\ \gamma_n
 \end{matrix}\right\}
 \end{equation*}\]</div>
-</div><p>Este sistema consiste en un set de <span class="math notranslate nohighlight">\(n+1\)</span> ecuaciones, para <span class="math notranslate nohighlight">\(n+1\)</span> incognitas (<span class="math notranslate nohighlight">\(y_0, y_1, \dots, y_n\)</span>). El sistema puede ser del tipo lineal o no-lineal, dependiendo de la función <span class="math notranslate nohighlight">\(F(x,y)\)</span>. Respectivamente, la solución se obtiene mediante métodos de solución de sistemas de ecuaciones lineales (<a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="doc std std-doc">unidad 2</span></a>), o de búsqueda de raices (<a class="reference internal" href="../06-Root-finding/06-Root-finding.html"><span class="doc std std-doc">unidad 6</span></a>).</p>
-<p>En la práctica, <strong>no es recomendable utilizar polinomios de alto grado debido a los problemas de oscilación</strong> (revisar <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html"><span class="doc std std-doc">unidad 4</span></a>)</p>
-<p>En cambio, el método de colocación utiliza interpolación por tramos. El número de puntos de colocación se determina de forma iterativa mediante algoritmos adaptativos, similares a los revisados en cuadratura adaptativa (ver <a class="reference internal" href="../07-Integracion/07-Integracion.html"><span class="doc std std-doc">unidad 7</span></a>)</p>
+</div><p>Este sistema consiste en un set de <span class="math notranslate nohighlight">\(n+1\)</span> ecuaciones, para <span class="math notranslate nohighlight">\(n+1\)</span> incognitas (<span class="math notranslate nohighlight">\(y_0, y_1, \dots, y_n\)</span>). El sistema puede ser del tipo lineal o no-lineal, dependiendo de la función <span class="math notranslate nohighlight">\(F(x,y)\)</span>. Respectivamente, la solución se obtiene mediante métodos de solución de sistemas de ecuaciones lineales (<a class="reference internal" href="../02-Algebra_lineal/02-Algebra_lineal.html"><span class="std std-doc">unidad 2</span></a>), o de búsqueda de raices (<a class="reference internal" href="../06-Root-finding/06-Root-finding.html"><span class="std std-doc">unidad 6</span></a>).</p>
+<p>En la práctica, <strong>no es recomendable utilizar polinomios de alto grado debido a los problemas de oscilación</strong> (revisar <a class="reference internal" href="../04-Interpolacion/04-Interpolacion.html"><span class="std std-doc">unidad 4</span></a>)</p>
+<p>En cambio, el método de colocación utiliza interpolación por tramos. El número de puntos de colocación se determina de forma iterativa mediante algoritmos adaptativos, similares a los revisados en cuadratura adaptativa (ver <a class="reference internal" href="../07-Integracion/07-Integracion.html"><span class="std std-doc">unidad 7</span></a>)</p>
 <p>A diferencia del método de diferencias finitas, cuya aproximación de la derivada es local, el método de colocación permite determinar la solución en base a varios nodos. Esto implica soluciónes más suaves y con menor error.</p>
 </section>
 <section id="problemas-de-valor-de-frontera-en-python-solve-bvp">
-<h2><span class="section-number">10.5. </span>Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)<a class="headerlink" href="#problemas-de-valor-de-frontera-en-python-solve-bvp" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.5. </span>Problemas de valor de frontera en python (<code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>)<a class="headerlink" href="#problemas-de-valor-de-frontera-en-python-solve-bvp" title="Link to this heading">#</a></h2>
 <p>La función predeterminada en python para resolver EDOs con C.B. es <code class="docutils literal notranslate"><span class="pre">solve_bvp</span></code>. Esta función, parte de la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>, <strong>resuelve sistemas de EDOs de primer orden mediante una variante del método de colocación</strong> (ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html">documentación oficial</a>):</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1070,9 +1079,9 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 \alpha_0 \vec{y}(a) + \beta_0 \vec{y}'(a) &amp; - \gamma_0 = 0 \\
 \alpha_n \vec{y}(b) + \beta_n \vec{y}'(b) &amp; - \gamma_n = 0
 \end{align*}\]</div>
-<p>Al igual que lo visto en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="doc std std-doc">unidad 9</span></a>, <strong>para resolver EDOs de mayor orden debemos, primero, modificar el problema a un sistemas de EDOs de primer orden.</strong></p>
+<p>Al igual que lo visto en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="std std-doc">unidad 9</span></a>, <strong>para resolver EDOs de mayor orden debemos, primero, modificar el problema a un sistemas de EDOs de primer orden.</strong></p>
 <section id="aspectos-generales">
-<h3><span class="section-number">10.5.1. </span>Aspectos generales<a class="headerlink" href="#aspectos-generales" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.5.1. </span>Aspectos generales<a class="headerlink" href="#aspectos-generales" title="Link to this heading">#</a></h3>
 <p>La función requiere 4 argumentos mínimos, <code class="docutils literal notranslate"><span class="pre">fun</span></code>, <code class="docutils literal notranslate"><span class="pre">bc</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span><span class="n">bc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -1087,7 +1096,7 @@ y_0 \\ y_1 \\ y_2 \\ \vdots\\y_{n-1} \\y_n
 </ul>
 </section>
 <section id="ejemplo">
-<h3><span class="section-number">10.5.2. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">10.5.2. </span>Ejemplo<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h3>
 <p>Analicemos como utilizar el método con el siguiente problema de enfriamiento de una barra:</p>
 <a class="reference internal image-reference" href="../_images/heated_bar_convective_end.png"><img alt="../_images/heated_bar_convective_end.png" class="align-center" src="../_images/heated_bar_convective_end.png" style="width: 500px;" /></a>
 <div class="amsmath math notranslate nohighlight">
@@ -1174,7 +1183,7 @@ q(L) - h^*\left[ T_\infty - T(L)\right] &amp;= 0
        success: True
         status: 0
              x: [ 0.000e+00  5.556e-01 ...  9.444e+00  1.000e+01]
-           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f67fde8c470&gt;
+           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7fe6631db230&gt;
              p: None
              y: [[ 3.000e+02  2.788e+02 ...  2.039e+02  2.037e+02]
                  [-4.374e+01 -3.319e+01 ... -4.806e-01 -1.866e-01]]
@@ -1257,7 +1266,7 @@ dQ/dx en x = 0.4: 17.5 K/m^2
 </section>
 </section>
 <section id="errores-numericos-y-estabilidad">
-<h2><span class="section-number">10.6. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.6. </span>Errores numéricos y  estabilidad<a class="headerlink" href="#errores-numericos-y-estabilidad" title="Link to this heading">#</a></h2>
 <p>Los problemas con condiciones de borde también estan expuestos a errores por truncamiento y por estabilidad.</p>
 <ul class="simple">
 <li><p>En el caso del <strong>método del disparo</strong>, el error es similar a lo discutido con los métodos para resolver EDOs con valor inicial. Es decir, <strong>este método puede presentar problemas de inestabilidad, rigidez, y errores de truncamiento</strong> dependiendo del método utilizado para resolver el problema de valor inicial</p></li>
@@ -1271,7 +1280,7 @@ dQ/dx en x = 0.4: 17.5 K/m^2
 <p>Por último es importante mencionar que el método de diferencias finitas es fácilmente extendible a problemas expresados en ecuaciones diferenciales parciales. Esto lo revisaremos en la próxima unidad del curso.</p>
 </section>
 <section id="referencias">
-<h2><span class="section-number">10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">10.7. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 23: Boundary-Value Problems for ODEs</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter23.00-ODE-Boundary-Value-Problems.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 27 Problemas de valores en la frontera y de valores própios</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
@@ -1386,7 +1395,7 @@ By Francisco V. Ramirez-Cuevas
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
