@@ -428,8 +428,8 @@ document.write(`
 <h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Link to this heading">#</a></h3>
 <p>Una ecuacion diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
 <p>Por ejemplo, la <strong>ecuación del péndulo</strong> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56e33b8b-b5dd-4aec-9928-adc53e758e4e">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-56e33b8b-b5dd-4aec-9928-adc53e758e4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5b8c9f57-1e5e-4acb-8c5f-09dbdb89dced">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-5b8c9f57-1e5e-4acb-8c5f-09dbdb89dced" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
@@ -437,8 +437,8 @@ ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 <p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la ecuación se transforma en una <strong>EDO lineal</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aecb148b-beee-45e6-8b7a-96a6312c17b5">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-aecb148b-beee-45e6-8b7a-96a6312c17b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a2cadc3-d32b-46ac-a7fb-b12549858f85">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-9a2cadc3-d32b-46ac-a7fb-b12549858f85" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tiene solución analítica.</p>
@@ -463,8 +463,8 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres variables dependientes (<span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, y <span class="math notranslate nohighlight">\(p\)</span>) en función de tres variables independientes (tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>). Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos <strong>clasificar una ecuación diferencial según el orden de sus derivadas.</strong></p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b4f8218-130b-4811-b417-b062f08ba1bc">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-9b4f8218-130b-4811-b417-b062f08ba1bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-731f0f79-5410-43d6-a59a-dd7243be324e">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-731f0f79-5410-43d6-a59a-dd7243be324e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -543,8 +543,8 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Link to this heading">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-677169c3-1c2e-45c9-aa4a-42910f264f0a">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-677169c3-1c2e-45c9-aa4a-42910f264f0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-caf100da-f50a-479f-923e-6137b126db0c">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-caf100da-f50a-479f-923e-6137b126db0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones inciales:
@@ -573,8 +573,8 @@ T(0,x,y) = T_a
 \left\{\begin{matrix} \Theta(0) \\ \dot{\Theta(0)}\end{matrix}\right\} = \left\{\begin{matrix} \Theta_0 \\ 0\end{matrix}\right\}
 \end{equation*}\]</div>
 <p>A partir de este procedimiento, <strong>hemos reducido una EDO de orden superior a una EDO de primer orden de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-910a1a81-1a1b-4ca3-bd99-b37c735c6f36">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-910a1a81-1a1b-4ca3-bd99-b37c735c6f36" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a1d749d0-f72d-4775-8d4f-51fb06d6b8cf">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-a1d749d0-f72d-4775-8d4f-51fb06d6b8cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec{y}}{dt} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -625,16 +625,16 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                       <span class="c1"># paso de tiempo (dt)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>                       <span class="c1"># paso de tiempo (dt)</span>
 <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>                <span class="c1"># tiempo inicial (ti) y final (tf)</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos t0, t1, ..., tn</span>
 
 <span class="c1"># Escribimos ecuación diferencial en formato de código </span>
 <span class="n">F</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="c1"># Ecuación gobernante dy = F(t,y)</span>
 <span class="n">y0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span>                     <span class="c1"># Condición inicial</span>
 
 <span class="c1"># Método de Euler</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>          <span class="c1"># arreglo vacio para y</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>          <span class="c1"># arreglo vacio para y0, y1, ..., yn</span>
 <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
@@ -666,7 +666,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02aa6849e6e64424a2a22ae635a7f8f9ae300698594bfaff7eab4dd936488c68.png" src="../_images/02aa6849e6e64424a2a22ae635a7f8f9ae300698594bfaff7eab4dd936488c68.png" />
+<img alt="../_images/fbda3c6a70df8aa5b0b7b2d394e8fadd5ce9f0cfbbf6c7c1c6d5962f9332edb5.png" src="../_images/fbda3c6a70df8aa5b0b7b2d394e8fadd5ce9f0cfbbf6c7c1c6d5962f9332edb5.png" />
 </div>
 </div>
 </section>
@@ -750,8 +750,8 @@ T(0,x,y) = T_a
 <section id="metodo-de-euler-implicito">
 <h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Link to this heading">#</a></h3>
 <p>Alternativamente, podemos definir el argumento de <span class="math notranslate nohighlight">\(\vec{F}(t,\vec{y})\)</span> en función de los valores futuros <span class="math notranslate nohighlight">\(t_{i+1}\)</span> y <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-706ec011-a650-46f7-b7a0-8958b6100b33">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-706ec011-a650-46f7-b7a0-8958b6100b33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1366f033-d1f7-42ab-9be3-f30fbfa7d92b">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-1366f033-d1f7-42ab-9be3-f30fbfa7d92b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}\left(t_{i+1},\vec{y}_{i+1}\right) + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como <strong>implícita</strong> debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -844,14 +844,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c0f81fc-378a-45e7-b3a7-0568117ef27d">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-7c0f81fc-378a-45e7-b3a7-0568117ef27d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bcb4443e-54ab-4f84-9c3e-976a0057037f">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-bcb4443e-54ab-4f84-9c3e-976a0057037f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-062c33bd-6a0b-49cc-9c42-d3ee0719e340">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-062c33bd-6a0b-49cc-9c42-d3ee0719e340" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8d14b9bf-30ae-4231-ad9d-f05ad24c9692">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-8d14b9bf-30ae-4231-ad9d-f05ad24c9692" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -880,8 +880,8 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Link to this heading">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1453dc89-25a9-4eac-ad66-7e4804fd59a9">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-1453dc89-25a9-4eac-ad66-7e4804fd59a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-76e73b8c-7bf9-4e6e-a4f2-a38cc93d4175">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-76e73b8c-7bf9-4e6e-a4f2-a38cc93d4175" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1015,7 +1015,9 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">theta0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                        <span class="c1"># condición inicial</span>
+<span class="c1"># condiciones iniciales</span>
+<span class="n">theta0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>                        <span class="c1"># ángulo</span>
+<span class="n">theta_dot0</span> <span class="o">=</span> <span class="mi">0</span>                                 <span class="c1"># velocidad angular</span>
 
 <span class="n">m</span> <span class="o">=</span> <span class="mf">0.1</span>                                        <span class="c1"># masa péndulo (kg)</span>
 <span class="n">l</span> <span class="o">=</span> <span class="mf">0.3</span>                                        <span class="c1"># largo del péndulo (m)</span>
@@ -1024,19 +1026,21 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
     
 <span class="c1"># Definimos la función F(t,y)</span>
 <span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>                              <span class="c1"># F0(t,y)</span>
-            <span class="o">-</span> <span class="n">g</span><span class="o">/</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="c1"># F1(t,y)</span>
+    <span class="n">theta</span><span class="p">,</span> <span class="n">theta_dot</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">theta_dot</span><span class="p">,</span>                               <span class="c1"># F0(t,y)</span>
+            <span class="o">-</span> <span class="n">g</span><span class="o">/</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">theta_dot</span><span class="p">]</span> <span class="c1"># F1(t,y)</span>
 
 <span class="c1"># Condicion inicial</span>
 <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">theta0</span><span class="p">,</span>                         <span class="c1"># posición inicial</span>
-               <span class="mi">0</span><span class="p">])</span>                             <span class="c1"># velocidad inicial</span>
+               <span class="n">theta_dot0</span><span class="p">])</span>                    <span class="c1"># velocidad inicial</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>                       <span class="c1"># tiempo inicial (ti) y final (tf)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span>                        <span class="c1"># tiempo inicial (ti) y final (tf)</span>
 
 <span class="c1"># resolvemos la EDO dy/dt = F(t,y)</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span>    <span class="o">=</span> <span class="n">F</span><span class="p">,</span>          <span class="c1"># Función F(t,y)</span>
@@ -1279,23 +1283,29 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 <span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">200</span>         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;failed&#39;</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/rk.py:147,</span> in <span class="ni">RungeKutta._step_impl</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">f_new</span> <span class="o">=</span> <span class="n">rk_step</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/rk.py:144,</span> in <span class="ni">RungeKutta._step_impl</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="n">h</span> <span class="o">=</span> <span class="n">t_new</span> <span class="o">-</span> <span class="n">t</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="n">h_abs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">144</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">f_new</span> <span class="o">=</span> <span class="n">rk_step</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">145</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">atol</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_new</span><span class="p">))</span> <span class="o">*</span> <span class="n">rtol</span>
-<span class="ne">--&gt; </span><span class="mi">147</span> <span class="n">error_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_error_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="k">if</span> <span class="n">error_norm</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>     <span class="k">if</span> <span class="n">error_norm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="n">error_norm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_error_norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/rk.py:109,</span> in <span class="ni">RungeKutta._estimate_error_norm</span><span class="nt">(self, K, h, scale)</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="k">def</span> <span class="nf">_estimate_error_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">109</span>     <span class="k">return</span> <span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_estimate_error</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/rk.py:64,</span> in <span class="ni">rk_step</span><span class="nt">(fun, t, y, f, h, A, B, C, K)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K</span><span class="p">[:</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">a</span><span class="p">[:</span><span class="n">s</span><span class="p">])</span> <span class="o">*</span> <span class="n">h</span>
+<span class="ne">---&gt; </span><span class="mi">64</span>     <span class="n">K</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="n">y_new</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="n">f_new</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">y_new</span><span class="p">)</span>
 
-<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/rk.py:106,</span> in <span class="ni">RungeKutta._estimate_error</span><span class="nt">(self, K, h)</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="k">def</span> <span class="nf">_estimate_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">106</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">E</span><span class="p">)</span> <span class="o">*</span> <span class="n">h</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/base.py:154,</span> in <span class="ni">OdeSolver.__init__.&lt;locals&gt;.fun</span><span class="nt">(t, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span> <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span>     <span class="bp">self</span><span class="o">.</span><span class="n">nfev</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">154</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fun_single</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:177,</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
+<span class="nn">File ~/miniconda3/lib/python3.11/site-packages/scipy/integrate/_ivp/base.py:23,</span> in <span class="ni">check_arguments.&lt;locals&gt;.fun_wrapped</span><span class="nt">(t, y)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="k">def</span> <span class="nf">fun_wrapped</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">23</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
