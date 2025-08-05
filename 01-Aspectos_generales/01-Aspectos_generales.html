@@ -555,11 +555,11 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <p>La complejidad en la notación <em>Big-O</em> nos entrega una referencia del tiempo computacional dedicado para un determinado algoritmo.</p>
 <a class="reference internal image-reference" href="../_images/08.02.01-complexity.png"><img alt="../_images/08.02.01-complexity.png" class="align-center" src="../_images/08.02.01-complexity.png" style="width: 300px;" />
 </a>
-<p>Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz <em>(<span class="math notranslate nohighlight">\(\approx\)</span> 5 billones de operaciones por segundo)</em>:</p>
+<p>Así, por ejemplo, si consideramos un procesador Intel i7-12700K - 5GHz <em>(<span class="math notranslate nohighlight">\(\approx\)</span> 5 mil millones de operaciones por segundo)</em>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">my_fib_iter(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 0.2 nanosegundos
 <br></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">my_fib_recur(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 8 trillones de años</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">my_fib_recur(100)</span></code> <br>tomaría <span class="math notranslate nohighlight">\(\approx\)</span> 8 billones de años</p></li>
 </ul>
 <p>Podemos evaluar el tiempo de ejecución con la sentencia <code class="docutils literal notranslate"><span class="pre">%time</span></code></p>
 <div class="cell docutils container">
@@ -569,8 +569,8 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 0 ns, total: 4 µs
-Wall time: 6.44 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3 µs, sys: 0 ns, total: 3 µs
+Wall time: 5.48 µs
 </pre></div>
 </div>
 </div>
@@ -582,8 +582,8 @@ Wall time: 6.44 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 11 µs, total: 11 µs
-Wall time: 13.1 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8 µs, sys: 2 µs, total: 10 µs
+Wall time: 12.6 µs
 </pre></div>
 </div>
 </div>
@@ -869,28 +869,31 @@ valor mayor al mínimo positivo:  1e-323
 </ul>
 <p>Para cuantificar el error utilizamos dos tipos de métricas</p>
 <p><strong>Error absoluto</strong> Corresponde al error neto de la propuesta numérica:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee59d034-277e-454f-b199-127ccc26828e">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-ee59d034-277e-454f-b199-127ccc26828e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f3bde0b-4ec8-4e1c-977f-912e0e54717b">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-3f3bde0b-4ec8-4e1c-977f-912e0e54717b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |\mathrm{valor~aproximado} - \mathrm{valor~exacto}|
 \end{equation}\]</div>
 <p><strong>Error relativo</strong> Corresponde al error de la propuesta numérica respecto al valor exacto:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-64d09483-6c26-4cda-bffc-457c71e4ab69">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-64d09483-6c26-4cda-bffc-457c71e4ab69" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8560227f-c45e-436a-89b6-304b5d01e8e8">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-8560227f-c45e-436a-89b6-304b5d01e8e8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\mathrm{valor~exacto}|}
 \end{equation}\]</div>
 <blockquote>
 <div><p><strong>Nota</strong> A veces, el error relativo se representa como porcentaje</p>
 </div></blockquote>
 <p>Comúnmente, los métodos numéricos se basan en procesos iterativos donde una solución <span class="math notranslate nohighlight">\(x^k\)</span> es mejorada en la iteración siguiente <span class="math notranslate nohighlight">\(x^{k+1}\)</span>. En el caso que la solución exacta no se conozca (caso más común), calculamos los errores como</p>
-<ul class="simple">
-<li><p><strong>Error absoluto</strong> \begin{equation}
+<ul>
+<li><p><strong>Error absoluto</strong></p>
+<div class="amsmath math notranslate nohighlight" id="equation-bd4d6119-06e4-4800-b283-779cbe02438c">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-bd4d6119-06e4-4800-b283-779cbe02438c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |x^{k+1} - x^{k}|
-\end{equation}</p></li>
+\end{equation}\]</div>
+</li>
 </ul>
 <ul>
 <li><p><strong>Error relativo</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-543a4ea3-1683-4f31-8ab4-8f29b88fe81f">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-543a4ea3-1683-4f31-8ab4-8f29b88fe81f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7cee17d3-e91d-41e4-99d7-d617fee21d0a">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-7cee17d3-e91d-41e4-99d7-d617fee21d0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
 \end{equation}\]</div>
 </li>
@@ -901,6 +904,7 @@ E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
 <p>En python existen múltiples liberías, cada una con un propósito en específico. En este curso, trabajaremos con:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: Esencial para operaciones matemáticas con arreglos de elementos</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: Útil para manejo de base de datos</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: Herramientas para visualización de datos. En este curso utilizaremos particularmente el módulo <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>: Funciones avanzadas para ciencia e ingeniería</p></li>
 </ul>
