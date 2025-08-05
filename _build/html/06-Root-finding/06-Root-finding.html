@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Algortimos de búsqueda de raíces &#8212; MEC301 - Métodos Numéricos</title>
+    <title>6. Algoritmos de búsqueda de raíces &#8212; MEC301 - Métodos Numéricos</title>
   
   
   
@@ -18,18 +18,18 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/custom_edits.css?v=2756f859" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -142,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="../intro.html">
   
@@ -157,7 +159,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -184,7 +186,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 2. Métodos numéricos basados en series de Taylor</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../05-Taylor-series/05-Taylor-series.html">5. Series de Taylor</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Algortimos de búsqueda de raíces</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Algoritmos de búsqueda de raíces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../07-Integracion/07-Integracion.html">7. Integración numérica</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte 3. Métodos numéricos para ecuaciones diferenciales</span></p>
@@ -333,10 +335,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -344,7 +346,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -362,7 +364,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Algortimos de búsqueda de raíces</h1>
+    <h1>Algoritmos de búsqueda de raíces</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,12 +408,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="algortimos-de-busqueda-de-raices">
-<h1><span class="section-number">6. </span>Algortimos de búsqueda de raíces<a class="headerlink" href="#algortimos-de-busqueda-de-raices" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-de-busqueda-de-raices">
+<h1><span class="section-number">6. </span>Algoritmos de búsqueda de raíces<a class="headerlink" href="#algoritmos-de-busqueda-de-raices" title="Link to this heading">#</a></h1>
 <section id="introduccion">
 <h2><span class="section-number">6.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>Consideremos el problema de caída de presión <span class="math notranslate nohighlight">\(\Delta P\)</span> al mover un fluído con densidad <span class="math notranslate nohighlight">\(\rho\)</span> y viscosidad cinemática <span class="math notranslate nohighlight">\(\nu\)</span>, a través de una tubería de largo <span class="math notranslate nohighlight">\(L\)</span>.</p>
-<a class="reference internal image-reference" href="../_images/presure_drop.png"><img alt="../_images/presure_drop.png" class="align-center" src="../_images/presure_drop.png" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/presure_drop.png"><img alt="../_images/presure_drop.png" class="align-center" src="../_images/presure_drop.png" style="width: 350px;" />
+</a>
 <p>Para un fluido que fluye a una velocidad <span class="math notranslate nohighlight">\(V\)</span>, la caída de presión está dada por:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -455,13 +458,15 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 <blockquote>
 <div><p><strong>Teorema del valor intermedio</strong> para una función <span class="math notranslate nohighlight">\(f(x)\)</span> continua en entre los puntos <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span>, tal que <span class="math notranslate nohighlight">\(f(a)f(b) &lt; 0\)</span>, existe un valor <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span>, tal que <span class="math notranslate nohighlight">\(f(c) = 0\)</span>.</p>
 </div></blockquote>
-<a class="reference internal image-reference" href="../_images/valor_intermedio.png"><img alt="../_images/valor_intermedio.png" class="align-center" src="../_images/valor_intermedio.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/valor_intermedio.png"><img alt="../_images/valor_intermedio.png" class="align-center" src="../_images/valor_intermedio.png" style="width: 400px;" />
+</a>
 <p>Para un intervalo <span class="math notranslate nohighlight">\(x\in [a,b]\)</span>, tal que <span class="math notranslate nohighlight">\(f(a)f(b) &lt; 0\)</span>, el método de la bisección consiste en acotar el intervalo evaluando el punto medio <span class="math notranslate nohighlight">\(f(m)\)</span>, con <span class="math notranslate nohighlight">\(m = \frac{a+b}{2}\)</span>.</p>
 <ul class="simple">
 <li><p>Si <span class="math notranslate nohighlight">\(f(m)f(a) &lt; 0\)</span> el nuevo interfalo es <span class="math notranslate nohighlight">\(x\in [a,m]\)</span>, de lo contrario, <span class="math notranslate nohighlight">\(x\in [m, b]\)</span></p></li>
 </ul>
 <p>El algoritmo continua acotando el intervalo hasta encontrar la raíz de <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
-<a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" class="align-center" src="../_images/bisection.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" class="align-center" src="../_images/bisection.png" style="width: 400px;" />
+</a>
 <section id="criterio-de-convergencia">
 <h4><span class="section-number">6.2.1.1. </span>Criterio de convergencia<a class="headerlink" href="#criterio-de-convergencia" title="Link to this heading">#</a></h4>
 <p>Para un nuevo valor <span class="math notranslate nohighlight">\(x_{k+1}\)</span> obtenido a partir de un valor <span class="math notranslate nohighlight">\(x_k\)</span>, definimos el <strong>criterio de convergencia</strong> en base a:</p>
@@ -605,15 +610,17 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50568ab2-ba67-43bf-8c37-57bfd92dea35">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-50568ab2-ba67-43bf-8c37-57bfd92dea35" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-252524d3-24da-4339-be08-9dbcaa9f9ca4">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-252524d3-24da-4339-be08-9dbcaa9f9ca4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
-<a class="reference internal image-reference" href="../_images/newton_raphson.png"><img alt="../_images/newton_raphson.png" class="align-center" src="../_images/newton_raphson.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/newton_raphson.png"><img alt="../_images/newton_raphson.png" class="align-center" src="../_images/newton_raphson.png" style="width: 400px;" />
+</a>
 <p>La ventaja de este algoritmo es que, a diferencia de los métodos por intervalo acotado, solo necesita de un valor inicial. Esta es una caracterísca general de los métodos de intervalo abierto.</p>
 <p>Una segunda ventaja radica en la rápida convergencia del algoritmo para encontrar soluciones.</p>
-<a class="reference internal image-reference" href="../_images/newton_raphson_good.gif"><img alt="../_images/newton_raphson_good.gif" class="align-center" src="../_images/newton_raphson_good.gif" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="../_images/newton_raphson_good.gif"><img alt="../_images/newton_raphson_good.gif" class="align-center" src="../_images/newton_raphson_good.gif" style="width: 600px;" />
+</a>
 <center> Fuente <a href="https://medium.com/@SereneBiologist/finding-beauty-in-bad-algorithms-799af003aee8/">Finding Beauty in Bad Algorithms</a></center><p>La siguiente función implementa el método de Newton-Raphson</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -769,7 +776,7 @@ x_sol = 100.000, f(x_sol) = 0.000e+00
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/779e2e480a2893d3e9dc8aa4e9f107dcd5ad1c347d8bc6cebe8ebf97f8d82cc4.png" src="../_images/779e2e480a2893d3e9dc8aa4e9f107dcd5ad1c347d8bc6cebe8ebf97f8d82cc4.png" />
+<img alt="../_images/74db804530785d58b31636deb2305bcb50f65bfc5875c6f3099fb0a181e103fe.png" src="../_images/74db804530785d58b31636deb2305bcb50f65bfc5875c6f3099fb0a181e103fe.png" />
 </div>
 </div>
 </section>
@@ -910,7 +917,6 @@ x_sol = 100.000, f(x_sol) = 0.000e+00
  function_calls: 43
      iterations: 41
            root: 1.0000000000004547
-         method: bisect
 
 Newton-Raphson:
        converged: True
@@ -918,7 +924,6 @@ Newton-Raphson:
  function_calls: 22
      iterations: 11
            root: 1.0
-         method: newton
 
 Secante:
        converged: True
@@ -926,7 +931,6 @@ Secante:
  function_calls: 23
      iterations: 22
            root: 1.0
-         method: secant
 </pre></div>
 </div>
 </div>
@@ -947,7 +951,6 @@ Secante:
  function_calls: 11
      iterations: 10
            root: 1.0
-         method: brentq
 
 Intervalo (método por defecto):
        converged: True
@@ -955,7 +958,6 @@ Intervalo (método por defecto):
  function_calls: 11
      iterations: 10
            root: 1.0
-         method: brentq
 
 Cond. inicial y derivada (método po defecto):
        converged: True
@@ -963,7 +965,6 @@ Cond. inicial y derivada (método po defecto):
  function_calls: 22
      iterations: 11
            root: 1.0
-         method: newton
 </pre></div>
 </div>
 </div>
@@ -1291,8 +1292,8 @@ By Francisco V. Ramirez-Cuevas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
