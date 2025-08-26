@@ -842,6 +842,11 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
 </div>
 <blockquote>
 <div><p><strong>Nota</strong> Una matriz <span class="math notranslate nohighlight">\(A\)</span> de tamaño <span class="math notranslate nohighlight">\(n\times n\)</span>, será siempre singular si <span class="math notranslate nohighlight">\(\mathrm{rank(A)} &lt; n\)</span> y viceversa.</p>
@@ -864,7 +869,7 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cond(P) =  1.7784106389713206e+16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cond(P) =  3.757434988222266e+16
 </pre></div>
 </div>
 </div>
@@ -882,6 +887,17 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}(A),
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;M</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;det(M) = &#39;</span><span class="p">,</span> <span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M
+ [[ 3  1 -5]
+ [-2 -2  5]
+ [ 4  0 -5]]
+
+
+det(M) =  0.0
 </pre></div>
 </div>
 </div>
@@ -1303,6 +1319,10 @@ iter = 8 ; x = [ 2.0877751  -1.55401293 -0.64932607]
 iter = 9 ; x = [ 2.08925757 -1.55314318 -0.65020568]
 iter = 10 ; x = [ 2.08860156 -1.55352894 -0.649816  ]
 Converged!
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_492718/1975705176.py:50: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  x[i] = (y[i] - sum1 - sum2) / A[i][i]                   # xi^k = (yi - sum(aij*xj^(k-1), i != j))/aii
 </pre></div>
 </div>
 </div>
