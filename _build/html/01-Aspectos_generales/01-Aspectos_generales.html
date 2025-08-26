@@ -564,26 +564,26 @@ Una forma de determinar la complejidad del algoritmo es <strong>contabilizar las
 <p>Podemos evaluar el tiempo de ejecución con la sentencia <code class="docutils literal notranslate"><span class="pre">%time</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_iter(10)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_iter(30)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 µs, sys: 1 µs, total: 5 µs
-Wall time: 7.39 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7 µs, sys: 2 µs, total: 9 µs
+Wall time: 12.2 µs
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_rec(10) # No probar N&gt;30
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> a = my_fib_rec(30) # No probar N&gt;30
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10 µs, sys: 0 ns, total: 10 µs
-Wall time: 12.9 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 117 ms, sys: 0 ns, total: 117 ms
+Wall time: 117 ms
 </pre></div>
 </div>
 </div>
@@ -869,13 +869,13 @@ valor mayor al mínimo positivo:  1e-323
 </ul>
 <p>Para cuantificar el error utilizamos dos tipos de métricas</p>
 <p><strong>Error absoluto</strong> Corresponde al error neto de la propuesta numérica:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da06f399-7055-45ab-bbe1-c6f3e717f20d">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-da06f399-7055-45ab-bbe1-c6f3e717f20d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-13b21984-e2ec-4826-ac87-9e19f4612e1c">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-13b21984-e2ec-4826-ac87-9e19f4612e1c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |\mathrm{valor~aproximado} - \mathrm{valor~exacto}|
 \end{equation}\]</div>
 <p><strong>Error relativo</strong> Corresponde al error de la propuesta numérica respecto al valor exacto:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b897425f-7f71-4a4b-bb90-8358ed7796c9">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-b897425f-7f71-4a4b-bb90-8358ed7796c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-940de36e-396b-46a7-8fa2-d86b5a0e1f59">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-940de36e-396b-46a7-8fa2-d86b5a0e1f59" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\mathrm{valor~exacto}|}
 \end{equation}\]</div>
 <blockquote>
@@ -884,16 +884,16 @@ E_\mathrm{rel} = \frac{|\mathrm{valor~aproximado} - \mathrm{valor~exacto}|}{|\ma
 <p>Comúnmente, los métodos numéricos se basan en procesos iterativos donde una solución <span class="math notranslate nohighlight">\(x^k\)</span> es mejorada en la iteración siguiente <span class="math notranslate nohighlight">\(x^{k+1}\)</span>. En el caso que la solución exacta no se conozca (caso más común), calculamos los errores como</p>
 <ul>
 <li><p><strong>Error absoluto</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bf773e3-cd8a-45d2-abbd-de4fbea8f7d5">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-3bf773e3-cd8a-45d2-abbd-de4fbea8f7d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3635163-33c7-4be9-bd9c-544837b2e4fd">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-e3635163-33c7-4be9-bd9c-544837b2e4fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{abs} = |x^{k+1} - x^{k}|
 \end{equation}\]</div>
 </li>
 </ul>
 <ul>
 <li><p><strong>Error relativo</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-fa03e921-11f2-4743-ba73-7c7cc33b764d">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-fa03e921-11f2-4743-ba73-7c7cc33b764d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3603a5dc-2893-45d1-a2d6-4f6089b1d9d5">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-3603a5dc-2893-45d1-a2d6-4f6089b1d9d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E_\mathrm{rel} = \frac{|x^{k+1} - x^{k}|}{|x^{k+1}|}
 \end{equation}\]</div>
 </li>

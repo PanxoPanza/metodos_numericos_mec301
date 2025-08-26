@@ -439,7 +439,7 @@ y_1 &amp;= a_0 + a_1 x_1 \\
 \vdots &amp;= \vdots \\
 y_n &amp;= a_0 + a_1 x_n
 \end{align*}\]</div>
-<p>Notamos que tenemos un sistema de 2 incognitas y <span class="math notranslate nohighlight">\(n\)</span> ecuaciones linealmente independientes. Es decir, <strong>no existe una solución única a este problema.</strong></p>
+<p>Notamos que tenemos un sistema de 2 incógnitas y <span class="math notranslate nohighlight">\(n\)</span> ecuaciones linealmente independientes. Es decir, <strong>no existe una solución única a este problema.</strong></p>
 <p>Lo que debemos hacer, entonces, es encontrar el valor de <span class="math notranslate nohighlight">\(a_0\)</span> y <span class="math notranslate nohighlight">\(a_1\)</span> que minimiza el error.</p>
 <p>Particularmente, buscamos minimizar la expresión</p>
 <div class="amsmath math notranslate nohighlight">
@@ -513,8 +513,8 @@ m &amp; \sum x_i \\
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span>   <span class="n">m</span>     <span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>  <span class="p">],</span>
               <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)]])</span>
 
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="p">)],</span>
-              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="p">),</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yi</span><span class="o">*</span><span class="n">xi</span><span class="p">)])</span>
 
 <span class="c1"># resolvemos el sistema</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> 
@@ -525,10 +525,6 @@ m &amp; \sum x_i \\
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo lineal: 
  y = -234.286 + 19.470*x
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_308226/230161597.py:17: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  print(&#39;Modelo lineal: \n y = %.3f + %.3f*x&#39; % (a[0], a[1]))
 </pre></div>
 </div>
 </div>
@@ -555,10 +551,6 @@ m &amp; \sum x_i \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_308226/1466663917.py:12: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  plt.plot(x, y(x), &#39;-r&#39;, label = &#39;y = %.2f + %.2fx&#39; % (a[0], a[1]))  # gráfico del modelo
-</pre></div>
-</div>
 <img alt="../_images/d4d454706595e655b1fc94fa6598cd5f758f27b7e78fd16bb829403e5623e235.png" src="../_images/d4d454706595e655b1fc94fa6598cd5f758f27b7e78fd16bb829403e5623e235.png" />
 </div>
 </div>
@@ -566,8 +558,8 @@ m &amp; \sum x_i \\
 <section id="cuantificacion-del-error">
 <h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Link to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-161b66b0-f10a-4fa9-9fb6-00cb3eadda05">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-161b66b0-f10a-4fa9-9fb6-00cb3eadda05" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-299c341b-a0a5-45e0-93e7-c6d647253a5f">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-299c341b-a0a5-45e0-93e7-c6d647253a5f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
@@ -603,7 +595,7 @@ r2 = 0.8805
 </section>
 <section id="linealizacion-de-funciones-no-lineales">
 <h3><span class="section-number">3.1.4. </span>Linealización de funciones no lineales<a class="headerlink" href="#linealizacion-de-funciones-no-lineales" title="Link to this heading">#</a></h3>
-<p>Existen algúnos modelos no lineales comúnes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
+<p>Existen algúunos modelos no lineales comunes en ingeniería que pueden ser linealizados para luego realizar ajuste por mínimos cuadrados.</p>
 <p>Algúnos ejemplos son:</p>
 <ul class="simple">
 <li><p><strong>modelo exponencial</strong></p></li>
@@ -657,8 +649,8 @@ y &amp;= e^{\ln \alpha + \beta\ln x}
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span>   <span class="n">m</span>          <span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="p">)</span>  <span class="p">],</span>
               <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_xi</span><span class="o">**</span><span class="mi">2</span><span class="p">)]])</span>
 
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="p">)],</span>
-              <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="o">*</span><span class="n">log_xi</span><span class="p">)]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="p">),</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_yi</span><span class="o">*</span><span class="n">log_xi</span><span class="p">)])</span>
 
 <span class="c1"># resolvemos el sistema</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> 
@@ -670,10 +662,6 @@ y &amp;= e^{\ln \alpha + \beta\ln x}
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo linealizado: 
  ln(y) = -1.294 + 1.984*ln(x)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_308226/1169339268.py:20: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  print(&#39;Modelo linealizado: \n ln(y) = %.3f + %.3f*ln(x)&#39;
 </pre></div>
 </div>
 </div>
@@ -699,10 +687,6 @@ y = e^{\left(a_0+a_1\ln x\right)} = e^{a_0} x^{a_1} = \alpha x ^\beta
 y = 0.274*x^1.984
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_308226/967901107.py:5: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  print(&#39;y = %.3f*x^%.3f&#39; % (alpha, beta))
-</pre></div>
-</div>
 </div>
 </div>
 <p>Graficamos el resultado con el modelo no-lineal <span class="math notranslate nohighlight">\(y = \alpha x^{\beta}\)</span></p>
@@ -726,10 +710,6 @@ y = 0.274*x^1.984
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_308226/538564046.py:10: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  plt.plot(x, y(x), &#39;-r&#39;, label = r&#39;$y = %.3fx^{%.3f}$&#39; % (alpha, beta))  # gráfico del modelo
-</pre></div>
-</div>
 <img alt="../_images/8473854ad4f234ea4b0a271aec65d2b102197813232f124b8357f20b31d79b6f.png" src="../_images/8473854ad4f234ea4b0a271aec65d2b102197813232f124b8357f20b31d79b6f.png" />
 </div>
 </div>
@@ -772,8 +752,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Link to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a7748d4-ddbf-4af7-8bc0-db82e13556dc">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-3a7748d4-ddbf-4af7-8bc0-db82e13556dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a8e100f-ec92-4af8-becc-4821709f28f3">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4a8e100f-ec92-4af8-becc-4821709f28f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -796,9 +776,9 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 </section>
 <section id="regresion-lineal-multidimensional">
 <h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Link to this heading">#</a></h3>
-<p>Para problemas con más de una variable independiente se deben untilizar modelos multidimencionales. Un modelo común corresponde al modelo linear de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd439ee6-af66-4d0d-be1d-5a5cf441e11a">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-fd439ee6-af66-4d0d-be1d-5a5cf441e11a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Para problemas con más de una variable independiente se deben untilizar modelos multidimensionales. Un modelo común corresponde al modelo lineal de la forma:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dc887bb3-d2c2-45b3-b09b-376a74bea700">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-dc887bb3-d2c2-45b3-b09b-376a74bea700" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>
@@ -826,7 +806,7 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1x_{1,i}+a_2x_{2,i}\right)^2,
 <section id="modelos-de-ajuste-en-python">
 <h2><span class="section-number">3.3. </span>Modelos de ajuste en python<a class="headerlink" href="#modelos-de-ajuste-en-python" title="Link to this heading">#</a></h2>
 <p>Es importante mencionar que en materia de modelos de ajuste la librería más adecuada es <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. La librería, sin embargo, puede ser demasiado compleja para modelos lineales simples.</p>
-<p>En este capítulo, mostraremos los métodos más simples para regreción lineal polinomial y no-lineal, utilizando <code class="docutils literal notranslate"><span class="pre">numpy</span></code> y <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
+<p>En este capítulo, mostraremos los métodos más simples para regresión lineal polinomial y no-lineal, utilizando <code class="docutils literal notranslate"><span class="pre">numpy</span></code> y <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
 <section id="modelo-polinomial-unidimencional-numpy-polyfit">
 <h3><span class="section-number">3.3.1. </span>Modelo polinomial unidimencional (<code class="docutils literal notranslate"><span class="pre">numpy.polyfit</span></code>)<a class="headerlink" href="#modelo-polinomial-unidimencional-numpy-polyfit" title="Link to this heading">#</a></h3>
 <p>Esta función está especificamente diseñada para modelos polinomiales de una dimensión, es decir, <span class="math notranslate nohighlight">\(y = a_0 + a_1x +a_2x^2+...a_nx^n\)</span></p>
@@ -1013,7 +993,9 @@ S_r = \sum_{i=1}^m (f_\mathrm{nl}(x_i) - y_i)^2,
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
-r2 = 0.8769
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2 = 0.8769
 </pre></div>
 </div>
 </div>

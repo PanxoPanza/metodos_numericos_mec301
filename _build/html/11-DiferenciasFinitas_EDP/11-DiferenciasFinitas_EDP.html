@@ -404,31 +404,31 @@ document.write(`
 <h2><span class="section-number">11.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
 <p>Como mencionamos en la <a class="reference internal" href="../09-EDO_valor_inicial/09-EDO_valor_inicial.html"><span class="std std-doc">unidad 9</span></a>, una <strong>ecuación en derivadas parciales (EDP)</strong> corresponde a una <strong>ecuación diferencial para una función desconocida con derivadas respecto a dos o más variables dependientes</strong>.</p>
 <p>Por ejemplo,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae11c34f-7dea-4f56-b83e-5d89a2279c91">
-<span class="eqno">(11.1)<a class="headerlink" href="#equation-ae11c34f-7dea-4f56-b83e-5d89a2279c91" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-14a4e757-a1f7-4f86-a1ca-52b66a3d18b7">
+<span class="eqno">(11.1)<a class="headerlink" href="#equation-14a4e757-a1f7-4f86-a1ca-52b66a3d18b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2u}{\partial x^2} + 
 2xy\frac{\partial^2u}{\partial y^2} = 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f37bef2d-9fe8-4fc4-84bd-6994c73525b0">
-<span class="eqno">(11.2)<a class="headerlink" href="#equation-f37bef2d-9fe8-4fc4-84bd-6994c73525b0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4bd5f43a-0fe9-47cc-876a-31835a5ce5ff">
+<span class="eqno">(11.2)<a class="headerlink" href="#equation-4bd5f43a-0fe9-47cc-876a-31835a5ce5ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^3u}{\partial x^2\partial y} + 
 x\frac{\partial^2u}{\partial y^2}  + 8u= 0
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-29583978-f8b3-4ed3-8f00-f6940b69af62">
-<span class="eqno">(11.3)<a class="headerlink" href="#equation-29583978-f8b3-4ed3-8f00-f6940b69af62" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d152772e-82fc-4573-8ed0-ff3760fa15c2">
+<span class="eqno">(11.3)<a class="headerlink" href="#equation-d152772e-82fc-4573-8ed0-ff3760fa15c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 6\frac{\partial^3u}{\partial x\partial y^2} = x
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-292404df-bb97-48af-8b65-6b59c957dc43">
-<span class="eqno">(11.4)<a class="headerlink" href="#equation-292404df-bb97-48af-8b65-6b59c957dc43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1162e2f-1d4d-4ad9-afb4-c6c97f6a3203">
+<span class="eqno">(11.4)<a class="headerlink" href="#equation-e1162e2f-1d4d-4ad9-afb4-c6c97f6a3203" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \left(\frac{\partial^2u}{\partial x^2}\right)^3 + 
 xu\frac{\partial u}{\partial y} = x
 \end{equation}\]</div>
 <p>El <em><strong>orden</strong></em> de una EDP se define <strong>respecto a la derivada parcial de mayor orden</strong>. Así, la ecuación (11.1) y (11.4) son de segundo orden, mientras que (11.2) y (11.3) son de tercer orden.</p>
 <p>Se dice que una EDP es <strong><em>lineal</em> si, dada dos soluciones <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(u_2\)</span>, la función <span class="math notranslate nohighlight">\(u_1 + u_2\)</span> también es solución</strong>. Por ejemplo, (11.1) y (11.2) son lineales, mientras que (11.3) y (11.4) no lo son.</p>
 <p>En este curso nos enfocaremos en EDP lineales de segundo orden de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1501e621-9ece-470f-8427-83553fce5563">
-<span class="eqno">(11.5)<a class="headerlink" href="#equation-1501e621-9ece-470f-8427-83553fce5563" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6057b34-4f99-4c1e-9139-d6f073c5a9c4">
+<span class="eqno">(11.5)<a class="headerlink" href="#equation-b6057b34-4f99-4c1e-9139-d6f073c5a9c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 A\frac{\partial^2u}{\partial x^2} + 
 B\frac{\partial^2u}{\partial x \partial y} +  
 C\frac{\partial^2u}{\partial y^2} + 
@@ -447,8 +447,8 @@ D = 0
 <section id="ecuaciones-elipticas-edp-estacionaria">
 <h2><span class="section-number">11.2. </span>Ecuaciones elipticas  (EDP estacionaria)<a class="headerlink" href="#ecuaciones-elipticas-edp-estacionaria" title="Link to this heading">#</a></h2>
 <p>La ecuación de Laplace es una EDP elíptica. Se utiliza comúnmente en problemas de conducción de calor. En el caso 2D, la ecuación de Laplace describe la distribución de temperaturas en en el espacio.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01908c0d-e95a-4630-bc72-e5edf0e7aace">
-<span class="eqno">(11.6)<a class="headerlink" href="#equation-01908c0d-e95a-4630-bc72-e5edf0e7aace" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eadc3422-0e60-4eac-946a-590c074e3da3">
+<span class="eqno">(11.6)<a class="headerlink" href="#equation-eadc3422-0e60-4eac-946a-590c074e3da3" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial^2 T}{\partial x^2} +
 \frac{\partial^2 T}{\partial y^2}
 = 0
@@ -707,7 +707,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_309186/4126467964.py:11: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_35962/4126467964.py:11: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Mapa T(x,y)
 </pre></div>
 </div>
@@ -754,7 +754,7 @@ H &amp;= 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_309186/4229917211.py:7: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_35962/4229917211.py:7: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))
 </pre></div>
 </div>
@@ -825,8 +825,8 @@ T_{i}^{l+1} =\frac{1}{1 + \Delta x h^*} \left(T_{i-1}^{l+1}  + \Delta x~h^*T_\in
 <p>Notar que las condiciones de borde están definidas respecto al valor futuro. Esto es simplemente por convenciencia en el método explícito</p>
 <blockquote>
 <div><p><strong>Importante</strong> Una condición necesaria del método explícito para asegurar convergencia y estabilidad en nuestra solución es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30902f0c-2742-434d-8cc0-f65191485005">
-<span class="eqno">(11.7)<a class="headerlink" href="#equation-30902f0c-2742-434d-8cc0-f65191485005" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ef1b4ca-985d-4956-bcca-93dd52f6dce1">
+<span class="eqno">(11.7)<a class="headerlink" href="#equation-8ef1b4ca-985d-4956-bcca-93dd52f6dce1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{2} \frac{\Delta x^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1153,8 +1153,8 @@ T_{i,j+1}^{l+1} - T_{i,j}^{l+1}  = -\Delta y q_0\quad\quad &amp;\mathrm{if}~j =0
 <p>Nuevamente, usamos valores futuros para las condiciones de borde</p>
 <blockquote>
 <div><p><strong>Nota</strong> En este caso, la condición de estabilidad y convergencia está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bea66382-3ecc-4c3d-b771-56d839e7448e">
-<span class="eqno">(11.8)<a class="headerlink" href="#equation-bea66382-3ecc-4c3d-b771-56d839e7448e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a82bf298-8a23-4694-ab2f-db8960c1ac1b">
+<span class="eqno">(11.8)<a class="headerlink" href="#equation-a82bf298-8a23-4694-ab2f-db8960c1ac1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \Delta t \le \frac{1}{8} \frac{\Delta x^2 + \Delta y^2}{\alpha}
 \end{equation}\]</div>
 </div></blockquote>
@@ -1255,7 +1255,7 @@ H &amp;=&amp; 1.5 ~\mathrm{m} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_309186/2608929585.py:15: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_35962/2608929585.py:15: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed in 3.11. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap()`` or ``pyplot.get_cmap()`` instead.
   plt.pcolor(xx, yy, T.T, cmap=cm.get_cmap(cm.plasma))           # Distribución T(x,y) en mapa de colores
 </pre></div>
 </div>
