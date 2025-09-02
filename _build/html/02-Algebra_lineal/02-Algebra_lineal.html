@@ -1302,26 +1302,28 @@ la matriz es diagonal dominante
 <p>Evaluamos nuestra función y la solución de Gauss-Seidel</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">])</span> <span class="c1"># valores iniciales</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])</span> <span class="c1"># valores iniciales</span>
 <span class="n">xsol</span><span class="p">,</span> <span class="n">Eabs</span> <span class="o">=</span> <span class="n">gauss_seidel</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iter = 1 ; x = [ 1.75    -1.0625  -0.79375]
-iter = 2 ; x = [ 1.85078125 -1.58378906 -0.56333984]
-iter = 3 ; x = [ 2.13266846 -1.51025452 -0.68467328]
-iter = 4 ; x = [ 2.05959296 -1.56781904 -0.63396837]
-iter = 5 ; x = [ 2.100194   -1.54627873 -0.65691883]
-iter = 6 ; x = [ 2.08350996 -1.55645176 -0.64682711]
-iter = 7 ; x = [ 2.09110925 -1.55204425 -0.65131065]
-iter = 8 ; x = [ 2.0877751  -1.55401293 -0.64932607]
-iter = 9 ; x = [ 2.08925757 -1.55314318 -0.65020568]
-iter = 10 ; x = [ 2.08860156 -1.55352894 -0.649816  ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iter = 1 ; x = [ 1.75    -0.4375  -1.10625]
+iter = 2 ; x = [ 1.49921875 -1.69121094 -0.40416016]
+iter = 3 ; x = [ 2.23264404 -1.43576111 -0.75191266]
+iter = 4 ; x = [ 2.00644317 -1.5965562  -0.60365485]
+iter = 5 ; x = [ 2.12233801 -1.53286878 -0.67026701]
+iter = 6 ; x = [ 2.07347566 -1.5622858  -0.6408998 ]
+iter = 7 ; x = [ 2.09551975 -1.54944231 -0.65393477]
+iter = 8 ; x = [ 2.08581533 -1.55516306 -0.64816307]
+iter = 9 ; x = [ 2.090125   -1.55263317 -0.65072092]
+iter = 10 ; x = [ 2.08821709 -1.55375485 -0.64958771]
+iter = 11 ; x = [ 2.08906268 -1.55325799 -0.65008981]
+iter = 12 ; x = [ 2.08868807 -1.55347815 -0.64986735]
 Converged!
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_492718/1975705176.py:50: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_260934/1975705176.py:50: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   x[i] = (y[i] - sum1 - sum2) / A[i][i]                   # xi^k = (yi - sum(aij*xj^(k-1), i != j))/aii
 </pre></div>
 </div>

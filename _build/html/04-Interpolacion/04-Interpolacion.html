@@ -496,7 +496,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <img alt="../_images/7097f721db55e9bd8eb6799e45a80bf5b482ffab891edef9ed91e93395a995a5.png" src="../_images/7097f721db55e9bd8eb6799e45a80bf5b482ffab891edef9ed91e93395a995a5.png" />
 </div>
 </div>
-<p>Notar como <strong>la curva azul pasa exáctamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5.0, -2.0\}\)</span>, <span class="math notranslate nohighlight">\(\{0.5, 2.0\}\)</span> y <span class="math notranslate nohighlight">\(\{5.0, -1.0\}\)</span></strong></p>
+<p>Notar como <strong>la curva azul pasa exactamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5.0, -2.0\}\)</span>, <span class="math notranslate nohighlight">\(\{0.5, 2.0\}\)</span> y <span class="math notranslate nohighlight">\(\{5.0, -1.0\}\)</span></strong></p>
 </section>
 <section id="problemas-de-oscilacion-en-interpolacion-polinomial">
 <h3><span class="section-number">4.2.2. </span>Problemas de oscilación en interpolación polinomial<a class="headerlink" href="#problemas-de-oscilacion-en-interpolacion-polinomial" title="Link to this heading">#</a></h3>
@@ -620,6 +620,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 </div>
+<p>Con esto, podemos determinar valores desconocidos evaluando directamente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># x = 0.3</span>
@@ -657,7 +658,7 @@ f(x)=\frac{1}{1 + 25x^2}
 </div>
 </div>
 </div>
-<p>Este método es útil para graficar.</p>
+<p>También podemos usar la nueva función para graficar:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot2
@@ -733,7 +734,7 @@ f(x)=\frac{1}{1 + 25x^2}
 <section id="spline-cubico-scipy-interpolate-cubicspline">
 <h3><span class="section-number">4.3.2. </span><em>Spline</em> cúbico (<code class="docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code>)<a class="headerlink" href="#spline-cubico-scipy-interpolate-cubicspline" title="Link to this heading">#</a></h3>
 <p>El <em>spline</em> cúbico consiste en generar una función de interpolación basado en una serie de polinomios cúbicos <span class="math notranslate nohighlight">\(S_i(x) = a_i x^3 + b_i x^2 + c_i x + d_i\)</span>, cada uno definido en el tramo <span class="math notranslate nohighlight">\(x\in\left[x_i, x_{i+1}\right]\)</span></p>
-<p>Para encontrar la función de interpolación debemos determinar los coecientes <span class="math notranslate nohighlight">\(a_i, b_i, c_i, d_i\)</span> de cada <span class="math notranslate nohighlight">\(S_i(x)\)</span>.</p>
+<p>Para encontrar la función de interpolación debemos determinar los coeficientes <span class="math notranslate nohighlight">\(a_i, b_i, c_i, d_i\)</span> de cada <span class="math notranslate nohighlight">\(S_i(x)\)</span>.</p>
 <p>Para una serie de <span class="math notranslate nohighlight">\(n+1\)</span> datos tabulados <span class="math notranslate nohighlight">\(\{x_i, y_i\}\)</span>, con <span class="math notranslate nohighlight">\(i = 0,1,...,n\)</span>, se necesitan <span class="math notranslate nohighlight">\(n\)</span> polinomios <span class="math notranslate nohighlight">\(S_i(x)\)</span>. Esto nos da un <strong>total de <span class="math notranslate nohighlight">\(4n\)</span> incognitas y, por lo tanto, necesitamos de <span class="math notranslate nohighlight">\(4n\)</span> ecuaciones linealmente independientes.</strong></p>
 <p>Primero, cada polinomio <span class="math notranslate nohighlight">\(S_i(x)\)</span> debe intersectar los valores extremos del domino en el que está definido. En otras palabras:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -760,7 +761,7 @@ S''_i(x_{i}) &amp;=&amp; S''_{i+1}(x_{i}),\quad i = 1,\ldots,n-1,
 <li><p><em><strong>Natural</strong></em>. La segunda derivada en los extremos, <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n) = 0\)</span></p></li>
 </ul>
 <ul class="simple">
-<li><p><em><strong>Periodic</strong></em>. Se usume una función periódica, de manera que <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n)\)</span>, y <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n)\)</span>. <strong>Solo válida para funciones periodicas</strong>, es decir cuando <span class="math notranslate nohighlight">\(y(x_0) = y(x_n)\)</span>.</p></li>
+<li><p><em><strong>Periodic</strong></em>. Se supone una función periódica, de manera que <span class="math notranslate nohighlight">\(S_1'(x_0) = S_n'(x_n)\)</span>, y <span class="math notranslate nohighlight">\(S_1''(x_0) = S_n''(x_n)\)</span>. <strong>Solo válida para funciones periodicas</strong>, es decir cuando <span class="math notranslate nohighlight">\(y(x_0) = y(x_n)\)</span>.</p></li>
 </ul>
 <p>El tipo condicion de borde modificará el comportamiento de la función en los extremos.</p>
 <center><video controls muted src="../_static/videos/BoundaryConditions.mp4"  width="800px" align=center></video></center>
