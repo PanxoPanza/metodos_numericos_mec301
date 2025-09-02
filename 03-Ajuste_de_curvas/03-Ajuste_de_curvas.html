@@ -541,7 +541,7 @@ m &amp; \sum x_i \\
 <span class="n">y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="c1"># creamos una función con el modelo de ajuste</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>   <span class="c1"># creamos un arreglo para ploteo</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;xi, yi&#39;</span><span class="p">)</span>                             <span class="c1"># gráfico con los datos tabulados</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;xi, yi&#39;</span><span class="p">)</span>                             <span class="c1"># gráfico con los datos tabulados</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;y = </span><span class="si">%.2f</span><span class="s1"> + </span><span class="si">%.2f</span><span class="s1">x&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>  <span class="c1"># gráfico del modelo</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Velocidad del viento, $V$ (m/s)&#39;</span><span class="p">)</span>                       <span class="c1"># etiqueta eje x</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Fuerza de arrastre, $F$ (N)&#39;</span><span class="p">)</span>                           <span class="c1"># etiqueta eje y</span>
@@ -558,14 +558,14 @@ m &amp; \sum x_i \\
 <section id="cuantificacion-del-error">
 <h3><span class="section-number">3.1.3. </span>Cuantificación del error<a class="headerlink" href="#cuantificacion-del-error" title="Link to this heading">#</a></h3>
 <p>Para cuantificar la calidad de nuestro modelo utilizaremos el <strong>coeficiente de determinación, <span class="math notranslate nohighlight">\(r^2\)</span>:</strong></p>
-<div class="amsmath math notranslate nohighlight" id="equation-299c341b-a0a5-45e0-93e7-c6d647253a5f">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-299c341b-a0a5-45e0-93e7-c6d647253a5f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16440762-f723-49cc-98c9-1206ce9453f4">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-16440762-f723-49cc-98c9-1206ce9453f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 r^2 = \frac{S_t - S_r}{S_t}
 \end{equation}\]</div>
 <p>donde</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(S_r =  \sum\left[y_i - y(x_i)\right]^2\)</span> es el error del modelo de regresión (<span class="math notranslate nohighlight">\(y(x) = a_0 + a_1x\)</span>, en este caso)</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_t = \sum\left(y_i - \bar{y}\right)^2\)</span> es la desviación estandar de los datos respecto a la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p></li>
 </ul>
 <blockquote>
 <div><p>El coeficiente de determinación nos permite cuantificar la calidad de nuestro modelo para representar una muestra, en comparación con la media <span class="math notranslate nohighlight">\(\bar{y}\)</span>.</p>
@@ -752,8 +752,8 @@ y = 0.274 x^{1.984},
 <section id="regresion-polinomial">
 <h3><span class="section-number">3.2.1. </span>Regresión polinomial<a class="headerlink" href="#regresion-polinomial" title="Link to this heading">#</a></h3>
 <p>En su forma general, el modelo polinomial corresponde a una función univariable de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a8e100f-ec92-4af8-becc-4821709f28f3">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-4a8e100f-ec92-4af8-becc-4821709f28f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-edabd9ce-a3f8-4648-b731-cb963a502dab">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-edabd9ce-a3f8-4648-b731-cb963a502dab" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x + a_2x^2+a_3x^3+... a_n x^n 
 \end{equation}\]</div>
 <p>Por ejemplo, consideremos el modelo <span class="math notranslate nohighlight">\(y = a_0 + a_1 x + a_2 x^2\)</span>. Según el método de regresión por mínimos cuadrados, la mejor curva está dada por el mínimo de:</p>
@@ -777,8 +777,8 @@ S_r = \sum_{i=1}^m \left(y_i - a_0 - a_1 x_i - a_2 x_i^2\right)^2,
 <section id="regresion-lineal-multidimensional">
 <h3><span class="section-number">3.2.2. </span>Regresión lineal multidimensional<a class="headerlink" href="#regresion-lineal-multidimensional" title="Link to this heading">#</a></h3>
 <p>Para problemas con más de una variable independiente se deben untilizar modelos multidimensionales. Un modelo común corresponde al modelo lineal de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc887bb3-d2c2-45b3-b09b-376a74bea700">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-dc887bb3-d2c2-45b3-b09b-376a74bea700" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fe2bdf77-b89e-4d57-8a80-985dc23efc34">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-fe2bdf77-b89e-4d57-8a80-985dc23efc34" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y = a_0 + a_1x_1 + a_2x_2+a_3x_3+... a_n x_n 
 \end{equation}\]</div>
 <p>Por ejemplo, en dos dimensiones tenemos un modelo de la forma <span class="math notranslate nohighlight">\(y = a_0 + a_1x_1+a_2x_2\)</span>. La mejor curva está dada por el mínimo de:</p>
@@ -981,7 +981,8 @@ y = 0.274x^{1.984}\quad\left(r^2=80.88\%\right)
 \[\begin{equation*}
 S_r = \sum_{i=1}^m (f_\mathrm{nl}(x_i) - y_i)^2,
 \end{equation*}\]</div>
-<p>de forma iterativa. Así, <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> permite buscar soluciones con valores <span class="math notranslate nohighlight">\(r^2\)</span> más cercanos a <span class="math notranslate nohighlight">\(1\)</span> que no son accesibles para el modelo lineal</p>
+<p>de forma iterativa.</p>
+<p>Así, <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code> permite buscar soluciones con valores <span class="math notranslate nohighlight">\(r^2\)</span> más cercanos a <span class="math notranslate nohighlight">\(1\)</span> que no son accesibles para el modelo lineal</p>
 <p>En efecto, si analizamos el coeficiente de determinación del modelo generado por <code class="docutils literal notranslate"><span class="pre">curve_fit</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -993,9 +994,7 @@ S_r = \sum_{i=1}^m (f_\mathrm{nl}(x_i) - y_i)^2,
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coef. de determinación
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r2 = 0.8769
+r2 = 0.8769
 </pre></div>
 </div>
 </div>
