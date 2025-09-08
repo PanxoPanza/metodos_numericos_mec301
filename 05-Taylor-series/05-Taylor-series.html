@@ -398,8 +398,8 @@ document.write(`
 <section id="expansion-de-funciones-en-series-de-taylor">
 <h2><span class="section-number">5.1. </span>Expansión de funciones en series de Taylor<a class="headerlink" href="#expansion-de-funciones-en-series-de-taylor" title="Link to this heading">#</a></h2>
 <p>La expansión en series de Taylor es una forma alternativa de representar una función mediante una serie infinita de polinomios alrededor de un punto <span class="math notranslate nohighlight">\(a\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a401316-1f99-45d0-b361-dc75de8ccc0a">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-1a401316-1f99-45d0-b361-dc75de8ccc0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9941bfaa-dd89-4320-a58f-cf8deb2b617c">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-9941bfaa-dd89-4320-a58f-cf8deb2b617c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)(x-a)^n}{n!}
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la <span class="math notranslate nohighlight">\(n\)</span>-ésima derivada de <span class="math notranslate nohighlight">\(f\)</span>, con <span class="math notranslate nohighlight">\(f^{(0)} = f\)</span></p>
@@ -426,11 +426,11 @@ f(x) &amp;= \frac{1}{0!}[5(2)^2 + 3(2) + 5](x - 2)^0 + \frac{1}{1!}[10(2) + 3](x
      &amp;= \frac{31(x-2)^0}{0!} + \frac{23(x-2)^1}{1!} + \frac{10(x-2)^2}{2!} = 31 + 23x - 46 + 5x^2 - 20x + 20 \\
      &amp;= 5x^2 + 3x + 5
 \end{align*}\]</div>
-<p>Como cololario general tenemos que <strong>una expansión de Taylor de un polinomio siempre es el mismo polinomio</strong></p>
+<p>Como corolario general tenemos que <strong>una expansión de Taylor de un polinomio siempre es el mismo polinomio</strong></p>
 </section>
 <section id="aproximaciones-mediante-series-de-taylor">
 <h2><span class="section-number">5.2. </span>Aproximaciones mediante series de Taylor<a class="headerlink" href="#aproximaciones-mediante-series-de-taylor" title="Link to this heading">#</a></h2>
-<p>Para funciones no polinomiales, las series de Taylor continene infinitos términos.</p>
+<p>Para funciones no polinomiales, las series de Taylor contienen infinitos términos.</p>
 <p>Por ejemplo, la expansión de Taylor de <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span> alrededor de <span class="math notranslate nohighlight">\(a=0\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -443,7 +443,7 @@ f(x) &amp;= \frac{\sin(0)}{0!}x^0 + \frac{\cos(0)}{1!}x^1 + \frac{-\sin(0)}{2!}x
 \sin(x) = \sum_{n = 0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
 \end{equation*}\]</div>
 <p>La ventaja de la representación en series de Taylor cobra relevancia cuando buscamos evaluar esta función computacionalmente. Esto debido a que un cálculo en base a polinomios solo requiere de operaciones básicas, como sumar, restar, multiplicar y dividir.</p>
-<p>Si bien, matemáticamente, la serie esta definida por infinitos términos, es posible obtener una buena aproximación considerando un número finito de ellos. Es decir, aproximamos la función <strong>truncando la serie de Taylor</strong></p>
+<p>Si bien, matemáticamente, la serie está definida por infinitos términos, es posible obtener una buena aproximación considerando un número finito de ellos. Es decir, aproximamos la función <strong>truncando la serie de Taylor</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \sin(x) \approx \sum_{n = 0}^{N} \frac{(-1)^n x^{2n+1}}{(2n+1)!}
