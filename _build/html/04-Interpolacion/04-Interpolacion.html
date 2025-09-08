@@ -462,8 +462,8 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 <span class="n">y_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c1"># polinomio de interpolación grado 2</span>
-<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">([</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
-                <span class="p">[</span><span class="n">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+<span class="n">ai</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">([</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+                <span class="p">[</span><span class="n">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">yi</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
                 <span class="mi">2</span><span class="p">)</span>
 <span class="n">y_pol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">ai</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 
@@ -493,7 +493,7 @@ f(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7097f721db55e9bd8eb6799e45a80bf5b482ffab891edef9ed91e93395a995a5.png" src="../_images/7097f721db55e9bd8eb6799e45a80bf5b482ffab891edef9ed91e93395a995a5.png" />
+<img alt="../_images/678bfc0590cda889c837cb03bc1172e93663697ec126efbb1d1cd08fbc4ca948.png" src="../_images/678bfc0590cda889c837cb03bc1172e93663697ec126efbb1d1cd08fbc4ca948.png" />
 </div>
 </div>
 <p>Notar como <strong>la curva azul pasa exactamente por los puntos <span class="math notranslate nohighlight">\(\{x_i, y_i\} = \{-5.0, -2.0\}\)</span>, <span class="math notranslate nohighlight">\(\{0.5, 2.0\}\)</span> y <span class="math notranslate nohighlight">\(\{5.0, -1.0\}\)</span></strong></p>
