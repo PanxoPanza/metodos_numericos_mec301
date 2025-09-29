@@ -387,7 +387,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-combinados">6.2.3. Métodos combinados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raices de función escalar en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raíces de función escalar en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-funciones-vectoriales">6.3. Búsqueda de raíces para funciones vectoriales</a><ul class="nav section-nav flex-column">
@@ -427,7 +427,7 @@ document.write(`
 \frac{1}{\sqrt{f_c}} = -2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}{\mathrm{Re}\sqrt{f_c}}\right)
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\mathrm{Re} = \frac{VD}{\nu}\)</span> es el número de Reynolds, y <span class="math notranslate nohighlight">\(\varepsilon/D\)</span> la rugosidad relativa.</p>
-<p>Sin embargo, esta ecuación no se puede resolver analíticamente. ¿Como resolvemos esta ecuación?</p>
+<p>Sin embargo, esta ecuación no se puede resolver analíticamente. ¿Cómo resolvemos esta ecuación?</p>
 <p>Llamamos raíces de una función <span class="math notranslate nohighlight">\(f(x)\)</span> a los valores <span class="math notranslate nohighlight">\(x^*\)</span> tales que <span class="math notranslate nohighlight">\(f(x^*) = 0\)</span>.</p>
 <p>Determinar <span class="math notranslate nohighlight">\(f_c\)</span> a partir de la ecuación de Colebrook es equivalente a encontrar las raíces de la función:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -443,7 +443,7 @@ f(x) = \frac{1}{\sqrt{x}} + 2.0\log\left(\frac{\varepsilon/D}{3.7} + \frac{2.51}
 \[\begin{equation*}
 f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 \end{equation*}\]</div>
-<p>Resolver una ecuación unidimiencional es equivalente a encontrar las raices de una función escalar con <strong>una variable dependiente.</strong></p>
+<p>Resolver una ecuación unidimiencional es equivalente a encontrar las raíces de una función escalar con <strong>una variable dependiente.</strong></p>
 <p>En otras palabras, dada una función <span class="math notranslate nohighlight">\(f(x)\)</span>, las raíces <span class="math notranslate nohighlight">\(x_0\)</span> están dadas por <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>.</p>
 <p>Para una solución <span class="math notranslate nohighlight">\(x_0\)</span>, tal que <span class="math notranslate nohighlight">\(f(x_0) = 0\)</span>, podemos clasificar los métodos para resolver este problema en tres tipos:</p>
 <ul class="simple">
@@ -484,7 +484,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 \[\begin{equation*}
 \frac{|x_{k+1} -x_{k}|}{|x_{k+1}|}
 \end{equation*}\]</div>
-<p>Es importante menciona que, en general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto porque, a veces, el error relativo puede imponer condiciones demaciado estrictas para la convergencia.</p>
+<p>Es importante menciona que, en general, no existe una regla respecto al tipo de error que se debe usar como criterio de convergencia. La recomendación es usar el error absoluto si se tiene conocimiento de la función. Esto se debe a que, a veces, el error relativo puede imponer condiciones demasiado estrictas para la convergencia.</p>
 <p>Creemos una función en python para calcular raíces por medio del método de la bisección</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -513,7 +513,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bracket</span> <span class="c1"># extraemos los valores del intervalo</span>
     
     <span class="c1"># verificamos si el intervalo [a,b] satisface el teorema del valor medio</span>
-    <span class="k">assert</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">,</span> <span class="s2">&quot;El intervalo [a, b] no contiene raices&quot;</span>
+    <span class="k">assert</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">,</span> <span class="s2">&quot;El intervalo [a, b] no contiene raíces&quot;</span>
     
     <span class="c1"># Asignamos valores arbitrarios para la primera iteración</span>
     <span class="n">x_old</span> <span class="o">=</span> <span class="n">a</span>  <span class="c1"># xk</span>
@@ -610,14 +610,14 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-967b03cb-f33e-446e-84f2-26c994ec8660">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-967b03cb-f33e-446e-84f2-26c994ec8660" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d1c691cb-e760-414c-87fa-e3a48d30ee4f">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-d1c691cb-e760-414c-87fa-e3a48d30ee4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/newton_raphson.png"><img alt="../_images/newton_raphson.png" class="align-center" src="../_images/newton_raphson.png" style="width: 400px;" />
 </a>
-<p>La ventaja de este algoritmo es que, a diferencia de los métodos por intervalo acotado, solo necesita de un valor inicial. Esta es una caracterísca general de los métodos de intervalo abierto.</p>
+<p>La ventaja de este algoritmo es que, a diferencia de los métodos por intervalo acotado, solo necesita de un valor inicial. Esta es una característica general de los métodos de intervalo abierto.</p>
 <p>Una segunda ventaja radica en la rápida convergencia del algoritmo para encontrar soluciones.</p>
 <a class="reference internal image-reference" href="../_images/newton_raphson_good.gif"><img alt="../_images/newton_raphson_good.gif" class="align-center" src="../_images/newton_raphson_good.gif" style="width: 600px;" />
 </a>
@@ -783,17 +783,17 @@ x_sol = 100.000, f(x_sol) = 0.000e+00
 </section>
 <section id="metodos-combinados">
 <h3><span class="section-number">6.2.3. </span>Métodos combinados<a class="headerlink" href="#metodos-combinados" title="Link to this heading">#</a></h3>
-<p>Los metodos más sofisticados para búsqueda de raices combinan métodos de intervalo abierto y cerrado. Por un lado, el método de intervalo abierto permite una convergencia más rápida, mientras que el método de intervalo cerrado permite acotar la solución.</p>
-<p>En términos generales, los métodos combinados operan de la siguente forma.</p>
+<p>Los métodos más sofisticados para búsqueda de raíces combinan métodos de intervalo abierto y cerrado. Por un lado, el método de intervalo abierto permite una convergencia más rápida, mientras que el método de intervalo cerrado permite acotar la solución.</p>
+<p>En términos generales, los métodos combinados operan de la siguiente forma.</p>
 <ul class="simple">
-<li><p>Se subdivide el dominio de la función para identificar intervalos donde existan raices.</p></li>
+<li><p>Se subdivide el dominio de la función para identificar intervalos donde existan raíces.</p></li>
 <li><p>Se procede con la iteración mediante un método de intervalo abierto</p></li>
 <li><p>Si la solución se mueve fuera del intervalo acotado, se procede a iterar con un método de intervalo cerrado.</p></li>
 </ul>
 <p>Por ejemplo, el <strong>método de Brent’s</strong> combina un método de intervalo abierto (como Newton-Raphson o secante), con el método de la bisección. Más información en las referencias</p>
 </section>
 <section id="raices-de-funcion-escalar-en-python">
-<h3><span class="section-number">6.2.4. </span>Raices de función escalar en python<a class="headerlink" href="#raices-de-funcion-escalar-en-python" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.4. </span>Raíces de función escalar en python<a class="headerlink" href="#raices-de-funcion-escalar-en-python" title="Link to this heading">#</a></h3>
 <p>En python, la función <code class="docutils literal notranslate"><span class="pre">root_scalar</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>, permite determinar raíces de una función escalar.</p>
 <p>Los argumento más relevantes en esta función son:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -940,7 +940,7 @@ Secante:
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Brent´s:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>                                      <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;brentq&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Intervalo (método por defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>               <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cond. inicial y derivada (método po defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Cond. inicial y derivada (método por defecto):</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x0</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -959,7 +959,7 @@ Intervalo (método por defecto):
      iterations: 10
            root: 1.0
 
-Cond. inicial y derivada (método po defecto):
+Cond. inicial y derivada (método por defecto):
        converged: True
            flag: converged
  function_calls: 22
@@ -1010,7 +1010,7 @@ Cond. inicial y derivada (método po defecto):
 </pre></div>
 </div>
 <p>También podemos usar combinaciones de ambas. En ese caso, la iteración finalizará cuando se cumpla cualquiera de los dos criterios.</p>
-<p>Por último, también podemos definir el numero máximo de iteraciones mediante <code class="docutils literal notranslate"><span class="pre">maxiter</span></code>:</p>
+<p>Por último, también podemos definir el número máximo de iteraciones mediante <code class="docutils literal notranslate"><span class="pre">maxiter</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">bracket</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span><span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># máximo 1000 iteraciones</span>
 </pre></div>
 </div>
@@ -1030,7 +1030,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^m
 x\log(y^2-1) &amp;= 3 \\
 y\sin(2x^3) + e^y &amp;= 2
 \end{align*}\]</div>
-<p>Resolver este sistema, es equivalente a encontrar las raices de una función vetorial del tipo:</p>
+<p>Resolver este sistema, es equivalente a encontrar las raíces de una función vetorial del tipo:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \vec{F}(x,y) = \Bigg\{
@@ -1039,7 +1039,7 @@ f(x,y) &amp;= x\log(y^2-1) - 3 \\
 g(x,y) &amp;= y\sin(2x^3) + e^y - 2
 \end{matrix}
 \end{equation*}\]</div>
-<p>Así, resolver un sistema de ecuaciones de <span class="math notranslate nohighlight">\(n\)</span> incognitas, es equivalente a encontrar las raices de una función vectorial del tipo:</p>
+<p>Así, resolver un sistema de ecuaciones de <span class="math notranslate nohighlight">\(n\)</span> incognitas, es equivalente a encontrar las raíces de una función vectorial del tipo:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
@@ -1066,7 +1066,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 \end{equation*}\]</div>
 <p>En otras palabras, el Jacobiano es equivalente a la derivada pero para funciones vectoriales.</p>
 <p>El método generalizado de Newton-Raphson, así, consiste en encontrar un nuevo vector <span class="math notranslate nohighlight">\(\vec{x}_{k+1}\)</span> a partir de la pendiente descendiente definida en el vector <span class="math notranslate nohighlight">\(\vec{x}_{k}\)</span>.</p>
-<p>Sin embargo, a diferencia del caso unidimensional, el Jacobiano entrega multiples direcciones posibles. ¿Como saber cuál es la dirección que minimiza <span class="math notranslate nohighlight">\(\vec{F}\)</span>?</p>
+<p>Sin embargo, a diferencia del caso unidimensional, el Jacobiano entrega multiples direcciones posibles. ¿Cómo saber cuál es la dirección que minimiza <span class="math notranslate nohighlight">\(\vec{F}\)</span>?</p>
 <p>Para definir la dirección descendiente se considera el criterio:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -1084,7 +1084,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}^n
 <ul class="simple">
 <li><p>Se define una región de confianza inicial y se busca un mínimo dentro esa región.</p></li>
 <li><p>Si el valor encontrado minimiza <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se construye una aproximación hyperboloide de <span class="math notranslate nohighlight">\(\vec{F}\)</span> y se incrementa la región de confianza.</p></li>
-<li><p>Si el valor encontrado no minisa <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se reduce la región de confianza, y se vuelve a buscar el mínimo.</p></li>
+<li><p>Si el valor encontrado no minimiza <span class="math notranslate nohighlight">\(\vec{F}\cdot\vec{F}\)</span>, se reduce la región de confianza, y se vuelve a buscar el mínimo.</p></li>
 <li><p>El algoritmo itera hasta encontrar un mínimo global de <span class="math notranslate nohighlight">\(\vec{F}\)</span>.</p></li>
 </ul>
 <p>En general, los métodos de región de confianza son más estables que los métodos de búsqueda lineal, y son los métodos por defecto en funciones de python.</p>
@@ -1234,7 +1234,7 @@ xy-y=5
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-combinados">6.2.3. Métodos combinados</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raices de función escalar en python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raices-de-funcion-escalar-en-python">6.2.4. Raíces de función escalar en python</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#busqueda-de-raices-para-funciones-vectoriales">6.3. Búsqueda de raíces para funciones vectoriales</a><ul class="nav section-nav flex-column">
