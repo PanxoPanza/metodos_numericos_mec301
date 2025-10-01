@@ -521,13 +521,13 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
         <span class="c1"># imprimimos el intervalo y error</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;k = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s1"> .0f</span><span class="si">}</span><span class="s1">, (a,b) = (</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">), abs_error = </span><span class="si">{</span><span class="n">abs_error</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         
-        <span class="c1"># si el erro es menor que la tolerancia, terminamos el loop</span>
+        <span class="c1"># si el error es menor que la tolerancia, terminamos el loop</span>
         <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&lt;</span> <span class="n">abs_tol</span><span class="p">:</span> 
             <span class="k">break</span>
         
         <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>                <span class="c1"># punto medio entre [a, b]</span>
         
-        <span class="c1"># evaluamos el intervalo acotado más cercano a x_sol</span>
+        <span class="c1"># seleccionamos nuevo intervalo en función del teorema del valor medio</span>
         <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">m</span> <span class="c1"># tomamos intervalo izquierdo [a, xk]</span>
         <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span> <span class="c1"># tomamos intervalo derecho   [xk, b]</span>
         
@@ -603,8 +603,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d40a66c1-8392-44dd-b5c5-95d164b4713e">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-d40a66c1-8392-44dd-b5c5-95d164b4713e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-048ff74f-7a2a-4d37-87ac-d63b401c6afe">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-048ff74f-7a2a-4d37-87ac-d63b401c6afe" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
