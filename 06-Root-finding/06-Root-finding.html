@@ -489,7 +489,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="k">def</span> <span class="nf">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bracket</span><span class="p">,</span> <span class="n">xtol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">bisection</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">bracket</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Método de la bisección para encontrar la raíz de f(x)</span>
 <span class="sd">    </span>
@@ -500,7 +500,7 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
 <span class="sd">        - bracket: tupple</span>
 <span class="sd">            intervalo de búsqueda (a, b)</span>
 <span class="sd">            </span>
-<span class="sd">        - xtol: float (optional)</span>
+<span class="sd">        - abs_tol: float (optional)</span>
 <span class="sd">            tolerancia al error absoluto (1E-5 por defecto)</span>
 <span class="sd">            </span>
 <span class="sd">        - max_iter: int (opcional)</span>
@@ -515,34 +515,26 @@ f: x\in \mathbb{R}^n \rightarrow \mathbb{R}
     <span class="c1"># verificamos si el intervalo [a,b] satisface el teorema del valor medio</span>
     <span class="k">assert</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">,</span> <span class="s2">&quot;El intervalo [a, b] no contiene raíces&quot;</span>
     
-    <span class="c1"># Asignamos valores arbitrarios para la primera iteración</span>
-    <span class="n">x_old</span> <span class="o">=</span> <span class="n">a</span>  <span class="c1"># xk</span>
-    <span class="n">x_new</span> <span class="o">=</span> <span class="n">b</span>  <span class="c1"># xk+1</span>
-    
-    <span class="c1"># loop si |xk+1 - xk| &gt; abs_tol</span>
-    <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">abs_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="c1"># error absoluto</span>
-    <span class="k">while</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="ow">and</span> <span class="n">k_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>        
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>        <span class="c1"># ejecutamos loop hasta max_iter</span>
+        <span class="n">abs_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>    <span class="c1"># calculamos error absoluto</span>
         
-        <span class="c1"># imprimimos el intervalo en cada iteración (ESTO ES ILUSTRATIVO)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k = </span><span class="si">%i</span><span class="s1">, (a,b) = (</span><span class="si">%.3f</span><span class="s1">, </span><span class="si">%.3f</span><span class="s1">), abs_error = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k_iter</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">abs_error</span><span class="p">))</span>
+        <span class="c1"># imprimimos el intervalo y error</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;k = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s1"> .0f</span><span class="si">}</span><span class="s1">, (a,b) = (</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">), abs_error = </span><span class="si">{</span><span class="n">abs_error</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         
-        <span class="c1"># evaluamos el intervalo acotado más cercano a x0</span>
-        <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">x_new</span>
-        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">x_new</span>
-            
-        <span class="c1"># actualizamos xk y xk+1 para la siguiente itereación</span>
-        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_new</span>
-        <span class="n">x_new</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># punto medio entre [a, b]</span>
+        <span class="c1"># si el erro es menor que la tolerancia, terminamos el loop</span>
+        <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&lt;</span> <span class="n">abs_tol</span><span class="p">:</span> 
+            <span class="k">break</span>
         
-        <span class="n">abs_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="c1"># nuevo error absoluto</span>
-        <span class="n">k_iter</span> <span class="o">+=</span> <span class="mi">1</span>                       <span class="c1"># contamos la iteración</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>                <span class="c1"># punto medio entre [a, b]</span>
+        
+        <span class="c1"># evaluamos el intervalo acotado más cercano a x_sol</span>
+        <span class="k">if</span>   <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">m</span> <span class="c1"># tomamos intervalo izquierdo [a, xk]</span>
+        <span class="k">elif</span> <span class="n">f</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="n">m</span> <span class="c1"># tomamos intervalo derecho   [xk, b]</span>
+        
+    <span class="c1"># si la solución no converge y k &gt; max_iter, informar a usuario</span>
+    <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">abs_tol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
     
-    <span class="c1"># si la solución no converge y k_iter &gt; max_iter, informar a usuario</span>
-    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
-    
-    <span class="n">x_sol</span> <span class="o">=</span> <span class="n">x_new</span>
-    <span class="k">return</span> <span class="n">x_sol</span> 
+    <span class="k">return</span> <span class="n">m</span> 
 </pre></div>
 </div>
 </div>
@@ -570,24 +562,25 @@ a = -1.000, f(a) = -0.632
 b = 1.000, f(b) = 1.718
 
 Resultado método de Bisección
-k = 1, (a,b) = (-1.000, 1.000), abs_error = 2.000e+00
-k = 2, (a,b) = (-1.000, 1.000), abs_error = 1.000e+00
-k = 3, (a,b) = (-1.000, 0.000), abs_error = 5.000e-01
-k = 4, (a,b) = (-1.000, -0.500), abs_error = 2.500e-01
-k = 5, (a,b) = (-0.750, -0.500), abs_error = 1.250e-01
-k = 6, (a,b) = (-0.750, -0.625), abs_error = 6.250e-02
-k = 7, (a,b) = (-0.750, -0.688), abs_error = 3.125e-02
-k = 8, (a,b) = (-0.719, -0.688), abs_error = 1.562e-02
-k = 9, (a,b) = (-0.719, -0.703), abs_error = 7.812e-03
-k = 10, (a,b) = (-0.711, -0.703), abs_error = 3.906e-03
-k = 11, (a,b) = (-0.707, -0.703), abs_error = 1.953e-03
-k = 12, (a,b) = (-0.705, -0.703), abs_error = 9.766e-04
-k = 13, (a,b) = (-0.704, -0.703), abs_error = 4.883e-04
-k = 14, (a,b) = (-0.704, -0.703), abs_error = 2.441e-04
-k = 15, (a,b) = (-0.704, -0.703), abs_error = 1.221e-04
-k = 16, (a,b) = (-0.703, -0.703), abs_error = 6.104e-05
-k = 17, (a,b) = (-0.703, -0.703), abs_error = 3.052e-05
-k = 18, (a,b) = (-0.703, -0.703), abs_error = 1.526e-05
+k =  0, (a,b) = (-1.000e+00, 1.000e+00), abs_error = 2.000e+00
+k =  1, (a,b) = (-1.000e+00, 0.000e+00), abs_error = 1.000e+00
+k =  2, (a,b) = (-1.000e+00, -5.000e-01), abs_error = 5.000e-01
+k =  3, (a,b) = (-7.500e-01, -5.000e-01), abs_error = 2.500e-01
+k =  4, (a,b) = (-7.500e-01, -6.250e-01), abs_error = 1.250e-01
+k =  5, (a,b) = (-7.500e-01, -6.875e-01), abs_error = 6.250e-02
+k =  6, (a,b) = (-7.188e-01, -6.875e-01), abs_error = 3.125e-02
+k =  7, (a,b) = (-7.188e-01, -7.031e-01), abs_error = 1.562e-02
+k =  8, (a,b) = (-7.109e-01, -7.031e-01), abs_error = 7.812e-03
+k =  9, (a,b) = (-7.070e-01, -7.031e-01), abs_error = 3.906e-03
+k =  10, (a,b) = (-7.051e-01, -7.031e-01), abs_error = 1.953e-03
+k =  11, (a,b) = (-7.041e-01, -7.031e-01), abs_error = 9.766e-04
+k =  12, (a,b) = (-7.036e-01, -7.031e-01), abs_error = 4.883e-04
+k =  13, (a,b) = (-7.036e-01, -7.034e-01), abs_error = 2.441e-04
+k =  14, (a,b) = (-7.035e-01, -7.034e-01), abs_error = 1.221e-04
+k =  15, (a,b) = (-7.035e-01, -7.034e-01), abs_error = 6.104e-05
+k =  16, (a,b) = (-7.035e-01, -7.035e-01), abs_error = 3.052e-05
+k =  17, (a,b) = (-7.035e-01, -7.035e-01), abs_error = 1.526e-05
+k =  18, (a,b) = (-7.035e-01, -7.035e-01), abs_error = 7.629e-06
 x_sol = -0.70347, f(x_sol) = -1.712e-06
 </pre></div>
 </div>
@@ -610,8 +603,8 @@ x_1 = x_0 - \frac{f(x_0)}{f^{\prime}(x_0)}
 \end{equation*}\]</div>
 <p>Si <span class="math notranslate nohighlight">\(x_1\)</span> no es la raíz, podemos encontrar un nuevo valor mediante <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f^{\prime}(x_1)}\)</span></p>
 <p>En resumen, el método de Newton-Raphson se define mediante la operación iterativa:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1c691cb-e760-414c-87fa-e3a48d30ee4f">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-d1c691cb-e760-414c-87fa-e3a48d30ee4f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d40a66c1-8392-44dd-b5c5-95d164b4713e">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-d40a66c1-8392-44dd-b5c5-95d164b4713e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 \end{equation}\]</div>
 <p>Gráficamente, lo que hacemos en cada iteración es encontrar el punto <span class="math notranslate nohighlight">\(x_{k+1}\)</span> donde la recta <span class="math notranslate nohighlight">\(f(x_k) + f^{\prime}(x_k)(x-x_k)\)</span> intersecta el eje <span class="math notranslate nohighlight">\(y = 0\)</span>.</p>
@@ -625,7 +618,7 @@ x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="k">def</span> <span class="nf">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">fprime</span><span class="p">,</span> <span class="n">xtol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">fprime</span><span class="p">,</span> <span class="n">abs_tol</span> <span class="o">=</span> <span class="mf">1E-5</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Método de Newton-Raphson para encontrar la raíz de f(x)</span>
 <span class="sd">    </span>
@@ -639,7 +632,7 @@ x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 <span class="sd">        - fprime: callable</span>
 <span class="sd">            derivada de la función de busqueda df/dx</span>
 <span class="sd">            </span>
-<span class="sd">        - xtol: float (optional)</span>
+<span class="sd">        - abs_tol: float (optional)</span>
 <span class="sd">            tolerancia al valor absoluto (1E-5 por defecto)</span>
 <span class="sd">            </span>
 <span class="sd">        - max_iter: int (optional)</span>
@@ -651,30 +644,29 @@ x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 <span class="sd">    </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">abs_error</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># inicializamos el error absoluto</span>
-    <span class="n">x_old</span> <span class="o">=</span> <span class="n">x0</span>       <span class="c1"># valor inicial</span>
+    <span class="n">xk</span> <span class="o">=</span> <span class="n">x0</span>          <span class="c1"># valor inicial</span>
     
     <span class="c1"># comenzamos las iteraciones</span>
-    <span class="n">k_iter</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="ow">and</span> <span class="n">k_iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        
         <span class="c1"># newton-raphson</span>
-        <span class="n">x_new</span> <span class="o">=</span> <span class="n">x_old</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x_old</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="p">(</span><span class="n">x_old</span><span class="p">)</span>
+        <span class="n">xk1</span> <span class="o">=</span> <span class="n">xk</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">xk</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="p">(</span><span class="n">xk</span><span class="p">)</span>   <span class="c1"># itereación k</span>
+        <span class="n">abs_error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">xk1</span> <span class="o">-</span> <span class="n">xk</span><span class="p">)</span> <span class="c1"># error absoluto</span>
         
-        <span class="c1"># imprimimos valor de x_new (SOLO ILUSTRATIVO)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;k = </span><span class="si">%i</span><span class="s1">, x_sol = </span><span class="si">%.3f</span><span class="s1">, abs_error = </span><span class="si">%.3e</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k_iter</span><span class="p">,</span> <span class="n">x_new</span><span class="p">,</span> <span class="n">abs_error</span><span class="p">))</span>
+        <span class="c1"># imprimimos xk1 y error</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;k = </span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s1">d</span><span class="si">}</span><span class="s1">, xk1 = </span><span class="si">{</span><span class="n">xk1</span><span class="si">:</span><span class="s1">.5e</span><span class="si">}</span><span class="s1">, abs_error = </span><span class="si">{</span><span class="n">abs_error</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         
-        <span class="c1"># calculamos error absoluto</span>
-        <span class="n">abs_error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x_old</span><span class="p">)</span>
+        <span class="c1"># si el error es menor a la tolerancia, terminamos el loop</span>
+        <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&lt;</span> <span class="n">abs_tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># si no, actualizamos xk</span>
+        <span class="n">xk</span> <span class="o">=</span> <span class="n">xk1</span>
         
-        <span class="c1"># actualizamos x0 y número de iteraciones</span>
-        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x_new</span>
-        <span class="n">k_iter</span> <span class="o">+=</span> <span class="mi">1</span>
-        
-    <span class="c1"># si k_iter &gt; max_iter y la solución no converge, indicar al usuario</span>
-    <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">xtol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
+    <span class="c1"># si k &gt; max_iter y la solución no converge, indicar al usuario</span>
+    <span class="k">if</span> <span class="n">abs_error</span> <span class="o">&gt;</span> <span class="n">abs_tol</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La solución no converge&#39;</span><span class="p">)</span>
 
-    <span class="n">x_sol</span> <span class="o">=</span> <span class="n">x_new</span>
-    <span class="k">return</span> <span class="n">x_sol</span>
+    <span class="k">return</span> <span class="n">xk1</span>
 </pre></div>
 </div>
 </div>
@@ -692,12 +684,12 @@ x_{k+1} = x_k - \frac{f(x_k)}{f^{\prime}(x_k)}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = -1.392, abs_error = 1.000e+03
-k = 2, x_sol = -0.835, abs_error = 2.392e+00
-k = 3, x_sol = -0.710, abs_error = 5.571e-01
-k = 4, x_sol = -0.703, abs_error = 1.253e-01
-k = 5, x_sol = -0.703, abs_error = 6.351e-03
-k = 6, x_sol = -0.703, abs_error = 1.598e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 0, xk1 = -1.39221e+00, abs_error = 2.392e+00
+k = 1, xk1 = -8.35088e-01, abs_error = 5.571e-01
+k = 2, xk1 = -7.09834e-01, abs_error = 1.253e-01
+k = 3, xk1 = -7.03483e-01, abs_error = 6.351e-03
+k = 4, xk1 = -7.03467e-01, abs_error = 1.598e-05
+k = 5, xk1 = -7.03467e-01, abs_error = 1.011e-10
 x_sol = -0.703, f(x_sol) = 0.000e+00
 </pre></div>
 </div>
@@ -737,8 +729,8 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 1, x_sol = 100.000, abs_error = 1.000e+03
-k = 2, x_sol = 100.000, abs_error = 1.000e+02
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 0, xk1 = 1.00000e+02, abs_error = 1.000e+02
+k = 1, xk1 = 1.00000e+02, abs_error = 0.000e+00
 x_sol = 100.000, f(x_sol) = 0.000e+00
 </pre></div>
 </div>
