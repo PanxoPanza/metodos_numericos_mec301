@@ -376,7 +376,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">7.1. Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-mediante-datos-tabulados-formulas-de-newton-cotes">7.2. Integración mediante datos tabulados (Fórmulas de Newton-Cotes)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemman">7.2.1. Integral de Riemman</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemann">7.2.1. Integral de Riemann</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-del-trapecio-scipy-integrate-trapezoid">7.2.2. Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-simpson-1-3-scipy-integrate-simpson">7.2.3. Regla de Simpson 1/3 (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.simpson</span></code>)</a></li>
 </ul>
@@ -402,10 +402,10 @@ document.write(`
 <h1><span class="section-number">7. </span>Integración numérica<a class="headerlink" href="#integracion-numerica" title="Link to this heading">#</a></h1>
 <section id="introduccion">
 <h2><span class="section-number">7.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
-<p>El cálculo de integrales es fundamental en todos los problemas de ingeniería. Muchos ejemplos tienen relación directa con la estimación de áreas: (a) La superficie de un campo limitado por dos carreteras y un rio, (b) El área transversal de un canal, (c) La fuerza de arrastre sobre un edificio ocacionada por el viento.</p>
+<p>El cálculo de integrales es fundamental en todos los problemas de ingeniería. Muchos ejemplos tienen relación directa con la estimación de áreas: (a) La superficie de un campo limitado por dos carreteras y un rio, (b) El área transversal de un canal, (c) La fuerza de arrastre sobre un edificio ocasionada por el viento.</p>
 <a class="reference internal image-reference" href="../_images/integration_examples.png"><img alt="../_images/integration_examples.png" class="align-center" src="../_images/integration_examples.png" style="width: 600px;" />
 </a>
-<p>En este capítulo revisaremos dos métodos de integración (1) Formulas de Newton-Cotes para datos tabulados de una función desconocida (2) Integrales para funciones conocidas</p>
+<p>En este capítulo revisaremos dos métodos de integración (1) Fórmulas de Newton-Cotes para datos tabulados de una función desconocida (2) Integrales para funciones conocidas</p>
 </section>
 <section id="integracion-mediante-datos-tabulados-formulas-de-newton-cotes">
 <h2><span class="section-number">7.2. </span>Integración mediante datos tabulados (Fórmulas de Newton-Cotes)<a class="headerlink" href="#integracion-mediante-datos-tabulados-formulas-de-newton-cotes" title="Link to this heading">#</a></h2>
@@ -418,31 +418,31 @@ document.write(`
 <p>Asumamos:</p>
 <ul class="simple">
 <li><p>Intervalo discretizado por <span class="math notranslate nohighlight">\(n+1\)</span> puntos <span class="math notranslate nohighlight">\(\{x_0, x_1, ... x_i, ...., x_n\}\)</span>, con <span class="math notranslate nohighlight">\(x_0 = a\)</span> y <span class="math notranslate nohighlight">\(x_n = b\)</span></p></li>
-<li><p>Subintervalo entre dos puntos <span class="math notranslate nohighlight">\(x_{i+1}\)</span> y  <span class="math notranslate nohighlight">\(x_i\)</span>definido por <span class="math notranslate nohighlight">\(h_i =x_{i+1} - x_{i}\)</span>.</p></li>
+<li><p>Subintervalo entre dos puntos <span class="math notranslate nohighlight">\(x_{i+1}\)</span> y  <span class="math notranslate nohighlight">\(x_i\)</span> definido por <span class="math notranslate nohighlight">\(h_i =x_{i+1} - x_{i}\)</span>.</p></li>
 <li><p>Valores <span class="math notranslate nohighlight">\(\{f(x_0), f(x_1), ... f(x_i), ...., f(x_n)\}\)</span>, conocidos.</p></li>
 </ul>
 <p>Las fórmulas de Newton-Cotes se basan en la aproximación de una función <span class="math notranslate nohighlight">\(f(x)\)</span> mediante polinomios generados a partir de los datos tabulados <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(f(x_i)\)</span></p>
 <a class="reference internal image-reference" href="../_images/Newton_cotes.png"><img alt="../_images/Newton_cotes.png" class="align-center" src="../_images/Newton_cotes.png" style="width: 600px;" />
 </a>
-<section id="integral-de-riemman">
-<h3><span class="section-number">7.2.1. </span>Integral de Riemman<a class="headerlink" href="#integral-de-riemman" title="Link to this heading">#</a></h3>
+<section id="integral-de-riemann">
+<h3><span class="section-number">7.2.1. </span>Integral de Riemann<a class="headerlink" href="#integral-de-riemann" title="Link to this heading">#</a></h3>
 <p>El caso más sencillo consiste en aproximar <span class="math notranslate nohighlight">\(f(x)\)</span> en el subintervalo <span class="math notranslate nohighlight">\(x\in[x_{i+1}, x_i]\)</span> mediante un polinomio de grado 0. La elección más lógica sería <span class="math notranslate nohighlight">\(f(x) \approx f(x_i)\)</span> o <span class="math notranslate nohighlight">\(f(x) \approx f(x_{i+1})\)</span>, ya que estos puntos son conocidos por la tabulación.</p>
 <p>Matemáticamente:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \int_a^b f(x) dx \approx \sum_{i = 0}^{n-1} h_if(x_i)\quad\mathrm{o}\quad\approx\sum_{i = 1}^{n} h_if(x_i),
 \end{equation*}\]</div>
-<p>dependiento de si tomamos el valor de la izquierda o derecha del tramo, respectivamente.</p>
+<p>dependiendo de si tomamos el valor de la izquierda o derecha del tramo, respectivamente.</p>
 <p>En otras palabras, aproximamos el área bajo cada subintervalo mediante un rectángulo.</p>
 <a class="reference internal image-reference" href="../_images/riemann_integral.png"><img alt="../_images/riemann_integral.png" class="align-center" src="../_images/riemann_integral.png" style="width: 400px;" />
 </a>
-<p>Mediante series de Taylor podemos caracterizar el error de esta aproximación. Por simplicidad, consideramos un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados con <span class="math notranslate nohighlight">\(h_i = h = \frac{b-a}{n}\)</span>.</p>
+<p>Mediante series de Taylor podemos caracterizar el error de esta aproximación. Por simplicidad, consideramos un conjunto de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados con <span class="math notranslate nohighlight">\(h_i = h = \frac{b-a}{n}\)</span>.</p>
 <p>Considerando la integral en subintervalos de ancho <span class="math notranslate nohighlight">\(h\)</span>, podemos expresar la integral como:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \int_a^b f(x) dx = \sum_{i = 0}^{n-1} \int_{x_i}^{x_{i+1}} f(x) dx,
 \end{equation*}\]</div>
-<p>Luego, para cada subintervalo <span class="math notranslate nohighlight">\(x\in[x_{i+1}, x_i]\)</span>, consideremos la expanción de Taylor de <span class="math notranslate nohighlight">\(f(x)\)</span>  centrada en <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
+<p>Luego, para cada subintervalo <span class="math notranslate nohighlight">\(x\in[x_{i+1}, x_i]\)</span>, consideremos la expansión de Taylor de <span class="math notranslate nohighlight">\(f(x)\)</span>  centrada en <span class="math notranslate nohighlight">\(x_i\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + \cdots,
@@ -462,7 +462,7 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + \cdots,
 </section>
 <section id="regla-del-trapecio-scipy-integrate-trapezoid">
 <h3><span class="section-number">7.2.2. </span>Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)<a class="headerlink" href="#regla-del-trapecio-scipy-integrate-trapezoid" title="Link to this heading">#</a></h3>
-<p>Podemos mejorar la aproximación mediante una expansión de segundo orden,</p>
+<p>Podemos mejorar la aproximación mediante una expansión de segundo orden.</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
@@ -472,14 +472,14 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 \[\begin{equation*}
 \int_{x_i}^{x_{i+1}}f(x) = hf(x_i) + \frac{h^2}{2}f^{\prime}(x_i) + O(h^3)
 \end{equation*}\]</div>
-<p>Luego, aproximando la derivada como: <span class="math notranslate nohighlight">\(f^{\prime}(x_i) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} + O(h)\)</span>, obtenemos la <strong>regla del trapecio:</strong></p>
+<p>Aproximando la derivada como: <span class="math notranslate nohighlight">\(f^{\prime}(x_i) = \frac{f(x_{i+1}) - f(x_i)}{x_{i+1} - x_i} + O(h)\)</span>, obtenemos la <strong>regla del trapecio:</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \int_{x_i}^{x_{i+1}}f(x) = h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^3).
 \end{equation*}\]</div>
-<p>Considerando un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla del trapecio <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a65ec065-7652-4f08-b9c5-5ae8bfc15346">
-<span class="eqno">(7.1)<a class="headerlink" href="#equation-a65ec065-7652-4f08-b9c5-5ae8bfc15346" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Considerando un conjunto de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla del trapecio <em>extendida o compuesta</em></strong> es:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cf652920-ba34-474b-8f7b-cdd197c598c7">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-cf652920-ba34-474b-8f7b-cdd197c598c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx = \sum_{i = 0}^{n-1} h\left[\frac{f(x_{i+1}) + f(x_i)}{2}\right] + O(h^2),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(h = \frac{b -a}{n}\)</span></p>
@@ -493,7 +493,7 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 </pre></div>
 </div>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">scipy.intergrate.trapezoid</span></code> no requiere que los valores de <code class="docutils literal notranslate"><span class="pre">xi</span></code> esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos <span class="math notranslate nohighlight">\(h\)</span> de igual tamaño.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code> no requiere que los valores de <code class="docutils literal notranslate"><span class="pre">xi</span></code> esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos <span class="math notranslate nohighlight">\(h\)</span> de igual tamaño.</p>
 </div></blockquote>
 <p>Más información en la <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.trapezoid.html#scipy.integrate.trapezoid">documentación oficial</a></p>
 <p>Por ejemplo, consideremos la integral:</p>
@@ -510,7 +510,7 @@ f(x) = f(x_i) + f^{\prime}(x_i)(x-x_i) + O(h^2)
 
 <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>                            <span class="c1"># intervalo de integración</span>
 <span class="n">h</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>                              <span class="c1"># tamaño de subintervalo</span>
-<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>                      <span class="c1"># set de puntos xi</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>                      <span class="c1"># conjunto de puntos xi</span>
 <span class="n">yi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
 <span class="n">int_trpz</span> <span class="o">=</span> <span class="n">spint</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span> <span class="c1"># Regla del trapecio (usando scipy)</span>
 <span class="c1"># int_trpz = np.trapz(yi, xi)      # Regla trapecio (usando numpy)</span>
@@ -554,14 +554,14 @@ P_i(x) = \prod_{j = 1, j\ne i}^n\frac{x - x_j}{x_i - x_j}.
 &amp;&amp;+ f(x_{i+1})\frac{(x - x_{i-1})(x - x_{i})}{(x_{i+1} - x_{i-1})(x_{i+1} -
 x_{i})},\end{eqnarray*}\]</div>
 <p>Al integrar el polinomio en el subintervalo <span class="math notranslate nohighlight">\(x\in [x_{i-1}, x_{i+1}]\)</span> determinamos la <strong>regla de Simpson 1/3</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d279f2cf-3af8-4f63-9eda-06e94e4d6ce6">
-<span class="eqno">(7.2)<a class="headerlink" href="#equation-d279f2cf-3af8-4f63-9eda-06e94e4d6ce6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84dd02b4-7752-4af5-977b-1f79977a8e23">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-84dd02b4-7752-4af5-977b-1f79977a8e23" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_{x_{i-1}}^{x_{i+1}} f(x) dx = \frac{h}{3}\left[f(x_{i-1}) + 4f(x_i) + f(x_{i+1})\right] + O(h^5).
 \end{equation}\]</div>
 <p>Notar que el orden del polinomio es 1 grado mayor que en el caso del trapecio. Sin embargo, el error de truncamiento es <span class="math notranslate nohighlight">\(O(h^5)\)</span> (<a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter21.04-Simpsons-Rule.html">ver demostración</a>)</p>
-<p>Para un set de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla de Simpson 1/3 <em>extendida o compuesta</em></strong> es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2f7bd3ec-5ca1-4f76-a815-da0acd0d8351">
-<span class="eqno">(7.3)<a class="headerlink" href="#equation-2f7bd3ec-5ca1-4f76-a815-da0acd0d8351" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Para un conjunto de <span class="math notranslate nohighlight">\(n+1\)</span> puntos igualmente espaciados en el intervalo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>, la <strong>regla de Simpson 1/3 <em>extendida o compuesta</em></strong> es:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7813779e-6ed3-4a79-9503-27e0f867344e">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-7813779e-6ed3-4a79-9503-27e0f867344e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \int_a^b f(x) dx \approx \frac{h}{3} \left[f(x_0)+4 \left(\sum_{i=1, i\  {\text{impar}}}^{n-1}f(x_i)\right)+2 \left(\sum_{i=2, i\  {\text{par}}}^{n-2}f(x_i)\right)+f(x_n)\right] + O(h^4).
 \end{equation}\]</div>
 <a class="reference internal image-reference" href="../_images/simpson_rule.png"><img alt="../_images/simpson_rule.png" class="align-center" src="../_images/simpson_rule.png" style="width: 400px;" />
@@ -576,7 +576,7 @@ x_{i})},\end{eqnarray*}\]</div>
 
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">scipy.intergrate.simpson</span></code> no requiere que el número de puntos <code class="docutils literal notranslate"><span class="pre">xi</span></code> sea impar, ni que esten igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño (<span class="math notranslate nohighlight">\(h\)</span> constante).</p>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.intergrate.simpson</span></code> no requiere que el número de puntos <code class="docutils literal notranslate"><span class="pre">xi</span></code> sea impar, ni que estén igualmente espaciados. Sin embargo, para mejor control del error, es recomendable mantener subintervalos de igual tamaño (<span class="math notranslate nohighlight">\(h\)</span> constante).</p>
 <p><strong>Si el número de puntos <code class="docutils literal notranslate"><span class="pre">xi</span></code> es par</strong>, la función <code class="docutils literal notranslate"><span class="pre">simpson</span></code>, por defecto, considera el promedio entre:</p>
 <ul class="simple">
 <li><p>Regla de Simpson para los primeros <span class="math notranslate nohighlight">\(n-1\)</span> intervalos y trapecio en el último intervalo</p></li>
@@ -646,7 +646,7 @@ Error absoluto 3.406e-04
 <p>Si la función a integrar es conocida, las fórmulas de Newton-Cotes aún son válidas. Sin embargo, existen métodos más eficientes para calcular la integral numéricamente.</p>
 <section id="cuadratura-gaussiana-scipy-integrate-fixed-quad">
 <h3><span class="section-number">7.3.1. </span>Cuadratura Gaussiana (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.fixed_quad</span></code>)<a class="headerlink" href="#cuadratura-gaussiana-scipy-integrate-fixed-quad" title="Link to this heading">#</a></h3>
-<p>En la regla del trapecio aproximamos la integral por el área bajo una línea contectando dos puntos. Tal como indica la figura de abajo, podemos mejorar este resultado buscando un trapecio que, conectando dos puntos de la curva, minice el error de la aproximación.</p>
+<p>En la regla del trapecio aproximamos la integral por el área bajo una línea conectando dos puntos. Tal como indica la figura de abajo, podemos mejorar este resultado buscando un trapecio que, conectando dos puntos de la curva, minice el error de la aproximación.</p>
 <a class="reference internal image-reference" href="../_images/gaussian_quadrature.png"><img alt="../_images/gaussian_quadrature.png" class="align-center" src="../_images/gaussian_quadrature.png" style="width: 550px;" />
 </a>
 <p>Considere la forma general para aproximar una integral en el intervalo <span class="math notranslate nohighlight">\(x\in[-1,1]\)</span>, mediante dos puntos <span class="math notranslate nohighlight">\(x_0\)</span> y <span class="math notranslate nohighlight">\(x_1\)</span></p>
@@ -656,7 +656,7 @@ Error absoluto 3.406e-04
 \end{equation*}\]</div>
 <p>En el caso de la regla del trapecio tenemos <span class="math notranslate nohighlight">\(x_0 = -1\)</span>, <span class="math notranslate nohighlight">\(x_1 = 1\)</span>, y <span class="math notranslate nohighlight">\(c_0=c_1=h/2\)</span>. Recordemos que esta fórmula fue derivada mediante la aproximación de <span class="math notranslate nohighlight">\(f(x)\)</span> por un polinomio de grado 1.</p>
 <p>Sin embargo, si liberamos las restricciones para <span class="math notranslate nohighlight">\(c_0\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>, tenemos un problema 4 incognitas.</p>
-<p>Debido a que ahora necesitamos 4 ecuaciones, aproximaremos la función a un polinomio de grado 3, de la forma <span class="math notranslate nohighlight">\(f(x) \approx a_0 + a_1x+ a_2x^2+a_3x^3\)</span>. Esto nos permitirá derivar las 4 euaciones para determinar <span class="math notranslate nohighlight">\(c_0\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>.</p>
+<p>Debido a que ahora necesitamos 4 ecuaciones, aproximaremos la función a un polinomio de grado 3, de la forma <span class="math notranslate nohighlight">\(f(x) \approx a_0 + a_1x+ a_2x^2+a_3x^3\)</span>. Esto nos permitirá derivar las 4 ecuaciones para determinar <span class="math notranslate nohighlight">\(c_0\)</span>, <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>.</p>
 <p>Mediante la aproximación, <span class="math notranslate nohighlight">\(f(x) \approx a_0 + a_1x+ a_2x^2+a_3x^3\)</span>, e integrando a ambos lados de la ecuación de cuadratura, derivamos el siguiente sistema de ecuaciones:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -672,7 +672,7 @@ c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
 \int_{-1}^{1} f(x) dx = f\left(-\frac{1}{\sqrt{3}}\right) + f\left(\frac{1}{\sqrt{3}}\right) + O(h^5)
 \end{equation*}\]</div>
 <p>Debido a que la función fue aproximada por un polinomio grado 3, la aproximación de la integral tiene un error del orden <span class="math notranslate nohighlight">\(O(h^5)\)</span>.</p>
-<p>Mediante un procedimiento similar, podemos generar aproximaciones para polinomios de mayor orden. La siguiente tabla resume la lista de pesos <span class="math notranslate nohighlight">\(c_i\)</span> y puntos de evaluación <span class="math notranslate nohighlight">\(x_i\)</span>, junto a sus errores de truncamiento:</p>
+<p>Mediante un procedimiento similar, podemos generar aproximaciones para polinomios de orden mayor. La siguiente tabla resume la lista de pesos <span class="math notranslate nohighlight">\(c_i\)</span> y puntos de evaluación <span class="math notranslate nohighlight">\(x_i\)</span>, junto a sus respectivos errores de truncamiento:</p>
 <a class="reference internal image-reference" href="../_images/gaussian_quadrature_table.png"><img alt="../_images/gaussian_quadrature_table.png" class="align-center" src="../_images/gaussian_quadrature_table.png" style="width: 700px;" />
 </a>
 <center><small><b>Tabla 1.</b> Lista de pesos y puntos de evaluación para cuadratura Gaussiana</small></center><p>Notar que el error de truncamiento de cuadratura Gaussiana disminuye con el orden, <span class="math notranslate nohighlight">\(n\)</span>, en la forma <span class="math notranslate nohighlight">\(O(h^{2n+1})\)</span>.</p>
@@ -687,7 +687,7 @@ c_1x_1^3 + c_2x_2^3 &amp;= \int_{-1}^{1} x^3 dx = 0,
 \int_{a}^{b} f(x) dx = \frac{b-a}{2}\sum_{i = 0}^{n-1} c_i f\left(\frac{b+a}{2} - \frac{b-a}{2}x_i\right) + O(h^{2n+1})
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(x_i\)</span> y <span class="math notranslate nohighlight">\(c_i\)</span> corresponden a los valores indicados en la tabla 1.</p>
-<p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> tenemos la función <code class="docutils literal notranslate"><span class="pre">fixed_quad</span></code> para cuadratura Gaussiana, implementada en la libería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>.</p>
+<p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> tenemos la función <code class="docutils literal notranslate"><span class="pre">fixed_quad</span></code> para cuadratura Gaussiana, implementada en la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>.</p>
 <p>Para calcular la cuadratura llamamos la función como <code class="docutils literal notranslate"><span class="pre">fixed_quad(f,a,b,n)[0]</span></code>, donde:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">f</span></code>: función <span class="math notranslate nohighlight">\(f(x)\)</span> en formato <em>callable</em></p></li>
@@ -795,7 +795,7 @@ I = \int_a^m f(x) dx + \int_m^b f(x) dx\quad\quad m=(a+b)/2
 \end{equation*}\]</div>
 <p>y repetimos el paso (1) para cada integral.</p>
 <p>Para calcular las estimaciones <span class="math notranslate nohighlight">\(I_1\)</span> y <span class="math notranslate nohighlight">\(I_2\)</span> se utiliza algún método de cuadratura estática, como por ejemplo, cuadratura de Gauss.</p>
-<p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> tenemos la función <code class="docutils literal notranslate"><span class="pre">quad</span></code> para cuadratura adaptativa, implementada en la libería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>. Esta función se basa en la librería <a class="reference external" href="https://en.wikipedia.org/wiki/QUADPACK">QUADPACK</a> de FORTRAN. Para evaluar <span class="math notranslate nohighlight">\(I_1\)</span> y <span class="math notranslate nohighlight">\(I_2\)</span>, <code class="docutils literal notranslate"><span class="pre">quad</span></code> utiliza una variante de la cuadratura de Gauss, llamada <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula">Gauss–Kronrod</a></p>
+<p>En <code class="docutils literal notranslate"><span class="pre">python</span></code> tenemos la función <code class="docutils literal notranslate"><span class="pre">quad</span></code> para cuadratura adaptativa, implementada en la librería <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code>. Esta función se basa en la librería <a class="reference external" href="https://en.wikipedia.org/wiki/QUADPACK">QUADPACK</a> de FORTRAN. Para evaluar <span class="math notranslate nohighlight">\(I_1\)</span> y <span class="math notranslate nohighlight">\(I_2\)</span>, <code class="docutils literal notranslate"><span class="pre">quad</span></code> utiliza una variante de la cuadratura de Gauss, llamada <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Kronrod_quadrature_formula">Gauss–Kronrod</a></p>
 <p>Por defecto, <code class="docutils literal notranslate"><span class="pre">quad</span></code> retorna un <em>tuple</em> con dos elementos. El primero corresponde al valor de la integral, el segundo al error absoluto de la estimación.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -932,7 +932,7 @@ Error absoluto = 2.22045e-14
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">7.1. Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-mediante-datos-tabulados-formulas-de-newton-cotes">7.2. Integración mediante datos tabulados (Fórmulas de Newton-Cotes)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemman">7.2.1. Integral de Riemman</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-de-riemann">7.2.1. Integral de Riemann</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-del-trapecio-scipy-integrate-trapezoid">7.2.2. Regla del trapecio (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-simpson-1-3-scipy-integrate-simpson">7.2.3. Regla de Simpson 1/3 (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.simpson</span></code>)</a></li>
 </ul>
