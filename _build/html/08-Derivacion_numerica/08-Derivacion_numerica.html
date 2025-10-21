@@ -438,8 +438,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a19ecbaa-b645-4ebb-9687-22b929eef3b1">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-a19ecbaa-b645-4ebb-9687-22b929eef3b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5de8d6d0-6c60-4016-9486-723fa48df89b">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-5de8d6d0-6c60-4016-9486-723fa48df89b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -449,9 +449,9 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 } - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
-<p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adeltante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bc71482-cb10-43bf-9e2d-8c62ea32613b">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-4bc71482-cb10-43bf-9e2d-8c62ea32613b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adelante</strong>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1cbe7350-2290-4dd4-904b-42215adfbfaf">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-1cbe7350-2290-4dd4-904b-42215adfbfaf" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -460,18 +460,18 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a2c687e-fc41-4342-b8fe-b6c69de1be86">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-0a2c687e-fc41-4342-b8fe-b6c69de1be86" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c521b1ad-6bc1-461a-9091-e1001a208639">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-c521b1ad-6bc1-461a-9091-e1001a208639" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
-<p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de presición.</p>
+<p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de precisión.</p>
 <p>Comprobemos esto con la derivada del polinomio:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 f(x) = -0.1x^4 - 0.15x^3 - 0.5x^2 - 0.25x+1.2
 \end{equation*}\]</div>
 <p>en <span class="math notranslate nohighlight">\(x = 0.5\)</span>, y considerando <span class="math notranslate nohighlight">\(h=0.10\)</span>.</p>
-<p>Para comprobar el error consideraremos el valor exácto <span class="math notranslate nohighlight">\(f'(5)=-0.9125\)</span></p>
+<p>Para comprobar el error consideraremos el valor exacto <span class="math notranslate nohighlight">\(f'(5)=-0.9125\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="mf">0.15</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1.2</span>
@@ -499,7 +499,7 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 </div>
 </div>
 </div>
-<p>A partir de este resultado, vemos como el error de diferencia hacia atrás y adelante es <span class="math notranslate nohighlight">\(O(h) \sim 0.1\)</span>, mientras que para diferencia central el error es <span class="math notranslate nohighlight">\(O(h^2) \sim 0.01\)</span></p>
+<p>A partir de este resultado, vemos cómo el error de diferencia hacia atrás y adelante es <span class="math notranslate nohighlight">\(O(h) \sim 0.1\)</span>, mientras que para diferencia central el error es <span class="math notranslate nohighlight">\(O(h^2) \sim 0.01\)</span></p>
 <p>Como segundo ejemplo, evaluemos el crecimiento del error en este problema a medida que aumentamos <span class="math notranslate nohighlight">\(h\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -544,7 +544,7 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_fw</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span> <span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">h_array</span><span class="p">,</span><span class="n">error_ct</span><span class="p">,</span><span class="s1">&#39;ok&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;central&#39;</span> <span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="c1"># analizamos la pendiente del logaritmo de cada aproxmación</span>
+<span class="c1"># analizamos la pendiente del logaritmo de cada aproximación</span>
 <span class="n">abw</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">h_array</span><span class="p">),</span> <span class="n">log</span><span class="p">(</span><span class="n">error_bw</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">afw</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">h_array</span><span class="p">),</span> <span class="n">log</span><span class="p">(</span><span class="n">error_fw</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">act</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">h_array</span><span class="p">),</span> <span class="n">log</span><span class="p">(</span><span class="n">error_ct</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
@@ -579,7 +579,7 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 </section>
 <section id="derivadas-de-segundo-o-mayor-orden">
 <h3><span class="section-number">8.2.2. </span>Derivadas de segundo o mayor orden<a class="headerlink" href="#derivadas-de-segundo-o-mayor-orden" title="Link to this heading">#</a></h3>
-<p>Mediante un procedimiento similar, podemos generar aproximaciónes de diferencias finitas para derivadas de mayor orden.</p>
+<p>Mediante un procedimiento similar, podemos generar aproximaciones de diferencias finitas para derivadas de mayor orden.</p>
 <p>Por ejemplo, consideremos la suma de las expansiones <span class="math notranslate nohighlight">\(f(x_{i+1})\)</span> y <span class="math notranslate nohighlight">\(f(x_{i-1})\)</span> centradas en <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -590,7 +590,7 @@ f(x_{j-1}) + f(x_{j+1}) = 2f(x_j) + h^2f''(x_j) + \frac{h^4f''''(x_j)}{24} + \cd
 \[\begin{equation*}
 f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 \end{equation*}\]</div>
-<p>Podemos extender nuestro resultado para determinar fórmulas de diferencas finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:</p>
+<p>Podemos extender nuestro resultado para determinar fórmulas de diferencias finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:</p>
 <p><strong>Diferencia hacia adelante</strong></p>
 <a class="reference internal image-reference" href="../_images/forward_difference.png"><img alt="../_images/forward_difference.png" class="align-center" src="../_images/forward_difference.png" style="width: 800px;" />
 </a>
@@ -618,7 +618,7 @@ f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
 <h2><span class="section-number">8.3. </span>Diferencias Finitas en Python<a class="headerlink" href="#diferencias-finitas-en-python" title="Link to this heading">#</a></h2>
 <p>Podemos clasificar las funciones de derivadas de python, en dos tipos:</p>
 <ul class="simple">
-<li><p>Derivación mediate datos tabulados: <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code>.</p></li>
+<li><p>Derivación mediante datos tabulados: <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code>.</p></li>
 <li><p>Derivación mediante función conocida: <code class="docutils literal notranslate"><span class="pre">scipy.misc.derivative</span></code></p></li>
 </ul>
 <section id="diferencias-finitas-con-datos-tabulados">
@@ -677,8 +677,8 @@ los dos valores más cercanos en un arreglo.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dfdx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">yi</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="c1"># f&#39;(x)</span>
 </pre></div>
 </div>
-<p>Debido a la forma en la que opera <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>, <strong>el resultado corresponde a diferencia hacia adeltante o hacia atrás</strong>. Esto dependiendo de como asignemos <code class="docutils literal notranslate"><span class="pre">dfdx[i]</span></code>.</p>
-<p>Evaluemos la función <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code> en nuestro ejemplo con datos tabulados. Comparamos el resultado con el valor exácto <span class="math notranslate nohighlight">\(f'(x) = \cos(x)\)</span>.</p>
+<p>Debido a la forma en la que opera <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code>, <strong>el resultado corresponde a diferencia hacia adelante o hacia atrás</strong>. Esto dependiendo de como asignemos <code class="docutils literal notranslate"><span class="pre">dfdx[i]</span></code>.</p>
+<p>Evaluemos la función <code class="docutils literal notranslate"><span class="pre">numpy.diff</span></code> en nuestro ejemplo con datos tabulados. Comparamos el resultado con el valor exacto <span class="math notranslate nohighlight">\(f'(x) = \cos(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot3
@@ -723,7 +723,7 @@ los dos valores más cercanos en un arreglo.</p>
 </pre></div>
 </div>
 <p>Así, para un arreglo de tamaño <span class="math notranslate nohighlight">\(N\)</span>, <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code> entrega un arreglo de tamaño <span class="math notranslate nohighlight">\(N\)</span>.</p>
-<p>Evaluemos la función <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code> en nuestro ejemplo con datos tabulados. Comparamos el resultado con el valor exácto <span class="math notranslate nohighlight">\(f'(x) = \cos(x)\)</span>.</p>
+<p>Evaluemos la función <code class="docutils literal notranslate"><span class="pre">numpy.gradient</span></code> en nuestro ejemplo con datos tabulados. Comparamos el resultado con el valor exacto <span class="math notranslate nohighlight">\(f'(x) = \cos(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> showplot4
@@ -758,7 +758,7 @@ los dos valores más cercanos en un arreglo.</p>
 <section id="cubicspline-derivative">
 <h4><span class="section-number">8.3.1.3. </span><code class="docutils literal notranslate"><span class="pre">CubicSpline.derivative</span></code><a class="headerlink" href="#cubicspline-derivative" title="Link to this heading">#</a></h4>
 <p>Una tercera alternativa para determinar la derivada es mediante la función <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> de <code class="docutils literal notranslate"><span class="pre">scipy.interpolate</span></code>. A diferencia de <code class="docutils literal notranslate"><span class="pre">diff</span></code> y <code class="docutils literal notranslate"><span class="pre">gradient</span></code>, <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> permite determinar derivadas de segundo y tercer orden directamente.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
 <span class="n">dfdx</span>  <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># función f&#39;(x)   a partir de spline cúbico</span>
 <span class="n">dfdx2</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># función f&#39;&#39;(x)  a partir de spline cúbico</span>
 <span class="n">dfdx3</span> <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span><span class="o">.</span><span class="n">derivative</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># función f&#39;&#39;&#39;(x) a partir de spline cúbico</span>
@@ -769,7 +769,7 @@ los dos valores más cercanos en un arreglo.</p>
 </div></blockquote>
 <p>Debido a que <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> está basada en un polinomio de orden 3, la función aproximada tiene un error del orden <span class="math notranslate nohighlight">\(O(h^4)\)</span>. Así, la primera derivada de <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> tiene un error del orden <span class="math notranslate nohighlight">\(O(h^3)\)</span>, la segunda <span class="math notranslate nohighlight">\(O(h^2)\)</span>, y la tercera <span class="math notranslate nohighlight">\(O(h)\)</span>.</p>
 <p>Alternativamente, según lo revisado en la unidad de <a class="reference external" href="https://panxopanza.github.io/metodos_numericos_mec301/4-Interpolacion/4-Interpolacion.html#interpolacion-spline-cubico">interpolación</a>, podemos usar <code class="docutils literal notranslate"><span class="pre">CubicSpline</span></code> para determinar la derivada mediante:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSline</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
 <span class="n">y</span>  <span class="o">=</span> <span class="n">CubicSpline</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="n">yi</span><span class="p">)</span> <span class="c1"># función f(x) a partir de spline cúbico</span>
 <span class="n">dfdx</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># f&#39;(xi) </span>
 </pre></div>
@@ -823,7 +823,7 @@ La derivada es aproximada mediante diferencia central.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">dx</span></code>: espaciamiento <span class="math notranslate nohighlight">\(h\)</span>. Por defecto <code class="docutils literal notranslate"><span class="pre">dx=1</span></code></p></li>
 </ul>
 <p>La función solo admite un valor tipo <em>float</em> para evaluar la derivada. Sin embargo, es una buena alternativa para determinar la derivada en un punto <span class="math notranslate nohighlight">\(x_0\)</span>, sin la necesidad de generar un arreglo.</p>
-<p>Por ejemplo, analicemos la derivada de <span class="math notranslate nohighlight">\(f(x)=\sin(x)\)</span> en <span class="math notranslate nohighlight">\(x_0 = \pi/3\)</span>, a medida que reducimos el espaciameniento <span class="math notranslate nohighlight">\(h\)</span>. Como valor exacto tenenmos <span class="math notranslate nohighlight">\(f'(\pi/3)=\cos(\pi/3) = 1/2\)</span></p>
+<p>Por ejemplo, analicemos la derivada de <span class="math notranslate nohighlight">\(f(x)=\sin(x)\)</span> en <span class="math notranslate nohighlight">\(x_0 = \pi/3\)</span>, a medida que reducimos el espaciamiento <span class="math notranslate nohighlight">\(h\)</span>. Como valor exacto tenemos <span class="math notranslate nohighlight">\(f'(\pi/3)=\cos(\pi/3) = 1/2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">derivative</span>
@@ -847,7 +847,7 @@ h = 0.200, dfdx = 0.497, error = 3.327e-03
 h = 0.100, dfdx = 0.499, error = 8.329e-04
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_35530/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_13997/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
   dfdx = derivative(f,x0,dx=h)
 </pre></div>
 </div>
@@ -858,7 +858,7 @@ h = 0.100, dfdx = 0.499, error = 8.329e-04
 <section id="referencias">
 <h2><span class="section-number">8.4. </span>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 2: Numerical Diferenciation</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
+<li><p>Kong Q., Siauw T., Bayen A. M. <strong>Chapter 2: Numerical Differentiation</strong> in <em><a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter17.00-Interpolation.html">Python Programming and Numerical Methods – A Guide for Engineers and Scientists</a></em>, 1st Ed., Academic Press, 2021</p></li>
 <li><p>Chapra S., Canale R. <strong>Capítulo 23: Diferenciación numérica</strong> en <em>Métodos Numéricos para Ingenieros</em>, 6ta Ed., McGraw Hill, 2011</p></li>
 </ul>
 </section>
