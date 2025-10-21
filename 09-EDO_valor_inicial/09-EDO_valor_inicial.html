@@ -375,7 +375,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-ecuaciones-diferenciales">9.1.1. Clasificación de ecuaciones diferenciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-ecuaciones-diferenciales">9.1.1. Clasificación de ecuaciónes diferenciales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde-y-condiciones-iniciales">9.1.2. Condiciones de borde y condiciones iniciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-iniciales">9.1.2.1. Condiciones iniciales</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde">9.1.2.2. Condiciones de borde</a></li>
@@ -419,33 +419,33 @@ document.write(`
 <h1><span class="section-number">9. </span>Problemas de valor inicial<a class="headerlink" href="#problemas-de-valor-inicial" title="Link to this heading">#</a></h1>
 <section id="introduccion">
 <h2><span class="section-number">9.1. </span>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
-<p>Las ecuaciones diferenciales son utilizadas para modelar sistemas en todos los campos de ciencia e ingeniería.</p>
-<p>Como definición general, un <strong>sistema de ecuaciones diferenciales</strong> define la relación entre:</p>
+<p>Las ecuaciónes diferenciales son utilizadas para modelar sistemas en todos los campos de ciencia e ingeniería.</p>
+<p>Como definición general, un <strong>sistema de ecuaciónes diferenciales</strong> define la relación entre:</p>
 <ul class="simple">
 <li><p>variables dependientes, <span class="math notranslate nohighlight">\(f_1(x_1,x_2, \cdots)\)</span>, <span class="math notranslate nohighlight">\(f_2(x_1,x_2, \cdots), \cdots\)</span></p></li>
 <li><p>las variables independientes <span class="math notranslate nohighlight">\(x_1,x_2,x_3, \cdots\)</span>, y</p></li>
 <li><p>sus derivadas.</p></li>
 </ul>
 <section id="clasificacion-de-ecuaciones-diferenciales">
-<h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciones diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Link to this heading">#</a></h3>
-<p>Una ecuacion diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
+<h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciónes diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Link to this heading">#</a></h3>
+<p>Una ecuación diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
 <p>Por ejemplo, la <strong>ecuación del péndulo</strong> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93819989-f255-42d9-b554-b5499ae471f2">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-93819989-f255-42d9-b554-b5499ae471f2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28be2fff-e786-443b-a2c5-6f7ff7bed061">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-28be2fff-e786-443b-a2c5-6f7ff7bed061" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
-<p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociado al arrastre por el viento</p>
-<a class="reference internal image-reference" href="../_images/ecuacion_pendulo.png"><img alt="../_images/ecuacion_pendulo.png" class="align-center" src="../_images/ecuacion_pendulo.png" style="width: 300px;" />
+<p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociada al arrastre por el viento</p>
+<a class="reference internal image-reference" href="09-EDO_valor_inicial/images/ecuación_pendulo.png"><img alt="09-EDO_valor_inicial/images/ecuación_pendulo.png" class="align-center" src="09-EDO_valor_inicial/images/ecuación_pendulo.png" style="width: 300px;" />
 </a>
-<p>Este tipo de ecuaciones se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la varible dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
+<p>Este tipo de ecuaciónes se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la variable dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la ecuación se transforma en una <strong>EDO lineal</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ca0bbbd-938c-42be-a0f3-81b0a7a1a21c">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-2ca0bbbd-938c-42be-a0f3-81b0a7a1a21c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3d1bade-38ff-4755-b7ce-890ec9a62225">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-e3d1bade-38ff-4755-b7ce-890ec9a62225" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
-<p>En general, las EDO lineales tiene solución analítica.</p>
-<p>También podemos tener una ecuación diferencial definida para una variable dependiente y multiples variables independientes.</p>
+<p>En general, las EDO lineales tienen solución analítica.</p>
+<p>También podemos tener una ecuación diferencial definida para una variable dependiente y múltiples variables independientes.</p>
 <p>Un buen ejemplo es la <em><strong>ecuación de difusión de calor</strong></em>, que describe la distribución de temperatura en función del tiempo, <span class="math notranslate nohighlight">\(t\)</span>, y el espacio. En el caso 2D:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -453,10 +453,10 @@ k\frac{\partial T}{\partial x^2}+
 k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 \end{equation*}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\rho\)</span> es la densidad, <span class="math notranslate nohighlight">\(c_p\)</span> es el calor específico, y <span class="math notranslate nohighlight">\(k\)</span> es la conductividad térmica</p>
-<p>Este tipo de ecuacion, con más de una variable independiente, se conocen como <strong>ecuación diferencial parcial (EDP)</strong></p>
+<p>Este tipo de ecuación, con más de una variable independiente, se conocen como <strong>ecuación diferencial parcial (EDP)</strong></p>
 <p>En este caso, la <strong>EDP es del tipo lineal</strong></p>
-<p>Por último, en el caso de más de una variable dependiente, podemos tener <strong>sistemas de ecuaciones diferenciales del tipo EDO o EDP</strong>.</p>
-<p>Tal es el caso de la <em><strong>ecuación de Navier-Stokes</strong></em> utilizada en mecánica de fluidos para modelar un problema en dos dimenciones:</p>
+<p>Por último, en el caso de más de una variable dependiente, podemos tener <strong>sistemas de ecuaciónes diferenciales del tipo EDO o EDP</strong>.</p>
+<p>Tal es el caso de la <em><strong>ecuación de Navier-Stokes</strong></em> utilizada en mecánica de fluidos para modelar un problema en dos dimensiones:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y} &amp;= -\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu \left(\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2} \right) \\
@@ -466,25 +466,25 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres variables dependientes (<span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, y <span class="math notranslate nohighlight">\(p\)</span>) en función de tres variables independientes (tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>). Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos <strong>clasificar una ecuación diferencial según el orden de sus derivadas.</strong></p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b24639b-652a-4fa8-8499-dcb6dde57f17">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-3b24639b-652a-4fa8-8499-dcb6dde57f17" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-763cd489-82ef-4f03-a387-4f483d7937e5">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-763cd489-82ef-4f03-a387-4f483d7937e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
 <section id="condiciones-de-borde-y-condiciones-iniciales">
 <h3><span class="section-number">9.1.2. </span>Condiciones de borde y condiciones iniciales<a class="headerlink" href="#condiciones-de-borde-y-condiciones-iniciales" title="Link to this heading">#</a></h3>
-<p>Las ecuaciones diferenciales presentadas anteriormente representan una formulación general asociada a un fenómeno físco (movimiento de un péndulo, distribución de temperaturas o movimiento de un fluido). Sin embargo, estas ecuaciones no están condicionadas a un problema en específico y, por lo tanto, su solución es definida en base a constantes de valor arbitrario.</p>
+<p>Las ecuaciónes diferenciales presentadas anteriormente representan una formulación general asociada a un fenómeno físico (movimiento de un péndulo, distribución de temperaturas o movimiento de un fluido). Sin embargo, estas ecuaciónes no están condicionadas a un problema en específico y, por lo tanto, su solución es definida en base a constantes de valor arbitrario.</p>
 <p>Por ejemplo, la versión lineal de la EDO del péndulo tiene como solución general:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 \Theta(t) = Ae^{-\lambda t} + Be^{+\lambda t}
 \end{equation*}\]</div>
-<p>Para asociar una ecuacion diferencial a un problema específico necesitamos <strong>condiciones de borde</strong> o <strong>condiciones iniciales</strong></p>
+<p>Para asociar una ecuación diferencial a un problema específico necesitamos <strong>condiciones de borde</strong> o <strong>condiciones iniciales</strong></p>
 <section id="condiciones-iniciales">
 <h4><span class="section-number">9.1.2.1. </span>Condiciones iniciales<a class="headerlink" href="#condiciones-iniciales" title="Link to this heading">#</a></h4>
 <p>Usamos <strong>condiciones iniciales</strong> si <strong>la variable dependiente <em>evoluciona</em> respecto a la variable independiente.</strong></p>
-<p>Por ejemplo, en el caso del péndulo, el ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> evoluciona respecto al tiempo, <span class="math notranslate nohighlight">\(t\)</span>, y por lo tanto necesitamos de condiciones inciales.</p>
+<p>Por ejemplo, en el caso del péndulo, el ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> evoluciona respecto al tiempo, <span class="math notranslate nohighlight">\(t\)</span>, y por lo tanto necesitamos de condiciones iniciales.</p>
 <p>Como condición inicial, por ejemplo, asumamos que el péndulo está en reposo con un ángulo <span class="math notranslate nohighlight">\(\Theta_0\)</span>:</p>
 <p><strong>Ecuación gobernante</strong></p>
 <div class="amsmath math notranslate nohighlight">
@@ -518,7 +518,7 @@ T_f(y = 0) = T_{f,i}
 <section id="condiciones-de-borde">
 <h4><span class="section-number">9.1.2.2. </span>Condiciones de borde<a class="headerlink" href="#condiciones-de-borde" title="Link to this heading">#</a></h4>
 <p>Usamos <strong>condiciones de borde</strong> si <strong>la variable dependiente está determinada en más de un valor de la variable independiente.</strong></p>
-<p>Por ejemplo, la distribución de temperaturas de una placa cuadrada de largo <span class="math notranslate nohighlight">\(L\)</span>, incialmente a temperatura <span class="math notranslate nohighlight">\(T_a\)</span>, con temperaturas en <span class="math notranslate nohighlight">\(T_h\)</span> y <span class="math notranslate nohighlight">\(T_c\)</span> en los bordes izquierdo y derecho, y tempertura <span class="math notranslate nohighlight">\(T_0\)</span> en la parte superior e inferior, está descrita por la ecuación:</p>
+<p>Por ejemplo, la distribución de temperaturas de una placa cuadrada de largo <span class="math notranslate nohighlight">\(L\)</span>, incialmente a temperatura <span class="math notranslate nohighlight">\(T_a\)</span>, con temperaturas en <span class="math notranslate nohighlight">\(T_h\)</span> y <span class="math notranslate nohighlight">\(T_c\)</span> en los bordes izquierdo y derecho, y temperatura <span class="math notranslate nohighlight">\(T_0\)</span> en la parte superior e inferior, está descrita por la ecuación:</p>
 <p><strong>Ecuación gobernante</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -546,11 +546,11 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Link to this heading">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67c3b3f5-374a-4bf7-8193-59c2769c96f5">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-67c3b3f5-374a-4bf7-8193-59c2769c96f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1ffc8508-e082-4e4e-ab63-7e22bfcd0d25">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-1ffc8508-e082-4e4e-ab63-7e22bfcd0d25" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
-<p>sujeta a las condiciones inciales:
+<p>sujeta a las condiciones iniciales:
 <span class="math notranslate nohighlight">\(t = 0, f(0), f^{(1)}(0), f^{(2)}(0),\ldots, f^{(n)}(0)\)</span></p>
 <p>Por ejemplo, en el caso de la ecuación del péndulo:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -576,8 +576,8 @@ T(0,x,y) = T_a
 \left\{\begin{matrix} \Theta(0) \\ \dot{\Theta(0)}\end{matrix}\right\} = \left\{\begin{matrix} \Theta_0 \\ 0\end{matrix}\right\}
 \end{equation*}\]</div>
 <p>A partir de este procedimiento, <strong>hemos reducido una EDO de orden superior a una EDO de primer orden de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d9faa37-c85d-48d1-ae12-c40719a38f8b">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-6d9faa37-c85d-48d1-ae12-c40719a38f8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c86f2a9-6b0e-43f8-934e-33492e755e43">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-8c86f2a9-6b0e-43f8-934e-33492e755e43" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec{y}}{dt} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -748,21 +748,21 @@ T(0,x,y) = T_a
 </div>
 <p>Observamos que el método de Euler converge cuando <span class="math notranslate nohighlight">\(h = 0.01\)</span>, pero oscila constantemente para <span class="math notranslate nohighlight">\(h &gt; 0.1\)</span>. Esta es un característica típica de un problema de estabilidad.</p>
 <p>En otras palabras, el método de Euler explícito es <strong>condicionalmente estable</strong></p>
-<p>Es posible demostrar que para ecuaciones del tipo <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, la condición de estabilidad del método de Euler explícito está dada por <span class="math notranslate nohighlight">\(h &gt; 2/a\)</span>.</p>
+<p>Es posible demostrar que para ecuaciónes del tipo <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, la condición de estabilidad del método de Euler explícito está dada por <span class="math notranslate nohighlight">\(h &gt; 2/a\)</span>.</p>
 <p>Sin embargo, <strong>no existe una regla universal para identificar las condiciones de inestabilidad</strong> y, en general, depende del tipo de ecuación diferencial, el método a utilizar, y el paso de tiempo <span class="math notranslate nohighlight">\(\Delta t = h\)</span>.</p>
 </section>
 <section id="metodo-de-euler-implicito">
 <h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Link to this heading">#</a></h3>
 <p>Alternativamente, podemos definir el argumento de <span class="math notranslate nohighlight">\(\vec{F}(t,\vec{y})\)</span> en función de los valores futuros <span class="math notranslate nohighlight">\(t_{i+1}\)</span> y <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9296ea1a-c112-46a5-b8f1-18afa851a44a">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-9296ea1a-c112-46a5-b8f1-18afa851a44a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ac807e5-7943-4dfc-b5ed-5ee5b5ed9668">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-2ac807e5-7943-4dfc-b5ed-5ee5b5ed9668" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}\left(t_{i+1},\vec{y}_{i+1}\right) + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como <strong>implícita</strong> debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
 <p>Así, llamamos a este algoritmo <strong>Método de Euler implícito</strong>.</p>
 <p>Si bien, esta formulación también tiene un error de truncamiento <span class="math notranslate nohighlight">\(O(h^2)\)</span>, es más estable que Euler explícito (lo veremos con un ejemplo).</p>
-<p>Notar que la formulación implícita da lugar a valores desconocidos, <span class="math notranslate nohighlight">\(y_{i+1}\)</span>, al lado derecho de la ecuación. Esto implica que, <strong>para cada iteración debemos resolver un sistema de ecuaciones para encontrar <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>.</strong></p>
-<p>Debido a que, en general, el sistema de ecuaciones que encontraremos es no lineal, <strong>debemos utilizar un método de solución de raices para encontrar <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> (por ejemplo, Newton-Raphson).</strong></p>
+<p>Notar que la formulación implícita da lugar a valores desconocidos, <span class="math notranslate nohighlight">\(y_{i+1}\)</span>, al lado derecho de la ecuación. Esto implica que, <strong>para cada iteración debemos resolver un sistema de ecuaciónes para encontrar <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>.</strong></p>
+<p>Debido a que, en general, el sistema de ecuaciónes que encontraremos es no lineal, <strong>debemos utilizar un método de solución de raices para encontrar <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> (por ejemplo, Newton-Raphson).</strong></p>
 <p>En otras palabras, dado un tiempo inicial <span class="math notranslate nohighlight">\(t_0\)</span> y condiciones iniciales <span class="math notranslate nohighlight">\(\vec{y}_0\)</span>, el valor de <span class="math notranslate nohighlight">\(\vec{y}_1\)</span> está dado por las raices de:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -793,7 +793,7 @@ T(0,x,y) = T_a
 
 <span class="c1"># Método de Euler</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>      <span class="c1"># inicializamos arreglo para yi+1</span>
-<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>                 <span class="c1"># guardamos condicion inicial</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">y0</span>                 <span class="c1"># guardamos Condición inicia</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># itereamos según paso de tiempo</span>
     
@@ -837,7 +837,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <p>En el ejemplo vemos que, si bien la precisión sigue condicionada al error de truncamiento <span class="math notranslate nohighlight">\(O(h^2)\)</span>, el método no presenta problemas de inestabilidad</p>
-<p>En efecto, para ODEs de la forma <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, el métodod de Euler implícito es <em><strong>incondicionalmente estable</strong></em>.</p>
+<p>En efecto, para ODEs de la forma <span class="math notranslate nohighlight">\(\frac{dy}{dt} = -ay\)</span>, el método de Euler implícito es <em><strong>incondicionalmente estable</strong></em>.</p>
 <p>En resumen, en la solución de una ODE debemos considerar la precisión y la estabilidad del problema. Si bien, <strong>la precisión está exclusivamente asociada al método, la estabilidad depende del método y la EDO a resolver.</strong></p>
 <p>En el ejemplo anterior fue posible cuantificar las condiciones de estabilidad debido a que la EDO era del tipo lineal. <strong>En general, no siempre es posible acotar la inestabilidad de forma analítica, especialmente para EDOs no lineales.</strong></p>
 <p>En la práctica, los términos precisión y estabilidad se confunden debido a que comúnmente ambos están asociados por <span class="math notranslate nohighlight">\(h\)</span>. Sin embargo, cada uno es un aspecto independiente. Así, <strong>un método con poca precisión puede ser muy estable, y viceversa.</strong></p>
@@ -848,14 +848,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58b36352-d26f-4f30-8ecf-45b17af1679b">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-58b36352-d26f-4f30-8ecf-45b17af1679b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-527d3f29-893c-4d13-b2f0-4d816238f708">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-527d3f29-893c-4d13-b2f0-4d816238f708" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77d4292d-708d-43a3-a6b3-0aaf1b4df818">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-77d4292d-708d-43a3-a6b3-0aaf1b4df818" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d69606a0-feea-484f-af3e-114e74544ea9">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-d69606a0-feea-484f-af3e-114e74544ea9" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -877,15 +877,15 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 \\
  &amp;= y(t_i) + F(t_i,y_i)h + \frac{1}{2!}F'(t_i,y_i)h^2 + \cdots + \frac{1}{n!}F^{(n-1)}(t_i,y_i)h^n + O\left(h^{n+1}\right) 
 \end{align*}\]</div>
-<p>A partir de esta igualdad generamos el número de ecuaciones necesarias para determinar <span class="math notranslate nohighlight">\(a_j\)</span>, <span class="math notranslate nohighlight">\(p_m\)</span> y <span class="math notranslate nohighlight">\(q_{m,n}\)</span>. Para más información, revisar el desarrollo para <span class="math notranslate nohighlight">\(n = 2\)</span> <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter22.05-Predictor-Corrector-Methods.html#second-order-runge-kutta-method">acá</a>.</p>
-<p>Lo importante de esta formulación es notar que el <strong>número de parámetros <span class="math notranslate nohighlight">\(k_n\)</span> tendrá asociado un error local <span class="math notranslate nohighlight">\(O(h^{n+1})\)</span></strong>, debido al truncamiento de la série de Taylor.</p>
+<p>A partir de esta igualdad generamos el número de ecuaciónes necesarias para determinar <span class="math notranslate nohighlight">\(a_j\)</span>, <span class="math notranslate nohighlight">\(p_m\)</span> y <span class="math notranslate nohighlight">\(q_{m,n}\)</span>. Para más información, revisar el desarrollo para <span class="math notranslate nohighlight">\(n = 2\)</span> <a class="reference external" href="https://pythonnumericalmethods.berkeley.edu/notebooks/chapter22.05-Predictor-Corrector-Methods.html#second-order-runge-kutta-method">acá</a>.</p>
+<p>Lo importante de esta formulación es notar que el <strong>número de parámetros <span class="math notranslate nohighlight">\(k_n\)</span> tendrá asociado un error local <span class="math notranslate nohighlight">\(O(h^{n+1})\)</span></strong>, debido al truncamiento de la serie de Taylor.</p>
 <p>Así, por ejemplo, la formulación para <span class="math notranslate nohighlight">\(n = 1\)</span> permite aproximar hasta la primera derivada de la serie de Taylor. El fórmula resultante, que corresponde a <strong>RK1, es el método de Euler explícito</strong> que tiene un <strong>error de truncamiento local <span class="math notranslate nohighlight">\(O(h^2)\)</span></strong>.</p>
 <p>Igualmente, un RK2, que corresponde a <span class="math notranslate nohighlight">\(n=2\)</span> (<span class="math notranslate nohighlight">\(\phi = a_1k_1 + a_2k_2\)</span>), tendría un error del orden <span class="math notranslate nohighlight">\(O(h^3)\)</span>.</p>
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Link to this heading">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d4e1145-80eb-4372-b8fa-7af72e8906da">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-2d4e1145-80eb-4372-b8fa-7af72e8906da" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f970b935-5dd9-4882-83df-d91c8285d8c1">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-f970b935-5dd9-4882-83df-d91c8285d8c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -901,7 +901,7 @@ a_1+a_2 = 1 \\
 a_2p_1 = 1/2 \\
 a_2q_{11} = 1/2
 \end{align*}\]</div>
-<p>Debido a que tenemos 3 ecuaciones y 4 incognitas, se debe acotar una de las variables para resolver el sistema</p>
+<p>Debido a que tenemos 3 ecuaciónes y 4 incognitas, se debe acotar una de las variables para resolver el sistema</p>
 <p>Esto da lugar a distintas versiones para RK2. Acá destacamos 2 (hay más versiones), que se conocen como <strong>métodos del tipo <em>predictor-corrector</em></strong>.</p>
 <p><strong>Método de Heun (<span class="math notranslate nohighlight">\(a_2 = 1/2\)</span>)</strong></p>
 <div class="amsmath math notranslate nohighlight">
@@ -950,9 +950,9 @@ k_4 &amp;= F\left(t_i+h,y_i+k_3h\right)
 <p>Los métodos discutidos hasta ahora se clasifican como <strong>métodos de paso simple</strong> debido a que el valor futuro <span class="math notranslate nohighlight">\(y_{i+1}\)</span> es determinado exclusivamente por la predicción anterior en el tiempo <span class="math notranslate nohighlight">\(t_i\)</span>. Esto implica que los métodos no retienen la información para la predicción de aproximaciones en itereciones futuras (es decir, <span class="math notranslate nohighlight">\(y_2\)</span> considera el resultado en <span class="math notranslate nohighlight">\(t_1\)</span>, pero no en <span class="math notranslate nohighlight">\(t_0\)</span>).</p>
 <p>Este comportamiento hace que los métodos de paso simple sean ineficientes para problemas clasificados como <em>rígidos</em>, algo que discutiremos al final de esta unidad.</p>
 <p>Los <strong>métodos multipasos, o de paso múltiple</strong> corrigen este comportamiento mediante polinomios de interpolación construidos a partir de una serie de estimaciones en tiempos previos, permitiendo mejorar la estimación de la trayectoria de la solución.</p>
-<p>Esta característica, por otro lado, impica que <strong>los métodos multipasos demandan mayor capacidad de memoria que los métodos de paso simple.</strong></p>
+<p>Esta característica, por otro lado, implica que <strong>los métodos multipasos demandan mayor capacidad de memoria que los métodos de paso simple.</strong></p>
 <p><strong>Otra desventaja</strong> es que, debido a que los métodos multipaso requieren condiciones iniciales en varios pasos anteriores, <strong>se deben utilizar métodos alternativos (como de paso simple) para generar estos valores iniciales.</strong></p>
-<p>Los métodos más utilizados son los métodos de Adams-Bashforth, Adamns-Moulton y las <strong>fórmulas de diferenciación hacia atrás (BDFs)</strong>. Esta última está implementada en la librería python oficial para resolver EDO con valor inicial.</p>
+<p>Los métodos más utilizados son los métodos de Adams-Bashforth, Adams-Moulton y las <strong>fórmulas de diferenciación hacia atrás (BDFs)</strong>. Esta última está implementada en la librería python oficial para resolver EDO con valor inicial.</p>
 </section>
 <section id="solucion-de-edos-en-python-scipy-integrate-solve-ivp">
 <h2><span class="section-number">9.5. </span>Solución de EDOs en python (<code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp</span></code>)<a class="headerlink" href="#solucion-de-edos-en-python-scipy-integrate-solve-ivp" title="Link to this heading">#</a></h2>
@@ -1037,7 +1037,7 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
     <span class="k">return</span> <span class="p">[</span><span class="n">theta_dot</span><span class="p">,</span>                               <span class="c1"># F0(t,y)</span>
             <span class="o">-</span> <span class="n">g</span><span class="o">/</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">l</span><span class="p">)</span><span class="o">*</span><span class="n">theta_dot</span><span class="p">]</span> <span class="c1"># F1(t,y)</span>
 
-<span class="c1"># Condicion inicial</span>
+<span class="c1"># Condición inicia</span>
 <span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">theta0</span><span class="p">,</span>                         <span class="c1"># posición inicial</span>
                <span class="n">theta_dot0</span><span class="p">])</span>                    <span class="c1"># velocidad inicial</span>
 </pre></div>
@@ -1073,7 +1073,7 @@ ml\frac{d^2}{dt^2}\Theta(t) + \kappa\frac{d}{dt}\Theta(t) + mg \sin \Theta(t) = 
 </div>
 </div>
 </div>
-<p>Notar que la variable <code class="docutils literal notranslate"><span class="pre">sol</span></code>, tiene una série de atributos que podemos llamar como <code class="docutils literal notranslate"><span class="pre">sol.</span></code><em>nombre_atributo</em>, donde <em>nombre_atributo</em>=<code class="docutils literal notranslate"><span class="pre">message</span></code>, <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">status</span></code>, etc.</p>
+<p>Notar que la variable <code class="docutils literal notranslate"><span class="pre">sol</span></code>, tiene una serie de atributos que podemos llamar como <code class="docutils literal notranslate"><span class="pre">sol.</span></code><em>nombre_atributo</em>, donde <em>nombre_atributo</em>=<code class="docutils literal notranslate"><span class="pre">message</span></code>, <code class="docutils literal notranslate"><span class="pre">success</span></code>, <code class="docutils literal notranslate"><span class="pre">status</span></code>, etc.</p>
 <p>La descripción de cada uno de estos atributos está en la <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp">documentación oficial de <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code></a></p>
 <p>Las soluciones están en el arreglo <code class="docutils literal notranslate"><span class="pre">sol.y</span></code> y el paso de tiempo en el arreglo <code class="docutils literal notranslate"><span class="pre">sol.t</span></code>. Además, debido a que la solución está dada por <span class="math notranslate nohighlight">\(\vec{y} = \left\{\Theta, \dot{\Theta}\right\}\)</span>, la variable <code class="docutils literal notranslate"><span class="pre">sol.y</span></code> es un arreglo de dos filas.</p>
 <div class="cell docutils container">
@@ -1090,7 +1090,7 @@ Tamaño arreglo y: (2, 36)
 </div>
 </div>
 </div>
-<p>Para conocer el ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> y velocidad angular <span class="math notranslate nohighlight">\(\dot{\Theta}\)</span> para algún tiempo <span class="math notranslate nohighlight">\(t\)</span>, indexamos los arreglos <code class="docutils literal notranslate"><span class="pre">solt.t</span></code> y <code class="docutils literal notranslate"><span class="pre">sol.y</span></code>:</p>
+<p>Para conocer el ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> y velocidad angular <span class="math notranslate nohighlight">\(\dot{\Theta}\)</span> para algún tiempo <span class="math notranslate nohighlight">\(t\)</span>, indexamos los arreglos <code class="docutils literal notranslate"><span class="pre">sol.t</span></code> y <code class="docutils literal notranslate"><span class="pre">sol.y</span></code>:</p>
 <blockquote>
 <div><p><strong>Nota</strong> Debido a que la solución está en radianes, usamos <code class="docutils literal notranslate"><span class="pre">numpy.degrees</span></code> para convertir a grados.</p>
 </div></blockquote>
@@ -1272,8 +1272,8 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.1 s, sys: 93.5 ms, total: 15.1 s
-Wall time: 15.1 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 22.8 s, sys: 1.29 s, total: 24.1 s
+Wall time: 26.1 s
 Número de subdivisiones de variable &quot;t&quot;: 302037
 </pre></div>
 </div>
@@ -1288,8 +1288,8 @@ Número de subdivisiones de variable &quot;t&quot;: 302037
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.5 ms, sys: 1.63 ms, total: 19.1 ms
-Wall time: 19.8 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.93 ms, sys: 8.74 ms, total: 15.7 ms
+Wall time: 19.5 ms
 Número de subdivisiones de variable &quot;t&quot;: 56
 </pre></div>
 </div>
@@ -1304,8 +1304,8 @@ Número de subdivisiones de variable &quot;t&quot;: 56
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.73 ms, sys: 595 µs, total: 3.32 ms
-Wall time: 6.02 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.36 ms, sys: 0 ns, total: 6.36 ms
+Wall time: 7.7 ms
 Número de subdivisiones de variable &quot;t&quot;: 7
 </pre></div>
 </div>
@@ -1390,7 +1390,7 @@ Número de subdivisiones de variable &quot;t&quot;: 7
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">9.1. Introducción</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-ecuaciones-diferenciales">9.1.1. Clasificación de ecuaciones diferenciales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-ecuaciones-diferenciales">9.1.1. Clasificación de ecuaciónes diferenciales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde-y-condiciones-iniciales">9.1.2. Condiciones de borde y condiciones iniciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-iniciales">9.1.2.1. Condiciones iniciales</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#condiciones-de-borde">9.1.2.2. Condiciones de borde</a></li>
