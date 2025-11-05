@@ -430,8 +430,8 @@ document.write(`
 <h3><span class="section-number">9.1.1. </span>Clasificación de ecuaciónes diferenciales<a class="headerlink" href="#clasificacion-de-ecuaciones-diferenciales" title="Link to this heading">#</a></h3>
 <p>Una ecuación diferencial puede estar compuesta por <strong>una variable dependiente y una independiente</strong>.</p>
 <p>Por ejemplo, la <strong>ecuación del péndulo</strong> que define la variación temporal del ángulo <span class="math notranslate nohighlight">\(\Theta\)</span> en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28be2fff-e786-443b-a2c5-6f7ff7bed061">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-28be2fff-e786-443b-a2c5-6f7ff7bed061" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea6076b7-3366-444e-937b-eef7a3f7baec">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-ea6076b7-3366-444e-937b-eef7a3f7baec" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(g\)</span> es la gravedad, <span class="math notranslate nohighlight">\(m\)</span> la masa del péndulo, <span class="math notranslate nohighlight">\(l\)</span> es la distancia al centro de rotación y <span class="math notranslate nohighlight">\(\kappa\)</span> es una constante a amortiguación asociada al arrastre por el viento</p>
@@ -440,8 +440,8 @@ ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 <p>Este tipo de ecuaciónes se conoce como <strong>ecuación diferencial ordinaria (EDO)</strong>, debido a que la variable dependiente (<span class="math notranslate nohighlight">\(\Theta\)</span>, en este caso) está condicionada por una variable independiente (<span class="math notranslate nohighlight">\(t\)</span>, en este caso). Debido al término <span class="math notranslate nohighlight">\(\sin\Theta\)</span>, esta ecuación corresponde a una <strong>EDO no-lineal</strong>.</p>
 <p>Si el ángulo de oscilación, <span class="math notranslate nohighlight">\(\Theta\)</span>, es pequeño, podemos hacer la simplificación <span class="math notranslate nohighlight">\(\sin \Theta\approx \Theta\)</span>.</p>
 <p>En este caso la ecuación se transforma en una <strong>EDO lineal</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3d1bade-38ff-4755-b7ce-890ec9a62225">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-e3d1bade-38ff-4755-b7ce-890ec9a62225" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6465586a-46e1-48de-a6be-611ecc000fea">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-6465586a-46e1-48de-a6be-611ecc000fea" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} = - mg \Theta(t) -\kappa \dot{\Theta}(t) 
 \end{equation}\]</div>
 <p>En general, las EDO lineales tienen solución analítica.</p>
@@ -466,8 +466,8 @@ k\frac{\partial T}{\partial y^2} = \rho c_p \frac{\partial T}{\partial t}
 <p>En este caso tenemos un sistema de <strong>3 EDPs no-lineales</strong> definido para tres variables dependientes (<span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, y <span class="math notranslate nohighlight">\(p\)</span>) en función de tres variables independientes (tiempo <span class="math notranslate nohighlight">\(t\)</span> y el espacio <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>). Donde <span class="math notranslate nohighlight">\(u(t,x,y)\)</span> y <span class="math notranslate nohighlight">\(v(t,x,y)\)</span> son, respectivamente, el campo de velocidad en dirección <span class="math notranslate nohighlight">\(\hat{x}\)</span> y <span class="math notranslate nohighlight">\(\hat{y}\)</span>; y <span class="math notranslate nohighlight">\(p(t,x,y)\)</span> es el campo de presiones. Nuevamente, <span class="math notranslate nohighlight">\(\rho\)</span>, es la densidad del fluido.</p>
 <p>También podemos <strong>clasificar una ecuación diferencial según el orden de sus derivadas.</strong></p>
 <p>Por ejemplo, la ecuación:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-763cd489-82ef-4f03-a387-4f483d7937e5">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-763cd489-82ef-4f03-a387-4f483d7937e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1f1e9c43-d0ff-48ef-a7fc-e0f0a2a2e60d">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-1f1e9c43-d0ff-48ef-a7fc-e0f0a2a2e60d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 ml\frac{d^2\Theta}{dt^2} + \kappa l\frac{d\Theta}{dt} + mg \sin \Theta(t) = 0
 \end{equation}\]</div>
 <p>Es una <strong>EDO de segundo orden,</strong> debido a que <span class="math notranslate nohighlight">\(\Theta\)</span> es derivada dos veces respecto a <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -546,8 +546,8 @@ T(0,x,y) = T_a
 <section id="ecuacion-diferencial-ordinaria-edo-con-valor-inicial">
 <h3><span class="section-number">9.2.1. </span>Ecuación diferencial ordinaria (EDO) con valor inicial<a class="headerlink" href="#ecuacion-diferencial-ordinaria-edo-con-valor-inicial" title="Link to this heading">#</a></h3>
 <p>En forma general, podemos representar una EDO con valor inicial de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ffc8508-e082-4e4e-ab63-7e22bfcd0d25">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-1ffc8508-e082-4e4e-ab63-7e22bfcd0d25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-89157397-e47f-490d-863e-9fd987116a61">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-89157397-e47f-490d-863e-9fd987116a61" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d^{n}f(t)}{dt^{n}} = F\left(t, f(t), \frac{df(t)}{dt}, \frac{d^2f(t)}{dt^2}, \frac{d^3f(t)}{dt^3}, \ldots, \frac{d^{n-1}f(t)}{dt^{n-1}}\right) ,
 \end{equation}\]</div>
 <p>sujeta a las condiciones iniciales:
@@ -576,8 +576,8 @@ T(0,x,y) = T_a
 \left\{\begin{matrix} \Theta(0) \\ \dot{\Theta(0)}\end{matrix}\right\} = \left\{\begin{matrix} \Theta_0 \\ 0\end{matrix}\right\}
 \end{equation*}\]</div>
 <p>A partir de este procedimiento, <strong>hemos reducido una EDO de orden superior a una EDO de primer orden de la forma</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c86f2a9-6b0e-43f8-934e-33492e755e43">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-8c86f2a9-6b0e-43f8-934e-33492e755e43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-11996789-4aba-4698-8d83-d89f2850a216">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-11996789-4aba-4698-8d83-d89f2850a216" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{d\vec{y}}{dt} = \vec{F}(t,\vec{y})
 \end{equation}\]</div>
 <p>con una condición inicial <span class="math notranslate nohighlight">\(\vec{y}(0)\)</span>.</p>
@@ -629,7 +629,7 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>                       <span class="c1"># paso de tiempo (dt)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                       <span class="c1"># paso de tiempo (dt)</span>
 <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>                <span class="c1"># tiempo inicial (ti) y final (tf)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos t0, t1, ..., tn</span>
 
@@ -670,7 +670,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9dee906bdd06ba211b2967f43d6d60d5c274a3aa6942e5a5e6c75342a0765c4d.png" src="../_images/9dee906bdd06ba211b2967f43d6d60d5c274a3aa6942e5a5e6c75342a0765c4d.png" />
+<img alt="../_images/345839a74d909a6c12a1402d26002731d31efe9d7f6194e15c6b200c06a56e40.png" src="../_images/345839a74d909a6c12a1402d26002731d31efe9d7f6194e15c6b200c06a56e40.png" />
 </div>
 </div>
 </section>
@@ -703,7 +703,7 @@ T(0,x,y) = T_a
 <span class="n">y_exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
 
 <span class="c1"># Definimos parámetros numéricos</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mf">0.09</span>                      <span class="c1"># paso de tiempo</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">0.1</span>                      <span class="c1"># paso de tiempo</span>
 <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>                <span class="c1"># tiempo inicial (ti) y final (tf)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="o">+</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>    <span class="c1"># lista de tiempos</span>
  
@@ -743,7 +743,7 @@ T(0,x,y) = T_a
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fa2c8bc2af62314a27f6163205021709722daf35866f8f5eb3bb620b86d7559a.png" src="../_images/fa2c8bc2af62314a27f6163205021709722daf35866f8f5eb3bb620b86d7559a.png" />
+<img alt="../_images/34ffce47f0d53237f3690085f52f318b0bdddbca92226fe1ca32e6f03a77bc4e.png" src="../_images/34ffce47f0d53237f3690085f52f318b0bdddbca92226fe1ca32e6f03a77bc4e.png" />
 </div>
 </div>
 <p>Observamos que el método de Euler converge cuando <span class="math notranslate nohighlight">\(h = 0.01\)</span>, pero oscila constantemente para <span class="math notranslate nohighlight">\(h &gt; 0.1\)</span>. Esta es un característica típica de un problema de estabilidad.</p>
@@ -754,8 +754,8 @@ T(0,x,y) = T_a
 <section id="metodo-de-euler-implicito">
 <h3><span class="section-number">9.2.5. </span>Método de Euler implícito<a class="headerlink" href="#metodo-de-euler-implicito" title="Link to this heading">#</a></h3>
 <p>Alternativamente, podemos definir el argumento de <span class="math notranslate nohighlight">\(\vec{F}(t,\vec{y})\)</span> en función de los valores futuros <span class="math notranslate nohighlight">\(t_{i+1}\)</span> y <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ac807e5-7943-4dfc-b5ed-5ee5b5ed9668">
-<span class="eqno">(9.6)<a class="headerlink" href="#equation-2ac807e5-7943-4dfc-b5ed-5ee5b5ed9668" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7c7a7f37-5305-45d4-8244-cccf5c5cd7c4">
+<span class="eqno">(9.6)<a class="headerlink" href="#equation-7c7a7f37-5305-45d4-8244-cccf5c5cd7c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \vec{y}_{i+1} = \vec{y}_i+h\vec{F}\left(t_{i+1},\vec{y}_{i+1}\right) + O(h^2)
 \end{equation}\]</div>
 <p>Esta formulación se define como <strong>implícita</strong> debido a que el valor futuro, <span class="math notranslate nohighlight">\(\vec{y}_{i+1}\)</span> se encuentra a ambos lados de la ecuación.</p>
@@ -848,14 +848,14 @@ T(0,x,y) = T_a
 <p>Los métodos de Runge-Kutta (RK) permiten aumentar el número de términos de una serie de Taylor, sin la necesidad de calcular derivadas de mayor orden</p>
 <p>Esto permite una mejor precisión, ya que el error de truncamiento local se reduce.</p>
 <p>Existen muchas variaciones, todas asociadas a una aproximación de la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-527d3f29-893c-4d13-b2f0-4d816238f708">
-<span class="eqno">(9.7)<a class="headerlink" href="#equation-527d3f29-893c-4d13-b2f0-4d816238f708" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a786a48a-0f20-4885-a3ea-eb9a0a1dfb8a">
+<span class="eqno">(9.7)<a class="headerlink" href="#equation-a786a48a-0f20-4885-a3ea-eb9a0a1dfb8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + \phi h
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\phi\)</span> se conoce como <em>función incremento</em>, que <strong>representa una pendiente representativa del intervalo</strong></p>
 <p>En su forma general, la función incremento está dada por:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d69606a0-feea-484f-af3e-114e74544ea9">
-<span class="eqno">(9.8)<a class="headerlink" href="#equation-d69606a0-feea-484f-af3e-114e74544ea9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0453cab7-11f4-46c9-8082-76904f3a846a">
+<span class="eqno">(9.8)<a class="headerlink" href="#equation-0453cab7-11f4-46c9-8082-76904f3a846a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \phi = a_1k_1+a_2k_2+\cdots+a_nk_n
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(a_j\)</span> son constantes, y los valores <span class="math notranslate nohighlight">\(k_j\)</span> son:</p>
@@ -884,8 +884,8 @@ y(t_{i+1}) &amp;= y(t_i) + y'(t_i)h + \frac{1}{2!}y''(t_i)h^2 + \cdots + \frac{1
 <section id="runge-kutta-de-segundo-orden-rk2">
 <h3><span class="section-number">9.3.1. </span>Runge-Kutta de segundo orden (RK2)<a class="headerlink" href="#runge-kutta-de-segundo-orden-rk2" title="Link to this heading">#</a></h3>
 <p>La versión de segundo orden de RK es:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f970b935-5dd9-4882-83df-d91c8285d8c1">
-<span class="eqno">(9.9)<a class="headerlink" href="#equation-f970b935-5dd9-4882-83df-d91c8285d8c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-df13fe9f-cbd8-413c-a958-abd066aef3cb">
+<span class="eqno">(9.9)<a class="headerlink" href="#equation-df13fe9f-cbd8-413c-a958-abd066aef3cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
 y_{i+1} = y_i + (a_1k_1+a_2k_2)h + O(h^3)
 \end{equation}\]</div>
 <p>donde:</p>
@@ -1265,53 +1265,121 @@ y = 3 - 0.998e^{-1000t} - 2.002e^{-t}
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = RK45</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;RK45&#39;)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = RK45 (explícito de paso simple)</span>
+<span class="o">%</span><span class="k">time</span> sol_RK45 = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;RK45&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de pasos en  &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol_RK45</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 22.8 s, sys: 1.29 s, total: 24.1 s
-Wall time: 26.1 s
-Número de subdivisiones de variable &quot;t&quot;: 302037
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14.1 s, sys: 132 ms, total: 14.3 s
+Wall time: 14.3 s
+Número de pasos en  &quot;t&quot;: 302037
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = BDF</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;BDF&#39;)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = BDF (implícito de paso múltiple)</span>
+<span class="o">%</span><span class="k">time</span> sol_BDF = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;BDF&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de pasos en &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol_BDF</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.93 ms, sys: 8.74 ms, total: 15.7 ms
-Wall time: 19.5 ms
-Número de subdivisiones de variable &quot;t&quot;: 56
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.01 ms, sys: 0 ns, total: 9.01 ms
+Wall time: 8.8 ms
+Número de pasos en &quot;t&quot;: 56
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = Radau</span>
-<span class="o">%</span><span class="k">time</span> sol = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;Radau&#39;)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de subdivisiones de variable &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usamos method = Radau (implícito de paso simple)</span>
+<span class="o">%</span><span class="k">time</span> sol_Radau = solve_ivp(fun = F,t_span = (t0, tf), y0 = [1], method = &#39;Radau&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número de pasos en &quot;t&quot;: </span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">sol_Radau</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 6.36 ms, sys: 0 ns, total: 6.36 ms
-Wall time: 7.7 ms
-Número de subdivisiones de variable &quot;t&quot;: 7
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 4.56 ms, total: 4.56 ms
+Wall time: 3.99 ms
+Número de pasos en &quot;t&quot;: 7
 </pre></div>
 </div>
 </div>
 </div>
-<p>Como vemos, el tiempo de cómputo y el número de subdivisiones con los métodos implícitos <code class="docutils literal notranslate"><span class="pre">Radau</span></code> y <code class="docutils literal notranslate"><span class="pre">BDF</span></code> es significativamente menor, en comparación con métodos de paso simple (como <code class="docutils literal notranslate"><span class="pre">RK45</span></code>).</p>
+<p>Como vemos, el tiempo de cómputo y número de pasos (<span class="math notranslate nohighlight">\(t_i\)</span>) en <code class="docutils literal notranslate"><span class="pre">Radau</span></code> y <code class="docutils literal notranslate"><span class="pre">BDF</span></code> (métodos implícitos) es significativamente menor en comparación con métodos de paso simple explícitos (como <code class="docutils literal notranslate"><span class="pre">RK45</span></code>). Particularmente, <code class="docutils literal notranslate"><span class="pre">Radau</span></code> es el más eficiente de los tres (solo 7 iteraciones).</p>
+<p>Revisemos ahora, gráficamente, la solución de cada método. En la gráfica, los puntos representan la cantidad de pasos requeridos por cada método para alcanzar la solución. Como guía, se incluye una línea punteada para conectar los puntos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Definimos tamaños de lienzo</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># graficamos</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol_RK45</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol_RK45</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;--o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;RK45&#39;</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mfc</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol_BDF</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol_BDF</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;--o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;BDF&#39;</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mfc</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol_Radau</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol_Radau</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;--o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Radau&#39;</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mfc</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="c1"># etiquetas y leyendas del gráfico</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Solución de: $\frac</span><span class="si">{dy}{dt}</span><span class="s1"> = - 100000\left(y - \cos t\right),\quad y(0) = 1\quad$ ($t\in[0, 10]$, $\Delta t$ adaptativo)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a5d582337510a2256454dffeddfc82de07d1cfba17bc79700dc7b4a283a1fc88.png" src="../_images/a5d582337510a2256454dffeddfc82de07d1cfba17bc79700dc7b4a283a1fc88.png" />
+</div>
+</div>
+<p>Note como <code class="docutils literal notranslate"><span class="pre">RK45</span></code> requiere tantos pasos que los marcadores <code class="docutils literal notranslate"><span class="pre">o</span></code> se superponen en la gráfica. <code class="docutils literal notranslate"><span class="pre">Radau</span></code>, en cambio, utiliza pasos cortos para las primeras iteraciones 6, para luego determinar con presición el valor <span class="math notranslate nohighlight">\(y(t_f)\)</span>.</p>
+<p>Analicemos ahora la evolución de <span class="math notranslate nohighlight">\(y(t)\)</span> en el intervalo <span class="math notranslate nohighlight">\(t\in[t_i, t_f]\)</span> usando <code class="docutils literal notranslate"><span class="pre">t_eval</span></code> en <code class="docutils literal notranslate"><span class="pre">BDF</span></code> y <code class="docutils literal notranslate"><span class="pre">Radau</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">51</span><span class="p">)</span> <span class="c1"># tiempos para estimar y(t), dt = 0.2 (fijo)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">t_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>       <span class="c1"># extraemos paso de tiempo (dt) para título del gráfico</span>
+
+<span class="c1"># Usamos method = BDF (implícito de paso múltiple)</span>
+<span class="n">sol_eval_BDF</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span> <span class="o">=</span> <span class="n">F</span><span class="p">,</span> <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;BDF&#39;</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">t_plot</span><span class="p">)</span>
+
+<span class="c1"># Usamos method = Radau (implícito de paso simple)</span>
+<span class="n">sol_eval_Radau</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span> <span class="o">=</span> <span class="n">F</span><span class="p">,</span> <span class="n">t_span</span> <span class="o">=</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">),</span> <span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;Radau&#39;</span><span class="p">,</span> <span class="n">t_eval</span> <span class="o">=</span> <span class="n">t_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos tamaños de lienzo</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># graficamos</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">sol_eval_BDF</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;--o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;BDF&#39;</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mfc</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">sol_eval_Radau</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;--o&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Radau&#39;</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">mfc</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="c1"># Etiquetas y leyendas del gráfico</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Solución de: $\frac</span><span class="si">{dy}{dt}</span><span class="s1"> = - 100000\left(y - \cos t\right),\quad y(0) = 1\quad$ ($t\in[0, 10]$, $\Delta t =$ </span><span class="si">%.1f</span><span class="s1">s)&#39;</span> <span class="o">%</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b0c7b8116c3f6ded8aacd308ec35f000cb43aa616a485f0feec8066d1eacd73.png" src="../_images/9b0c7b8116c3f6ded8aacd308ec35f000cb43aa616a485f0feec8066d1eacd73.png" />
+</div>
+</div>
+<p>En este caso vemos una clara discrepancia entre las curvas. En base al análisis anterior, concluimos que la solución de <code class="docutils literal notranslate"><span class="pre">BDF</span></code> es la correcta.</p>
+<p>El fenómeno ocurre porque <strong><code class="docutils literal notranslate"><span class="pre">t_eval</span></code> no modifica el paso adaptativo determinado internamente por el método</strong>. Los valores para <code class="docutils literal notranslate"><span class="pre">t_eval</span></code> se obtienen mediante interpolación, usando el <span class="math notranslate nohighlight">\(\Delta t\)</span> adaptativo del método. Así, la estimación de <code class="docutils literal notranslate"><span class="pre">Radau</span></code> es “pobre” en los últimos dos pasos debido a gran <span class="math notranslate nohighlight">\(\Delta t\)</span> que los separa.</p>
+<p><strong>En conclusión:</strong> en problemas rígidos, los métodos implícitos (<code class="docutils literal notranslate"><span class="pre">Radau</span></code>, <code class="docutils literal notranslate"><span class="pre">BDF</span></code>) superan a los explícitos (<code class="docutils literal notranslate"><span class="pre">RK45</span></code>) porque pueden usar pasos, <span class="math notranslate nohighlight">\(\Delta t\)</span>, grandes sin perder estabilidad.</p>
+<p>El resultado de nuestra prueba para encontrar <span class="math notranslate nohighlight">\(y(t_f)\)</span> indica que, bajo las tolerancias establecidas, <strong><code class="docutils literal notranslate"><span class="pre">Radau</span></code> fue más eficiente</strong>, pero no necesariamente más preciso todos los <span class="math notranslate nohighlight">\(t\in[t_i, t_f]\)</span>.</p>
+<p>Cuando pedimos muestras en base a un arreglo (<code class="docutils literal notranslate"><span class="pre">t_eval</span></code>), el método <strong>no utiliza el <span class="math notranslate nohighlight">\(\Delta t\)</span> establecido por <code class="docutils literal notranslate"><span class="pre">t_eval</span></code></strong>; define un paso <span class="math notranslate nohighlight">\(\Delta t\)</span> adaptativo y luego interpola en los <span class="math notranslate nohighlight">\(t_i\)</span> definidos por <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>.</p>
 </section>
 </section>
 <section id="referencias">
