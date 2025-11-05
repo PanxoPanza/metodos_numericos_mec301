@@ -438,8 +438,8 @@ f(x) &amp;= \frac{f(x_i)(x - x_i)^0}{0!} + \frac{f^{\prime}(x_i)(x - x_j)^1}{1!}
 f(x_{i-1})= f(x_i) + f^{\prime}(x_i)(x_{i-1} - x_i) + \frac{f''(x_i)}{2}(x_{i-1} - x_i)^2 + \frac{f'''(x_i)}{6}(x_{i-1} - x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y despejando <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia atrás</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5de8d6d0-6c60-4016-9486-723fa48df89b">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-5de8d6d0-6c60-4016-9486-723fa48df89b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1477a6d5-762b-4278-9beb-faf0e4d2f565">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-1477a6d5-762b-4278-9beb-faf0e4d2f565" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i}) - f(x_{i-1})}{x_{i} - x_{i-1}} + O(h)
 \end{equation}\]</div>
 <p>Similarmente, si evaluamos la expansión en <span class="math notranslate nohighlight">\(x_{i+1}\)</span>,</p>
@@ -450,8 +450,8 @@ f(x_{i+1})= f(x_i) + f^{\prime}(x_i)(x_{i+1} - x_i) + \frac{f''(x_i)}{2}(x_{i+1
 }- x_i)^3 + \cdots
 \end{equation*}\]</div>
 <p>y luego despejamos <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula de derivada hacia adelante</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cbe7350-2290-4dd4-904b-42215adfbfaf">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-1cbe7350-2290-4dd4-904b-42215adfbfaf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3ceb51c4-659b-4055-ace0-7bbe0e800773">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-3ceb51c4-659b-4055-ace0-7bbe0e800773" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 \end{equation}\]</div>
 <p>Finalmente, consideremos la diferencia <span class="math notranslate nohighlight">\(f(x_{i+1}) - f(x_{i-1})\)</span>, con <span class="math notranslate nohighlight">\(x_{i+1} - x_i = h\)</span> y <span class="math notranslate nohighlight">\(x_{i-1} - x_i = -h\)</span>:</p>
@@ -460,8 +460,8 @@ f'(x_i) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}} + O(h)
 f(x_{i+1}) - f(x_{i-1}) = f'(x_i)2h + \frac{f'''(x_i)}{3!}2h^3 + \frac{f'''(x_i)}{5!}2h^5 + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f'(x_i)\)</span>, obtenemos la <strong>fórmula para derivada central</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c521b1ad-6bc1-461a-9091-e1001a208639">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-c521b1ad-6bc1-461a-9091-e1001a208639" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-94616438-482f-48c4-b594-98b7e468df7a">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-94616438-482f-48c4-b594-98b7e468df7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 f'(x_i) = \frac{f(x_{i+1}) - f(x_{i-1})}{x_{i+1} - x_{i-1}} + O(h^2)
 \end{equation}\]</div>
 <p>A partir de este análisis podemos concluir que la derivada central tiene un mayor orden de precisión.</p>
@@ -583,12 +583,12 @@ f&#39;(5) = -0.916000; Error = 0.00350 (Derivada central)
 <p>Por ejemplo, consideremos la suma de las expansiones <span class="math notranslate nohighlight">\(f(x_{i+1})\)</span> y <span class="math notranslate nohighlight">\(f(x_{i-1})\)</span> centradas en <span class="math notranslate nohighlight">\(x_i\)</span>,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f(x_{j-1}) + f(x_{j+1}) = 2f(x_j) + h^2f''(x_j) + \frac{h^4f''''(x_j)}{24} + \cdots
+f(x_{i-1}) + f(x_{i+1}) = 2f(x_i) + h^2f''(x_i) + \frac{h^4f''''(x_i)}{24} + \cdots
 \end{equation*}\]</div>
 <p>Despejando para <span class="math notranslate nohighlight">\(f''(x_i)\)</span>, obtenemos la fórmula para la segunda derivada por diferencia central:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-f''(x_j) = \frac{f(x_{j+1}) - 2f(x_j) + f(x_{j-1})}{h^2} + O(h^2)
+f''(x_i) = \frac{f(x_{i+1}) - 2f(x_i) + f(x_{i-1})}{h^2} + O(h^2)
 \end{equation*}\]</div>
 <p>Podemos extender nuestro resultado para determinar fórmulas de diferencias finitas para derivadas de mayor orden. A continuación mostramos un resumen con algunas de estas fórmulas:</p>
 <p><strong>Diferencia hacia adelante</strong></p>
@@ -847,7 +847,7 @@ h = 0.200, dfdx = 0.497, error = 3.327e-03
 h = 0.100, dfdx = 0.499, error = 8.329e-04
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_13997/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_20731/2525851843.py:9: DeprecationWarning: scipy.misc.derivative is deprecated in SciPy v1.10.0; and will be completely removed in SciPy v1.12.0. You may consider using findiff: https://github.com/maroba/findiff or numdifftools: https://github.com/pbrod/numdifftools
   dfdx = derivative(f,x0,dx=h)
 </pre></div>
 </div>
