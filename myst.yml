@@ -8,6 +8,11 @@ project:
   # authors: []
   github: https://github.com/PanxoPanza/metodos_numericos_mec301
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  # Jupyter Book 2 / MyST no numera capítulos ni secciones por defecto
+  # (a diferencia de JB1). Esto lo restaura.
+  numbering:
+    headings: true
+    title: true
 site:
   template: book-theme
   # options:
