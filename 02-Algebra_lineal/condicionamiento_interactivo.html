@@ -8,7 +8,7 @@
 #cnd-app *{box-sizing:border-box}
 #cnd-app .cnd-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
 #cnd-app .cnd-izq{flex:3 1 330px;min-width:0;max-width:560px}
-#cnd-app .cnd-der{flex:2 1 250px;min-width:0}
+#cnd-app .cnd-der{flex:2 1 250px;min-width:0;font-size:0.85em}
 #cnd-app svg{width:100%;height:auto;display:block;background:#fff;
              border:1px solid var(--cnd-linea);border-radius:0.55em}
 #cnd-app .cnd-ctrl{background:var(--cnd-panel);border:1px solid var(--cnd-linea);
@@ -16,7 +16,7 @@
 #cnd-app .cnd-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
 #cnd-app .cnd-val{float:right;font-weight:600;color:var(--cnd-acento);font-variant-numeric:tabular-nums}
 #cnd-app input[type=range]{width:100%;accent-color:var(--cnd-acento);margin:0}
-#cnd-app .cnd-hint{font-size:0.83em;color:var(--cnd-suave);margin-top:0.28em;line-height:1.35}
+#cnd-app .cnd-hint{font-size:0.88em;color:var(--cnd-suave);margin-top:0.28em;line-height:1.35}
 #cnd-app table.cnd-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
 #cnd-app table.cnd-t td{padding:0.28em 0.4em;text-align:left;
                    border-bottom:1px solid var(--cnd-linea);background:none}
@@ -27,7 +27,7 @@
          border:1px solid var(--cnd-linea);border-radius:0.55em;padding:0.6em 0.8em;
          line-height:1.75;margin-bottom:0.6em}
 #cnd-app .cnd-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.33em;margin-top:0.55em}
-#cnd-app .cnd-btns button{font-family:inherit;font-size:0.87em;padding:0.35em 0.25em;
+#cnd-app .cnd-btns button{font-family:inherit;font-size:0.9em;padding:0.35em 0.25em;
          white-space:nowrap;border:1px solid var(--cnd-linea);background:#fff;
          border-radius:0.4em;cursor:pointer;color:var(--cnd-tinta)}
 #cnd-app .cnd-btns button:hover{border-color:var(--cnd-acento);color:var(--cnd-acento)}
@@ -202,7 +202,7 @@
   var baseAnterior = null;
   function ajusta(){
     var w = APP.clientWidth || 790;
-    var base = Math.max(12, Math.min(17, w/50)).toFixed(1);   // 12 px a 17 px
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);   // 13 px a 17 px
     if (base !== baseAnterior){                               // evita el bucle del observer
       baseAnterior = base;
       APP.style.fontSize = base + 'px';
