@@ -70,7 +70,6 @@
       <tr><td>det(<i>A</i>)</td><td class="cnd-num" id="cnd-t-det"></td></tr>
       <tr><td>error en los datos</td><td class="cnd-num" id="cnd-t-in"></td></tr>
       <tr><td><b>error en la solución</b></td><td class="cnd-num" id="cnd-t-out"></td></tr>
-      <tr><td>amplificación</td><td class="cnd-num" id="cnd-t-amp"></td></tr>
     </table>
     <p style="margin:9px 0 0"><span class="cnd-badge" id="cnd-t-diag"></span></p>
 
@@ -186,7 +185,6 @@
     G('cnd-t-det').textContent  = fmt(eps, 5);
     G('cnd-t-in').textContent   = (100*ei).toFixed(2) + ' %';
     G('cnd-t-out').textContent  = (100*eo).toFixed(2) + ' %';
-    G('cnd-t-amp').textContent  = ei > 0 ? (eo/ei).toFixed(1) + '×' : '—';
 
     var b = G('cnd-t-diag');
     if (K < 50){        b.style.background = '#e3f4e8'; b.style.color = '#1c7a3e';
