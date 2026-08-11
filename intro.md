@@ -1,3 +1,8 @@
+---
+# la portada no se numera (los capítulos parten en 1)
+numbering:
+  title: false
+---
 # Bienvenidos al curso
 
 El propósito de este curso es profundizar en los métodos numéricos más utilizados en la 

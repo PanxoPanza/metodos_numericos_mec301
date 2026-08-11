@@ -12,7 +12,11 @@ project:
   # (a diferencia de JB1). Esto lo restaura.
   numbering:
     headings: true
-    title: true
+    title:
+      enabled: true
+      # offset 0 = numeración plana: los capítulos son 1, 2, 3...
+      # en vez de heredar el nivel de anidación del _toc.yml (1.1, 1.2...)
+      offset: 0
 site:
   template: book-theme
   # options:
