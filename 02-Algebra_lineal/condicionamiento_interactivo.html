@@ -1,0 +1,203 @@
+<meta charset="utf-8">
+<style>
+#cnd-app{--cnd-tinta:#1a2733; --cnd-suave:#5d6b78; --cnd-linea:#d8dee4; --cnd-panel:#f6f8fa;
+         --cnd-c1:#1f77b4; --cnd-c2:#ff7f0e; --cnd-rojo:#d62728; --cnd-acento:#00afd8;
+         max-width:790px; padding:4px 2px; color:var(--cnd-tinta);
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#cnd-app *{box-sizing:border-box}
+#cnd-app .cnd-wrap{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+#cnd-app .cnd-izq{flex:1 1 415px;min-width:0}
+#cnd-app .cnd-der{flex:1 1 285px;min-width:0}
+#cnd-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--cnd-linea);border-radius:8px}
+#cnd-app .cnd-ctrl{background:var(--cnd-panel);border:1px solid var(--cnd-linea);
+                   border-radius:8px;padding:10px 12px;margin-bottom:9px}
+#cnd-app .cnd-ctrl label{display:block;font-size:15px;font-weight:600;margin-bottom:6px}
+#cnd-app .cnd-val{float:right;font-weight:600;color:var(--cnd-acento);font-variant-numeric:tabular-nums}
+#cnd-app input[type=range]{width:100%;accent-color:var(--cnd-acento);margin:0}
+#cnd-app .cnd-hint{font-size:12.5px;color:var(--cnd-suave);margin-top:4px;line-height:1.35}
+#cnd-app table.cnd-t{width:100%;border-collapse:collapse;font-size:14.5px;margin:0}
+#cnd-app table.cnd-t th,#cnd-app table.cnd-t td{padding:4px 6px;text-align:left;
+                   border-bottom:1px solid var(--cnd-linea);background:none}
+#cnd-app table.cnd-t th{font-weight:600;color:var(--cnd-suave);font-size:12px;
+                   text-transform:uppercase;letter-spacing:.03em}
+#cnd-app table.cnd-t td.cnd-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#cnd-app .cnd-badge{display:inline-block;padding:3px 11px;border-radius:11px;font-size:13.5px;font-weight:600}
+#cnd-app .cnd-eqbox{font-family:"Cambria Math",Georgia,serif;font-size:15.5px;background:#fff;
+         border:1px solid var(--cnd-linea);border-radius:8px;padding:9px 12px;line-height:1.75;
+         margin-bottom:9px}
+#cnd-app .cnd-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}
+#cnd-app .cnd-btns button{font-family:inherit;font-size:13px;padding:5px 4px;white-space:nowrap;
+         border:1px solid var(--cnd-linea);background:#fff;border-radius:6px;
+         cursor:pointer;color:var(--cnd-tinta)}
+#cnd-app .cnd-btns button:hover{border-color:var(--cnd-acento);color:var(--cnd-acento)}
+#cnd-app .cnd-ley{display:flex;gap:13px;flex-wrap:wrap;font-size:13px;
+         color:var(--cnd-suave);margin-top:6px}
+</style>
+
+<div id="cnd-app">
+<div class="cnd-wrap">
+  <div class="cnd-izq">
+    <svg id="cnd-plot" viewBox="0 0 520 460" role="img"
+         aria-label="Las dos rectas del sistema y el desplazamiento de la solución al perturbar los datos"></svg>
+    <div class="cnd-ley">
+      <span><span style="color:var(--cnd-c1)">━</span> ec. 1</span>
+      <span><span style="color:var(--cnd-c2)">━</span> ec. 2</span>
+      <span><span style="color:var(--cnd-c2)">╌</span> ec. 2 perturbada</span>
+      <span>● exacta</span>
+      <span style="color:var(--cnd-rojo)">✕ perturbada</span>
+    </div>
+  </div>
+
+  <div class="cnd-der">
+    <div class="cnd-ctrl">
+      <label for="cnd-eps">Inclinación de la 2ª recta<span class="cnd-val" id="cnd-epsv"></span></label>
+      <input type="range" id="cnd-eps" min="-3" max="0.4" step="0.01" value="0">
+      <div class="cnd-hint">ε pequeño ⇒ las rectas se vuelven casi paralelas
+        (escala logarítmica: ε = 10<sup>valor</sup>)</div>
+    </div>
+
+    <div class="cnd-ctrl">
+      <label for="cnd-pert">Error en el dato y₂<span class="cnd-val" id="cnd-pertv"></span></label>
+      <input type="range" id="cnd-pert" min="0" max="5" step="0.1" value="1">
+      <div class="cnd-hint">error de medición, o simplemente el redondeo de la máquina</div>
+    </div>
+
+    <div class="cnd-eqbox" id="cnd-eqs"></div>
+
+    <table class="cnd-t">
+      <tr><td>Cond(<i>A</i>)</td><td class="cnd-num" id="cnd-t-cond"></td></tr>
+      <tr><td>det(<i>A</i>)</td><td class="cnd-num" id="cnd-t-det"></td></tr>
+      <tr><td>error en los datos</td><td class="cnd-num" id="cnd-t-in"></td></tr>
+      <tr><td><b>error en la solución</b></td><td class="cnd-num" id="cnd-t-out"></td></tr>
+      <tr><td>amplificación</td><td class="cnd-num" id="cnd-t-amp"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="cnd-badge" id="cnd-t-diag"></span></p>
+
+    <div class="cnd-btns">
+      <button data-e="0"    data-p="1">bien cond.</button>
+      <button data-e="-1.3" data-p="1">intermedio</button>
+      <button data-e="-2.7" data-p="1">mal cond.</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('cnd-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, H = 460, ml = 62, mr = 16, mt = 16, mb = 46;
+  var C1 = '#1f77b4', C2 = '#ff7f0e', ROJO = '#d62728';
+
+  function E(t, a){ var n = document.createElementNS(NS, t);
+    for (var k in a) n.setAttribute(k, a[k]); return n; }
+  function txt(a, s){ var n = E('text', a); n.textContent = s; return n; }
+
+  function resolver(eps, y1, y2){          // [[1,1],[1,1+eps]] x = [y1,y2];  det = eps
+    return [((1+eps)*y1 - y2)/eps, (y2 - y1)/eps];
+  }
+  function cond(eps){                      // Cond_inf(A) = ||A||_inf * ||A^-1||_inf
+    var nA = Math.max(2, 1 + Math.abs(1+eps));
+    var nI = Math.max(Math.abs((1+eps)/eps) + Math.abs(1/eps), 2/Math.abs(eps));
+    return nA*nI;
+  }
+  function fmt(v, d){ d = (d === undefined) ? 3 : d;
+    return (Math.abs(v) >= 1e5 || (v !== 0 && Math.abs(v) < 1e-4))
+      ? v.toExponential(2) : v.toFixed(d); }
+
+  function dibuja(){
+    var eps = Math.pow(10, +document.getElementById('cnd-eps').value);
+    var pct = +document.getElementById('cnd-pert').value;
+    var y1 = 2, y2 = 2, y2p = 2*(1 + pct/100);
+    var s = resolver(eps, y1, y2), sp = resolver(eps, y1, y2p);
+
+    var d = Math.sqrt(Math.pow(sp[0]-s[0], 2) + Math.pow(sp[1]-s[1], 2));
+    var R = Math.max(2.6, 1.9*d);
+    var x0 = s[0]-R, x1 = s[0]+R, v0 = s[1]-R, v1 = s[1]+R;
+    var X = function(v){ return ml + (v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y = function(v){ return H - mb - (v-v0)/(v1-v0)*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+
+    var paso = Math.pow(10, Math.round(Math.log10(R)) - 1)*5;
+    for (var k = Math.ceil(x0/paso)*paso; k <= x1; k += paso){
+      S.appendChild(E('line', {x1:X(k), y1:mt, x2:X(k), y2:H-mb, stroke:'#eef1f4', 'stroke-width':1}));
+      S.appendChild(txt({x:X(k), y:H-mb+21, 'text-anchor':'middle', 'font-size':16, fill:'#6b7a88'}, fmt(k,1)));
+    }
+    for (var j = Math.ceil(v0/paso)*paso; j <= v1; j += paso){
+      S.appendChild(E('line', {x1:ml, y1:Y(j), x2:W-mr, y2:Y(j), stroke:'#eef1f4', 'stroke-width':1}));
+      S.appendChild(txt({x:ml-8, y:Y(j)+5.5, 'text-anchor':'end', 'font-size':16, fill:'#6b7a88'}, fmt(j,1)));
+    }
+    S.appendChild(E('rect', {x:ml, y:mt, width:W-ml-mr, height:H-mt-mb, fill:'none', stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2, y:H-8, 'text-anchor':'middle', 'font-size':19,
+                       fill:'#5d6b78', 'font-style':'italic'}, 'x₁'));
+    S.appendChild(txt({x:17, y:(mt+H-mb)/2, 'text-anchor':'middle', 'font-size':19, fill:'#5d6b78',
+                       'font-style':'italic', transform:'rotate(-90 17 ' + ((mt+H-mb)/2) + ')'}, 'x₂'));
+
+    function recta(b, m, col, dash){        // x2 = (b - x1)/m
+      S.appendChild(E('line', {x1:X(x0), y1:Y((b-x0)/m), x2:X(x1), y2:Y((b-x1)/m),
+        stroke:col, 'stroke-width':dash ? 2.2 : 3.2,
+        'stroke-dasharray':dash || 'none', 'stroke-linecap':'round'}));
+    }
+    recta(y1, 1, C1);
+    recta(y2, 1+eps, C2);
+    if (pct > 0) recta(y2p, 1+eps, C2, '6 4');
+
+    if (d > 1e-9){
+      var defs = E('defs');
+      var mk = E('marker', {id:'cnd-ar', viewBox:'0 0 10 10', refX:8, refY:5,
+                            markerWidth:7, markerHeight:7, orient:'auto-start-reverse'});
+      mk.appendChild(E('path', {d:'M0,0 L10,5 L0,10 z', fill:ROJO}));
+      defs.appendChild(mk); S.appendChild(defs);
+      S.appendChild(E('line', {x1:X(s[0]), y1:Y(s[1]), x2:X(sp[0]), y2:Y(sp[1]),
+                               stroke:ROJO, 'stroke-width':2.6, 'marker-end':'url(#cnd-ar)'}));
+    }
+    S.appendChild(E('circle', {cx:X(s[0]), cy:Y(s[1]), r:7, fill:'#1a2733'}));
+    if (pct > 0){
+      var g = E('g', {stroke:ROJO, 'stroke-width':3.6, 'stroke-linecap':'round'});
+      var cx = X(sp[0]), cy = Y(sp[1]), q = 8;
+      g.appendChild(E('line', {x1:cx-q, y1:cy-q, x2:cx+q, y2:cy+q}));
+      g.appendChild(E('line', {x1:cx-q, y1:cy+q, x2:cx+q, y2:cy-q}));
+      S.appendChild(g);
+    }
+
+    var K = cond(eps), ei = pct/100;
+    var eo = d/Math.sqrt(s[0]*s[0] + s[1]*s[1]);
+    var G = function(id){ return document.getElementById(id); };
+
+    G('cnd-epsv').textContent  = 'ε = ' + fmt(eps, 4);
+    G('cnd-pertv').textContent = pct.toFixed(1) + ' %';
+    G('cnd-eqs').innerHTML =
+        'x₁ + x₂ = 2<br>x₁ + ' + fmt(1+eps, 4) + ' x₂ = '
+      + (pct > 0 ? '<span style="color:' + ROJO + '">' + fmt(y2p, 4) + '</span>' : '2')
+      + '<br><span style="color:#5d6b78;font-size:14px">solución: x = ('
+      + fmt(s[0]) + ', ' + fmt(s[1]) + ')</span>';
+    G('cnd-t-cond').textContent = fmt(K, 1);
+    G('cnd-t-det').textContent  = fmt(eps, 5);
+    G('cnd-t-in').textContent   = (100*ei).toFixed(2) + ' %';
+    G('cnd-t-out').textContent  = (100*eo).toFixed(2) + ' %';
+    G('cnd-t-amp').textContent  = ei > 0 ? (eo/ei).toFixed(1) + '×' : '—';
+
+    var b = G('cnd-t-diag');
+    if (K < 50){        b.style.background = '#e3f4e8'; b.style.color = '#1c7a3e';
+                        b.textContent = 'bien condicionado'; }
+    else if (K < 5000){ b.style.background = '#fdf3dd'; b.style.color = '#8a6100';
+                        b.textContent = 'condicionamiento moderado'; }
+    else {              b.style.background = '#fbe4e4'; b.style.color = '#a11';
+                        b.textContent = 'mal condicionado'; }
+  }
+
+  document.getElementById('cnd-eps').addEventListener('input', dibuja);
+  document.getElementById('cnd-pert').addEventListener('input', dibuja);
+  var bs = document.querySelectorAll('#cnd-app .cnd-btns button');
+  for (var i = 0; i < bs.length; i++){
+    bs[i].addEventListener('click', function(){
+      document.getElementById('cnd-eps').value  = this.getAttribute('data-e');
+      document.getElementById('cnd-pert').value = this.getAttribute('data-p');
+      dibuja();
+    });
+  }
+  dibuja();
+})();
+</script>
