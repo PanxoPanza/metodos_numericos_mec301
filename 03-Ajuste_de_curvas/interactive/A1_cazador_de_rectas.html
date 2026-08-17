@@ -1,0 +1,234 @@
+<meta charset="utf-8">
+<style>
+#cdr-app{--cdr-tinta:#1a2733; --cdr-suave:#5d6b78; --cdr-linea:#d8dee4; --cdr-panel:#f6f8fa;
+         --cdr-c1:#1f77b4; --cdr-c2:#ff7f0e; --cdr-rojo:#d62728; --cdr-acento:#00afd8;
+         --cdr-verde:#1c7a3e;
+         width:100%; max-width:min(808px, 94vw); margin:0; padding:4px 2px;
+         color:var(--cdr-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#cdr-app *{box-sizing:border-box}
+#cdr-app .cdr-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#cdr-app .cdr-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#cdr-app .cdr-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#cdr-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--cdr-linea);border-radius:0.55em}
+#cdr-app .cdr-ctrl{background:var(--cdr-panel);border:1px solid var(--cdr-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#cdr-app .cdr-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#cdr-app .cdr-val{float:right;font-weight:600;color:var(--cdr-acento);font-variant-numeric:tabular-nums}
+#cdr-app input[type=range]{width:100%;accent-color:var(--cdr-acento);margin:0}
+#cdr-app .cdr-hint{font-size:0.88em;color:var(--cdr-suave);margin-top:0.28em;line-height:1.35}
+#cdr-app table.cdr-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#cdr-app table.cdr-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--cdr-linea);background:none}
+#cdr-app table.cdr-t td.cdr-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#cdr-app .cdr-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#cdr-app .cdr-eqbox{font-family:"Cambria Math",Georgia,serif;font-size:1.03em;background:#fff;
+         border:1px solid var(--cdr-linea);border-radius:0.55em;padding:0.6em 0.8em;
+         line-height:1.75;margin-bottom:0.6em}
+#cdr-app .cdr-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.33em;margin-top:0.55em}
+#cdr-app .cdr-btns button{font-family:inherit;font-size:0.9em;padding:0.35em 0.25em;
+         white-space:nowrap;border:1px solid var(--cdr-linea);background:#fff;
+         border-radius:0.4em;cursor:pointer;color:var(--cdr-tinta)}
+#cdr-app .cdr-btns button:hover{border-color:var(--cdr-acento);color:var(--cdr-acento)}
+#cdr-app .cdr-btns button.cdr-on{border-color:var(--cdr-acento);background:#e8f7fc;
+         color:var(--cdr-acento);font-weight:600}
+#cdr-app .cdr-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--cdr-suave);margin-top:0.4em}
+</style>
+
+<div id="cdr-app">
+<div class="cdr-wrap">
+  <div class="cdr-izq">
+    <svg id="cdr-plot" viewBox="0 0 520 460" role="img"
+         aria-label="Datos del túnel de viento, la recta de ajuste y el cuadrado de cada residuo"></svg>
+    <div class="cdr-ley">
+      <span><span style="color:var(--cdr-c1)">●</span> datos</span>
+      <span><span style="color:var(--cdr-rojo)">━</span> recta y = a₀ + a₁x</span>
+      <span><span style="color:var(--cdr-rojo)">▨</span> residuo al cuadrado</span>
+    </div>
+  </div>
+
+  <div class="cdr-der">
+    <div class="cdr-ctrl">
+      <label for="cdr-a0">Intercepto a₀<span class="cdr-val" id="cdr-a0v"></span></label>
+      <input type="range" id="cdr-a0" min="-600" max="300" step="1" value="0">
+    </div>
+
+    <div class="cdr-ctrl">
+      <label for="cdr-a1">Pendiente a₁<span class="cdr-val" id="cdr-a1v"></span></label>
+      <input type="range" id="cdr-a1" min="0" max="40" step="0.05" value="10">
+      <div class="cdr-hint" id="cdr-hint">El área total de los cuadrados es el error. Hazla lo más pequeña posible.</div>
+    </div>
+
+    <div class="cdr-eqbox" id="cdr-eq"></div>
+
+    <table class="cdr-t">
+      <tr><td id="cdr-lbl">S<sub>r</sub> = Σ e<sub>i</sub>²</td><td class="cdr-num" id="cdr-t-s"></td></tr>
+      <tr><td>mejor intento</td><td class="cdr-num" id="cdr-t-best"></td></tr>
+      <tr><td><b>óptimo exacto</b></td><td class="cdr-num" id="cdr-t-opt"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="cdr-badge" id="cdr-diag"></span></p>
+
+    <div class="cdr-btns">
+      <button id="cdr-b2" class="cdr-on">Σ eᵢ²</button>
+      <button id="cdr-b1">Σ |eᵢ|</button>
+      <button id="cdr-brev">revelar óptimo</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('cdr-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, H = 460, mr = 16, mt = 16;
+  var C1 = '#1f77b4', ROJO = '#d62728', VERDE = '#1c7a3e';
+
+  var xi = [10,20,30,40,50,60,70,80];
+  var yi = [25,70,380,550,610,1220,830,1450];
+  var OPT2 = {a0:-234.2857, a1:19.4702, s:216118};   // mínimos cuadrados
+  var OPT1 = {a0:-211.30,   a1:19.65,   s:1015};     // mínimo de Σ|e|
+  var x0 = 0, x1 = 88, v0 = -450, v1 = 1750;
+
+  var modo = 2, best = Infinity, anim = null;
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function mil(v){ return Math.round(v).toLocaleString('es-CL'); }
+  function G(id){ return document.getElementById(id); }
+
+  function err(a0,a1,mo){
+    var s = 0;
+    for (var i=0;i<xi.length;i++){ var e = yi[i]-a0-a1*xi[i];
+      s += (mo===2) ? e*e : Math.abs(e); }
+    return s;
+  }
+
+  function dibuja(){
+    var a0 = +G('cdr-a0').value, a1 = +G('cdr-a1').value;
+
+    // escala del texto del gráfico: apariencia constante en cualquier ancho
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
+    var esc = W/anchoSVG;
+    var fT = Math.round(13*esc), fE = Math.round(15*esc);
+    var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);
+    var X = function(v){ return ml + (v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y = function(v){ return H - mb - (v-v0)/(v1-v0)*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+
+    for (var k=0; k<=1600; k+=400){
+      S.appendChild(E('line',{x1:ml,y1:Y(k),x2:W-mr,y2:Y(k),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:ml-0.5*fT,y:Y(k)+0.35*fT,'text-anchor':'end','font-size':fT,fill:'#6b7a88'},k));
+    }
+    for (var j=0; j<=80; j+=20){
+      S.appendChild(E('line',{x1:X(j),y1:mt,x2:X(j),y2:H-mb,stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:X(j),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,fill:'#6b7a88'},j));
+    }
+    S.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2,y:H-0.55*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'V (m/s)'));
+    S.appendChild(txt({x:1.1*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.1*fT)+' '+((mt+H-mb)/2)+')'},'F (N)'));
+
+    var defs = E('defs');
+    var cp = E('clipPath',{id:'cdr-clip'});
+    cp.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb}));
+    defs.appendChild(cp); S.appendChild(defs);
+    var g = E('g',{'clip-path':'url(#cdr-clip)'});
+
+    // residuos
+    for (var i=0;i<xi.length;i++){
+      var px = X(xi[i]), py = Y(yi[i]), pm = Y(a0+a1*xi[i]);
+      var lado = Math.abs(pm-py);
+      if (modo === 2){
+        var dir = (xi[i] < 45) ? 1 : -1;
+        g.appendChild(E('rect',{x:Math.min(px,px+dir*lado), y:Math.min(py,pm),
+          width:lado, height:lado, fill:'rgba(214,39,40,0.16)',
+          stroke:'rgba(214,39,40,0.55)','stroke-width':1}));
+      } else {
+        g.appendChild(E('line',{x1:px,y1:py,x2:px,y2:pm,
+          stroke:'rgba(214,39,40,0.75)','stroke-width':3.4,'stroke-linecap':'round'}));
+      }
+    }
+    g.appendChild(E('line',{x1:X(x0),y1:Y(a0+a1*x0),x2:X(x1),y2:Y(a0+a1*x1),
+      stroke:ROJO,'stroke-width':3.2,'stroke-linecap':'round'}));
+    for (var i2=0;i2<xi.length;i2++){
+      g.appendChild(E('circle',{cx:X(xi[i2]),cy:Y(yi[i2]),r:6,fill:C1,stroke:'#fff','stroke-width':1.6}));
+    }
+    S.appendChild(g);
+
+    // panel
+    var s = err(a0,a1,modo), opt = (modo===2) ? OPT2 : OPT1;
+    if (s < best) best = s;
+
+    G('cdr-a0v').textContent = a0.toFixed(0);
+    G('cdr-a1v').textContent = a1.toFixed(2);
+    G('cdr-eq').innerHTML = 'y = ' + a0.toFixed(1) + ' + ' + a1.toFixed(2) + ' x';
+    G('cdr-lbl').innerHTML = (modo===2) ? 'S<sub>r</sub> = Σ e<sub>i</sub>²' : 'Σ |e<sub>i</sub>|';
+    G('cdr-t-s').textContent    = mil(s);
+    G('cdr-t-best').textContent = mil(best);
+    G('cdr-t-opt').textContent  = mil(opt.s);
+
+    var b = G('cdr-diag'), r = s/opt.s;
+    if (r < 1.02){       b.style.background='#e3f4e8'; b.style.color=VERDE;
+                         b.textContent='¡es el óptimo!'; }
+    else if (r < 1.5){   b.style.background='#fdf3dd'; b.style.color='#8a6100';
+                         b.textContent='muy cerca'; }
+    else {               b.style.background='#fbe4e4'; b.style.color='#a11';
+                         b.textContent='todavía lejos'; }
+  }
+
+  function setModo(mo){
+    modo = mo; best = Infinity;
+    G('cdr-b2').className = (mo===2) ? 'cdr-on' : '';
+    G('cdr-b1').className = (mo===1) ? 'cdr-on' : '';
+    G('cdr-hint').innerHTML = (mo===2)
+      ? 'El área total de los cuadrados es el error. Hazla lo más pequeña posible.'
+      : 'Ahora el error es la suma de las barras |e<sub>i</sub>|. ¿Cambia la recta óptima?';
+    dibuja();
+  }
+
+  G('cdr-a0').addEventListener('input', dibuja);
+  G('cdr-a1').addEventListener('input', dibuja);
+  G('cdr-b2').addEventListener('click', function(){ setModo(2); });
+  G('cdr-b1').addEventListener('click', function(){ setModo(1); });
+
+  G('cdr-brev').addEventListener('click', function(){
+    if (anim) cancelAnimationFrame(anim);
+    var tgt = (modo===2) ? OPT2 : OPT1;
+    var de = {a0:+G('cdr-a0').value, a1:+G('cdr-a1').value};
+    var t0 = null, D = 1100;
+    function paso(t){
+      if (t0 === null) t0 = t;
+      var u = Math.min(1,(t-t0)/D), e = 1-Math.pow(1-u,3);
+      G('cdr-a0').value = de.a0 + (tgt.a0-de.a0)*e;
+      G('cdr-a1').value = de.a1 + (tgt.a1-de.a1)*e;
+      dibuja();
+      if (u < 1) anim = requestAnimationFrame(paso);
+      else G('cdr-hint').innerHTML = (modo===2)
+        ? 'La derivada de S<sub>r</sub> entrega este óptimo sin buscar a ciegas.'
+        : 'Con Σ|e<sub>i</sub>| el óptimo es otra recta: el criterio define al "mejor" modelo.';
+    }
+    anim = requestAnimationFrame(paso);
+  });
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('cdr-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+  ajusta();
+})();
+</script>

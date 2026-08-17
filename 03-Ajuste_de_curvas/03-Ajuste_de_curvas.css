@@ -10,7 +10,7 @@ body.rise-enabled
 
 div.inner_cell>div.text_cell_render.rendered_html {
     font-size: 80%;
-    font-family: "Calibri Light"
+    font-family: "Calibri Light";
 }
 
 div.inner_cell>div.text_cell_render.rendered_html h1{
@@ -25,13 +25,80 @@ div.inner_cell>div.text_cell_render.rendered_html h3{
     color: rgb(0,175,216);
 }
 
-div.inner_cell>div.text_cell_render.rendered_html  img{
-    max-height: 80%;
-    max-width: 100%;
+div.inner_cell>div.text_cell_render.rendered_html h4{
+    color: rgb(0,175,216);
+    font-size: 35px;
+}
+
+body.rise-enabled .reveal .slides section img,
+body.rise-enabled .text_cell_render img,
+body.rise-enabled div.inner_cell>div.text_cell_render.rendered_html img {
+    display: block;
+    margin: 0 auto;
     height: auto;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 88vw !important;
+    max-height: 72vh !important;
+    object-fit: contain;
+}
+
+/* Scale images that define HTML width (e.g. width="400px") to match larger RISE typography. */
+body.rise-enabled {
+    --rise-image-scale: 1.6;
+    --rise-caption-scale: 1.4;
+}
+
+body.rise-enabled .reveal .slides section img[width],
+body.rise-enabled .text_cell_render img[width],
+body.rise-enabled div.inner_cell>div.text_cell_render.rendered_html img[width] {
+    /* Use zoom instead of transform so the image keeps layout space and does not overlap text. */
+    zoom: var(--rise-image-scale);
+    max-width: calc(88vw / var(--rise-image-scale)) !important;
+    max-height: calc(72vh / var(--rise-image-scale)) !important;
+}
+
+/* Scale figure captions written as HTML, e.g. <center><small>...</small></center>. */
+body.rise-enabled .reveal .slides section center small,
+body.rise-enabled .text_cell_render center small,
+body.rise-enabled div.inner_cell>div.text_cell_render.rendered_html center small {
+    display: inline-block;
+    zoom: var(--rise-caption-scale);
+    line-height: 1.25;
+}
+
+/* ---------- figuras generadas por código (matplotlib) ----------
+   En el notebook cada PNG se muestra a su tamaño natural en píxeles:
+   figsize=(4,4) con dpi=100 son 400x400 px, aprox. la mitad de la columna.
+   La diapositiva de RISE es bastante más ancha, así que la MISMA imagen ocupa
+   una fracción menor y se ve chica.
+
+   Un zoom único para todas las figuras las agranda conservando la proporción
+   relativa entre ellas: una de 4x4 y una de 8x4 siguen en la misma razón, tal
+   como se ven en el notebook. Ajusta el factor según tu proyector.
+
+   Nota: estas reglas NO aplican a la salida HTML (.output_html), donde vive la
+   animación interactiva, porque esa se escala sola según el ancho disponible. */
+
+body.rise-enabled {
+    --rise-figure-scale: 1.3;
+}
+
+body.rise-enabled div.output_area div.output_png img,
+body.rise-enabled div.output_area div.output_svg svg,
+body.rise-enabled .jp-RenderedImage img {
+    /* zoom (no transform) para que la figura conserve su espacio en el layout */
+    zoom: var(--rise-figure-scale);
+    height: auto;
+    /* los topes se dividen por el zoom, de modo que el tamaño final sí los respete */
+    max-width: calc(88vw / var(--rise-figure-scale)) !important;
+    max-height: calc(72vh / var(--rise-figure-scale)) !important;
+}
+
+/* centrar la figura en la diapositiva */
+body.rise-enabled div.output_area div.output_png,
+body.rise-enabled div.output_area div.output_svg,
+body.rise-enabled .jp-RenderedImage {
+    display: flex;
+    justify-content: center;
 }
 
 .reveal blockquote {

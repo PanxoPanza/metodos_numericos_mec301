@@ -1,0 +1,203 @@
+<meta charset="utf-8">
+<style>
+#sbr-app{--sbr-tinta:#1a2733; --sbr-suave:#5d6b78; --sbr-linea:#d8dee4; --sbr-panel:#f6f8fa;
+         --sbr-c1:#1f77b4; --sbr-c2:#ff7f0e; --sbr-rojo:#d62728; --sbr-acento:#00afd8;
+         --sbr-verde:#1c7a3e;
+         width:100%; max-width:min(808px, 94vw); margin:0; padding:4px 2px;
+         color:var(--sbr-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#sbr-app *{box-sizing:border-box}
+#sbr-app .sbr-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#sbr-app .sbr-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#sbr-app .sbr-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#sbr-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--sbr-linea);border-radius:0.55em}
+#sbr-app .sbr-ctrl{background:var(--sbr-panel);border:1px solid var(--sbr-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#sbr-app .sbr-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#sbr-app .sbr-val{float:right;font-weight:600;color:var(--sbr-acento);font-variant-numeric:tabular-nums}
+#sbr-app input[type=range]{width:100%;accent-color:var(--sbr-acento);margin:0}
+#sbr-app .sbr-chk{font-size:0.95em;font-weight:600;margin-top:0.5em;display:flex;
+                  align-items:center;gap:0.4em;cursor:pointer}
+#sbr-app .sbr-chk input{accent-color:var(--sbr-acento);margin:0}
+#sbr-app .sbr-hint{font-size:0.88em;color:var(--sbr-suave);margin-top:0.28em;line-height:1.35}
+#sbr-app table.sbr-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#sbr-app table.sbr-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--sbr-linea);background:none}
+#sbr-app table.sbr-t td.sbr-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#sbr-app .sbr-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#sbr-app .sbr-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--sbr-suave);margin-top:0.4em}
+</style>
+
+<div id="sbr-app">
+<div class="sbr-wrap">
+  <div class="sbr-izq">
+    <svg id="sbr-plot" viewBox="0 0 520 460" role="img"
+         aria-label="Ajuste polinomial de grado creciente sobre los datos del túnel de viento"></svg>
+    <div class="sbr-ley">
+      <span><span style="color:var(--sbr-c1)">●</span> datos de ajuste</span>
+      <span><span style="color:var(--sbr-verde)">▲</span> datos nuevos</span>
+      <span><span style="color:var(--sbr-rojo)">━</span> polinomio</span>
+    </div>
+  </div>
+
+  <div class="sbr-der">
+    <div class="sbr-ctrl">
+      <label for="sbr-deg">Grado del polinomio<span class="sbr-val" id="sbr-degv"></span></label>
+      <input type="range" id="sbr-deg" min="1" max="7" step="1" value="1">
+      <label class="sbr-chk"><input type="checkbox" id="sbr-test"> mostrar datos nuevos</label>
+      <div class="sbr-hint" id="sbr-hint"></div>
+    </div>
+
+    <table class="sbr-t">
+      <tr><td>r² sobre datos de ajuste</td><td class="sbr-num" id="sbr-t-r2"></td></tr>
+      <tr><td style="color:#1f77b4">error en datos de ajuste</td><td class="sbr-num" id="sbr-t-tr"></td></tr>
+      <tr><td style="color:#1c7a3e"><b>error en datos nuevos</b></td><td class="sbr-num" id="sbr-t-te"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="sbr-badge" id="sbr-diag"></span></p>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('sbr-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, H = 460, mr = 16, mt = 16;
+  var C1='#1f77b4', ROJO='#d62728', VERDE='#1c7a3e';
+
+  var xi=[10,20,30,40,50,60,70,80], yi=[25,70,380,550,610,1220,830,1450];
+  var xt=[15,25,35,45,55,65,75],    yt=[63.8,125.5,382.9,661.2,477.9,782.9,1486.9];
+  var x0=5, x1=85, v0=-700, v1=2400;
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function G(id){ return document.getElementById(id); }
+
+  var nrm = function(x){ return (x-45)/35; };          // normaliza: sistema bien condicionado
+  function polyfit(xs, ys, d){
+    var n=d+1, A=[], bb=[], i, j, k;
+    for (j=0;j<n;j++){ A.push(new Array(n).fill(0)); bb.push(0); }
+    for (i=0;i<xs.length;i++){
+      var u=nrm(xs[i]), Zi=[];
+      for (k=0;k<n;k++) Zi.push(Math.pow(u,k));
+      for (j=0;j<n;j++){ bb[j]+=Zi[j]*ys[i];
+        for (k=0;k<n;k++) A[j][k]+=Zi[j]*Zi[k]; }
+    }
+    var M=A.map(function(row,r){ return row.concat([bb[r]]); });
+    for (var c=0;c<n;c++){                              // gauss con pivoteo parcial
+      var p=c;
+      for (var r2=c+1;r2<n;r2++) if (Math.abs(M[r2][c])>Math.abs(M[p][c])) p=r2;
+      var tmp=M[c]; M[c]=M[p]; M[p]=tmp;
+      for (r2=c+1;r2<n;r2++){ var f=M[r2][c]/M[c][c];
+        for (k=c;k<=n;k++) M[r2][k]-=f*M[c][k]; }
+    }
+    var cf=new Array(n).fill(0);
+    for (var r3=n-1;r3>=0;r3--){ var s=M[r3][n];
+      for (k=r3+1;k<n;k++) s-=M[r3][k]*cf[k]; cf[r3]=s/M[r3][r3]; }
+    return cf;
+  }
+  function evalp(c,x){ var u=nrm(x), s=0;
+    for (var k=c.length-1;k>=0;k--) s=s*u+c[k]; return s; }
+  function rmse(c,xs,ys){ var s=0;
+    for (var i=0;i<xs.length;i++){ var e=ys[i]-evalp(c,xs[i]); s+=e*e; }
+    return Math.sqrt(s/xs.length); }
+
+  function dibuja(){
+    var d = +G('sbr-deg').value, verT = G('sbr-test').checked;
+    var c = polyfit(xi, yi, d);
+
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
+    var esc = W/anchoSVG;
+    var fT = Math.round(13*esc), fE = Math.round(15*esc);
+    var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);
+    var X=function(v){ return ml+(v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y=function(v){ return H-mb-(v-v0)/(v1-v0)*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+
+    for (var k=0;k<=2400;k+=600){
+      S.appendChild(E('line',{x1:ml,y1:Y(k),x2:W-mr,y2:Y(k),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:ml-0.5*fT,y:Y(k)+0.35*fT,'text-anchor':'end','font-size':fT,fill:'#6b7a88'},k));
+    }
+    for (var j=20;j<=80;j+=20){
+      S.appendChild(E('line',{x1:X(j),y1:mt,x2:X(j),y2:H-mb,stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:X(j),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,fill:'#6b7a88'},j));
+    }
+    S.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2,y:H-0.55*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'V (m/s)'));
+    S.appendChild(txt({x:1.1*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.1*fT)+' '+((mt+H-mb)/2)+')'},'F (N)'));
+
+    var defs=E('defs'), cp=E('clipPath',{id:'sbr-clip'});
+    cp.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb}));
+    defs.appendChild(cp); S.appendChild(defs);
+    var g = E('g',{'clip-path':'url(#sbr-clip)'});
+
+    var pts=[];
+    for (var t=0;t<=300;t++){ var x=x0+(x1-x0)*t/300;
+      pts.push(X(x).toFixed(1)+','+Y(evalp(c,x)).toFixed(1)); }
+    g.appendChild(E('polyline',{points:pts.join(' '),fill:'none',stroke:ROJO,
+                                'stroke-width':3,'stroke-linejoin':'round'}));
+
+    for (var i=0;i<xi.length;i++)
+      g.appendChild(E('circle',{cx:X(xi[i]),cy:Y(yi[i]),r:6,fill:C1,stroke:'#fff','stroke-width':1.6}));
+    if (verT) for (var i2=0;i2<xt.length;i2++){
+      var cx=X(xt[i2]), cy=Y(yt[i2]), q=7;
+      g.appendChild(E('polygon',{points:(cx)+','+(cy-q)+' '+(cx-q)+','+(cy+q*0.72)+' '+(cx+q)+','+(cy+q*0.72),
+                                 fill:VERDE,stroke:'#fff','stroke-width':1.4}));
+    }
+    S.appendChild(g);
+
+    // panel
+    var etr=rmse(c,xi,yi), ete=rmse(c,xt,yt);
+    var my=yi.reduce(function(a,b){return a+b;},0)/yi.length, St=0, Sr2=0;
+    for (var i3=0;i3<yi.length;i3++){ St+=Math.pow(yi[i3]-my,2);
+      Sr2+=Math.pow(yi[i3]-evalp(c,xi[i3]),2); }
+    var r2=1-Sr2/St;
+
+    G('sbr-degv').textContent  = d;
+    G('sbr-t-r2').textContent  = (r2*100).toFixed(2)+' %';
+    G('sbr-t-tr').textContent  = etr.toFixed(0)+' N';
+    G('sbr-t-te').textContent  = verT ? ete.toFixed(0)+' N' : '?';
+
+    var bd=G('sbr-diag'), h=G('sbr-hint');
+    if (!verT){
+      bd.style.background='#eef4fb'; bd.style.color='#1f77b4'; bd.textContent='falta la prueba real';
+      h.innerHTML = (d>=5)
+        ? 'r² ≈ 100 %: ¿modelo perfecto? Activa los <b>datos nuevos</b> para averiguarlo…'
+        : 'Sube el grado: el error de ajuste siempre baja. ¿Significa que el modelo es mejor?';
+    } else if (d>=5){
+      bd.style.background='#fbe4e4'; bd.style.color='#a11'; bd.textContent='sobreajuste';
+      h.innerHTML = 'El polinomio memorizó el ruido de los 8 puntos y falla en los datos nuevos. Minimizar S<sub>r</sub> no garantiza <b>generalizar</b>.';
+    } else if (d>=3){
+      bd.style.background='#fdf3dd'; bd.style.color='#8a6100'; bd.textContent='aceptable';
+      h.textContent = 'Ambos errores siguen razonables. Sigue subiendo el grado…';
+    } else {
+      bd.style.background='#e3f4e8'; bd.style.color=VERDE; bd.textContent='generaliza bien';
+      h.textContent = 'Con grado bajo, el error en datos nuevos es similar al de ajuste: el modelo captura la tendencia, no el ruido.';
+    }
+  }
+
+  G('sbr-deg').addEventListener('input', dibuja);
+  G('sbr-test').addEventListener('change', dibuja);
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('sbr-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+  ajusta();
+})();
+</script>

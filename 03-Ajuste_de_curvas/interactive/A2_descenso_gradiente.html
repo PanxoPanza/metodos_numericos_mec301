@@ -1,0 +1,298 @@
+<meta charset="utf-8">
+<style>
+#dgr-app{--dgr-tinta:#1a2733; --dgr-suave:#5d6b78; --dgr-linea:#d8dee4; --dgr-panel:#f6f8fa;
+         --dgr-c1:#1f77b4; --dgr-c2:#ff7f0e; --dgr-rojo:#d62728; --dgr-acento:#00afd8;
+         --dgr-verde:#1c7a3e;
+         width:100%; max-width:min(800px, 94vw); margin:0; padding:4px 2px;
+         color:var(--dgr-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#dgr-app *{box-sizing:border-box}
+#dgr-app .dgr-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#dgr-app .dgr-izq{flex:3 1 304px;min-width:0;max-width:480px}
+#dgr-app .dgr-der{flex:2 1 235px;min-width:0;font-size:0.85em}
+#dgr-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--dgr-linea);border-radius:0.55em}
+#dgr-app .dgr-ctrl{background:var(--dgr-panel);border:1px solid var(--dgr-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#dgr-app .dgr-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#dgr-app .dgr-val{float:right;font-weight:600;color:var(--dgr-acento);font-variant-numeric:tabular-nums}
+#dgr-app input[type=range]{width:100%;accent-color:var(--dgr-acento);margin:0}
+#dgr-app .dgr-hint{font-size:0.88em;color:var(--dgr-suave);margin-top:0.28em;line-height:1.35}
+#dgr-app table.dgr-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#dgr-app table.dgr-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--dgr-linea);background:none}
+#dgr-app table.dgr-t td.dgr-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#dgr-app .dgr-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#dgr-app .dgr-eqbox{font-family:"Cambria Math",Georgia,serif;font-size:1.03em;background:#fff;
+         border:1px solid var(--dgr-linea);border-radius:0.55em;padding:0.6em 0.8em;
+         line-height:1.75;margin-bottom:0.6em;text-align:center}
+#dgr-app .dgr-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.33em;margin-top:0.55em}
+#dgr-app .dgr-btns button{font-family:inherit;font-size:0.9em;padding:0.35em 0.25em;
+         white-space:nowrap;border:1px solid var(--dgr-linea);background:#fff;
+         border-radius:0.4em;cursor:pointer;color:var(--dgr-tinta)}
+#dgr-app .dgr-btns button:hover{border-color:var(--dgr-acento);color:var(--dgr-acento)}
+#dgr-app .dgr-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--dgr-suave);margin-top:0.4em}
+</style>
+
+<div id="dgr-app">
+<div class="dgr-wrap">
+  <div class="dgr-izq">
+    <svg id="dgr-plot" viewBox="0 0 620 410" role="img"
+         aria-label="Superficie de error en el plano de coeficientes y la recta ajustada en cada iteración"></svg>
+    <div class="dgr-ley">
+      <span><span style="color:var(--dgr-c2)">━</span> camino del descenso</span>
+      <span><span style="color:var(--dgr-verde)">●</span> óptimo</span>
+      <span>clic en el mapa: elegir punto de partida</span>
+    </div>
+  </div>
+
+  <div class="dgr-der">
+    <div class="dgr-eqbox">a<sub>k+1</sub> = a<sub>k</sub> &minus; η ∇S<sub>r</sub>(a<sub>k</sub>)</div>
+
+    <div class="dgr-ctrl">
+      <label for="dgr-lr">Tasa de aprendizaje η<span class="dgr-val" id="dgr-lrv"></span></label>
+      <input type="range" id="dgr-lr" min="0.05" max="2" step="0.05" value="0.5">
+      <div class="dgr-hint" id="dgr-hint">η pequeño ⇒ lento; grande ⇒ zigzag; muy grande ⇒ ¡diverge!</div>
+      <div class="dgr-btns">
+        <button id="dgr-play">▶ iniciar</button>
+        <button id="dgr-reset">reiniciar</button>
+      </div>
+    </div>
+
+    <table class="dgr-t">
+      <tr><td>iteración</td><td class="dgr-num" id="dgr-t-it"></td></tr>
+      <tr><td>a₀</td><td class="dgr-num" id="dgr-t-a0"></td></tr>
+      <tr><td>a₁</td><td class="dgr-num" id="dgr-t-a1"></td></tr>
+      <tr><td><b>S<sub>r</sub></b></td><td class="dgr-num" id="dgr-t-sr"></td></tr>
+      <tr><td>óptimo</td><td class="dgr-num" style="color:#1c7a3e">216.118</td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="dgr-badge" id="dgr-diag"></span></p>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('dgr-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 620, H = 410, mt = 26;
+  var C1='#1f77b4', C2='#ff7f0e', ROJO='#d62728', VERDE='#1c7a3e';
+
+  var xi=[10,20,30,40,50,60,70,80], yi=[25,70,380,550,610,1220,830,1450], m=8;
+  var ui = xi.map(function(x){ return x/80; });      // x normalizado: descenso estable
+  var OPT = {a0:-234.2857, a1:19.4702, sr:216118.15};
+  var A0min=-800, A0max=400, A1min=4, A1max=36;
+
+  // Hessiano de Sr (constante): Sr = Srmin + d^T Hs d,  Hs = Z^T Z
+  var Sx = 0, Sxx = 0;
+  for (var q=0;q<m;q++){ Sx += xi[q]; Sxx += xi[q]*xi[q]; }
+  var Hs = [[m, Sx],[Sx, Sxx]];
+
+  var b = [0, 10*80], camino = [], it = 0, timer = null, diverge = false;
+  var INI = [0, 10*80];
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function txtSub(a, base, sub, resto){          // texto con subindice real
+    var n = E('text', a);
+    n.appendChild(document.createTextNode(base));
+    var ts = E('tspan', {'baseline-shift':'sub','font-size':(a['font-size']*0.75)});
+    ts.textContent = sub; n.appendChild(ts);
+    if (resto) n.appendChild(document.createTextNode(resto));
+    return n;
+  }
+  function G(id){ return document.getElementById(id); }
+  function mil(v){ return isFinite(v) ? Math.round(v).toLocaleString('es-CL') : '∞'; }
+
+  function Sr(a0,a1){ var s=0;
+    for (var i=0;i<m;i++){ var e=yi[i]-a0-a1*xi[i]; s+=e*e; } return s; }
+
+  // raiz inversa de Hs (2x2 simetrica) -> parametriza las elipses de nivel
+  function raizInv(){
+    var a=Hs[0][0], bb=Hs[0][1], d=Hs[1][1];
+    var tr=a+d, de=a*d-bb*bb, disc=Math.sqrt(Math.max(0,tr*tr-4*de));
+    var l1=(tr+disc)/2, l2=(tr-disc)/2;
+    var v1, n1;
+    if (Math.abs(bb) > 1e-12){ v1=[l1-d, bb]; } else { v1=[1,0]; }
+    n1=Math.hypot(v1[0],v1[1]); v1=[v1[0]/n1, v1[1]/n1];
+    var v2=[-v1[1], v1[0]];
+    var s1=1/Math.sqrt(l1), s2=1/Math.sqrt(l2);
+    return [[s1*v1[0]*v1[0]+s2*v2[0]*v2[0], s1*v1[0]*v1[1]+s2*v2[0]*v2[1]],
+            [s1*v1[0]*v1[1]+s2*v2[0]*v2[1], s1*v1[1]*v1[1]+s2*v2[1]*v2[1]]];
+  }
+  var Rinv = raizInv();
+
+  function dibuja(){
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 500;
+    var esc = W/anchoSVG;
+    var fT = Math.round(12*esc), fE = Math.round(14*esc);
+    var ml = Math.max(44, 3.4*fT), mb = Math.max(40, 3.2*fT);
+    var GAP = 34, Wm = 320;                       // mapa: [ml, Wm] ; ajuste: [Wm+GAP, W-14]
+    var mlB = Wm + GAP + Math.max(44, 3.4*fT), mrB = 12;
+
+    var PX=function(v){ return ml+(v-A0min)/(A0max-A0min)*(Wm-ml); };
+    var PY=function(v){ return H-mb-(v-A1min)/(A1max-A1min)*(H-mt-mb); };
+    var FX=function(v){ return mlB+(v-0)/88*(W-mrB-mlB); };
+    var FY=function(v){ return H-mb-(v+450)/2200*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+    var defs = E('defs');
+    var cp1 = E('clipPath',{id:'dgr-c1'});
+    cp1.appendChild(E('rect',{x:ml,y:mt,width:Wm-ml,height:H-mt-mb}));
+    var cp2 = E('clipPath',{id:'dgr-c2'});
+    cp2.appendChild(E('rect',{x:mlB,y:mt,width:W-mrB-mlB,height:H-mt-mb}));
+    var mk = E('marker',{id:'dgr-ar',viewBox:'0 0 10 10',refX:8,refY:5,
+                         markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});
+    mk.appendChild(E('path',{d:'M0,0 L10,5 L0,10 z',fill:C2}));
+    defs.appendChild(cp1); defs.appendChild(cp2); defs.appendChild(mk);
+    S.appendChild(defs);
+
+    // ---------- panel 1: superficie de error ----------
+    var gm = E('g',{'clip-path':'url(#dgr-c1)'});
+    var Lmax = 0;
+    [[A0min,A1min],[A0min,A1max],[A0max,A1min],[A0max,A1max]].forEach(function(c){
+      Lmax = Math.max(Lmax, Sr(c[0],c[1])-OPT.sr); });
+    var K = 9;
+    for (var k=K;k>=1;k--){
+      var L = Lmax*Math.pow(k/K,2), rL = Math.sqrt(L), pts = [];
+      for (var t=0;t<=64;t++){
+        var th = 2*Math.PI*t/64, cu = Math.cos(th), su = Math.sin(th);
+        var d0 = rL*(Rinv[0][0]*cu + Rinv[0][1]*su);
+        var d1 = rL*(Rinv[1][0]*cu + Rinv[1][1]*su);
+        pts.push(PX(OPT.a0+d0).toFixed(1)+','+PY(OPT.a1+d1).toFixed(1));
+      }
+      var u = 1-(k-1)/(K-1);                       // 0 (afuera) .. 1 (centro)
+      var col = 'rgb('+Math.round(243-115*u)+','+Math.round(247-68*u)+','+Math.round(250-37*u)+')';
+      gm.appendChild(E('polygon',{points:pts.join(' '),fill:col,stroke:'#ffffff','stroke-width':0.6}));
+    }
+    // camino
+    if (camino.length > 1){
+      gm.appendChild(E('polyline',{points:camino.map(function(p){
+        return PX(p[0]).toFixed(1)+','+PY(p[1]).toFixed(1); }).join(' '),
+        fill:'none',stroke:C2,'stroke-width':2.4,'stroke-linejoin':'round'}));
+    }
+    camino.forEach(function(p,i){
+      if (i%2===0 || i===camino.length-1)
+        gm.appendChild(E('circle',{cx:PX(p[0]),cy:PY(p[1]),
+          r:(i===camino.length-1)?5:2.2,
+          fill:(i===camino.length-1)?ROJO:'#fff',stroke:C2,'stroke-width':1.1}));
+    });
+    gm.appendChild(E('circle',{cx:PX(OPT.a0),cy:PY(OPT.a1),r:5.5,fill:VERDE,
+                               stroke:'#fff','stroke-width':1.6}));
+    S.appendChild(gm);
+
+    [-800,-400,0,400].forEach(function(v){
+      S.appendChild(txt({x:PX(v),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,fill:'#6b7a88'},v)); });
+    [10,20,30].forEach(function(v){
+      S.appendChild(txt({x:ml-0.45*fT,y:PY(v)+0.35*fT,'text-anchor':'end','font-size':fT,fill:'#6b7a88'},v)); });
+    S.appendChild(E('rect',{x:ml,y:mt,width:Wm-ml,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+Wm)/2,y:H-0.55*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'a₀'));
+    S.appendChild(txt({x:1.0*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.0*fT)+' '+((mt+H-mb)/2)+')'},'a₁'));
+    S.appendChild(txtSub({x:(ml+Wm)/2,y:mt-0.5*fT,'text-anchor':'middle','font-size':fT,
+                       fill:'#5d6b78'},'superficie de error S','r','(a₀, a₁)'));
+
+    // ---------- panel 2: el modelo ----------
+    var gf = E('g',{'clip-path':'url(#dgr-c2)'});
+    var a0=b[0], a1=b[1]/80;
+    gf.appendChild(E('line',{x1:FX(0),y1:FY(a0),x2:FX(88),y2:FY(a0+a1*88),
+                             stroke:ROJO,'stroke-width':3,'stroke-linecap':'round'}));
+    for (var i=0;i<m;i++)
+      gf.appendChild(E('circle',{cx:FX(xi[i]),cy:FY(yi[i]),r:5,fill:C1,stroke:'#fff','stroke-width':1.4}));
+    S.appendChild(gf);
+
+    [0,800,1600].forEach(function(v){
+      S.appendChild(E('line',{x1:mlB,y1:FY(v),x2:W-mrB,y2:FY(v),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:mlB-0.45*fT,y:FY(v)+0.35*fT,'text-anchor':'end','font-size':fT,fill:'#6b7a88'},v)); });
+    [0,40,80].forEach(function(v){
+      S.appendChild(txt({x:FX(v),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,fill:'#6b7a88'},v)); });
+    S.appendChild(E('rect',{x:mlB,y:mt,width:W-mrB-mlB,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(mlB+W-mrB)/2,y:H-0.55*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'V (m/s)'));
+    S.appendChild(txt({x:mlB-2.5*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(mlB-2.5*fT)+' '+((mt+H-mb)/2)+')'},'F (N)'));
+    S.appendChild(txt({x:(mlB+W-mrB)/2,y:mt-0.5*fT,'text-anchor':'middle','font-size':fT,
+                       fill:'#5d6b78'},'modelo en la iteración '+it));
+
+    // ---------- panel lateral ----------
+    var s = Sr(a0,a1);
+    G('dgr-t-it').textContent = it;
+    G('dgr-t-a0').textContent = isFinite(a0) ? a0.toFixed(1) : '∞';
+    G('dgr-t-a1').textContent = isFinite(a1) ? a1.toFixed(2) : '∞';
+    G('dgr-t-sr').textContent = mil(s);
+    var bd = G('dgr-diag');
+    if (diverge){       bd.style.background='#fbe4e4'; bd.style.color='#a11'; bd.textContent='divergió'; }
+    else if (s < OPT.sr*1.001){ bd.style.background='#e3f4e8'; bd.style.color=VERDE; bd.textContent='convergió'; }
+    else {              bd.style.background='#fdf3dd'; bd.style.color='#8a6100'; bd.textContent='descendiendo'; }
+  }
+
+  function grad(){
+    var g0=0,g1=0;
+    for (var i=0;i<m;i++){ var r=b[0]+b[1]*ui[i]-yi[i]; g0+=r; g1+=r*ui[i]; }
+    return [g0/m, g1/m];
+  }
+  function paso(){
+    var eta = +G('dgr-lr').value, g = grad();
+    b = [b[0]-eta*g[0], b[1]-eta*g[1]]; it++;
+    var s = Sr(b[0], b[1]/80);
+    if (!isFinite(s) || s > 1e12) diverge = true;
+    camino.push([b[0], b[1]/80]);
+  }
+  function parar(){ if (timer){ clearInterval(timer); timer=null; } G('dgr-play').innerHTML='▶ iniciar'; }
+  function tick(){
+    if (diverge){ parar();
+      G('dgr-hint').innerHTML='<b style="color:#d62728">¡Divergió!</b> η demasiado grande: cada paso salta al otro lado del valle. Reduce η y reinicia.';
+      dibuja(); return; }
+    paso(); dibuja();
+    if (Math.abs(Sr(b[0],b[1]/80)-OPT.sr) < 8 || it > 600){ parar();
+      if (!diverge) G('dgr-hint').textContent = 'Convergió en '+it+' iteraciones. Esto mismo, con millones de parámetros, es "entrenar" un modelo.'; }
+  }
+
+  G('dgr-play').addEventListener('click', function(){
+    if (timer) parar();
+    else { timer = setInterval(tick, 60); this.innerHTML = '❚❚ pausa'; }
+  });
+  G('dgr-reset').addEventListener('click', function(){
+    parar(); b = INI.slice(); camino = [[b[0], b[1]/80]]; it = 0; diverge = false;
+    G('dgr-hint').textContent = 'η pequeño ⇒ lento; grande ⇒ zigzag; muy grande ⇒ ¡diverge!';
+    dibuja();
+  });
+  G('dgr-lr').addEventListener('input', function(){
+    G('dgr-lrv').textContent = (+this.value).toFixed(2); });
+
+  S.addEventListener('click', function(ev){
+    var r = S.getBoundingClientRect(), k = W/r.width;
+    var px = (ev.clientX-r.left)*k, py = (ev.clientY-r.top)*k;
+    var anchoSVG = r.width || 500, esc = W/anchoSVG;
+    var fT = Math.round(12*esc);
+    var ml = Math.max(44,3.4*fT), mb = Math.max(40,3.2*fT), Wm = 320;
+    if (px<ml || px>Wm || py<mt || py>H-mb) return;
+    parar();
+    var a0 = A0min+(px-ml)/(Wm-ml)*(A0max-A0min);
+    var a1 = A1min+(H-mb-py)/(H-mt-mb)*(A1max-A1min);
+    b = [a0, a1*80]; camino = [[a0,a1]]; it = 0; diverge = false; dibuja();
+  });
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('dgr-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+
+  G('dgr-lrv').textContent = '0.50';
+  b = INI.slice(); camino = [[b[0], b[1]/80]];
+  ajusta();
+})();
+</script>
