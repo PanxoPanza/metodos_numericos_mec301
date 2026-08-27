@@ -1,0 +1,255 @@
+<meta charset="utf-8">
+<style>
+#rng-app{--rng-tinta:#1a2733; --rng-suave:#5d6b78; --rng-linea:#d8dee4; --rng-panel:#f6f8fa;
+         --rng-c1:#1f77b4; --rng-c2:#ff7f0e; --rng-rojo:#d62728; --rng-acento:#00afd8;
+         --rng-verde:#1c7a3e;
+         width:100%; max-width:min(808px, 94vw); margin:0; padding:4px 2px;
+         color:var(--rng-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#rng-app *{box-sizing:border-box}
+#rng-app .rng-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#rng-app .rng-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#rng-app .rng-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#rng-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--rng-linea);border-radius:0.55em}
+#rng-app .rng-ctrl{background:var(--rng-panel);border:1px solid var(--rng-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#rng-app .rng-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#rng-app .rng-val{float:right;font-weight:600;color:var(--rng-acento);font-variant-numeric:tabular-nums}
+#rng-app input[type=range]{width:100%;accent-color:var(--rng-acento);margin:0}
+#rng-app .rng-hint{font-size:0.88em;color:var(--rng-suave);margin-top:0.28em;line-height:1.35}
+#rng-app table.rng-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#rng-app table.rng-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--rng-linea);background:none}
+#rng-app table.rng-t td.rng-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#rng-app .rng-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#rng-app .rng-eqbox{font-family:"Cambria Math",Georgia,serif;font-size:1.03em;background:#fff;
+         border:1px solid var(--rng-linea);border-radius:0.55em;padding:0.6em 0.8em;
+         line-height:1.75;margin-bottom:0.6em;text-align:center}
+#rng-app .rng-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.33em;margin-top:0.55em}
+#rng-app .rng-btns2{display:grid;grid-template-columns:repeat(2,1fr);gap:0.33em;margin-top:0.4em}
+#rng-app .rng-btns button,#rng-app .rng-btns2 button{font-family:inherit;font-size:0.9em;
+         padding:0.35em 0.25em;white-space:nowrap;border:1px solid var(--rng-linea);background:#fff;
+         border-radius:0.4em;cursor:pointer;color:var(--rng-tinta)}
+#rng-app .rng-btns button:hover,#rng-app .rng-btns2 button:hover{border-color:var(--rng-acento);color:var(--rng-acento)}
+#rng-app .rng-btns button.rng-on,#rng-app .rng-btns2 button.rng-on{border-color:var(--rng-acento);
+         background:#e8f7fc;color:var(--rng-acento);font-weight:600}
+#rng-app .rng-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--rng-suave);margin-top:0.4em}
+</style>
+
+<div id="rng-app">
+<div class="rng-wrap">
+  <div class="rng-izq">
+    <svg id="rng-plot" viewBox="0 0 520 430" role="img"
+         aria-label="Funcion original, nodos de interpolacion y polinomio que pasa por ellos"></svg>
+    <div class="rng-ley">
+      <span><span style="color:#333">┅</span> función f(x)</span>
+      <span><span style="color:var(--rng-rojo)">━</span> polinomio p<sub>n</sub>(x)</span>
+      <span><span style="color:var(--rng-c1)">●</span> nodos</span>
+    </div>
+  </div>
+
+  <div class="rng-der">
+    <div class="rng-ctrl">
+      <label for="rng-n">Número de nodos<span class="rng-val" id="rng-nv"></span></label>
+      <input type="range" id="rng-n" min="3" max="17" step="1" value="5">
+      <div class="rng-hint" id="rng-hint">Subamos los nodos y miremos el centro y los bordes por separado.</div>
+    </div>
+
+    <div class="rng-eqbox" id="rng-eq"></div>
+
+    <div class="rng-btns">
+      <button id="rng-f0" class="rng-on">Runge</button>
+      <button id="rng-f1">suave</button>
+      <button id="rng-f2">con esquina</button>
+    </div>
+    <div class="rng-btns2">
+      <button id="rng-e0" class="rng-on">nodos equiespaciados</button>
+      <button id="rng-e1">nodos de Chebyshev</button>
+    </div>
+
+    <table class="rng-t" style="margin-top:0.7em">
+      <tr><td>grado del polinomio</td><td class="rng-num" id="rng-t-g"></td></tr>
+      <tr><td>error máximo</td><td class="rng-num" id="rng-t-max"></td></tr>
+      <tr><td>en el centro (|x| &lt; 0,5)</td><td class="rng-num" id="rng-t-c"></td></tr>
+      <tr><td>cerca del borde (|x| &gt; 0,8)</td><td class="rng-num" id="rng-t-b"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="rng-badge" id="rng-diag"></span></p>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('rng-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, H = 430, mr = 16, mt = 16;
+  var C1 = '#1f77b4', ROJO = '#d62728', VERDE = '#1c7a3e';
+
+  var FS = [
+    {n:'f(x) = 1 / (1 + 25x²)', f:function(x){ return 1/(1+25*x*x); },   v0:-0.6, v1:1.5},
+    {n:'f(x) = cos(3x)',        f:function(x){ return Math.cos(3*x); },  v0:-1.5, v1:1.5},
+    {n:'f(x) = |x|',            f:function(x){ return Math.abs(x); },    v0:-0.6, v1:1.5}
+  ];
+  var ifun = 0, cheb = 0;
+  var x0 = -1, x1 = 1;
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function G(id){ return document.getElementById(id); }
+  function num(v){ return v.toLocaleString('es-CL',{minimumFractionDigits:3, maximumFractionDigits:3}); }
+
+  // nodos: equiespaciados o de Chebyshev
+  function nodos(m){
+    var xs = [], k;
+    if (cheb){
+      for (k=0;k<m;k++) xs.push(Math.cos((2*k+1)/(2*m)*Math.PI));
+      xs.sort(function(a,b){ return a-b; });
+    } else {
+      for (k=0;k<m;k++) xs.push(-1 + 2*k/(m-1));
+    }
+    return xs;
+  }
+
+  // pesos baricentricos: evaluacion estable del polinomio de interpolacion
+  function pesos(xs){
+    var m = xs.length, w = [], i, j, p;
+    for (i=0;i<m;i++){
+      p = 1;
+      for (j=0;j<m;j++) if (j!==i) p *= (xs[i]-xs[j]);
+      w.push(1/p);
+    }
+    return w;
+  }
+  function evalua(xs, ys, w, x){
+    var num1 = 0, den = 0, i, d;
+    for (i=0;i<xs.length;i++){
+      d = x - xs[i];
+      if (Math.abs(d) < 1e-14) return ys[i];
+      num1 += w[i]/d*ys[i];
+      den  += w[i]/d;
+    }
+    return num1/den;
+  }
+
+  function dibuja(){
+    var m = +G('rng-n').value;
+    var F = FS[ifun];
+    var xs = nodos(m), ys = xs.map(F.f), w = pesos(xs);
+
+    var v0 = F.v0, v1 = F.v1;
+
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
+    var esc = W/anchoSVG;
+    var fT = Math.round(13*esc), fE = Math.round(15*esc);
+    var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);
+    var X = function(v){ return ml + (v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y = function(v){ return H - mb - (v-v0)/(v1-v0)*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+
+    var k;
+    for (k=Math.ceil(v0*2)/2; k<=v1; k+=0.5){
+      S.appendChild(E('line',{x1:ml,y1:Y(k),x2:W-mr,y2:Y(k),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:ml-0.5*fT,y:Y(k)+0.35*fT,'text-anchor':'end','font-size':fT,
+                         fill:'#6b7a88'}, k.toFixed(1).replace('.',',')));
+    }
+    for (k=-1; k<=1.001; k+=0.5){
+      S.appendChild(E('line',{x1:X(k),y1:mt,x2:X(k),y2:H-mb,stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:X(k),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,
+                         fill:'#6b7a88'}, k.toFixed(1).replace('.',',')));
+    }
+    S.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2,y:H-0.55*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'x'));
+    S.appendChild(txt({x:1.1*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.1*fT)+' '+((mt+H-mb)/2)+')'},'y'));
+
+    var defs = E('defs');
+    var cp = E('clipPath',{id:'rng-clip'});
+    cp.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb}));
+    defs.appendChild(cp); S.appendChild(defs);
+    var g = E('g',{'clip-path':'url(#rng-clip)'});
+
+    // franjas de referencia: centro y bordes
+    g.appendChild(E('rect',{x:X(-1),y:mt,width:X(-0.8)-X(-1),height:H-mt-mb,fill:'#fbe4e4',opacity:0.55}));
+    g.appendChild(E('rect',{x:X(0.8),y:mt,width:X(1)-X(0.8),height:H-mt-mb,fill:'#fbe4e4',opacity:0.55}));
+
+    // curvas
+    var NP = 600, i, x, df = '', dp = '', emax = 0, ecen = 0, ebor = 0, e;
+    for (i=0;i<=NP;i++){
+      x = x0 + (x1-x0)*i/NP;
+      var yf = F.f(x), yp = evalua(xs, ys, w, x);
+      df += (i?'L':'M') + X(x).toFixed(2) + ' ' + Y(yf).toFixed(2);
+      dp += (i?'L':'M') + X(x).toFixed(2) + ' ' + Y(yp).toFixed(2);
+      e = Math.abs(yf-yp);
+      if (e > emax) emax = e;
+      if (Math.abs(x) < 0.5 && e > ecen) ecen = e;
+      if (Math.abs(x) > 0.8 && e > ebor) ebor = e;
+    }
+    g.appendChild(E('path',{d:df,fill:'none',stroke:'#333','stroke-width':2,
+                            'stroke-dasharray':'6 4'}));
+    g.appendChild(E('path',{d:dp,fill:'none',stroke:ROJO,'stroke-width':3,
+                            'stroke-linejoin':'round','stroke-linecap':'round'}));
+    for (i=0;i<xs.length;i++){
+      g.appendChild(E('circle',{cx:X(xs[i]),cy:Y(ys[i]),r:5,fill:C1,stroke:'#fff','stroke-width':1.6}));
+    }
+    S.appendChild(g);
+
+    // panel
+    G('rng-nv').textContent = m;
+    G('rng-eq').innerHTML   = FS[ifun].n;
+    G('rng-t-g').textContent   = m-1;
+    G('rng-t-max').textContent = num(emax);
+    G('rng-t-c').textContent   = num(ecen);
+    G('rng-t-b').textContent   = num(ebor);
+
+    var b = G('rng-diag');
+    if (emax < 0.05){      b.style.background='#e3f4e8'; b.style.color=VERDE;
+                           b.textContent='el polinomio sigue a la función'; }
+    else if (emax < 0.5){  b.style.background='#fdf3dd'; b.style.color='#8a6100';
+                           b.textContent='se despega cerca de los bordes'; }
+    else {                 b.style.background='#fbe4e4'; b.style.color='#a11';
+                           b.textContent='oscilación fuera de control'; }
+  }
+
+  function setFun(i){
+    ifun = i;
+    for (var k=0;k<3;k++) G('rng-f'+k).className = (k===i) ? 'rng-on' : '';
+    dibuja();
+  }
+  function setNodos(c){
+    cheb = c;
+    G('rng-e0').className = c ? '' : 'rng-on';
+    G('rng-e1').className = c ? 'rng-on' : '';
+    G('rng-hint').innerHTML = c
+      ? 'Los nodos se concentran hacia los bordes: ahora subir el grado sí mejora.'
+      : 'Subamos los nodos y miremos el centro y los bordes por separado.';
+    dibuja();
+  }
+
+  G('rng-n').addEventListener('input', dibuja);
+  G('rng-f0').addEventListener('click', function(){ setFun(0); });
+  G('rng-f1').addEventListener('click', function(){ setFun(1); });
+  G('rng-f2').addEventListener('click', function(){ setFun(2); });
+  G('rng-e0').addEventListener('click', function(){ setNodos(0); });
+  G('rng-e1').addEventListener('click', function(){ setNodos(1); });
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('rng-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+  ajusta();
+})();
+</script>

@@ -1,0 +1,269 @@
+<meta charset="utf-8">
+<style>
+#air-app{--air-tinta:#1a2733; --air-suave:#5d6b78; --air-linea:#d8dee4; --air-panel:#f6f8fa;
+         --air-c1:#1f77b4; --air-c2:#ff7f0e; --air-rojo:#d62728; --air-acento:#00afd8;
+         --air-verde:#1c7a3e;
+         width:100%; max-width:min(808px, 94vw); margin:0; padding:4px 2px;
+         color:var(--air-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#air-app *{box-sizing:border-box}
+#air-app .air-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#air-app .air-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#air-app .air-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#air-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--air-linea);border-radius:0.55em}
+#air-app .air-ctrl{background:var(--air-panel);border:1px solid var(--air-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#air-app .air-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#air-app .air-val{float:right;font-weight:600;color:var(--air-acento);font-variant-numeric:tabular-nums}
+#air-app input[type=range]{width:100%;accent-color:var(--air-acento);margin:0}
+#air-app .air-hint{font-size:0.88em;color:var(--air-suave);margin-top:0.28em;line-height:1.35}
+#air-app table.air-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#air-app table.air-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--air-linea);background:none}
+#air-app table.air-t td.air-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#air-app .air-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#air-app .air-btns2{display:grid;grid-template-columns:repeat(2,1fr);gap:0.33em;margin-top:0.4em}
+#air-app .air-btns2 button{font-family:inherit;font-size:0.9em;padding:0.35em 0.25em;
+         white-space:nowrap;border:1px solid var(--air-linea);background:#fff;
+         border-radius:0.4em;cursor:pointer;color:var(--air-tinta)}
+#air-app .air-btns2 button:hover{border-color:var(--air-acento);color:var(--air-acento)}
+#air-app .air-btns2 button.air-on{border-color:var(--air-acento);background:#e8f7fc;
+         color:var(--air-acento);font-weight:600}
+#air-app .air-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--air-suave);margin-top:0.4em}
+</style>
+
+<div id="air-app">
+<div class="air-wrap">
+  <div class="air-izq">
+    <svg id="air-plot" viewBox="0 0 520 400" role="img"
+         aria-label="Densidad del aire en funcion de la temperatura, interpolada por tres metodos"></svg>
+    <div class="air-ley">
+      <span><span style="color:#333">●</span> tabla</span>
+      <span><span style="color:var(--air-c2)">━</span> lineal</span>
+      <span><span style="color:var(--air-c1)">━</span> spline</span>
+      <span><span style="color:var(--air-rojo)">━</span> polinomio grado 10</span>
+      <span><span style="color:var(--air-verde)">┅</span> gas ideal</span>
+    </div>
+  </div>
+
+  <div class="air-der">
+    <div class="air-ctrl">
+      <label for="air-T">Temperatura (°C)<span class="air-val" id="air-Tv"></span></label>
+      <input type="range" id="air-T" min="-60" max="560" step="1" value="10">
+      <div class="air-hint" id="air-hint">Movamos la temperatura y comparemos lo que entrega cada método.</div>
+    </div>
+
+    <table class="air-t">
+      <tr><td><span style="color:#ff7f0e">━</span> lineal</td><td class="air-num" id="air-t-l"></td></tr>
+      <tr><td><span style="color:#1f77b4">━</span> spline cúbico</td><td class="air-num" id="air-t-s"></td></tr>
+      <tr><td><span style="color:#d62728">━</span> polinomio grado 10</td><td class="air-num" id="air-t-p"></td></tr>
+      <tr><td><b>gas ideal ρ = p/RT</b></td><td class="air-num" id="air-t-g"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="air-badge" id="air-diag"></span></p>
+
+    <div class="air-btns2">
+      <button id="air-b10" class="air-on">ir a 10 °C</button>
+      <button id="air-b560">ir a 560 °C</button>
+    </div>
+    <div class="air-hint" id="air-nota" style="margin-top:0.6em"></div>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var S = document.getElementById('air-plot');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, H = 400, mr = 16, mt = 16;
+  var C1 = '#1f77b4', C2 = '#ff7f0e', ROJO = '#d62728', VERDE = '#1c7a3e';
+
+  var Ti  = [-40, 0, 20, 50, 100, 150, 200, 250, 300, 400, 500];
+  var Ri  = [1.52, 1.29, 1.20, 1.09, 0.946, 0.835, 0.746, 0.675, 0.616, 0.525, 0.457];
+  var x0 = -60, x1 = 560, v0 = 0, v1 = 2;
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function G(id){ return document.getElementById(id); }
+  function num(v){ return v.toLocaleString('es-CL',{minimumFractionDigits:4, maximumFractionDigits:4}); }
+
+  function gasIdeal(T){ return 101325/(287*(T+273.15)); }
+
+  function lineal(T){
+    if (T <= Ti[0]) return Ri[0];
+    if (T >= Ti[Ti.length-1]) return Ri[Ri.length-1];
+    var i = 0; while (T > Ti[i+1]) i++;
+    return Ri[i] + (Ri[i+1]-Ri[i])/(Ti[i+1]-Ti[i])*(T-Ti[i]);
+  }
+
+  // polinomio global de grado 10, en forma baricentrica
+  var w = (function(){
+    var m = Ti.length, r = [], i, j, p;
+    for (i=0;i<m;i++){ p = 1;
+      for (j=0;j<m;j++) if (j!==i) p *= (Ti[i]-Ti[j]);
+      r.push(1/p); }
+    return r;
+  })();
+  function global10(T){
+    var a = 0, b = 0, i, d;
+    for (i=0;i<Ti.length;i++){
+      d = T - Ti[i];
+      if (Math.abs(d) < 1e-12) return Ri[i];
+      a += w[i]/d*Ri[i]; b += w[i]/d;
+    }
+    return a/b;
+  }
+
+  // spline cubico natural: sistema tridiagonal en las segundas derivadas (Thomas)
+  var SPL = (function(){
+    var n = Ti.length-1, h = [], i;
+    for (i=0;i<n;i++) h.push(Ti[i+1]-Ti[i]);
+    var a = [], b = [], c = [], d = [];
+    for (i=1;i<n;i++){
+      a.push(h[i-1]/6); b.push((h[i-1]+h[i])/3); c.push(h[i]/6);
+      d.push((Ri[i+1]-Ri[i])/h[i] - (Ri[i]-Ri[i-1])/h[i-1]);
+    }
+    var N = d.length, cp = [], dp = [], M = [], den;
+    for (i=0;i<=n;i++) M.push(0);
+    cp[0] = c[0]/b[0]; dp[0] = d[0]/b[0];
+    for (i=1;i<N;i++){
+      den = b[i] - a[i]*cp[i-1];
+      cp[i] = c[i]/den;
+      dp[i] = (d[i] - a[i]*dp[i-1])/den;
+    }
+    M[N] = dp[N-1];
+    for (i=N-2;i>=0;i--) M[i+1] = dp[i] - cp[i]*M[i+2];
+    return {h:h, M:M, n:n};
+  })();
+  function spline(T){
+    var n = SPL.n, i = 0;
+    while (i < n-1 && T > Ti[i+1]) i++;
+    var h = SPL.h[i], A = Ti[i+1]-T, B = T-Ti[i];
+    var ca = Ri[i]/h - SPL.M[i]*h/6, cb = Ri[i+1]/h - SPL.M[i+1]*h/6;
+    return SPL.M[i]*A*A*A/(6*h) + SPL.M[i+1]*B*B*B/(6*h) + ca*A + cb*B;
+  }
+
+  function dibuja(){
+    var T = +G('air-T').value;
+    var dentro = (T >= Ti[0] && T <= Ti[Ti.length-1]);
+
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
+    var esc = W/anchoSVG;
+    var fT = Math.round(13*esc), fE = Math.round(15*esc);
+    var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);
+    var X = function(v){ return ml + (v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y = function(v){ return H - mb - (v-v0)/(v1-v0)*(H-mt-mb); };
+
+    while (S.firstChild) S.removeChild(S.firstChild);
+
+    var k;
+    for (k=0; k<=2.001; k+=0.5){
+      S.appendChild(E('line',{x1:ml,y1:Y(k),x2:W-mr,y2:Y(k),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:ml-0.5*fT,y:Y(k)+0.35*fT,'text-anchor':'end','font-size':fT,
+                         fill:'#6b7a88'}, k.toFixed(1).replace('.',',')));
+    }
+    for (k=0; k<=500.1; k+=100){
+      S.appendChild(E('line',{x1:X(k),y1:mt,x2:X(k),y2:H-mb,stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:X(k),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,
+                         fill:'#6b7a88'}, k));
+    }
+
+    // zonas de extrapolacion
+    S.appendChild(E('rect',{x:ml,y:mt,width:X(Ti[0])-ml,height:H-mt-mb,fill:'#fbe4e4',opacity:0.6}));
+    S.appendChild(E('rect',{x:X(500),y:mt,width:W-mr-X(500),height:H-mt-mb,fill:'#fbe4e4',opacity:0.6}));
+    S.appendChild(txt({x:(ml+X(Ti[0]))/2,y:mt+1.3*fT,'text-anchor':'middle','font-size':fT,
+                       fill:'#a11'},'extrap.'));
+    S.appendChild(txt({x:(X(500)+W-mr)/2,y:mt+1.3*fT,'text-anchor':'middle','font-size':fT,
+                       fill:'#a11'},'extrap.'));
+
+    S.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2,y:H-0.5*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'T (°C)'));
+    S.appendChild(txt({x:1.1*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.1*fT)+' '+((mt+H-mb)/2)+')'},'ρ (kg/m³)'));
+
+    var defs = E('defs'), cp = E('clipPath',{id:'air-clip'});
+    cp.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb}));
+    defs.appendChild(cp); S.appendChild(defs);
+    var g = E('g',{'clip-path':'url(#air-clip)'});
+
+    function trazo(f, color, ancho, guion){
+      var d = '', i, x, NP = 700;
+      for (i=0;i<=NP;i++){
+        x = x0 + (x1-x0)*i/NP;
+        d += (i?'L':'M') + X(x).toFixed(2) + ' ' + Y(f(x)).toFixed(2);
+      }
+      var at = {d:d, fill:'none', stroke:color, 'stroke-width':ancho,
+                'stroke-linejoin':'round', 'stroke-linecap':'round'};
+      if (guion) at['stroke-dasharray'] = '6 4';
+      g.appendChild(E('path', at));
+    }
+    trazo(global10, ROJO,  2.6, 0);
+    trazo(lineal,   C2,    2.6, 0);
+    trazo(spline,   C1,    2.6, 0);
+    trazo(gasIdeal, VERDE, 1.8, 1);   // referencia, encima de las demas
+
+    var i;
+    for (i=0;i<Ti.length;i++){
+      g.appendChild(E('circle',{cx:X(Ti[i]),cy:Y(Ri[i]),r:4.5,fill:'#333',
+                                stroke:'#fff','stroke-width':1.5}));
+    }
+
+    // marcador de la temperatura elegida
+    g.appendChild(E('line',{x1:X(T),y1:mt,x2:X(T),y2:H-mb,stroke:'#00afd8',
+                            'stroke-width':2,'stroke-dasharray':'4 3'}));
+    var rl = lineal(T), rs = spline(T), rp = global10(T), rg = gasIdeal(T);
+    g.appendChild(E('circle',{cx:X(T),cy:Y(rl),r:5,fill:C2,stroke:'#fff','stroke-width':1.5}));
+    g.appendChild(E('circle',{cx:X(T),cy:Y(rs),r:5,fill:C1,stroke:'#fff','stroke-width':1.5}));
+    g.appendChild(E('circle',{cx:X(T),cy:Y(rp),r:5,fill:ROJO,stroke:'#fff','stroke-width':1.5}));
+    S.appendChild(g);
+
+    // panel
+    G('air-Tv').textContent  = T;
+    G('air-t-l').textContent = num(rl);
+    G('air-t-s').textContent = num(rs);
+    G('air-t-p').textContent = num(rp);
+    G('air-t-g').textContent = num(rg);
+
+    var b = G('air-diag');
+    if (dentro){ b.style.background='#e3f4e8'; b.style.color=VERDE;
+                 b.textContent='interpolación: dentro de la tabla'; }
+    else       { b.style.background='#fbe4e4'; b.style.color='#a11';
+                 b.textContent='extrapolación: fuera de la tabla'; }
+
+    var dif = Math.max(Math.abs(rl-rs), Math.abs(rl-rp), Math.abs(rs-rp));
+    G('air-nota').innerHTML = dentro
+      ? 'Los tres métodos difieren en ' + dif.toFixed(4).replace('.',',') + ' kg/m³. Adentro, la elección casi no importa.'
+      : 'Los tres métodos difieren en ' + dif.toFixed(4).replace('.',',') + ' kg/m³. Afuera, ninguno tiene información: '
+        + 'la diferencia entre ellos <b>es</b> la incertidumbre.';
+  }
+
+  G('air-T').addEventListener('input', function(){
+    G('air-b10').className = ''; G('air-b560').className = '';
+    dibuja();
+  });
+  G('air-b10').addEventListener('click', function(){
+    G('air-T').value = 10; G('air-b10').className = 'air-on'; G('air-b560').className = ''; dibuja();
+  });
+  G('air-b560').addEventListener('click', function(){
+    G('air-T').value = 560; G('air-b560').className = 'air-on'; G('air-b10').className = ''; dibuja();
+  });
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('air-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w2 = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w2/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+  ajusta();
+})();
+</script>

@@ -1,0 +1,321 @@
+<meta charset="utf-8">
+<style>
+#trm-app{--trm-tinta:#1a2733; --trm-suave:#5d6b78; --trm-linea:#d8dee4; --trm-panel:#f6f8fa;
+         --trm-c1:#1f77b4; --trm-c2:#ff7f0e; --trm-rojo:#d62728; --trm-acento:#00afd8;
+         --trm-verde:#1c7a3e;
+         width:100%; max-width:min(808px, 94vw); margin:0; padding:4px 2px;
+         color:var(--trm-tinta); background:transparent;
+         font-family:"Segoe UI",Calibri,system-ui,sans-serif; font-size:15px; line-height:1.45}
+#trm-app *{box-sizing:border-box}
+#trm-app .trm-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#trm-app .trm-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#trm-app .trm-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#trm-app svg{width:100%;height:auto;display:block;background:#fff;
+             border:1px solid var(--trm-linea);border-radius:0.55em;margin-bottom:0.4em}
+#trm-app .trm-ctrl{background:var(--trm-panel);border:1px solid var(--trm-linea);
+                   border-radius:0.55em;padding:0.65em 0.8em;margin-bottom:0.6em}
+#trm-app .trm-ctrl label{display:block;font-size:1em;font-weight:600;margin-bottom:0.4em}
+#trm-app .trm-val{float:right;font-weight:600;color:var(--trm-acento);font-variant-numeric:tabular-nums}
+#trm-app input[type=range]{width:100%;accent-color:var(--trm-acento);margin:0}
+#trm-app .trm-hint{font-size:0.88em;color:var(--trm-suave);margin-top:0.28em;line-height:1.35}
+#trm-app table.trm-t{width:100%;border-collapse:collapse;font-size:0.97em;margin:0}
+#trm-app table.trm-t td{padding:0.28em 0.4em;text-align:left;
+                   border-bottom:1px solid var(--trm-linea);background:none}
+#trm-app table.trm-t td.trm-num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+#trm-app .trm-badge{display:inline-block;padding:0.2em 0.72em;border-radius:1em;
+                   font-size:0.9em;font-weight:600}
+#trm-app .trm-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.33em;margin-top:0.55em}
+#trm-app .trm-btns2{display:grid;grid-template-columns:repeat(2,1fr);gap:0.33em;margin-top:0.4em}
+#trm-app .trm-btns button,#trm-app .trm-btns2 button{font-family:inherit;font-size:0.9em;
+         padding:0.35em 0.25em;white-space:nowrap;border:1px solid var(--trm-linea);background:#fff;
+         border-radius:0.4em;cursor:pointer;color:var(--trm-tinta)}
+#trm-app .trm-btns button:hover,#trm-app .trm-btns2 button:hover{border-color:var(--trm-acento);color:var(--trm-acento)}
+#trm-app .trm-btns button.trm-on,#trm-app .trm-btns2 button.trm-on{border-color:var(--trm-acento);
+         background:#e8f7fc;color:var(--trm-acento);font-weight:600}
+#trm-app .trm-ley{display:flex;gap:0.87em;flex-wrap:wrap;font-size:0.87em;
+         color:var(--trm-suave);margin-top:0.2em}
+</style>
+
+<div id="trm-app">
+<div class="trm-wrap">
+  <div class="trm-izq">
+    <svg id="trm-plot" viewBox="0 0 520 340" role="img"
+         aria-label="Los mismos datos interpolados por un polinomio global, por rectas y por un spline cubico"></svg>
+    <svg id="trm-der" viewBox="0 0 520 190" role="img"
+         aria-label="Primera derivada de cada interpolante"></svg>
+    <div class="trm-ley">
+      <span><span style="color:#333">●</span> datos</span>
+      <span><span style="color:var(--trm-rojo)">━</span> polinomio global</span>
+      <span><span style="color:var(--trm-c2)">━</span> lineal por tramos</span>
+      <span><span style="color:var(--trm-c1)">━</span> spline cúbico</span>
+    </div>
+  </div>
+
+  <div class="trm-der">
+    <div class="trm-ctrl">
+      <label for="trm-n">Número de datos<span class="trm-val" id="trm-nv"></span></label>
+      <input type="range" id="trm-n" min="5" max="15" step="2" value="9">
+      <div class="trm-hint" id="trm-hint">Activemos y desactivemos cada método sobre los mismos datos.</div>
+    </div>
+
+    <div class="trm-btns">
+      <button id="trm-m0" class="trm-on">global</button>
+      <button id="trm-m1" class="trm-on">lineal</button>
+      <button id="trm-m2" class="trm-on">spline</button>
+    </div>
+    <div class="trm-btns2">
+      <button id="trm-d0" class="trm-on">datos con salto</button>
+      <button id="trm-d1">datos suaves</button>
+    </div>
+    <div class="trm-btns2">
+      <button id="trm-dv">mostrar y′(x)</button>
+      <button id="trm-dr">reiniciar</button>
+    </div>
+
+    <table class="trm-t" style="margin-top:0.7em">
+      <tr><td>grado del polinomio global</td><td class="trm-num" id="trm-t-g"></td></tr>
+      <tr><td>sobrepaso del global</td><td class="trm-num" id="trm-t-o"></td></tr>
+      <tr><td>sobrepaso del spline</td><td class="trm-num" id="trm-t-s"></td></tr>
+    </table>
+    <p style="margin:9px 0 0"><span class="trm-badge" id="trm-diag"></span></p>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var SP = document.getElementById('trm-plot');
+  var SD = document.getElementById('trm-der');
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 520, HP = 340, HD = 190, mr = 16, mt = 14;
+  var C1 = '#1f77b4', C2 = '#ff7f0e', ROJO = '#d62728', VERDE = '#1c7a3e';
+
+  var mostrar = [1,1,1], idat = 0, verDer = 0;
+  var x0 = -1, x1 = 1;
+
+  function E(t,a){ var n=document.createElementNS(NS,t);
+    for (var k in a) n.setAttribute(k,a[k]); return n; }
+  function txt(a,s){ var n=E('text',a); n.textContent=s; return n; }
+  function G(id){ return document.getElementById(id); }
+  function num(v){ return v.toLocaleString('es-CL',{minimumFractionDigits:3, maximumFractionDigits:3}); }
+
+  function datos(m){
+    var xs = [], ys = [], k, x;
+    for (k=0;k<m;k++){
+      x = -1 + 2*k/(m-1);
+      xs.push(x);
+      ys.push(idat === 0 ? (x < 0 ? 0 : 1) : 0.5*(1+Math.sin(2.2*x)));
+    }
+    return {x:xs, y:ys};
+  }
+
+  // ---- polinomio global (forma baricentrica) ----
+  function pesos(xs){
+    var m = xs.length, w = [], i, j, p;
+    for (i=0;i<m;i++){ p = 1;
+      for (j=0;j<m;j++) if (j!==i) p *= (xs[i]-xs[j]);
+      w.push(1/p); }
+    return w;
+  }
+  function pGlobal(xs, ys, w, x){
+    var a = 0, b = 0, i, d;
+    for (i=0;i<xs.length;i++){
+      d = x - xs[i];
+      if (Math.abs(d) < 1e-14) return ys[i];
+      a += w[i]/d*ys[i]; b += w[i]/d;
+    }
+    return a/b;
+  }
+
+  // ---- spline cubico natural: sistema tridiagonal en las segundas derivadas ----
+  function spline(xs, ys){
+    var n = xs.length - 1, h = [], i;
+    for (i=0;i<n;i++) h.push(xs[i+1]-xs[i]);
+    var a = [], b = [], c = [], d = [];          // sistema para M1..M(n-1)
+    for (i=1;i<n;i++){
+      a.push(h[i-1]/6);
+      b.push((h[i-1]+h[i])/3);
+      c.push(h[i]/6);
+      d.push((ys[i+1]-ys[i])/h[i] - (ys[i]-ys[i-1])/h[i-1]);
+    }
+    // algoritmo de Thomas
+    var N = d.length, cp = [], dp = [], M = new Array(n+1).fill(0), den;
+    if (N > 0){
+      cp[0] = c[0]/b[0]; dp[0] = d[0]/b[0];
+      for (i=1;i<N;i++){
+        den = b[i] - a[i]*cp[i-1];
+        cp[i] = c[i]/den;
+        dp[i] = (d[i] - a[i]*dp[i-1])/den;
+      }
+      M[N] = dp[N-1];
+      for (i=N-2;i>=0;i--) M[i+1] = dp[i] - cp[i]*M[i+2];
+    }
+    return {x:xs, y:ys, h:h, M:M, n:n};
+  }
+  function sEval(S, x, der){
+    var i = 0, n = S.n;
+    while (i < n-1 && x > S.x[i+1]) i++;
+    var h = S.h[i], A = S.x[i+1]-x, B = x-S.x[i];
+    var ca = S.y[i]/h   - S.M[i]*h/6;
+    var cb = S.y[i+1]/h - S.M[i+1]*h/6;
+    if (der) return -S.M[i]*A*A/(2*h) + S.M[i+1]*B*B/(2*h) - ca + cb;
+    return S.M[i]*A*A*A/(6*h) + S.M[i+1]*B*B*B/(6*h) + ca*A + cb*B;
+  }
+
+  function ejes(S, H, v0, v1, paso, fT, fE, ml, mb, rot){
+    var X = function(v){ return ml + (v-x0)/(x1-x0)*(W-ml-mr); };
+    var Y = function(v){ return H - mb - (v-v0)/(v1-v0)*(H-mt-mb); };
+    var k;
+    for (k=v0; k<=v1+1e-9; k+=paso){
+      S.appendChild(E('line',{x1:ml,y1:Y(k),x2:W-mr,y2:Y(k),stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:ml-0.5*fT,y:Y(k)+0.35*fT,'text-anchor':'end','font-size':fT,
+                         fill:'#6b7a88'}, k.toFixed(1).replace('.',',')));
+    }
+    for (k=-1; k<=1.001; k+=0.5){
+      S.appendChild(E('line',{x1:X(k),y1:mt,x2:X(k),y2:H-mb,stroke:'#eef1f4','stroke-width':1}));
+      S.appendChild(txt({x:X(k),y:H-mb+1.35*fT,'text-anchor':'middle','font-size':fT,
+                         fill:'#6b7a88'}, k.toFixed(1).replace('.',',')));
+    }
+    S.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb,fill:'none',stroke:'#c9d2da'}));
+    S.appendChild(txt({x:(ml+W-mr)/2,y:H-0.5*fT,'text-anchor':'middle','font-size':fE,
+                       fill:'#5d6b78','font-style':'italic'},'x'));
+    S.appendChild(txt({x:1.1*fT,y:(mt+H-mb)/2,'text-anchor':'middle','font-size':fE,fill:'#5d6b78',
+                       'font-style':'italic',
+                       transform:'rotate(-90 '+(1.1*fT)+' '+((mt+H-mb)/2)+')'}, rot));
+    return {X:X, Y:Y};
+  }
+
+  function curva(S, ej, f, color, ancho, id, H, ml, mb){
+    var d = '', i, x, NP = 500;
+    for (i=0;i<=NP;i++){
+      x = x0 + (x1-x0)*i/NP;
+      d += (i?'L':'M') + ej.X(x).toFixed(2) + ' ' + ej.Y(f(x)).toFixed(2);
+    }
+    S.appendChild(E('path',{d:d,fill:'none',stroke:color,'stroke-width':ancho,
+                            'stroke-linejoin':'round','stroke-linecap':'round',
+                            'clip-path':'url(#'+id+')'}));
+  }
+  function clip(S, id, H, ml, mb){
+    var defs = E('defs'), cp = E('clipPath',{id:id});
+    cp.appendChild(E('rect',{x:ml,y:mt,width:W-ml-mr,height:H-mt-mb}));
+    defs.appendChild(cp); S.appendChild(defs);
+  }
+
+  function dibuja(){
+    var m = +G('trm-n').value;
+    var D = datos(m), w = pesos(D.x), SPL = spline(D.x, D.y);
+
+    var anchoSVG = SP.getBoundingClientRect().width || SP.clientWidth || 415;
+    var esc = W/anchoSVG;
+    var fT = Math.round(13*esc), fE = Math.round(15*esc);
+    var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);
+
+    while (SP.firstChild) SP.removeChild(SP.firstChild);
+    while (SD.firstChild) SD.removeChild(SD.firstChild);
+
+    var fg = function(x){ return pGlobal(D.x, D.y, w, x); };
+    var fl = function(x){
+      var i = 0; while (i < D.x.length-2 && x > D.x[i+1]) i++;
+      return D.y[i] + (D.y[i+1]-D.y[i])/(D.x[i+1]-D.x[i])*(x-D.x[i]);
+    };
+    var fs = function(x){ return sEval(SPL, x, 0); };
+
+    var v0 = -1, v1 = 2;
+    var ej = ejes(SP, HP, v0, v1, 0.5, fT, fE, ml, mb, 'y');
+    clip(SP, 'trm-clip', HP, ml, mb);
+    if (mostrar[0]) curva(SP, ej, fg, ROJO, 3,   'trm-clip', HP, ml, mb);
+    if (mostrar[1]) curva(SP, ej, fl, C2,   2.6, 'trm-clip', HP, ml, mb);
+    if (mostrar[2]) curva(SP, ej, fs, C1,   3,   'trm-clip', HP, ml, mb);
+    var i;
+    for (i=0;i<D.x.length;i++){
+      SP.appendChild(E('circle',{cx:ej.X(D.x[i]),cy:ej.Y(D.y[i]),r:5,fill:'#333',
+                                 stroke:'#fff','stroke-width':1.6}));
+    }
+
+    // panel de derivadas
+    SD.style.display = verDer ? 'block' : 'none';
+    if (verDer){
+      var ejd = ejes(SD, HD, -4, 4, 2, fT, fE, ml, mb, "y′");
+      clip(SD, 'trm-clipd', HD, ml, mb);
+      var eps = 1e-4;
+      var dg = function(x){ return (fg(x+eps)-fg(x-eps))/(2*eps); };
+      var dl = function(x){
+        var i = 0; while (i < D.x.length-2 && x > D.x[i+1]) i++;
+        return (D.y[i+1]-D.y[i])/(D.x[i+1]-D.x[i]);
+      };
+      var ds = function(x){ return sEval(SPL, x, 1); };
+      if (mostrar[0]) curva(SD, ejd, dg, ROJO, 2.6, 'trm-clipd', HD, ml, mb);
+      if (mostrar[1]) curva(SD, ejd, dl, C2,   2.6, 'trm-clipd', HD, ml, mb);
+      if (mostrar[2]) curva(SD, ejd, ds, C1,   2.6, 'trm-clipd', HD, ml, mb);
+    }
+
+    // sobrepaso: cuanto se sale cada interpolante del rango de los datos
+    var ymin = Math.min.apply(null, D.y), ymax = Math.max.apply(null, D.y);
+    var og = 0, os = 0, x, k;
+    for (k=0;k<=400;k++){
+      x = x0 + (x1-x0)*k/400;
+      og = Math.max(og, fg(x)-ymax, ymin-fg(x));
+      os = Math.max(os, fs(x)-ymax, ymin-fs(x));
+    }
+    G('trm-nv').textContent  = m;
+    G('trm-t-g').textContent = m-1;
+    G('trm-t-o').textContent = num(Math.max(0,og));
+    G('trm-t-s').textContent = num(Math.max(0,os));
+
+    var b = G('trm-diag');
+    if (og < 0.05){      b.style.background='#e3f4e8'; b.style.color=VERDE;
+                         b.textContent='los tres se comportan bien'; }
+    else if (og < 0.4){  b.style.background='#fdf3dd'; b.style.color='#8a6100';
+                         b.textContent='el global empieza a sobrepasar'; }
+    else {               b.style.background='#fbe4e4'; b.style.color='#a11';
+                         b.textContent='el global oscila; los de tramos no'; }
+  }
+
+  function toggle(i){
+    mostrar[i] = 1-mostrar[i];
+    G('trm-m'+i).className = mostrar[i] ? 'trm-on' : '';
+    dibuja();
+  }
+  function setDatos(i){
+    idat = i;
+    G('trm-d0').className = i ? '' : 'trm-on';
+    G('trm-d1').className = i ? 'trm-on' : '';
+    G('trm-hint').innerHTML = i
+      ? 'Con datos suaves los tres coinciden: el problema aparece con cambios bruscos.'
+      : 'Activemos y desactivemos cada método sobre los mismos datos.';
+    dibuja();
+  }
+
+  G('trm-n').addEventListener('input', dibuja);
+  G('trm-m0').addEventListener('click', function(){ toggle(0); });
+  G('trm-m1').addEventListener('click', function(){ toggle(1); });
+  G('trm-m2').addEventListener('click', function(){ toggle(2); });
+  G('trm-d0').addEventListener('click', function(){ setDatos(0); });
+  G('trm-d1').addEventListener('click', function(){ setDatos(1); });
+  G('trm-dv').addEventListener('click', function(){
+    verDer = 1-verDer;
+    G('trm-dv').className = verDer ? 'trm-on' : '';
+    G('trm-dv').textContent = verDer ? 'ocultar y′(x)' : 'mostrar y′(x)';
+    dibuja();
+  });
+  G('trm-dr').addEventListener('click', function(){
+    mostrar = [1,1,1];
+    for (var i=0;i<3;i++) G('trm-m'+i).className = 'trm-on';
+    G('trm-n').value = 9;
+    setDatos(0);
+  });
+
+  // --- adaptacion al contenedor (Jupyter, RISE o Jupyter Book) ---
+  var APP = document.getElementById('trm-app');
+  var baseAnterior = null;
+  function ajusta(){
+    var w = APP.clientWidth || 790;
+    var base = Math.max(13, Math.min(17, w/50)).toFixed(1);
+    if (base !== baseAnterior){ baseAnterior = base; APP.style.fontSize = base + 'px'; }
+    dibuja();
+  }
+  if (window.ResizeObserver){ new ResizeObserver(ajusta).observe(APP); }
+  else { window.addEventListener('resize', ajusta); }
+  ajusta();
+})();
+</script>
