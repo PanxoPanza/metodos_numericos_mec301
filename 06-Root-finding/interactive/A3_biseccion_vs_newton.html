@@ -1,0 +1,238 @@
+<meta charset="utf-8">
+<style>
+#rai-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+#rai-app *{box-sizing:border-box}
+#rai-app .rai-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#rai-app .rai-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#rai-app .rai-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#rai-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em}
+#rai-app .rai-ctrl{margin:0.5em 0}
+#rai-app .rai-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#rai-app .rai-val{color:var(--acento);font-weight:600}
+#rai-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#rai-app .rai-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.35em 0 0.5em}
+#rai-app .rai-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:var(--tinta)}
+#rai-app .rai-btns button.rai-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#rai-app .rai-run{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.3em;margin:0.5em 0}
+#rai-app .rai-run button{font:inherit;font-size:0.85em;padding:0.35em 0.2em;cursor:pointer;
+  border:1px solid var(--acento);border-radius:0.4em;background:var(--acento);color:#fff;font-weight:600}
+#rai-app .rai-run button.rai-sec{background:#fff;color:var(--tinta);border-color:var(--linea);font-weight:400}
+#rai-app table.rai-t{width:100%;border-collapse:collapse;margin-top:0.4em;font-size:0.95em}
+#rai-app table.rai-t th{font-weight:600;text-align:right;padding:0.2em 0.3em;
+  border-bottom:1px solid var(--linea);font-size:0.95em}
+#rai-app table.rai-t th:first-child{text-align:left}
+#rai-app table.rai-t td{padding:0.18em 0.3em;border-bottom:1px solid #eef1f4}
+#rai-app table.rai-t td.rai-num{text-align:right;font-variant-numeric:tabular-nums}
+#rai-app .rai-bi{color:#b35c00}
+#rai-app .rai-nw{color:var(--rojo)}
+#rai-app .rai-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#rai-app .rai-ok{background:#e3f4e8;color:var(--verde)}
+#rai-app .rai-bad{background:#fbe4e4;color:#a11}
+#rai-app .rai-ley{font-size:0.82em;color:var(--suave);margin-top:0.35em;text-align:center}
+</style>
+
+<div id="rai-app">
+  <div class="rai-wrap">
+    <div class="rai-izq">
+      <svg id="rai-svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="rai-ley">banda naranja: intervalo de la bisección &nbsp;·&nbsp;
+        rojo: iterado de Newton y su tangente &nbsp;·&nbsp; verde: raíz</div>
+    </div>
+    <div class="rai-der">
+      <div class="rai-btns" id="rai-fbtns"></div>
+      <div class="rai-ctrl">
+        <label>valor inicial de Newton &nbsp; x<sub>0</sub> = <span class="rai-val" id="rai-x0v">1.00</span></label>
+        <input type="range" id="rai-x0" min="0" max="1" step="0.001" value="0.5">
+      </div>
+      <div class="rai-run">
+        <button id="rai-it">iterar</button>
+        <button id="rai-it5" class="rai-sec">×5</button>
+        <button id="rai-rs" class="rai-sec">reiniciar</button>
+      </div>
+      <table class="rai-t">
+        <thead><tr><th>k</th><th class="rai-bi">cota bisec.</th><th class="rai-nw">error Newton</th></tr></thead>
+        <tbody id="rai-tb"></tbody>
+      </table>
+      <span class="rai-badge" id="rai-bd">–</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const app=document.getElementById('rai-app'), svg=document.getElementById('rai-svg');
+  const NS='http://www.w3.org/2000/svg', VB=640, VH=400;
+  const el=i=>document.getElementById(i);
+
+  const Re=1.992032e5, epsD=4.5e-4;
+  const FS={
+    a:{nom:'eˣ − x²', f:x=>Math.exp(x)-x*x, d:x=>Math.exp(x)-2*x,
+       xr:[-1.6,1.2], br:[-1,1], x0:1.0},
+    b:{nom:'Colebrook', f:c=>1/Math.sqrt(c)+2*Math.log10(epsD/3.7+2.51/(Re*Math.sqrt(c))),
+       d:c=>-0.5*Math.pow(c,-1.5)+(2/Math.LN10)*(-1.255*Math.pow(c,-1.5)/Re)/(epsD/3.7+2.51/(Re*Math.sqrt(c))),
+       xr:[0.008,0.08], br:[0.008,0.08], x0:0.02},
+    c:{nom:'x³−100x²−x+100', f:x=>x*x*x-100*x*x-x+100, d:x=>3*x*x-200*x-1,
+       xr:[-0.5,2.5], br:[0.5,2], x0:0.0},
+    d:{nom:'arctan(x)', f:Math.atan, d:x=>1/(1+x*x),
+       xr:[-8,8], br:[-3,4], x0:1.5}
+  };
+
+  let key='a', S=null;
+
+  function raiz(F){                       // raíz de referencia por bisección larga
+    let [a,b]=F.br, fa=F.f(a);
+    for(let i=0;i<200;i++){ const m=(a+b)/2, fm=F.f(m);
+      if(fa*fm<0){b=m;} else {a=m; fa=fm;} }
+    return (a+b)/2;
+  }
+
+  function reset(keepx0){
+    const F=FS[key];
+    const x0=keepx0!==undefined?keepx0:F.x0;
+    S={a:F.br[0], b:F.br[1], xn:x0, x0:x0, k:0, hist:[], xs:raiz(F), vivo:true, kconv:null};
+    const sl=el('rai-x0');
+    sl.min=F.xr[0]; sl.max=F.xr[1]; sl.step=(F.xr[1]-F.xr[0])/1000; sl.value=x0;
+    empuja();
+  }
+  function empuja(){
+    const en=Math.abs(S.xn-S.xs);
+    // para la bisección mostramos la cota (b-a)/2, que es lo que el método garantiza
+    S.hist.push({k:S.k, eb:Math.abs(S.b-S.a)/2, en:en});
+    if(S.hist.length>7) S.hist.shift();
+    if(S.kconv===null && en<1e-10) S.kconv=S.k;
+  }
+
+  function paso(){
+    if(!S.vivo) return;
+    const F=FS[key];
+    const m=(S.a+S.b)/2;                               // bisección
+    if(F.f(S.a)*F.f(m)<0) S.b=m; else S.a=m;
+    const dn=F.d(S.xn);                                // newton
+    if(Math.abs(dn)>1e-14){
+      const nx=S.xn-F.f(S.xn)/dn;
+      if(isFinite(nx)) S.xn=nx; else S.vivo=false;
+    } else S.vivo=false;
+    S.k++; empuja(); draw();
+  }
+
+  const bdiv=el('rai-fbtns');
+  Object.keys(FS).forEach(k=>{
+    const b=document.createElement('button'); b.textContent=FS[k].nom; b.dataset.k=k;
+    b.onclick=()=>{key=k; reset(); draw();}; bdiv.appendChild(b);
+  });
+  el('rai-it').onclick=()=>paso();
+  el('rai-it5').onclick=()=>{for(let i=0;i<5;i++)paso();};
+  el('rai-rs').onclick=()=>{reset(S.x0);draw();};
+  el('rai-x0').addEventListener('input',e=>{reset(+e.target.value);draw();});
+
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);return e;}
+
+  function draw(){
+    const F=FS[key];
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc, fE=15*esc;
+    const ml=Math.max(52,3.6*fT), mb=Math.max(42,3.2*fT), mt=16, mr=16;
+    const W=VB-ml-mr, H=VH-mt-mb;
+    const [x0,x1]=F.xr;
+
+    let lo=Infinity, hi=-Infinity;                    // autoescala robusta en y
+    const vals=[];
+    for(let i=0;i<=200;i++){ const v=F.f(x0+(x1-x0)*i/200); if(isFinite(v)) vals.push(v); }
+    vals.sort((p,q)=>p-q);
+    lo=vals[Math.floor(vals.length*0.03)]; hi=vals[Math.floor(vals.length*0.97)];
+    const pad=0.18*(hi-lo)||1; lo-=pad; hi+=pad;
+    if(lo>0) lo=-0.1*hi; if(hi<0) hi=-0.1*lo;
+
+    const X=x=>ml+(x-x0)/(x1-x0)*W, Y=y=>mt+(hi-y)/(hi-lo)*H;
+    const cl=y=>Math.min(Math.max(y,lo),hi);
+
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4','stroke-width':1}));
+
+    // banda de la biseccion
+    svg.appendChild(mk('rect',{x:X(S.a),y:mt,width:Math.max(X(S.b)-X(S.a),1.5),height:H,
+      fill:'#ff7f0e',opacity:0.13}));
+    [S.a,S.b].forEach(v=>svg.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,
+      stroke:'#b35c00','stroke-width':1.3})));
+
+    for(let i=0;i<=6;i++){
+      const xv=x0+(x1-x0)*i/6, yv=lo+(hi-lo)*i/6;
+      svg.appendChild(mk('line',{x1:X(xv),y1:mt,x2:X(xv),y2:mt+H,stroke:'#eef1f4'}));
+      svg.appendChild(mk('line',{x1:ml,y1:Y(yv),x2:ml+W,y2:Y(yv),stroke:'#eef1f4'}));
+      const anc=i===0?'start':(i===6?'end':'middle');
+      let t=mk('text',{x:X(xv),y:mt+H+fT*1.25,'text-anchor':anc,'font-size':fT,fill:'#5d6b78'});
+      t.textContent=(Math.abs(xv)<0.01&&xv!==0)?xv.toExponential(1):xv.toFixed(x1-x0<1?3:1);
+      svg.appendChild(t);
+      t=mk('text',{x:ml-fT*0.5,y:Y(yv)+fT*0.36,'text-anchor':'end','font-size':fT,fill:'#5d6b78'});
+      t.textContent=yv.toFixed(1); svg.appendChild(t);
+    }
+    svg.appendChild(mk('line',{x1:ml,y1:Y(0),x2:ml+W,y2:Y(0),stroke:'#8a95a0','stroke-width':1.2}));
+    let lx=mk('text',{x:ml+W/2,y:VH-mb*0.16,'text-anchor':'middle','font-size':fE,fill:'#1a2733'});
+    lx.textContent='x'; svg.appendChild(lx);
+
+    let d='', okc=false;
+    const mg=0.5*(hi-lo);
+    for(let i=0;i<=400;i++){ const x=x0+(x1-x0)*i/400, v=F.f(x);
+      if(isFinite(v)&&v>lo-mg&&v<hi+mg){ d+=(okc?'L':'M')+X(x).toFixed(1)+' '+Y(cl(v)).toFixed(1)+' '; okc=true; }
+      else okc=false; }
+    svg.appendChild(mk('path',{d:d,fill:'none',stroke:'#1a2733','stroke-width':2.4}));
+
+    // raiz
+    svg.appendChild(mk('circle',{cx:X(S.xs),cy:Y(0),r:6,fill:'#1c7a3e',opacity:0.85}));
+
+    // punto medio de la biseccion
+    const m=(S.a+S.b)/2;
+    svg.appendChild(mk('circle',{cx:X(m),cy:Y(cl(F.f(m))),r:5.4,fill:'#ff7f0e',
+      stroke:'#fff','stroke-width':1.4}));
+
+    // newton: tangente + iterado
+    if(S.xn>=x0&&S.xn<=x1&&isFinite(F.f(S.xn))){
+      const fv=F.f(S.xn), dv=F.d(S.xn);
+      const tx0=x0, tx1=x1;
+      svg.appendChild(mk('line',{x1:X(tx0),y1:Y(cl(fv+dv*(tx0-S.xn))),
+        x2:X(tx1),y2:Y(cl(fv+dv*(tx1-S.xn))),stroke:'#d62728','stroke-width':1.3,
+        'stroke-dasharray':'6 4',opacity:0.8}));
+      svg.appendChild(mk('circle',{cx:X(S.xn),cy:Y(cl(fv)),r:5.6,fill:'#d62728',
+        stroke:'#fff','stroke-width':1.4}));
+    }
+
+    // tabla
+    const tb=el('rai-tb'); tb.innerHTML='';
+    const fmt=v=>!isFinite(v)?'–':(v===0?'0':v.toExponential(1));
+    S.hist.forEach(h=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML='<td>'+h.k+'</td><td class="rai-num rai-bi">'+fmt(h.eb)+
+                   '</td><td class="rai-num rai-nw">'+fmt(h.en)+'</td>';
+      tb.appendChild(tr);
+    });
+    el('rai-x0v').textContent=(Math.abs(S.x0)<0.01&&S.x0!==0)?S.x0.toExponential(2):S.x0.toFixed(3);
+    [...bdiv.children].forEach(b=>b.classList.toggle('rai-on',b.dataset.k===key));
+
+    const bd=el('rai-bd'), en=S.hist.length?S.hist[S.hist.length-1].en:Infinity;
+    if(!S.vivo||!isFinite(S.xn)||Math.abs(S.xn-S.xs)>10*(x1-x0)){
+      bd.textContent='Newton se escapó'; bd.className='rai-badge rai-bad';
+    }else if(S.kconv!==null){
+      bd.textContent='Newton convergió en '+S.kconv+' pasos'; bd.className='rai-badge rai-ok';
+    }else{
+      bd.textContent='iteración k = '+S.k; bd.className='rai-badge rai-ok';
+    }
+  }
+
+  let prevW=0;
+  new ResizeObserver(e=>{
+    const w=e[0].contentRect.width;
+    if(Math.abs(w-prevW)<1) return;
+    prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px';
+    draw();
+  }).observe(app);
+
+  reset(); draw();
+})();
+</script>

@@ -110,7 +110,7 @@
     var d = +G('sbr-deg').value, verT = G('sbr-test').checked;
     var c = polyfit(xi, yi, d);
 
-    var anchoSVG = S.clientWidth || S.getBoundingClientRect().width || 415;
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
     var esc = W/anchoSVG;
     var fT = Math.round(13*esc), fE = Math.round(15*esc);
     var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);

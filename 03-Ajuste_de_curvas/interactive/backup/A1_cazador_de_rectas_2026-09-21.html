@@ -112,7 +112,7 @@
     var a0 = +G('cdr-a0').value, a1 = +G('cdr-a1').value;
 
     // escala del texto del gráfico: apariencia constante en cualquier ancho
-    var anchoSVG = S.clientWidth || S.getBoundingClientRect().width || 415;
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
     var esc = W/anchoSVG;
     var fT = Math.round(13*esc), fE = Math.round(15*esc);
     var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);

@@ -205,7 +205,7 @@
     var m = +G('trm-n').value;
     var D = datos(m), w = pesos(D.x), SPL = spline(D.x, D.y);
 
-    var anchoSVG = SP.clientWidth || SP.getBoundingClientRect().width || 415;
+    var anchoSVG = SP.getBoundingClientRect().width || SP.clientWidth || 415;
     var esc = W/anchoSVG;
     var fT = Math.round(13*esc), fE = Math.round(15*esc);
     var ml = Math.max(52, 3.6*fT), mb = Math.max(42, 3.2*fT);

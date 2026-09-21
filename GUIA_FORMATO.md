@@ -211,6 +211,15 @@ Registro de lo que ya existe en el material, para no duplicarlo ni contradecirlo
 | U4 §Error de interpolación | U5 | el resto de Taylor |
 | U4 §Sistema tridiagonal | U2, U10, U11 | la matriz tridiagonal y el algoritmo de Thomas |
 | U4 §Derivadas del spline | U8 | derivar el interpolante |
+| U5 §Introducción | U4 | mismo problema canónico: U4 usa $n+1$ datos, U5 usa $n+1$ derivadas en un punto |
+| U5 §La forma en paso $h$ | U6 | la recta tangente igualada a cero |
+| U5 §La forma en paso $h$ | U7, U8, U9 | el término descartado fija el orden del método |
+| U5 §El error total | U8 | la curva en V y el $h$ óptimo |
+| U6 §Introducción | U5 | truncar Taylor en primer orden da una ecuación lineal |
+| U6 §Criterio de convergencia | U1 | error absoluto y relativo, ahora sin valor exacto conocido |
+| U6 §Secante | U8, U5 | la diferencia dividida es derivación numérica, con su mismo compromiso de error |
+| U6 §Newton vectorial | U2 | $J\,\Delta\mathbf{x}=-\mathbf{F}$ es un sistema lineal por iteración |
+| U6 §Resumen | U9, U10, U11 | paso implícito, método de disparo, EDP no lineal |
 
 **Puentes pendientes de escribir** (unidades aún no rediseñadas): ver Anexo C.
 
@@ -424,6 +433,56 @@ web y en el proyector. No son negociables:
    Para el texto dentro del SVG: `esc = W_viewBox / anchoRealSVG`, luego `fT = 13*esc`
    (rótulos) y `fE = 15*esc` (nombres de eje), con márgenes `ml = max(52, 3.6*fT)` y
    `mb = max(42, 3.2*fT)` — con menos, la etiqueta del eje x se pisa con los números.
+5. **El ancho del SVG se mide con `clientWidth`, no con `getBoundingClientRect()`.**
+   El CSS escala las animaciones en la diapositiva con `zoom` (ver abajo), y bajo `zoom`
+   `getBoundingClientRect()` devuelve el ancho **ya escalado**: si se usa ese valor, `esc`
+   se achica en la misma proporción y el texto del SVG queda clavado en 13 px mientras
+   todo lo demás crece. `clientWidth` devuelve el ancho de layout y es inmune al `zoom`.
+   Patrón: `var ancho = S.clientWidth || S.getBoundingClientRect().width || 415;`
+   La excepción son las coordenadas del puntero al arrastrar: ahí **sí** hay que usar
+   `getBoundingClientRect()`, porque `event.clientX` viene en las mismas coordenadas
+   escaladas y la razón `(clientX - r.left)/r.width` sale correcta.
+
+### 8.1.1 Tamaño en la diapositiva
+
+Las animaciones se ven chicas en RISE: su tipografía tiene tope de 17 px, pensado para el
+notebook, mientras la diapositiva agranda texto y figuras. El CSS del capítulo lo corrige
+con dos variables, aplicadas por `zoom` a todo elemento cuyo `id` termine en `-app`:
+
+```css
+body.rise-enabled {
+    --rise-anim-scale: 1.45;   /* la perilla: subirla si se sigue viendo chica */
+    --rise-anim-max: 820px;    /* ancho de diseño; NO subirlo */
+}
+```
+
+Se usa `zoom` y no `font-size` porque el `font-size` de la raíz lo escribe el propio JS
+como estilo inline y una regla de hoja no le gana, y porque el `zoom` arrastra además el
+SVG, los controles y las tablas de lectura.
+
+`--rise-anim-max` se queda en el ancho de diseño a propósito: si se sube, la columna del
+gráfico se topa en su `max-width` y todo el ancho extra se lo lleva el panel de lecturas,
+que queda desparramado. El zoom debe **escalar**, no reacomodar el layout. El tope se
+divide por la escala en el propio CSS para que el resultado final respete el ancho de la
+diapositiva y no aparezca scroll horizontal.
+
+**La regla va acotada a la salida de una celda**, no suelta:
+
+```css
+body.rise-enabled div.output_area div[id$="-app"],
+body.rise-enabled div.output_subarea div[id$="-app"],
+body.rise-enabled .jp-OutputArea-output div[id$="-app"] { zoom: ...; max-width: ...; }
+```
+
+Un `div[id$="-app"]` sin acotar también calza con **`#ipython-main-app`**, que en Jupyter
+clásico envuelve el notebook entero: el zoom agranda toda la página y el `max-width` la
+deja en una columna angosta con un margen enorme a la derecha. Medido: el contenedor
+pasaba de 1904 px a 1189 px con `zoom: 1.45`. Al probar un selector nuevo en el CSS del
+capítulo, reproducir el DOM real de Jupyter (`#ipython-main-app` > `#notebook-container` >
+`div.output_area` > `div.output_subarea`) y comprobar que el contenedor queda en `zoom: 1`.
+
+Medido sobre las diez animaciones del curso: el contenedor pasa de ~810 px a 1195 px y las
+etiquetas de eje de ~13 px a ~19 px, sin scroll horizontal a 1366 px ni a 1920 px.
 
 ### 8.2 Convenciones visuales (recomendadas)
 
@@ -448,7 +507,33 @@ ampliar si el contenido lo pide.
   `.eqbox` (fórmula, serif "Cambria Math"), `table.t` (lecturas numéricas, columna `.num`
   a la derecha con `tabular-nums`), `.badge` (píldora de estado: verde `#e3f4e8`/`#1c7a3e`,
   ámbar `#fdf3dd`/`#8a6100`, rojo `#fbe4e4`/`#a11`), `.btns` (grid de botones),
-  `.ley` (leyenda bajo el gráfico).
+  `.ley` (nota bajo el gráfico).
+- **La leyenda va bajo el gráfico, no dentro del SVG**, salvo que el gráfico tenga una zona
+  libre que sobreviva a todos los preajustes. En una curva en V con asíntotas cruzadas no la
+  hay: una caja fija termina tapando una rama al cambiar de función. Se arma como fila HTML
+  de muestras, con el ancho en `em` para que escale sola con el zoom de RISE:
+  ```css
+  .leg{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3em 0.95em;font-size:0.84em}
+  .leg span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+  .sw{display:inline-block;width:2.2em;height:0}       /* + border-top sólido o dashed */
+  ```
+  Si un elemento ya lleva su etiqueta dentro del gráfico, la entrada de la leyenda usa
+  **exactamente el mismo nombre**. Referencia viva: `05-Taylor-series/interactive/A2_h_optimo.html`.
+- **Campos escalares: banda de color con barra de escala, no solo curvas de nivel.** Curvas
+  del mismo tono se leen como un dibujo plano y no dicen hacia dónde baja el campo. Ocho
+  bandas bastan, con barra rotulada al costado derecho del gráfico y las curvas de nivel
+  encima para tapar el pixelado. **Polaridad: claro donde está el mínimo, oscuro lejos.** Es
+  al revés de la intuición topográfica, pero los trazos de colores saturados viven cerca del
+  mínimo y necesitan fondo pálido para destacar. Para no inflar el SVG, una sola ruta por
+  banda, fusionando celdas vecinas de la misma banda dentro de cada fila, y una malla que se
+  evalúa una vez por redibujo y se comparte entre relleno y curvas. Como el campo solo
+  depende de la ventana, conviene cachearlo: al iterar no se recalcula nada. Referencia viva:
+  `06-Root-finding/interactive/A4_region_de_confianza.html` (malla 120×120, 52 nodos SVG).
+- **Ventana isotrópica:** si el gráfico dibuja círculos o distancias que deben verse como
+  tales, el rango en $x$ se calcula de $W/H$ y no se fija a mano. Cuidado al agregar
+  cualquier elemento lateral (una barra de color, un eje secundario): le quita ancho al
+  gráfico, encoge el rango en $x$ y puede dejar un preajuste fuera del marco. **Reverificar
+  los preajustes después de tocar los márgenes.**
 - **Subíndices:** `<sub>` en HTML, `<tspan baseline-shift="sub">` en SVG. **No usar** los
   caracteres Unicode `ᵣ`/`ᵢ` en texto corrido: varias fuentes los dibujan como coma.
 
@@ -560,6 +645,12 @@ material_catedra/
 - [ ] Ninguna diapositiva sobrecargada (título + 2 a 4 fragmentos).
 - [ ] Ninguna celda de código con más de ~15 líneas visibles.
 - [ ] Las animaciones se ven bien a ~1180 px y a ~820 px de ancho.
+- [ ] Cada HTML de animación cierra con `</script>` (`grep -c '</script>'` devuelve 1). Sin
+      él el navegador no reporta error: simplemente deja el SVG vacío.
+- [ ] Si Playwright no está disponible, ejecutar el IIFE con `node` y un shim de DOM mínimo
+      (`createElementNS`, `appendChild`, `ResizeObserver`, y `setAttribute` que lance
+      excepción ante `NaN`/`undefined`). Atrapa errores de ejecución, atributos inválidos y
+      conteo de nodos a varios anchos; queda fuera solo el juicio visual.
 - [ ] Las figuras se leen en el proyector con el escalado de RISE aplicado.
 
 **Apunte**
@@ -693,7 +784,36 @@ ecuación; Gauss-Newton y Levenberg-Marquardt son Newton sobre la misma.
 están amarrados ($m = n+1$); eso es justamente lo que la distingue del ajuste de la U3, y
 conviene decirlo explícitamente.
 
-### U5 a U11 · pendiente de fijar
+### U5 · Series de Taylor
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $a$ | punto de expansión de la serie | local |
+| $N$ | orden de la aproximación (último término conservado) | local |
+| $R_N$ | resto de Taylor en forma de Lagrange | local, con puente a U7 y U8 |
+| $\xi$ | punto intermedio del resto, $\xi$ entre $a$ y $x$ | local |
+| $p_N(x)$ | polinomio de Taylor de orden $N$ | local (coherente con $p_n$ de U4) |
+| $h$ | paso, $h = x - x_i$ | **global**: mismo $h$ de U4 y U7-U11 |
+| $\varepsilon_\mathrm{maq}$ | épsilon de máquina | **global** desde acá |
+| $O(h^{N+1})$ | orden del método: potencia de $h$ del primer término descartado | **global** |
+
+**Precisión que hay que respetar en U5:** el resto $R_N$ es una igualdad exacta, no una estimación; lo que no se conoce es $\xi$. Se usa como cota reemplazando $f^{(N+1)}(\xi)$ por su máximo en el intervalo.
+
+### U6 · Búsqueda de raíces
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $x^*$ | raíz, $f(x^*) = 0$ | **global** desde acá |
+| $x_k$ | iterado $k$; $x_0$ es **solo** el valor inicial, nunca la raíz | **global** para métodos iterativos |
+| $\varepsilon_k$ | error del iterado, $\varepsilon_k = |x_k - x^*|$ | local |
+| $[a,b]$ | intervalo de un método cerrado | local |
+| $\mathbf{F}$ | función vectorial, en negrita minúscula como todo vector | local, con puente a U2 |
+| $J$ | Jacobiano, $J_{ij} = \partial f_i/\partial x_j$ | **global** (reaparece en U9 y U10) |
+| $f_c$ | factor de fricción del ejemplo conductor de Colebrook | local |
+
+**Precisión que hay que respetar en U6:** el paso vectorial se escribe $J\,\Delta\mathbf{x} = -\mathbf{F}$, como sistema lineal, y **no** $\mathbf{x}_{k+1} = \mathbf{x}_k - J^{-1}\mathbf{F}$: invertir la matriz es justamente lo que la U2 desaconseja.
+
+### U7 a U11 · pendiente de fijar
 
 Al rediseñar cada unidad, completar aquí su notación. Símbolos que ya circulan y conviene
 consolidar: $h$ y $\Delta t$ (paso), $x_i$ (nodos de la malla), $T$ (temperatura, ejemplo
@@ -731,8 +851,8 @@ Copiar esta estructura de celdas al empezar una unidad:
 | 02 Álgebra lineal | rediseñada | sí (condicionamiento) | sí | no |
 | 03 Ajuste de curvas | rediseñada | sí (A1, A2, A3) | sí (¿qué herramienta uso?) | sí |
 | 04 Interpolación | rediseñada (2026-08-19) | sí (A1, A2, A3) | sí | sí |
-| 05 Series de Taylor | pendiente | — | — | — |
-| 06 Búsqueda de raíces | pendiente | — | — | — |
+| 05 Series de Taylor | rediseñada (2026-09-20) | sí (A1, A2) | sí | sí |
+| 06 Búsqueda de raíces | rediseñada (2026-09-20) | sí (A3) | sí | sí |
 | 07 Integración | pendiente | — | — | — |
 | 08 Derivación numérica | pendiente | — | — | — |
 | 09 EDO valor inicial | pendiente | — | — | — |
@@ -750,9 +870,21 @@ Copiar esta estructura de celdas al empezar una unidad:
   más visible es el de la animación A1 en U3 ("mueve $a_0$ y $a_1$"). Corregir al pasar por
   cada capítulo, sin abrir una campaña.
 - Los puentes hacia adelante que faltan escribir, en orden de prioridad:
-  U5 → U6 (Newton-Raphson como Taylor truncado), U2 → U10 y U11 (la matriz tridiagonal que
-  vuelve), U6 → U9 (Euler implícito como ecuación no lineal por paso).
-  *(U4 → U7 y U8 quedó escrito el 2026-08-19.)*
+  U2 → U10 y U11 (la matriz tridiagonal que vuelve), U7 → U9 (RK como cuadratura del paso).
+  *(U4 → U7 y U8 quedó escrito el 2026-08-19; U5 → U6, U7, U8 y U9, y U6 → U9, U10 y U11,
+  quedaron escritos el 2026-09-20.)*
+- Las Unidades 5 y 6 adoptaron el CSS compartido de `03-Ajuste_de_curvas/` el 2026-09-20.
+  Antes no escalaban imágenes en RISE, así que los anchos de sus figuras se bajaron
+  (U5: `pendulo.png` 330 · U6: 350→300 y 400→380). **Falta verificarlos en el proyector.**
+- La U5 quedó en 69 celdas, bajo el rango cómodo de 90-130. Es deliberado: es una unidad
+  bisagra, no una unidad de métodos.
+- `06-Root-finding/images/newton_raphson_good.gif` y `newton_raphson_bad.gif` quedaron sin
+  uso al reemplazarlos por la animación A3. No se borraron.
+- Corte C3 de la U6 pendiente de decisión: comprimir el volcado de la firma de `root_scalar`.
+- **2026-09-21:** el CSS compartido escala las animaciones en RISE (`--rise-anim-scale`,
+  `--rise-anim-max`, ver §8.1.1) y las diez animaciones del curso pasaron a medir el ancho
+  del SVG con `clientWidth`. Afecta a U2, U3, U4, U5 y U6. Respaldos con fecha en cada
+  `backup/`. **Falta confirmarlo en el proyector**; si queda chica, subir `--rise-anim-scale`.
 - La U4 conserva su propio `04-Interpolacion.css`, más liviano que el compartido por U2 y U3.
   Unificarlo cambiaría el escalado de las figuras ya calibradas para el proyector: decisión
   pendiente del usuario.

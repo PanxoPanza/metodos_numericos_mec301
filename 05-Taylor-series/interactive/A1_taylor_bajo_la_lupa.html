@@ -1,0 +1,224 @@
+<meta charset="utf-8">
+<style>
+#tay-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+#tay-app *{box-sizing:border-box}
+#tay-app .tay-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#tay-app .tay-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#tay-app .tay-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#tay-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em}
+#tay-app .tay-ctrl{margin:0.5em 0}
+#tay-app .tay-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#tay-app .tay-val{color:var(--acento);font-weight:600}
+#tay-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#tay-app .tay-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.35em 0 0.6em}
+#tay-app .tay-btns button{font:inherit;font-size:0.86em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:var(--tinta)}
+#tay-app .tay-btns button.tay-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#tay-app table.tay-t{width:100%;border-collapse:collapse;margin-top:0.3em}
+#tay-app table.tay-t td{padding:0.22em 0.3em;border-bottom:1px solid var(--linea)}
+#tay-app table.tay-t td.tay-num{text-align:right;font-variant-numeric:tabular-nums}
+#tay-app .tay-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.5em}
+#tay-app .tay-ok{background:#e3f4e8;color:var(--verde)}
+#tay-app .tay-bad{background:#fbe4e4;color:#a11}
+#tay-app .tay-ley{font-size:0.82em;color:var(--suave);margin-top:0.35em;text-align:center}
+#tay-app .tay-hint{font-size:0.8em;color:var(--suave)}
+</style>
+
+<div id="tay-app">
+  <div class="tay-wrap">
+    <div class="tay-izq">
+      <svg id="tay-svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="tay-ley">negro: <b>f(x)</b> &nbsp;·&nbsp; rojo: polinomio de Taylor <b>p<sub>N</sub>(x)</b>
+      &nbsp;·&nbsp; arrastremos el punto azul</div>
+    </div>
+    <div class="tay-der">
+      <div class="tay-btns" id="tay-fbtns"></div>
+      <div class="tay-ctrl">
+        <label>orden de la serie &nbsp; N = <span class="tay-val" id="tay-nv">3</span></label>
+        <input type="range" id="tay-n" min="0" max="12" step="1" value="3">
+      </div>
+      <div class="tay-ctrl">
+        <label>punto de expansión &nbsp; a = <span class="tay-val" id="tay-av">0.00</span></label>
+        <input type="range" id="tay-a" min="-3" max="3" step="0.05" value="0">
+      </div>
+      <table class="tay-t">
+        <tr><td>x</td><td class="tay-num" id="tay-x">1.000</td></tr>
+        <tr><td>f(x)</td><td class="tay-num" id="tay-fx">–</td></tr>
+        <tr><td>p<sub>N</sub>(x)</td><td class="tay-num" id="tay-px">–</td></tr>
+        <tr><td>error |f − p<sub>N</sub>|</td><td class="tay-num" id="tay-er">–</td></tr>
+        <tr><td>cota |R<sub>N</sub>|</td><td class="tay-num" id="tay-ct">–</td></tr>
+      </table>
+      <span class="tay-badge" id="tay-bd">–</span>
+      <div class="tay-hint" id="tay-hint"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const app=document.getElementById('tay-app'), svg=document.getElementById('tay-svg');
+  const NS='http://www.w3.org/2000/svg', VB=640, VH=400;
+
+  const fact=n=>{let r=1;for(let i=2;i<=n;i++)r*=i;return r;};
+
+  // cada función: f, derivada n-ésima en a, cota de |f^(N+1)| en [lo,hi], dominios
+  const FS={
+    sin:{nom:'sin(x)', f:x=>Math.sin(x), d:(n,a)=>Math.sin(a+n*Math.PI/2),
+         M:(n,lo,hi)=>1, xr:[-6.5,6.5], ar:[-3,3], yr:[-2.2,2.2], xd:1.0, ok:()=>true},
+    exp:{nom:'e^x', f:x=>Math.exp(x), d:(n,a)=>Math.exp(a),
+         M:(n,lo,hi)=>Math.exp(hi), xr:[-3,3], ar:[-2,2], yr:[-1,12], xd:1.5, ok:()=>true},
+    log:{nom:'ln(1+x)', f:x=>Math.log(1+x), d:(n,a)=>n===0?Math.log(1+a):
+           Math.pow(-1,n-1)*fact(n-1)/Math.pow(1+a,n),
+         M:(n,lo,hi)=>fact(n-1)/Math.pow(1+lo,n), xr:[-0.85,5], ar:[-0.5,3],
+         yr:[-2.6,2.2], xd:1.5, ok:x=>x>-1},
+    geo:{nom:'1/(1−x)', f:x=>1/(1-x), d:(n,a)=>fact(n)/Math.pow(1-a,n+1),
+         M:(n,lo,hi)=>fact(n)/Math.pow(Math.min(Math.abs(1-lo),Math.abs(1-hi)),n+1),
+         xr:[-2,2.4], ar:[-1.5,0.8], yr:[-6,10], xd:1.2, ok:x=>Math.abs(x-1)>1e-9}
+  };
+
+  let key='sin', N=3, a=0, xe=1;
+
+  const el=i=>document.getElementById(i);
+  const bdiv=el('tay-fbtns');
+  Object.keys(FS).forEach(k=>{
+    const b=document.createElement('button'); b.textContent=FS[k].nom; b.dataset.k=k;
+    b.onclick=()=>{key=k; const F=FS[k];
+      a=Math.min(Math.max(a,F.ar[0]),F.ar[1]);
+      xe=F.xd;
+      el('tay-a').min=F.ar[0]; el('tay-a').max=F.ar[1]; el('tay-a').value=a;
+      draw();};
+    bdiv.appendChild(b);
+  });
+
+  function poly(x){ const F=FS[key]; let s=0;
+    for(let n=0;n<=N;n++) s+=F.d(n,a)/fact(n)*Math.pow(x-a,n);
+    return s; }
+
+  function cota(){ const F=FS[key];
+    const lo=Math.min(a,xe), hi=Math.max(a,xe);
+    let M; try{ M=F.M(N+1,lo,hi);}catch(e){ M=NaN; }
+    return Math.abs(M)/fact(N+1)*Math.pow(Math.abs(xe-a),N+1); }
+
+  function mk(t,at){ const e=document.createElementNS(NS,t);
+    for(const k in at) e.setAttribute(k,at[k]); return e; }
+
+  let drag=false;
+
+  function draw(){
+    const F=FS[key];
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc, fE=15*esc;
+    const ml=Math.max(52,3.6*fT), mb=Math.max(42,3.2*fT), mt=14, mr=16;
+    const W=VB-ml-mr, H=VH-mt-mb;
+    const [x0,x1]=F.xr, [y0,y1]=F.yr;
+    const X=x=>ml+(x-x0)/(x1-x0)*W, Y=y=>mt+(y1-y)/(y1-y0)*H;
+    const iX=px=>x0+(px-ml)/W*(x1-x0);
+
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',
+      stroke:'#d8dee4','stroke-width':1}));
+
+    // grilla + ejes
+    for(let i=0;i<=6;i++){
+      const xv=x0+(x1-x0)*i/6, yv=y0+(y1-y0)*i/6;
+      svg.appendChild(mk('line',{x1:X(xv),y1:mt,x2:X(xv),y2:mt+H,stroke:'#eef1f4'}));
+      svg.appendChild(mk('line',{x1:ml,y1:Y(yv),x2:ml+W,y2:Y(yv),stroke:'#eef1f4'}));
+      const anc=i===0?'start':(i===6?'end':'middle');
+      let t=mk('text',{x:X(xv),y:mt+H+fT*1.25,'text-anchor':anc,'font-size':fT,fill:'#5d6b78'});
+      t.textContent=xv.toFixed(1); svg.appendChild(t);
+      t=mk('text',{x:ml-fT*0.5,y:Y(yv)+fT*0.36,'text-anchor':'end','font-size':fT,fill:'#5d6b78'});
+      t.textContent=yv.toFixed(1); svg.appendChild(t);
+    }
+    if(y0<0&&y1>0) svg.appendChild(mk('line',{x1:ml,y1:Y(0),x2:ml+W,y2:Y(0),stroke:'#b9c2cb'}));
+    let lx=mk('text',{x:ml+W/2,y:VH-mb*0.18,'text-anchor':'middle','font-size':fE,fill:'#1a2733'});
+    lx.textContent='x'; svg.appendChild(lx);
+
+    // curvas
+    const m=0.5*(y1-y0);                       // margen antes de cortar la curva
+    const dentro=v=>isFinite(v)&&v>y0-m&&v<y1+m;
+    const clip=y=>Math.min(Math.max(y,y0-m),y1+m);
+    let dF='', dP='', okF=false, okP=false;
+    for(let i=0;i<=400;i++){
+      const x=x0+(x1-x0)*i/400;
+      const yf=F.ok(x)?F.f(x):NaN, yp=poly(x);
+      if(dentro(yf)){ dF+=(okF?'L':'M')+X(x).toFixed(1)+' '+Y(clip(yf)).toFixed(1)+' '; okF=true; }
+      else okF=false;                          // asíntota: cortamos el trazo
+      if(dentro(yp)){ dP+=(okP?'L':'M')+X(x).toFixed(1)+' '+Y(clip(yp)).toFixed(1)+' '; okP=true; }
+      else okP=false;
+    }
+    svg.appendChild(mk('path',{d:dP,fill:'none',stroke:'#d62728','stroke-width':2.2}));
+    svg.appendChild(mk('path',{d:dF,fill:'none',stroke:'#1a2733','stroke-width':2.6}));
+
+    // punto de expansion
+    svg.appendChild(mk('line',{x1:X(a),y1:mt,x2:X(a),y2:mt+H,
+      stroke:'#5d6b78','stroke-width':1.2,'stroke-dasharray':'5 4'}));
+    let ta=mk('text',{x:X(a),y:mt+fT*1.6,'text-anchor':'middle','font-size':fT,fill:'#5d6b78'});
+    ta.textContent='a'; svg.appendChild(ta);
+
+    // punto de evaluacion
+    const yf=F.ok(xe)?F.f(xe):NaN, yp=poly(xe);
+    if(isFinite(yf)&&Math.abs(yf)<1e4)
+      svg.appendChild(mk('line',{x1:X(xe),y1:Y(clip(yf)),x2:X(xe),y2:Y(clip(yp)),
+        stroke:'#00afd8','stroke-width':2.4}));
+    svg.appendChild(mk('circle',{cx:X(xe),cy:Y(clip(yp)),r:5.2,fill:'#d62728'}));
+    svg.appendChild(mk('circle',{cx:X(xe),cy:Y(clip(isFinite(yf)?yf:y0)),r:6.4,
+      fill:'#00afd8',stroke:'#fff','stroke-width':1.6,style:'cursor:ew-resize'}));
+
+    // capa de arrastre
+    const hit=mk('rect',{x:ml,y:mt,width:W,height:H,fill:'transparent',style:'cursor:ew-resize'});
+    const move=ev=>{
+      const r=svg.getBoundingClientRect();
+      const px=( (ev.touches?ev.touches[0].clientX:ev.clientX) - r.left )*(VB/r.width);
+      xe=Math.min(Math.max(iX(px),x0),x1); draw();
+    };
+    hit.addEventListener('pointerdown',e=>{drag=true;hit.setPointerCapture(e.pointerId);move(e);});
+    hit.addEventListener('pointermove',e=>{if(drag)move(e);});
+    hit.addEventListener('pointerup',()=>{drag=false;});
+    hit.addEventListener('pointercancel',()=>{drag=false;});
+    svg.appendChild(hit);
+
+    // panel
+    const err=Math.abs(yf-yp), ct=cota();
+    const fmt=v=>!isFinite(v)?'–':(Math.abs(v)>=1e4||(Math.abs(v)<1e-3&&v!==0)?v.toExponential(2):v.toFixed(4));
+    el('tay-x').textContent=xe.toFixed(3);
+    el('tay-fx').textContent=fmt(yf);
+    el('tay-px').textContent=fmt(yp);
+    el('tay-er').textContent=fmt(err);
+    el('tay-ct').textContent=fmt(ct);
+    el('tay-nv').textContent=N;
+    el('tay-av').textContent=a.toFixed(2);
+    [...bdiv.children].forEach(b=>b.classList.toggle('tay-on',b.dataset.k===key));
+
+    const bd=el('tay-bd'), hint=el('tay-hint');
+    const R=(key==='geo')?Math.abs(1-a):(key==='log'?Math.abs(1+a):Infinity);
+    if(Math.abs(xe-a)>=R-1e-12){
+      bd.textContent='fuera del radio de convergencia';
+      bd.className='tay-badge tay-bad';
+      hint.textContent='Acá subir N empeora el resultado: la serie diverge.';
+    }else{
+      bd.textContent='la serie converge en este punto';
+      bd.className='tay-badge tay-ok';
+      hint.textContent=isFinite(R)?('radio de convergencia: |x − a| < '+R.toFixed(2)):'';
+    }
+  }
+
+  el('tay-n').addEventListener('input',e=>{N=+e.target.value;draw();});
+  el('tay-a').addEventListener('input',e=>{a=+e.target.value;draw();});
+
+  let prevW=0;
+  new ResizeObserver(en=>{
+    const w=en[0].contentRect.width;
+    if(Math.abs(w-prevW)<1) return;
+    prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px';
+    draw();
+  }).observe(app);
+
+  draw();
+})();
+</script>

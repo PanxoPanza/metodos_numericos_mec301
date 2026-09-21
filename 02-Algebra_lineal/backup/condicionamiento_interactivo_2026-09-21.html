@@ -114,7 +114,7 @@
 
     // unidades de viewBox por pixel en pantalla: mantiene el texto del gráfico
     // con el mismo tamaño aparente, se despliegue donde se despliegue
-    var anchoSVG = S.clientWidth || S.getBoundingClientRect().width || 415;
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 415;
     var esc = W/anchoSVG;
     var fT  = Math.round(13*esc);            // rótulos de los ejes
     var fE  = Math.round(15*esc);            // nombres x1 y x2

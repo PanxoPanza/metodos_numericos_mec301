@@ -101,47 +101,6 @@ body.rise-enabled .jp-RenderedImage {
     justify-content: center;
 }
 
-/* ---------- animaciones interactivas (salida HTML de una celda) ----------
-   Cada animación fija su tipografía con un ResizeObserver sobre su propio ancho
-   (base = ancho/50, con tope de 17 px). Ese tope está pensado para el notebook;
-   en la diapositiva, donde RISE agranda texto y figuras, la animación queda
-   chica en comparación.
-
-   Se escala con zoom y no con font-size por dos razones: el font-size de la raíz
-   lo escribe el propio JS como estilo inline y una regla de hoja no le gana, y
-   el zoom arrastra además el SVG, los controles y las tablas de lectura.
-
-   Los ids de las animaciones terminan todos en "-app" (cnd, cdr, dgr, sbr, rng,
-   trm, air, tay, err, rai), que es el contrato de la sección 8 de GUIA_FORMATO.md,
-   y la regla se limita a los que cuelgan de la salida de una celda.
-
-   --rise-anim-scale es la perilla: subirla si en el proyector se sigue viendo
-   chica. --rise-anim-max se deja en el ancho de diseño de las animaciones
-   (~800 px) para que el zoom las agrande sin reacomodar el layout: si se sube,
-   la columna del gráfico se queda en su tope y todo el ancho extra se lo lleva
-   el panel de lecturas. El tope se divide por la escala para que el resultado
-   final respete el ancho de la diapositiva y no aparezca scroll horizontal. */
-
-body.rise-enabled {
-    --rise-anim-scale: 1.45;
-    --rise-anim-max: 820px;
-}
-
-/* OJO: la regla va acotada a la salida de una celda. Un selector suelto
-   div[id$="-app"] también calza con #ipython-main-app, que es el contenedor de
-   TODO el notebook en Jupyter clásico: aplicarle el zoom agranda la página
-   entera y el max-width la deja en una columna angosta. */
-
-body.rise-enabled div.output_area div[id$="-app"],
-body.rise-enabled div.output_subarea div[id$="-app"],
-body.rise-enabled .jp-OutputArea-output div[id$="-app"] {
-    zoom: var(--rise-anim-scale);
-    max-width: min(var(--rise-anim-max),
-                   calc(94vw / var(--rise-anim-scale))) !important;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .reveal blockquote {
 border-left: 10px solid #ccc;
 margin: 1.5em 10px;

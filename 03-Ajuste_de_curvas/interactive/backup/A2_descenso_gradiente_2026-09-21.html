@@ -126,7 +126,7 @@
   var Rinv = raizInv();
 
   function dibuja(){
-    var anchoSVG = S.clientWidth || S.getBoundingClientRect().width || 500;
+    var anchoSVG = S.getBoundingClientRect().width || S.clientWidth || 500;
     var esc = W/anchoSVG;
     var fT = Math.round(12*esc), fE = Math.round(14*esc);
     var ml = Math.max(44, 3.4*fT), mb = Math.max(40, 3.2*fT);
