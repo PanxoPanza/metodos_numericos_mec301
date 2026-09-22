@@ -3,7 +3,7 @@
 numbering:
   title: false
 ---
-# Bienvenidos al curso
+# MEC301 - Métodos Numéricos
 
 El propósito de este curso es profundizar en los métodos numéricos más utilizados en la 
 ingeniería, específicamente en áreas como la mecánica clásica, mecánica de sólidos, y 
