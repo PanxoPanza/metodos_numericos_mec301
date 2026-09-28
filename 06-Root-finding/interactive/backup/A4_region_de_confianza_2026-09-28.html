@@ -4,13 +4,6 @@
   font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
   --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
   --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
-/* Texto fuera del SVG en el tema oscuro del libro web. El gráfico mismo queda
-   siempre sobre fondo blanco, así que solo se adaptan la leyenda y el panel. */
-html[data-theme="dark"] #reg-app,
-body[data-jp-theme-light="false"] #reg-app{--tinta:#ccd6e0;--suave:#9fb0be}
-@media (prefers-color-scheme:dark){
-  html[data-theme="auto"] #reg-app{--tinta:#ccd6e0;--suave:#9fb0be}
-}
 #reg-app *{box-sizing:border-box}
 #reg-app .reg-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
 #reg-app .reg-izq{flex:3 1 264px;min-width:0;max-width:448px}
@@ -23,12 +16,12 @@ body[data-jp-theme-light="false"] #reg-app{--tinta:#ccd6e0;--suave:#9fb0be}
 #reg-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
 #reg-app .reg-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.35em 0 0.5em}
 #reg-app .reg-btns button{font:inherit;font-size:0.8em;padding:0.3em 0.2em;cursor:pointer;
-  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:var(--tinta)}
 #reg-app .reg-btns button.reg-on{background:var(--acento);border-color:var(--acento);color:#fff}
 #reg-app .reg-run{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.3em;margin:0.5em 0}
 #reg-app .reg-run button{font:inherit;font-size:0.85em;padding:0.35em 0.2em;cursor:pointer;
   border:1px solid var(--acento);border-radius:0.4em;background:var(--acento);color:#fff;font-weight:600}
-#reg-app .reg-run button.reg-sec{background:#fff;color:#1a2733;border-color:var(--linea);font-weight:400}
+#reg-app .reg-run button.reg-sec{background:#fff;color:var(--tinta);border-color:var(--linea);font-weight:400}
 #reg-app table.reg-t{width:100%;border-collapse:collapse;margin-top:0.35em}
 #reg-app table.reg-t td{padding:0.2em 0.3em;border-bottom:1px solid var(--linea)}
 #reg-app table.reg-t td.reg-num{text-align:right;font-variant-numeric:tabular-nums}

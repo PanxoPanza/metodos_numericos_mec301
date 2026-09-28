@@ -117,3 +117,19 @@ Respaldo previo en `backup/06-Root-finding_2026-09-21d.ipynb` y `interactive/bac
 **Mapa de color en `A4_region_de_confianza.html`.** Las curvas de nivel en un solo tono se leían como una imagen plana: no se veía hacia dónde desciende $|\mathbf{F}|^2$. Ahora el fondo es un mapa de ocho bandas de color con barra de escala rotulada a la derecha del gráfico, claro en el fondo del valle y oscuro lejos de la raíz, con las curvas de nivel encima para tapar el pixelado de las bandas. El canal pálido que cruza el mapa es el valle, y ahí se ve de inmediato por qué el paso de Newton completo se dispara fuera de él.
 
 **Implementación del mapa.** La malla subió de 72×72 a 120×120 y se evalúa una sola vez por redibujo, compartida entre el relleno y las curvas de nivel (antes cada nivel reevaluaba $\phi$ en toda la malla). El relleno es una ruta por banda, fusionando celdas vecinas de la misma banda dentro de cada fila: 8 nodos SVG y unas 1800 subrutas en vez de 14 400 rectángulos. Como el campo solo depende de la ventana, el resultado se cachea y al iterar no se recalcula nada. La ventana se corrió a $x$ centrado en 0.52 porque la barra de color le quita ancho al gráfico y el preajuste $(-1.2,\,1.0)$ quedaba fuera; verificado a 415, 640 y 900 px de ancho que los cuatro preajustes caen dentro y que la escala sigue siendo isotrópica (130.6 px por unidad en ambos ejes a 640 px).
+
+## Tangente de Newton, leyenda y tema oscuro (2026-09-28)
+
+Respaldos en `interactive/backup/A3_biseccion_vs_newton_2026-09-28.html` y `A4_region_de_confianza_2026-09-28.html`. El notebook no se tocó.
+
+**La tangente no pasaba por el iterado (`A3`).** La recta se evaluaba en los dos bordes del gráfico y el valor se acotaba al rango visible con `cl()`. Eso mueve los extremos en vertical sin mover su $x$, así que la recta dibujada tenía otra pendiente. Medido sobre la versión anterior: en 70 de 85 estados (cuatro preajustes × cinco puntos de partida × seis iteraciones) el punto rojo quedaba fuera de su propia tangente, con desvíos de hasta 53 px en un gráfico de 640 de ancho. Ahora la tangente se recorta analíticamente en $x$ —se resuelve dónde cruza el piso y el techo del marco y se dibuja entre esos dos $x$— y la capa de datos va dentro de un `<clipPath>`. En los mismos 85 estados el desvío quedó bajo 0.6 px.
+
+El mismo `cl()` afectaba al punto medio de la bisección, que podía quedar pegado al borde en vez de sobre la curva, y hacía que la curva dibujara tramos planos falsos al tocar el techo del marco. Los dos se corrigieron con el mismo recorte por área.
+
+**Radios.** Punto de Newton 5.6 → 8.4, punto medio de la bisección 5.4 → 8.1, un 50 % más. La raíz queda en 6, sin cambio.
+
+**Leyenda en `A3`.** La nota en prosa bajo el gráfico se reemplazó por una leyenda de cinco entradas con muestras: banda del intervalo, punto medio, tangente, iterado de Newton y raíz. Los puntos se dibujan como círculos CSS con borde blanco y un anillo gris, para que se lean igual sobre fondo claro y oscuro.
+
+**Tema oscuro del libro web (`A3` y `A4`).** El SVG siempre va sobre fondo blanco, pero la leyenda, la nota al pie y el panel de lecturas quedan sobre el fondo de la página. Con tinta fija eran texto invisible en el tema oscuro de Jupyter Book. Ahora `--tinta` y `--suave` se redefinen bajo `html[data-theme="dark"]`, `body[data-jp-theme-light="false"]` y `prefers-color-scheme` con `data-theme="auto"`. Los botones, que llevan `background:#fff` propio, pasaron a color literal para no volverse blanco sobre blanco. En RISE no existe `data-theme`, así que el tema claro queda idéntico.
+
+**Pendiente.** Las otras ocho animaciones del libro (tres en U3, tres en U4, dos en U5) tienen el mismo problema de tinta fija en el tema oscuro. El arreglo es el mismo bloque de seis líneas de CSS por archivo, cambiando el prefijo y el nombre de la variable (`--cdr-tinta` en U3, `--rng-tinta` en U4).

@@ -534,6 +534,30 @@ ampliar si el contenido lo pide.
   cualquier elemento lateral (una barra de color, un eje secundario): le quita ancho al
   gráfico, encoge el rango en $x$ y puede dejar un preajuste fuera del marco. **Reverificar
   los preajustes después de tocar los márgenes.**
+- **Nunca recortar una recta clampeando sus extremos en $y$.** Es el error más fácil de
+  cometer al dibujar una tangente, una asíntota o una secante: se evalúa la recta en los dos
+  bordes del gráfico y se acota el valor al rango visible. Eso mueve los extremos en
+  vertical sin mover su $x$, así que la recta dibujada tiene **otra pendiente** y deja de
+  pasar por el punto que debía tocar. Dos salidas correctas: recortar analíticamente en $x$
+  (resolver dónde la recta cruza `lo` y `hi` y dibujar entre esos $x$), o encerrar la capa de
+  datos en un `<clipPath>` con el rectángulo del área útil. Lo mismo vale para los puntos:
+  un marcador con la $y$ acotada queda pegado al borde y fuera de su curva. Referencia viva:
+  `06-Root-finding/interactive/A3_biseccion_vs_newton.html`.
+- **Texto que se adapta al tema del libro web.** El SVG siempre va sobre fondo blanco, pero
+  la leyenda, la nota al pie y el panel de lecturas quedan sobre el fondo de la página, que
+  en el tema oscuro de Jupyter Book es oscuro. Tinta fija ahí es texto invisible. Se resuelve
+  redefiniendo las variables de color, no las reglas:
+  ```css
+  html[data-theme="dark"] #xxx-app,
+  body[data-jp-theme-light="false"] #xxx-app{--tinta:#ccd6e0;--suave:#9fb0be}
+  @media (prefers-color-scheme:dark){
+    html[data-theme="auto"] #xxx-app{--tinta:#ccd6e0;--suave:#9fb0be}
+  }
+  ```
+  **Cuidado con lo que tiene fondo propio fijo:** los botones llevan `background:#fff`, así
+  que su texto no puede seguir a `--tinta` o se vuelve blanco sobre blanco. Ahí va el color
+  literal. En RISE y en el notebook clásico no existe `data-theme`, así que el tema claro
+  queda intacto.
 - **Subíndices:** `<sub>` en HTML, `<tspan baseline-shift="sub">` en SVG. **No usar** los
   caracteres Unicode `ᵣ`/`ᵢ` en texto corrido: varias fuentes los dibujan como coma.
 
