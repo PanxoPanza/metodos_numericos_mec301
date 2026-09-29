@@ -573,7 +573,15 @@ HTML(Path('interactive/A1_cazador_de_rectas.html').read_text(encoding='utf-8'))
 ```
 
 Los dos `import` van en la celda de librerías del capítulo; en las animaciones siguientes
-basta la línea `HTML(...)`. Un archivo suelto junto al notebook si es una sola animación;
+basta la línea `HTML(...)`.
+
+**El libro web muestra la salida guardada del notebook, no el archivo HTML.** MyST no
+re-ejecuta las celdas al construir: sirve el `text/html` que quedó grabado en el `.ipynb`.
+Editar un `interactive/*.html` no cambia nada en la web hasta que se re-ejecuta la celda,
+se guarda el notebook **y se commitea el notebook**. Commitear solo el `.html` deja el
+repositorio con la animación nueva y el sitio con la vieja, que es un estado difícil de
+diagnosticar porque en GitHub el archivo se ve actualizado. Orden correcto: editar el HTML
+→ re-ejecutar la celda → guardar el notebook → `git add` del `.ipynb` **y** del `.html`. Un archivo suelto junto al notebook si es una sola animación;
 subcarpeta `interactive/` con nombres `A1_`, `A2_`, `A3_` si son varias.
 
 ### 8.4 El enunciado importa tanto como la animación
