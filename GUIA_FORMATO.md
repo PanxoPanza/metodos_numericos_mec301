@@ -220,6 +220,11 @@ Registro de lo que ya existe en el material, para no duplicarlo ni contradecirlo
 | U6 §Secante | U8, U5 | la diferencia dividida es derivación numérica, con su mismo compromiso de error |
 | U6 §Newton vectorial | U2 | $J\,\Delta\mathbf{x}=-\mathbf{F}$ es un sistema lineal por iteración |
 | U6 §Resumen | U9, U10, U11 | paso implícito, método de disparo, EDP no lineal |
+| U7 §Introducción | U4, U5 | integrar el interpolante $p_n$; Taylor fija el error |
+
+**Nota (2026-10-04):** los puentes U4 §Newton y Lagrange → U7 y U5 §La forma en paso $h$ → U7 ya no
+están en esos notebooks (se recortaron en la revisión del usuario). La U7 hace sus propios puentes
+hacia atrás en la Introducción.
 
 **Puentes pendientes de escribir** (unidades aún no rediseñadas): ver Anexo C.
 
@@ -730,8 +735,11 @@ Lo que hace que el material funcione, más allá del formato:
 
 Textos base del curso (`referencias/` en la carpeta del curso):
 
-- Chapra S., Canale R. *Métodos Numéricos para Ingenieros*, 6ta Ed., McGraw Hill, 2011 —
+- Chapra S., Canale R. *Métodos Numéricos para Ingenieros*, 7ma Ed., McGraw Hill, 2015 —
   texto base en español.
+  **Toda referencia a Chapra en el material publicado sigue esta edición** (capítulos, secciones, ejemplos y
+  problemas), porque es la que los estudiantes tienen en biblioteca. El libro de MATLAB es de uso personal del
+  profesor y no se cita en clase. Hay unidades anteriores (por ejemplo la U6) que todavía citan la 6ta Ed.
 - Chapra S. *Applied Numerical Methods with MATLAB for Engineers*, 3rd Ed., McGraw Hill.
 - Press W. H., Teukolsky S. A., Vetterling W. T., Flannery B. P. *Numerical Recipes: The
   Art of Scientific Computing*, 3rd Ed., Cambridge University Press, 2007 — fundamento
@@ -845,7 +853,19 @@ conviene decirlo explícitamente.
 
 **Precisión que hay que respetar en U6:** el paso vectorial se escribe $J\,\Delta\mathbf{x} = -\mathbf{F}$, como sistema lineal, y **no** $\mathbf{x}_{k+1} = \mathbf{x}_k - J^{-1}\mathbf{F}$: invertir la matriz es justamente lo que la U2 desaconseja.
 
-### U7 a U11 · pendiente de fijar
+### U7 · Integración numérica
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $I$, $I(h)$, $E(h)$ | integral exacta, estimación con paso $h$ y su error (notación de Chapra) | local |
+| $n$, $h=(b-a)/n$ | número de subintervalos y paso | $h$ global |
+| $p_n(x)$, $L_i(x)$ | interpolante y base de Lagrange | heredado de U4 |
+| $x_i$, $c_i$ | nodos y pesos de Gauss en $x\in[-1,1]$ (como en la Tabla 1 del capítulo) | local |
+| $t\in[a,b]$ | variable original en el cambio de variable de Gauss, $t=\frac{b+a}{2}+\frac{b-a}{2}x$ | local, solo en esa sección |
+| $I_1$, $I_2$ | dos estimaciones del mismo subintervalo (Simpson con $h$ y $h/2$) | local |
+| $G_{10}$, $K_{21}$ | estimaciones de Gauss y Kronrod que usa `quad` | local |
+
+### U8 a U11 · pendiente de fijar
 
 Al rediseñar cada unidad, completar aquí su notación. Símbolos que ya circulan y conviene
 consolidar: $h$ y $\Delta t$ (paso), $x_i$ (nodos de la malla), $T$ (temperatura, ejemplo
@@ -885,7 +905,7 @@ Copiar esta estructura de celdas al empezar una unidad:
 | 04 Interpolación | rediseñada (2026-08-19) | sí (A1, A2, A3) | sí | sí |
 | 05 Series de Taylor | rediseñada (2026-09-20) | sí (A1, A2) | sí | sí |
 | 06 Búsqueda de raíces | rediseñada (2026-09-20) | sí (A3) | sí | sí |
-| 07 Integración | pendiente | — | — | — |
+| 07 Integración | rediseñada (2026-10-04) | sí (A1, A2) | sí | no |
 | 08 Derivación numérica | pendiente | — | — | — |
 | 09 EDO valor inicial | pendiente | — | — | — |
 | 10 EDO valor de frontera | pendiente | — | — | — |
@@ -902,7 +922,7 @@ Copiar esta estructura de celdas al empezar una unidad:
   más visible es el de la animación A1 en U3 ("mueve $a_0$ y $a_1$"). Corregir al pasar por
   cada capítulo, sin abrir una campaña.
 - Los puentes hacia adelante que faltan escribir, en orden de prioridad:
-  U2 → U10 y U11 (la matriz tridiagonal que vuelve), U7 → U9 (RK como cuadratura del paso).
+  U2 → U10 y U11 (la matriz tridiagonal que vuelve), U7 → U9 (RK como cuadratura del paso; el usuario retiró el puente escrito el 2026-10-04).
   *(U4 → U7 y U8 quedó escrito el 2026-08-19; U5 → U6, U7, U8 y U9, y U6 → U9, U10 y U11,
   quedaron escritos el 2026-09-20.)*
 - Las Unidades 5 y 6 adoptaron el CSS compartido de `03-Ajuste_de_curvas/` el 2026-09-20.
@@ -920,3 +940,7 @@ Copiar esta estructura de celdas al empezar una unidad:
 - La U4 conserva su propio `04-Interpolacion.css`, más liviano que el compartido por U2 y U3.
   Unificarlo cambiaría el escalado de las figuras ya calibradas para el proyector: decisión
   pendiente del usuario.
+- **2026-10-04:** la U7 adoptó el CSS compartido de `03-Ajuste_de_curvas/`. `07-Integracion/images/adaptive_quadrature.png`
+  quedó sin uso al reemplazarlo por la animación A1. No se borró.
+- **2026-10-05:** en la U7 el error de truncamiento se escribe solo como $O(h^n)$, sin fórmulas en términos de
+  derivadas de $f$ (criterio del usuario: si la función no se conoce, una fórmula con $f''$ no tiene uso práctico).

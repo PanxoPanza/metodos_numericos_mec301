@@ -1,0 +1,321 @@
+<meta charset="utf-8">
+<style>
+#qad-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+html[data-theme="dark"] #qad-app,
+body[data-jp-theme-light="false"] #qad-app{--tinta:#ccd6e0;--suave:#9fb0be}
+@media (prefers-color-scheme:dark){
+  html[data-theme="auto"] #qad-app{--tinta:#ccd6e0;--suave:#9fb0be}
+}
+#qad-app *{box-sizing:border-box}
+#qad-app .qad-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#qad-app .qad-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#qad-app .qad-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#qad-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em}
+#qad-app .qad-ctrl{margin:0.5em 0}
+#qad-app .qad-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#qad-app .qad-val{color:var(--acento);font-weight:600}
+#qad-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#qad-app .qad-tit{font-size:0.86em;color:var(--suave);margin:0.45em 0 0.1em}
+#qad-app .qad-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.3em;margin:0.2em 0 0.35em}
+#qad-app .qad-btns.qad-dos{grid-template-columns:repeat(2,1fr)}
+#qad-app .qad-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+#qad-app .qad-btns button.qad-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#qad-app .qad-run{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:0.3em;margin:0.5em 0}
+#qad-app .qad-run button{font:inherit;font-size:0.85em;padding:0.35em 0.2em;cursor:pointer;
+  border:1px solid var(--acento);border-radius:0.4em;background:var(--acento);color:#fff;font-weight:600}
+#qad-app .qad-run button.qad-sec{background:#fff;color:#1a2733;border-color:var(--linea);font-weight:400}
+#qad-app table.qad-t{width:100%;border-collapse:collapse;margin-top:0.3em;font-size:0.95em}
+#qad-app table.qad-t td{padding:0.18em 0.3em;border-bottom:1px solid #eef1f4}
+#qad-app table.qad-t td.qad-num{text-align:right;font-variant-numeric:tabular-nums}
+#qad-app .qad-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#qad-app .qad-ok{background:#e3f4e8;color:var(--verde)}
+#qad-app .qad-amb{background:#fdf3dd;color:#8a6100}
+#qad-app .qad-cmp{font-size:0.88em;color:var(--suave);margin-top:0.45em}
+#qad-app .qad-leg{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:0.3em 0.9em;margin-top:0.5em;font-size:0.84em;color:var(--tinta)}
+#qad-app .qad-leg > span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+#qad-app .qad-sw{display:inline-block;width:2.2em;height:0}
+#qad-app .qad-swc{border-top:2.4px solid #1a2733}
+#qad-app .qad-swr{width:0;height:0.9em;border-left:1.6px solid #1f77b4}
+#qad-app .qad-pt{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;
+  border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(128,140,152,0.55);background:#d62728}
+#qad-app .qad-pto{background:#fff;box-shadow:0 0 0 1.5px #1a2733}
+#qad-app .qad-bar{display:inline-block;width:7em;height:0.8em;border-radius:0.2em;
+  border:1px solid rgba(128,140,152,0.55)}
+#qad-app .qad-ley{font-size:0.82em;color:var(--suave);margin-top:0.3em;text-align:center}
+</style>
+
+<div id="qad-app">
+  <div class="qad-wrap">
+    <div class="qad-izq">
+      <svg id="qad-svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="qad-leg">
+        <span><i class="qad-sw qad-swc"></i>f(x)</span>
+        <span><i class="qad-sw qad-swr"></i>evaluación de f</span>
+        <span><i class="qad-pt"></i>evaluaciones nuevas</span>
+        <span><i class="qad-pt qad-pto"></i>valores reutilizados</span>
+        <span>error del subintervalo <span id="qad-lo">10<sup>−14</sup></span>
+          <i class="qad-bar" id="qad-bar"></i><span>10<sup>0</sup></span></span>
+      </div>
+    </div>
+    <div class="qad-der">
+      <div class="qad-tit">regla en cada subintervalo</div>
+      <div class="qad-btns qad-dos" id="qad-rbtns"></div>
+      <div class="qad-tit">función</div>
+      <div class="qad-btns" id="qad-fbtns"></div>
+      <div class="qad-ctrl">
+        <label>tolerancia &nbsp; tol = <span class="qad-val" id="qad-tolv">1e-6</span></label>
+        <input type="range" id="qad-tol" min="-10" max="-2" step="1" value="-6">
+        <div class="qad-cmp" id="qad-crit"></div>
+      </div>
+      <div class="qad-run">
+        <button id="qad-p">paso</button>
+        <button id="qad-c" class="qad-sec">hasta converger</button>
+        <button id="qad-r" class="qad-sec">reiniciar</button>
+      </div>
+      <table class="qad-t"><tbody id="qad-tb"></tbody></table>
+      <span class="qad-badge" id="qad-bd">–</span>
+      <div class="qad-cmp" id="qad-cmp"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const app=document.getElementById('qad-app'), svg=document.getElementById('qad-svg');
+  const NS='http://www.w3.org/2000/svg', VB=640, VH=400;
+  const el=i=>document.getElementById(i);
+
+  // ---------- funciones (valores exactos calculados con mpmath, 30 cifras) ----------
+  const FS={
+    h:{nom:'humps', f:x=>1/((x-0.3)*(x-0.3)+0.01)+1/((x-0.9)*(x-0.9)+0.04)-6,
+       a:0, b:1, ex:29.85832539549867},
+    p:{nom:'pulso angosto', f:x=>Math.exp(-Math.pow((x-0.3)/0.01,2)),
+       a:0, b:1, ex:0.017724538509055161},
+    s:{nom:'sin(1/x)', f:x=>Math.sin(1/x), a:0.02, b:1, ex:0.50368617265689064}
+  };
+  const RG={
+    gk:{nom:'Gauss-Kronrod 21 (quad)'},
+    si:{nom:'Simpson + Richardson'}
+  };
+
+  // ---------- Gauss-Kronrod 21, tal como QUADPACK (dqk21) ----------
+  const XGK=[0.995657163025808080735527280689003,0.973906528517171720077964012084452,
+    0.930157491355708226001207180059508,0.865063366688984510732096688423493,
+    0.780817726586416897063717578345042,0.679409568299024406234327365114874,
+    0.562757134668604683339000099272694,0.433395394129247190799265943165784,
+    0.294392862701460198131126603103866,0.148874338981631210884826001129720,0.0];
+  const WGK=[0.011694638867371874278064396062192,0.032558162307964727478818972459390,
+    0.054755896574351996031381300244580,0.075039674810919952767043140916190,
+    0.093125454583697605535065465083366,0.109387158802297641899210590325805,
+    0.123491976262065851077208292768946,0.134709217311473325928054001771707,
+    0.142775938577060080797094273138717,0.147739104901338491374841515972068,
+    0.149445554002916905664936468389821];
+  const WG=[0.066671344308688137593568809893332,0.149451349150580593145776339657697,
+    0.219086362515982043995534934228163,0.269266719309996355091226921569469,
+    0.295524224714752870173892994651338];
+  const EPS=2.220446049250313e-16, TINY=2.2250738585072014e-308;
+
+  function qk21(f,a,b){
+    const c=(a+b)/2, hl=(b-a)/2, fc=f(c);
+    let resg=0, resk=WGK[10]*fc, resabs=Math.abs(resk);
+    const fv1=new Array(10), fv2=new Array(10), nod=[c];
+    for(let j=0;j<5;j++){ const jt=2*j+1, ab=hl*XGK[jt], f1=f(c-ab), f2=f(c+ab);
+      fv1[jt]=f1; fv2[jt]=f2; nod.push(c-ab,c+ab);
+      resg+=WG[j]*(f1+f2); resk+=WGK[jt]*(f1+f2); resabs+=WGK[jt]*(Math.abs(f1)+Math.abs(f2)); }
+    for(let j=0;j<5;j++){ const jt=2*j, ab=hl*XGK[jt], f1=f(c-ab), f2=f(c+ab);
+      fv1[jt]=f1; fv2[jt]=f2; nod.push(c-ab,c+ab);
+      resk+=WGK[jt]*(f1+f2); resabs+=WGK[jt]*(Math.abs(f1)+Math.abs(f2)); }
+    const reskh=resk*0.5;
+    let resasc=WGK[10]*Math.abs(fc-reskh);
+    for(let j=0;j<10;j++) resasc+=WGK[j]*(Math.abs(fv1[j]-reskh)+Math.abs(fv2[j]-reskh));
+    const I=resk*hl; resabs*=Math.abs(hl); resasc*=Math.abs(hl);
+    let err=Math.abs((resk-resg)*hl);
+    if(resasc!==0&&err!==0) err=resasc*Math.min(1,Math.pow(200*err/resasc,1.5));
+    if(resabs>TINY/(50*EPS)) err=Math.max(EPS*50*resabs,err);
+    return {a:a,b:b,I:I,E:err,asc:resasc,nod:nod,n:21};
+  }
+
+  // ---------- Simpson 1/3 en dos niveles + Richardson (Chapra §22.3) ----------
+  function simp(f,a,b,fa,fc,fb){
+    const c=(a+b)/2, d=(a+c)/2, e=(c+b)/2, fd=f(d), fe=f(e);
+    const I1=(b-a)/6*(fa+4*fc+fb), I2=(b-a)/12*(fa+4*fd+2*fc+4*fe+fb);
+    return {a:a,b:b,fa:fa,fc:fc,fb:fb,fd:fd,fe:fe,dif:Math.abs(I2-I1),
+            I:I2+(I2-I1)/15, E:Math.abs(I2-I1)/15, nod:[d,e], todos:[a,d,c,e,b], n:2};
+  }
+
+  // ---------- estado ----------
+  let rk='gk', fk='h', S=null;
+  const tol=()=>Math.pow(10,+el('qad-tol').value);
+  const LIMIT=50, SMAX=2000;
+
+  function iniciar(r){
+    const F=FS[fk], f=F.f, T={iv:[], nev:0, k:0, ult:[], fin:false, hist:[]};
+    if(r==='gk'){ const q=qk21(f,F.a,F.b); T.iv=[q]; T.nev=21; T.ult=[q]; }
+    else{ const fa=f(F.a), fb=f(F.b), fc=f((F.a+F.b)/2);
+      const q=simp(f,F.a,F.b,fa,fc,fb); q.nod=[F.a,(F.a+F.b)/2,F.b].concat(q.nod);
+      T.iv=[q]; T.nev=5; T.ult=[q]; }
+    return T;
+  }
+  const suma=(T,c)=>T.iv.reduce((s,q)=>s+q[c],0);
+  function convergido(r,T){
+    if(r==='gk'){ const I=suma(T,'I'), E=suma(T,'E');
+      // QUADPACK (dqagse): con un solo intervalo, si el error estimado quedó saturado
+      // (igual a su tope resasc) la regla no resolvió nada y no se acepta el resultado.
+      if(T.iv.length===1&&E===T.iv[0].asc) return false;
+      return E<=Math.max(tol(),tol()*Math.abs(I)); }
+    return T.iv.every(q=>q.dif<=tol()||(q.b-q.a)<1e-9);
+  }
+  function paso(r,T){
+    if(T.fin) return;
+    if(convergido(r,T)||(r==='gk'&&T.iv.length>=LIMIT)||(r==='si'&&T.iv.length>=SMAX)){T.fin=true;return;}
+    const f=FS[fk].f; T.k++;
+    if(r==='gk'){                                   // estrategia global: el peor subintervalo
+      let k=0; T.iv.forEach((q,i)=>{ if(q.E>T.iv[k].E) k=i; });
+      const q=T.iv[k]; T.hist.push(...q.nod); const m=(q.a+q.b)/2, L=qk21(f,q.a,m), R=qk21(f,m,q.b);
+      T.iv.splice(k,1,L,R); T.nev+=42; T.ult=[L,R];
+    }else{                                          // estrategia local: todo el que no cumple
+      const nv=[]; T.ult=[];
+      T.iv.forEach(q=>{
+        if(q.dif<=tol()||(q.b-q.a)<1e-9){ nv.push(q); return; }
+        T.hist.push(...q.nod);
+        const c=(q.a+q.b)/2, L=simp(f,q.a,c,q.fa,q.fd,q.fc), R=simp(f,c,q.b,q.fc,q.fe,q.fb);
+        nv.push(L,R); T.ult.push(L,R); T.nev+=4;
+      });
+      T.iv=nv;
+    }
+    if(convergido(r,T)) T.fin=true;
+  }
+  function final(r){ const T=iniciar(r); let g=0; while(!T.fin&&g<2000){paso(r,T);g++;} return T; }
+
+  function reset(){ S=iniciar(rk); if(convergido(rk,S)) S.fin=true; }
+
+  // ---------- controles ----------
+  function botones(id,obj,get,set){
+    const d=el(id);
+    Object.keys(obj).forEach(k=>{ const b=document.createElement('button');
+      b.textContent=obj[k].nom; b.dataset.k=k; b.onclick=()=>{set(k);reset();draw();}; d.appendChild(b); });
+    return d;
+  }
+  const rb=botones('qad-rbtns',RG,()=>rk,k=>{rk=k;});
+  const fb=botones('qad-fbtns',FS,()=>fk,k=>{fk=k;});
+  el('qad-p').onclick=()=>{paso(rk,S);draw();};
+  el('qad-c').onclick=()=>{let g=0;while(!S.fin&&g<2000){paso(rk,S);g++;}draw();};
+  el('qad-r').onclick=()=>{reset();draw();};
+  el('qad-tol').addEventListener('input',()=>{reset();draw();});
+
+  // ---------- color del error (escala log, claro = error chico) ----------
+  const PAL=['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#990000'];
+  const LOG0=-14, LOG1=0;
+  function colorE(E){ const t=(Math.log10(Math.max(E,1e-300))-LOG0)/(LOG1-LOG0);
+    return PAL[Math.max(0,Math.min(PAL.length-1,Math.floor(t*PAL.length)))]; }
+  el('qad-bar').style.background='linear-gradient(to right,'+PAL.join(',')+')';
+  el('qad-bar').style.opacity=0.55;
+
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);return e;}
+  const fmtE=v=>!isFinite(v)?'–':(v===0?'0':v.toExponential(1));
+
+  function draw(){
+    const F=FS[fk];
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc, fE=15*esc;
+    const ml=Math.max(52,3.6*fT), mb=Math.max(42,3.2*fT), mt=16, mr=16;
+    const W=VB-ml-mr, H=VH-mt-mb;
+    const x0=F.a, x1=F.b;
+
+    const N=800, xs=[], ys=[];
+    for(let i=0;i<=N;i++){ const x=x0+(x1-x0)*i/N; xs.push(x); ys.push(F.f(x)); }
+    let lo=Math.min(0,...ys), hi=Math.max(...ys); const pad=0.08*(hi-lo); lo-=lo<0?pad:0; hi+=pad;
+    const X=x=>ml+(x-x0)/(x1-x0)*W, Y=y=>mt+(hi-y)/(hi-lo)*H;
+
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const cp=mk('clipPath',{id:'qad-clip'}); cp.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H}));
+    svg.appendChild(cp);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4','stroke-width':1}));
+
+    const capa=mk('g',{'clip-path':'url(#qad-clip)'}); svg.appendChild(capa);
+    // bandas: una por subintervalo, coloreada por su error estimado
+    S.iv.forEach(q=>capa.appendChild(mk('rect',{x:X(q.a),y:mt,width:Math.max(X(q.b)-X(q.a),0.6),
+      height:H,fill:colorE(q.E),'fill-opacity':0.55})));
+    // grilla y ejes
+    // marcas con paso "redondo" (1, 2 o 5 por potencia de 10)
+    function marcas(u,v,n){ const raw=(v-u)/n, p10=Math.pow(10,Math.floor(Math.log10(raw)));
+      const st=[1,2,5,10].map(m=>m*p10).find(w=>w>=raw), out=[];
+      for(let k=Math.ceil(u/st-1e-9);k*st<=v+1e-9*st;k++) out.push(k*st);
+      return {v:out, st:st, dec:Math.max(0,-Math.floor(Math.log10(st)+1e-9))}; }
+    const mx=marcas(x0,x1,5);
+    mx.v.forEach(xv=>{
+      const t=mk('text',{x:X(xv),y:mt+H+fT*1.25,'text-anchor':'middle','font-size':fT,fill:'#5d6b78'});
+      t.textContent=xv.toFixed(mx.dec); svg.appendChild(t);
+    });
+    const my=marcas(lo,hi,5), st=my.st, dec=my.dec;
+    for(const yv of my.v){
+      capa.appendChild(mk('line',{x1:ml,y1:Y(yv),x2:ml+W,y2:Y(yv),stroke:'#000','stroke-opacity':0.06}));
+      const t=mk('text',{x:ml-fT*0.5,y:Y(yv)+fT*0.36,'text-anchor':'end','font-size':fT,fill:'#5d6b78'});
+      t.textContent=(Math.abs(yv)<st/2?0:yv).toFixed(dec); svg.appendChild(t);
+    }
+    if(lo<0) capa.appendChild(mk('line',{x1:ml,y1:Y(0),x2:ml+W,y2:Y(0),stroke:'#8a95a0','stroke-width':1}));
+    let lx=mk('text',{x:ml+W/2,y:VH-mb*0.16,'text-anchor':'middle','font-size':fE,fill:'#1a2733'});
+    lx.textContent='x'; svg.appendChild(lx);
+    // bordes de los subintervalos
+    S.iv.forEach(q=>[q.a,q.b].forEach(v=>capa.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,
+      stroke:'#5d6b78','stroke-width':0.9,'stroke-opacity':0.7}))));
+    // curva
+    let d=''; for(let i=0;i<=N;i++) d+=(i?'L':'M')+X(xs[i]).toFixed(1)+' '+Y(ys[i]).toFixed(1)+' ';
+    capa.appendChild(mk('path',{d:d,fill:'none',stroke:'#1a2733','stroke-width':2.2}));
+    // evaluaciones acumuladas: marcas en la base del gráfico
+    const tk=Math.max(7,0.6*fT); let dt='';
+    S.iv.forEach(q=>{});
+    (S.todas||[]).length;
+    S.todos=S.todos||[];
+    // se reconstruyen desde el historial de nodos
+    const nodos=[]; S.iv.forEach(q=>q.nod.forEach(v=>nodos.push(v)));
+    (S.hist||[]).forEach(v=>nodos.push(v));
+    nodos.forEach(v=>{ dt+='M'+X(v).toFixed(1)+' '+(mt+H)+'L'+X(v).toFixed(1)+' '+(mt+H-tk).toFixed(1)+' '; });
+    capa.appendChild(mk('path',{d:dt,stroke:'#1f77b4','stroke-width':1.2,fill:'none'}));
+    // nodos del último paso sobre la curva. En Simpson cada subintervalo usa 5 puntos
+    // (a, d, c, e, b), pero 3 vienen del subintervalo padre: solo d y e se evalúan de nuevo.
+    S.ult.forEach(q=>{
+      (q.todos||[]).forEach(v=>{ if(q.nod.indexOf(v)<0) capa.appendChild(mk('circle',{cx:X(v),cy:Y(F.f(v)),
+        r:5,fill:'#fff',stroke:'#1a2733','stroke-width':1.8})); });
+      q.nod.forEach(v=>capa.appendChild(mk('circle',{cx:X(v),cy:Y(F.f(v)),r:5,
+        fill:'#d62728',stroke:'#fff','stroke-width':1.2})));
+    });
+
+    // lecturas
+    const I=suma(S,'I'), E=suma(S,'E');
+    const filas=[['subintervalos',S.iv.length],['evaluaciones de f',S.nev],
+      ['I estimada',I.toPrecision(12)],['error estimado',fmtE(E)],['error real',fmtE(Math.abs(I-F.ex))]];
+    el('qad-tb').innerHTML=filas.map(r=>'<tr><td>'+r[0]+'</td><td class="qad-num">'+r[1]+'</td></tr>').join('');
+    el('qad-tolv').textContent='1e'+el('qad-tol').value;
+    el('qad-crit').innerHTML=rk==='gk'
+      ? 'para cuando el error total ≤ máx(tol, tol·|I|), como quad(f, a, b, epsabs=tol, epsrel=tol)'
+      : 'acepta cada subintervalo con |I<sub>2</sub> − I<sub>1</sub>| ≤ tol (Chapra §22.3)';
+    [...rb.children].forEach(b=>b.classList.toggle('qad-on',b.dataset.k===rk));
+    [...fb.children].forEach(b=>b.classList.toggle('qad-on',b.dataset.k===fk));
+    const bd=el('qad-bd');
+    if(S.fin){ bd.textContent='convergió en '+S.k+(S.k===1?' paso':' pasos'); bd.className='qad-badge qad-ok'; }
+    else { bd.textContent='paso '+S.k+': aún no cumple la tolerancia'; bd.className='qad-badge qad-amb'; }
+    const A=final('gk'), B=final('si');
+    el('qad-cmp').innerHTML='Al converger con esta tolerancia: Gauss-Kronrod usa <b>'+A.nev+
+      '</b> evaluaciones en '+A.iv.length+' subintervalos. Simpson usa <b>'+B.nev+'</b> en '+B.iv.length+'.';
+  }
+
+  let prevW=0;
+  new ResizeObserver(e=>{
+    const w=e[0].contentRect.width;
+    if(Math.abs(w-prevW)<1) return;
+    prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px';
+    draw();
+  }).observe(app);
+
+  reset(); draw();
+})();
+</script>

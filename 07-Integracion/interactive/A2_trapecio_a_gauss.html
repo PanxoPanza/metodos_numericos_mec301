@@ -1,0 +1,218 @@
+<meta charset="utf-8">
+<style>
+#gau-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+html[data-theme="dark"] #gau-app,
+body[data-jp-theme-light="false"] #gau-app{--tinta:#ccd6e0;--suave:#9fb0be}
+@media (prefers-color-scheme:dark){
+  html[data-theme="auto"] #gau-app{--tinta:#ccd6e0;--suave:#9fb0be}
+}
+#gau-app *{box-sizing:border-box}
+#gau-app .gau-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#gau-app .gau-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#gau-app .gau-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#gau-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em;touch-action:none}
+#gau-app .gau-ctrl{margin:0.5em 0}
+#gau-app .gau-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#gau-app .gau-val{color:var(--acento);font-weight:600}
+#gau-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#gau-app .gau-chk{font-size:0.9em;color:var(--tinta);display:flex;align-items:center;gap:0.4em;margin:0.3em 0}
+#gau-app .gau-tit{font-size:0.86em;color:var(--suave);margin:0.45em 0 0.1em}
+#gau-app .gau-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:0.3em;margin:0.2em 0 0.35em}
+#gau-app .gau-btns.gau-dos{grid-template-columns:repeat(2,1fr)}
+#gau-app .gau-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+#gau-app .gau-btns button.gau-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#gau-app .gau-eqbox{font-family:"Cambria Math",Cambria,Georgia,serif;font-size:1.05em;
+  background:var(--panel);color:#1a2733;border:1px solid var(--linea);border-radius:0.4em;
+  padding:0.35em 0.5em;margin:0.4em 0;text-align:center}
+#gau-app table.gau-t{width:100%;border-collapse:collapse;margin-top:0.3em;font-size:0.95em}
+#gau-app table.gau-t td{padding:0.18em 0.3em;border-bottom:1px solid #eef1f4}
+#gau-app table.gau-t td.gau-num{text-align:right;font-variant-numeric:tabular-nums}
+#gau-app .gau-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#gau-app .gau-ok{background:#e3f4e8;color:var(--verde)}
+#gau-app .gau-amb{background:#fdf3dd;color:#8a6100}
+#gau-app .gau-bad{background:#fbe4e4;color:#a11}
+#gau-app .gau-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3em 0.9em;
+  margin-top:0.5em;font-size:0.84em;color:var(--tinta)}
+#gau-app .gau-leg em,#gau-app .gau-chk em{font-style:normal}
+#gau-app .gau-leg > span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+#gau-app .gau-sw{display:inline-block;width:2.2em;height:0}
+#gau-app .gau-swc{border-top:2.4px solid #1a2733}
+#gau-app .gau-swl{border-top:2px dashed #1f77b4}
+#gau-app .gau-sq{display:inline-block;width:1.1em;height:0.8em;border:1px solid rgba(128,140,152,0.55)}
+#gau-app .gau-pt{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;
+  border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(128,140,152,0.55);background:#1f77b4}
+#gau-app .gau-ley{font-size:0.82em;color:var(--suave);margin-top:0.3em;text-align:center}
+</style>
+
+<div id="gau-app">
+  <div class="gau-wrap">
+    <div class="gau-izq">
+      <svg id="gau-svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="gau-leg">
+        <span><i class="gau-sw gau-swc"></i>f(x)</span>
+        <span><i class="gau-sw gau-swl"></i>recta por los dos puntos</span>
+        <span><i class="gau-pt"></i><em>x<sub>0</sub>, x<sub>1</sub></em></span>
+        <span><i class="gau-sq" style="background:rgba(214,39,40,0.28)"></i>la recta sobra</span>
+        <span><i class="gau-sq" style="background:rgba(28,122,62,0.28)"></i>la recta falta</span>
+      </div>
+      <div class="gau-ley">Arrastremos los puntos azules sobre la curva, o usemos los deslizadores.</div>
+      <div class="gau-ley" id="gau-nota"></div>
+    </div>
+    <div class="gau-der">
+      <div class="gau-tit">función en [−1, 1]</div>
+      <div class="gau-btns" id="gau-fbtns"></div>
+      <label class="gau-chk"><input type="checkbox" id="gau-sim" checked><em>puntos simétricos (x<sub>1</sub> = −x<sub>0</sub>)</em></label>
+      <div class="gau-ctrl">
+        <label>x<sub>0</sub> = <span class="gau-val" id="gau-t0v"></span></label>
+        <input type="range" id="gau-t0" min="-1" max="0.95" step="0.001" value="-1">
+      </div>
+      <div class="gau-ctrl">
+        <label>x<sub>1</sub> = <span class="gau-val" id="gau-t1v"></span></label>
+        <input type="range" id="gau-t1" min="-0.95" max="1" step="0.001" value="1">
+      </div>
+      <div class="gau-btns gau-dos">
+        <button id="gau-tr">trapecio (±1)</button>
+        <button id="gau-ga">Gauss (±1/√3)</button>
+      </div>
+      <div class="gau-eqbox" id="gau-eq"></div>
+      <table class="gau-t"><tbody id="gau-tb"></tbody></table>
+      <span class="gau-badge" id="gau-bd">–</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const app=document.getElementById('gau-app'), svg=document.getElementById('gau-svg');
+  const NS='http://www.w3.org/2000/svg', VB=640, VH=400;
+  const el=i=>document.getElementById(i);
+  const G=1/Math.sqrt(3);
+
+  // Las tres funciones están en x en [-1, 1]. El polinomio de Chapra y Canale (ej. 22.3) es
+  // f(x) = 0.2 + 25x - 200x^2 + 675x^3 - 900x^4 + 400x^5 en [0, 0.8], con x = 0.4 + 0.4t.
+  const pch=x=>0.2+25*x-200*x*x+675*x**3-900*x**4+400*x**5;
+  const FS={
+    c:{nom:'cúbica', f:t=>2+0.3*t-1.0*t*t+0.6*t*t*t, ex:10/3, txt:'2 + 0.3x − x² + 0.6x³'},
+    p:{nom:'polinomio grado 5', f:t=>0.4*pch(0.4+0.4*t), ex:1.640533333333333, txt:'0.4·p(0.4 + 0.4x)',
+       nota:'p(t) = 0.2 + 25t − 200t² + 675t³ − 900t⁴ + 400t⁵, con t ∈ [0, 0.8], llevado a [−1, 1] con t = 0.4 + 0.4x (Chapra y Canale, ej. 22.3).'},
+    e:{nom:'eˣ', f:t=>Math.exp(t), ex:Math.E-1/Math.E, txt:'eˣ'}
+  };
+  let fk='c', t0=-1, t1=1;
+
+  const fb=el('gau-fbtns');
+  Object.keys(FS).forEach(k=>{ const b=document.createElement('button'); b.textContent=FS[k].nom;
+    b.dataset.k=k; b.onclick=()=>{fk=k;draw();}; fb.appendChild(b); });
+  const sim=()=>el('gau-sim').checked;
+  function fija(a,b){ t0=Math.max(-1,Math.min(0.95,a)); t1=Math.max(-0.95,Math.min(1,b));
+    if(sim()){ if(Math.abs(t0)<0.02) t0=-0.02; t1=-t0; }
+    if(t1-t0<0.02){ t1=Math.min(1,t0+0.02); }
+    el('gau-t0').value=t0; el('gau-t1').value=t1; }
+  el('gau-t0').addEventListener('input',e=>{ const v=+e.target.value; fija(v,sim()?-v:t1); draw(); });
+  el('gau-t1').addEventListener('input',e=>{ const v=+e.target.value; fija(sim()?-v:t0,v); draw(); });
+  el('gau-sim').addEventListener('change',()=>{ if(sim()) fija(t0,-t0); draw(); });
+  el('gau-tr').onclick=()=>{fija(-1,1);draw();};
+  el('gau-ga').onclick=()=>{fija(-G,G);draw();};
+
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);return e;}
+
+  let geo=null, arr=null;
+  function draw(){
+    const F=FS[fk], f=F.f;
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc, fE=15*esc;
+    const ml=Math.max(52,3.6*fT), mb=Math.max(42,3.2*fT), mt=16, mr=16;
+    const W=VB-ml-mr, H=VH-mt-mb;
+    const f0=f(t0), f1=f(t1), m=(f1-f0)/(t1-t0), L=t=>f0+m*(t-t0);
+    const N=400, ts=[], ys=[], ls=[];
+    for(let i=0;i<=N;i++){ const t=-1+2*i/N; ts.push(t); ys.push(f(t)); ls.push(L(t)); }
+    let lo=Math.min(0,...ys,...ls), hi=Math.max(...ys,...ls); const pad=0.08*(hi-lo); hi+=pad; if(lo<0) lo-=pad;
+    const X=t=>ml+(t+1)/2*W, Y=y=>mt+(hi-y)/(hi-lo)*H;
+    geo={X:X,ml:ml,W:W};
+
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const cp=mk('clipPath',{id:'gau-clip'}); cp.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H}));
+    svg.appendChild(cp);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4','stroke-width':1}));
+    const capa=mk('g',{'clip-path':'url(#gau-clip)'}); svg.appendChild(capa);
+
+    // área bajo la recta (la estimación) y diferencia con la curva, por signo
+    let d='M'+X(-1)+' '+Y(0);
+    for(let i=0;i<=N;i++) d+='L'+X(ts[i]).toFixed(1)+' '+Y(ls[i]).toFixed(1);
+    d+='L'+X(1)+' '+Y(0)+'Z';
+    capa.appendChild(mk('path',{d:d,fill:'#1f77b4','fill-opacity':0.08}));
+    for(let i=0;i<N;i++){
+      const s=(ls[i]+ls[i+1])-(ys[i]+ys[i+1]);
+      capa.appendChild(mk('path',{d:'M'+X(ts[i]).toFixed(1)+' '+Y(ys[i]).toFixed(1)+'L'+X(ts[i+1]).toFixed(1)+' '+
+        Y(ys[i+1]).toFixed(1)+'L'+X(ts[i+1]).toFixed(1)+' '+Y(ls[i+1]).toFixed(1)+'L'+X(ts[i]).toFixed(1)+' '+Y(ls[i]).toFixed(1)+'Z',
+        fill:s>0?'#d62728':'#1c7a3e','fill-opacity':0.28,stroke:'none'}));
+    }
+    // ejes
+    for(const tv of [-1,-0.5,0,0.5,1]){
+      const t=mk('text',{x:X(tv),y:mt+H+fT*1.25,'text-anchor':'middle','font-size':fT,fill:'#5d6b78'});
+      t.textContent=tv.toFixed(1); svg.appendChild(t);
+    }
+    const raw=(hi-lo)/5, p10=Math.pow(10,Math.floor(Math.log10(raw)));
+    const st=[1,2,5,10].map(q=>q*p10).find(w=>w>=raw), dec=Math.max(0,-Math.floor(Math.log10(st)+1e-9));
+    for(let k=Math.ceil(lo/st-1e-9);k*st<=hi;k++){ const yv=k*st;
+      capa.appendChild(mk('line',{x1:ml,y1:Y(yv),x2:ml+W,y2:Y(yv),stroke:'#000','stroke-opacity':0.06}));
+      const t=mk('text',{x:ml-fT*0.5,y:Y(yv)+fT*0.36,'text-anchor':'end','font-size':fT,fill:'#5d6b78'});
+      t.textContent=(k===0?0:yv).toFixed(dec); svg.appendChild(t); }
+    capa.appendChild(mk('line',{x1:ml,y1:Y(0),x2:ml+W,y2:Y(0),stroke:'#8a95a0','stroke-width':1}));
+    [ -G, G ].forEach(v=>capa.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,stroke:'#8a95a0',
+      'stroke-dasharray':'2 4','stroke-width':1})));
+    let lx=mk('text',{x:ml+W/2,y:VH-mb*0.16,'text-anchor':'middle','font-size':fE,fill:'#1a2733'});
+    lx.textContent='x'; svg.appendChild(lx);
+
+    let dc=''; for(let i=0;i<=N;i++) dc+=(i?'L':'M')+X(ts[i]).toFixed(1)+' '+Y(ys[i]).toFixed(1);
+    capa.appendChild(mk('path',{d:dc,fill:'none',stroke:'#1a2733','stroke-width':2.4}));
+    capa.appendChild(mk('line',{x1:X(-1),y1:Y(L(-1)),x2:X(1),y2:Y(L(1)),stroke:'#1f77b4',
+      'stroke-width':1.8,'stroke-dasharray':'7 4'}));
+    [[t0,f0],[t1,f1]].forEach(p=>{
+      capa.appendChild(mk('line',{x1:X(p[0]),y1:Y(0),x2:X(p[0]),y2:Y(p[1]),stroke:'#1f77b4','stroke-width':1,'stroke-opacity':0.6}));
+      capa.appendChild(mk('circle',{cx:X(p[0]),cy:Y(p[1]),r:9,fill:'#1f77b4',stroke:'#fff','stroke-width':1.8,
+        style:'cursor:ew-resize'}));
+    });
+
+    // pesos: la integral de la recta en [-1,1] es c0 f(t0) + c1 f(t1)
+    const c0=2*t1/(t1-t0), c1=-2*t0/(t1-t0);
+    const I=c0*f0+c1*f1, er=(I-F.ex)/F.ex;
+    el('gau-eq').innerHTML='I ≈ '+c0.toFixed(3)+'·f('+t0.toFixed(3)+') + '+c1.toFixed(3)+'·f('+t1.toFixed(3)+')';
+    el('gau-t0v').textContent=t0.toFixed(3); el('gau-t1v').textContent=t1.toFixed(3);
+    el('gau-tb').innerHTML=[['f(x)',F.txt],['I estimada',I.toFixed(6)],['I exacta',F.ex.toFixed(6)],
+      ['error relativo',(Math.abs(er)<5e-6?'0.000':(100*er).toFixed(3))+' %']].map(r=>'<tr><td>'+r[0]+'</td><td class="gau-num">'+r[1]+'</td></tr>').join('');
+    [...fb.children].forEach(b=>b.classList.toggle('gau-on',b.dataset.k===fk));
+    el('gau-nota').textContent=F.nota||'';
+    const bd=el('gau-bd');
+    if(Math.abs(er)<5e-6){ bd.textContent='exacta (error < 0.001 %)'; bd.className='gau-badge gau-ok'; }
+    else if(Math.abs(er)<0.01){ bd.textContent='error bajo 1 %'; bd.className='gau-badge gau-amb'; }
+    else { bd.textContent='error de '+(100*Math.abs(er)).toFixed(1)+' %'; bd.className='gau-badge gau-bad'; }
+  }
+
+  // arrastre: el puntero usa getBoundingClientRect porque clientX viene escalado por el zoom
+  function tDe(ev){ const r=svg.getBoundingClientRect(), xv=(ev.clientX-r.left)/r.width*VB;
+    return -1+2*(xv-geo.ml)/geo.W; }
+  svg.addEventListener('pointerdown',ev=>{ const t=tDe(ev);
+    arr=Math.abs(t-t0)<=Math.abs(t-t1)?0:1; svg.setPointerCapture(ev.pointerId); mueve(ev); });
+  svg.addEventListener('pointermove',ev=>{ if(arr!==null) mueve(ev); });
+  svg.addEventListener('pointerup',()=>{arr=null;});
+  function mueve(ev){ const t=tDe(ev);
+    if(arr===0) fija(t,sim()?-t:t1); else fija(sim()?-t:t0,t); draw(); }
+
+  let prevW=0;
+  new ResizeObserver(e=>{
+    const w=e[0].contentRect.width;
+    if(Math.abs(w-prevW)<1) return;
+    prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px';
+    draw();
+  }).observe(app);
+
+  fija(-1,1); draw();
+})();
+</script>
