@@ -1,0 +1,192 @@
+<meta charset="utf-8">
+<style>
+#mpa-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+html[data-theme="dark"] #mpa-app,
+body[data-jp-theme-light="false"] #mpa-app{--tinta:#ccd6e0;--suave:#9fb0be}
+@media (prefers-color-scheme:dark){
+  html[data-theme="auto"] #mpa-app{--tinta:#ccd6e0;--suave:#9fb0be}
+}
+#mpa-app *{box-sizing:border-box}
+#mpa-app .mpa-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#mpa-app .mpa-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#mpa-app .mpa-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#mpa-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em;touch-action:none;margin-bottom:0.35em}
+#mpa-app .mpa-ctrl{margin:0.5em 0}
+#mpa-app .mpa-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#mpa-app .mpa-val{color:var(--acento);font-weight:600}
+#mpa-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#mpa-app .mpa-chk{font-size:0.9em;color:var(--tinta);display:flex;align-items:center;gap:0.4em;margin:0.3em 0}
+#mpa-app .mpa-tit{font-size:0.86em;color:var(--suave);margin:0.45em 0 0.1em}
+#mpa-app .mpa-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.2em 0 0.35em}
+#mpa-app .mpa-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+#mpa-app .mpa-btns button.mpa-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#mpa-app .mpa-eqbox{font-family:"Cambria Math",Cambria,Georgia,serif;font-size:1.0em;
+  background:var(--panel);color:#1a2733;border:1px solid var(--linea);border-radius:0.4em;
+  padding:0.35em 0.5em;margin:0.4em 0;text-align:center}
+#mpa-app table.mpa-t{width:100%;border-collapse:collapse;margin-top:0.3em;font-size:0.95em}
+#mpa-app table.mpa-t td{padding:0.15em 0.3em;border-bottom:1px solid rgba(128,140,152,0.25)}
+#mpa-app table.mpa-t td.mpa-num{text-align:right;font-variant-numeric:tabular-nums}
+#mpa-app .mpa-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#mpa-app .mpa-ok{background:#e3f4e8;color:#1c7a3e}
+#mpa-app .mpa-amb{background:#fdf3dd;color:#8a6100}
+#mpa-app .mpa-bad{background:#fbe4e4;color:#a11}
+#mpa-app .mpa-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3em 0.9em;
+  margin-top:0.2em;font-size:0.84em;color:var(--tinta)}
+#mpa-app .mpa-leg > span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+#mpa-app .mpa-sw{display:inline-block;width:2.2em;height:0}
+#mpa-app .mpa-pt{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;
+  border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(128,140,152,0.55)}
+#mpa-app .mpa-sq{display:inline-block;width:1.1em;height:0.8em;border:1px solid rgba(128,140,152,0.55)}
+#mpa-app .mpa-ley{font-size:0.82em;color:var(--suave);margin-top:0.3em;text-align:center}
+</style>
+
+<div id="mpa-app">
+  <div class="mpa-wrap">
+    <div class="mpa-izq">
+      <svg id="mpa-sy" viewBox="0 0 640 340" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id="mpa-sb" viewBox="0 0 640 260" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="mpa-leg" id="mpa-leg"></div>
+      <div class="mpa-ley" id="mpa-nota"></div>
+    </div>
+    <div class="mpa-der">
+      <div class="mpa-tit">método</div>
+      <div class="mpa-btns">
+        <button id="mpa-ab">Adams-Bashforth 2</button>
+        <button id="mpa-bd">BDF2</button>
+      </div>
+      <div class="mpa-eqbox" id="mpa-eq"></div>
+      <div class="mpa-ctrl">
+        <label>paso h = <span class="mpa-val" id="mpa-hv"></span></label>
+        <input type="range" id="mpa-h" min="0.3" max="1.2" step="0.05" value="0.4">
+      </div>
+      <div class="mpa-btns">
+        <button id="mpa-sig">paso siguiente ▶</button>
+        <button id="mpa-rei">reiniciar</button>
+      </div>
+      <table class="mpa-t"><tbody id="mpa-tb"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  const NS='http://www.w3.org/2000/svg';
+  const el=i=>document.getElementById(i);
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at){const v=at[k];
+    if(v===undefined||(typeof v==='number'&&!isFinite(v))) throw new Error('attr '+k+'='+v);
+    e.setAttribute(k,v);}return e;}
+  function txt(p,x,y,s,size,fill,anchor){const t=mk('text',{x:x,y:y,'font-size':size,fill:fill||'#5d6b78','text-anchor':anchor||'middle'});t.textContent=s;p.appendChild(t);return t;}
+  function ticks(lo,hi,n){const raw=(hi-lo)/n,p10=Math.pow(10,Math.floor(Math.log10(raw)));
+    const st=[1,2,5,10].map(q=>q*p10).find(w=>w>=raw);const out=[];
+    for(let k=Math.ceil(lo/st-1e-9);k*st<=hi+1e-12;k++) out.push(k*st);
+    return {v:out,dec:Math.max(0,-Math.floor(Math.log10(st)+1e-9))};}
+  function marco(svg,VB,VH,xl,xh,yl,yh,xlab,ylab,id){
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc,fE=15*esc,ml=Math.max(52,3.6*fT),mb=Math.max(42,3.2*fT),mt=12,mr=14;
+    const W=VB-ml-mr,H=VH-mt-mb;
+    const X=x=>ml+(x-xl)/(xh-xl)*W, Y=y=>mt+(yh-y)/(yh-yl)*H;
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const cp=mk('clipPath',{id:id}); cp.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H})); svg.appendChild(cp);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4'}));
+    const tx=ticks(xl,xh,5), ty=ticks(yl,yh,5);
+    tx.v.forEach(v=>{svg.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,X(v),mt+H+fT*1.25,v.toFixed(tx.dec),fT);});
+    ty.v.forEach(v=>{svg.appendChild(mk('line',{x1:ml,y1:Y(v),x2:ml+W,y2:Y(v),stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,ml-fT*0.5,Y(v)+fT*0.36,(Math.abs(v)<1e-12?0:v).toFixed(ty.dec),fT,null,'end');});
+    txt(svg,ml+W/2,VH-mb*0.16,xlab,fE,'#1a2733');
+    const ly=txt(svg,0,0,ylab,fE,'#1a2733'); ly.setAttribute('transform','translate('+(fE*0.95)+','+(mt+H/2)+') rotate(-90)');
+    const capa=mk('g',{'clip-path':'url(#'+id+')'}); svg.appendChild(capa);
+    return {X:X,Y:Y,capa:capa,fT:fT,ml:ml,mt:mt,W:W,H:H};
+  }
+  function poly(pts){return pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join('');}
+
+  const app=el('mpa-app'), sy=el('mpa-sy'), sb=el('mpa-sb');
+  // dy/dt = cos t - 0.5 y, y(0) = 0
+  const F=(t,y)=>Math.cos(t)-0.5*y, yex=t=>0.4*Math.cos(t)+0.8*Math.sin(t)-0.4*Math.exp(-0.5*t);
+  const TF=8;
+  let met='ab', h=0.4, n=2;    // n: número de pasos ya mostrados (el último es el paso actual)
+  function rk4(t,y){const k1=F(t,y),k2=F(t+h/2,y+h/2*k1),k3=F(t+h/2,y+h/2*k2),k4=F(t+h,y+h*k3);return y+h/6*(k1+2*k2+2*k3+k4);}
+  function serie(){ // todos los pasos posibles
+    const N=Math.floor(TF/h+1e-9), t=[0], y=[0];
+    t.push(h); y.push(rk4(0,0));               // arranque con RK4
+    for(let i=1;i<N;i++){ const t1=t[i]+h;
+      if(met==='ab') y.push(y[i]+h*(1.5*F(t[i],y[i])-0.5*F(t[i-1],y[i-1])));
+      else y.push((4*y[i]-y[i-1]+2*h*Math.cos(t1))/(3+h));   // F lineal: despeje exacto
+      t.push(t1); }
+    return {t:t,y:y,N:N};
+  }
+  const leg={ab:'<span><i class="mpa-sw" style="border-top:2.4px dashed #1a2733"></i>exacta</span><span><i class="mpa-pt" style="background:#1f77b4"></i>calculados</span><span><i class="mpa-pt" style="background:#ff7f0e"></i>arranque RK4</span><span><i class="mpa-sw" style="border-top:2.4px solid #d62728"></i>recta por F<sub>n−1</sub>, F<sub>n</sub></span><span><i class="mpa-sq" style="background:rgba(214,39,40,0.2)"></i>área = y<sub>n+1</sub> − y<sub>n</sub></span>',
+             bd:'<span><i class="mpa-sw" style="border-top:2.4px dashed #1a2733"></i>exacta</span><span><i class="mpa-pt" style="background:#1f77b4"></i>calculados</span><span><i class="mpa-pt" style="background:#ff7f0e"></i>arranque RK4</span><span><i class="mpa-sw" style="border-top:2.4px solid #9467bd"></i>parábola por 3 puntos</span><span><i class="mpa-sw" style="border-top:2.4px solid #d62728"></i>pendiente F(t<sub>n+1</sub>, y<sub>n+1</sub>)</span>'};
+  el('mpa-ab').onclick=()=>{met='ab';n=2;draw();};
+  el('mpa-bd').onclick=()=>{met='bd';n=2;draw();};
+  el('mpa-h').addEventListener('input',e=>{h=+e.target.value;n=2;draw();});
+  el('mpa-sig').onclick=()=>{n++;draw();};
+  el('mpa-rei').onclick=()=>{n=2;draw();};
+
+  function draw(){
+    const S=serie(); if(n>S.N) n=2;
+    const t=S.t, y=S.y, c=n, p=n-1, q=n-2;    // paso actual: de t[p] a t[c]
+    // ---- panel superior
+    const g=marco(sy,640,340,0,TF,-1.2,1.2,'t','y','mpa-c1');
+    const P=[]; for(let i=0;i<=300;i++){const tt=TF*i/300; P.push([g.X(tt),g.Y(yex(tt))]);}
+    g.capa.appendChild(mk('path',{d:poly(P),fill:'none',stroke:'#1a2733','stroke-width':1.6,'stroke-dasharray':'6 4'}));
+    if(met==='bd'){ // parábola por q, p, c y su tangente en t[c]
+      const L0=s=>(s-t[p])*(s-t[c])/((t[q]-t[p])*(t[q]-t[c])), L1=s=>(s-t[q])*(s-t[c])/((t[p]-t[q])*(t[p]-t[c])), L2=s=>(s-t[q])*(s-t[p])/((t[c]-t[q])*(t[c]-t[p]));
+      const pp=[]; for(let i=0;i<=60;i++){const s=t[q]-0.2*h+(2.4*h)*i/60; pp.push([g.X(s),g.Y(y[q]*L0(s)+y[p]*L1(s)+y[c]*L2(s))]);}
+      g.capa.appendChild(mk('path',{d:poly(pp),fill:'none',stroke:'#9467bd','stroke-width':2.2}));
+      const m=F(t[c],y[c]), d=0.45*h;
+      g.capa.appendChild(mk('line',{x1:g.X(t[c]-d),y1:g.Y(y[c]-m*d),x2:g.X(t[c]+d),y2:g.Y(y[c]+m*d),stroke:'#d62728','stroke-width':2.4}));
+    } else {
+      g.capa.appendChild(mk('rect',{x:g.X(t[p]),y:g.mt,width:g.X(t[c])-g.X(t[p]),height:g.H,fill:'#d62728','fill-opacity':0.06}));
+    }
+    for(let i=0;i<=c;i++) g.capa.appendChild(mk('circle',{cx:g.X(t[i]),cy:g.Y(y[i]),r:i===c?6.5:5,
+      fill:i===1?'#ff7f0e':(i===c?'#d62728':'#1f77b4'),stroke:'#fff','stroke-width':1.5}));
+    // ---- panel inferior
+    let nota, eq;
+    if(met==='ab'){
+      const Fq=F(t[q],y[q]), Fp=F(t[p],y[p]), lin=s=>Fp+(Fp-Fq)*(s-t[p])/h;
+      const fv=[]; for(let i=0;i<=c;i++) fv.push(F(t[i],y[i]));
+      const b=marco(sb,640,260,0,TF,-1.4,1.4,'t','F(t, y)','mpa-c2');
+      const A=[[b.X(t[p]),b.Y(0)],[b.X(t[p]),b.Y(lin(t[p]))],[b.X(t[c]),b.Y(lin(t[c]))],[b.X(t[c]),b.Y(0)]];
+      b.capa.appendChild(mk('path',{d:poly(A)+'Z',fill:'#d62728','fill-opacity':0.2}));
+      b.capa.appendChild(mk('line',{x1:b.X(t[q]),y1:b.Y(Fq),x2:b.X(t[c]),y2:b.Y(lin(t[c])),stroke:'#d62728','stroke-width':2}));
+      b.capa.appendChild(mk('line',{x1:b.X(0),y1:b.Y(0),x2:b.X(TF),y2:b.Y(0),stroke:'#8a95a0'}));
+      for(let i=0;i<c;i++) b.capa.appendChild(mk('circle',{cx:b.X(t[i]),cy:b.Y(fv[i]),r:(i===p||i===q)?5.5:3.5,fill:(i===p||i===q)?'#d62728':'#1f77b4',stroke:'#fff','stroke-width':1.2}));
+      eq='y<sub>n+1</sub> = y<sub>n</sub> + h(3/2·F<sub>n</sub> − 1/2·F<sub>n−1</sub>)';
+      nota='Abajo: las pendientes ya calculadas. AB2 extrapola la recta por las dos últimas al intervalo nuevo e integra bajo ella. Una sola evaluación nueva de F por paso.';
+    } else {
+      // candidato Y: pendiente de la parábola en t[c] vs F(t[c], Y); el cruce es y[c]
+      const lo=y[c]-1, hi=y[c]+1;
+      const sl=Y=>(3*Y-4*y[p]+y[q])/(2*h), fy=Y=>F(t[c],Y);
+      const vals=[sl(lo),sl(hi),fy(lo),fy(hi)];
+      const b=marco(sb,640,260,lo,hi,Math.min(...vals),Math.max(...vals),'candidato para el nuevo y','pendiente','mpa-c2');
+      b.capa.appendChild(mk('line',{x1:b.X(lo),y1:b.Y(sl(lo)),x2:b.X(hi),y2:b.Y(sl(hi)),stroke:'#9467bd','stroke-width':2.2}));
+      b.capa.appendChild(mk('line',{x1:b.X(lo),y1:b.Y(fy(lo)),x2:b.X(hi),y2:b.Y(fy(hi)),stroke:'#d62728','stroke-width':2.2}));
+      b.capa.appendChild(mk('circle',{cx:b.X(y[c]),cy:b.Y(fy(y[c])),r:6.5,fill:'#d62728',stroke:'#fff','stroke-width':1.5}));
+      eq='(3y<sub>n+1</sub> − 4y<sub>n</sub> + y<sub>n−1</sub>)/(2h) = F(t<sub>n+1</sub>, y<sub>n+1</sub>)';
+      nota='Abajo: para cada candidato al nuevo y, la pendiente de la parábola al final del paso (morado) y la pendiente F (rojo). BDF2 elige el cruce: es una raíz, como en la Unidad 6.';
+    }
+    el('mpa-eq').innerHTML=eq; el('mpa-nota').textContent=nota;
+    el('mpa-leg').innerHTML=leg[met];
+    el('mpa-hv').textContent=h.toFixed(2);
+    el('mpa-ab').classList.toggle('mpa-on',met==='ab'); el('mpa-bd').classList.toggle('mpa-on',met==='bd');
+    el('mpa-tb').innerHTML='<tr><td>paso</td><td class="mpa-num">'+c+' de '+S.N+'</td></tr>'+
+      '<tr><td>t<sub>n+1</sub></td><td class="mpa-num">'+t[c].toFixed(2)+'</td></tr>'+
+      '<tr><td>y<sub>n+1</sub> método</td><td class="mpa-num">'+y[c].toFixed(4)+'</td></tr>'+
+      '<tr><td>y exacta</td><td class="mpa-num">'+yex(t[c]).toFixed(4)+'</td></tr>'+
+      '<tr><td>error</td><td class="mpa-num">'+Math.abs(y[c]-yex(t[c])).toExponential(1)+'</td></tr>';
+  }
+  let prevW=0;
+  new ResizeObserver(e=>{const w=e[0].contentRect.width; if(Math.abs(w-prevW)<1) return; prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px'; draw();}).observe(app);
+  draw();
+
+})();
+</script>
