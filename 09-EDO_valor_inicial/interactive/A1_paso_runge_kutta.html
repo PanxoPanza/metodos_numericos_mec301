@@ -1,0 +1,202 @@
+<meta charset="utf-8">
+<style>
+#rkp-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+html[data-theme="dark"] #rkp-app,
+body[data-jp-theme-light="false"] #rkp-app{--tinta:#ccd6e0;--suave:#9fb0be}
+@media (prefers-color-scheme:dark){
+  html[data-theme="auto"] #rkp-app{--tinta:#ccd6e0;--suave:#9fb0be}
+}
+#rkp-app *{box-sizing:border-box}
+#rkp-app .rkp-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#rkp-app .rkp-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#rkp-app .rkp-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#rkp-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em;touch-action:none;margin-bottom:0.35em}
+#rkp-app .rkp-ctrl{margin:0.5em 0}
+#rkp-app .rkp-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#rkp-app .rkp-val{color:var(--acento);font-weight:600}
+#rkp-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#rkp-app .rkp-chk{font-size:0.9em;color:var(--tinta);display:flex;align-items:center;gap:0.4em;margin:0.3em 0}
+#rkp-app .rkp-tit{font-size:0.86em;color:var(--suave);margin:0.45em 0 0.1em}
+#rkp-app .rkp-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.2em 0 0.35em}
+#rkp-app .rkp-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+#rkp-app .rkp-btns button.rkp-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#rkp-app .rkp-eqbox{font-family:"Cambria Math",Cambria,Georgia,serif;font-size:1.0em;
+  background:var(--panel);color:#1a2733;border:1px solid var(--linea);border-radius:0.4em;
+  padding:0.35em 0.5em;margin:0.4em 0;text-align:center}
+#rkp-app table.rkp-t{width:100%;border-collapse:collapse;margin-top:0.3em;font-size:0.95em}
+#rkp-app table.rkp-t td{padding:0.15em 0.3em;border-bottom:1px solid rgba(128,140,152,0.25)}
+#rkp-app table.rkp-t td.rkp-num{text-align:right;font-variant-numeric:tabular-nums}
+#rkp-app .rkp-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#rkp-app .rkp-ok{background:#e3f4e8;color:#1c7a3e}
+#rkp-app .rkp-amb{background:#fdf3dd;color:#8a6100}
+#rkp-app .rkp-bad{background:#fbe4e4;color:#a11}
+#rkp-app .rkp-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3em 0.9em;
+  margin-top:0.2em;font-size:0.84em;color:var(--tinta)}
+#rkp-app .rkp-leg > span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+#rkp-app .rkp-sw{display:inline-block;width:2.2em;height:0}
+#rkp-app .rkp-pt{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;
+  border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(128,140,152,0.55)}
+#rkp-app .rkp-sq{display:inline-block;width:1.1em;height:0.8em;border:1px solid rgba(128,140,152,0.55)}
+#rkp-app .rkp-ley{font-size:0.82em;color:var(--suave);margin-top:0.3em;text-align:center}
+</style>
+
+<div id="rkp-app">
+  <div class="rkp-wrap">
+    <div class="rkp-izq">
+      <svg id="rkp-sy" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id="rkp-sf" viewBox="0 0 640 250" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="rkp-leg">
+        <span><i class="rkp-sw" style="border-top:2.4px solid #1a2733"></i>solución exacta</span>
+        <span><i class="rkp-pt" style="background:#1f77b4"></i>k<sub>1</sub></span>
+        <span><i class="rkp-pt" style="background:#ff7f0e"></i>k<sub>2</sub></span>
+        <span><i class="rkp-pt" style="background:#2ca02c"></i>k<sub>3</sub></span>
+        <span><i class="rkp-pt" style="background:#9467bd"></i>k<sub>4</sub></span>
+        <span><i class="rkp-sw" style="border-top:2.4px solid #d62728"></i>paso del método</span>
+      </div>
+      <div class="rkp-ley">Arriba: el paso en el plano (t, y), con la predicción de Euler que usa cada etapa (línea punteada) y la pendiente k<sub>i</sub> evaluada ahí. Abajo: las pendientes contra t; el área sombreada es h·Σb<sub>i</sub>k<sub>i</sub> = y<sub>n+1</sub> − y<sub>n</sub>.</div>
+    </div>
+    <div class="rkp-der">
+      <div class="rkp-tit">método</div>
+      <div class="rkp-btns" id="rkp-mb"></div>
+      <div class="rkp-tit">ecuación</div>
+      <div class="rkp-btns" id="rkp-fb"></div>
+      <div class="rkp-eqbox" id="rkp-eq"></div>
+      <div class="rkp-ctrl">
+        <label>paso h = <span class="rkp-val" id="rkp-hv"></span></label>
+        <input type="range" id="rkp-h" min="0.1" max="2" step="0.05" value="1">
+      </div>
+      <table class="rkp-t"><tbody id="rkp-tb"></tbody></table>
+      <span class="rkp-badge" id="rkp-bd">–</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  const NS='http://www.w3.org/2000/svg';
+  const el=i=>document.getElementById(i);
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at){const v=at[k];
+    if(v===undefined||(typeof v==='number'&&!isFinite(v))) throw new Error('attr '+k+'='+v);
+    e.setAttribute(k,v);}return e;}
+  function txt(p,x,y,s,size,fill,anchor){const t=mk('text',{x:x,y:y,'font-size':size,fill:fill||'#5d6b78','text-anchor':anchor||'middle'});t.textContent=s;p.appendChild(t);return t;}
+  function ticks(lo,hi,n){const raw=(hi-lo)/n,p10=Math.pow(10,Math.floor(Math.log10(raw)));
+    const st=[1,2,5,10].map(q=>q*p10).find(w=>w>=raw);const out=[];
+    for(let k=Math.ceil(lo/st-1e-9);k*st<=hi+1e-12;k++) out.push(k*st);
+    return {v:out,dec:Math.max(0,-Math.floor(Math.log10(st)+1e-9))};}
+  function marco(svg,VB,VH,xl,xh,yl,yh,xlab,ylab,id){
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc,fE=15*esc,ml=Math.max(52,3.6*fT),mb=Math.max(42,3.2*fT),mt=12,mr=14;
+    const W=VB-ml-mr,H=VH-mt-mb;
+    const X=x=>ml+(x-xl)/(xh-xl)*W, Y=y=>mt+(yh-y)/(yh-yl)*H;
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const cp=mk('clipPath',{id:id}); cp.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H})); svg.appendChild(cp);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4'}));
+    const tx=ticks(xl,xh,5), ty=ticks(yl,yh,5);
+    tx.v.forEach(v=>{svg.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,X(v),mt+H+fT*1.25,v.toFixed(tx.dec),fT);});
+    ty.v.forEach(v=>{svg.appendChild(mk('line',{x1:ml,y1:Y(v),x2:ml+W,y2:Y(v),stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,ml-fT*0.5,Y(v)+fT*0.36,(Math.abs(v)<1e-12?0:v).toFixed(ty.dec),fT,null,'end');});
+    txt(svg,ml+W/2,VH-mb*0.16,xlab,fE,'#1a2733');
+    const ly=txt(svg,0,0,ylab,fE,'#1a2733'); ly.setAttribute('transform','translate('+(fE*0.95)+','+(mt+H/2)+') rotate(-90)');
+    const capa=mk('g',{'clip-path':'url(#'+id+')'}); svg.appendChild(capa);
+    return {X:X,Y:Y,capa:capa,fT:fT,ml:ml,mt:mt,W:W,H:H};
+  }
+  function poly(pts){return pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join('');}
+
+  const app=el('rkp-app'), sy=el('rkp-sy'), sf=el('rkp-sf');
+  const COL=['#1f77b4','#ff7f0e','#2ca02c','#9467bd'];
+  // tablas de Butcher
+  const MET={
+    eu:{nom:'Euler',A:[[0]],b:[1],c:[0],regla:'rectángulo izquierdo'},
+    pm:{nom:'Punto medio',A:[[0,0],[0.5,0]],b:[0,1],c:[0,0.5],regla:'punto medio'},
+    he:{nom:'Heun',A:[[0,0],[1,0]],b:[0.5,0.5],c:[0,1],regla:'trapecio'},
+    rk:{nom:'RK4',A:[[0,0,0,0],[0.5,0,0,0],[0,0.5,0,0],[0,0,1,0]],b:[1/6,1/3,1/3,1/6],c:[0,0.5,0.5,1],regla:'Simpson 1/3'}
+  };
+  // ejemplo 25.8 de Chapra y Canale, y su versión sin y
+  const EQ={
+    ty:{nom:'F(t, y)',txt:'dy/dt = 4e<sup>0.8t</sup> − 0.5y,  y(0) = 2',
+        F:(t,y)=>4*Math.exp(0.8*t)-0.5*y,
+        y:t=>4/1.3*(Math.exp(0.8*t)-Math.exp(-0.5*t))+2*Math.exp(-0.5*t)},
+    t:{nom:'F depende solo de t',txt:'dy/dt = 4e<sup>0.8t</sup>,  y(0) = 2',
+        F:(t,y)=>4*Math.exp(0.8*t), y:t=>2+5*(Math.exp(0.8*t)-1)}
+  };
+  let mk_='rk', ek='ty', h=1;
+  const mb=el('rkp-mb'), fb=el('rkp-fb');
+  Object.keys(MET).forEach(k=>{const b=document.createElement('button');b.textContent=MET[k].nom;b.dataset.k=k;
+    b.onclick=()=>{mk_=k;draw();};mb.appendChild(b);});
+  Object.keys(EQ).forEach(k=>{const b=document.createElement('button');b.textContent=EQ[k].nom;b.dataset.k=k;
+    b.onclick=()=>{ek=k;draw();};fb.appendChild(b);});
+  el('rkp-h').addEventListener('input',e=>{h=+e.target.value;draw();});
+
+  function draw(){
+    const M=MET[mk_], E=EQ[ek], s=M.b.length, t0=0, y0=2;
+    // etapas
+    const k=[], Ti=[], Yi=[];
+    for(let i=0;i<s;i++){ let yi=y0; for(let j=0;j<i;j++) yi+=h*M.A[i][j]*k[j];
+      Ti.push(t0+M.c[i]*h); Yi.push(yi); k.push(E.F(Ti[i],yi)); }
+    const phi=M.b.reduce((a,b,i)=>a+b*k[i],0), y1=y0+h*phi, yex=E.y(t0+h);
+
+    // ---- panel superior: plano (t, y)
+    const tmax=h*1.08, N=120, ts=[], ye=[];
+    for(let i=0;i<=N;i++){const t=tmax*i/N; ts.push(t); ye.push(E.y(t));}
+    const ys=[...ye,y1,...Yi]; let lo=Math.min(...ys), hi=Math.max(...ys); const pad=0.1*(hi-lo||1); lo-=pad; hi+=pad;
+    const g=marco(sy,640,380,0,tmax,lo,hi,'t','y','rkp-c1');
+    const X=g.X,Y=g.Y,cp=g.capa;
+    cp.appendChild(mk('path',{d:poly(ts.map((t,i)=>[X(t),Y(ye[i])])),fill:'none',stroke:'#1a2733','stroke-width':2.4}));
+    // predicción de Euler de cada etapa y su pendiente
+    const L=0.13*tmax;
+    for(let i=0;i<s;i++){
+      if(i>0) cp.appendChild(mk('line',{x1:X(t0),y1:Y(y0),x2:X(Ti[i]),y2:Y(Yi[i]),stroke:COL[i],'stroke-width':1.4,'stroke-dasharray':'4 3'}));
+      cp.appendChild(mk('line',{x1:X(Ti[i]-L/2),y1:Y(Yi[i]-k[i]*L/2),x2:X(Ti[i]+L/2),y2:Y(Yi[i]+k[i]*L/2),stroke:COL[i],'stroke-width':3.2,'stroke-linecap':'round'}));
+      cp.appendChild(mk('circle',{cx:X(Ti[i]),cy:Y(Yi[i]),r:5.5,fill:COL[i],stroke:'#fff','stroke-width':1.5}));
+    }
+    cp.appendChild(mk('line',{x1:X(t0),y1:Y(y0),x2:X(t0+h),y2:Y(y1),stroke:'#d62728','stroke-width':2.4}));
+    cp.appendChild(mk('circle',{cx:X(t0+h),cy:Y(yex),r:6,fill:'#1a2733',stroke:'#fff','stroke-width':1.5}));
+    cp.appendChild(mk('circle',{cx:X(t0+h),cy:Y(y1),r:6.5,fill:'#d62728',stroke:'#fff','stroke-width':1.5}));
+    const lb=txt(cp,X(t0+h)-10,Y(y1)+(y1<yex?18:-10),'y',g.fT*1.05,'#d62728','end');
+    const sb=mk('tspan',{'baseline-shift':'sub','font-size':g.fT*0.8}); sb.textContent='n+1'; lb.appendChild(sb);
+
+    // ---- panel inferior: pendientes contra t
+    const fe=ts.map((t,i)=>E.F(t,ye[i]));
+    const fs=[...fe,...k]; let fl=Math.min(0,...fs), fh=Math.max(...fs); const fp=0.1*(fh-fl||1); fh+=fp; if(fl<0) fl-=fp;
+    const q=marco(sf,640,250,0,tmax,fl,fh,'t','pendiente','rkp-c2');
+    const Xf=q.X,Yf=q.Y,cf=q.capa;
+    // área de la regla equivalente: interpolante de las pendientes
+    let rule;
+    if(mk_==='eu') rule=t=>k[0];
+    else if(mk_==='pm') rule=t=>k[1];
+    else if(mk_==='he') rule=t=>k[0]+(k[1]-k[0])*t/h;
+    else { const m=(k[1]+k[2])/2; rule=t=>{const u=t/h; return k[0]*(1-u)*(1-2*u)+4*m*u*(1-u)+k[3]*u*(2*u-1);}; }
+    const ra=[]; for(let i=0;i<=60;i++){const t=h*i/60; ra.push([Xf(t),Yf(rule(t))]);}
+    cf.appendChild(mk('path',{d:'M'+Xf(0)+' '+Yf(0)+poly(ra).replace('M','L')+'L'+Xf(h)+' '+Yf(0)+'Z',fill:'#d62728','fill-opacity':0.16,stroke:'#d62728','stroke-width':1.2}));
+    cf.appendChild(mk('path',{d:poly(ts.map((t,i)=>[Xf(t),Yf(fe[i])])),fill:'none',stroke:'#1a2733','stroke-width':2}));
+    for(let i=0;i<s;i++) cf.appendChild(mk('circle',{cx:Xf(Ti[i])+(i===2?7:0),cy:Yf(k[i]),r:5.5,fill:COL[i],stroke:'#fff','stroke-width':1.5}));
+    cf.appendChild(mk('line',{x1:Xf(h),y1:q.mt,x2:Xf(h),y2:q.mt+q.H,stroke:'#8a95a0','stroke-dasharray':'3 4'}));
+
+    // ---- lecturas
+    el('rkp-hv').textContent=h.toFixed(2);
+    el('rkp-eq').innerHTML=E.txt;
+    const er=Math.abs(y1-yex)/Math.abs(yex);
+    const rows=k.map((v,i)=>['k<sub>'+(i+1)+'</sub> (b = '+(+M.b[i].toFixed(3))+')',v.toFixed(4)]);
+    rows.push(['y<sub>n+1</sub> método',y1.toFixed(5)],['y(t<sub>n</sub>+h) exacta',yex.toFixed(5)],['error relativo',(100*er).toFixed(3)+' %']);
+    if(ek==='t') rows.push(['regla equivalente',M.regla]);
+    el('rkp-tb').innerHTML=rows.map(r=>'<tr><td>'+r[0]+'</td><td class="rkp-num">'+r[1]+'</td></tr>').join('');
+    const bd=el('rkp-bd');
+    bd.textContent=s+' evaluaciones de F por paso'; bd.className='rkp-badge '+(er<1e-3?'rkp-ok':er<1e-2?'rkp-amb':'rkp-bad');
+    [...mb.children].forEach(b=>b.classList.toggle('rkp-on',b.dataset.k===mk_));
+    [...fb.children].forEach(b=>b.classList.toggle('rkp-on',b.dataset.k===ek));
+  }
+  let prevW=0;
+  new ResizeObserver(e=>{const w=e[0].contentRect.width; if(Math.abs(w-prevW)<1) return; prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px'; draw();}).observe(app);
+  draw();
+
+})();
+</script>

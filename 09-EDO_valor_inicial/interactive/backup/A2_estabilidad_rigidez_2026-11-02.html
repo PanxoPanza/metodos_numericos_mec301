@@ -1,0 +1,190 @@
+<meta charset="utf-8">
+<style>
+#est-app{width:100%;max-width:min(800px,94vw);padding:4px 2px;background:transparent;
+  font-family:"Segoe UI",Calibri,system-ui,sans-serif;font-size:15px;line-height:1.45;
+  --tinta:#1a2733;--suave:#5d6b78;--linea:#d8dee4;--panel:#f6f8fa;
+  --c1:#1f77b4;--c2:#ff7f0e;--rojo:#d62728;--acento:#00afd8;--verde:#1c7a3e;color:var(--tinta)}
+html[data-theme="dark"] #est-app,
+body[data-jp-theme-light="false"] #est-app{--tinta:#ccd6e0;--suave:#9fb0be}
+@media (prefers-color-scheme:dark){
+  html[data-theme="auto"] #est-app{--tinta:#ccd6e0;--suave:#9fb0be}
+}
+#est-app *{box-sizing:border-box}
+#est-app .est-wrap{display:flex;gap:1.05em;align-items:flex-start;flex-wrap:wrap}
+#est-app .est-izq{flex:3 1 264px;min-width:0;max-width:448px}
+#est-app .est-der{flex:2 1 250px;min-width:0;font-size:0.85em}
+#est-app svg{width:100%;height:auto;display:block;background:#fff;
+  border:1px solid var(--linea);border-radius:0.55em;touch-action:none;margin-bottom:0.35em}
+#est-app .est-ctrl{margin:0.5em 0}
+#est-app .est-ctrl label{display:block;font-size:0.9em;color:var(--suave);margin-bottom:0.12em}
+#est-app .est-val{color:var(--acento);font-weight:600}
+#est-app input[type=range]{width:100%;margin:0;accent-color:var(--acento)}
+#est-app .est-chk{font-size:0.9em;color:var(--tinta);display:flex;align-items:center;gap:0.4em;margin:0.3em 0}
+#est-app .est-tit{font-size:0.86em;color:var(--suave);margin:0.45em 0 0.1em}
+#est-app .est-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:0.3em;margin:0.2em 0 0.35em}
+#est-app .est-btns button{font:inherit;font-size:0.82em;padding:0.3em 0.2em;cursor:pointer;
+  border:1px solid var(--linea);border-radius:0.4em;background:#fff;color:#1a2733}
+#est-app .est-btns button.est-on{background:var(--acento);border-color:var(--acento);color:#fff}
+#est-app .est-eqbox{font-family:"Cambria Math",Cambria,Georgia,serif;font-size:1.0em;
+  background:var(--panel);color:#1a2733;border:1px solid var(--linea);border-radius:0.4em;
+  padding:0.35em 0.5em;margin:0.4em 0;text-align:center}
+#est-app table.est-t{width:100%;border-collapse:collapse;margin-top:0.3em;font-size:0.95em}
+#est-app table.est-t td{padding:0.15em 0.3em;border-bottom:1px solid rgba(128,140,152,0.25)}
+#est-app table.est-t td.est-num{text-align:right;font-variant-numeric:tabular-nums}
+#est-app .est-badge{display:inline-block;padding:0.2em 0.6em;border-radius:1em;
+  font-size:0.85em;font-weight:600;margin-top:0.45em}
+#est-app .est-ok{background:#e3f4e8;color:#1c7a3e}
+#est-app .est-amb{background:#fdf3dd;color:#8a6100}
+#est-app .est-bad{background:#fbe4e4;color:#a11}
+#est-app .est-leg{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3em 0.9em;
+  margin-top:0.2em;font-size:0.84em;color:var(--tinta)}
+#est-app .est-leg > span{display:inline-flex;align-items:center;gap:0.42em;white-space:nowrap}
+#est-app .est-sw{display:inline-block;width:2.2em;height:0}
+#est-app .est-pt{display:inline-block;width:0.8em;height:0.8em;border-radius:50%;
+  border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(128,140,152,0.55)}
+#est-app .est-sq{display:inline-block;width:1.1em;height:0.8em;border:1px solid rgba(128,140,152,0.55)}
+#est-app .est-ley{font-size:0.82em;color:var(--suave);margin-top:0.3em;text-align:center}
+</style>
+
+<div id="est-app">
+  <div class="est-wrap">
+    <div class="est-izq">
+      <svg id="est-sy" viewBox="0 0 640 340" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id="est-sr" viewBox="0 0 640 280" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="est-leg" id="est-leg"></div>
+      <div class="est-ley">Arriba: solución de dy/dt = λ(y − cos t), y(0) = 0. Abajo: |R(z)| de cada método; la banda verde es la zona estable, |R| &lt; 1, y la línea vertical marca z = hλ.</div>
+    </div>
+    <div class="est-der">
+      <div class="est-ctrl">
+        <label>λ = <span class="est-val" id="est-lv"></span></label>
+        <input type="range" id="est-l" min="0" max="3" step="0.01" value="1">
+      </div>
+      <div class="est-ctrl">
+        <label>paso h = <span class="est-val" id="est-hv"></span></label>
+        <input type="range" id="est-h" min="-3" max="0" step="0.01" value="-1.3">
+      </div>
+      <div class="est-eqbox" id="est-z"></div>
+      <div class="est-tit">métodos</div>
+      <div id="est-chks"></div>
+      <div class="est-tit">preajustes</div>
+      <div class="est-btns">
+        <button id="est-p1">no rígido (λ = −2)</button>
+        <button id="est-p2">rígido (λ = −200)</button>
+      </div>
+      <table class="est-t"><tbody id="est-tb"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+
+  const NS='http://www.w3.org/2000/svg';
+  const el=i=>document.getElementById(i);
+  function mk(t,at){const e=document.createElementNS(NS,t);for(const k in at){const v=at[k];
+    if(v===undefined||(typeof v==='number'&&!isFinite(v))) throw new Error('attr '+k+'='+v);
+    e.setAttribute(k,v);}return e;}
+  function txt(p,x,y,s,size,fill,anchor){const t=mk('text',{x:x,y:y,'font-size':size,fill:fill||'#5d6b78','text-anchor':anchor||'middle'});t.textContent=s;p.appendChild(t);return t;}
+  function ticks(lo,hi,n){const raw=(hi-lo)/n,p10=Math.pow(10,Math.floor(Math.log10(raw)));
+    const st=[1,2,5,10].map(q=>q*p10).find(w=>w>=raw);const out=[];
+    for(let k=Math.ceil(lo/st-1e-9);k*st<=hi+1e-12;k++) out.push(k*st);
+    return {v:out,dec:Math.max(0,-Math.floor(Math.log10(st)+1e-9))};}
+  function marco(svg,VB,VH,xl,xh,yl,yh,xlab,ylab,id){
+    const esc=VB/Math.max(svg.clientWidth||svg.getBoundingClientRect().width||VB,1);
+    const fT=13*esc,fE=15*esc,ml=Math.max(52,3.6*fT),mb=Math.max(42,3.2*fT),mt=12,mr=14;
+    const W=VB-ml-mr,H=VH-mt-mb;
+    const X=x=>ml+(x-xl)/(xh-xl)*W, Y=y=>mt+(yh-y)/(yh-yl)*H;
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const cp=mk('clipPath',{id:id}); cp.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H})); svg.appendChild(cp);
+    svg.appendChild(mk('rect',{x:ml,y:mt,width:W,height:H,fill:'#fff',stroke:'#d8dee4'}));
+    const tx=ticks(xl,xh,5), ty=ticks(yl,yh,5);
+    tx.v.forEach(v=>{svg.appendChild(mk('line',{x1:X(v),y1:mt,x2:X(v),y2:mt+H,stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,X(v),mt+H+fT*1.25,v.toFixed(tx.dec),fT);});
+    ty.v.forEach(v=>{svg.appendChild(mk('line',{x1:ml,y1:Y(v),x2:ml+W,y2:Y(v),stroke:'#000','stroke-opacity':0.06}));
+      txt(svg,ml-fT*0.5,Y(v)+fT*0.36,(Math.abs(v)<1e-12?0:v).toFixed(ty.dec),fT,null,'end');});
+    txt(svg,ml+W/2,VH-mb*0.16,xlab,fE,'#1a2733');
+    const ly=txt(svg,0,0,ylab,fE,'#1a2733'); ly.setAttribute('transform','translate('+(fE*0.95)+','+(mt+H/2)+') rotate(-90)');
+    const capa=mk('g',{'clip-path':'url(#'+id+')'}); svg.appendChild(capa);
+    return {X:X,Y:Y,capa:capa,fT:fT,ml:ml,mt:mt,W:W,H:H};
+  }
+  function poly(pts){return pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join('');}
+
+  const app=el('est-app'), sy=el('est-sy'), sr=el('est-sr');
+  const TF=6;
+  const MET=[
+    {k:'eu',nom:'Euler explícito',col:'#1f77b4',dash:'',R:z=>1+z},
+    {k:'rk',nom:'RK4',col:'#ff7f0e',dash:'',R:z=>1+z+z*z/2+z*z*z/6+z*z*z*z/24},
+    {k:'ei',nom:'Euler implícito',col:'#1c7a3e',dash:'6 3',R:z=>1/(1-z)},
+    {k:'bd',nom:'BDF2',col:'#9467bd',dash:'2 3',R:z=>{ // raíz de mayor módulo de (3-2z)s^2 - 4s + 1 = 0
+       const a=3-2*z, d=16-4*a; if(d>=0) return Math.max(Math.abs((4+Math.sqrt(d))/(2*a)),Math.abs((4-Math.sqrt(d))/(2*a)));
+       return Math.sqrt(1/a);}}
+  ];
+  const on={eu:true,rk:true,ei:true,bd:false};
+  let lgl=1, lgh=-1.3;
+  const ch=el('est-chks');
+  MET.forEach(m=>{const l=document.createElement('label');l.className='est-chk';
+    l.innerHTML='<input type="checkbox" '+(on[m.k]?'checked':'')+'><span style="color:'+m.col+';font-weight:600">'+m.nom+'</span>';
+    l.firstChild.addEventListener('change',e=>{on[m.k]=e.target.checked;draw();}); ch.appendChild(l);});
+  el('est-leg').innerHTML='<span><i class="est-sw" style="border-top:2.4px solid #1a2733"></i>exacta</span>'+
+    MET.map(m=>'<span><i class="est-sw" style="border-top:2.4px '+(m.dash?'dashed':'solid')+' '+m.col+'"></i>'+m.nom+'</span>').join('');
+  el('est-l').addEventListener('input',e=>{lgl=+e.target.value;draw();});
+  el('est-h').addEventListener('input',e=>{lgh=+e.target.value;draw();});
+  function setp(l,hh){lgl=Math.log10(l);lgh=Math.log10(hh);el('est-l').value=lgl;el('est-h').value=lgh;draw();}
+  el('est-p1').onclick=()=>setp(2,0.4);
+  el('est-p2').onclick=()=>setp(200,0.02);
+
+  function sim(k,lam,h){
+    const F=(t,y)=>lam*(y-Math.cos(t)), N=Math.round(TF/h), t=[0], y=[0];
+    for(let n=0;n<N;n++){
+      const tn=t[n], yn=y[n], t1=tn+h; let y1;
+      if(k==='eu') y1=yn+h*F(tn,yn);
+      else if(k==='rk'){const k1=F(tn,yn),k2=F(tn+h/2,yn+h/2*k1),k3=F(tn+h/2,yn+h/2*k2),k4=F(t1,yn+h*k3);y1=yn+h/6*(k1+2*k2+2*k3+k4);}
+      else if(k==='ei' || n===0) y1=(yn-h*lam*Math.cos(t1))/(1-h*lam);
+      else y1=(4*yn-y[n-1]-2*h*lam*Math.cos(t1))/(3-2*h*lam);
+      t.push(t1); y.push(y1);
+      if(!isFinite(y1)||Math.abs(y1)>1e6) break;
+    }
+    return {t:t,y:y};
+  }
+  function draw(){
+    const lam=-Math.pow(10,lgl), h=Math.pow(10,lgh), z=h*lam;
+    const a=lam*lam/(1+lam*lam), b=-lam/(1+lam*lam);
+    const yex=t=>a*Math.cos(t)+b*Math.sin(t)-a*Math.exp(lam*t);
+    // ---- trayectorias
+    const g=marco(sy,640,340,0,TF,-1.6,1.6,'t','y','est-c1');
+    const pts=[]; for(let i=0;i<=400;i++){const t=TF*i/400; pts.push([g.X(t),g.Y(yex(t))]);}
+    g.capa.appendChild(mk('path',{d:poly(pts),fill:'none',stroke:'#1a2733','stroke-width':2.4}));
+    const rows=[];
+    MET.forEach(m=>{
+      const Rz=Math.abs(m.R(z)), est=Rz<=1+1e-12;
+      rows.push('<tr><td style="color:'+m.col+'">'+m.nom+'</td><td class="est-num">|R| = '+(Rz<1e3?Rz.toFixed(3):Rz.toExponential(1))+
+        '</td><td><span class="est-badge '+(est?'est-ok':'est-bad')+'" style="margin:0">'+(est?'estable':'inestable')+'</span></td></tr>');
+      if(!on[m.k]) return;
+      const s=sim(m.k,lam,h);
+      const P=s.t.map((t,i)=>[g.X(t),g.Y(Math.max(-50,Math.min(50,s.y[i])))]);
+      g.capa.appendChild(mk('path',{d:poly(P),fill:'none',stroke:m.col,'stroke-width':1.8,'stroke-dasharray':m.dash}));
+      if(s.t.length<=80) P.forEach(p=>g.capa.appendChild(mk('circle',{cx:p[0],cy:p[1],r:2.6,fill:m.col})));
+    });
+    // ---- |R(z)|
+    const ZL=-6, q=marco(sr,640,280,ZL,0,0,2,'z = hλ','|R(z)|','est-c2');
+    q.capa.appendChild(mk('rect',{x:q.X(ZL),y:q.Y(1),width:q.W,height:q.Y(0)-q.Y(1),fill:'#1c7a3e','fill-opacity':0.09}));
+    q.capa.appendChild(mk('line',{x1:q.X(ZL),y1:q.Y(1),x2:q.X(0),y2:q.Y(1),stroke:'#1c7a3e','stroke-width':1.2}));
+    MET.forEach(m=>{ if(!on[m.k]) return; const P=[];
+      for(let i=0;i<=300;i++){const zz=ZL*(1-i/300); P.push([q.X(zz),q.Y(Math.min(3,Math.abs(m.R(zz))))]);}
+      q.capa.appendChild(mk('path',{d:poly(P),fill:'none',stroke:m.col,'stroke-width':2,'stroke-dasharray':m.dash}));});
+    const zc=Math.max(ZL,z);
+    q.capa.appendChild(mk('line',{x1:q.X(zc),y1:q.mt,x2:q.X(zc),y2:q.mt+q.H,stroke:'#d62728','stroke-width':2}));
+    if(z<ZL) txt(q.capa,q.X(ZL)+6,q.mt+q.fT*1.3,'← z = '+z.toFixed(1),q.fT,'#d62728','start');
+    // ---- lecturas
+    el('est-lv').textContent=lam.toFixed(lam>-10?2:0);
+    el('est-hv').textContent=h<0.01?h.toFixed(4):h.toFixed(3);
+    el('est-z').innerHTML='z = hλ = '+z.toFixed(3)+'<br>límite de Euler: h ≤ '+(2/-lam).toPrecision(2)+' · RK4: h ≤ '+(2.785/-lam).toPrecision(2);
+    el('est-tb').innerHTML=rows.join('');
+  }
+  let prevW=0;
+  new ResizeObserver(e=>{const w=e[0].contentRect.width; if(Math.abs(w-prevW)<1) return; prevW=w;
+    app.style.fontSize=Math.max(13,Math.min(17,w/50))+'px'; draw();}).observe(app);
+  draw();
+
+})();
+</script>

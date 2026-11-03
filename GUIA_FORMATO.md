@@ -221,6 +221,16 @@ Registro de lo que ya existe en el material, para no duplicarlo ni contradecirlo
 | U6 §Newton vectorial | U2 | $J\,\Delta\mathbf{x}=-\mathbf{F}$ es un sistema lineal por iteración |
 | U6 §Resumen | U9, U10, U11 | paso implícito, método de disparo, EDP no lineal |
 | U7 §Introducción | U4, U5 | integrar el interpolante $p_n$; Taylor fija el error |
+| U8 §Introducción | U5, U4 | curva en V; derivar el interpolante |
+| U8 §Segunda derivada | U10, U2 | la fórmula central en todos los nodos da un sistema tridiagonal |
+| U8 §Datos medidos | U3, U7 | ajustar por ventanas y derivar; integrar suaviza, derivar amplifica |
+| U8 §Cierre | U9 | Euler y BDF son diferencias finitas |
+| U9 §Introducción | U5, U8 | sin θ ≈ θ deja de servir; conocemos la derivada y buscamos la función |
+| U9 §Euler implícito | U6, U2 | cada paso es una raíz; Newton con $J\Delta\mathbf{y}=-\mathbf{G}$ |
+| U9 §Runge-Kutta | U7 | con $F=F(t)$, Euler/punto medio/Heun/RK4 son rectángulo/punto medio/trapecio/Simpson |
+| U9 §Métodos embebidos | U7 | dos estimaciones que comparten evaluaciones, como Gauss-Kronrod |
+| U9 §Multipaso | U4, U7, U8 | AB interpola e integra $F$; BDF interpola $y$ y deriva |
+| U9 §Resumen | U10 | ¿cómo usar solve_ivp si falta una condición inicial? |
 
 **Nota (2026-10-04):** los puentes U4 §Newton y Lagrange → U7 y U5 §La forma en paso $h$ → U7 ya no
 están en esos notebooks (se recortaron en la revisión del usuario). La U7 hace sus propios puentes
@@ -865,7 +875,25 @@ conviene decirlo explícitamente.
 | $I_1$, $I_2$ | dos estimaciones del mismo subintervalo (Simpson con $h$ y $h/2$) | local |
 | $G_{10}$, $K_{21}$ | estimaciones de Gauss y Kronrod que usa `quad` | local |
 
-### U8 a U11 · pendiente de fijar
+### U8 · Derivación numérica
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $h$ | espaciamiento de la malla | global |
+| $x_{i-1}, x_i, x_{i+1}$ | nodos equiespaciados alrededor del punto de derivación | local |
+| $\delta$ | ruido de medición de un dato | local |
+
+### U9 · EDO valor inicial
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $\mathbf{y}$, $\mathbf{F}(t,\mathbf{y})$ | estado y lado derecho del sistema de primer orden | global para EDO (U10) |
+| $n$ | índice de paso de tiempo, $t_n = t_0 + nh$ (sigue la notación de Wikipedia) | local |
+| $s$, $k_i$, $a_{ij}$, $b_i$, $c_i$ | etapas, pendientes y coeficientes de Runge-Kutta (tabla de Butcher) | local; $a_{ij}$ no son los coeficientes de ajuste de U3 |
+| $\lambda$, $z = h\lambda$, $R(z)$ | constante de la ecuación de prueba, paso adimensional y factor de amplificación | local |
+| $\theta$, $\omega$ | ángulo y velocidad angular del péndulo (ejemplo conductor, también en U5 y U8) | local |
+
+### U10 a U11 · pendiente de fijar
 
 Al rediseñar cada unidad, completar aquí su notación. Símbolos que ya circulan y conviene
 consolidar: $h$ y $\Delta t$ (paso), $x_i$ (nodos de la malla), $T$ (temperatura, ejemplo
@@ -906,8 +934,8 @@ Copiar esta estructura de celdas al empezar una unidad:
 | 05 Series de Taylor | rediseñada (2026-09-20) | sí (A1, A2) | sí | sí |
 | 06 Búsqueda de raíces | rediseñada (2026-09-20) | sí (A3) | sí | sí |
 | 07 Integración | rediseñada (2026-10-04) | sí (A1, A2) | sí | no |
-| 08 Derivación numérica | pendiente | — | — | — |
-| 09 EDO valor inicial | pendiente | — | — | — |
+| 08 Derivación numérica | rediseñada (2026-11-02) | no | sí | no |
+| 09 EDO valor inicial | rediseñada (2026-11-02) | sí (A1, A2, A3, preliminares) | sí | no |
 | 10 EDO valor de frontera | pendiente | — | — | — |
 | 11 Diferencias finitas EDP | pendiente | — | — | — |
 
@@ -922,7 +950,7 @@ Copiar esta estructura de celdas al empezar una unidad:
   más visible es el de la animación A1 en U3 ("mueve $a_0$ y $a_1$"). Corregir al pasar por
   cada capítulo, sin abrir una campaña.
 - Los puentes hacia adelante que faltan escribir, en orden de prioridad:
-  U2 → U10 y U11 (la matriz tridiagonal que vuelve), U7 → U9 (RK como cuadratura del paso; el usuario retiró el puente escrito el 2026-10-04).
+  U2 → U10 y U11 (la matriz tridiagonal que vuelve), U7 → U9 (RK como cuadratura del paso; el usuario retiró el puente escrito en U7 el 2026-10-04; desde el 2026-11-02 lo hace la U9 hacia atrás).
   *(U4 → U7 y U8 quedó escrito el 2026-08-19; U5 → U6, U7, U8 y U9, y U6 → U9, U10 y U11,
   quedaron escritos el 2026-09-20.)*
 - Las Unidades 5 y 6 adoptaron el CSS compartido de `03-Ajuste_de_curvas/` el 2026-09-20.
@@ -944,3 +972,4 @@ Copiar esta estructura de celdas al empezar una unidad:
   quedó sin uso al reemplazarlo por la animación A1. No se borró.
 - **2026-10-05:** en la U7 el error de truncamiento se escribe solo como $O(h^n)$, sin fórmulas en términos de
   derivadas de $f$ (criterio del usuario: si la función no se conoce, una fórmula con $f''$ no tiene uso práctico).
+- **2026-11-02:** U8 y U9 adoptaron el CSS compartido de `03-Ajuste_de_curvas/`. Las tres animaciones de U9 son preliminares (falta pulido y proyector). En U9 quedaron sin uso `stiffness.png`, `multistep.png` y `navierstokes.*`; no se borraron.
