@@ -893,6 +893,14 @@ conviene decirlo explícitamente.
 | $\lambda$, $z = h\lambda$, $R(z)$ | constante de la ecuación de prueba, paso adimensional y factor de amplificación | local |
 | $\theta$, $\omega$ | ángulo y velocidad angular del péndulo (ejemplo conductor, también en U5 y U8) | local |
 
+### U10 · EDO condición de borde (parcial: solo método de colocación)
+
+| símbolo | significado | alcance |
+|---|---|---|
+| $\mathcal{L}[y]$ | operador diferencial lineal, $\mathcal{L}[y] = y'' + p(x)\,y' + r(x)\,y$, con la EDO escrita como $\mathcal{L}[y] = f(x)$ | local (candidato a global en U11) |
+| $\alpha_0$, $\beta_0$, $\gamma_0$ / $\alpha_n$, $\beta_n$, $\gamma_n$ | coeficientes de la condición de borde de Robin en $x_0 = a$ / $x_n = b$ | local |
+| $S(x) = \sum_j a_j x^j$, $A\mathbf{a} = \mathbf{b}$ | polinomio de colocación y su sistema (matriz de colocación) | local |
+
 ### U10 a U11 · pendiente de fijar
 
 Al rediseñar cada unidad, completar aquí su notación. Símbolos que ya circulan y conviene
