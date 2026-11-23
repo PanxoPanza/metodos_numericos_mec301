@@ -19,6 +19,7 @@ project:
       offset: 0
 site:
   template: book-theme
-  # options:
+  options:
+    favicon: _static/favicon.png
   #   favicon: favicon.ico
   #   logo: site_logo.png
